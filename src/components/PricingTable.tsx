@@ -14,7 +14,7 @@ export function PricingTable({
   return (
     <div>
       <div className="overflow-x-auto -mx-5 sm:mx-0 px-5 sm:px-0">
-        <table className="w-full min-w-[38rem] border-collapse text-sm">
+        <table className="w-full min-w-[34rem] border-collapse text-sm">
           <thead>
             <tr className="border-b rule">
               <th className="text-left font-mono text-[11px] uppercase tracking-wider text-ink-400 py-3 pr-4">

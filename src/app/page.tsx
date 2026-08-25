@@ -145,7 +145,7 @@ export default function HomePage() {
                   Read the flights reference
                 </Cta>
               </div>
-              <p className="mt-5 font-mono text-[11px] text-ink-600">
+              <p className="mt-5 font-mono text-[11px] text-ink-400">
                 Free tier: 10 requests / month, no card. Paid plans from $10 / month.
               </p>
             </div>
@@ -347,7 +347,7 @@ x-search-reason: blocked_page`}</Code>
           title="Subscribe on RapidAPI. Both APIs start free."
           lede="Billing, keys and quota are RapidAPI's. There is no separate account here."
         />
-        <div className="mt-10 grid gap-14 lg:grid-cols-2">
+        <div className="mt-10 grid gap-16 max-w-4xl">
           <div>
             <h3 className="text-lg font-semibold">Google Flights Live API</h3>
             <div className="mt-5">
