@@ -52,3 +52,33 @@ npm run typecheck
    a live marketplace listing, or to a measurement whose sample size is stated on the page.
 2. Response field names in copy must match the API exactly.
 3. Negative claims about other products are scoped to what was actually checked and dated.
+
+## Deploying
+
+The Vercel project does not exist yet, and it cannot be created without one action only the
+account owner can take.
+
+**Blocker.** The Vercel account (mtnrabi) signs in with Google and has **no GitHub login
+connection** — Settings → Authentication shows GitHub as "Connect your GitHub account". Without
+it, `vercel.com/new` cannot read this repository: framework detection never resolves and the
+import fails with *"The repository couldn't be found."* The Vercel **GitHub App** has already
+been granted access to this repo (Settings → Applications → Vercel → Repository access), so
+that half is done; the missing piece is the account-level login connection, which is an OAuth
+grant.
+
+Once GitHub is connected:
+
+1. `vercel.com/new` → import `mtnrabi/flightpowers-developers`.
+2. Confirm the Application Preset resolves to **Next.js**. A project created with
+   `framework: null` returns 404 on every route; fix with
+   `PATCH /v9/projects/flightpowers-developers {"framework":"next"}`.
+3. Project → Settings → Domains → add `developers.flightpowers.com`. The DNS record is already
+   in place: `developers.flightpowers.com CNAME cname.vercel-dns.com`, in the Netlify-managed
+   `flightpowers.com` zone, matching every other FlightPowers subdomain.
+4. Project → Settings → Environment Variables → add `RAPIDAPI_KEY` (Production + Preview) when
+   a route handler needs it. Nothing on the site reads it yet.
+5. Submit `https://developers.flightpowers.com/sitemap.xml` to Google Search Console and Bing
+   Webmaster Tools.
+
+Until step 3 completes, `developers.flightpowers.com` resolves but no Vercel project claims it,
+so it serves Vercel's not-found page. Nothing links to it.
