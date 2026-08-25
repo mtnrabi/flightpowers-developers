@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+/*
+  FlightPowers developer site — design tokens.
+  Reference: an airport departure board. Near-black ground, hairline rules,
+  amber for the live/primary signal, cyan for structural accents, monospace
+  for anything that is literally data.
+*/
+@theme {
+  --color-ink-950: #08090b;
+  --color-ink-900: #0c0e11;
+  --color-ink-850: #111418;
+  --color-ink-800: #171b21;
+  --color-ink-700: #222831;
+  --color-ink-600: #333c48;
+  --color-ink-400: #7d8794;
+  --color-ink-300: #a3adba;
+  --color-ink-200: #c9d1da;
+  --color-ink-100: #e8edf2;
+
+  --color-signal-500: #ffb020;
+  --color-signal-400: #ffc352;
+  --color-signal-600: #d98c00;
+
+  --color-beacon-400: #4fd1c5;
+  --color-beacon-500: #2bb3a6;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: var(--font-mono-face), ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, monospace;
+
+  --text-hero: clamp(2.5rem, 6vw, 4.25rem);
+  --text-hero--line-height: 1.02;
+  --text-hero--letter-spacing: -0.035em;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background-color: var(--color-ink-950);
+    color: var(--color-ink-200);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background-color: var(--color-signal-500);
+    color: var(--color-ink-950);
+  }
+  h1, h2, h3, h4 {
+    color: var(--color-ink-100);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  a { color: inherit; }
+  :focus-visible {
+    outline: 2px solid var(--color-signal-500);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  /* Hairline grid that reads as a schedule board rather than a card deck. */
+  .rule {
+    border-color: color-mix(in oklab, var(--color-ink-700) 70%, transparent);
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-signal-500);
+  }
+  .lede {
+    font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
+    line-height: 1.6;
+    color: var(--color-ink-300);
+    text-wrap: pretty;
+  }
+  .field {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--color-beacon-400);
+  }
+  .board-grid {
+    background-image:
+      linear-gradient(to right, color-mix(in oklab, var(--color-ink-700) 34%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--color-ink-700) 34%, transparent) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  /* Long-form MDX / prose. Deliberately hand-rolled; no typography plugin. */
+  .prose-fp { color: var(--color-ink-300); line-height: 1.72; }
+  .prose-fp h2 { font-size: 1.5rem; margin-top: 2.75rem; margin-bottom: 0.875rem; }
+  .prose-fp h3 { font-size: 1.125rem; margin-top: 2rem; margin-bottom: 0.5rem; }
+  .prose-fp p { margin-bottom: 1.125rem; text-wrap: pretty; }
+  .prose-fp ul { list-style: none; margin-bottom: 1.125rem; padding-left: 0; }
+  .prose-fp ul li { position: relative; padding-left: 1.25rem; margin-bottom: 0.5rem; }
+  .prose-fp ul li::before {
+    content: "\2192"; position: absolute; left: 0;
+    color: var(--color-signal-600); font-family: var(--font-mono);
+  }
+  .prose-fp ol { list-style: decimal; padding-left: 1.25rem; margin-bottom: 1.125rem; }
+  .prose-fp ol li { margin-bottom: 0.5rem; }
+  .prose-fp a { color: var(--color-signal-400); text-underline-offset: 3px; text-decoration: underline; }
+  .prose-fp code {
+    font-family: var(--font-mono); font-size: 0.85em;
+    background: var(--color-ink-850); border: 1px solid var(--color-ink-700);
+    padding: 0.1em 0.35em; border-radius: 3px; color: var(--color-beacon-400);
+  }
+  .prose-fp pre {
+    background: var(--color-ink-900); border: 1px solid var(--color-ink-700);
+    border-radius: 6px; padding: 1rem; overflow-x: auto; margin-bottom: 1.25rem;
+  }
+  .prose-fp pre code { background: none; border: 0; padding: 0; color: var(--color-ink-200); }
+  .prose-fp table { width: 100%; border-collapse: collapse; margin-bottom: 1.25rem; font-size: 0.9rem; }
+  .prose-fp th, .prose-fp td {
+    text-align: left; padding: 0.625rem 0.75rem;
+    border-bottom: 1px solid color-mix(in oklab, var(--color-ink-700) 70%, transparent);
+  }
+  .prose-fp th { color: var(--color-ink-100); font-weight: 600; }
+  .prose-fp hr { border-color: var(--color-ink-700); margin: 2rem 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
