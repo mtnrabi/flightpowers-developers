@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
@@ -6,12 +7,12 @@ import { Container, Cta, FaqSection, JsonLd, Section, SectionHead, type Faq } fr
 import { FIXTURES } from '@/lib/fixtures';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Free Flight Price Checker: is your fare low, typical, or high?',
   description:
     'Enter a route and date and get the live fare with Google’s own price band and a low | typical | high verdict, the context a bare price is missing. Free, no signup; live checks are rate-limited.',
   alternates: { canonical: '/tools/flight-price-checker' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -88,7 +89,7 @@ export default function FlightPriceCheckerPage() {
 
       <Section>
         <SectionHead eyebrow="How it works" title="Three steps, one field that matters" />
-        <ol className="mt-8 grid gap-6 md:grid-cols-3">
+        <ol className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
           {[
             ['Enter a route and date', 'Airport codes and a departure date, the same inputs the API takes.'],
             ['We run a real search', 'A live scan of Google Flights through the FlightPowers API, on our key, at request time. No cache, no stale fares.'],
@@ -109,7 +110,7 @@ export default function FlightPriceCheckerPage() {
           title="Built for the question everyone actually asks"
           lede='Not "what does it cost" but "should I book it now?"'
         />
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
           <div className="rounded-2xl border rule bg-ink-900/50 p-5">
             <p className="text-[15.5px] font-semibold text-ink-100">Travellers with a quote</p>
             <p className="mt-1.5 text-[14px] text-ink-400 leading-relaxed">
@@ -141,7 +142,7 @@ export default function FlightPriceCheckerPage() {
             title="Checking hundreds of routes? That's what the API is for"
             lede="This page runs one check at a time. Your code doesn't have to."
           />
-          <div className="mt-8 grid gap-6 md:grid-cols-3">
+          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
             <div>
               <p className="text-[15px] font-semibold text-ink-100">Parallel date scans</p>
               <p className="mt-1.5 text-[14px] text-ink-400 leading-relaxed">
@@ -179,7 +180,7 @@ export default function FlightPriceCheckerPage() {
 
       <Section>
         <SectionHead eyebrow="Related tools" title="Keep going" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {[
             { href: '/tools/cheapest-month-to-fly', label: 'Cheapest Month to Fly', sub: 'A whole month as a price grid' },
             { href: '/tools/hotel-price-by-country', label: 'Hotel Price by Country', sub: 'The same room, priced from 3 markets' },

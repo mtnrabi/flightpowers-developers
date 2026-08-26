@@ -1,15 +1,16 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { Breadcrumbs, Container, JsonLd, Section, SectionHead } from '@/components/ui';
 import { SITE } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Guides: working code for flight & hotel data',
   description:
     'How-to guides for live flight and hotel pricing: getting real-time Google Flights data, handling empty search results correctly, decoding Google Flights URLs, monitoring hotel rate parity, fare watches in n8n, and an honest comparison of the 2026 flight-API field.',
   alternates: { canonical: '/guides' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -86,7 +87,7 @@ export default function GuidesIndexPage() {
       </Container>
 
       <Section bordered={false} className="!pt-10">
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {GUIDES.map((g) => (
             <Link key={g.href} href={g.href} className="rounded-2xl border rule bg-ink-900/50 p-6 hover:border-ink-500 transition-colors flex flex-col">
               <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-signal-500">{g.tag}</p>
@@ -103,7 +104,7 @@ export default function GuidesIndexPage() {
           title="The free tools run the same code"
           lede="Each guide has a tool that does its job in the browser, on our key. Judge the data before writing a line."
         />
-        <div className="mt-8 grid gap-4 sm:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {[
             { href: '/tools/flight-price-checker', label: 'Flight Price Checker', sub: 'A fare with its verdict' },
             { href: '/tools/google-flights-url-parser', label: 'Google Flights URL Parser', sub: 'Decode a tfs= blob' },

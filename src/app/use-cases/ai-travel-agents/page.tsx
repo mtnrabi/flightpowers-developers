@@ -1,15 +1,16 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { CheckBullets, Container, FaqSection, Feature, Section, SectionHead, type Faq } from '@/components/ui';
 import { COUNTS } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'AI Travel Agents: live flight & hotel data your agent can reason with',
   description:
     'Give an AI agent real fares instead of guesses: hosted MCP servers, flat JSON tool responses, Google’s low | typical | high verdict to ground recommendations, and a header that tells “no flights” apart from “the search failed.”',
   alternates: { canonical: '/use-cases/ai-travel-agents' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -54,7 +55,7 @@ export default function AiTravelAgentsPage() {
 
       <Section bordered={false} className="!pt-10">
         <SectionHead eyebrow="How FlightPowers helps" title="Built for tool calls from the start" />
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
           <Feature title="Hosted MCP servers: a URL, not an install">
             {COUNTS.mcpServers} first-party MCP servers expose flights and hotels search to any MCP client. Your key goes in a
             header; usage bills to your own RapidAPI plan. No SDK, no glue service to run.
@@ -108,7 +109,7 @@ export default function AiTravelAgentsPage() {
 
       <Section>
         <SectionHead eyebrow="Related resources" title="Keep going" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {[
             { href: '/mcp', label: 'MCP servers', sub: 'Config blocks and everything the tools expose' },
             { href: '/flights-api/round-trip', label: 'Round-Trip API', sub: 'Paired itineraries, one call' },

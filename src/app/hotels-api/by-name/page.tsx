@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
@@ -20,12 +21,12 @@ import { FIXTURES } from '@/lib/fixtures';
 import { HOTEL_PLANS } from '@/lib/pricing';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Hotel by Name API: availability and price without property IDs',
   description:
     'POST /hotel_by_name takes the hotel name a human would type (name resolution included) and returns availability, live price, review score and a booking link. Sold out and not found return the same shape with available: false, so parsing never branches.',
   alternates: { canonical: '/hotels-api/by-name' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -110,7 +111,7 @@ export default function HotelByNamePage() {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 hero-glow" aria-hidden="true" />
         <Container className="relative pt-8 sm:pt-12 pb-16">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
             <div>
               <p className="eyebrow">Hotel by Name API</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
@@ -167,7 +168,7 @@ export default function HotelByNamePage() {
           title="Name and dates in, one flat object out"
           lede="The captured run above sent “Kremlin Palace” with area “Antalya” (a generic name a plain search could mismatch) and got the property back with its live rate for the stay."
         />
-        <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:items-start">
+        <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-start">
           <div>
             <p className="font-mono text-[11px] uppercase tracking-wider text-signal-500">Required</p>
             <div className="mt-3">
@@ -252,7 +253,7 @@ export default function HotelByNamePage() {
 
       <Section>
         <SectionHead eyebrow="Explore more" title="More Hotels API" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { href: '/hotels-api/geo-pricing', label: 'Geo-pricing', sub: 'This request, three markets' },
             { href: '/hotels-api/bulk', label: 'Competitive-set tracking', sub: 'Resolve once, poll /hotel' },

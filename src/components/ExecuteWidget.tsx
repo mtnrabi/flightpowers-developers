@@ -48,7 +48,7 @@ export function ExecuteWidget({
         <CapturedBadge date={capturedAt} />
       </div>
 
-      <pre className="overflow-x-auto p-4 text-[12px] leading-relaxed border-b rule">
+      <pre tabIndex={0} className="overflow-x-auto p-4 text-[12px] leading-relaxed border-b rule">
         <code className="font-mono text-ink-200">{requestText}</code>
       </pre>
 
@@ -76,7 +76,7 @@ export function ExecuteWidget({
             ))}
           </div>
         ) : null}
-        <pre className="overflow-x-auto p-4 text-[12px] leading-relaxed max-h-96">
+        <pre tabIndex={0} className="overflow-x-auto p-4 text-[12px] leading-relaxed max-h-96">
           <code className="font-mono text-ink-300">{responseText}</code>
         </pre>
       </div>

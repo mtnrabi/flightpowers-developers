@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
@@ -5,12 +6,12 @@ import { FloatingCta } from '@/components/FloatingCta';
 import { Container, JsonLd, Section } from '@/components/ui';
 import { SITE } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Rebuilding flightpowers.com',
   description:
     'The old site described the product; the new one shows it. Why 13 indexable URLs across two domains had to go, how the new site runs real searches in its hero, and the honesty rules it commits to.',
   alternates: { canonical: '/blog/rebuilding-flightpowers-com' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -120,7 +121,7 @@ export default function RebuildingPost() {
       </Container>
 
       <Section>
-        <div className="grid gap-4 sm:grid-cols-3 max-w-3xl">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 max-w-3xl">
             {[
               { href: '/flights-api/price-insights', label: 'Price Insights API', sub: 'The field the whole site is built around' },
               { href: '/tools/flight-price-checker', label: 'Flight Price Checker', sub: 'Run a live search right now, free' },

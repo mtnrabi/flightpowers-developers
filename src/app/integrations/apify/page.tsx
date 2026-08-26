@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
@@ -17,12 +18,12 @@ import { COUNTS, LINKS, SITE } from '@/lib/site';
 
 export const dynamic = 'force-static';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Apify actors: the same data, pay-per-event',
   description:
     'Both FlightPowers APIs run as Apify actors: Google Flights fares and Booking.com hotel rates with no monthly fee: you pay per event, metered by Apify. The fit for batch jobs with zero baseline volume.',
   alternates: { canonical: '/integrations/apify' },
-};
+});
 
 const faq: Faq[] = [
   {
@@ -89,7 +90,7 @@ export default function ApifyIntegrationPage() {
           title="One click adds them to your console"
           lede="The links below pre-add the actor to your Apify console after signup, no searching the store."
         />
-        <div className="mt-10 grid gap-6 md:grid-cols-2 max-w-4xl">
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 max-w-4xl">
           <div className="rounded-2xl border rule bg-ink-900/60 p-6">
             <h3 className="text-[16px] font-semibold text-ink-100">Google Flights Scraper</h3>
             <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed">
@@ -131,7 +132,7 @@ export default function ApifyIntegrationPage() {
           title="Apify for bursts, RapidAPI for baseline"
           lede="Same data either way: the honest question is the shape of your usage."
         />
-        <div className="mt-10 grid gap-6 md:grid-cols-2 max-w-4xl">
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 max-w-4xl">
           <Feature title="Pick the actors when…">
             Your jobs are occasional and bursty: a monthly market sweep, a one-off dataset, a research scrape. Zero baseline
             cost (idle months cost nothing) and runs, retries, and result storage live in Apify&apos;s console alongside

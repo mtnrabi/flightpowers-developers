@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
@@ -22,12 +23,12 @@ import { HOTEL_PLANS } from '@/lib/pricing';
 import { hotelGeoSnippets } from '@/lib/snippets';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Hotel Geo-Pricing API: rate parity by market with proxy_country',
   description:
     'Rate-parity and geo-pricing monitoring from a single API. proxy_country prices the same room through a residential proxy in any market. This page shows a real captured $195 spread on one room, and a real capture where parity held.',
   alternates: { canonical: '/hotels-api/geo-pricing' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -110,7 +111,7 @@ export default function GeoPricingPage() {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 hero-glow" aria-hidden="true" />
         <Container className="relative pt-8 sm:pt-12 pb-16">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
             <div>
               <p className="eyebrow">Rate Parity &amp; Geo-Pricing API</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
@@ -165,7 +166,7 @@ export default function GeoPricingPage() {
           title="One field, one proxy exit per market"
           lede="proxy_country takes a two-letter code and routes that single request through a residential proxy in that country, so the rates returned are the rates Booking.com quotes that market. Leave it out and the request uses the global residential pool. Each market is one request against your quota. A three-market check costs three requests."
         />
-        <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:items-start">
+        <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-start">
           <div>
             <h3 className="text-[16px] font-semibold text-ink-100 mb-3">The exact check behind the capture above</h3>
             <CodeTabs snippets={snippets} tool="hotel-geo-snippets" />
@@ -195,7 +196,7 @@ export default function GeoPricingPage() {
           title="When parity holds, you see that too"
           lede="A monitoring tool that only ever finds discrepancies is a tool you cannot trust. Here is a capture from the same day where the three markets priced within a dollar of each other."
         />
-        <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-start">
+        <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-start">
           <div className="rounded-2xl border rule bg-ink-900/60 p-6">
             <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
               <p className="font-mono text-[11px] uppercase tracking-wider text-ink-500">
@@ -224,7 +225,7 @@ export default function GeoPricingPage() {
           title="What teams build on this field"
           lede="Each of these is the same three-line loop over markets, pointed at different properties."
         />
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
           <Feature title="Rate-parity enforcement">
             Price your own properties from the markets you sell in, on a schedule, and flag any market where the OTA quote drifts
             from your contracted rate, with the exact figure and a link to the live page.
@@ -260,7 +261,7 @@ export default function GeoPricingPage() {
 
       <Section>
         <SectionHead eyebrow="Explore more" title="More Hotels API" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { href: '/hotels-api/bulk', label: 'Competitive-set tracking', sub: 'Room-level, on a schedule' },
             { href: '/hotels-api/by-name', label: 'Hotel by name', sub: 'The endpoint behind these captures' },

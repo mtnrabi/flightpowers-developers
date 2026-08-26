@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
@@ -17,12 +18,12 @@ import {
 import { FLIGHT_PLANS, perThousand } from '@/lib/pricing';
 import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'FlightPowers vs SerpApi for Google Flights data',
   description:
     'An honest, sourced comparison of SerpApi’s Google Flights API and FlightPowers: pricing per search, how each handles round-trips, and what SerpApi does better. Competitor figures quoted from SerpApi’s own pages, retrieved 2026-08-24.',
   alternates: { canonical: '/compare/serpapi' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -66,7 +67,8 @@ function CompareTable({
 }) {
   return (
     <figure>
-      <div className="overflow-x-auto rounded-2xl border rule">
+      <div className="scroll-x rounded-2xl border rule">
+        <div className="overflow-x-auto rounded-2xl">
         <table className="w-full text-[14px]">
           <thead>
             <tr className="text-left font-mono text-[11px] uppercase tracking-wider text-ink-500 bg-ink-900/80">
@@ -89,6 +91,7 @@ function CompareTable({
             ))}
           </tbody>
         </table>
+        </div>
       </div>
       {caption ? <figcaption className="mt-2 font-mono text-[11px] text-ink-500">{caption}</figcaption> : null}
     </figure>
@@ -235,7 +238,7 @@ export default function CompareSerpApiPage() {
             combined total in one object:
           </p>
         </div>
-        <div className="mt-6 grid gap-8 lg:grid-cols-2 lg:items-start">
+        <div className="mt-6 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start">
           <Code label="one result object, both legs: documented response shape">{`{
   "total_price": "$119",
   "total_price_as_number": 119,
@@ -364,7 +367,7 @@ export default function CompareSerpApiPage() {
 
       <Section>
         <SectionHead eyebrow="The decision" title="Which should you pick" />
-        <div className="mt-8 grid gap-6 md:grid-cols-2">
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
           <div className="rounded-2xl border rule bg-ink-900/60 p-6">
             <h3 className="text-[16px] font-semibold text-ink-100">Choose SerpApi when</h3>
             <ul className="mt-3 space-y-2 text-[14.5px] text-ink-400 leading-relaxed list-disc pl-5">
@@ -425,7 +428,7 @@ export default function CompareSerpApiPage() {
 
       <Section>
         <SectionHead eyebrow="Keep comparing" title="Related pages" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { href: '/compare/duffel', label: 'vs Duffel', sub: 'Data API vs booking platform' },
             { href: '/compare/amadeus', label: 'vs Amadeus Self-Service', sub: 'And when to migrate' },

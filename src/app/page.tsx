@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import {
@@ -21,12 +22,12 @@ import { FIXTURES } from '@/lib/fixtures';
 import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 import { DIFFERENTIATORS } from '@/lib/diff';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'FlightPowers: live flight & hotel pricing APIs with a price verdict',
   description:
     'Real-time Google Flights and Booking.com data as clean JSON. Google’s own price band and a low | typical | high verdict on every fare. For AI travel agents, developers, and automation teams.',
   alternates: { canonical: '/' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -109,7 +110,7 @@ export default function HomePage() {
             doorALabel="I’m building an AI travel agent"
             doorBLabel="I need a flight & hotel data API"
             doorA={
-              <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
+              <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
                 <div className="pt-2">
                   <p className="eyebrow">Real-time travel data for AI agents</p>
                   <h1 className="mt-4 text-hero font-semibold">
@@ -148,12 +149,12 @@ export default function HomePage() {
               </div>
             }
             doorB={
-              <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
+              <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
                 <div className="pt-2">
                   <p className="eyebrow">Flight &amp; hotel data API</p>
-                  <h1 className="mt-4 text-hero font-semibold">
+                  <h2 className="mt-4 text-hero font-semibold">
                     Live fares, and the <span className="text-signal-500">context to judge them</span>
-                  </h1>
+                  </h2>
                   <p className="lede mt-5">
                     One-way, round-trip, and hotel pricing as clean JSON, with Google&apos;s own price insights attached to every
                     result.
@@ -211,7 +212,7 @@ export default function HomePage() {
           title="Three kinds of builders, one data layer"
           lede="The same six endpoints and the same live data, packaged for the way you work."
         />
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
           <div className="rounded-2xl border rule bg-ink-900/60 p-6">
             <h3 className="text-[17px] font-semibold text-ink-100">Agent builders</h3>
             <p className="mt-2.5 text-[15px] text-ink-400 leading-relaxed">
@@ -247,7 +248,7 @@ export default function HomePage() {
 
       {/* ===================== FEATURE: PRICE INSIGHTS ==================== */}
       <Section>
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center">
           <div>
             <SectionHead
               eyebrow="The flagship field"
@@ -287,7 +288,7 @@ export default function HomePage() {
 
       {/* ===================== FEATURE: SEARCH STATUS ===================== */}
       <Section>
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center">
           <div className="lg:order-2">
             <SectionHead
               eyebrow="Failure-mode honesty"
@@ -329,7 +330,7 @@ x-search-results: 5
 
       {/* ====================== FEATURE: GEO PRICING ====================== */}
       <Section>
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center">
           <div>
             <SectionHead
               eyebrow="Hotels · proxy_country"
@@ -357,7 +358,7 @@ same hotel, same room, same dates.`}</Code>
 
       {/* ====================== REMAINING DIFFS ROW ====================== */}
       <Section>
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {DIFFERENTIATORS.filter((d) => ['paired-round-trip', 'buy-link', 'parallel-scans'].includes(d.id)).map((d) => (
             <div key={d.id} className="rounded-2xl border rule bg-ink-900/60 p-6">
               <h3 className="text-[16px] font-semibold text-ink-100">{d.title}</h3>
@@ -377,7 +378,7 @@ same hotel, same room, same dates.`}</Code>
           title="Six endpoints. Every plan gets all of them."
           lede="You choose volume and rate limit; no feature is ever withheld."
         />
-        <div className="mt-10 grid gap-6 lg:grid-cols-2">
+        <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <div className="rounded-2xl border rule bg-ink-900/60 p-6 sm:p-8">
             <h3 className="text-xl font-semibold text-ink-100">Google Flights Live API</h3>
             <p className="mt-2 text-[15px] text-ink-400">

@@ -1,15 +1,16 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { Container, JsonLd, Section, SectionHead } from '@/components/ui';
 import { SITE } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Use Cases: what people build on live flight & hotel data',
   description:
     'Fare alerts, AI travel agents, rate-parity monitoring, fare calendars, metasearch, market analysis, comp-set tracking, and trip-planning bots, each mapped to the exact API capabilities that make it work.',
   alternates: { canonical: '/use-cases' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -85,7 +86,7 @@ export default function UseCasesPage() {
       </Container>
 
       <Section bordered={false} className="!pt-10">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {useCases.map((u) => (
             <Link key={u.slug} href={`/use-cases/${u.slug}`} className="rounded-2xl border rule bg-ink-900/50 p-6 hover:border-ink-500 transition-colors">
               <p className="text-[16px] font-semibold text-ink-100">{u.title}</p>
@@ -97,7 +98,7 @@ export default function UseCasesPage() {
 
       <Section>
         <SectionHead eyebrow="Not sure where to start?" title="Two pages that answer most questions" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 max-w-3xl">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 max-w-3xl">
           {[
             { href: '/flights-api/price-insights', label: 'Price Insights API', sub: 'The verdict field most of these use cases lean on' },
             { href: '/pricing', label: 'Pricing', sub: 'Plans, quotas, rate limits, and the key checker' },

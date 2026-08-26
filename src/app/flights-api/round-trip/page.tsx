@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
@@ -22,12 +23,12 @@ import { FIXTURES } from '@/lib/fixtures';
 import { FLIGHT_PLANS } from '@/lib/pricing';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Round-Trip Flight API: paired itineraries from one search',
   description:
     'POST /roundtrip returns one object per itinerary: total_price, total_duration_seconds, total_stops, and both legs already paired, with per-leg stop, airline, and time-window filters. Not two one-way calls stapled together.',
   alternates: { canonical: '/flights-api/round-trip' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -41,7 +42,7 @@ const faq: Faq[] = [
     a: 'Yes. Every one-way filter exists per leg: max_departure_stops and max_return_stops, departure_airline_codes and return_airline_codes (with exclude variants), and separate departure/arrival time windows for each leg. Nonstop out, one stop back with a morning return is a single request.',
   },
   {
-    q: 'Why not just make two one-way calls?',
+    q: 'Why not two one-way calls?',
     a: 'Two one-way searches cost two requests per date pair, give you no combined total, and price legs independently. The sum of two one-way fares is not the fare of a round-trip ticket. The paired endpoint prices the itinerary as one purchase and ships one buy_link for it.',
   },
   {
@@ -98,7 +99,7 @@ export default function RoundTripPage() {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 hero-glow" aria-hidden="true" />
         <Container className="relative pt-8 sm:pt-12 pb-16">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
             <div>
               <p className="eyebrow">Round-Trip Flight API</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
@@ -263,7 +264,7 @@ export default function RoundTripPage() {
           title="Paired search vs. two one-ways, stapled"
           lede="Stapling two one-way calls together is the workaround most flight APIs leave you with. Here is what it actually costs."
         />
-        <div className="mt-10 grid gap-6 lg:grid-cols-2">
+        <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <div className="rounded-2xl border rule bg-ink-900/60 p-6">
             <h3 className="text-[16px] font-semibold text-ink-100">Two one-way calls</h3>
             <ul className="mt-4 space-y-2.5 text-[14.5px] text-ink-400 leading-relaxed">
@@ -316,7 +317,7 @@ export default function RoundTripPage() {
 
       <Section>
         <SectionHead eyebrow="Explore more" title="More Flights API" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { href: '/flights-api/one-way', label: 'One-way search', sub: 'The base endpoint' },
             { href: '/flights-api/price-insights', label: 'Price insights', sub: 'The band & the verdict' },

@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { AgentIntegrationPage, type ConnectStep, type ToolLine } from '../_agent-page';
@@ -6,12 +7,12 @@ import { COUNTS, LINKS } from '@/lib/site';
 
 export const dynamic = 'force-static';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Live flight & hotel data in Claude Code: skills install',
   description:
     'One install line gives Claude Code eight open-source travel skills over the live FlightPowers API: cheapest dates, fare watch, trip planning, hotel search, rate-parity monitoring. MIT-licensed, bring your own RapidAPI key.',
   alternates: { canonical: '/integrations/claude-code' },
-};
+});
 
 const steps: ConnectStep[] = [
   {

@@ -82,7 +82,7 @@ export function AgentIntegrationPage({
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 hero-glow" aria-hidden="true" />
         <Container className="relative pt-8 sm:pt-12 pb-16">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-start">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-start">
             <div>
               <p className="eyebrow">Integrations</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3rem] leading-[1.05] font-semibold">
@@ -136,7 +136,7 @@ export function AgentIntegrationPage({
 
       <Section>
         <SectionHead eyebrow="Ask it" title="Five things to say, verbatim" lede={promptsLede} />
-        <div className="mt-8 grid gap-4 max-w-3xl">
+        <div className="mt-8 grid grid-cols-1 gap-4 max-w-3xl">
           {prompts.map((prompt) => (
             <blockquote key={prompt} className="rounded-2xl border rule bg-ink-900/60 p-5 text-[15px] leading-relaxed text-ink-200">
               &ldquo;{prompt}&rdquo;
@@ -162,7 +162,7 @@ export function AgentIntegrationPage({
           title={`Seven things to build in ${agent.name}`}
           lede="Each one is a full page: the connect block, the prompt, the exact call it makes, and the response fields your logic reads."
         />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {TASKS.map((task) => (
             <Link
               key={task.slug}

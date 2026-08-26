@@ -1,14 +1,15 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Container, Cta, JsonLd, Section } from '@/components/ui';
 import { SITE } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Free travel-data tools',
   description:
     'Four free tools on the same live API we sell: decode Google Flights URLs, check a fare against Google’s price band, scan a month for the cheapest day, and price one hotel from several countries. No signup.',
   alternates: { canonical: '/tools' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -82,7 +83,7 @@ export default function ToolsIndexPage() {
       </Container>
 
       <Container className="pb-16 pt-6">
-        <div className="grid gap-5 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
           {TOOLS.map((t) => (
             <Link
               key={t.href}

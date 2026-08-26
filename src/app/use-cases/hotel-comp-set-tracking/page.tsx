@@ -1,14 +1,15 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { CheckBullets, Container, FaqSection, Feature, Section, SectionHead, type Faq } from '@/components/ui';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Hotel Comp-Set Tracking: your competitive set by name, on a schedule',
   description:
     'Track a competitive set of hotels on live Booking.com data: query by the names a revenue manager actually uses, get rate, review score, and room type per property, and let sold-out nights come back as data instead of errors.',
   alternates: { canonical: '/use-cases/hotel-comp-set-tracking' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -52,14 +53,14 @@ export default function CompSetTrackingPage() {
 
       <Section bordered={false} className="!pt-10">
         <SectionHead eyebrow="How FlightPowers helps" title="A tracker that starts from names" />
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
           <Feature title="By-name lookup, no ID table">
             /hotel_by_name resolves the names your comp set is already written in. One optional area field handles the
             ambiguous ones, and /resolve gives you a cacheable Booking.com ID when you want permanence.
           </Feature>
           <Feature title="The fields a rate report needs">
-            Price as a number, review_score, review_count, and room_type per property: enough to see not just who undercut
-            you, but with what room and at what reputation.
+            Price as a number, review_score, review_count, and room_type per property: enough to see who undercut
+            you, with what room, and at what reputation.
           </Feature>
           <Feature title="Sold out is data, not an exception">
             Unavailable comes back as available: false with nulls in the same shape as a priced result. A competitor selling
@@ -108,7 +109,7 @@ export default function CompSetTrackingPage() {
 
       <Section>
         <SectionHead eyebrow="Related resources" title="Keep going" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {[
             { href: '/hotels-api/by-name', label: 'Hotel by Name', sub: 'The lookup the tracker is built on' },
             { href: '/hotels-api/bulk', label: 'Competitive Sets', sub: 'Checking a set of properties together' },

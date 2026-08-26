@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import { CtaBand } from '@/components/bands';
 import { KeyVerifyBox } from '@/components/KeyVerifyBox';
@@ -6,12 +7,12 @@ import { Container, Cta, FaqSection, JsonLd, Section, SectionHead, type Faq } fr
 import { APIFY, FLIGHT_PLANS, HOTEL_PLANS, READ_ON } from '@/lib/pricing';
 import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Pricing: plans from $0, billed on RapidAPI',
   description:
     'Flights: free tier, then $10 / $25 / $50 per month with 150–500 requests/minute. Hotels: free tier, then $10 / $20 / $50. Every plan includes every endpoint; compare $ per 1,000 requests. Billing is on RapidAPI, so there is no new vendor to onboard.',
   alternates: { canonical: '/pricing' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -108,7 +109,7 @@ export default function PricingPage() {
           title="Price the job, not the tier"
           lede="Requests map directly onto work: one search is one request, and a flexible-date scan is one request per date."
         />
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
           <div className="rounded-2xl border rule bg-ink-900/60 p-6">
             <p className="font-mono text-[12px] text-signal-400">PRO · $10</p>
             <h3 className="mt-2 text-[16px] font-semibold text-ink-100">Alerts &amp; agents</h3>
@@ -171,7 +172,7 @@ export default function PricingPage() {
           title="The same data as Apify actors"
           lede="No subscription: you pay per event, metered by Apify. One click adds the actor to your Apify console."
         />
-        <div className="mt-10 grid gap-6 md:grid-cols-2 max-w-4xl">
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 max-w-4xl">
           <div className="rounded-2xl border rule bg-ink-900/60 p-6">
             <h3 className="text-[16px] font-semibold text-ink-100">Google Flights Scraper</h3>
             <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed">

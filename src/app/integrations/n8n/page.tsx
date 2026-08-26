@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
@@ -16,12 +17,12 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const dynamic = 'force-static';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'n8n community node: n8n-nodes-flightpowers',
   description:
     'Install n8n-nodes-flightpowers (v0.2.2 on npm) from Settings → Community nodes and build fare-watch crons, rate-parity checks, and cheapest-date scans on live flight and hotel data. Credential = your RapidAPI key.',
   alternates: { canonical: '/integrations/n8n' },
-};
+});
 
 const faq: Faq[] = [
   {
@@ -67,7 +68,7 @@ export default function N8nIntegrationPage() {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 hero-glow" aria-hidden="true" />
         <Container className="relative pt-8 sm:pt-12 pb-16">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-start">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-start">
             <div>
               <p className="eyebrow">Integrations · n8n</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3rem] leading-[1.05] font-semibold">
@@ -127,7 +128,7 @@ export default function N8nIntegrationPage() {
           title="Three workflows that earn their cron slot"
           lede="Each pattern below is prose plus the step list. The full recipes, with the exact request and response fields, are linked from each card."
         />
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
           <div className="rounded-2xl border rule bg-ink-900/60 p-6 flex flex-col">
             <h3 className="text-[16px] font-semibold text-ink-100">Fare-watch cron</h3>
             <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed flex-1">

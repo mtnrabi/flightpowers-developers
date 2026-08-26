@@ -26,7 +26,7 @@ export function SurfaceStrip({ label = 'One API, everywhere your stack already l
 
 /** Full-width closing CTA band. Every page ends with it. */
 export function CtaBand({
-  title = 'Ready to judge a fare, not just fetch it?',
+  title = 'Put a verdict on every fare',
   body = 'Live Google Flights and Booking.com data, with the price band and verdict attached to every result. Free tier on RapidAPI, no card to try.',
   medium,
   api = 'flights',
@@ -62,7 +62,7 @@ export function AgentBand() {
         title="Your agent already knows how to use this"
         lede={`${COUNTS.mcpServers} hosted MCP servers, ${COUNTS.skills} open-source skills, and a plain REST API. All first-party, all maintained, all pointing at the same live data.`}
       />
-      <div className="mt-10 grid gap-6 lg:grid-cols-3">
+      <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div>
           <h3 className="text-[16px] font-semibold text-ink-100 mb-3">MCP: no install, just a URL</h3>
           <Code label="claude / cursor / any MCP client">{`{

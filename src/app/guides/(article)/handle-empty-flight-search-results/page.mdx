@@ -1,9 +1,11 @@
-export const metadata = {
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
   title: 'Handling empty flight search results: when [] is an answer and when it is a lie',
   description:
     'A 200 with an empty array is the most dangerous response a search API can return, because it collapses two opposite facts into one byte sequence. The failure taxonomy behind empty results, why retry policies built on ambiguous emptiness are all wrong, and a vendor-neutral checklist for evaluating any search API’s empty-result semantics.',
   alternates: { canonical: '/guides/handle-empty-flight-search-results' },
-};
+});
 
 export const dynamic = 'force-static';
 

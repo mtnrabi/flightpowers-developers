@@ -1,15 +1,16 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import { AgentIntegrationPage, type ConnectStep, type ToolLine } from '../_agent-page';
 import type { Faq } from '@/components/ui';
 
 export const dynamic = 'force-static';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Live flight & hotel data in Claude: MCP connector setup',
   description:
     'Connect Claude to live Google Flights and Booking.com data with one custom-connector URL. Bring your own RapidAPI key; every fare returns with Google’s price band and a low/typical/high verdict.',
   alternates: { canonical: '/integrations/claude' },
-};
+});
 
 const steps: ConnectStep[] = [
   {

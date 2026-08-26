@@ -1,15 +1,16 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import { AgentIntegrationPage, type ConnectStep, type ToolLine } from '../_agent-page';
 import type { Faq } from '@/components/ui';
 
 export const dynamic = 'force-static';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Live flight & hotel data in Cursor: mcp.json setup',
   description:
     'Give Cursor’s agent live Google Flights and Booking.com data with one block in .cursor/mcp.json. Build and test travel features against real fares, billed to your own RapidAPI key.',
   alternates: { canonical: '/integrations/cursor' },
-};
+});
 
 const steps: ConnectStep[] = [
   {

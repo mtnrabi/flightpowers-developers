@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
@@ -19,12 +20,12 @@ import { FIXTURES } from '@/lib/fixtures';
 import { FLIGHT_PLANS } from '@/lib/pricing';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Google Flights API: live fares with a price verdict on every result',
   description:
     'A REST API over live Google Flights results. POST /oneway and POST /roundtrip return flat JSON with Google’s price_insights band, a low | typical | high verdict, honest X-Search-Status headers, and a booking link on every itinerary.',
   alternates: { canonical: '/flights-api' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -169,7 +170,7 @@ export default function FlightsApiHubPage() {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 hero-glow" aria-hidden="true" />
         <Container className="relative pt-8 sm:pt-12 pb-16">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
             <div>
               <p className="eyebrow">Google Flights API</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
@@ -227,7 +228,7 @@ export default function FlightsApiHubPage() {
           title="Two endpoints, five things worth a page each"
           lede="Every plan gets all of it. You only ever choose volume and rate limit."
         />
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {ENDPOINT_PAGES.map((p) => (
             <Link key={p.href} href={p.href} className="rounded-2xl border rule bg-ink-900/50 p-5 hover:border-ink-500 transition-colors">
               <p className="font-mono text-[11px] text-signal-500">{p.method}</p>
@@ -358,7 +359,8 @@ export default function FlightsApiHubPage() {
           title="Common gaps in other Google Flights APIs"
           lede="Each row is a failure mode this API was designed against, and every right-hand answer is provable on the pages above, not adjectives."
         />
-        <div className="mt-8 overflow-x-auto rounded-2xl border rule">
+        <div className="mt-8 scroll-x rounded-2xl border rule">
+          <div className="overflow-x-auto rounded-2xl">
           <table className="w-full text-[14px]">
             <thead>
               <tr className="text-left font-mono text-[11px] uppercase tracking-wider text-ink-500 bg-ink-900/80">
@@ -375,6 +377,7 @@ export default function FlightsApiHubPage() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
       </Section>
 
@@ -391,7 +394,7 @@ export default function FlightsApiHubPage() {
 
       <Section>
         <SectionHead eyebrow="Keep going" title="Related" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { href: '/hotels-api', label: 'Hotels API', sub: 'Booking.com rates, with per-country pricing' },
             { href: '/tools/flight-price-checker', label: 'Flight price checker', sub: 'Try the API free, no signup' },

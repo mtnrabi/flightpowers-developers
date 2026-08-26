@@ -66,6 +66,7 @@ export function KeyVerifyBox() {
       >
         <input
           type="password"
+          aria-label="Your RapidAPI key"
           value={key}
           onChange={(e) => setKey(e.target.value)}
           placeholder="x-rapidapi-key…"

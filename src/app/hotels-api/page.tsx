@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
@@ -18,12 +19,12 @@ import { FIXTURES } from '@/lib/fixtures';
 import { HOTEL_PLANS } from '@/lib/pricing';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Booking.com Hotels API: live rates, priced from any market',
   description:
     'A REST API for live Booking.com hotel prices. Search a destination or look up a hotel by name; every endpoint accepts proxy_country, so the same room can be priced from any market, the basis for rate-parity and geo-pricing monitoring.',
   alternates: { canonical: '/hotels-api' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -163,7 +164,7 @@ export default function HotelsApiHubPage() {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 hero-glow" aria-hidden="true" />
         <Container className="relative pt-8 sm:pt-12 pb-16">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
             <div>
               <p className="eyebrow">Booking.com Hotels API</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
@@ -217,7 +218,7 @@ export default function HotelsApiHubPage() {
           title="Four ways in, one subscription"
           lede="Every plan includes every endpoint: you only choose volume and rate limit. Each page below shows a real captured request and what came back."
         />
-        <div className="mt-10 grid gap-4 sm:grid-cols-2">
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
           {ENDPOINTS.map((e) => (
             <Link key={e.href} href={e.href} className="rounded-2xl border rule bg-ink-900/50 p-6 hover:border-ink-500 transition-colors">
               <p className="font-mono text-[11px] text-signal-400">{e.method}</p>
@@ -234,7 +235,8 @@ export default function HotelsApiHubPage() {
           title={`${COUNTS.hotelFilters} filters, matching the Booking.com UI`}
           lede="Pass any of these as a filters array on /search (the same facets Booking.com shows its own users), plus budget_per_night in whatever currency you set."
         />
-        <div className="mt-8 overflow-x-auto rounded-2xl border rule">
+        <div className="mt-8 scroll-x rounded-2xl border rule">
+          <div className="overflow-x-auto rounded-2xl">
           <table className="w-full text-[14px]">
             <thead>
               <tr className="text-left font-mono text-[11px] uppercase tracking-wider text-ink-500 bg-ink-900/80">
@@ -259,6 +261,7 @@ export default function HotelsApiHubPage() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
       </Section>
 
@@ -268,7 +271,8 @@ export default function HotelsApiHubPage() {
           title="Common gaps in other hotel APIs"
           lede="The problems developers hit with general-purpose hotel data sources, and what this API does about each."
         />
-        <div className="mt-8 overflow-x-auto rounded-2xl border rule">
+        <div className="mt-8 scroll-x rounded-2xl border rule">
+          <div className="overflow-x-auto rounded-2xl">
           <table className="w-full text-[14px]">
             <thead>
               <tr className="text-left font-mono text-[11px] uppercase tracking-wider text-ink-500 bg-ink-900/80">
@@ -285,6 +289,7 @@ export default function HotelsApiHubPage() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
       </Section>
 
@@ -301,7 +306,7 @@ export default function HotelsApiHubPage() {
 
       <Section>
         <SectionHead eyebrow="Explore more" title="Where to next" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { href: '/flights-api', label: 'Flights API', sub: 'Google Flights fares with a price verdict' },
             { href: '/tools/hotel-price-by-country', label: 'Hotel price by country', sub: 'Free tool: proxy_country in action' },

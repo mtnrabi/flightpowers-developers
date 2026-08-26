@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
@@ -14,12 +15,12 @@ import {
 } from '@/components/ui';
 import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Amadeus Self-Service vs FlightPowers, and when to migrate',
   description:
     'The Amadeus for Developers Self-Service portal and sandbox are no longer reachable, verifiable with four commands, all shown here. What FlightPowers replaces for Self-Service users, the parameter mapping, and (honestly) what it does not replace. Observed state retrieved 2026-08-24.',
   alternates: { canonical: '/compare/amadeus' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -60,7 +61,8 @@ function MapTable({
 }) {
   return (
     <figure>
-      <div className="overflow-x-auto rounded-2xl border rule">
+      <div className="scroll-x rounded-2xl border rule">
+        <div className="overflow-x-auto rounded-2xl">
         <table className="w-full text-[14px]">
           <thead>
             <tr className="text-left font-mono text-[11px] uppercase tracking-wider text-ink-500 bg-ink-900/80">
@@ -83,6 +85,7 @@ function MapTable({
             ))}
           </tbody>
         </table>
+        </div>
       </div>
       {caption ? <figcaption className="mt-2 font-mono text-[11px] text-ink-500">{caption}</figcaption> : null}
     </figure>
@@ -140,7 +143,7 @@ export default function CompareAmadeusPage() {
           title="Check it yourself, don’t take our word"
           lede={`We are not going to assert a shutdown date, because we could not find one on an Amadeus page. Here is what was observable on ${RETRIEVED}, with the commands.`}
         />
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
+        <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <div>
             <p className="text-[14.5px] text-ink-300 mb-2 font-semibold">The Self-Service portal and pricing pages redirect to the homepage.</p>
             <Code label="curl">{`curl -sS -o /dev/null -w "%{http_code} -> %{redirect_url}\\n" \\
@@ -242,7 +245,7 @@ curl -sS -o /dev/null -w "%{http_code} -> %{redirect_url}\\n" \\
           title="Auth: delete the token dance"
           lede="Amadeus used OAuth2 client credentials: fetch a token, watch it expire, refresh it. Here it is one static header."
         />
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
+        <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <Code label="before · from Amadeus's archived amadeus-code-examples">{`ACCESS_TOKEN=$(curl -H "Content-Type: application/x-www-form-urlencoded" \\
   https://test.api.amadeus.com/v1/security/oauth2/token \\
   -d "grant_type=client_credentials&client_id=$AMADEUS_CLIENT_ID\\
@@ -264,7 +267,7 @@ curl -sS -o /dev/null -w "%{http_code} -> %{redirect_url}\\n" \\
 
       <Section>
         <SectionHead eyebrow="The migration" title="Flight Offers Search → /v1/flights" />
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
+        <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <Code label="before · GET /v2/shopping/flight-offers (their archived example)">{`curl -X GET "https://test.api.amadeus.com/v2/shopping/flight-offers?\\
 originLocationCode=SYD&destinationLocationCode=BKK&\\
 departureDate=2022-08-01&returnDate=2022-08-05&\\
@@ -323,7 +326,7 @@ adults=2&includedAirlineCodes=TG&max=3" \\
 
       <Section>
         <SectionHead eyebrow="The migration" title="Hotel Search → /v1/hotels" />
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
+        <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <Code label="before · two calls plus the token">{`# 1. get hotelIds for a city
 curl -X GET "https://test.api.amadeus.com/v1/reference-data/\\
 locations/hotels/by-city?cityCode=PAR" \\
@@ -373,9 +376,9 @@ hotelIds=MCLONGHM&adults=2&checkInDate=2026-09-10\\
           title="What the move buys you"
           lede="Only claims we can point at. Each links to the page that proves it."
         />
-        <div className="mt-8 grid gap-6 md:grid-cols-2">
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
           <div className="rounded-2xl border rule bg-ink-900/60 p-6">
-            <h3 className="text-[16px] font-semibold text-ink-100">A price verdict, not just a price</h3>
+            <h3 className="text-[16px] font-semibold text-ink-100">A verdict attached to every price</h3>
             <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed">
               Every flight result carries Google’s historical band ({code('price_insights_low')} / {code('price_insights_high')})
               plus a low | typical | high verdict. Rebuilding a fare-alert feature? That field <em>is</em> the trigger condition, and
@@ -431,7 +434,7 @@ hotelIds=MCLONGHM&adults=2&checkInDate=2026-09-10\\
 
       <Section>
         <SectionHead eyebrow="Keep going" title="Related pages" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { href: '/guides/real-time-google-flights-data', label: 'The full API walkthrough', sub: 'Endpoints, fields, parallel scans' },
             { href: '/compare/duffel', label: 'vs Duffel', sub: 'If you need to actually sell tickets' },

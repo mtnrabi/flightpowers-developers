@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
@@ -18,12 +19,12 @@ import { SITE, rapidApiListingUrl, rapidApiPricingUrl } from '@/lib/site';
 
 export const dynamic = 'force-static';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'RapidAPI: where the key, metering, and invoice live',
   description:
     'Both FlightPowers APIs are listed on RapidAPI: Google Flights Live and Booking.com Live. RapidAPI handles the account, the key, usage metering, and the invoice. Free tier on each listing, no card to try.',
   alternates: { canonical: '/integrations/rapidapi' },
-};
+});
 
 const faq: Faq[] = [
   {
@@ -99,7 +100,7 @@ export default function RapidApiIntegrationPage() {
           title="Four things you never build against us"
           lede="RapidAPI sits between you and the API for exactly these. Everything else is direct."
         />
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           <Feature title="The account">
             One RapidAPI login covers every API you use there. No FlightPowers account exists: there is nothing extra to
             create, verify, or forget.

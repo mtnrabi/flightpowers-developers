@@ -1,9 +1,11 @@
-export const metadata = {
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
   title: 'Google Flights URL parameters, decoded: tfs=, q=, and curr=',
   description:
     'What is actually inside a Google Flights URL: the base64url-encoded tfs= protobuf that encodes the whole search, the q= natural-language form, and the curr= currency override. How to decode tfs at the wire level, and the honest caveats about relying on an undocumented format.',
   alternates: { canonical: '/guides/google-flights-url-parameters' },
-};
+});
 
 export const dynamic = 'force-static';
 

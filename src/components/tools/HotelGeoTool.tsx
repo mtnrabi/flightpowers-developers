@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { ApiUpsellCard } from '@/components/ApiUpsellCard';
 import { HotelMarketsTable } from '@/components/results';
 import { CapturedBadge } from '@/components/ui';
@@ -55,13 +55,16 @@ export function HotelGeoTool({ captured }: { captured: { markets: Market[]; capt
     setCountries((prev) => (prev.includes(code) ? prev.filter((c) => c !== code) : prev.length >= 3 ? prev : [...prev, code]));
   }
 
+  const inFlight = useRef(false); // ref, not state: two clicks inside one render can both pass a state check
+
   async function run(e: React.FormEvent) {
     e.preventDefault();
-    if (state.phase === 'running') return;
+    if (inFlight.current || state.phase === 'running') return;
     if (countries.length < 2) {
       setState({ phase: 'error', message: 'Pick 2–3 markets to compare. One market is a price, two is a comparison.' });
       return;
     }
+    inFlight.current = true;
     setState({ phase: 'running' });
     track({ e: 'demo_run', tool: 'hotel-geo', mode: 'live' });
     try {
@@ -83,6 +86,8 @@ export function HotelGeoTool({ captured }: { captured: { markets: Market[]; capt
       });
     } catch {
       setState({ phase: 'error', message: 'Could not reach the server. Try again.' });
+    } finally {
+      inFlight.current = false;
     }
   }
 
@@ -95,7 +100,7 @@ export function HotelGeoTool({ captured }: { captured: { markets: Market[]; capt
   return (
     <div className="space-y-6">
       <form onSubmit={run} className="rounded-2xl border rule bg-ink-900/70 p-5 sm:p-6">
-        <div className="grid gap-3 sm:grid-cols-[1.6fr_1fr_1fr_1fr]">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-[1.6fr_1fr_1fr_1fr]">
           <label className="block">
             <span className="font-mono text-[11px] uppercase tracking-wider text-ink-500">Hotel name</span>
             <input

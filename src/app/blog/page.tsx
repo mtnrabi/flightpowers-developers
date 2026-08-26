@@ -1,15 +1,16 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { Container, JsonLd, Section } from '@/components/ui';
 import { LINKS, SITE } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Blog: build-in-public notes from the developer',
   description:
     'The FlightPowers developer blog: build-in-public notes, teardowns, and changelog stories from the person who runs the APIs. Written when there is something to say, not on a schedule.',
   alternates: { canonical: '/blog' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -73,7 +74,7 @@ export default function BlogIndexPage() {
       </Section>
 
       <Section>
-        <div className="grid gap-4 sm:grid-cols-3 max-w-3xl">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 max-w-3xl">
           {[
             { href: '/changelog', label: 'Changelog', sub: 'The terse, dated version of the same story' },
             { href: '/about', label: 'About', sub: 'Who writes this, and the rules the site runs by' },

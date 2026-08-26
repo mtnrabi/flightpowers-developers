@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { ApiUpsellCard } from '@/components/ApiUpsellCard';
 import { FlightResults, SearchHeaderChips } from '@/components/results';
 import { CapturedBadge } from '@/components/ui';
@@ -28,9 +28,12 @@ export function PriceCheckerTool({ captured }: { captured: { flights: OnewayFlig
   const [date, setDate] = useState('');
   const [state, setState] = useState<RunState>({ phase: 'idle' });
 
+  const inFlight = useRef(false); // ref, not state: two clicks inside one render can both pass a state check
+
   async function run(e: React.FormEvent) {
     e.preventDefault();
-    if (state.phase === 'running') return;
+    if (inFlight.current || state.phase === 'running') return;
+    inFlight.current = true;
     setState({ phase: 'running' });
     track({ e: 'demo_run', tool: 'price-checker', mode: 'live' });
     try {
@@ -58,6 +61,8 @@ export function PriceCheckerTool({ captured }: { captured: { flights: OnewayFlig
       });
     } catch {
       setState({ phase: 'error', message: 'Could not reach the server. Try again.' });
+    } finally {
+      inFlight.current = false;
     }
   }
 
@@ -66,12 +71,12 @@ export function PriceCheckerTool({ captured }: { captured: { flights: OnewayFlig
   return (
     <div className="space-y-6">
       <form onSubmit={run} className="rounded-2xl border rule bg-ink-900/70 p-5 sm:p-6">
-        <div className="grid gap-3 sm:grid-cols-[1fr_1fr_1.2fr_auto]">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-[1fr_1fr_1.2fr_auto]">
           <label className="block">
             <span className="font-mono text-[11px] uppercase tracking-wider text-ink-500">From (IATA)</span>
             <input
               value={from}
-              onChange={(e) => setFrom(e.target.value.toUpperCase())}
+              onChange={(e) => setFrom(e.target.value.toUpperCase().replace(/[^A-Z]/g, '').slice(0, 3))}
               maxLength={3}
               required
               placeholder="JFK"
@@ -82,7 +87,7 @@ export function PriceCheckerTool({ captured }: { captured: { flights: OnewayFlig
             <span className="font-mono text-[11px] uppercase tracking-wider text-ink-500">To (IATA)</span>
             <input
               value={to}
-              onChange={(e) => setTo(e.target.value.toUpperCase())}
+              onChange={(e) => setTo(e.target.value.toUpperCase().replace(/[^A-Z]/g, '').slice(0, 3))}
               maxLength={3}
               required
               placeholder="CUN"

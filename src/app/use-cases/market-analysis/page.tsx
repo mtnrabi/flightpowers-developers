@@ -1,15 +1,16 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { CheckBullets, Container, FaqSection, Feature, Section, SectionHead, type Faq } from '@/components/ui';
 import { COUNTS } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Market Analysis: track fare movement with Google’s own baseline attached',
   description:
     'Sweep routes and dates on a schedule and chart price_as_number over time, with price_insights_low/high giving every observation a route-level baseline from day one. Rate limits of 150–500 req/min make wide sweeps practical.',
   alternates: { canonical: '/use-cases/market-analysis' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -53,7 +54,7 @@ export default function MarketAnalysisPage() {
 
       <Section bordered={false} className="!pt-10">
         <SectionHead eyebrow="How FlightPowers helps" title="Analysis-grade fields, sweep-grade limits" />
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
           <Feature title="Google's band on every observation">
             price_insights_low/high is a per-route, per-window baseline computed by Google, attached to each result. Your
             first day of data already knows whether each fare was low, typical, or high for its route.
@@ -108,7 +109,7 @@ export default function MarketAnalysisPage() {
 
       <Section>
         <SectionHead eyebrow="Related resources" title="Keep going" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {[
             { href: '/flights-api/parallel-date-scan', label: 'Parallel Date Scans', sub: 'The sweep pattern and rate limits' },
             { href: '/flights-api/price-insights', label: 'Price Insights API', sub: 'The baseline fields, documented' },

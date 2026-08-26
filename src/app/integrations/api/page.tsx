@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
@@ -17,12 +18,12 @@ import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const dynamic = 'force-static';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'REST API direct: api.flightpowers.com',
   description:
     'Call the FlightPowers travel-data API directly at api.flightpowers.com: six endpoints for flights and hotels plus GET /v1/verify. Auth via x-rapidapi-key, x-api-key, or Bearer, the same key from RapidAPI.',
   alternates: { canonical: '/integrations/api' },
-};
+});
 
 const CURL = `curl -X POST "https://api.flightpowers.com/v1/flights/oneway" \\
   -H "x-api-key: $RAPIDAPI_KEY" \\
@@ -87,7 +88,7 @@ export default function RestApiIntegrationPage() {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 hero-glow" aria-hidden="true" />
         <Container className="relative pt-8 sm:pt-12 pb-16">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-start">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-start">
             <div>
               <p className="eyebrow">Integrations · REST</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3rem] leading-[1.05] font-semibold">
@@ -176,7 +177,7 @@ export default function RestApiIntegrationPage() {
 
       <Section>
         <SectionHead eyebrow="Keep exploring" title="Related pages" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { href: '/flights-api', label: 'Flights API', sub: 'Endpoints & fields in depth' },
             { href: '/hotels-api', label: 'Hotels API', sub: 'Search, by-name, geo-pricing' },

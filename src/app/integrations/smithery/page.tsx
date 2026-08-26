@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
@@ -16,12 +17,12 @@ import { LINKS, SITE } from '@/lib/site';
 
 export const dynamic = 'force-static';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Smithery: the three MCP server listings',
   description:
     'The FlightPowers MCP servers on Smithery: mrabi/google-flights, mrabi/booking, and the free ad-supported server. Qualified names, how the gateway passes your key, and the canonical self-hosted URLs.',
   alternates: { canonical: '/integrations/smithery' },
-};
+});
 
 const faq: Faq[] = [
   {

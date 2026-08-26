@@ -1,14 +1,15 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { CheckBullets, Container, FaqSection, Feature, Section, SectionHead, type Faq } from '@/components/ui';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Rate-Parity Monitoring: see your hotel rates the way each market sees them',
   description:
     'Booking.com shows different rates depending on where the visitor browses from. proxy_country routes each request through a residential proxy in the market you choose, so parity checks across countries come from one API, by hotel name, on a schedule.',
   alternates: { canonical: '/use-cases/rate-parity-monitoring' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -52,7 +53,7 @@ export default function RateParityPage() {
 
       <Section bordered={false} className="!pt-10">
         <SectionHead eyebrow="How FlightPowers helps" title="The parity check as three parameters" />
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
           <Feature title="proxy_country is the whole trick">
             A two-letter code routes the request through a residential proxy in that country. Same hotel, same dates,{' '}
             proxy_country varied: the response is what a local guest would be quoted, as JSON you can diff.
@@ -109,7 +110,7 @@ export default function RateParityPage() {
 
       <Section>
         <SectionHead eyebrow="Related resources" title="Keep going" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {[
             { href: '/hotels-api/geo-pricing', label: 'Geo-Pricing API', sub: 'proxy_country, documented end to end' },
             { href: '/hotels-api/by-name', label: 'Hotel by Name', sub: 'Name in, availability and price out' },

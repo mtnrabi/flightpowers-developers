@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
@@ -6,12 +7,12 @@ import { Container, Cta, FaqSection, JsonLd, Section, SectionHead, type Faq } fr
 import { FIXTURES } from '@/lib/fixtures';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Cheapest Month to Fly: a whole month of fares as one price grid',
   description:
     'Pick a route and a month and see every sampled departure date priced side by side, live from Google Flights. Free, no signup; live scans are rate-limited and sample ~10 dates; the full every-day scan is what the API is for.',
   alternates: { canonical: '/tools/cheapest-month-to-fly' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -88,7 +89,7 @@ export default function CheapestMonthPage() {
 
       <Section>
         <SectionHead eyebrow="How it works" title="One month, one grid, one obvious answer" />
-        <ol className="mt-8 grid gap-6 md:grid-cols-3">
+        <ol className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
           {[
             ['Pick a route and a month', 'Airport codes and a month. The scan turns each sampled date into one real search.'],
             ['We scan live, in parallel', 'Around 10 dates spread across the month, each a real Google Flights search on our key at request time. The demo samples; the API does every day.'],
@@ -105,7 +106,7 @@ export default function CheapestMonthPage() {
 
       <Section>
         <SectionHead eyebrow="Who uses it" title="Anyone whose dates are softer than their route" />
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
           <div className="rounded-2xl border rule bg-ink-900/50 p-5">
             <p className="text-[15.5px] font-semibold text-ink-100">Flexible travellers</p>
             <p className="mt-1.5 text-[14px] text-ink-400 leading-relaxed">
@@ -155,7 +156,7 @@ export default function CheapestMonthPage() {
             title="Scanning hundreds of routes? That's what the API is for"
             lede="A date scan is a burst, not a loop. Serially at one request a second a month is a coffee break; in parallel it is one rate-limit window."
           />
-          <div className="mt-8 grid gap-6 md:grid-cols-3">
+          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
             <div>
               <p className="text-[15px] font-semibold text-ink-100">{COUNTS.flightsRateLimits} req/min</p>
               <p className="mt-1.5 text-[14px] text-ink-400 leading-relaxed">
@@ -194,7 +195,7 @@ export default function CheapestMonthPage() {
 
       <Section>
         <SectionHead eyebrow="Related tools" title="Keep going" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {[
             { href: '/tools/flight-price-checker', label: 'Flight Price Checker', sub: 'Live fare + Google’s verdict' },
             { href: '/tools/google-flights-url-parser', label: 'Google Flights URL Parser', sub: 'Decode a tfs= URL into an API call' },

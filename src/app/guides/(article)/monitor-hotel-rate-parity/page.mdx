@@ -1,9 +1,11 @@
-export const metadata = {
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
   title: 'How to monitor hotel rate parity with an API',
   description:
     'What rate parity is, why revenue managers watch it, and how to check it programmatically: the proxy_country mechanism (the same room priced from the US, Germany and Israel in three requests), with a real captured spread, a scheduling pattern, and honest notes on how often parity simply holds.',
   alternates: { canonical: '/guides/monitor-hotel-rate-parity' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -136,7 +138,7 @@ A parity check is a naturally periodic job. Two common shapes:
 **Cron.** Wrap the loop above in a script, run it daily, diff against yesterday's
 numbers, and send yourself a message when the spread between any two markets exceeds
 a threshold you choose (absolute or percentage: percentage travels better across
-properties). Persist the raw responses, not just the verdict: when you escalate a
+properties). Persist the raw responses along with the verdict: when you escalate a
 parity breach, the evidence is the response, with its `price_string`, `room_type`
 and booking `link`.
 

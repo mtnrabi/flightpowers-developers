@@ -1,14 +1,15 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { CheckBullets, Container, FaqSection, Feature, Section, SectionHead, type Faq } from '@/components/ui';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Metasearch: live fares with a booking link on every result',
   description:
     'Build flight metasearch and comparison features on live Google Flights data: every itinerary ships with a working buy_link, filters that match the Google Flights UI, and an X-Search-Status header so an empty result page is never a silent failure.',
   alternates: { canonical: '/use-cases/metasearch' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -52,7 +53,7 @@ export default function MetasearchPage() {
 
       <Section bordered={false} className="!pt-10">
         <SectionHead eyebrow="How FlightPowers helps" title="The three properties a results page needs" />
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
           <Feature title="buy_link closes the loop">
             Every itinerary ships with a deep link into Google Flights for that exact flight combination. Click-through lands
             on the fare you displayed: no URL reconstruction, no affiliate-feed drift.
@@ -104,7 +105,7 @@ export default function MetasearchPage() {
 
       <Section>
         <SectionHead eyebrow="Related resources" title="Keep going" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {[
             { href: '/flights-api/one-way', label: 'One-Way API', sub: 'The base search, field by field' },
             { href: '/flights-api/round-trip', label: 'Round-Trip API', sub: 'Paired itineraries with one total price' },

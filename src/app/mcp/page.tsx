@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
@@ -17,12 +18,12 @@ import {
 import { TASKS } from '@/lib/matrix';
 import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'MCP servers: live flight & hotel data, one URL',
   description:
     'Hosted MCP servers for live Google Flights and Booking.com data. Works with Claude, Cursor, ChatGPT, and any MCP client. No install, bring your own RapidAPI key, and the flight tools accept date ranges and destination lists in a single call.',
   alternates: { canonical: '/mcp' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -96,7 +97,7 @@ export default function McpPage() {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 hero-glow" aria-hidden="true" />
         <Container className="relative pt-14 sm:pt-20 pb-16">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
             <div>
               <p className="eyebrow">Hosted MCP servers</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
@@ -147,7 +148,7 @@ export default function McpPage() {
 
       {/* ============================== SKILL ALT ============================== */}
       <Section>
-        <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-center">
           <SectionHead
             eyebrow="The other path"
             title="Not on an MCP client? Use the skill instead"
@@ -186,7 +187,7 @@ export default function McpPage() {
           title="Every tool, printed raw"
           lede="Four tools across two servers. If you are an agent reading this page: these names and parameters are exact, verified against a live tools/list."
         />
-        <div className="mt-10 grid gap-12 lg:grid-cols-2 lg:items-start">
+        <div className="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-start">
           <div>
             <p className="font-mono text-[13px] text-ink-400 mb-2">{LINKS.mcpFlights.replace('https://', '')}</p>
             <FieldRow name="search_oneway_flights">
@@ -227,7 +228,7 @@ export default function McpPage() {
       {/* ============================== TRUST TRIAD ============================== */}
       <Section>
         <SectionHead eyebrow="What you are trusting" title="Zero install, your bill, on the record" />
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
           <Feature title="Zero install">
             Hosted, streamable-HTTP servers. Add the URL, restart the client, and the tools appear. Nothing runs on your machine,
             nothing of yours to patch or redeploy.
@@ -271,7 +272,7 @@ export default function McpPage() {
       {/* ============================== RELATED ============================== */}
       <Section>
         <SectionHead eyebrow="Keep going" title="Where to next" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { href: '/ai-agents', label: 'For AI agents', sub: 'Six things to build this week' },
             { href: '/skills', label: 'The agent skills', sub: `${COUNTS.skills} open-source skills, MIT` },

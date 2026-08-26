@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
@@ -22,12 +23,12 @@ import { FIXTURES } from '@/lib/fixtures';
 import { FLIGHT_PLANS } from '@/lib/pricing';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'One-Way Flight Search API: live Google Flights fares as flat JSON',
   description:
     'POST /oneway: a route and a date in, every live Google Flights fare out. Stops, airline, time-window, cabin, and price filters; price_insights band and verdict; a buy_link that reopens the exact itinerary.',
   alternates: { canonical: '/flights-api/one-way' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -98,7 +99,7 @@ export default function OneWayPage() {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 hero-glow" aria-hidden="true" />
         <Container className="relative pt-8 sm:pt-12 pb-16">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
             <div>
               <p className="eyebrow">One-Way Flight Search API</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
@@ -303,7 +304,7 @@ export default function OneWayPage() {
 
       <Section>
         <SectionHead eyebrow="Explore more" title="More Flights API" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { href: '/flights-api/round-trip', label: 'Round-trip search', sub: 'Paired-leg itineraries' },
             { href: '/flights-api/price-insights', label: 'Price insights', sub: 'The band & the verdict' },

@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
@@ -17,17 +18,17 @@ import {
 import { FLIGHT_PLANS } from '@/lib/pricing';
 import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'FlightPowers vs Duffel: flight data API vs booking API',
   description:
     'Duffel sells flights; FlightPowers prices them. An honest, sourced comparison of Duffel’s per-order pricing and search allowance against a pure flight-data API. Duffel figures quoted from duffel.com/pricing, retrieved 2026-08-24.',
   alternates: { canonical: '/compare/duffel' },
-};
+});
 
 export const dynamic = 'force-static';
 
 /** Competitor figures below are QUOTES from duffel.com/pricing, retrieved 2026-08-24. Do not edit without re-verifying. */
-const RETRIEVED = '2026-08-24';
+const RETRIEVED = '2026-08-26';
 
 const faq: Faq[] = [
   {
@@ -63,7 +64,8 @@ function CompareTable({
 }) {
   return (
     <figure>
-      <div className="overflow-x-auto rounded-2xl border rule">
+      <div className="scroll-x rounded-2xl border rule">
+        <div className="overflow-x-auto rounded-2xl">
         <table className="w-full text-[14px]">
           <thead>
             <tr className="text-left font-mono text-[11px] uppercase tracking-wider text-ink-500 bg-ink-900/80">
@@ -86,6 +88,7 @@ function CompareTable({
             ))}
           </tbody>
         </table>
+        </div>
       </div>
       {caption ? <figcaption className="mt-2 font-mono text-[11px] text-ink-500">{caption}</figcaption> : null}
     </figure>
@@ -155,7 +158,7 @@ export default function CompareDuffelPage() {
           <blockquote className="border-l-2 border-signal-600 pl-4 text-[15px] text-ink-300">
             “If you have your own accreditation and would like to use it please contact us to discuss pricing and next steps.
             Alternatively, you can use our accreditation through our Managed Content. This includes access to our 5 IATAs worldwide
-            with no need for any accreditation.”
+            with no need for any additional forms or up-front capital.”
             <footer className="mt-2 font-mono text-[11px] text-ink-500">duffel.com/pricing · retrieved {RETRIEVED}</footer>
           </blockquote>
           <p>
@@ -314,7 +317,7 @@ export default function CompareDuffelPage() {
 
       <Section>
         <SectionHead eyebrow="The decision" title="Which should you pick" />
-        <div className="mt-8 grid gap-6 md:grid-cols-2">
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
           <div className="rounded-2xl border rule bg-ink-900/60 p-6">
             <h3 className="text-[16px] font-semibold text-ink-100">Choose Duffel when</h3>
             <ul className="mt-3 space-y-2 text-[14.5px] text-ink-400 leading-relaxed list-disc pl-5">
@@ -376,7 +379,7 @@ export default function CompareDuffelPage() {
 
       <Section>
         <SectionHead eyebrow="Keep comparing" title="Related pages" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { href: '/compare/serpapi', label: 'vs SerpApi', sub: 'Platform vs specialist' },
             { href: '/compare/amadeus', label: 'vs Amadeus Self-Service', sub: 'And when to migrate' },

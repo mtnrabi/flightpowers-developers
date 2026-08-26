@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
@@ -22,12 +23,12 @@ import { FIXTURES } from '@/lib/fixtures';
 import { FLIGHT_PLANS } from '@/lib/pricing';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Flight Price Insights API: Google’s price band & low/typical/high verdict',
   description:
     'Every fare returns with price_insights_low, price_insights_high, and Google’s own low | typical | high verdict for the route and dates. Build price alerts and “book now” recommendations without maintaining your own fare history.',
   alternates: { canonical: '/flights-api/price-insights' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -94,11 +95,11 @@ export default function PriceInsightsPage() {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 hero-glow" aria-hidden="true" />
         <Container className="relative pt-8 sm:pt-12 pb-16">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
             <div>
               <p className="eyebrow">Flight Price Insights API</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
-                Fares with a <span className="text-signal-500">verdict</span>, not just a number
+                Fares with a <span className="text-signal-500">verdict</span> attached to the number
               </h1>
               <p className="lede mt-5">
                 Send a route and a date; get live fares with Google&apos;s own price band and a low | typical | high call on each.
@@ -147,7 +148,7 @@ export default function PriceInsightsPage() {
           title="What the response tells you"
           lede="Captured from a real search (JFK→Cancún, January 1) on the date stamped above."
         />
-        <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:items-start">
+        <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-start">
           <div>
             <FieldRow name="price_insights_low" type="number | null">
               The bottom of Google&apos;s historical price range for this route and these dates. In the capture: ${rec.price_insights_low}.
@@ -182,7 +183,7 @@ export default function PriceInsightsPage() {
           title="Three things this field replaces"
           lede="Each of these normally requires months of your own fare history. The band ships it in the response."
         />
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
           <div>
             <h3 className="text-[16px] font-semibold text-ink-100 mb-3">A price alert without a database</h3>
             <Code label="python · poll & alert">{`fares = search("JFK", "LHR", "2026-12-10")
@@ -229,7 +230,7 @@ flights.sort((a, b) =>
 
       <Section>
         <SectionHead eyebrow="Explore more" title="More Flights API" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { href: '/flights-api/one-way', label: 'One-way search', sub: 'The base endpoint' },
             { href: '/flights-api/round-trip', label: 'Round-trip search', sub: 'Paired-leg itineraries' },

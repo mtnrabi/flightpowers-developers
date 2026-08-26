@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
@@ -18,12 +19,12 @@ import {
 import { HOTEL_PLANS } from '@/lib/pricing';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Hotel Competitive-Set Tracking: room-level rates on a schedule',
   description:
     'Track a competitive set nightly: POST /resolve turns each competitor’s name into its Booking.com ID once, then POST /hotel returns the full room-by-room list (room type, meal plan, capacity and price) on every scheduled check.',
   alternates: { canonical: '/hotels-api/bulk' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -154,7 +155,7 @@ export default function CompetitiveSetPage() {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 hero-glow" aria-hidden="true" />
         <Container className="relative pt-8 sm:pt-12 pb-16">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
             <div>
               <p className="eyebrow">Competitive-Set Tracking</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
@@ -209,7 +210,7 @@ export default function CompetitiveSetPage() {
           title="Resolve once, then go direct"
           lede="A nightly comp-set job should not pay for name resolution on every call. Set it up once; after that, every check is a direct pull."
         />
-        <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:items-start">
+        <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-start">
           <div className="space-y-8">
             <div>
               <p className="font-mono text-[11px] uppercase tracking-wider text-signal-500">Step 1: once per competitor</p>
@@ -302,7 +303,7 @@ export default function CompetitiveSetPage() {
 
       <Section>
         <SectionHead eyebrow="Explore more" title="More Hotels API" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { href: '/hotels-api/geo-pricing', label: 'Geo-pricing', sub: 'The same sweep, per market' },
             { href: '/hotels-api/by-name', label: 'Hotel by name', sub: 'The no-setup variant' },

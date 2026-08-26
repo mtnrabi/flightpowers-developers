@@ -1,14 +1,15 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { CheckBullets, Container, FaqSection, Feature, Section, SectionHead, type Faq } from '@/components/ui';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Trip-Planning Bots: flight answers a chatbot can stand behind',
   description:
     'Build Telegram, Discord, Slack, or n8n travel bots on live data: paired round-trip itineraries in one call, a low | typical | high verdict to back every recommendation, and honest “no flights” answers backed by X-Search-Status.',
   alternates: { canonical: '/use-cases/trip-planning-bots' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -53,7 +54,7 @@ export default function TripPlanningBotsPage() {
 
       <Section bordered={false} className="!pt-10">
         <SectionHead eyebrow="How FlightPowers helps" title="Chat-ready responses from a live source" />
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
           <Feature title="Round-trips arrive paired">
             One call to /roundtrip returns complete itineraries (total_price, both legs, layovers), so &ldquo;JFK to Rome,
             out Friday back Sunday&rdquo; is one request and one message, not a stitching job.
@@ -106,7 +107,7 @@ export default function TripPlanningBotsPage() {
 
       <Section>
         <SectionHead eyebrow="Related resources" title="Keep going" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {[
             { href: '/flights-api/round-trip', label: 'Round-Trip API', sub: 'The paired-itinerary endpoint' },
             { href: '/flights-api/search-status', label: 'Search Status', sub: 'The three honest empty-state replies' },

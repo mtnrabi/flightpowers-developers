@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
@@ -6,12 +7,12 @@ import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const dynamic = 'force-static';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Integrations: RapidAPI, MCP, n8n, Apify, agents & more',
   description:
     'Every surface the FlightPowers travel-data APIs ship on: RapidAPI listings, hosted MCP servers, Claude, ChatGPT, Cursor, Claude Code, OpenClaw, n8n, Apify actors, open-source skills, and plain REST.',
   alternates: { canonical: '/integrations' },
-};
+});
 
 /**
  * One local dataset renders the hub. Only surfaces that are live today:
@@ -150,7 +151,7 @@ export default function IntegrationsPage() {
 
       <Section bordered={false} className="!pt-2">
         <div className="rounded-3xl border rule bg-ink-900/70 p-6 sm:p-10">
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-center">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-center">
             <div>
               <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-signal-500">Start here</p>
               <h2 className="mt-3 text-2xl sm:text-3xl font-semibold">RapidAPI: where the key and the bill live</h2>
@@ -181,7 +182,7 @@ export default function IntegrationsPage() {
           title="Pick your door"
           lede="Each card is a full setup page: the connect block, what you can build, and honest notes on cost."
         />
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {CARDS.map((card) => (
             <Link
               key={card.href}
