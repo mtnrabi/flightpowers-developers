@@ -1,0 +1,201 @@
+export const metadata = {
+  title: 'The best flight data APIs in 2026, compared honestly',
+  description:
+    'A sourced comparison of the flight data APIs people actually shortlist — Google Flights Live API, Air Scraper, SerpApi, Duffel — with real quoted prices, retrieval dates, the data-source differences that matter, and where the cheaper option genuinely wins.',
+  alternates: { canonical: '/guides/best-flight-data-apis-2026' },
+};
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { FLIGHT_PLANS } from '@/lib/pricing';
+import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'The best flight data APIs in 2026, compared honestly',
+    description:
+      'Google Flights Live API, Air Scraper, SerpApi and Duffel compared with quoted, dated prices and disclosed bias.',
+    url: `${SITE.url}/guides/best-flight-data-apis-2026`,
+    datePublished: '2026-08-26',
+    dateModified: '2026-08-26',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# The best flight data APIs in 2026, compared
+
+If you search for flight data APIs you get a wall of listings with similar names,
+similar screenshots and wildly different data underneath. This page compares the
+ones people actually shortlist.
+
+I'll be honest — **I'm starting with my own API.** I run FlightPowers, so read the
+first entry as a vendor describing his product. Everything I say about the others is
+quoted from their own live pages, read on **2026-08-24**, with the caveats stated
+inline — including the finding that is not flattering to me: on raw requests per
+dollar, one competitor is cheaper than I am at every tier.
+
+## 1. Google Flights Live API (FlightPowers) — mine
+
+**Source: Google Flights. Best for: price intelligence — alerts, calendars, "is this
+a good deal" features.**
+
+What I built it around: every result carries Google's own historical price band for
+the route and dates (`price_insights_low` / `price_insights_high`) and Google's
+verdict on the current fare — `low`, `typical`, or `high`. That is the difference
+between an API that tells you a price and one that tells you whether the price is
+*good*. A fare-alert product can trigger on that field on day one, with no price
+history of its own. Beyond that: round-trip is a real paired-leg endpoint (one
+request returns both legs with a combined total — not two one-way searches stapled
+together), every result ships a working `buy_link` into Google Flights, per-minute
+rate limits are published per plan so parallel date scans are a documented
+capability, and every response carries an `X-Search-Status` header so "no flights"
+and "the search failed" are [different answers](/guides/handle-empty-flight-search-results).
+
+Being fair about the cons, because everyone else on this page gets their pros: no
+multi-city or open-jaw itineraries (one-way and round-trip only), only two cabins
+documented (Economy and Business), no car rentals, and the top public tier caps at
+50,000 requests a month. Current plan prices live on [/pricing](/pricing); the
+companion [Booking.com hotels API](/hotels-api) is a separate listing on the same
+account.
+
+## 2. Air Scraper (`sky-scrapper`) — the cheaper one
+
+**Source: Skyscanner. Best for: raw request volume, and scope beyond flights.**
+
+The headline finding, stated up front because it is true: **Air Scraper is cheaper
+per request than my API.** Prices read off its live RapidAPI listing on 2026-08-24:
+free tier 20 requests/month, then $9/month for 10,600 requests, $49 for 55,000, $120
+for 140,000 — which works out to roughly $0.00085–$0.00089 per request at every paid
+tier, against {`$${(FLIGHT_PLANS[3].priceMonthly / FLIGHT_PLANS[3].quota).toFixed(4)}`}–{`$${(FLIGHT_PLANS[1].priceMonthly / FLIGHT_PLANS[1].quota).toFixed(4)}`}
+per request on mine. Its own listing describes it as an API that *"helps to query
+prices for real-time flights, hotels, rental cars, etc… to create a travel website
+like the skyscanner.com or booking.com."*
+
+Two things make a "request" mean different amounts of work, and they are visible in
+its own documented route list. First, Skyscanner addresses places by internal entity
+IDs, not IATA codes, so its routes include `searchAirport` and `getNearByAirports` —
+a user typing "New York" generally costs a resolution call before the search call.
+(Mine takes IATA codes directly.) Second, its route list includes
+`searchIncomplete`, `searchFlightsComplete` and `searchFlightsWebComplete` alongside
+`searchFlights` — naming characteristic of Skyscanner's asynchronous model, where
+you begin a search and poll for the finished set, and each poll is a request. I have
+not measured how many calls a typical search resolves in, so I will not put a
+multiplier on it — but one search is not reliably one request, so measure it on your
+own workload before choosing on the per-request price. I also searched its listing
+documentation for price-insight fields equivalent to Google's band and verdict and
+did not find any — a statement about what the listing documents, not proof no such
+field exists.
+
+Genuinely fair pros: cheapest per request at every published tier; flights, hotels
+*and* rental cars on one key; a price-calendar endpoint and an "everywhere" search
+as first-class endpoints (on mine you build those by scanning in parallel);
+multi-stop search, which I do not have at all; and a 140,000-request top tier
+against my 50,000. Against: rate limits are not published on its listing, and the
+data is Skyscanner's, which is not interchangeable with Google Flights coverage.
+
+**Consider Air Scraper if** you need cars, multi-city, or volume past 50,000
+requests a month — that list decides it, and this page should not talk you out of it.
+
+## 3. SerpApi — the platform
+
+**Source: Google (many surfaces). Best for: teams that need more of Google than
+flights.**
+
+SerpApi is a general-purpose Google scraping platform where Google Flights is one of
+several dozen engines on one subscription and one credit pool. From its own pages
+(retrieved 2026-08-24): plans run $25/month for 1,000 searches up to $275/month for
+30,000 — roughly $0.0092–$0.025 per search — and round-trip is a two-request flow
+(their docs: to get returning flights *"you need to make another request using a
+`departure_token`"*). Credits are fungible across all engines, and only successful
+searches count toward quota — a genuinely customer-friendly billing policy.
+
+Where it beats me, plainly: its `price_insights` object includes a `price_history`
+array, not just a band; it returns per-itinerary carbon emissions; it supports
+multi-city and four cabin classes; and it advertises a legal indemnity of up to $2
+million for search-engine scraping. The full side-by-side, with everything quoted
+and dated, is at [/compare/serpapi](/compare/serpapi).
+
+**Consider SerpApi if** flights are one feature of a product that also needs Google
+Search, Maps or Shopping data; if you want price history without accumulating it;
+or if your legal team wants the indemnity.
+
+## 4. Duffel — the one that can actually sell a ticket
+
+**Source: airline inventory (NDC and their own IATAs). Best for: products where the
+purchase happens inside your product.**
+
+Duffel is not a data API and comparing it as one is a category error — it is a
+booking platform: order creation, ancillaries, and access to their IATA
+accreditation so you do not need your own. Its pricing (from duffel.com/pricing,
+retrieved 2026-08-24) charges $3.00 per confirmed order and lets search ride along
+free at a 1500:1 search-to-book ratio, with excess searches at $0.005. For a seller
+that converts, that model is excellent. For a non-booking workload — no orders means
+no free searches — every search costs $0.005, and its sign-up flow assumes you are
+selling flights. The full comparison is at [/compare/duffel](/compare/duffel).
+
+**Consider Duffel if** you are an OTA, corporate booking tool, agency or marketplace
+and the transaction happens inside your product. None of the data APIs on this page,
+mine included, can issue a ticket.
+
+## What is not on this list, and why
+
+Several other listings turn up in the same RapidAPI search — `flights-sky`,
+`google-flights2`, `booking-com15`, `sky-scanner3` among them. Their pages did not
+expose pricing in a form I could read reliably on 2026-08-24, and I am not going to
+publish a price I did not verify.
+
+**Amadeus Self-Service** used to be on every shortlist and is no longer a live
+option. As of 2026-08-24, its portal and pricing pages 301-redirect to the Amadeus
+homepage, the test sandbox host no longer resolves, all 20 `amadeus4dev` GitHub
+repositories are archived, and Amadeus's own developer-guides repository states:
+*"The Amadeus for Developers Self-Service offer has been deprecated."* Only the
+Enterprise portal remains, which generally requires IATA/ARC accreditation. If you
+are coming from there, the migration mapping is at
+[/compare/amadeus](/compare/amadeus).
+
+## How to choose in five minutes
+
+The free tiers make comparison pages, including this one, the wrong way to decide:
+
+1. Subscribe to two free tiers.
+2. Run **your three hardest routes** — the small regional airport, the multi-stop
+   long-haul, the one your users complain about.
+3. Count **requests per completed search**, not requests.
+4. Check whether the response has what your feature needs. If your product must say
+   "this is a good price," check for a price band.
+5. Then compare cost per *completed, usable* search.
+
+```bash
+curl -X POST https://api.flightpowers.com/v1/flights/oneway \
+  -H "x-api-key: $FLIGHTPOWERS_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "from_airport": "JFK",
+    "to_airport": "LHR",
+    "departure_date": "2026-10-15"
+  }'
+```
+
+The full walkthrough of mine is
+[How to get real-time Google Flights data](/guides/real-time-google-flights-data);
+a key comes from <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">the
+RapidAPI listing</a>, free tier included (10 requests/month, hard cap — verifies
+your key, doesn't evaluate).
+
+## Related
+
+- [FlightPowers vs SerpApi](/compare/serpapi) — the full quoted side-by-side
+- [FlightPowers vs Duffel](/compare/duffel) — data API vs booking platform
+- [Amadeus Self-Service vs FlightPowers](/compare/amadeus) — the migration path
+- [Price Insights API](/flights-api/price-insights) — the field this whole ranking hinges on, proven with a captured run
+
+<CtaBand
+  medium="guide"
+  title="Decide on your routes, not my copy"
+  body="Run your three hardest routes and check the response for a price band and a verdict. Free tier on RapidAPI — no card to try."
+/>

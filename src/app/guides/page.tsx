@@ -1,0 +1,129 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { CtaBand } from '@/components/bands';
+import { Breadcrumbs, Container, JsonLd, Section, SectionHead } from '@/components/ui';
+import { SITE } from '@/lib/site';
+
+export const metadata: Metadata = {
+  title: 'Guides — working code for flight & hotel data',
+  description:
+    'How-to guides for live flight and hotel pricing: getting real-time Google Flights data, handling empty search results correctly, decoding Google Flights URLs, monitoring hotel rate parity, fare watches in n8n, and an honest comparison of the 2026 flight-API field.',
+  alternates: { canonical: '/guides' },
+};
+
+export const dynamic = 'force-static';
+
+const GUIDES = [
+  {
+    href: '/guides/real-time-google-flights-data',
+    title: 'How to get real-time Google Flights data',
+    sub: 'The full walkthrough: endpoints, paste-and-run code, the price-insight fields, paired round-trips, and scanning a whole month of dates in one parallel burst.',
+    tag: 'start here',
+  },
+  {
+    href: '/guides/handle-empty-flight-search-results',
+    title: 'Handling empty flight search results',
+    sub: 'Why 200 [] is the most dangerous response a search API can return, the failure taxonomy behind it, and a vendor-neutral checklist for evaluating any search API’s empty-result semantics.',
+    tag: 'engineering essay',
+  },
+  {
+    href: '/guides/google-flights-url-parameters',
+    title: 'Google Flights URL parameters, decoded',
+    sub: 'What is inside a Google Flights URL — the tfs= base64url protobuf, the q= natural-language form, curr= — how to decode tfs at the wire level, and why you should never encode it yourself.',
+    tag: 'deep dive',
+  },
+  {
+    href: '/guides/monitor-hotel-rate-parity',
+    title: 'How to monitor hotel rate parity',
+    sub: 'The proxy_country mechanism — the same room priced from the US, Germany and Israel in three requests — with a real captured spread, a scheduling pattern, and honest notes on how often parity holds.',
+    tag: 'hotels',
+  },
+  {
+    href: '/guides/flight-api-in-n8n',
+    title: 'Using a flight API in n8n',
+    sub: 'A four-node fare watch that fires when Google’s verdict says “low” — with the community node or a plain HTTP Request node, exact POST body included.',
+    tag: 'automation',
+  },
+  {
+    href: '/guides/best-flight-data-apis-2026',
+    title: 'The best flight data APIs in 2026',
+    sub: 'The listicle, with disclosed bias — it starts with our own API and says so, quotes every competitor price with a retrieval date, and names the competitor that is cheaper per request than we are.',
+    tag: 'comparison',
+  },
+];
+
+export default function GuidesIndexPage() {
+  return (
+    <>
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: 'FlightPowers guides',
+          url: `${SITE.url}/guides`,
+          hasPart: GUIDES.map((g) => ({
+            '@type': 'TechArticle',
+            headline: g.title,
+            url: `${SITE.url}${g.href}`,
+          })),
+        }}
+      />
+
+      <Container className="pt-10 sm:pt-14">
+        <Breadcrumbs trail={[{ href: '/', label: 'Home' }, { href: '/guides', label: 'Guides' }]} />
+      </Container>
+
+      <Container className="pt-8 sm:pt-12 pb-4">
+        <p className="eyebrow">Guides</p>
+        <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold max-w-3xl">
+          Working code, honest <span className="text-signal-500">guides</span>
+        </h1>
+        <p className="lede mt-5 max-w-2xl">
+          Every guide is written against the live API, code first, with the limitations stated before you find them. Prices are never
+          restated in guides — they go stale there; the current numbers always live on{' '}
+          <Link href="/pricing" className="text-signal-400 underline underline-offset-4">/pricing</Link>.
+        </p>
+      </Container>
+
+      <Section bordered={false} className="!pt-10">
+        <div className="grid gap-6 md:grid-cols-2">
+          {GUIDES.map((g) => (
+            <Link key={g.href} href={g.href} className="rounded-2xl border rule bg-ink-900/50 p-6 hover:border-ink-500 transition-colors flex flex-col">
+              <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-signal-500">{g.tag}</p>
+              <h2 className="mt-2 text-[18px] font-semibold text-ink-100">{g.title}</h2>
+              <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed flex-1">{g.sub}</p>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
+      <Section>
+        <SectionHead
+          eyebrow="Prefer to click than to read?"
+          title="The free tools run the same code"
+          lede="Each guide has a tool that does its job in the browser, on our key — judge the data before writing a line."
+        />
+        <div className="mt-8 grid gap-4 sm:grid-cols-3">
+          {[
+            { href: '/tools/flight-price-checker', label: 'Flight Price Checker', sub: 'A fare with its verdict' },
+            { href: '/tools/google-flights-url-parser', label: 'Google Flights URL Parser', sub: 'Decode a tfs= blob' },
+            { href: '/tools/hotel-price-by-country', label: 'Hotel Price by Country', sub: 'The 3-market parity check' },
+          ].map((l) => (
+            <Link key={l.href} href={l.href} className="rounded-2xl border rule bg-ink-900/50 p-5 hover:border-ink-500 transition-colors">
+              <p className="text-[15px] font-semibold text-ink-100">{l.label}</p>
+              <p className="mt-1 text-[13px] text-ink-400">{l.sub}</p>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
+      <Section bordered={false} className="!pt-4">
+        <CtaBand
+          medium="guide"
+          title="Every guide ends the same way: run it"
+          body="Live flight and hotel data with the context to judge it. Free tier on RapidAPI — no card to try."
+        />
+      </Section>
+    </>
+  );
+}

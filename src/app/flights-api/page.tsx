@@ -1,339 +1,417 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
+import { CtaBand } from '@/components/bands';
+import { ExecuteWidget } from '@/components/ExecuteWidget';
+import { PricingTable } from '@/components/PricingTable';
 import {
+  Breadcrumbs,
+  CheckBullets,
   Container,
+  Cta,
+  FaqSection,
+  FieldRow,
+  JsonLd,
   Section,
   SectionHead,
-  Cta,
-  Code,
-  FieldRow,
-  Breadcrumbs,
-  FaqSection,
-  JsonLd,
   type Faq,
 } from '@/components/ui';
-import { PricingTable } from '@/components/PricingTable';
+import { FIXTURES } from '@/lib/fixtures';
 import { FLIGHT_PLANS } from '@/lib/pricing';
-import { LINKS, SITE } from '@/lib/site';
-
-export const dynamic = 'force-static';
+import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Google Flights API — live fares with price-insights bands',
+  title: 'Google Flights API — live fares with a price verdict on every result',
   description:
-    'A REST API for real-time Google Flights fares. Returns price_insights_low and ' +
-    'price_insights_high with a low/typical/high verdict, a paired-leg round-trip endpoint, and a ' +
-    'Google Flights deep link on every itinerary.',
+    'A REST API over live Google Flights results. POST /oneway and POST /roundtrip return flat JSON with Google’s price_insights band, a low | typical | high verdict, honest X-Search-Status headers, and a booking link on every itinerary.',
   alternates: { canonical: '/flights-api' },
 };
 
-const ONEWAY = `POST https://api.flightpowers.com/v1/flights/oneway
-x-api-key: <your RapidAPI key>
-content-type: application/json
+export const dynamic = 'force-static';
 
-{
-  "from_airport": "JFK",
-  "to_airport": "LHR",
-  "departure_date": "2026-09-22",
-  "max_stops": 0,
-  "currency": "usd",
-  "limit": 5
-}`;
-
-const ROUNDTRIP = `POST https://api.flightpowers.com/v1/flights/roundtrip
-
-{
-  "from_airport": "JFK",
-  "to_airport": "LHR",
-  "departure_date": "2026-09-22",
-  "return_date": "2026-09-29",
-  "max_departure_stops": 0,
-  "max_return_stops": 1,
-  "departure_airline_codes": ["BA"],
-  "return_departure_time_min": 10,
-  "limit": 5
-}`;
-
-const SCAN = `# One month of departure dates, scanned in parallel.
-# Each date is one request; keep concurrency under your plan's per-minute limit.
-import asyncio, httpx, datetime as dt
-
-KEY = os.environ["RAPIDAPI_KEY"]          # server-side only
-DATES = [dt.date(2026, 9, 1) + dt.timedelta(days=i) for i in range(30)]
-
-async def fare(client, day):
-    r = await client.post(
-        "https://api.flightpowers.com/v1/flights/oneway",
-        headers={"x-api-key": KEY},
-        json={"from_airport": "JFK", "to_airport": "LHR",
-              "departure_date": day.isoformat(), "limit": 1},
-        timeout=180,
-    )
-    rows = r.json()
-    return day, (rows[0]["price_as_number"] if rows else None)
-
-async def main():
-    limits = httpx.Limits(max_connections=20)
-    async with httpx.AsyncClient(limits=limits) as client:
-        return await asyncio.gather(*(fare(client, d) for d in DATES))`;
-
-const faqs: Faq[] = [
+const ENDPOINT_PAGES = [
   {
-    q: 'Which fields identify a good price?',
-    a:
-      'price_insights_low and price_insights_high are the ends of the historical price band Google ' +
-      'Flights shows for that route and date, as integers in the requested currency. ' +
-      'price_range_in_relation_to_other_periods is Google’s verdict on the current fare: "low", ' +
-      '"typical" or "high". All three can be null when Google does not publish a band for a search, ' +
-      'so treat them as optional in your schema.',
+    href: '/flights-api/one-way',
+    method: 'POST /oneway',
+    label: 'One-way search',
+    sub: 'The base endpoint: route and date in, every live fare out — full filter set, flat JSON.',
   },
   {
-    q: 'What is in buy_link?',
-    a:
-      'A Google Flights URL of the form https://www.google.com/travel/flights?tfs=<encoded>&curr=<currency>. ' +
-      'The encoded payload carries the passengers, cabin, trip type and every leg’s date, airports, ' +
-      'airline and flight number, so the link reopens that exact itinerary rather than a fresh search. ' +
-      'Round-trip results carry one combined link for the paired itinerary.',
+    href: '/flights-api/round-trip',
+    method: 'POST /roundtrip',
+    label: 'Round-trip search',
+    sub: 'One object per itinerary — both legs pre-paired, with combined price, duration, and stops.',
   },
   {
-    q: 'How do I scan many dates at once?',
-    a:
-      'Each date is a separate request, so a month scan is thirty calls. The per-minute rate limit on ' +
-      'your plan is what bounds the concurrency: 150 per minute on Pro, 250 on Ultra, 500 on Mega, as ' +
-      'listed on RapidAPI on 2026-08-25. Keep your client’s connection limit under that and a month ' +
-      'of dates finishes in one batch.',
+    href: '/flights-api/price-insights',
+    method: 'response fields',
+    label: 'Price insights',
+    sub: 'Google’s historical price band and its low | typical | high verdict, on every result.',
   },
   {
-    q: 'What do the response airports look like?',
-    a:
-      'Requests take IATA codes (from_airport, to_airport). Responses return them as a display ' +
-      'string in the form "City (IATA)" — for example "New York (JFK)" — not as a bare code. Parse ' +
-      'accordingly if you round-trip values through your own storage.',
+    href: '/flights-api/search-status',
+    method: 'response headers',
+    label: 'Search status',
+    sub: 'ok | empty | partial | degraded — an empty array is an answer, never a shrug.',
   },
   {
-    q: 'Is price a string or a number?',
-    a:
-      'Both, in two fields. price is the formatted string, for example "$56". price_as_number is the ' +
-      'integer. Use price_as_number for arithmetic. stops is an integer, but can be the string ' +
-      '"Unknown" when the itinerary’s stop count could not be read, so guard for that.',
+    href: '/flights-api/parallel-date-scan',
+    method: 'rate limits',
+    label: 'Parallel date scans',
+    sub: `${COUNTS.flightsRateLimits} req/min by plan — a whole month of dates in one burst.`,
+  },
+] as const;
+
+const GAPS: { problem: string; answer: string }[] = [
+  {
+    problem: 'Round-trips return broken or unpaired legs',
+    answer: 'A real /roundtrip endpoint with paired itineraries and combined totals.',
   },
   {
-    q: 'How long can a search take?',
-    a:
-      'The front allows up to 180 seconds for a search before it times out, because a live scrape of ' +
-      'Google Flights is not a cache lookup. Set your client timeout accordingly — a default 30-second ' +
-      'HTTP timeout will cut off searches that would have succeeded.',
+    problem: 'No sense of whether a price is good',
+    answer: 'Google’s own price band and a low | typical | high verdict on every result.',
+  },
+  {
+    problem: 'You have to bring your own SerpApi key and pay twice',
+    answer: 'One subscription. No third-party key, no second bill.',
+  },
+  {
+    problem: 'An empty response could mean “no flights” or a failed scrape — and you cannot tell which',
+    answer:
+      'Failed reads are retried, and an empty array counts as an answer only when the page said so. X-Search-Status tells a real empty apart from a degraded search, and opt-in strict turns a degraded one into a 503.',
+  },
+  {
+    problem: 'Blocked by Google under load',
+    answer: 'Residential proxy routing on by default, switchable per request.',
+  },
+  {
+    problem: 'Filters are a thin subset of the Google Flights UI',
+    answer: 'Stops, airlines, exclusions, time-of-day windows per leg, cabin, passenger mix, max price, currency.',
+  },
+  {
+    problem: 'Serial only, so flexible dates take minutes',
+    answer: `Rate limits sized for parallel date scans — ${COUNTS.flightsRateLimits} requests per minute by plan.`,
   },
 ];
 
-export default function FlightsApiPage() {
+const PAID = FLIGHT_PLANS.filter((p) => p.priceMonthly > 0);
+const planName = (n: string) => n[0] + n.slice(1).toLowerCase();
+
+const faq: Faq[] = [
+  {
+    q: 'Is this an official Google API?',
+    a: 'No. FlightPowers is an independent API that reads the public Google Flights site live at request time; it is not affiliated with or endorsed by Google. The fields it returns — including the price band and the low | typical | high verdict — are the values Google shows travellers, passed through as-is.',
+  },
+  {
+    q: 'What data does each flight result include?',
+    a: 'Flat JSON per itinerary: price as a display string and a number (price / price_as_number), airline, duration in text and seconds, stop count with per-layover details, local departure and arrival times, a buy_link that reopens the exact itinerary on Google Flights, and Google’s price_insights_low / price_insights_high band with a low | typical | high verdict.',
+  },
+  {
+    q: 'Is the round-trip endpoint really one search?',
+    a: 'Yes. POST /roundtrip returns one object per itinerary with total_price, total_duration_seconds, total_stops, and the outbound and return legs already paired — not two one-way responses you have to combine yourself. Each leg takes its own filters.',
+  },
+  {
+    q: 'What happens when a route has no flights?',
+    a: 'The response says so explicitly. X-Search-Status: empty means the search completed and Google genuinely has no itineraries — the empty array is the answer. X-Search-Status: degraded means the search did not complete and the empty array says nothing about availability. Opt-in strict: true turns a degraded search into an HTTP 503 instead.',
+  },
+  {
+    q: 'How do I search flexible dates?',
+    a: `One request per date, fired in parallel. “3 to 5 nights, TLV to Paris or Prague, anywhere in May” is 31 dates × 3 durations × 2 destinations = 186 requests — the per-minute rate limits (${PAID.map((p) => `${p.ratePerMinute} on ${planName(p.name)}`).join(', ')}) are sized so that finishes in a burst or two, not a serial loop.`,
+  },
+  {
+    q: 'Do I need a SerpApi key or another scraping subscription?',
+    a: 'No. One RapidAPI subscription covers everything on this page. There is no third-party key to bring and no second bill.',
+  },
+  {
+    q: 'How much does the Google Flights API cost?',
+    a: `Plans on RapidAPI: a $0 BASIC tier (10 requests/month, hard cap — it verifies your key, it doesn’t evaluate), then ${PAID.map((p) => `$${p.priceMonthly}`).join(', ')} per month for ${PAID.map((p) => p.quota.toLocaleString('en-US')).join(', ')} requests. Every plan includes both endpoints and every response field.`,
+  },
+  {
+    q: 'How fast is a search?',
+    a: 'Results are scanned live against Google Flights at request time, not served from a cache, so response time tracks route complexity — dense routes with many connections take longer than trunk routes, and a search that has to retry an unreadable page takes longer still. Set a generous client timeout.',
+  },
+];
+
+export default function FlightsApiHubPage() {
+  const fx = FIXTURES.onewayTlvJfk;
+
   return (
     <>
       <JsonLd
         data={{
           '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: 'Google Flights API',
+          url: `${SITE.url}/flights-api`,
+          description:
+            'Live Google Flights fares as flat JSON: one-way and round-trip search with price insights, honest search-status headers, and parallel date scans.',
+          hasPart: ENDPOINT_PAGES.map((p) => ({
+            '@type': 'WebPage',
+            name: p.label,
+            url: `${SITE.url}${p.href}`,
+          })),
+        }}
+      />
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Developers', item: SITE.url },
-            {
-              '@type': 'ListItem',
-              position: 2,
-              name: 'Flights API',
-              item: `${SITE.url}/flights-api`,
-            },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+            { '@type': 'ListItem', position: 2, name: 'Flights API', item: `${SITE.url}/flights-api` },
           ],
         }}
       />
 
-      <div className="board-grid border-b rule">
-        <Container className="py-16 sm:py-24">
-          <Breadcrumbs
-            trail={[
-              { href: '/', label: 'developers' },
-              { href: '/flights-api', label: 'flights-api' },
-            ]}
-          />
-          <div className="mt-6 grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] lg:items-start">
+      <Container className="pt-10 sm:pt-14">
+        <Breadcrumbs trail={[{ href: '/', label: 'Home' }, { href: '/flights-api', label: 'Flights API' }]} />
+      </Container>
+
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 hero-glow" aria-hidden="true" />
+        <Container className="relative pt-8 sm:pt-12 pb-16">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
             <div>
-              <h1 className="text-[length:var(--text-hero)] leading-[var(--text-hero--line-height)] tracking-[var(--text-hero--letter-spacing)] font-semibold">
-                Google Flights data, with the price band attached.
+              <p className="eyebrow">Google Flights API</p>
+              <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
+                Live Google Flights data, with a <span className="text-signal-500">price verdict</span>
               </h1>
-              <p className="lede mt-6 max-w-xl">
-                Two endpoints over live Google Flights results. Every itinerary comes back with
-                Google&rsquo;s historical price range, its verdict on today&rsquo;s fare, and a deep
-                link that reopens exactly that itinerary.
+              <p className="lede mt-5">
+                Two endpoints over live Google Flights results — fares as flat JSON, with Google&apos;s price band, a
+                low | typical | high verdict, and a booking link.
               </p>
+              <div className="mt-7">
+                <CheckBullets
+                  items={[
+                    <>
+                      <code className="font-mono text-[13px] text-signal-400">POST /oneway</code> and{' '}
+                      <code className="font-mono text-[13px] text-signal-400">POST /roundtrip</code> — round-trips come back as
+                      paired itineraries, not stapled legs
+                    </>,
+                    <>
+                      <code className="font-mono text-[13px] text-signal-400">price_insights_low / high</code> + Google&apos;s
+                      verdict on every result, on every plan
+                    </>,
+                    <>
+                      <code className="font-mono text-[13px] text-signal-400">X-Search-Status</code> separates &quot;no
+                      flights&quot; from &quot;the search failed&quot;
+                    </>,
+                  ]}
+                />
+              </div>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Cta href={LINKS.rapidapiFlights} external>
-                  Get a key on RapidAPI
+                <Cta href={rapidApiPricingUrl('flights', 'endpoint')} external variant="primary">
+                  Get a key on RapidAPI →
                 </Cta>
-                <Cta href="/hotels-api" variant="ghost">
-                  Hotels API
+                <Cta href="/tools/flight-price-checker" variant="ghost">
+                  Check a live fare free
                 </Cta>
               </div>
+              <p className="mt-4 font-mono text-[12px] text-ink-500">Free tier on RapidAPI. No card to try.</p>
             </div>
-            <Code label="one-way">{ONEWAY}</Code>
+
+            <ExecuteWidget
+              title="POST /api/google_flights/oneway/v1"
+              tool="flights-hub-execute"
+              capturedAt={fx.captured_at}
+              requestText={JSON.stringify(fx.request.body, null, 2)}
+              responseText={JSON.stringify(fx.data.slice(0, 2), null, 2)}
+              headers={fx.headers}
+            />
           </div>
         </Container>
       </div>
 
-      {/* Price insights */}
-      <Section bordered={false}>
+      <Section>
         <SectionHead
-          eyebrow="The flagship field"
-          title="price_insights_low, price_insights_high, and a verdict."
-          lede="Google Flights shows travellers a historical price range and tells them whether the current fare sits low, typical or high within it. Those three values come back on every result row."
+          eyebrow="The endpoints"
+          title="Two endpoints, five things worth a page each"
+          lede="Every plan gets all of it — you only ever choose volume and rate limit."
         />
-        <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:items-start">
-          <Code label="every result row carries">{`{
-  "price_insights_low": 65,
-  "price_insights_high": 135,
-  "price_range_in_relation_to_other_periods": "low",
-  "price": "$56",
-  "price_as_number": 56
-}`}</Code>
-          <div className="text-sm text-ink-400 leading-relaxed space-y-4">
-            <p>
-              <code className="field">price_insights_low</code> and{' '}
-              <code className="field">price_insights_high</code> are integers in the currency you
-              requested, taken from the price-history data on the Google Flights page the search
-              loads.
-            </p>
-            <p>
-              <code className="field">price_range_in_relation_to_other_periods</code> is
-              Google&rsquo;s own label for the current fare &mdash;{' '}
-              <code className="field">&quot;low&quot;</code>,{' '}
-              <code className="field">&quot;typical&quot;</code> or{' '}
-              <code className="field">&quot;high&quot;</code>.
-            </p>
-            <p className="rounded border rule bg-ink-900 px-4 py-3">
-              <span className="font-mono text-[11px] uppercase tracking-wider text-signal-500">
-                Handle the null case
-              </span>
-              <br />
-              Google does not publish a band for every search. When it is absent these fields come
-              back <code className="field">null</code>. Do not make them required in your schema, and
-              do not build a UI that has nothing to show without them.
-            </p>
-          </div>
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {ENDPOINT_PAGES.map((p) => (
+            <Link key={p.href} href={p.href} className="rounded-2xl border rule bg-ink-900/50 p-5 hover:border-ink-500 transition-colors">
+              <p className="font-mono text-[11px] text-signal-500">{p.method}</p>
+              <p className="mt-1.5 text-[15.5px] font-semibold text-ink-100">{p.label}</p>
+              <p className="mt-1.5 text-[13.5px] text-ink-400 leading-relaxed">{p.sub}</p>
+            </Link>
+          ))}
         </div>
       </Section>
 
-      {/* Round trip */}
       <Section>
         <SectionHead
-          eyebrow="POST /v1/flights/roundtrip"
-          title="A round trip is one search, not two."
-          lede="The endpoint runs a genuine paired-leg search: the outbound leg it selects drives a filtered query for the matching return. You get a combined price and a single buy_link for an itinerary that can be bought as one ticket."
+          eyebrow="POST /api/google_flights/oneway/v1"
+          title="One-way: the full request surface"
+          lede="Three required fields; everything else narrows the search. The dedicated one-way page covers each response field too."
         />
-        <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:items-start">
-          <Code label="per-leg filtering">{ROUNDTRIP}</Code>
-          <div>
-            <p className="text-sm text-ink-400 leading-relaxed">
-              Each leg takes its own constraints, which is the part two stapled one-way searches
-              cannot express:
-            </p>
-            <div className="mt-5">
-              <FieldRow name="max_departure_stops / max_return_stops" type="int">
-                Stop limits set independently per leg &mdash; non-stop out, one stop back.
-              </FieldRow>
-              <FieldRow
-                name="departure_airline_codes / return_airline_codes"
-                type="string[]"
-              >
-                Restrict each leg to particular carriers. Matching{' '}
-                <code className="field">exclude_</code> variants exist for both legs.
-              </FieldRow>
-              <FieldRow
-                name="departure_departure_time_min / _max"
-                type="int"
-              >
-                Departure and arrival time windows, set separately for the outbound and return legs.
-              </FieldRow>
-              <FieldRow name="total_price" type="string">
-                The combined price for the paired itinerary, returned on the result.
-              </FieldRow>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* Request fields */}
-      <Section>
-        <SectionHead eyebrow="POST /v1/flights/oneway" title="Request fields" />
         <div className="mt-8 max-w-3xl">
           <p className="font-mono text-[11px] uppercase tracking-wider text-signal-500">Required</p>
-          <div className="mt-3">
+          <div className="mt-2">
+            <FieldRow name="departure_date" type="string">
+              The travel date as <code className="field">YYYY-MM-DD</code>.
+            </FieldRow>
             <FieldRow name="from_airport" type="string">
-              Origin IATA code.
+              Origin IATA code — New York is <code className="field">JFK</code>.
             </FieldRow>
             <FieldRow name="to_airport" type="string">
               Destination IATA code.
             </FieldRow>
-            <FieldRow name="departure_date" type="string">
-              <code className="field">YYYY-MM-DD</code>.
-            </FieldRow>
           </div>
 
-          <p className="mt-12 font-mono text-[11px] uppercase tracking-wider text-signal-500">
-            Optional
-          </p>
-          <div className="mt-3">
+          <p className="mt-10 font-mono text-[11px] uppercase tracking-wider text-signal-500">Optional — filtering</p>
+          <div className="mt-2">
             <FieldRow name="max_stops" type="int">
-              Maximum stops per itinerary.
+              Maximum stops per itinerary. <code className="field">0</code> for nonstop only.
             </FieldRow>
             <FieldRow name="airline_codes / exclude_airline_codes" type="string[]">
-              Include or exclude specific carriers.
+              Restrict results to these carriers — or keep everything except them.
             </FieldRow>
-            <FieldRow name="departure_time_min / _max, arrival_time_min / _max" type="int">
-              Hour-of-day windows.
-            </FieldRow>
-            <FieldRow name="currency" type="string">
-              Defaults to <code className="field">usd</code>.
+            <FieldRow name="departure_time_min / _max, arrival_time_min / _max" type="int 0–23">
+              Hour-of-day windows for departure and arrival.
             </FieldRow>
             <FieldRow name="max_price" type="int">
-              Upper bound on fare.
+              Upper bound on the fare, in the requested currency.
+            </FieldRow>
+            <FieldRow name="seat_type" type="int">
+              Cabin: <code className="field">1</code> Economy, <code className="field">3</code> Business.
+            </FieldRow>
+          </div>
+
+          <p className="mt-10 font-mono text-[11px] uppercase tracking-wider text-signal-500">Optional — shape &amp; behavior</p>
+          <div className="mt-2">
+            <FieldRow name="sort_type" type='"Overall" | "Price" | "Duration"'>
+              Default <code className="field">Overall</code>. Note that <code className="field">&quot;Price&quot;</code> reflects
+              Google&apos;s own ordering, not a strict sort — sort locally on <code className="field">price_as_number</code> for
+              exact price order.
             </FieldRow>
             <FieldRow name="passengers" type="int[]">
-              Passenger breakdown.
+              Passenger mix: <code className="field">1</code> adult, <code className="field">2</code> child,{' '}
+              <code className="field">3</code> infant on lap, <code className="field">4</code> infant in seat.
+            </FieldRow>
+            <FieldRow name="currency" type="string">
+              Defaults to <code className="field">USD</code>.
             </FieldRow>
             <FieldRow name="limit" type="int">
-              Number of itineraries returned. Defaults to <code className="field">10</code>.
+              Maximum results returned. Defaults to <code className="field">10</code>.
             </FieldRow>
             <FieldRow name="strict" type="bool">
-              When the search fails to complete, return <code className="field">503</code> instead of
-              an empty array. Available on the RapidAPI host.
+              Opt-in, default <code className="field">false</code>: a search that did not complete returns HTTP 503 instead of an
+              empty array. Details on the <Link href="/flights-api/search-status" className="text-signal-400 underline underline-offset-4">search-status page</Link>.
+            </FieldRow>
+            <FieldRow name="use_ext_proxy" type="bool">
+              Default <code className="field">true</code>: routes through a residential proxy to reduce blocks. Set{' '}
+              <code className="field">false</code> for lower latency on easy routes.
             </FieldRow>
           </div>
         </div>
       </Section>
 
-      {/* Parallel scan */}
       <Section>
         <SectionHead
-          eyebrow="Rate limits"
-          title="Scanning a month of dates."
-          lede="Cheapest-date and fare-alert products are date scans, and a date scan is bounded by requests per minute. Pro allows 150 per minute, Ultra 250, Mega 500 — as listed on RapidAPI on 2026-08-25."
+          eyebrow="POST /api/google_flights/roundtrip/v1"
+          title="Round-trip: same controls, split per leg"
+          lede="Four required fields, and every one-way filter exists twice — once for the outbound, once for the return."
         />
-        <div className="mt-10 max-w-3xl">
-          <Code label="python">{SCAN}</Code>
-          <p className="mt-4 text-sm text-ink-400 leading-relaxed">
-            Thirty dates is thirty billed requests. Keep your client&rsquo;s connection limit under
-            your plan&rsquo;s per-minute figure; a 429 is returned to you unchanged and is never
-            retried, so an exhausted quota is never double-billed.
-          </p>
+        <div className="mt-8 max-w-3xl">
+          <p className="font-mono text-[11px] uppercase tracking-wider text-signal-500">Required</p>
+          <div className="mt-2">
+            <FieldRow name="departure_date / return_date" type="string">
+              Both travel dates, <code className="field">YYYY-MM-DD</code>.
+            </FieldRow>
+            <FieldRow name="from_airport / to_airport" type="string">
+              IATA codes, as on one-way.
+            </FieldRow>
+          </div>
+
+          <p className="mt-10 font-mono text-[11px] uppercase tracking-wider text-signal-500">Optional — per leg</p>
+          <div className="mt-2">
+            <FieldRow name="max_departure_stops / max_return_stops" type="int">
+              Stop limits set independently — nonstop out, one stop back is a valid ask.
+            </FieldRow>
+            <FieldRow name="departure_airline_codes / return_airline_codes" type="string[]">
+              Per-leg carrier restrictions, with matching <code className="field">_exclude_</code> variants for both legs.
+            </FieldRow>
+            <FieldRow name="departure_* / return_* time windows" type="int 0–23">
+              <code className="field">departure_departure_time_min/_max</code>,{' '}
+              <code className="field">departure_arrival_time_min/_max</code>, and the{' '}
+              <code className="field">return_</code>-prefixed equivalents.
+            </FieldRow>
+          </div>
+
+          <p className="mt-10 font-mono text-[11px] uppercase tracking-wider text-signal-500">Optional — shared</p>
+          <div className="mt-2">
+            <FieldRow name="sort_type · currency · max_price · seat_type · passengers · limit · strict · use_ext_proxy">
+              Exactly as on one-way, applied to the paired search as a whole.
+            </FieldRow>
+          </div>
+          <div className="mt-8">
+            <Cta href="/flights-api/round-trip" variant="ghost">
+              The full round-trip page →
+            </Cta>
+          </div>
         </div>
       </Section>
 
-      {/* Pricing */}
       <Section>
-        <SectionHead eyebrow="Pricing" title="Plans on RapidAPI" />
-        <div className="mt-8 max-w-4xl">
+        <SectionHead
+          eyebrow="Why this one"
+          title="Common gaps in other Google Flights APIs"
+          lede="Each row is a failure mode this API was designed against — and every right-hand answer is provable on the pages above, not adjectives."
+        />
+        <div className="mt-8 overflow-x-auto rounded-2xl border rule">
+          <table className="w-full text-[14px]">
+            <thead>
+              <tr className="text-left font-mono text-[11px] uppercase tracking-wider text-ink-500 bg-ink-900/80">
+                <th className="px-4 py-3 font-normal">The problem</th>
+                <th className="px-4 py-3 font-normal">How this API handles it</th>
+              </tr>
+            </thead>
+            <tbody>
+              {GAPS.map((g) => (
+                <tr key={g.problem} className="border-t rule align-top">
+                  <td className="px-4 py-3.5 text-ink-300">{g.problem}</td>
+                  <td className="px-4 py-3.5 text-ink-200">{g.answer}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Section>
+
+      <Section>
+        <SectionHead eyebrow="Pricing" title="Every plan gets both endpoints" />
+        <div className="mt-8">
           <PricingTable api="flights" plans={FLIGHT_PLANS} medium="endpoint" />
         </div>
       </Section>
 
       <Section>
-        <FaqSection items={faqs} heading="Flights API questions" />
+        <FaqSection items={faq} />
+      </Section>
+
+      <Section>
+        <SectionHead eyebrow="Keep going" title="Related" />
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            { href: '/hotels-api', label: 'Hotels API', sub: 'Booking.com rates, with per-country pricing' },
+            { href: '/tools/flight-price-checker', label: 'Flight price checker', sub: 'Try the API free, no signup' },
+            { href: '/mcp', label: 'MCP servers', sub: 'The same data, one URL for your agent' },
+            { href: '/pricing', label: 'Full pricing', sub: 'Both APIs, the Apify option, key check' },
+          ].map((l) => (
+            <Link key={l.href} href={l.href} className="rounded-2xl border rule bg-ink-900/50 p-5 hover:border-ink-500 transition-colors">
+              <p className="text-[15px] font-semibold text-ink-100">{l.label}</p>
+              <p className="mt-1 text-[13px] text-ink-400">{l.sub}</p>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
+      <Section bordered={false} className="!pt-4">
+        <CtaBand
+          medium="endpoint"
+          title="Every fare, judged — from one subscription"
+          body="Live Google Flights data with the price band, verdict, and booking link attached to every result."
+        />
       </Section>
     </>
   );

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function ChangelogLayout({ children }: { children: React.ReactNode }) {
   return (
     <Container className="py-14 sm:py-20">
-      <Breadcrumbs trail={[{ href: '/', label: 'developers' }, { href: '/changelog', label: 'changelog' }]} />
+      <Breadcrumbs trail={[{ href: '/', label: 'Home' }, { href: '/changelog', label: 'Changelog' }]} />
       <article className="prose-fp mt-6 max-w-3xl">{children}</article>
     </Container>
   );

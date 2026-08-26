@@ -1,0 +1,178 @@
+export const metadata = {
+  title: 'How to monitor hotel rate parity with an API',
+  description:
+    'What rate parity is, why revenue managers watch it, and how to check it programmatically: the proxy_country mechanism — the same room priced from the US, Germany and Israel in three requests — with a real captured spread, a scheduling pattern, and honest notes on how often parity simply holds.',
+  alternates: { canonical: '/guides/monitor-hotel-rate-parity' },
+};
+
+export const dynamic = 'force-static';
+
+import { CapturedBadge, JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { FIXTURES } from '@/lib/fixtures';
+import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'How to monitor hotel rate parity with an API',
+    description:
+      'Checking the same room from multiple markets with proxy_country, a real captured price spread, and how to schedule the check.',
+    url: `${SITE.url}/guides/monitor-hotel-rate-parity`,
+    datePublished: '2026-08-26',
+    dateModified: '2026-08-26',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# How to monitor hotel rate parity
+
+Rate parity is the principle — and usually the contractual expectation — that the
+same room, on the same dates, should cost the same wherever and however it is sold.
+Hotels promise it to distribution partners; OTAs enforce it in their agreements; and
+in practice it drifts, because pricing systems segment by market: the rate a booking
+site quotes can depend on the country the visitor appears to browse from.
+
+That drift is why revenue managers watch parity. A room quietly selling cheaper to
+one market than another is margin leaking in a direction nobody chose: it can undercut
+the hotel's own direct channel, breach a partner agreement, or hand a competitor an
+opening. But watching it manually means opening the same booking page through VPN
+endpoints in three countries and eyeballing the numbers — nobody sustains that daily.
+
+This guide shows the programmatic version: three API requests, one parameter varied.
+
+## The mechanism: `proxy_country`
+
+Booking.com shows different rates depending on where the visitor is browsing from.
+Every endpoint on the
+<a href={rapidApiPricingUrl('hotels', 'guide')} rel="noopener">Booking Live API</a>
+accepts `proxy_country`, a two-letter
+lowercase code (`us`, `de`, `il`) that routes that request through a **residential
+proxy in that country** — so the response is what a real visitor from that market
+sees, not what your server's location sees. Leave it out and the request goes through
+the global pool.
+
+A parity check is therefore the same request, N times, with only `proxy_country`
+changed:
+
+```python
+import requests
+
+HEADERS = {
+    "Content-Type": "application/json",
+    "x-rapidapi-host": "booking-live-api.p.rapidapi.com",
+    "x-rapidapi-key": RAPIDAPI_KEY,
+}
+
+for country in ["us", "de", "il"]:
+    r = requests.post(
+        "https://booking-live-api.p.rapidapi.com/hotel_by_name",
+        headers=HEADERS,
+        json={
+            "hotel_name": "Rixos Sungate",
+            "area": "Antalya",
+            "checkin_date": "2026-10-05",
+            "checkout_date": "2026-10-10",
+            "currency": "USD",
+            "proxy_country": country,
+        },
+    )
+    hotel = r.json()
+    print(country, hotel["price_string"] if hotel["available"] else "sold out")
+```
+
+`/hotel_by_name` takes the property name a human would type (plus an optional `area`
+to disambiguate) and returns one headline rate with the room type, so the three
+responses are directly comparable. For a room-by-room comparison there is `/hotel`,
+which returns the full room list for a property.
+
+## A real spread, captured
+
+The dramatization above is not hypothetical. Here is a run of exactly that check,
+captured live on {FIXTURES.hotelGeoRixos.captured_at} — same property
+({FIXTURES.hotelGeoRixos.data.us.name}), same room type
+({FIXTURES.hotelGeoRixos.data.us.room_type}), same dates
+(2026-10-05 to 2026-10-10), same currency, only `proxy_country` varied:
+
+| Market | Quoted price ({FIXTURES.hotelGeoRixos.data.us.nights} nights) |
+|---|---|
+| `us` | {FIXTURES.hotelGeoRixos.data.us.price_string} |
+| `de` | {FIXTURES.hotelGeoRixos.data.de.price_string} |
+| `il` | {FIXTURES.hotelGeoRixos.data.il.price_string} |
+
+<CapturedBadge date={FIXTURES.hotelGeoRixos.captured_at} />
+
+The US market was quoted **${FIXTURES.hotelGeoRixos.data.us.price.toLocaleString('en-US')}**
+for the same room the German and Israeli markets were quoted
+**${FIXTURES.hotelGeoRixos.data.de.price.toLocaleString('en-US')}** for — a
+${(FIXTURES.hotelGeoRixos.data.de.price - FIXTURES.hotelGeoRixos.data.us.price).toLocaleString('en-US')}
+spread, or about
+{Math.round(((FIXTURES.hotelGeoRixos.data.de.price - FIXTURES.hotelGeoRixos.data.us.price) / FIXTURES.hotelGeoRixos.data.us.price) * 100)}%,
+on one property, found by three requests. (The raw captured responses ship in this
+site's source as a fixture — `src/lib/fixtures/hotel-geo-rixos.json` — booking links
+included, so the numbers are checkable, not decorative.)
+
+## The honest part: parity often holds
+
+Do not build the pitch deck off one screenshot. A second capture from the same day —
+{FIXTURES.hotelGeoKremlin.data.us.name}, same three markets, same dates — came back
+at {FIXTURES.hotelGeoKremlin.data.us.price_string} /
+{FIXTURES.hotelGeoKremlin.data.de.price_string} /
+{FIXTURES.hotelGeoKremlin.data.il.price_string}: near-identical quotes, differing by
+a rounding artifact. Parity holding is also an answer, and a monitoring tool has to
+report it honestly rather than manufacture drama.
+
+The operational consequence: **alert on deltas, don't assume them.** A parity monitor
+that runs daily and stays silent for weeks is working, not broken. The value is the
+morning it isn't silent — and having the captured evidence (price, room type,
+booking link, timestamp) attached when that morning comes.
+
+## Scheduling it
+
+A parity check is a naturally periodic job. Two common shapes:
+
+**Cron.** Wrap the loop above in a script, run it daily, diff against yesterday's
+numbers, and send yourself a message when the spread between any two markets exceeds
+a threshold you choose (absolute or percentage — percentage travels better across
+properties). Persist the raw responses, not just the verdict: when you escalate a
+parity breach, the evidence is the response, with its `price_string`, `room_type`
+and booking `link`.
+
+**n8n or another workflow tool.** Schedule trigger → one HTTP request per market →
+compare → notify. The same pattern as a fare watch, which is written up step by step
+in [Using a flight API in n8n](/guides/flight-api-in-n8n) — swap the flights node
+for the hotel request and the verdict condition for a spread threshold.
+
+Two practical notes for scheduled sweeps:
+
+- **Rate limits on the hotels API are much lower than on flights** — see
+  [/pricing](/pricing) for the current per-plan numbers. A comp set of properties
+  across several markets is a queue, not a burst; space the requests.
+- **Compare like with like.** The response includes `room_type` — check it matches
+  across markets before alerting on the price. A cheaper quote for a different room
+  is not a parity breach, it is inventory.
+
+## Beyond parity: the same three requests, other questions
+
+The identical mechanism answers adjacent revenue questions: geo-pricing analysis
+(which markets is a competitor discounting into?), competitive-set tracking
+(`/hotel_by_name` across your comp set, on the same schedule), and market-entry
+research. The [Geo-Pricing page](/hotels-api/geo-pricing) documents the endpoint
+parameters in full, and the free
+[Hotel Price by Country tool](/tools/hotel-price-by-country) runs the three-market
+check in your browser so you can see the response shape before writing any code.
+
+## Related
+
+- [Geo-Pricing API](/hotels-api/geo-pricing) — the endpoint documentation
+- [Hotel Price by Country](/tools/hotel-price-by-country) — the free in-browser version of this check
+- [Using a flight API in n8n](/guides/flight-api-in-n8n) — the scheduling pattern, step by step
+
+<CtaBand
+  api="hotels"
+  medium="guide"
+  title="Three requests, one parameter, the whole picture"
+  body="Live Booking.com rates priced from any market with proxy_country. Free tier on RapidAPI — no card to try."
+/>

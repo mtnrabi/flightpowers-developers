@@ -1,158 +1,133 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
+import { CtaBand } from '@/components/bands';
+import { ExecuteWidget } from '@/components/ExecuteWidget';
+import { PricingTable } from '@/components/PricingTable';
 import {
-  Container,
-  Section,
-  SectionHead,
-  Cta,
-  Code,
-  FieldRow,
   Breadcrumbs,
+  CheckBullets,
+  Container,
+  Cta,
   FaqSection,
   JsonLd,
+  Section,
+  SectionHead,
   type Faq,
 } from '@/components/ui';
-import { PricingTable } from '@/components/PricingTable';
+import { FIXTURES } from '@/lib/fixtures';
 import { HOTEL_PLANS } from '@/lib/pricing';
-import { LINKS, SITE } from '@/lib/site';
-
-export const dynamic = 'force-static';
+import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Hotel pricing API — live Booking.com rates, priced per country',
+  title: 'Booking.com Hotels API — live rates, priced from any market',
   description:
-    'A REST API for live Booking.com hotel prices. Every endpoint accepts proxy_country, so the ' +
-    'same room can be priced from any market — the basis for rate-parity and geo-pricing monitoring.',
+    'A REST API for live Booking.com hotel prices. Search a destination or look up a hotel by name; every endpoint accepts proxy_country, so the same room can be priced from any market — the basis for rate-parity and geo-pricing monitoring.',
   alternates: { canonical: '/hotels-api' },
 };
 
-const SEARCH = `POST https://api.flightpowers.com/v1/hotels/search
-x-api-key: <your RapidAPI key>
-content-type: application/json
+export const dynamic = 'force-static';
 
-{
-  "destination": "Paris",
-  "checkin_date": "2026-09-22",
-  "checkout_date": "2026-09-25",
-  "adults": 2,
-  "filters": ["free_cancellation", "stars_4"],
-  "proxy_country": "de"
-}`;
-
-const RESPONSE = `{
-  "destination": "Paris",
-  "checkin_date": "2026-09-22",
-  "checkout_date": "2026-09-25",
-  "applied_filters": ["free_cancellation", "stars_4"],
-  "budget_per_night": null,
-  "properties": [
-    {
-      "name": "Hotel Example",
-      "price_string": "US$742",
-      "price": 742,
-      "review_score": 8.4,
-      "review_count": 701,
-      "room_type": "Superior Double Room",
-      "location": "8th arr.",
-      "image_url": "https://cf.bstatic.com/...",
-      "link": "https://www.booking.com/hotel/fr/example.html",
-      "nights": 3,
-      "adults": 2,
-      "children": 0
-    }
-  ]
-}`;
-
-const PARITY = `# The same property and dates, priced from several markets.
-# Each country is one request.
-for country in ["us", "gb", "de", "br", "jp"]:
-    r = requests.post(
-        "https://api.flightpowers.com/v1/hotels/by-name",
-        headers={"x-api-key": KEY},                 # server-side only
-        json={
-            "hotel_name": "Hotel Example Paris",
-            "checkin_date": "2026-09-22",
-            "checkout_date": "2026-09-25",
-            "proxy_country": country,
-        },
-        timeout=180,
-    )
-    print(country, r.json())`;
-
-const FILTERS = [
-  'free_cancellation',
-  'breakfast_included',
-  'breakfast_and_lunch',
-  'breakfast_and_dinner',
-  'all_meals_included',
-  'all_inclusive',
-  'free_wifi',
-  'swimming_pool',
-  'gym',
-  'review_score_7',
-  'review_score_8',
-  'review_score_9',
-  'private_bathroom',
-  'air_conditioning',
-  'parking',
-  'front_desk_24h',
-  'stars_3',
-  'stars_4',
-  'stars_5',
-  'pets_allowed',
-  'adults_only',
-  'sauna',
-  'very_good_breakfast',
-  'accepts_online_payment',
-];
-
-const faqs: Faq[] = [
+const ENDPOINTS = [
   {
-    q: 'What does proxy_country actually change?',
-    a:
-      'It routes that one request through a residential proxy exiting in the country you name, so ' +
-      'the rates returned are the rates a resident of that market is shown. Omit it and the request ' +
-      'goes through a global rotating pool. It is accepted on every hotels endpoint. The value is a ' +
-      'country code passed through to the proxy provider; it is not validated against a fixed list, ' +
-      'so test the markets you care about before relying on them in production.',
+    href: '/hotels-api/search',
+    method: 'POST /search',
+    label: 'Destination search',
+    sub: 'Free-text destination and dates in; ranked properties with live prices, review scores, room types and booking links out.',
   },
   {
-    q: 'How do I build a rate-parity check?',
-    a:
-      'Call /v1/hotels/by-name once per market with the same hotel_name and the same date range, ' +
-      'varying only proxy_country, and compare the prices. Each market is one billed request. That ' +
-      'is the whole mechanism — the difficulty in rate parity is getting a truthful price from each ' +
-      'market, which is what the proxy is for.',
+    href: '/hotels-api/by-name',
+    method: 'POST /hotel_by_name',
+    label: 'Hotel by name',
+    sub: 'The name a human would type. Name resolution included — no property-ID step before you can ask anything.',
   },
   {
-    q: 'The field is destination, not location?',
-    a:
-      'Yes. /v1/hotels/search requires destination, checkin_date and checkout_date. Sending location ' +
-      'instead returns a 400 naming the three fields it needs. Confusingly, location does appear in ' +
-      'the response, as the neighbourhood of each property.',
+    href: '/hotels-api/geo-pricing',
+    method: 'proxy_country · every endpoint',
+    label: 'Geo-pricing & rate parity',
+    sub: 'Price the same room from any market through a residential proxy. The page for revenue managers and BI teams.',
   },
   {
-    q: 'Is price per night or for the stay?',
-    a:
-      'On /v1/hotels/search, price is the total for the whole stay and nights tells you how many ' +
-      'nights that covers — divide if you want a nightly rate. The optional budget_per_night filter, ' +
-      'by contrast, is per night. Two different units in one response, so read the field names ' +
-      'carefully.',
-  },
-  {
-    q: 'How many properties come back?',
-    a:
-      'Up to 50 per search, and there is no pagination. Narrow with filters and budget_per_night ' +
-      'rather than expecting to page through a destination.',
-  },
-  {
-    q: 'What happens when nothing matches?',
-    a:
-      'A search with no matching properties returns 404 with a message, not an empty list. Handle ' +
-      '404 as a normal outcome rather than as an error condition.',
+    href: '/hotels-api/bulk',
+    method: 'POST /hotel + /resolve',
+    label: 'Competitive-set tracking',
+    sub: 'Resolve a name to its Booking.com ID once, then pull the full room-by-room list on a schedule.',
   },
 ];
 
-export default function HotelsApiPage() {
+const FILTER_CATEGORIES: { category: string; filters: string[] }[] = [
+  { category: 'Cancellation', filters: ['free_cancellation'] },
+  {
+    category: 'Meals',
+    filters: ['breakfast_included', 'breakfast_and_lunch', 'breakfast_and_dinner', 'all_meals_included', 'all_inclusive'],
+  },
+  { category: 'Facilities', filters: ['free_wifi', 'swimming_pool', 'gym', 'parking', 'front_desk_24h'] },
+  { category: 'Review score', filters: ['review_score_7', 'review_score_8', 'review_score_9'] },
+  { category: 'Room facilities', filters: ['private_bathroom', 'air_conditioning'] },
+  { category: 'Property rating', filters: ['stars_3', 'stars_4', 'stars_5'] },
+  { category: 'Travel group', filters: ['pets_allowed', 'adults_only'] },
+  { category: 'Activities', filters: ['sauna'] },
+  { category: 'Guest reviews', filters: ['very_good_breakfast'] },
+  { category: 'Payment', filters: ['accepts_online_payment'] },
+];
+
+const GAPS: { problem: string; answer: string }[] = [
+  {
+    problem: 'You need an internal property ID before you can ask anything',
+    answer: '/hotel_by_name accepts the name a human would type',
+  },
+  {
+    problem: 'One price per hotel, no room breakdown',
+    answer: '/hotel returns every room with its type, meal plan, capacity and price',
+  },
+  {
+    problem: 'Prices are cached and drift from what the guest sees',
+    answer: 'Every request is live against Booking.com',
+  },
+  {
+    problem: 'No way to see market-specific pricing',
+    answer: 'proxy_country routes through a residential proxy in any country',
+  },
+  {
+    problem: 'A thin slice of the site’s filters',
+    answer: `${COUNTS.hotelFilters} filters plus budget_per_night, matching the Booking.com UI`,
+  },
+  {
+    problem: 'Errors and sold-out come back in different shapes',
+    answer: 'Consistent available: false plus nulls, so parsing never branches',
+  },
+];
+
+const faq: Faq[] = [
+  {
+    q: 'Are prices cached?',
+    a: 'No. Every query hits Booking.com live at request time, so the rate that comes back is the rate a guest would be quoted at that moment. The honest trade-off: response time tracks how much work Booking.com has to do for the query.',
+  },
+  {
+    q: 'What does proxy_country do?',
+    a: 'Every endpoint accepts proxy_country, a two-letter lowercase country code ("us", "de", "il"). The request routes through a residential proxy in that country, so you see the rates Booking.com quotes that market. Leave it out and the request goes through the global residential pool.',
+  },
+  {
+    q: 'Which endpoint do I start with?',
+    a: 'POST /search for a destination, POST /hotel_by_name for one property by its name (resolution included), and POST /resolve followed by POST /hotel when you want the full room-by-room list for a property you check repeatedly.',
+  },
+  {
+    q: 'What fields does /search require?',
+    a: 'destination (free text — "Paris", "Tokyo Shibuya"), checkin_date, and checkout_date in YYYY-MM-DD. Note the field is destination, not location — sending location returns a 400 with a clear message naming the fields it needs.',
+  },
+  {
+    q: 'How do sold-out and not-found come back?',
+    a: 'As the same response shape with "available": false and nulls in the price fields, so your parser never has to branch on an error format.',
+  },
+  {
+    q: 'What does the free tier include?',
+    a: `Every endpoint, ${HOTEL_PLANS[0]!.quota} requests per month, hard cap. That verifies your key and your integration — it is not enough volume to evaluate data quality. Paid plans start at $${HOTEL_PLANS[1]!.priceMonthly}/month on RapidAPI.`,
+  },
+];
+
+export default function HotelsApiHubPage() {
+  const fx = FIXTURES.hotelSearchLisbon;
+  const preview = { ...fx.data, properties: fx.data.properties.slice(0, 2) };
+
   return (
     <>
       <JsonLd
@@ -160,179 +135,194 @@ export default function HotelsApiPage() {
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Developers', item: SITE.url },
-            {
-              '@type': 'ListItem',
-              position: 2,
-              name: 'Hotels API',
-              item: `${SITE.url}/hotels-api`,
-            },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+            { '@type': 'ListItem', position: 2, name: 'Hotels API', item: `${SITE.url}/hotels-api` },
           ],
         }}
       />
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: 'Booking.com Hotels API',
+          description:
+            'Live Booking.com hotel prices over REST: destination search, name-based lookup, room-level pricing, and per-market pricing via proxy_country.',
+          url: `${SITE.url}/hotels-api`,
+          hasPart: ENDPOINTS.map((e) => ({
+            '@type': 'WebPage',
+            name: e.label,
+            url: `${SITE.url}${e.href}`,
+          })),
+        }}
+      />
 
-      <div className="board-grid border-b rule">
-        <Container className="py-16 sm:py-24">
-          <Breadcrumbs
-            trail={[
-              { href: '/', label: 'developers' },
-              { href: '/hotels-api', label: 'hotels-api' },
-            ]}
-          />
-          <div className="mt-6 grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,26rem)] lg:items-start">
+      <Container className="pt-10 sm:pt-14">
+        <Breadcrumbs trail={[{ href: '/', label: 'Home' }, { href: '/hotels-api', label: 'Hotels API' }]} />
+      </Container>
+
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 hero-glow" aria-hidden="true" />
+        <Container className="relative pt-8 sm:pt-12 pb-16">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
             <div>
-              <h1 className="text-[length:var(--text-hero)] leading-[var(--text-hero--line-height)] tracking-[var(--text-hero--letter-spacing)] font-semibold">
-                Live hotel rates &mdash; from whichever market you ask as.
+              <p className="eyebrow">Booking.com Hotels API</p>
+              <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
+                Live hotel rates, priced from <span className="text-signal-500">any market</span>
               </h1>
-              <p className="lede mt-6 max-w-xl">
-                Real-time Booking.com pricing over REST, with one field most hotel APIs do not have:{' '}
-                <code className="field">proxy_country</code>. Price the same room as a buyer in
-                Germany, Brazil or Japan and you can see rate parity instead of assuming it.
+              <p className="lede mt-5">
+                Search a destination or name a hotel; get Booking.com&apos;s live rates, review scores, room types and booking links
+                as flat JSON.
               </p>
+              <div className="mt-7">
+                <CheckBullets
+                  items={[
+                    <>Live at request time — nothing is served from a cache, so the rate returned is the rate the guest would be quoted</>,
+                    <>
+                      <code className="font-mono text-[13px] text-signal-400">proxy_country</code> — price the same room from any
+                      market through a residential proxy
+                    </>,
+                    <>
+                      Name-based lookup — <code className="font-mono text-[13px] text-signal-400">/hotel_by_name</code> takes the name
+                      a human would type, no property IDs first
+                    </>,
+                  ]}
+                />
+              </div>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Cta href={LINKS.rapidapiHotels} external>
-                  Get a key on RapidAPI
+                <Cta href={rapidApiPricingUrl('hotels', 'endpoint')} external variant="primary">
+                  Get a key on RapidAPI →
                 </Cta>
-                <Cta href="/flights-api" variant="ghost">
-                  Flights API
+                <Cta href="/hotels-api/geo-pricing" variant="ghost">
+                  See geo-pricing
                 </Cta>
               </div>
+              <p className="mt-4 font-mono text-[12px] text-ink-500">Free tier on RapidAPI. No card to try.</p>
             </div>
-            <Code label="search">{SEARCH}</Code>
+
+            <ExecuteWidget
+              title="POST /search · booking-live-api"
+              tool="hotels-hub-execute"
+              capturedAt={fx.captured_at}
+              requestText={JSON.stringify(fx.request.body, null, 2)}
+              responseText={JSON.stringify(preview, null, 2)}
+              headers={fx.headers}
+            />
           </div>
         </Container>
       </div>
 
-      {/* proxy_country */}
-      <Section bordered={false}>
+      <Section>
         <SectionHead
-          eyebrow="The field that does the work"
-          title="proxy_country turns one price into a comparison."
-          lede="Hotel rates are not one number. The same room on the same night is quoted differently depending on the market a shopper appears to be in — that is the whole reason rate-parity monitoring exists. Every hotels endpoint takes an optional proxy_country and routes that request through a residential proxy exiting there."
+          eyebrow="Endpoints"
+          title="Four ways in, one subscription"
+          lede="Every plan includes every endpoint — you only choose volume and rate limit. Each page below shows a real captured request and what came back."
         />
-        <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:items-start">
-          <Code label="rate parity across five markets">{PARITY}</Code>
-          <div className="text-sm text-ink-400 leading-relaxed space-y-4">
-            <p>
-              This is what makes three otherwise-hard jobs into ordinary API calls: rate-parity
-              monitoring for a hotel or chain, geo-pricing analysis for an OTA, and market-by-market
-              competitive pricing for a revenue manager.
-            </p>
-            <p>
-              Each market is one request, so a five-market check on one property costs five requests
-              from your quota. Omit the field and the request uses a global rotating pool.
-            </p>
-            <p className="rounded border rule bg-ink-900 px-4 py-3">
-              <span className="font-mono text-[11px] uppercase tracking-wider text-signal-500">
-                Worth knowing
-              </span>
-              <br />
-              The value is passed through to the proxy provider rather than checked against a fixed
-              list of supported countries. Test the specific markets you plan to monitor before you
-              build a report on them.
-            </p>
-          </div>
+        <div className="mt-10 grid gap-4 sm:grid-cols-2">
+          {ENDPOINTS.map((e) => (
+            <Link key={e.href} href={e.href} className="rounded-2xl border rule bg-ink-900/50 p-6 hover:border-ink-500 transition-colors">
+              <p className="font-mono text-[11px] text-signal-400">{e.method}</p>
+              <p className="mt-2 text-[17px] font-semibold text-ink-100">{e.label}</p>
+              <p className="mt-1.5 text-[14px] text-ink-400 leading-relaxed">{e.sub}</p>
+            </Link>
+          ))}
         </div>
       </Section>
 
-      {/* Endpoints */}
-      <Section>
-        <SectionHead eyebrow="Endpoints" title="Four ways in" />
-        <div className="mt-8 max-w-3xl">
-          <FieldRow name="POST /v1/hotels/search">
-            Search a destination over a date range. Requires{' '}
-            <code className="field">destination</code>, <code className="field">checkin_date</code>,{' '}
-            <code className="field">checkout_date</code>. Returns up to 50 properties, unpaginated.
-          </FieldRow>
-          <FieldRow name="POST /v1/hotels/by-name">
-            Price one named property. Requires <code className="field">hotel_name</code> and the two
-            dates. This is the endpoint a parity check calls.
-          </FieldRow>
-          <FieldRow name="POST /v1/hotels/rooms">
-            Room-by-room breakdown for a known property, including meal plan and per-rate occupancy.
-            Requires <code className="field">hotel_booking_id</code> and the two dates.
-          </FieldRow>
-          <FieldRow name="POST /v1/hotels/resolve">
-            Resolve a hotel name to a property identifier.
-          </FieldRow>
-        </div>
-      </Section>
-
-      {/* Request / response */}
-      <Section>
-        <SectionHead eyebrow="POST /v1/hotels/search" title="Request and response" />
-        <div className="mt-8 grid gap-12 lg:grid-cols-2 lg:items-start">
-          <div>
-            <p className="font-mono text-[11px] uppercase tracking-wider text-signal-500">
-              Required
-            </p>
-            <div className="mt-3">
-              <FieldRow name="destination" type="string">
-                City or area. The field is <code className="field">destination</code>, not{' '}
-                <code className="field">location</code>.
-              </FieldRow>
-              <FieldRow name="checkin_date / checkout_date" type="string">
-                <code className="field">YYYY-MM-DD</code>.
-              </FieldRow>
-            </div>
-            <p className="mt-10 font-mono text-[11px] uppercase tracking-wider text-signal-500">
-              Optional
-            </p>
-            <div className="mt-3">
-              <FieldRow name="adults" type="int">
-                Defaults to <code className="field">2</code>.
-              </FieldRow>
-              <FieldRow name="children" type="int">
-                Defaults to <code className="field">0</code>.
-              </FieldRow>
-              <FieldRow name="currency" type="string">
-                Defaults to <code className="field">USD</code>.
-              </FieldRow>
-              <FieldRow name="budget_per_night" type="number">
-                Per-night ceiling. Note the unit: <code className="field">price</code> in the
-                response is the stay total.
-              </FieldRow>
-              <FieldRow name="filters" type="string[]">
-                Any of the 24 values below. An unrecognised value returns a 400 listing all of them.
-              </FieldRow>
-              <FieldRow name="proxy_country" type="string">
-                Country to price from.
-              </FieldRow>
-            </div>
-          </div>
-          <Code label="200 &mdash; response">{RESPONSE}</Code>
-        </div>
-      </Section>
-
-      {/* Filters */}
       <Section>
         <SectionHead
           eyebrow="filters"
-          title="24 search filters, matching Booking&rsquo;s own facets."
-          lede="Pass them as an array on any search. Anything outside this list is rejected with a 400 that names the valid values."
+          title={`${COUNTS.hotelFilters} filters, matching the Booking.com UI`}
+          lede="Pass any of these as a filters array on /search — the same facets Booking.com shows its own users — plus budget_per_night in whatever currency you set."
         />
-        <ul className="mt-8 flex flex-wrap gap-2">
-          {FILTERS.map((f) => (
-            <li
-              key={f}
-              className="rounded border rule bg-ink-900 px-2.5 py-1 font-mono text-[12px] text-beacon-400"
-            >
-              {f}
-            </li>
-          ))}
-        </ul>
+        <div className="mt-8 overflow-x-auto rounded-2xl border rule">
+          <table className="w-full text-[14px]">
+            <thead>
+              <tr className="text-left font-mono text-[11px] uppercase tracking-wider text-ink-500 bg-ink-900/80">
+                <th className="px-4 py-3 font-normal">Category</th>
+                <th className="px-4 py-3 font-normal">Filters</th>
+              </tr>
+            </thead>
+            <tbody>
+              {FILTER_CATEGORIES.map((c) => (
+                <tr key={c.category} className="border-t rule">
+                  <td className="px-4 py-3 whitespace-nowrap align-top text-ink-200">{c.category}</td>
+                  <td className="px-4 py-3">
+                    <div className="flex flex-wrap gap-1.5">
+                      {c.filters.map((f) => (
+                        <code key={f} className="rounded border rule bg-ink-900 px-2 py-0.5 font-mono text-[12px] text-signal-400">
+                          {f}
+                        </code>
+                      ))}
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </Section>
 
-      {/* Pricing */}
       <Section>
-        <SectionHead eyebrow="Pricing" title="Plans on RapidAPI" />
-        <div className="mt-8 max-w-4xl">
+        <SectionHead
+          eyebrow="Why this one"
+          title="Common gaps in other hotel APIs"
+          lede="The problems developers hit with general-purpose hotel data sources, and what this API does about each."
+        />
+        <div className="mt-8 overflow-x-auto rounded-2xl border rule">
+          <table className="w-full text-[14px]">
+            <thead>
+              <tr className="text-left font-mono text-[11px] uppercase tracking-wider text-ink-500 bg-ink-900/80">
+                <th className="px-4 py-3 font-normal">The problem</th>
+                <th className="px-4 py-3 font-normal">How this API handles it</th>
+              </tr>
+            </thead>
+            <tbody>
+              {GAPS.map((g) => (
+                <tr key={g.problem} className="border-t rule">
+                  <td className="px-4 py-3.5 align-top text-ink-400">{g.problem}</td>
+                  <td className="px-4 py-3.5 align-top text-ink-200">{g.answer}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Section>
+
+      <Section>
+        <SectionHead eyebrow="Pricing" title="Every plan carries every endpoint" />
+        <div className="mt-8">
           <PricingTable api="hotels" plans={HOTEL_PLANS} medium="endpoint" />
         </div>
       </Section>
 
       <Section>
-        <FaqSection items={faqs} heading="Hotels API questions" />
+        <FaqSection items={faq} />
+      </Section>
+
+      <Section>
+        <SectionHead eyebrow="Explore more" title="Where to next" />
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            { href: '/flights-api', label: 'Flights API', sub: 'Google Flights fares with a price verdict' },
+            { href: '/tools/hotel-price-by-country', label: 'Hotel price by country', sub: 'Free tool — proxy_country in action' },
+            { href: '/mcp', label: 'MCP servers', sub: 'The same data for your agent' },
+            { href: '/pricing', label: 'Pricing', sub: 'Plans, quotas, rate limits' },
+          ].map((l) => (
+            <Link key={l.href} href={l.href} className="rounded-2xl border rule bg-ink-900/50 p-5 hover:border-ink-500 transition-colors">
+              <p className="text-[15px] font-semibold text-ink-100">{l.label}</p>
+              <p className="mt-1 text-[13px] text-ink-400">{l.sub}</p>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
+      <Section bordered={false} className="!pt-4">
+        <CtaBand
+          medium="endpoint"
+          api="hotels"
+          title="Live Booking.com rates, one key away"
+          body="Destination search, name lookup, room-level pricing and per-market rates — one subscription covers every endpoint."
+        />
       </Section>
     </>
   );

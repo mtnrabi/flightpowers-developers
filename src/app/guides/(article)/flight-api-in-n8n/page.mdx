@@ -1,0 +1,162 @@
+export const metadata = {
+  title: 'Using a flight API in n8n — build a fare watch that fires on “low”',
+  description:
+    'Build a scheduled fare-watch workflow in n8n two ways: with the n8n-nodes-flightpowers community node (schedule → search → IF verdict is low → notify), or with a plain HTTP Request node and the exact POST body. Google’s own price verdict is the trigger condition, so there is no price-history database to build.',
+  alternates: { canonical: '/guides/flight-api-in-n8n' },
+};
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'Using a flight API in n8n — build a fare watch that fires on “low”',
+    description:
+      'A scheduled n8n fare-watch with the FlightPowers community node or a raw HTTP Request node, triggered by Google’s low | typical | high price verdict.',
+    url: `${SITE.url}/guides/flight-api-in-n8n`,
+    datePublished: '2026-08-26',
+    dateModified: '2026-08-26',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# Using a flight API in n8n
+
+The workflow this guide builds is a **fare watch**: every morning, search a route,
+and send yourself a message only when the fare is genuinely cheap. Four nodes —
+schedule trigger → flight search → IF → notification — and no state to maintain
+between runs.
+
+The reason it stays this small is one response field. Every result from the API
+carries Google's own verdict on the current fare —
+`price_range_in_relation_to_other_periods`, one of `low`, `typical`, or `high` —
+computed against Google's historical price band for that route and date. "Is this a
+good price?" is normally the hard part of a fare watch, because answering it yourself
+means logging prices for months first. Here it is a string comparison on day one.
+
+## What you need
+
+- An n8n instance (cloud or self-hosted) where you can install community nodes, or
+  failing that, use the HTTP Request variant below — it works everywhere, including
+  instances where community nodes are disabled.
+- A RapidAPI key for the
+  <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">Google Flights Live API</a>.
+  The free tier verifies your key works; a daily watch on a handful of routes fits
+  comfortably in the cheapest paid plan (current numbers on [/pricing](/pricing)).
+
+## Route A: the community node
+
+There is a first-party community node,
+<a href={LINKS.npmNode} rel="noopener">`n8n-nodes-flightpowers`</a>, which wraps the
+flight and hotel endpoints as a native n8n node — typed parameters instead of a
+hand-built JSON body, and your API key stored once as an n8n credential rather than
+pasted into every workflow.
+
+Install it the way you install any n8n community node — from the community-nodes
+section of your instance's settings, by the package name
+`n8n-nodes-flightpowers` — then build the workflow:
+
+1. **Schedule Trigger.** Once a day, at an hour you'll actually read the alert.
+2. **FlightPowers node.** Choose the round-trip search operation and set the route
+   and dates you are watching — for example TLV → LHR, out on a Friday, back the
+   following Sunday. Add your credential (the RapidAPI key) once; every later
+   workflow reuses it.
+3. **IF node.** Condition: the first result's
+   `price_range_in_relation_to_other_periods` equals `low`. That single comparison
+   is the entire alerting logic.
+4. **Notification node** — whatever you already use (email, Telegram, Slack, a
+   webhook). Include the fare (`total_price`), the verdict, the band
+   (`price_insights_low` / `price_insights_high`), and — the part that makes the
+   alert actionable — the `buy_link`, which opens that exact itinerary on Google
+   Flights ready to book.
+
+One honest handling note: the verdict can be `null` on routes where Google publishes
+no band. Treat `null` as "no signal," not as "not low" — if your route never gets a
+verdict, alert on a price threshold (`total_price_as_number` below a number you pick)
+instead.
+
+## Route B: the HTTP Request node
+
+No community node required — n8n's built-in HTTP Request node can call the API
+directly. Configure it as a `POST` to:
+
+```
+https://google-flights-live-api.p.rapidapi.com/api/google_flights/roundtrip/v1
+```
+
+with headers:
+
+```
+Content-Type: application/json
+x-rapidapi-host: google-flights-live-api.p.rapidapi.com
+x-rapidapi-key: YOUR_RAPIDAPI_KEY
+```
+
+and this JSON body (the exact shape from the listing's own documentation):
+
+```json
+{
+  "departure_date": "2026-04-15",
+  "return_date": "2026-04-22",
+  "from_airport": "JFK",
+  "to_airport": "TLV",
+  "currency": "usd"
+}
+```
+
+Store the key in an n8n credential (a header-auth credential works) rather than
+typing it into the node, so it stays out of exported workflow JSON.
+
+The response is a flat JSON array — one object per itinerary, each with
+`total_price`, `total_price_as_number`, both legs already paired, the verdict field,
+and `buy_link`. Downstream, the workflow is identical to Route A: IF the first
+item's `price_range_in_relation_to_other_periods` is `low`, notify.
+
+Set the node's timeout generously — this is a live scan of Google Flights, not a
+cache read, and response time tracks route complexity. 90 seconds is a sane ceiling.
+
+## Variations that reuse the same skeleton
+
+- **Watch several routes.** Put the routes in a list (a Code node or a static data
+  node), loop the search over them, and collect the `low` hits into one digest
+  message instead of N pings. Mind your plan's per-minute rate limit if the list is
+  long — space the iterations rather than firing them all at once.
+- **One-way instead of round-trip.** Same host, path
+  `/api/google_flights/oneway/v1`, drop `return_date`, and the price fields are
+  `price` / `price_as_number` instead of the `total_` variants.
+- **Threshold + verdict.** The strictest trigger is an AND: verdict is `low` and
+  `total_price_as_number` is under your budget. Google says it is cheap for the
+  route, and it is cheap for you.
+- **Hotels.** The companion Booking.com API follows the same pattern — the
+  scheduled version of a rate-parity check is written up in
+  [How to monitor hotel rate parity](/guides/monitor-hotel-rate-parity).
+
+## One correctness footnote
+
+An empty response array from a flight search is ambiguous by default — it can mean
+"no flights" or "the search behind the API did not complete." This API disambiguates
+with an `X-Search-Status` response header (`ok` / `empty` / `partial` / `degraded`),
+and in an n8n workflow the simplest way to consume that honesty is to add
+`"strict": true` to the request body: an incomplete search then returns HTTP 503 —
+which n8n surfaces as a failed node run you can see and retry — instead of an empty
+array your IF node would silently wave through as "nothing cheap today."
+The full story is in
+[Handling empty flight search results](/guides/handle-empty-flight-search-results).
+
+## Related
+
+- [How to get real-time Google Flights data](/guides/real-time-google-flights-data) — the full API walkthrough
+- [Price Insights API](/flights-api/price-insights) — the verdict field, documented and proven
+- [Handling empty flight search results](/guides/handle-empty-flight-search-results) — why `strict: true` belongs in scheduled jobs
+
+<CtaBand
+  medium="guide"
+  title="Four nodes and a verdict field"
+  body="The alerting logic is a string comparison, because Google's price context ships in every response. Free tier on RapidAPI — no card to try."
+/>
