@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "check-pricing": "node scripts/check-pricing.mjs",
+    "predeploy": "npm run check-pricing && npm run build"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.0",

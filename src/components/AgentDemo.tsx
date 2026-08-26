@@ -13,7 +13,7 @@ import { CapturedBadge } from './ui';
  * The homepage centerpiece: a chat box that IS the product.
  * First paint shows a captured exchange (server-rendered — the transcript
  * is real HTML before any JS runs). The three chips replay captured runs
- * for free; typing runs a LIVE search through /api/agent behind the
+ * for free; typing runs a LIVE search through /api/demo behind the
  * budget caps, and says which is which at every step.
  */
 
@@ -206,7 +206,7 @@ export function AgentDemo({ initialChipPayload }: { initialChipPayload: Record<s
     setNotice(null);
     track({ e: 'demo_run', tool: 'agent', mode: 'canned', action: id });
     try {
-      const res = await fetch('/api/agent', {
+      const res = await fetch('/api/demo', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ chip: id }),
@@ -229,7 +229,7 @@ export function AgentDemo({ initialChipPayload }: { initialChipPayload: Record<s
     startTimer();
     track({ e: 'demo_run', tool: 'agent', mode: 'live' });
     try {
-      const res = await fetch('/api/agent', {
+      const res = await fetch('/api/demo', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ message }),
