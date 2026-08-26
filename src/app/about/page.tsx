@@ -5,7 +5,7 @@ import { CheckBullets, Container, Cta, JsonLd, Section, SectionHead } from '@/co
 import { COUNTS, LINKS, SITE } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'About — the developer who runs FlightPowers',
+  title: 'About: the developer who runs FlightPowers',
   description:
     'FlightPowers is built and operated by one software engineer, Matan Rabi. The consumer flight-search product came first; the data infrastructure underneath it became the real product. Here is the honest version of that story, and the rules this site runs by.',
   alternates: { canonical: '/about' },
@@ -13,12 +13,12 @@ export const metadata: Metadata = {
 
 export const dynamic = 'force-static';
 
-/** Everything that exists today — from the same LINKS config the rest of the site renders. */
+/** Everything that exists today, from the same LINKS config the rest of the site renders. */
 const surfaces: { label: string; sub: string; href: string; external?: boolean }[] = [
-  { label: 'Google Flights Live API', sub: 'RapidAPI listing — one-way, round-trip, price insights', href: LINKS.rapidapiFlights, external: true },
-  { label: 'Booking Live API', sub: 'RapidAPI listing — hotel search, by-name, per-country pricing', href: LINKS.rapidapiHotels, external: true },
-  { label: 'Apify actors', sub: 'The same data, pay-per-event — flights and hotels', href: LINKS.apifyFlights, external: true },
-  { label: `${COUNTS.mcpServers} hosted MCP servers`, sub: 'A URL your agent connects to — no install', href: '/mcp' },
+  { label: 'Google Flights Live API', sub: 'RapidAPI listing: one-way, round-trip, price insights', href: LINKS.rapidapiFlights, external: true },
+  { label: 'Booking Live API', sub: 'RapidAPI listing: hotel search, by-name, per-country pricing', href: LINKS.rapidapiHotels, external: true },
+  { label: 'Apify actors', sub: 'The same data, pay-per-event: flights and hotels', href: LINKS.apifyFlights, external: true },
+  { label: `${COUNTS.mcpServers} hosted MCP servers`, sub: 'A URL your agent connects to, no install', href: '/mcp' },
   { label: 'n8n community node', sub: 'n8n-nodes-flightpowers on npm', href: LINKS.npmNode, external: true },
   { label: `travel-agent-skills · ${COUNTS.skills} skills`, sub: 'Open source, MIT, on GitHub', href: LINKS.skills, external: true },
 ];
@@ -47,7 +47,7 @@ export default function AboutPage() {
           One developer, <span className="text-signal-500">live travel data</span>
         </h1>
         <p className="lede mt-5 max-w-2xl">
-          I&apos;m Matan Rabi, a software engineer. I build and run everything you see here — the APIs, the servers behind them,
+          I&apos;m Matan Rabi, a software engineer. I build and run everything you see here: the APIs, the servers behind them,
           and this site. There is no team page because there is no team.
         </p>
       </Container>
@@ -57,7 +57,7 @@ export default function AboutPage() {
           <h2>The short, honest story</h2>
           <p>
             FlightPowers started as a consumer product: a flight-search site for travellers, not a developer tool. To make it
-            work I had to build the unglamorous layer underneath — the part that reads live Google Flights pages, survives
+            work I had to build the unglamorous layer underneath: the part that reads live Google Flights pages, survives
             markup changes and blocked requests, and can tell &ldquo;there are no flights&rdquo; apart from &ldquo;the page
             wouldn&apos;t load.&rdquo;
           </p>
@@ -67,7 +67,7 @@ export default function AboutPage() {
             turned out to be worth more than the search site sitting on top of them.
           </p>
           <p>
-            So the data layer became the product. The APIs you can buy today are that same infrastructure, sold directly —
+            So the data layer became the product. The APIs you can buy today are that same infrastructure, sold directly,
             with the failure handling exposed as response headers instead of hidden behind a UI, and Google&apos;s own price
             context attached to every fare.
           </p>
@@ -93,7 +93,7 @@ export default function AboutPage() {
               </>,
               <>
                 <strong className="text-ink-100">Failure modes are documented, not hidden.</strong> The API tells you when a
-                search degraded instead of pretending an empty list is an answer —{' '}
+                search degraded instead of pretending an empty list is an answer:{' '}
                 <Link href="/flights-api/search-status" className="text-signal-400 underline underline-offset-4">
                   the whole mechanism is public
                 </Link>
@@ -101,7 +101,7 @@ export default function AboutPage() {
               </>,
               <>
                 <strong className="text-ink-100">I answer.</strong> Both listings end with the same sign-off:{' '}
-                <em>&ldquo;Message me. I keep improving this API and I answer.&rdquo;</em> That is not support-page boilerplate —
+                <em>&ldquo;Message me. I keep improving this API and I answer.&rdquo;</em> That is not support-page boilerplate:
                 the messages come to me and I reply to them personally.
               </>,
             ]}
@@ -136,7 +136,7 @@ export default function AboutPage() {
         <SectionHead
           eyebrow="Reach me"
           title="Want to talk?"
-          lede="Feature requests, custom volume, a data problem, or just a question about whether the API fits your build — the contact page lists the channels I actually watch."
+          lede="Feature requests, custom volume, a data problem, or just a question about whether the API fits your build: the contact page lists the channels I actually watch."
         />
         <div className="mt-8">
           <Cta href="/contact" variant="ghost">

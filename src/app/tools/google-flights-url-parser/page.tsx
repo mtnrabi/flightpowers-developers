@@ -7,7 +7,7 @@ import { FIXTURES } from '@/lib/fixtures';
 import { SITE } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Google Flights URL Parser & Builder — decode tfs= in your browser',
+  title: 'Google Flights URL Parser & Builder: decode tfs= in your browser',
   description:
     'Paste a Google Flights URL and decode its tfs= parameter into a readable tree, with the route and dates extracted and the equivalent API request. Or build a shareable search link from a route. 100% client-side, no signup, no rate limit.',
   alternates: { canonical: '/tools/google-flights-url-parser' },
@@ -18,36 +18,36 @@ export const dynamic = 'force-static';
 const faq: Faq[] = [
   {
     q: 'Does my URL get sent anywhere?',
-    a: 'No. This tool is 100% client-side — the decoding runs as JavaScript in your browser and the URL never leaves your machine. That is also why it has no rate limit and no signup: there is nothing on our side to protect.',
+    a: 'No. This tool is 100% client-side: the decoding runs as JavaScript in your browser and the URL never leaves your machine. That is also why it has no rate limit and no signup: there is nothing on our side to protect.',
   },
   {
     q: 'What exactly is the tfs parameter?',
-    a: 'It is Google Flights’ search state — route, dates, passengers, options — serialized as a protocol-buffer message and wrapped in URL-safe base64. Google does not document the format and can change it at any time.',
+    a: 'It is Google Flights’ search state (route, dates, passengers, options) serialized as a protocol-buffer message and wrapped in URL-safe base64. Google does not document the format and can change it at any time.',
   },
   {
     q: 'How can you decode an undocumented format?',
-    a: 'The protobuf wire format is self-describing at the structural level: every field carries a number and a wire type, so the tree of fields and values can always be recovered without the schema. What the schema would add is the meaning of each field — that part we infer, label as best-effort, and always show the raw tree alongside.',
+    a: 'The protobuf wire format is self-describing at the structural level: every field carries a number and a wire type, so the tree of fields and values can always be recovered without the schema. What the schema would add is the meaning of each field. That part we infer, label as best-effort, and always show the raw tree alongside.',
   },
   {
     q: 'Why are some fields unlabeled?',
-    a: 'Because we won’t guess in print. Values that match obvious shapes — YYYY-MM-DD dates, 3-letter airport codes — get labeled. Bare integers and flags stay as field numbers, honestly unexplained, rather than confidently mislabeled.',
+    a: 'Because we won’t guess in print. Values that match obvious shapes (YYYY-MM-DD dates, 3-letter airport codes) get labeled. Bare integers and flags stay as field numbers, honestly unexplained, rather than confidently mislabeled.',
   },
   {
     q: 'Can it decode every Google Flights URL?',
-    a: 'Only URLs that carry a tfs= parameter — share links and the buy_link URLs our API returns do. A plain search URL (?q=Flights from …) carries text, not an encoded blob, so there is nothing to decode; paste it and the tool says so. Multi-city URLs decode fine, but the two-airports-one-date inference can misread them — read the tree.',
+    a: 'Only URLs that carry a tfs= parameter; share links and the buy_link URLs our API returns do. A plain search URL (?q=Flights from …) carries text, not an encoded blob, so there is nothing to decode; paste it and the tool says so. Multi-city URLs decode fine, but the two-airports-one-date inference can misread them, so read the tree.',
   },
   {
     q: 'Can the builder create a tfs deep link?',
-    a: 'No, and that is deliberate: fabricating an undocumented binary format would break silently the day Google changes it. The builder emits the documented search-query form — a q= phrase Google parses like a search-box entry — which is stable and shareable.',
+    a: 'No, and that is deliberate: fabricating an undocumented binary format would break silently the day Google changes it. The builder emits the documented search-query form, a q= phrase Google parses like a search-box entry, which is stable and shareable.',
   },
   {
     q: 'How do I get the fares behind a URL as JSON?',
-    a: 'That is the API. Decode the URL here, and the card under the result shows the exact cURL, Python, or Node request for the same route and dates — live fares with Google’s price band and low | typical | high verdict on every row.',
+    a: 'That is the API. Decode the URL here, and the card under the result shows the exact cURL, Python, or Node request for the same route and dates: live fares with Google’s price band and low | typical | high verdict on every row.',
   },
 ];
 
 /**
- * The example URL's tfs value, decoded — this is the tool's real output for
+ * The example URL's tfs value, decoded; this is the tool's real output for
  * the pre-filled buy_link (a captured API response), with our best-effort
  * annotations added as comments.
  */
@@ -91,7 +91,7 @@ export default function UrlParserPage() {
             'Extract route and dates from the decoded fields',
             'Equivalent FlightPowers API request in cURL, Python, and Node',
             'Build a shareable Google Flights search link from a route',
-            '100% client-side — no signup, no rate limit',
+            '100% client-side: no signup, no rate limit',
           ],
         }}
       />
@@ -102,7 +102,7 @@ export default function UrlParserPage() {
           Google Flights <span className="text-signal-500">URL Parser</span> &amp; Builder
         </h1>
         <p className="lede mt-5 max-w-2xl">
-          Every Google Flights URL hides its search in an encoded tfs= blob. Paste one and see inside it — route, dates, and the
+          Every Google Flights URL hides its search in an encoded tfs= blob. Paste one and see inside it: route, dates, and the
           API request that reproduces it. Or go the other way and build a link.
         </p>
       </Container>
@@ -115,7 +115,7 @@ export default function UrlParserPage() {
         <SectionHead eyebrow="How it works" title="Wire format in, working request out" />
         <ol className="mt-8 grid gap-6 md:grid-cols-3">
           {[
-            ['Paste the URL', 'Any Google Flights link with a tfs= parameter — a share link, or a buy_link straight from an API response.'],
+            ['Paste the URL', 'Any Google Flights link with a tfs= parameter: a share link, or a buy_link straight from an API response.'],
             ['We decode it in your browser', 'base64url to bytes, then a generic protobuf wire-format parse: field numbers, wire types, nested messages. No server, no schema, no upload.'],
             ['Read the route, take the request', 'Dates and airport codes are extracted best-effort, and the equivalent FlightPowers API call is generated in cURL, Python, and Node.'],
           ].map(([title, body], i) => (
@@ -132,25 +132,25 @@ export default function UrlParserPage() {
         <SectionHead
           eyebrow="Under the hood"
           title="What’s inside a tfs parameter"
-          lede="Undocumented doesn’t mean unreadable — the protobuf wire format always reveals its structure, even without the schema."
+          lede="Undocumented doesn’t mean unreadable: the protobuf wire format always reveals its structure, even without the schema."
         />
         <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:items-start">
           <div className="space-y-4 text-[15px] text-ink-300 leading-relaxed">
             <p>
               The <code className="field">tfs</code> value is URL-safe base64 wrapping a binary protocol-buffer message. Protobuf
-              encodes each field as a tag — a field number plus a wire type — followed by the value, and nested messages are just
+              encodes each field as a tag (a field number plus a wire type) followed by the value, and nested messages are just
               length-delimited fields whose bytes parse as messages themselves. That structure is recoverable without knowing what
               any field means.
             </p>
             <p>
-              What the wire format can&apos;t tell you is the <em>meaning</em> of field 3 or field 19 — that lives in Google&apos;s private
+              What the wire format can&apos;t tell you is the <em>meaning</em> of field 3 or field 19; that lives in Google&apos;s private
               schema. So this tool labels only what it can honestly recognize: strings shaped like{' '}
               <span className="font-mono text-[13px]">YYYY-MM-DD</span> are dates, 3-letter A–Z strings are airport codes, and the
               rest is shown as-is. The raw tree is always on screen; the labels are annotations, never substitutions.
             </p>
             <p>
-              On the right: the pre-filled example URL — a real{' '}
-              <code className="field">buy_link</code> returned by the API on {fx.captured_at} for TLV → JFK — decoded. The arrows
+              On the right: the pre-filled example URL, a real{' '}
+              <code className="field">buy_link</code> returned by the API on {fx.captured_at} for TLV → JFK, decoded. The arrows
               are our reading, not Google&apos;s documentation.
             </p>
           </div>
@@ -165,7 +165,7 @@ export default function UrlParserPage() {
             <p className="text-[15.5px] font-semibold text-ink-100">Debugging a scraper</p>
             <p className="mt-1.5 text-[14px] text-ink-400 leading-relaxed">
               Your pipeline produced a Google Flights URL and the results look wrong. Decode the tfs blob and see exactly what
-              query the URL actually encodes — no more guessing which leg or date went sideways.
+              query the URL actually encodes. No more guessing which leg or date went sideways.
             </p>
           </div>
           <div className="rounded-2xl border rule bg-ink-900/50 p-5">
@@ -179,7 +179,7 @@ export default function UrlParserPage() {
             <p className="text-[15.5px] font-semibold text-ink-100">Building deep links</p>
             <p className="mt-1.5 text-[14px] text-ink-400 leading-relaxed">
               Send readers to a pre-filled Google Flights search from your app or newsletter. The builder emits the documented
-              query form — stable, shareable, and honest about not being a tfs link.
+              query form: stable, shareable, and honest about not being a tfs link.
             </p>
           </div>
         </div>
@@ -226,8 +226,8 @@ export default function UrlParserPage() {
       <Section bordered={false} className="!pt-4">
         <CtaBand
           medium="tool"
-          title="The URLs decode themselves — the fares are the product"
-          body="Every API result already carries a working buy_link, plus Google’s price band and verdict. Free tier on RapidAPI — no card to try."
+          title="The URLs decode themselves. The fares are the product"
+          body="Every API result already carries a working buy_link, plus Google’s price band and verdict. Free tier on RapidAPI, no card to try."
         />
       </Section>
     </>

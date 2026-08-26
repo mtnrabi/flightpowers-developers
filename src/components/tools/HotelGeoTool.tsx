@@ -9,7 +9,7 @@ import { hotelGeoSnippets } from '@/lib/snippets';
 import { rapidApiPricingUrl } from '@/lib/site';
 import { track } from '@/lib/track';
 
-/** Mirrors the server's allowlist — the demo may only proxy through these markets. */
+/** Mirrors the server's allowlist: the demo may only proxy through these markets. */
 const MARKETS: { code: string; name: string }[] = [
   { code: 'us', name: 'United States' },
   { code: 'de', name: 'Germany' },
@@ -39,7 +39,7 @@ type RunState =
 /**
  * The geo-pricing form. The page around it is complete server-rendered copy;
  * this component only adds the interaction. Each selected market is a real
- * request through a residential proxy in that country — the expensive kind
+ * request through a residential proxy in that country, the expensive kind
  * of call, which is why this tool has the tightest cap on the site (the page
  * says so).
  */
@@ -59,7 +59,7 @@ export function HotelGeoTool({ captured }: { captured: { markets: Market[]; capt
     e.preventDefault();
     if (state.phase === 'running') return;
     if (countries.length < 2) {
-      setState({ phase: 'error', message: 'Pick 2–3 markets to compare — one market is a price, two is a comparison.' });
+      setState({ phase: 'error', message: 'Pick 2–3 markets to compare. One market is a price, two is a comparison.' });
       return;
     }
     setState({ phase: 'running' });
@@ -72,7 +72,7 @@ export function HotelGeoTool({ captured }: { captured: { markets: Market[]; capt
       });
       const data = await res.json();
       if (!res.ok) {
-        setState({ phase: 'error', message: String(data.message ?? 'The check failed — try again.') });
+        setState({ phase: 'error', message: String(data.message ?? 'The check failed. Try again.') });
         return;
       }
       setState({
@@ -82,7 +82,7 @@ export function HotelGeoTool({ captured }: { captured: { markets: Market[]; capt
         query: { hotel, area: area || undefined, checkin, checkout, countries: [...countries] },
       });
     } catch {
-      setState({ phase: 'error', message: 'Could not reach the server — try again.' });
+      setState({ phase: 'error', message: 'Could not reach the server. Try again.' });
     }
   }
 
@@ -131,7 +131,7 @@ export function HotelGeoTool({ captured }: { captured: { markets: Market[]; capt
 
         <fieldset className="mt-4">
           <legend className="font-mono text-[11px] uppercase tracking-wider text-ink-500">
-            Markets to price from ({countries.length}/3 selected — pick 2–3)
+            Markets to price from ({countries.length}/3 selected, pick 2–3)
           </legend>
           <div className="mt-2 flex flex-wrap gap-2">
             {MARKETS.map((m) => {
@@ -158,7 +158,7 @@ export function HotelGeoTool({ captured }: { captured: { markets: Market[]; capt
             {state.phase === 'running' ? 'Pricing markets…' : 'Price it from each market'}
           </button>
           <p className="font-mono text-[11px] text-ink-500">
-            One REAL request per market, each through a residential proxy in that country — the expensive kind of call, so this
+            One REAL request per market, each through a residential proxy in that country, the expensive kind of call, so this
             tool has the tightest cap on the site. Can take ~10–40s.
           </p>
         </div>
@@ -177,7 +177,7 @@ export function HotelGeoTool({ captured }: { captured: { markets: Market[]; capt
             showing.mode === 'live' ? (
               <span className="live-badge">live result</span>
             ) : (
-              <span className="font-mono text-[11px] text-ink-400">from the demo cache — a recent live run of the same query</span>
+              <span className="font-mono text-[11px] text-ink-400">from the demo cache: a recent live run of the same query</span>
             )
           ) : (
             <CapturedBadge date={captured.capturedAt} />
@@ -192,7 +192,7 @@ export function HotelGeoTool({ captured }: { captured: { markets: Market[]; capt
         pricingHref={rapidApiPricingUrl('hotels', 'tool')}
         docsHref="/hotels-api/geo-pricing"
         headline="Monitor this spread from your own code"
-        body="The same check as JSON — one request per market, identical except proxy_country. Schedule it and rate-parity monitoring is a cron job."
+        body="The same check as JSON: one request per market, identical except proxy_country. Schedule it and rate-parity monitoring is a cron job."
       />
     </div>
   );

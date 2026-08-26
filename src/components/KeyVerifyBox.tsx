@@ -35,7 +35,7 @@ export function KeyVerifyBox() {
         message?: string;
       };
       if (data.valid) {
-        setResult({ ok: true, text: 'Key works. It reached the live API and authenticated — you are ready to build.' });
+        setResult({ ok: true, text: 'Key works. It reached the live API and authenticated. You are ready to build.' });
       } else if (data.detail?.message) {
         setResult({ ok: false, text: `The API said: “${data.detail.message}”` });
       } else if (data.message) {
@@ -44,7 +44,7 @@ export function KeyVerifyBox() {
         setResult({ ok: false, text: 'The key did not verify. Check you copied it exactly as RapidAPI shows it, and that you are subscribed to a plan.' });
       }
     } catch {
-      setResult({ ok: false, text: 'Could not reach the verifier — try again, or call GET api.flightpowers.com/v1/verify directly with your key.' });
+      setResult({ ok: false, text: 'Could not reach the verifier. Try again, or call GET api.flightpowers.com/v1/verify directly with your key.' });
     } finally {
       setState('done');
     }
@@ -77,7 +77,7 @@ export function KeyVerifyBox() {
         </button>
       </form>
       <p className="mt-2.5 font-mono text-[11px] text-ink-500">
-        Heads-up: the check itself is one real request against your hotels quota — that is how you know it works.
+        Heads-up: the check itself is one real request against your hotels quota. That is how you know it works.
       </p>
       {result ? (
         <p className={`mt-3 text-[14px] leading-relaxed ${result.ok ? 'text-verdict-low' : 'text-verdict-typical'}`}>{result.text}</p>

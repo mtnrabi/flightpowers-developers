@@ -20,7 +20,7 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 export const metadata: Metadata = {
   title: 'FlightPowers vs SerpApi for Google Flights data',
   description:
-    'An honest, sourced comparison of SerpApi’s Google Flights API and FlightPowers — pricing per search, how each handles round-trips, and what SerpApi does better. Competitor figures quoted from SerpApi’s own pages, retrieved 2026-08-24.',
+    'An honest, sourced comparison of SerpApi’s Google Flights API and FlightPowers: pricing per search, how each handles round-trips, and what SerpApi does better. Competitor figures quoted from SerpApi’s own pages, retrieved 2026-08-24.',
   alternates: { canonical: '/compare/serpapi' },
 };
 
@@ -35,7 +35,7 @@ const ULTRA_PER_SEARCH = `$${(ULTRA.priceMonthly / ULTRA.quota).toFixed(4)}`;
 const faq: Faq[] = [
   {
     q: 'Is FlightPowers cheaper than SerpApi?',
-    a: `On published list prices, per flight search, yes at every tier — ${ULTRA_PER_SEARCH} per search on our $${ULTRA.priceMonthly} plan against $0.015 on SerpApi’s $75 plan (their figures retrieved 2026-08-24). Two honest caveats in SerpApi’s favour: their credits are fungible across all their Google engines, so a flights-only comparison understates what the credit buys, and they only count successful searches toward quota.`,
+    a: `On published list prices, per flight search, yes at every tier: ${ULTRA_PER_SEARCH} per search on our $${ULTRA.priceMonthly} plan against $0.015 on SerpApi’s $75 plan (their figures retrieved 2026-08-24). Two honest caveats in SerpApi’s favour: their credits are fungible across all their Google engines, so a flights-only comparison understates what the credit buys, and they only count successful searches toward quota.`,
   },
   {
     q: 'Does FlightPowers return price history like SerpApi?',
@@ -43,11 +43,11 @@ const faq: Faq[] = [
   },
   {
     q: 'Why are round-trips cheaper on FlightPowers?',
-    a: 'SerpApi’s own documentation describes round-trip as a two-request flow — search the outbound, then use a departure_token to fetch matching returns. Our POST /v1/flights/roundtrip returns paired legs and a combined total in a single call, so a round-trip costs one request instead of two.',
+    a: 'SerpApi’s own documentation describes round-trip as a two-request flow: search the outbound, then use a departure_token to fetch matching returns. Our POST /v1/flights/roundtrip returns paired legs and a combined total in a single call, so a round-trip costs one request instead of two.',
   },
   {
     q: 'Can I use both APIs together?',
-    a: 'Plenty of teams do — SerpApi for general Google surfaces (Search, Maps, Shopping), a flights specialist for the flight path that carries the volume. Nothing about either product prevents it.',
+    a: 'Plenty of teams do: SerpApi for general Google surfaces (Search, Maps, Shopping), a flights specialist for the flight path that carries the volume. Nothing about either product prevents it.',
   },
   {
     q: 'Where do the SerpApi numbers on this page come from?',
@@ -149,11 +149,11 @@ export default function CompareSerpApiPage() {
       <Section className="!pt-12">
         <SectionHead eyebrow="The one-paragraph version" title="A platform and a specialist" />
         <p className="mt-6 max-w-3xl text-[15.5px] text-ink-300 leading-relaxed">
-          SerpApi is a <strong className="text-ink-100">general-purpose Google scraping platform</strong> — Google Flights is one of
+          SerpApi is a <strong className="text-ink-100">general-purpose Google scraping platform</strong>: Google Flights is one of
           several dozen engines on the same subscription and the same credit pool. FlightPowers is a{' '}
           <strong className="text-ink-100">flights-and-hotels specialist</strong>. If you need Google Search, Maps, Shopping{' '}
           <em>and</em> Flights, SerpApi is one vendor and one bill, and that convenience is worth real money. If flights are the
-          product, you are paying general-purpose prices for a specialist job — and round-trips cost you double.
+          product, you are paying general-purpose prices for a specialist job, and round-trips cost you double.
         </p>
       </Section>
 
@@ -186,7 +186,7 @@ export default function CompareSerpApiPage() {
           <div className="max-w-2xl">
             <h3 className="text-[16px] font-semibold text-ink-100 mb-3">Cost per search, on published list prices</h3>
             <CompareTable
-              caption={`List price ÷ included volume — arithmetic on both vendors’ published numbers (theirs retrieved ${RETRIEVED})`}
+              caption={`List price ÷ included volume: arithmetic on both vendors’ published numbers (theirs retrieved ${RETRIEVED})`}
               head={['Plan', 'Cost per search']}
               rows={[
                 ['SerpApi Starter', '$0.025'],
@@ -219,7 +219,7 @@ export default function CompareSerpApiPage() {
         <SectionHead
           eyebrow="The largest practical gap"
           title="Round-trips: one request or two"
-          lede="Not a matter of opinion — it is in SerpApi’s own parameter documentation."
+          lede="Not a matter of opinion. It is in SerpApi’s own parameter documentation."
         />
         <div className="mt-8 max-w-3xl">
           <blockquote className="border-l-2 border-signal-600 pl-4 text-[15px] text-ink-300 leading-relaxed">
@@ -236,7 +236,7 @@ export default function CompareSerpApiPage() {
           </p>
         </div>
         <div className="mt-6 grid gap-8 lg:grid-cols-2 lg:items-start">
-          <Code label="one result object, both legs — documented response shape">{`{
+          <Code label="one result object, both legs: documented response shape">{`{
   "total_price": "$119",
   "total_price_as_number": 119,
   "total_duration_seconds": 12900,
@@ -258,7 +258,7 @@ export default function CompareSerpApiPage() {
             />
             <p className="mt-5 text-[14.5px] text-ink-400 leading-relaxed">
               There is a real trade here, though. SerpApi’s two-step flow lets a user <strong className="text-ink-200">pick a
-              specific outbound</strong> and then see returns priced against <em>that</em> choice — exactly how Google Flights’ own UI
+              specific outbound</strong> and then see returns priced against <em>that</em> choice, exactly how Google Flights’ own UI
               behaves. If you are building an interactive booking flow with that interaction model, their design fits it and ours
               does not. Ours is built for the “price this trip” question, not the “let me choose leg by leg” question.
             </p>
@@ -270,7 +270,7 @@ export default function CompareSerpApiPage() {
         <SectionHead
           eyebrow="Capabilities"
           title="Feature by feature, in prose"
-          lede="No tick marks — each cell says what is actually documented, and by whom."
+          lede="No tick marks: each cell says what is actually documented, and by whom."
         />
         <div className="mt-8">
           <CompareTable
@@ -280,7 +280,7 @@ export default function CompareSerpApiPage() {
               [
                 'Scope',
                 'Google Search, Maps, Shopping, Hotels, Images, Scholar and more on one key and one credit pool. If flights are one feature of a bigger product, consolidating on one vendor is worth paying for.',
-                'Flights and hotels only. Nothing else — that is the trade this whole page is about.',
+                'Flights and hotels only. Nothing else: that is the trade this whole page is about.',
               ],
               [
                 'Price context',
@@ -288,18 +288,18 @@ export default function CompareSerpApiPage() {
                   Richer history: their <code className="font-mono text-[12px]">price_insights</code> object carries{' '}
                   <code className="font-mono text-[12px]">lowest_price</code>, <code className="font-mono text-[12px]">price_level</code>,{' '}
                   <code className="font-mono text-[12px]">typical_price_range</code> and{' '}
-                  <code className="font-mono text-[12px]">price_history</code> — an array of [timestamp, price] pairs you can chart
+                  <code className="font-mono text-[12px]">price_history</code>, an array of [timestamp, price] pairs you can chart
                   directly.
                 </>,
                 <>
                   The band and the verdict: <code className="font-mono text-[12px]">price_insights_low/high</code> plus Google’s{' '}
-                  low | typical | high call on every result — the alerting trigger — but no history series.{' '}
+                  low | typical | high call on every result (the alerting trigger), but no history series.{' '}
                   <Link href="/flights-api/price-insights" className="text-signal-400 underline underline-offset-4">See it proven →</Link>
                 </>,
               ],
               [
                 'Round-trip',
-                'A two-request flow via departure_token, per their own docs — which also enables a pick-your-outbound interaction model ours cannot express.',
+                'A two-request flow via departure_token, per their own docs, which also enables a pick-your-outbound interaction model ours cannot express.',
                 <>
                   One paired-leg request with a combined total and per-leg filters.{' '}
                   <Link href="/flights-api/round-trip" className="text-signal-400 underline underline-offset-4">Round-trip API →</Link>
@@ -317,9 +317,9 @@ export default function CompareSerpApiPage() {
               ],
               [
                 'Throughput',
-                'Published hourly, described as guaranteed — 1,000/hour on Developer up to 6,000/hour on Big Data. A guarantee is a stronger form of commitment than a rate limit.',
+                'Published hourly, described as guaranteed: 1,000/hour on Developer up to 6,000/hour on Big Data. A guarantee is a stronger form of commitment than a rate limit.',
                 <>
-                  Published per minute — 150/min on the $10 plan up to 500/min on the $50 plan. For bursty workloads like scanning a
+                  Published per minute: 150/min on the $10 plan up to 500/min on the $50 plan. For bursty workloads like scanning a
                   31-date month the moment a user asks, a per-minute ceiling in the hundreds is the shape you want. We publish a
                   limit, not a guarantee. <Link href="/flights-api/parallel-date-scan" className="text-signal-400 underline underline-offset-4">Parallel scans →</Link>
                 </>,
@@ -327,27 +327,27 @@ export default function CompareSerpApiPage() {
               [
                 'Itinerary breadth',
                 'Multi-city via type=3 with multi_city_json; travel_class covers Economy, Premium economy, Business and First; a carbon_emissions object per itinerary.',
-                'One-way and round-trip only — no multi-city or open-jaw. seat_type documents Economy and Business only. No emissions data at all; for anything with a sustainability angle that is close to disqualifying for us.',
+                'One-way and round-trip only: no multi-city or open-jaw. seat_type documents Economy and Business only. No emissions data at all; for anything with a sustainability angle that is close to disqualifying for us.',
               ],
               [
                 'Legal',
-                'They advertise a “U.S. Legal Shield [that] provides up to $2 million in coverage for the scraping and parsing of search engine data, as long as your use … is not illegal.” For a company whose legal team asks about scraping exposure, that clause may end the evaluation on its own — reasonably.',
+                'They advertise a “U.S. Legal Shield [that] provides up to $2 million in coverage for the scraping and parsing of search engine data, as long as your use … is not illegal.” For a company whose legal team asks about scraping exposure, that clause may end the evaluation on its own, reasonably.',
                 'No equivalent indemnity.',
               ],
               [
                 'AI agents',
                 'We are not aware of a comparable first-party MCP endpoint from SerpApi (a statement about what we found, not proof of absence).',
                 <>
-                  First-party hosted MCP servers for flights and hotels — point an MCP-capable host at{' '}
+                  First-party hosted MCP servers for flights and hotels: point an MCP-capable host at{' '}
                   <code className="font-mono text-[12px]">{LINKS.mcpFlights}</code> with your key and search becomes a native tool.{' '}
                   <Link href="/mcp" className="text-signal-400 underline underline-offset-4">MCP setup →</Link>
                 </>,
               ],
               [
                 'Hotels by market',
-                'SerpApi has a Google Hotels engine; we did not find a per-country residential-proxy equivalent in their documentation, but we have not verified its absence — treat this as “ours has it,” not “theirs does not.”',
+                'SerpApi has a Google Hotels engine; we did not find a per-country residential-proxy equivalent in their documentation, but we have not verified its absence. Treat this as “ours has it,” not “theirs does not.”',
                 <>
-                  The companion Booking.com API accepts <code className="font-mono text-[12px]">proxy_country</code> — the same room
+                  The companion Booking.com API accepts <code className="font-mono text-[12px]">proxy_country</code>: the same room
                   priced as a US, German or Israeli visitor sees it, for rate-parity monitoring.{' '}
                   <Link href="/hotels-api/geo-pricing" className="text-signal-400 underline underline-offset-4">Geo-pricing →</Link>
                 </>,
@@ -357,7 +357,7 @@ export default function CompareSerpApiPage() {
         </div>
         <p className="mt-6 max-w-3xl text-[14px] text-ink-400 leading-relaxed">
           One more FlightPowers-side note that is not a feature row: the own-domain front (<code className="font-mono text-[12px]">api.flightpowers.com</code>)
-          holds no server-side API key — it forwards yours upstream and returns the response unchanged. It is a pass-through, not a
+          holds no server-side API key: it forwards yours upstream and returns the response unchanged. It is a pass-through, not a
           shared gateway reselling one pooled key, so no other customer’s traffic can exhaust your limit.
         </p>
       </Section>
@@ -368,7 +368,7 @@ export default function CompareSerpApiPage() {
           <div className="rounded-2xl border rule bg-ink-900/60 p-6">
             <h3 className="text-[16px] font-semibold text-ink-100">Choose SerpApi when</h3>
             <ul className="mt-3 space-y-2 text-[14.5px] text-ink-400 leading-relaxed list-disc pl-5">
-              <li>You need more Google surfaces than flights — one vendor, one bill.</li>
+              <li>You need more Google surfaces than flights: one vendor, one bill.</li>
               <li>You want price history charted without building it.</li>
               <li>Multi-city itineraries or carbon emissions matter to your product.</li>
               <li>Premium economy or first class must be searchable.</li>
@@ -379,7 +379,7 @@ export default function CompareSerpApiPage() {
             <h3 className="text-[16px] font-semibold text-ink-100">Choose FlightPowers when</h3>
             <ul className="mt-3 space-y-2 text-[14.5px] text-ink-400 leading-relaxed list-disc pl-5">
               <li>Flights (and hotels) are the product and unit economics care about cost per search.</li>
-              <li>Round-trips are a large share of your searches — one request, not two.</li>
+              <li>Round-trips are a large share of your searches: one request, not two.</li>
               <li>You scan date ranges in bursts and want per-minute headroom.</li>
               <li>You are wiring the data into an AI agent over MCP.</li>
               <li>You need per-country hotel rate comparison.</li>
@@ -387,7 +387,7 @@ export default function CompareSerpApiPage() {
           </div>
         </div>
         <p className="mt-6 max-w-3xl text-[14.5px] text-ink-400 leading-relaxed">
-          Plenty of teams run both — SerpApi for general Google surfaces, a specialist for the flight path that carries the volume.
+          Plenty of teams run both: SerpApi for general Google surfaces, a specialist for the flight path that carries the volume.
         </p>
       </Section>
 
@@ -404,7 +404,7 @@ export default function CompareSerpApiPage() {
     "return_date": "2026-10-22"
   }'`}</Code>
           <p className="mt-4 text-[14px] text-ink-400 leading-relaxed">
-            There is a free tier (10 requests/month, hard cap — enough to verify your key, not to evaluate). The full walkthrough is
+            There is a free tier (10 requests/month, hard cap: enough to verify your key, not to evaluate). The full walkthrough is
             in{' '}
             <Link href="/guides/real-time-google-flights-data" className="text-signal-400 underline underline-offset-4">
               How to get real-time Google Flights data
@@ -444,7 +444,7 @@ export default function CompareSerpApiPage() {
         <CtaBand
           medium="compare"
           title="Specialist prices for a specialist job"
-          body="Live Google Flights data with the price band and verdict on every result — and round-trips that cost one request, not two."
+          body="Live Google Flights data with the price band and verdict on every result, and round-trips that cost one request, not two."
         />
       </Section>
     </>

@@ -36,12 +36,12 @@ type Turn = {
 };
 
 const CHIPS = [
-  { id: 'warm-getaway-january', label: 'Find me a cheap warm getaway from TLV in January' },
-  { id: 'good-price-tlv-jfk', label: 'Is $480 TLV→JFK in October a good price?' },
+  { id: 'warm-getaway-january', label: 'Find me a cheap winter-sun escape from London in January' },
+  { id: 'good-price-jfk-cun', label: 'Is $129 JFK→Cancún on Jan 1 a good price?' },
   { id: 'hotel-three-markets', label: 'Same hotel, priced from the US, Germany and Israel' },
 ] as const;
 
-const DEST_NAMES: Record<string, string> = { ATH: 'Athens', LIS: 'Lisbon', LPA: 'Gran Canaria' };
+const DEST_NAMES: Record<string, string> = { LPA: 'Gran Canaria', RAK: 'Marrakech', AGP: 'Málaga' };
 
 function money(n: number): string {
   return `$${n.toLocaleString('en-US')}`;
@@ -59,7 +59,7 @@ function dealHuntNarrative(rows: DealHuntRow[]): string {
   const destList = dests.map((d) => DEST_NAMES[d] ?? d);
   const listText =
     destList.length > 1 ? `${destList.slice(0, -1).join(', ')} and ${destList[destList.length - 1]}` : destList[0]!;
-  const parts: string[] = [`I ran ${rows.length} real searches for this: ${listText}, ${dates} January dates each.`];
+  const parts: string[] = [`I ran ${rows.length} real searches for this: ${listText}, ${dates} January dates each, all from London Gatwick.`];
 
   const bestPerDest = dests
     .map((d) => priced.filter((r) => r.dest === d).sort((a, b) => a.price - b.price)[0])
@@ -151,7 +151,7 @@ export function buildCannedTurn(payload: Record<string, unknown>): Turn {
       capturedAt: String(payload.capturedAt),
       answer: { kind: 'deal-hunt', rows },
       narrative: dealHuntNarrative(rows),
-      snippets: dealHuntSnippets({ from: 'TLV', dests, dates }),
+      snippets: dealHuntSnippets({ from: 'LGW', dests, dates }),
       snippetTool: 'agent-demo-deal-hunt',
     };
   }
@@ -214,7 +214,7 @@ function DealHuntAnswer({ rows }: { rows: DealHuntRow[] }) {
         ))}
       </div>
       <p className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-ink-500 mb-1">every search in the hunt</p>
-      <DealHuntGrid rows={rows} destNames={DEST_NAMES} />
+      <DealHuntGrid rows={rows} destNames={DEST_NAMES} origin="LGW" />
     </div>
   );
 }
@@ -448,7 +448,7 @@ export function AgentDemo({ initialChipPayload }: { initialChipPayload: Record<s
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder='Ask it like a travel agent: "cheapest day TLV to London in November"'
+            placeholder='Ask it like a travel agent: "cheapest day JFK to Miami in November"'
             maxLength={300}
             className="min-w-0 flex-1 rounded-full border rule bg-ink-900 px-4 py-2.5 text-[14px] text-ink-100 placeholder:text-ink-500 focus:border-signal-600 focus:outline-none"
           />

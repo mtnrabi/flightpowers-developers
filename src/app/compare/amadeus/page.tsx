@@ -15,9 +15,9 @@ import {
 import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Amadeus Self-Service vs FlightPowers — and when to migrate',
+  title: 'Amadeus Self-Service vs FlightPowers, and when to migrate',
   description:
-    'The Amadeus for Developers Self-Service portal and sandbox are no longer reachable — verifiable with four commands, all shown here. What FlightPowers replaces for Self-Service users, the parameter mapping, and — honestly — what it does not replace. Observed state retrieved 2026-08-24.',
+    'The Amadeus for Developers Self-Service portal and sandbox are no longer reachable, verifiable with four commands, all shown here. What FlightPowers replaces for Self-Service users, the parameter mapping, and (honestly) what it does not replace. Observed state retrieved 2026-08-24.',
   alternates: { canonical: '/compare/amadeus' },
 };
 
@@ -33,11 +33,11 @@ const faq: Faq[] = [
   },
   {
     q: 'Should I move to Amadeus Enterprise instead?',
-    a: 'If you are an accredited travel business — you hold IATA or ARC accreditation, or work through a consolidator — yes, Enterprise is the appropriate path and it is a serious platform. This page is for the people Enterprise is not designed to serve: indie developers, early-stage startups, internal tooling teams, researchers and AI-agent builders who chose Self-Service precisely because it was self-serve.',
+    a: 'If you are an accredited travel business (you hold IATA or ARC accreditation, or work through a consolidator), yes, Enterprise is the appropriate path and it is a serious platform. This page is for the people Enterprise is not designed to serve: indie developers, early-stage startups, internal tooling teams, researchers and AI-agent builders who chose Self-Service precisely because it was self-serve.',
   },
   {
     q: 'Does FlightPowers replace Flight Create Orders or the Hotel Booking API?',
-    a: 'No. Nothing on our side issues tickets, creates PNRs, or confirms reservations. If the purchase happened inside your product, we are the wrong answer — go to Amadeus Enterprise or a booking platform like Duffel. We replace the shopping endpoints: Flight Offers Search and Hotel List + Hotel Search.',
+    a: 'No. Nothing on our side issues tickets, creates PNRs, or confirms reservations. If the purchase happened inside your product, we are the wrong answer. Go to Amadeus Enterprise or a booking platform like Duffel. We replace the shopping endpoints: Flight Offers Search and Hotel List + Hotel Search.',
   },
   {
     q: 'Is the data the same as what Amadeus served?',
@@ -45,7 +45,7 @@ const faq: Faq[] = [
   },
   {
     q: 'How does authentication change?',
-    a: 'Amadeus used OAuth2 client credentials — fetch a token, watch it expire, refresh it. Here there is no token step: one static x-api-key header, with the key issued by RapidAPI when you subscribe. You can delete your token-refresh code and its cache.',
+    a: 'Amadeus used OAuth2 client credentials: fetch a token, watch it expire, refresh it. Here there is no token step: one static x-api-key header, with the key issued by RapidAPI when you subscribe. You can delete your token-refresh code and its cache.',
   },
 ];
 
@@ -98,7 +98,7 @@ export default function CompareAmadeusPage() {
         data={{
           '@context': 'https://schema.org',
           '@type': 'WebPage',
-          name: 'Amadeus Self-Service vs FlightPowers — and when to migrate',
+          name: 'Amadeus Self-Service vs FlightPowers, and when to migrate',
           url: `${SITE.url}/compare/amadeus`,
           dateModified: RETRIEVED,
         }}
@@ -124,7 +124,7 @@ export default function CompareAmadeusPage() {
         <Container className="relative pt-8 sm:pt-12 pb-14">
           <p className="eyebrow">Comparison · observed state retrieved {RETRIEVED}</p>
           <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold max-w-4xl">
-            <span className="text-signal-500">Amadeus Self-Service</span> vs FlightPowers — and when to migrate
+            <span className="text-signal-500">Amadeus Self-Service</span> vs FlightPowers, and when to migrate
           </h1>
           <p className="lede mt-5 max-w-3xl">
             If your Amadeus Self-Service integration stopped working, this page is a migration path. It shows you how to verify the
@@ -176,8 +176,8 @@ curl -sS -o /dev/null -w "%{http_code} -> %{redirect_url}\\n" \\
           The <code className="font-mono text-[13px]">developer-guides</code> repository README now opens with:
         </p>
         <blockquote className="mt-4 max-w-3xl border-l-2 border-signal-600 pl-4 text-[15px] text-ink-300 leading-relaxed">
-          “# [DEPRECATED] Developer Guides — <strong className="text-ink-100">The Amadeus for Developers Self-Service offer has been
-          deprecated.</strong>”
+          “# [DEPRECATED] Developer Guides”. <strong className="text-ink-100">“The Amadeus for Developers Self-Service offer has been
+          deprecated.”</strong>
           <footer className="mt-2 font-mono text-[11px] text-ink-500">github.com/amadeus4dev · retrieved {RETRIEVED}</footer>
         </blockquote>
       </Section>
@@ -187,7 +187,7 @@ curl -sS -o /dev/null -w "%{http_code} -> %{redirect_url}\\n" \\
         <div className="mt-6 max-w-3xl space-y-5 text-[15.5px] text-ink-300 leading-relaxed">
           <p>
             <strong className="text-ink-100">Amadeus Enterprise still exists and is fully available.</strong> If you are an
-            accredited travel business — you hold IATA or ARC accreditation, or you work through a consolidator — Enterprise is the
+            accredited travel business (you hold IATA or ARC accreditation, or you work through a consolidator), Enterprise is the
             appropriate path and it is a serious platform. Nothing on this page argues otherwise, and no data API is a substitute for
             a GDS if a GDS is what you need.
           </p>
@@ -209,16 +209,16 @@ curl -sS -o /dev/null -w "%{http_code} -> %{redirect_url}\\n" \\
           <MapTable
             head={['What you may have been using', 'Do we replace it?', 'Go here instead']}
             rows={[
-              ['Flight Create Orders — issuing a ticket, PNR creation', <strong key="a" className="text-verdict-high">No</strong>, <>Amadeus Enterprise, or <Link href="/compare/duffel" className="text-signal-400 underline underline-offset-4">Duffel</Link></>],
-              ['Hotel Booking API — confirmed reservations', <strong key="a" className="text-verdict-high">No</strong>, 'Amadeus Enterprise, or Duffel Stays'],
-              ['Flight Offers Price — confirming an offer is bookable', <strong key="a" className="text-verdict-high">No</strong>, 'A booking platform'],
+              ['Flight Create Orders: issuing a ticket, PNR creation', <strong key="a" className="text-verdict-high">No</strong>, <>Amadeus Enterprise, or <Link href="/compare/duffel" className="text-signal-400 underline underline-offset-4">Duffel</Link></>],
+              ['Hotel Booking API: confirmed reservations', <strong key="a" className="text-verdict-high">No</strong>, 'Amadeus Enterprise, or Duffel Stays'],
+              ['Flight Offers Price: confirming an offer is bookable', <strong key="a" className="text-verdict-high">No</strong>, 'A booking platform'],
               ['Seat maps, baggage, airline ancillaries', <strong key="a" className="text-verdict-high">No</strong>, 'A booking platform'],
               ['GDS content, published/negotiated fares, corporate contracts', <strong key="a" className="text-verdict-high">No</strong>, 'Amadeus Enterprise'],
-              ['Post-booking lifecycle — changes, cancellations, refunds', <strong key="a" className="text-verdict-high">No</strong>, 'A booking platform'],
+              ['Post-booking lifecycle: changes, cancellations, refunds', <strong key="a" className="text-verdict-high">No</strong>, 'A booking platform'],
               ['Multi-city / open-jaw itineraries', <strong key="a" className="text-verdict-high">No</strong>, 'We support one-way and round-trip only'],
-              ['Reference data — airports, airlines, cities, POI, transfers, activities', <strong key="a" className="text-verdict-high">No</strong>, 'Not part of our product'],
-              ['Flight Offers Search — shopping for prices', <strong key="a" className="text-verdict-low">Yes</strong>, <>{code('/v1/flights/oneway')}, {code('/v1/flights/roundtrip')}</>],
-              ['Hotel List + Hotel Search — shopping for room rates', <strong key="a" className="text-verdict-low">Yes</strong>, <>{code('/v1/hotels/search')}, {code('/v1/hotels/by-name')}</>],
+              ['Reference data: airports, airlines, cities, POI, transfers, activities', <strong key="a" className="text-verdict-high">No</strong>, 'Not part of our product'],
+              ['Flight Offers Search: shopping for prices', <strong key="a" className="text-verdict-low">Yes</strong>, <>{code('/v1/flights/oneway')}, {code('/v1/flights/roundtrip')}</>],
+              ['Hotel List + Hotel Search: shopping for room rates', <strong key="a" className="text-verdict-low">Yes</strong>, <>{code('/v1/hotels/search')}, {code('/v1/hotels/by-name')}</>],
             ]}
           />
         </div>
@@ -226,7 +226,7 @@ curl -sS -o /dev/null -w "%{http_code} -> %{redirect_url}\\n" \\
           <p>
             Short version: <strong className="text-ink-100">if the purchase happened inside your product, we are the wrong
             answer.</strong> We return prices and a deep link; the booking happens elsewhere. If you were using Self-Service to{' '}
-            <em>shop, monitor, compare or analyse</em> prices — which is what most Self-Service projects did — keep reading.
+            <em>shop, monitor, compare or analyse</em> prices (which is what most Self-Service projects did), keep reading.
           </p>
           <p>
             One more honest note on data: Amadeus served GDS-sourced content. We return live Google Flights consumer pricing. These
@@ -240,7 +240,7 @@ curl -sS -o /dev/null -w "%{http_code} -> %{redirect_url}\\n" \\
         <SectionHead
           eyebrow="The migration"
           title="Auth: delete the token dance"
-          lede="Amadeus used OAuth2 client credentials — fetch a token, watch it expire, refresh it. Here it is one static header."
+          lede="Amadeus used OAuth2 client credentials: fetch a token, watch it expire, refresh it. Here it is one static header."
         />
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
           <Code label="before · from Amadeus's archived amadeus-code-examples">{`ACCESS_TOKEN=$(curl -H "Content-Type: application/x-www-form-urlencoded" \\
@@ -255,8 +255,7 @@ curl -sS -o /dev/null -w "%{http_code} -> %{redirect_url}\\n" \\
               Get the key by subscribing on{' '}
               <a href={rapidApiPricingUrl('flights', 'compare')} rel="noopener" className="text-signal-400 underline underline-offset-4">
                 RapidAPI
-              </a>{' '}
-              — there is a free tier (10 requests/month, hard cap). You can delete your token-refresh code and its cache. Confirm a
+              </a>. There is a free tier (10 requests/month, hard cap). You can delete your token-refresh code and its cache. Confirm a
               key authenticates with <code className="font-mono text-[13px]">GET /v1/verify</code> before running real searches.
             </p>
           </div>
@@ -292,30 +291,30 @@ adults=2&includedAirlineCodes=TG&max=3" \\
               [code('originLocationCode'), code('from_airport')],
               [code('destinationLocationCode'), code('to_airport')],
               [code('departureDate'), code('departure_date')],
-              [code('returnDate'), <>{code('return_date')} — and use {code('/v1/flights/roundtrip')}</>],
-              [code('adults'), <>{code('passengers')} — one entry per traveller: {code('1')} adult, {code('2')} child, {code('3')} infant on lap, {code('4')} infant in seat. Two adults is {code('[1, 1]')}</>],
+              [code('returnDate'), <>{code('return_date')}, and use {code('/v1/flights/roundtrip')}</>],
+              [code('adults'), <>{code('passengers')}, one entry per traveller: {code('1')} adult, {code('2')} child, {code('3')} infant on lap, {code('4')} infant in seat. Two adults is {code('[1, 1]')}</>],
               [code('includedAirlineCodes'), <>{code('airline_codes')} (round-trip: {code('departure_airline_codes')} / {code('return_airline_codes')})</>],
               [code('excludedAirlineCodes'), code('exclude_airline_codes')],
               [code('max'), <>{code('limit')} (default {code('10')})</>],
               [code('currencyCode'), <>{code('currency')} (default {code('usd')})</>],
               [code('maxPrice'), code('max_price')],
               [code('nonStop=true'), code('max_stops: 0')],
-              [code('travelClass'), <>{code('seat_type')} — <strong className="text-ink-100">only {code('1')} Economy and {code('3')} Business.</strong> Premium economy and first are not supported</>],
+              [code('travelClass'), <>{code('seat_type')}: <strong className="text-ink-100">only {code('1')} Economy and {code('3')} Business.</strong> Premium economy and first are not supported</>],
             ]}
           />
         </div>
         <p className="mt-8 max-w-3xl text-[15px] text-ink-300 leading-relaxed">
-          Both APIs handle round-trip in a single request, so there is no gain to claim there — the difference is that ours is a
+          Both APIs handle round-trip in a single request, so there is no gain to claim there. The difference is that ours is a
           dedicated endpoint that returns paired legs with a combined total ({code('total_price_as_number')},{' '}
           {code('total_duration_seconds')}, {code('total_stops')}) plus separate {code('departure_flight_*')} and{' '}
           {code('return_flight_*')} blocks, and it accepts <strong className="text-ink-100">per-leg filters</strong>. “Leave after 6pm
           Friday, return before noon Sunday” is one call.
         </p>
         <p className="mt-4 max-w-3xl text-[15px] text-ink-300 leading-relaxed">
-          Self-Service had no cheapest-date search on Flight Offers Search — you looped. The REST API here works the same way, but
+          Self-Service had no cheapest-date search on Flight Offers Search: you looped. The REST API here works the same way, but
           the per-minute rate limits are published so you can parallelise deliberately: a 31-date scan is one burst, not a serial
           crawl (<Link href="/flights-api/parallel-date-scan" className="text-signal-400 underline underline-offset-4">how that works</Link>).
-          If you are building an AI agent, the hosted MCP server at {code(LINKS.mcpFlights)} does the fan-out for you — its flight
+          If you are building an AI agent, the hosted MCP server at {code(LINKS.mcpFlights)} does the fan-out for you: its flight
           search accepts a date <em>range</em> and a <em>list</em> of destinations and expands the combinations server-side. That is
           an MCP-layer feature, not a REST parameter; on REST you loop. See{' '}
           <Link href="/mcp" className="text-signal-400 underline underline-offset-4">MCP setup</Link>.
@@ -350,15 +349,15 @@ hotelIds=MCLONGHM&adults=2&checkInDate=2026-09-10\\
           <MapTable
             head={['Amadeus Hotel Search v3', 'FlightPowers']}
             rows={[
-              [<>{code('hotelIds')} (via Hotel List by-city/by-geocode)</>, <>not needed — {code('destination')} takes free text like “Paris” or “Tokyo Shibuya”</>],
+              [<>{code('hotelIds')} (via Hotel List by-city/by-geocode)</>, <>not needed: {code('destination')} takes free text like “Paris” or “Tokyo Shibuya”</>],
               [code('checkInDate'), code('checkin_date')],
               [code('checkOutDate'), code('checkout_date')],
               [code('adults'), <>{code('adults')} (default {code('2')})</>],
               [code('roomQuantity'), 'not supported'],
               [code('currency'), <>{code('currency')} (default {code('usd')})</>],
-              [code('priceRange'), <>{code('budget_per_night')} — max per night, in your {code('currency')}</>],
+              [code('priceRange'), <>{code('budget_per_night')}: max per night, in your {code('currency')}</>],
               [<>{code('boardType')}, {code('paymentPolicy')}, {code('bestRateOnly')}</>, <>partially covered by {code('filters')}; not a 1:1 mapping</>],
-              [code('countryOfResidence'), <>{code('proxy_country')} — <strong className="text-ink-100">related in intent, different mechanism.</strong> Amadeus’s field is a <em>declared</em> attribute passed to the supplier; ours routes the request through a residential proxy in that country, so you see the rates a real visitor from that market sees. <Link href="/hotels-api/geo-pricing" className="text-signal-400 underline underline-offset-4">Geo-pricing →</Link></>],
+              [code('countryOfResidence'), <>{code('proxy_country')}: <strong className="text-ink-100">related in intent, different mechanism.</strong> Amadeus’s field is a <em>declared</em> attribute passed to the supplier; ours routes the request through a residential proxy in that country, so you see the rates a real visitor from that market sees. <Link href="/hotels-api/geo-pricing" className="text-signal-400 underline underline-offset-4">Geo-pricing →</Link></>],
             ]}
           />
         </div>
@@ -372,15 +371,15 @@ hotelIds=MCLONGHM&adults=2&checkInDate=2026-09-10\\
         <SectionHead
           eyebrow="What you gain"
           title="What the move buys you"
-          lede="Only claims we can point at — each links to the page that proves it."
+          lede="Only claims we can point at. Each links to the page that proves it."
         />
         <div className="mt-8 grid gap-6 md:grid-cols-2">
           <div className="rounded-2xl border rule bg-ink-900/60 p-6">
             <h3 className="text-[16px] font-semibold text-ink-100">A price verdict, not just a price</h3>
             <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed">
-              Every flight result carries Google’s historical band — {code('price_insights_low')} / {code('price_insights_high')} —
+              Every flight result carries Google’s historical band ({code('price_insights_low')} / {code('price_insights_high')})
               plus a low | typical | high verdict. Rebuilding a fare-alert feature? That field <em>is</em> the trigger condition, and
-              you don’t accumulate months of history first. It can be {code('null')} when Google shows no band — handle that.{' '}
+              you don’t accumulate months of history first. It can be {code('null')} when Google shows no band. Handle that.{' '}
               <Link href="/flights-api/price-insights" className="text-signal-400 underline underline-offset-4">Proven here →</Link>
             </p>
           </div>
@@ -419,7 +418,7 @@ hotelIds=MCLONGHM&adults=2&checkInDate=2026-09-10\\
             Rename request fields per the tables above. Watch {code('adults')} → {code('passengers')} (a list) and{' '}
             {code('travelClass')} → {code('seat_type')} (only two cabins).
           </li>
-          <li>Rewrite response parsing — the shape is flat JSON, not Amadeus’s {code('data[]')} / {code('dictionaries')} envelope.</li>
+          <li>Rewrite response parsing: the shape is flat JSON, not Amadeus’s {code('data[]')} / {code('dictionaries')} envelope.</li>
           <li>Drop the hotel ID-resolution step; pass {code('destination')} as free text.</li>
           <li>Re-point anything that <em>booked</em> to a booking platform. That work does not migrate.</li>
           <li>Run your three hardest routes on both datasets before you cut over. GDS content and Google Flights content are not identical.</li>
@@ -451,7 +450,7 @@ hotelIds=MCLONGHM&adults=2&checkInDate=2026-09-10\\
         <CtaBand
           medium="compare"
           title="Self-serve, like Self-Service was"
-          body="Subscribe, get a key, make a call — no account manager, no accreditation. Free tier: 10 requests/month, hard cap."
+          body="Subscribe, get a key, make a call. No account manager, no accreditation. Free tier: 10 requests/month, hard cap."
         />
       </Section>
     </>

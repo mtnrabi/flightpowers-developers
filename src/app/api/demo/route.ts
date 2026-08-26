@@ -22,13 +22,13 @@ export const maxDuration = 60;
 export const dynamic = 'force-dynamic';
 
 const CHIPS: Record<string, () => unknown> = {
-  'good-price-tlv-jfk': () => {
-    const f = FIXTURES.onewayTlvJfk;
+  'good-price-jfk-cun': () => {
+    const f = FIXTURES.onewayJfkCun;
     return {
       mode: 'canned',
       capturedAt: f.captured_at,
-      question: 'Is $480 TLV→JFK in October a good price?',
-      askedPrice: 480,
+      question: 'Is $129 JFK→Cancún on Jan 1 a good price?',
+      askedPrice: 129,
       kind: 'oneway',
       request: f.request,
       flights: f.data,
@@ -36,11 +36,11 @@ const CHIPS: Record<string, () => unknown> = {
     };
   },
   'warm-getaway-january': () => {
-    const f = FIXTURES.dealHuntSun;
+    const f = FIXTURES.dealHuntLgw;
     return {
       mode: 'canned',
       capturedAt: f.captured_at,
-      question: 'Find me a cheap warm getaway from TLV in January',
+      question: 'Find me a cheap winter-sun escape from London in January',
       kind: 'deal-hunt',
       request: f.request,
       rows: f.data,
@@ -114,8 +114,8 @@ export async function POST(req: Request) {
   if (result.kind === 'error') {
     const message =
       result.error === 'timeout'
-        ? "The live search hit the demo's time ceiling — complex routes take longer than a demo should. Try again, or run the same query with your own key where you control the timeout."
-        : 'The live search did not complete. The API reports this honestly instead of returning a fake empty result — try again in a moment.';
+        ? "The live search hit the demo's time ceiling. Complex routes take longer than a demo should. Try again, or run the same query with your own key where you control the timeout."
+        : 'The live search did not complete. The API reports this honestly instead of returning a fake empty result. Try again in a moment.';
     return NextResponse.json(isAgent ? { mode: 'degraded', message } : { error: result.error, message }, {
       status: isAgent ? 200 : 502,
     });

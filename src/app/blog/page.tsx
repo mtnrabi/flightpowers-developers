@@ -5,7 +5,7 @@ import { Container, JsonLd, Section } from '@/components/ui';
 import { LINKS, SITE } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Blog — build-in-public notes from the developer',
+  title: 'Blog: build-in-public notes from the developer',
   description:
     'The FlightPowers developer blog: build-in-public notes, teardowns, and changelog stories from the person who runs the APIs. Written when there is something to say, not on a schedule.',
   alternates: { canonical: '/blog' },
@@ -47,7 +47,7 @@ export default function BlogIndexPage() {
           Build-in-public <span className="text-signal-500">notes</span>
         </h1>
         <p className="lede mt-5 max-w-2xl">
-          The developer blog: build-in-public notes, teardowns, and changelog stories — written by the person who runs the
+          The developer blog: build-in-public notes, teardowns, and changelog stories, written by the person who runs the
           APIs, when there&apos;s something worth writing down.
         </p>
       </Container>
@@ -63,7 +63,7 @@ export default function BlogIndexPage() {
           ))}
         </div>
         <p className="mt-8 max-w-3xl text-[14px] text-ink-500 leading-relaxed">
-          Looking for the older consumer travel posts — flexible-date tricks, scraping war stories? They moved with the
+          Looking for the older consumer travel posts (flexible-date tricks, scraping war stories)? They moved with the
           consumer product to{' '}
           <a href={`${LINKS.demoProduct}/blog`} rel="noopener" className="text-signal-400 underline underline-offset-4">
             demo.flightpowers.com/blog

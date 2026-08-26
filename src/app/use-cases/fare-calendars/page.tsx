@@ -5,7 +5,7 @@ import { CheckBullets, Container, FaqSection, Feature, Section, SectionHead, typ
 import { COUNTS } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Fare Calendars — price a whole month of dates in one burst',
+  title: 'Fare Calendars: price a whole month of dates in one burst',
   description:
     'Fare calendars and heatmaps need one search per date. Rate limits of 150–500 requests/minute make a 31-day scan a single parallel burst, price_as_number makes every cell sortable, and X-Search-Status keeps failed cells from rendering as “no flights.”',
   alternates: { canonical: '/use-cases/fare-calendars' },
@@ -16,15 +16,15 @@ export const dynamic = 'force-static';
 const faq: Faq[] = [
   {
     q: 'How many requests does a fare calendar cost?',
-    a: 'One search per date cell. A 31-day month for one route is 31 requests; “3 to 5 nights, two destinations, anywhere in May” is 31 dates × 3 durations × 2 destinations = 186 requests. The listing’s own guidance is to fire them in parallel batches and merge — that is what the per-minute rate limits are sized for.',
+    a: 'One search per date cell. A 31-day month for one route is 31 requests; “3 to 5 nights, two destinations, anywhere in May” is 31 dates × 3 durations × 2 destinations = 186 requests. The listing’s own guidance is to fire them in parallel batches and merge: that is what the per-minute rate limits are sized for.',
   },
   {
     q: 'Won’t a scan that big take minutes?',
-    a: 'Serially, yes — which is why the plans carry 150 (Pro), 250 (Ultra), and 500 (Mega) requests per minute. A month scan completes as one burst of parallel requests rather than a slow loop. Each individual search is still a live scan, so per-request latency tracks route complexity.',
+    a: 'Serially, yes, which is why the plans carry 150 (Pro), 250 (Ultra), and 500 (Mega) requests per minute. A month scan completes as one burst of parallel requests rather than a slow loop. Each individual search is still a live scan, so per-request latency tracks route complexity.',
   },
   {
     q: 'What should an empty calendar cell mean?',
-    a: 'Exactly what the X-Search-Status header says. “empty” means Google genuinely has no itineraries for that date — a real cell value. “degraded” means that request did not complete, and the honest render is “retry” rather than a blank that looks like no availability.',
+    a: 'Exactly what the X-Search-Status header says. “empty” means Google genuinely has no itineraries for that date, a real cell value. “degraded” means that request did not complete, and the honest render is “retry” rather than a blank that looks like no availability.',
   },
 ];
 
@@ -42,10 +42,10 @@ export default function FareCalendarsPage() {
         <h1 className="mt-4 text-hero font-semibold max-w-3xl">
           A month of fares in <span className="text-signal-500">one burst</span>
         </h1>
-        <p className="lede mt-5 max-w-2xl">Fare calendars, flexible-date search, and price heatmaps — built from parallel per-date scans.</p>
+        <p className="lede mt-5 max-w-2xl">Fare calendars, flexible-date search, and price heatmaps, built from parallel per-date scans.</p>
         <p className="mt-6 max-w-3xl text-[15px] text-ink-300 leading-relaxed">
           &ldquo;When is it cheapest to fly?&rdquo; is the highest-volume question in travel, and answering it takes one
-          search per candidate date — thirty-plus live queries for a single route-month. Run serially, that is minutes of
+          search per candidate date: thirty-plus live queries for a single route-month. Run serially, that is minutes of
           wall-clock time per calendar, which is unusable in an interactive product. And every cell in the grid inherits the
           scraping problem: a date whose search silently failed looks identical to a date with no flights, and your calendar
           quietly lies.
@@ -60,12 +60,12 @@ export default function FareCalendarsPage() {
             the grid fills in seconds of wall-clock, not minutes of loop.
           </Feature>
           <Feature title="A number, not a string, per cell">
-            Every result carries price_as_number alongside the display price — cells sort, min(), and colour-scale without
+            Every result carries price_as_number alongside the display price: cells sort, min(), and colour-scale without
             parsing currency strings.
           </Feature>
           <Feature title="X-Search-Status per cell">
             Each date&apos;s search reports its own outcome. Render &ldquo;empty&rdquo; as a real no-flights cell, retry
-            &ldquo;degraded&rdquo; cells, and mark &ldquo;partial&rdquo; ones — the calendar stays honest at the cell level.
+            &ldquo;degraded&rdquo; cells, and mark &ldquo;partial&rdquo; ones: the calendar stays honest at the cell level.
           </Feature>
         </div>
       </Section>
@@ -76,7 +76,7 @@ export default function FareCalendarsPage() {
           <CheckBullets
             items={[
               <>
-                <strong className="text-ink-100">Enumerate the dates.</strong> One request body per candidate departure date —
+                <strong className="text-ink-100">Enumerate the dates.</strong> One request body per candidate departure date:
                 same route, same filters, only <code className="font-mono text-[13px] text-signal-400">departure_date</code>{' '}
                 varies.
               </>,

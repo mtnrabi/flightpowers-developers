@@ -18,9 +18,9 @@ import { TASKS } from '@/lib/matrix';
 import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'MCP servers — live flight & hotel data, one URL',
+  title: 'MCP servers: live flight & hotel data, one URL',
   description:
-    'Hosted MCP servers for live Google Flights and Booking.com data. Works with Claude, Cursor, ChatGPT, and any MCP client — no install, bring your own RapidAPI key, and the flight tools accept date ranges and destination lists in a single call.',
+    'Hosted MCP servers for live Google Flights and Booking.com data. Works with Claude, Cursor, ChatGPT, and any MCP client. No install, bring your own RapidAPI key, and the flight tools accept date ranges and destination lists in a single call.',
   alternates: { canonical: '/mcp' },
 };
 
@@ -49,11 +49,11 @@ const ASKS = ASK_SLUGS.map((slug) => TASKS.find((t) => t.slug === slug)!);
 const faq: Faq[] = [
   {
     q: 'Do I need to install or run anything?',
-    a: 'No. Both servers are hosted and speak streamable HTTP — you paste a URL and a key into your client’s MCP config and the tools appear. Nothing runs on your machine and there is nothing to update.',
+    a: 'No. Both servers are hosted and speak streamable HTTP: you paste a URL and a key into your client’s MCP config and the tools appear. Nothing runs on your machine and there is nothing to update.',
   },
   {
     q: 'Whose API key does the server use, and who gets billed?',
-    a: 'Yours. The server forwards the RapidAPI key you configure, so every search is metered on your own RapidAPI plan — we never sit between you and your bill. The free BASIC tier (10 requests/month, hard cap, no card) is enough to verify the connection works.',
+    a: 'Yours. The server forwards the RapidAPI key you configure, so every search is metered on your own RapidAPI plan. We never sit between you and your bill. The free BASIC tier (10 requests/month, hard cap, no card) is enough to verify the connection works.',
   },
   {
     q: 'Which clients does this work with?',
@@ -61,19 +61,19 @@ const faq: Faq[] = [
   },
   {
     q: 'If I use the ?rapidapi_key= URL, does the model see my key?',
-    a: 'The key rides on the server URL stored in your client’s connector settings — it does not appear in the chat. If your client supports custom headers, the header form is still the cleaner option.',
+    a: 'The key rides on the server URL stored in your client’s connector settings; it does not appear in the chat. If your client supports custom headers, the header form is still the cleaner option.',
   },
   {
     q: 'How is this different from calling the REST API directly?',
-    a: 'Same live data, same key, one difference in shape: the MCP flight tools accept a date range (departure_date_from / departure_date_to) and a list of destination airports, and expand them server-side — one tool call where REST would be a client-side fan-out of one request per date.',
+    a: 'Same live data, same key, one difference in shape: the MCP flight tools accept a date range (departure_date_from / departure_date_to) and a list of destination airports, and expand them server-side: one tool call where REST would be a client-side fan-out of one request per date.',
   },
   {
     q: 'Are the servers in the official MCP registry?',
-    a: 'Yes — com.flightpowers/google-flights and com.flightpowers/booking, both v1.0.0, in the official MCP registry. Both are also listed on Smithery.',
+    a: 'Yes: com.flightpowers/google-flights and com.flightpowers/booking, both v1.0.0, in the official MCP registry. Both are also listed on Smithery.',
   },
   {
     q: 'Is there a way to try it without a key?',
-    a: 'Yes — a separate free, ad-supported server exists (see the bottom of this page). No key needed, but results carry sponsored content and it runs on a capped daily budget. It is for trying the tools before you get a key, not for production.',
+    a: 'Yes: a separate free, ad-supported server exists (see the bottom of this page). No key needed, but results carry sponsored content and it runs on a capped daily budget. It is for trying the tools before you get a key, not for production.',
   },
 ];
 
@@ -103,15 +103,15 @@ export default function McpPage() {
                 Live travel data, <span className="text-signal-500">one MCP URL</span>
               </h1>
               <p className="lede mt-5">
-                Works with Claude, Cursor, ChatGPT, and any MCP client — no install, just a URL and your key.
+                Works with Claude, Cursor, ChatGPT, and any MCP client. No install, just a URL and your key.
               </p>
               <div className="mt-7">
                 <CheckBullets
                   items={[
-                    <>Nothing to install — hosted servers, bring your own RapidAPI key, usage billed to your own plan</>,
+                    <>Nothing to install: hosted servers, bring your own RapidAPI key, usage billed to your own plan</>,
                     <>
                       Flight tools accept date <strong className="text-ink-100">ranges</strong> and destination{' '}
-                      <strong className="text-ink-100">lists</strong> — one call, not N
+                      <strong className="text-ink-100">lists</strong>: one call, not N
                     </>,
                     <>The same live Google Flights and Booking.com data as the REST API</>,
                   ]}
@@ -151,7 +151,7 @@ export default function McpPage() {
           <SectionHead
             eyebrow="The other path"
             title="Not on an MCP client? Use the skill instead"
-            lede={`The same workflows ship as ${COUNTS.skills} open-source, MIT-licensed agent skills for Claude Code and OpenClaw. They talk to the same API — over MCP or plain REST — with the same key.`}
+            lede={`The same workflows ship as ${COUNTS.skills} open-source, MIT-licensed agent skills for Claude Code and OpenClaw. They talk to the same API, over MCP or plain REST, with the same key.`}
           />
           <div>
             <Code label="terminal">{`npx skills add mtnrabi/travel-agent-skills`}</Code>
@@ -193,13 +193,13 @@ export default function McpPage() {
               Live one-way fares with Google&apos;s price band, a low | typical | high verdict, and a buy_link on every result.
             </FieldRow>
             <FieldRow name="search_roundtrip_flights">
-              Paired round-trip itineraries — one object per trip with total_price and both legs already matched, not two lists to
+              Paired round-trip itineraries: one object per trip with total_price and both legs already matched, not two lists to
               cross-join.
             </FieldRow>
             <p className="mt-5 text-[14px] text-ink-400 leading-relaxed">
               Both flight tools take <code className="field">from_airport</code> and <code className="field">to_airport</code> as a
               single IATA code <em>or a list</em>, and either a fixed <code className="field">departure_date</code> or a range via{' '}
-              <code className="field">departure_date_from</code> / <code className="field">departure_date_to</code> — the server
+              <code className="field">departure_date_from</code> / <code className="field">departure_date_to</code>. The server
               expands ranges and lists internally, so a flexible search is one call. Round-trip takes a{' '}
               <code className="field">return_date</code> or a trip length in <code className="field">nights</code>. The usual search
               controls (<code className="field">max_stops</code>, <code className="field">limit</code>) pass through.
@@ -208,16 +208,16 @@ export default function McpPage() {
           <div>
             <p className="font-mono text-[13px] text-ink-400 mb-2">{LINKS.mcpHotels.replace('https://', '')}</p>
             <FieldRow name="search_hotels">
-              Live Booking.com search for a destination — ranked properties with price, review score, room type, and a working
+              Live Booking.com search for a destination: ranked properties with price, review score, room type, and a working
               booking link, filterable with the {COUNTS.hotelFilters} documented filters.
             </FieldRow>
             <FieldRow name="find_hotel_by_name">
-              Availability and price for one named hotel — takes the name a human would type plus an optional{' '}
+              Availability and price for one named hotel: takes the name a human would type plus an optional{' '}
               <code className="field">area</code> to disambiguate; name resolution is included.
             </FieldRow>
             <p className="mt-5 text-[14px] text-ink-400 leading-relaxed">
               Hotel tools take <code className="field">checkin_date</code> / <code className="field">checkout_date</code>,{' '}
-              <code className="field">adults</code>, and <code className="field">proxy_country</code> — a two-letter code that prices
+              <code className="field">adults</code>, and <code className="field">proxy_country</code>, a two-letter code that prices
               the stay as seen from that market, the field rate-parity checks are built on.
             </p>
           </div>
@@ -229,7 +229,7 @@ export default function McpPage() {
         <SectionHead eyebrow="What you are trusting" title="Zero install, your bill, on the record" />
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
           <Feature title="Zero install">
-            Hosted, streamable-HTTP servers. Add the URL, restart the client, and the tools appear — nothing runs on your machine,
+            Hosted, streamable-HTTP servers. Add the URL, restart the client, and the tools appear. Nothing runs on your machine,
             nothing of yours to patch or redeploy.
           </Feature>
           <Feature title="Your key, your bill">
@@ -240,7 +240,7 @@ export default function McpPage() {
             </a>
           </Feature>
           <Feature title="Registered">
-            Both servers are in the official MCP registry — com.flightpowers/google-flights and com.flightpowers/booking, v1.0.0 —
+            Both servers are in the official MCP registry (com.flightpowers/google-flights and com.flightpowers/booking, v1.0.0)
             and listed on{' '}
             <a href={LINKS.smitheryFlights} rel="noopener" className="text-signal-400 underline underline-offset-4">
               Smithery
@@ -257,7 +257,7 @@ export default function McpPage() {
           <h2 className="mt-3 text-2xl font-semibold">A free, ad-supported server also exists</h2>
           <p className="mt-4 text-[15px] text-ink-400 leading-relaxed">
             <code className="field">{LINKS.mcpFree.replace('https://', '')}</code> serves the flight tools with no key at all. The
-            trade: results carry sponsored content, and the server runs on a capped daily budget — when the day&apos;s budget is
+            trade: results carry sponsored content, and the server runs on a capped daily budget: when the day&apos;s budget is
             spent, it stops. Use it to try the tools before getting a key; point production and anything you ship at the keyed
             servers above.
           </p>
@@ -289,7 +289,7 @@ export default function McpPage() {
       {/* ============================== CLOSE ============================== */}
       <Section bordered={false} className="!pt-4">
         <div className="mb-6 flex flex-wrap justify-center gap-2.5">
-          {['no card to try', 'BYO key — billed to your own plan', 'works with any MCP client'].map((fact) => (
+          {['no card to try', 'BYO key, billed to your own plan', 'works with any MCP client'].map((fact) => (
             <span key={fact} className="chip cursor-default">
               {fact}
             </span>

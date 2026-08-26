@@ -8,7 +8,7 @@ import { rapidApiPricingUrl } from '@/lib/site';
 import { track } from '@/lib/track';
 
 /* ------------------------------------------------------------------ */
-/* Generic protobuf wire-format decoder — no dependencies, no schema. */
+/* Generic protobuf wire-format decoder: no dependencies, no schema.  */
 /* The tfs format is undocumented; the wire format is not. We decode  */
 /* structure (field numbers, wire types, nesting) and let the page    */
 /* label only the values it can honestly recognize.                   */
@@ -57,7 +57,7 @@ function isPrintableAscii(b: Uint8Array, start: number, end: number): boolean {
  * Parse a byte range as a protobuf message. Length-delimited fields that
  * themselves parse cleanly as messages are recursed into; otherwise they
  * fall back to a printable string, then raw hex. Throws when the range is
- * not a valid message — the caller uses that as the "not a message" signal.
+ * not a valid message; the caller uses that as the "not a message" signal.
  */
 function parseMessage(b: Uint8Array, start: number, end: number, depth: number): WireNode[] {
   if (depth > 8) throw new Error('nested too deep');
@@ -178,7 +178,7 @@ function findTfs(input: string): { tfs: string } | { error: string } {
     if (inHash) return { tfs: inHash[1]! };
     return {
       error:
-        'That URL has no tfs= parameter — nothing to decode. Plain search URLs (?q=…) carry the query as text, not as an encoded state blob. Share links and buy_link URLs carry tfs=.',
+        'That URL has no tfs= parameter, so there is nothing to decode. Plain search URLs (?q=…) carry the query as text, not as an encoded state blob. Share links and buy_link URLs carry tfs=.',
     };
   } catch {
     // Not a URL. Accept a bare tfs value pasted on its own.
@@ -197,7 +197,7 @@ type DecodeState =
 type BuildState = { url: string; phrase: string; snippets: Snippets; query: string } | null;
 
 /**
- * Tier-A tool: 100% client-side, ungated. Nothing here calls a server —
+ * Tier-A tool: 100% client-side, ungated. Nothing here calls a server;
  * the decode and the build both happen in the visitor's browser.
  */
 export function UrlParserTool({ exampleUrl, exampleCapturedAt }: { exampleUrl: string; exampleCapturedAt: string }) {
@@ -227,7 +227,7 @@ export function UrlParserTool({ exampleUrl, exampleCapturedAt }: { exampleUrl: s
     try {
       bytes = b64urlToBytes(found.tfs);
     } catch {
-      setDecoded({ phase: 'error', message: 'The tfs value isn’t valid base64url — the URL may have been truncated while copying.' });
+      setDecoded({ phase: 'error', message: 'The tfs value isn’t valid base64url. The URL may have been truncated while copying.' });
       return;
     }
     try {
@@ -237,7 +237,7 @@ export function UrlParserTool({ exampleUrl, exampleCapturedAt }: { exampleUrl: s
       setDecoded({
         phase: 'error',
         message:
-          'The tfs value decoded to bytes but they don’t parse as a protobuf message. Google may have changed the encoding for this URL — this tool decodes the wire format best-effort and says so when it can’t.',
+          'The tfs value decoded to bytes but they don’t parse as a protobuf message. Google may have changed the encoding for this URL. This tool decodes the wire format best-effort and says so when it can’t.',
       });
     }
   }
@@ -323,11 +323,11 @@ export function UrlParserTool({ exampleUrl, exampleCapturedAt }: { exampleUrl: s
                 Decode it
               </button>
               <p className="font-mono text-[11px] text-ink-500">
-                100% client-side — the URL never leaves your browser. No rate limit, no account.
+                100% client-side: the URL never leaves your browser. No rate limit, no account.
               </p>
             </div>
             <p className="mt-2 font-mono text-[11px] text-ink-500">
-              Pre-filled with a real <span className="text-signal-400">buy_link</span> the API returned on {exampleCapturedAt} — hit
+              Pre-filled with a real <span className="text-signal-400">buy_link</span> the API returned on {exampleCapturedAt}. Hit
               Decode to see inside it.
             </p>
           </form>
@@ -377,7 +377,7 @@ export function UrlParserTool({ exampleUrl, exampleCapturedAt }: { exampleUrl: s
               </div>
             </div>
             <p className="mt-3 font-mono text-[11px] text-ink-500">
-              Emits the search-query form (?q=Flights from … to … on …) — a phrase Google parses like a search-box entry, not a
+              Emits the search-query form (?q=Flights from … to … on …), a phrase Google parses like a search-box entry, not a
               tfs deep link. The tfs format is undocumented and this tool doesn&apos;t fabricate one.
             </p>
           </form>
@@ -393,7 +393,7 @@ export function UrlParserTool({ exampleUrl, exampleCapturedAt }: { exampleUrl: s
           <div className="rounded-2xl border rule bg-ink-900/60 p-5 sm:p-6">
             <h3 className="text-[16px] font-semibold text-ink-100">Decoded wire format</h3>
             <p className="mt-1.5 text-[13.5px] text-ink-400 leading-relaxed">
-              The tfs format is undocumented; we decode the wire format and label the fields we can identify — the raw tree is
+              The tfs format is undocumented; we decode the wire format and label the fields we can identify. The raw tree is
               always shown. <span className="font-mono text-[12px]">field (type): value</span>, nested messages in braces.
             </p>
             <div className="mt-4">
@@ -428,7 +428,7 @@ export function UrlParserTool({ exampleUrl, exampleCapturedAt }: { exampleUrl: s
               {route ? (
                 <p className="mt-1.5 text-[13px] text-ink-400 leading-relaxed">
                   Inference rule, stated plainly: strings shaped like dates are dates, 3-letter A–Z strings are airports; first
-                  date + first two airports make the route. It can be wrong on multi-city URLs — the tree above is the ground
+                  date + first two airports make the route. It can be wrong on multi-city URLs; the tree above is the ground
                   truth.
                 </p>
               ) : null}
@@ -442,7 +442,7 @@ export function UrlParserTool({ exampleUrl, exampleCapturedAt }: { exampleUrl: s
               pricingHref={rapidApiPricingUrl('flights', 'tool')}
               docsHref="/flights-api/one-way"
               headline="Now get the live fares for this exact route"
-              body="The same query as a FlightPowers API request — live fares with Google’s price band and the low | typical | high verdict on every row."
+              body="The same query as a FlightPowers API request: live fares with Google’s price band and the low | typical | high verdict on every row."
             />
           ) : null}
         </>
@@ -476,7 +476,7 @@ export function UrlParserTool({ exampleUrl, exampleCapturedAt }: { exampleUrl: s
             snippets={built.snippets}
             pricingHref={rapidApiPricingUrl('flights', 'tool')}
             docsHref="/flights-api/one-way"
-            headline="Skip the browser — get these fares as JSON"
+            headline="Skip the browser, get these fares as JSON"
             body="The matching API request for the link you just built, with Google’s price band and verdict attached to every result."
           />
         </>

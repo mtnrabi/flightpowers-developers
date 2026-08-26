@@ -21,9 +21,9 @@ import { FLIGHT_PLANS } from '@/lib/pricing';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'X-Search-Status — telling “no flights” from “the search failed”',
+  title: 'X-Search-Status: telling “no flights” from “the search failed”',
   description:
-    'Every response carries X-Search-Status: ok, empty, partial, or degraded. An empty array is only ever reported when the page it came from positively said so — and opt-in strict mode turns a degraded search into an HTTP 503.',
+    'Every response carries X-Search-Status: ok, empty, partial, or degraded. An empty array is only ever reported when the page it came from positively said so, and opt-in strict mode turns a degraded search into an HTTP 503.',
   alternates: { canonical: '/flights-api/search-status' },
 };
 
@@ -57,7 +57,7 @@ const STATUSES: { value: string; cls: string; meaning: string }[] = [
   {
     value: 'degraded',
     cls: 'text-verdict-high',
-    meaning: 'The search did not complete. The empty array says nothing about availability — retry it.',
+    meaning: 'The search did not complete. The empty array says nothing about availability. Retry it.',
   },
 ];
 
@@ -66,11 +66,11 @@ const REASONS = ['blocked_page', 'unrecognized_page', 'unreadable_prices', 'upst
 const faq: Faq[] = [
   {
     q: 'Why does a flight API return an empty array?',
-    a: 'For two very different reasons: either there really are no flights on that route and date, or the scrape behind the search silently failed — a consent wall, a bot check, a truncated page. Most APIs return [] either way and you cannot tell which happened. Here the X-Search-Status header says which: "empty" is a real answer, "degraded" is a failed search.',
+    a: 'For two very different reasons: either there really are no flights on that route and date, or the scrape behind the search silently failed: a consent wall, a bot check, a truncated page. Most APIs return [] either way and you cannot tell which happened. Here the X-Search-Status header says which: "empty" is a real answer, "degraded" is a failed search.',
   },
   {
     q: 'What does X-Search-Status: degraded mean?',
-    a: 'The search did not complete — the page could not be read even after automatic retries. The empty (or short) array says nothing about availability. Retry the request; do not tell your user "no flights found".',
+    a: 'The search did not complete. The page could not be read even after automatic retries. The empty (or short) array says nothing about availability. Retry the request; do not tell your user "no flights found".',
   },
   {
     q: 'What does X-Search-Status: partial mean?',
@@ -78,15 +78,15 @@ const faq: Faq[] = [
   },
   {
     q: 'When should I retry a search?',
-    a: 'Retry on "degraded" — that is its meaning. Never on "empty": an empty result is only reported when the page positively said there are no flights, and Google reporting no flights is never retried internally either, so a real empty costs no extra time.',
+    a: 'Retry on "degraded", that is its meaning. Never on "empty": an empty result is only reported when the page positively said there are no flights, and Google reporting no flights is never retried internally either, so a real empty costs no extra time.',
   },
   {
     q: 'Can I get an error instead of a misleading empty list?',
-    a: 'Yes — send "strict": true and a degraded search returns HTTP 503 with {"error": {"type": "search_incomplete", "reason": ...}} instead of []. It is opt-in and off by default; leave it out and responses are exactly what they are today.',
+    a: 'Yes. Send "strict": true and a degraded search returns HTTP 503 with {"error": {"type": "search_incomplete", "reason": ...}} instead of []. It is opt-in and off by default; leave it out and responses are exactly what they are today.',
   },
   {
-    q: 'X-Search-Reason is set but the status is ok — did something fail?',
-    a: 'Nothing you need to act on. X-Search-Reason records the first failure the search hit, so it can ride along on a response that a retry already rescued — the captured "ok" response on this page carries reason blocked_page for exactly that reason. Branch on X-Search-Status, read X-Search-Reason for diagnostics.',
+    q: 'X-Search-Reason is set but the status is ok. Did something fail?',
+    a: 'Nothing you need to act on. X-Search-Reason records the first failure the search hit, so it can ride along on a response that a retry already rescued. The captured "ok" response on this page carries reason blocked_page for exactly that reason. Branch on X-Search-Status, read X-Search-Reason for diagnostics.',
   },
   {
     q: 'Do these headers change the response body?',
@@ -156,7 +156,7 @@ export default function SearchStatusPage() {
                       <span className="text-verdict-typical font-mono text-[13px]">partial</span> ·{' '}
                       <span className="text-verdict-high font-mono text-[13px]">degraded</span>
                     </>,
-                    <>Unreadable pages are retried automatically — degraded means retry, empty means believe it</>,
+                    <>Unreadable pages are retried automatically. Degraded means retry, empty means believe it</>,
                     <>
                       Opt-in <code className="font-mono text-[13px] text-signal-400">strict: true</code> turns a degraded search
                       into an HTTP 503
@@ -179,7 +179,7 @@ export default function SearchStatusPage() {
               <div className="flex justify-end">
                 <CapturedBadge date={degraded.captured_at} />
               </div>
-              <Code label="a real degraded search — Google blocked the page, retries exhausted">{degradedText}</Code>
+              <Code label="a real degraded search: Google blocked the page, retries exhausted">{degradedText}</Code>
               <Code label="the same request, retried seconds later">{rescuedText}</Code>
             </div>
           </div>
@@ -190,12 +190,12 @@ export default function SearchStatusPage() {
         <SectionHead
           eyebrow="The problem"
           title="Every scraper gets handed pages it cannot read"
-          lede="A consent wall, a bot check, a truncated response. Most flight APIs return an empty list anyway — and your product tells a user something false."
+          lede="A consent wall, a bot check, a truncated response. Most flight APIs return an empty list anyway, and your product tells a user something false."
         />
         <div className="mt-6 max-w-3xl space-y-4 text-[15px] text-ink-300 leading-relaxed">
           <p>
             This API separates the two. A search that fails to read a page is retried automatically, and an empty array is only
-            ever reported as a real answer when the page it came from positively said so — including the case where flight rows{' '}
+            ever reported as a real answer when the page it came from positively said so, including the case where flight rows{' '}
             <em>were</em> on the page but their prices could not be read, which is what a Google markup change looks like from the
             inside. A page where Google genuinely reports no flights is never retried, so a real empty result costs you nothing
             extra. Whatever is left is reported on the response.
@@ -203,7 +203,7 @@ export default function SearchStatusPage() {
           <p className="text-ink-400">
             The two captures above are that story happening for real: the first request hit a blocked page and said so
             (<code className="field">degraded</code>, <code className="field">blocked_page</code>) instead of pretending{' '}
-            <code className="field">[]</code> meant no flights — and the retry seconds later came back{' '}
+            <code className="field">[]</code> meant no flights, and the retry seconds later came back{' '}
             <code className="field">ok</code> with {rescued.data.length} itineraries and{' '}
             <code className="field">x-search-retries: 1</code> on its record.
           </p>
@@ -237,7 +237,7 @@ export default function SearchStatusPage() {
           every outbound candidate, and each of those fetches can fail on its own. <code className="field">empty</code> is only
           reported when every candidate was attempted and every one of them read a real Google Flights page saying it had
           nothing. A fan-out that was blocked, or that stopped on the request&apos;s time ceiling, reports{' '}
-          <code className="field">degraded</code> or <code className="field">partial</code> — never &quot;no flights&quot;.
+          <code className="field">degraded</code> or <code className="field">partial</code>, never &quot;no flights&quot;.
         </p>
       </Section>
 
@@ -256,7 +256,7 @@ export default function SearchStatusPage() {
                 {i < REASONS.length - 1 ? ', ' : ''}
               </span>
             ))}{' '}
-            and a few more. It records the <em>first</em> failure, so it can ride along on a response a retry already rescued —
+            and a few more. It records the <em>first</em> failure, so it can ride along on a response a retry already rescued.
             branch on <code className="field">X-Search-Status</code>, log the reason.
           </FieldRow>
           <FieldRow name="X-Search-Results / X-Search-Attempts / X-Search-Combinations" type="int">
@@ -268,16 +268,16 @@ export default function SearchStatusPage() {
             <code className="field">x-search-retries: 1</code>.
           </FieldRow>
           <FieldRow name="X-Search-Lost-Combinations / X-Search-Incomplete-Combinations" type="int, when non-zero">
-            Round-trip fan-out accounting — outbound candidates whose return-leg pricing was lost or cut short. The reason a
+            Round-trip fan-out accounting: outbound candidates whose return-leg pricing was lost or cut short. The reason a
             short array can honestly call itself <code className="field">partial</code>.
           </FieldRow>
           <FieldRow name="X-Search-Unreadable-Pages" type="int, when non-zero">
-            Pages fetched but not parseable — the raw material of a <code className="field">degraded</code> verdict.
+            Pages fetched but not parseable, the raw material of a <code className="field">degraded</code> verdict.
           </FieldRow>
         </div>
         <p className="mt-4 max-w-3xl font-mono text-[12px] text-ink-500">
           The captures on this page include a few further internal counters. All x-search-* headers are additive and safe to
-          ignore — the only one your code should branch on is x-search-status.
+          ignore. The only one your code should branch on is x-search-status.
         </p>
       </Section>
 
@@ -318,7 +318,7 @@ if not flights:
 }`}</Code>
             </div>
             <p className="mt-4 text-[14px] text-ink-400 leading-relaxed">
-              <code className="field">strict</code> is opt-in and off by default — leave it out and you get exactly the responses
+              <code className="field">strict</code> is opt-in and off by default. Leave it out and you get exactly the responses
               you get today. The body of a normal response is unchanged and the headers are additive, so nothing you have already
               built breaks. Full walkthrough:{' '}
               <Link href="/guides/handle-empty-flight-search-results" className="text-signal-400 underline underline-offset-4">
@@ -362,7 +362,7 @@ if not flights:
         <CtaBand
           medium="endpoint"
           title="Build on answers, not ambiguity"
-          body="Live Google Flights data that says what happened — ok, empty, partial, or degraded — on every single response."
+          body="Live Google Flights data that says what happened (ok, empty, partial, or degraded) on every single response."
         />
       </Section>
     </>

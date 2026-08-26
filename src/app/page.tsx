@@ -22,9 +22,9 @@ import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 import { DIFFERENTIATORS } from '@/lib/diff';
 
 export const metadata: Metadata = {
-  title: 'FlightPowers — live flight & hotel pricing APIs with a price verdict',
+  title: 'FlightPowers: live flight & hotel pricing APIs with a price verdict',
   description:
-    'Real-time Google Flights and Booking.com data as clean JSON. Google’s own price band and a low | typical | high verdict on every fare — for AI travel agents, developers, and automation teams.',
+    'Real-time Google Flights and Booking.com data as clean JSON. Google’s own price band and a low | typical | high verdict on every fare. For AI travel agents, developers, and automation teams.',
   alternates: { canonical: '/' },
 };
 
@@ -37,46 +37,46 @@ const faq: Faq[] = [
   },
   {
     q: 'Is there a free tier?',
-    a: 'Yes — the BASIC plan on RapidAPI is $0 and needs no card. It is 10 requests per month with a hard cap: enough to verify your key and see the response shape, not enough to evaluate. Evaluate with the live demo and free tools on this site instead; they run real requests on our key.',
+    a: 'Yes. The BASIC plan on RapidAPI is $0 and needs no card. It is 10 requests per month with a hard cap: enough to verify your key and see the response shape, not enough to evaluate. Evaluate with the live demo and free tools on this site instead; they run real requests on our key.',
   },
   {
     q: 'How is this different from scraping Google Flights myself?',
-    a: 'A scraper you maintain breaks on every markup change and cannot tell “no flights” from “my scrape failed.” This API retries unreadable pages automatically, reports the outcome in an X-Search-Status header (ok, empty, partial, degraded), and returns Google’s price band with every fare — a field most scrapers never see.',
+    a: 'A scraper you maintain breaks on every markup change and cannot tell “no flights” from “my scrape failed.” This API retries unreadable pages automatically, reports the outcome in an X-Search-Status header (ok, empty, partial, degraded), and returns Google’s price band with every fare. Most scrapers never see that field.',
   },
   {
     q: 'Does round-trip really return paired legs?',
-    a: 'Yes. POST /roundtrip returns one object per itinerary with total_price, total_duration_seconds, total_stops, and the outbound and return legs already paired — not two one-way results you have to combine yourself.',
+    a: 'Yes. POST /roundtrip returns one object per itinerary with total_price, total_duration_seconds, total_stops, and the outbound and return legs already paired, not two one-way results you have to combine yourself.',
   },
   {
     q: 'How do I know whether a fare is a good deal?',
-    a: 'Every result carries price_insights_low and price_insights_high — Google’s historical band for that route and date — and price_range_in_relation_to_other_periods, Google’s own low | typical | high verdict. Compare the fare to the band, or just branch on the verdict.',
+    a: 'Every result carries price_insights_low and price_insights_high (Google’s historical band for that route and date) and price_range_in_relation_to_other_periods, Google’s own low | typical | high verdict. Compare the fare to the band, or just branch on the verdict.',
   },
   {
     q: 'Can I get hotel prices as seen from another country?',
-    a: 'Yes. Every hotels endpoint accepts proxy_country, a two-letter code that routes the request through a residential proxy in that market. Ask for the same room from us, de, and il and compare — that is rate-parity monitoring in three requests.',
+    a: 'Yes. Every hotels endpoint accepts proxy_country, a two-letter code that routes the request through a residential proxy in that market. Ask for the same room from us, de, and il and compare. That is rate-parity monitoring in three requests.',
   },
   {
     q: 'What are the rate limits?',
-    a: 'Flights: 150 requests/minute on Pro ($10/mo, 2,500 requests), 250/min on Ultra ($25/mo, 10,000), 500/min on Mega ($50/mo, 50,000). Hotels: 25/min on Pro and Ultra, 50/min on Mega. The limits are sized for parallel date scans — a whole month in one burst.',
+    a: 'Flights: 150 requests/minute on Pro ($10/mo, 2,500 requests), 250/min on Ultra ($25/mo, 10,000), 500/min on Mega ($50/mo, 50,000). Hotels: 25/min on Pro and Ultra, 50/min on Mega. The limits are sized for parallel date scans: a whole month in one burst.',
   },
   {
     q: 'Can my AI agent use this without me writing HTTP code?',
-    a: 'Yes — three ways: hosted MCP servers (a URL, no install) for Claude, Cursor, and any MCP client; open-source agent skills for Claude Code and OpenClaw; and an n8n community node. All first-party, all on the same live data.',
+    a: 'Yes, three ways: hosted MCP servers (a URL, no install) for Claude, Cursor, and any MCP client; open-source agent skills for Claude Code and OpenClaw; and an n8n community node. All first-party, all on the same live data.',
   },
 ];
 
 export default function HomePage() {
-  const oneway = FIXTURES.onewayTlvJfk;
+  const oneway = FIXTURES.onewayJfkCun;
   const berCdg = FIXTURES.roundtripBerCdg;
   const degraded = FIXTURES.degradedExample;
   const geo = FIXTURES.hotelGeoRixos;
-  const hunt = FIXTURES.dealHuntSun;
+  const hunt = FIXTURES.dealHuntLgw;
 
   // First-paint payload for the agent demo: the captured 30-search deal hunt.
   const initialChipPayload = {
     mode: 'canned',
     capturedAt: hunt.captured_at,
-    question: 'Find me a cheap warm getaway from TLV in January',
+    question: 'Find me a cheap winter-sun escape from London in January',
     kind: 'deal-hunt',
     request: hunt.request,
     rows: hunt.data,
@@ -117,7 +117,7 @@ export default function HomePage() {
                   </h1>
                   <p className="lede mt-5">
                     Talk to it in plain language. It scans live Google Flights and Booking.com data and tells you whether a fare is
-                    low, typical, or high — using Google&apos;s own numbers.
+                    low, typical, or high, using Google&apos;s own numbers.
                   </p>
                   <div className="mt-7">
                     <CheckBullets
@@ -155,7 +155,7 @@ export default function HomePage() {
                     Live fares, and the <span className="text-signal-500">context to judge them</span>
                   </h1>
                   <p className="lede mt-5">
-                    One-way, round-trip, and hotel pricing as clean JSON — with Google&apos;s own price insights attached to every
+                    One-way, round-trip, and hotel pricing as clean JSON, with Google&apos;s own price insights attached to every
                     result.
                   </p>
                   <div className="mt-7">
@@ -166,7 +166,7 @@ export default function HomePage() {
                           every itinerary
                         </>,
                         <>
-                          {COUNTS.flightsRateLimits} req/min by tier — a whole month scanned in one parallel burst
+                          {COUNTS.flightsRateLimits} req/min by tier: a whole month scanned in one parallel burst
                         </>,
                         <>
                           <code className="font-mono text-[13px] text-signal-400">X-Search-Status</code> headers: empty, partial, and degraded are
@@ -216,7 +216,7 @@ export default function HomePage() {
             <h3 className="text-[17px] font-semibold text-ink-100">Agent builders</h3>
             <p className="mt-2.5 text-[15px] text-ink-400 leading-relaxed">
               Hosted MCP servers and open-source skills. Your agent asks in plain language; the response is small, flat JSON that
-              drops straight into a tool call — with a verdict it can reason about.
+              drops straight into a tool call, with a verdict it can reason about.
             </p>
             <Link href="/ai-agents" className="mt-4 inline-block text-sm text-signal-400 underline underline-offset-4">
               Agent recipes →
@@ -235,7 +235,7 @@ export default function HomePage() {
           <div className="rounded-2xl border rule bg-ink-900/60 p-6">
             <h3 className="text-[17px] font-semibold text-ink-100">Automation &amp; BI teams</h3>
             <p className="mt-2.5 text-[15px] text-ink-400 leading-relaxed">
-              Fare-watch crons in n8n, rate-parity monitoring with per-country hotel pricing, competitive-set tracking — no code
+              Fare-watch crons in n8n, rate-parity monitoring with per-country hotel pricing, competitive-set tracking. No code
               beyond a workflow node if you don&apos;t want it.
             </p>
             <Link href="/integrations/n8n" className="mt-4 inline-block text-sm text-signal-400 underline underline-offset-4">
@@ -253,7 +253,7 @@ export default function HomePage() {
               eyebrow="The flagship field"
               title="Every fare comes with a verdict"
               accent="verdict"
-              lede="Most flight APIs give you a price. This one gives you Google's own historical band for the route and dates — and Google's call on whether today's fare is low, typical, or high."
+              lede="Most flight APIs give you a price. This one gives you Google's own historical band for the route and dates, and Google's call on whether today's fare is low, typical, or high."
             />
             <p className="mt-5 text-[15px] text-ink-400 leading-relaxed">
               That one field turns a fare feed into a buying signal: price alerts that fire on{' '}
@@ -292,7 +292,7 @@ export default function HomePage() {
             <SectionHead
               eyebrow="Failure-mode honesty"
               title='An empty response now means something'
-              lede='Every scraper gets handed pages it cannot read. Most return an empty list anyway — and your product tells a user something false. This API separates "no flights" from "the search failed", on every response.'
+              lede='Every scraper gets handed pages it cannot read. Most return an empty list anyway, and your product tells a user something false. This API separates "no flights" from "the search failed", on every response.'
             />
             <p className="mt-5 text-[15px] text-ink-400 leading-relaxed">
               <code className="font-mono text-[13px] text-signal-400">X-Search-Status</code> reports{' '}
@@ -301,7 +301,7 @@ export default function HomePage() {
               <span className="text-verdict-typical font-mono text-[13px]">partial</span> ·{' '}
               <span className="text-verdict-high font-mono text-[13px]">degraded</span>, and opt-in{' '}
               <code className="font-mono text-[13px] text-signal-400">strict</code> mode turns a degraded search into an HTTP 503.
-              The capture on the right is a real degraded search — and its immediate retry succeeding.
+              The capture on the right is a real degraded search, and its immediate retry succeeding.
             </p>
             <div className="mt-6">
               <Cta href="/flights-api/search-status" variant="ghost">
@@ -334,7 +334,7 @@ x-search-results: 5
             <SectionHead
               eyebrow="Hotels · proxy_country"
               title="The same room does not cost the same everywhere"
-              lede="Booking.com quotes different rates depending on where the visitor browses from. Every hotels endpoint accepts proxy_country — a residential proxy in that market — so rate-parity and geo-pricing monitoring is three requests, not an infrastructure project."
+              lede="Booking.com quotes different rates depending on where the visitor browses from. Every hotels endpoint accepts proxy_country (a residential proxy in that market), so rate-parity and geo-pricing monitoring is three requests, not an infrastructure project."
             />
             <div className="mt-6 flex flex-wrap gap-3">
               <Cta href="/hotels-api/geo-pricing" variant="ghost">
@@ -386,12 +386,12 @@ same hotel, same room, same dates.`}</Code>
             <ul className="mt-5 space-y-2 font-mono text-[13px] text-ink-300">
               <li>
                 <Link href="/flights-api/one-way" className="hover:text-signal-400">
-                  POST /oneway <span className="text-ink-500">— one-way search</span>
+                  POST /oneway <span className="text-ink-500">· one-way search</span>
                 </Link>
               </li>
               <li>
                 <Link href="/flights-api/round-trip" className="hover:text-signal-400">
-                  POST /roundtrip <span className="text-ink-500">— paired itineraries</span>
+                  POST /roundtrip <span className="text-ink-500">· paired itineraries</span>
                 </Link>
               </li>
             </ul>
@@ -409,22 +409,22 @@ same hotel, same room, same dates.`}</Code>
             <ul className="mt-5 space-y-2 font-mono text-[13px] text-ink-300">
               <li>
                 <Link href="/hotels-api/search" className="hover:text-signal-400">
-                  POST /search <span className="text-ink-500">— destination search, {COUNTS.hotelFilters} filters</span>
+                  POST /search <span className="text-ink-500">· destination search, {COUNTS.hotelFilters} filters</span>
                 </Link>
               </li>
               <li>
                 <Link href="/hotels-api/by-name" className="hover:text-signal-400">
-                  POST /hotel_by_name <span className="text-ink-500">— no property IDs needed</span>
+                  POST /hotel_by_name <span className="text-ink-500">· no property IDs needed</span>
                 </Link>
               </li>
               <li>
                 <Link href="/hotels-api/bulk" className="hover:text-signal-400">
-                  POST /hotel <span className="text-ink-500">— every room in one property</span>
+                  POST /hotel <span className="text-ink-500">· every room in one property</span>
                 </Link>
               </li>
               <li>
                 <Link href="/hotels-api/geo-pricing" className="hover:text-signal-400">
-                  proxy_country <span className="text-ink-500">— on every endpoint</span>
+                  proxy_country <span className="text-ink-500">· on every endpoint</span>
                 </Link>
               </li>
             </ul>

@@ -4,7 +4,7 @@ import { CtaBand } from '@/components/bands';
 import { CheckBullets, Container, FaqSection, Feature, Section, SectionHead, type Faq } from '@/components/ui';
 
 export const metadata: Metadata = {
-  title: 'Metasearch — live fares with a booking link on every result',
+  title: 'Metasearch: live fares with a booking link on every result',
   description:
     'Build flight metasearch and comparison features on live Google Flights data: every itinerary ships with a working buy_link, filters that match the Google Flights UI, and an X-Search-Status header so an empty result page is never a silent failure.',
   alternates: { canonical: '/use-cases/metasearch' },
@@ -15,15 +15,15 @@ export const dynamic = 'force-static';
 const faq: Faq[] = [
   {
     q: 'How do users book a flight my site found?',
-    a: 'Every result carries buy_link — a deep link straight into Google Flights for that exact itinerary. You never reconstruct a booking URL or maintain airline-site integrations; the handoff is a link click, and the fare the user lands on is the fare you showed.',
+    a: 'Every result carries buy_link, a deep link straight into Google Flights for that exact itinerary. You never reconstruct a booking URL or maintain airline-site integrations; the handoff is a link click, and the fare the user lands on is the fare you showed.',
   },
   {
     q: 'Are the prices cached or live?',
-    a: 'Live. Every query is scanned against Google Flights at request time — nothing is served from a cache on the API side — so the price you display is the price the traveller will see on click-through. The trade-off is honest: response time tracks route complexity, because a real scan is happening.',
+    a: 'Live. Every query is scanned against Google Flights at request time (nothing is served from a cache on the API side), so the price you display is the price the traveller will see on click-through. The trade-off is honest: response time tracks route complexity, because a real scan is happening.',
   },
   {
     q: 'Can I offer the same filters Google Flights has?',
-    a: 'The main ones, yes: max stops, airline include/exclude lists, departure and arrival time-of-day windows, cabin class, passenger mix, max price, and currency — on round-trips, controllable per leg. Your filter UI maps to request parameters instead of post-filtering a too-small result set.',
+    a: 'The main ones, yes: max stops, airline include/exclude lists, departure and arrival time-of-day windows, cabin class, passenger mix, max price, and currency (on round-trips, controllable per leg). Your filter UI maps to request parameters instead of post-filtering a too-small result set.',
   },
 ];
 
@@ -41,12 +41,12 @@ export default function MetasearchPage() {
         <h1 className="mt-4 text-hero font-semibold max-w-3xl">
           Metasearch with a <span className="text-signal-500">bookable</span> result on every row
         </h1>
-        <p className="lede mt-5 max-w-2xl">Live fares in, ranked results out — and a working Google Flights link on each one.</p>
+        <p className="lede mt-5 max-w-2xl">Live fares in, ranked results out, and a working Google Flights link on each one.</p>
         <p className="mt-6 max-w-3xl text-[15px] text-ink-300 leading-relaxed">
           A comparison site lives or dies on two things: whether the price shown matches the price on click-through, and
           whether the result actually leads somewhere bookable. Stale caches break the first; scraped results with no booking
           path break the second. And when a route genuinely has nothing, most data sources hand you the same empty array they
-          produce when their scrape failed — so your &ldquo;no results&rdquo; page can&apos;t be trusted either.
+          produce when their scrape failed, so your &ldquo;no results&rdquo; page can&apos;t be trusted either.
         </p>
       </Container>
 
@@ -55,7 +55,7 @@ export default function MetasearchPage() {
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           <Feature title="buy_link closes the loop">
             Every itinerary ships with a deep link into Google Flights for that exact flight combination. Click-through lands
-            on the fare you displayed — no URL reconstruction, no affiliate-feed drift.
+            on the fare you displayed: no URL reconstruction, no affiliate-feed drift.
           </Feature>
           <Feature title="Filters match the search UI">
             Stops, airline include/exclude, time-of-day windows per leg, cabin, passenger mix, max price, currency. Your
@@ -63,7 +63,7 @@ export default function MetasearchPage() {
           </Feature>
           <Feature title="X-Search-Status backs the empty page">
             &ldquo;No flights found&rdquo; renders only when the header says empty. A degraded search shows a retry state
-            instead — your results page never presents a failure as an answer.
+            instead: your results page never presents a failure as an answer.
           </Feature>
         </div>
       </Section>
@@ -79,7 +79,7 @@ export default function MetasearchPage() {
               </>,
               <>
                 <strong className="text-ink-100">Sort locally on price_as_number.</strong> Google&apos;s own ordering is not a
-                strict price sort — the listing says so — so exact price order is one local sort on the numeric field.
+                strict price sort (the listing says so), so exact price order is one local sort on the numeric field.
               </>,
               <>
                 <strong className="text-ink-100">Show the verdict as a badge.</strong> Google&apos;s low | typical | high call
@@ -87,7 +87,7 @@ export default function MetasearchPage() {
               </>,
               <>
                 <strong className="text-ink-100">Render round-trips as itineraries.</strong> The round-trip endpoint returns
-                paired legs with a combined total — one result card per itinerary, no leg-matching logic.
+                paired legs with a combined total: one result card per itinerary, no leg-matching logic.
               </>,
               <>
                 <strong className="text-ink-100">Hand off through buy_link.</strong> The book button is the link the API

@@ -62,6 +62,6 @@ export async function POST(req: Request) {
     // Relay only the fields the page needs; never echo the key.
     return NextResponse.json({ status: res.status, valid: data.valid === true, detail: data.error ?? null, usage: data.api_usage ?? null });
   } catch {
-    return NextResponse.json({ error: 'upstream_unreachable', message: 'Could not reach api.flightpowers.com — try again.' }, { status: 502 });
+    return NextResponse.json({ error: 'upstream_unreachable', message: 'Could not reach api.flightpowers.com. Try again.' }, { status: 502 });
   }
 }

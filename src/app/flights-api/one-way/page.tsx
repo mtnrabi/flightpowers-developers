@@ -23,7 +23,7 @@ import { FLIGHT_PLANS } from '@/lib/pricing';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'One-Way Flight Search API — live Google Flights fares as flat JSON',
+  title: 'One-Way Flight Search API: live Google Flights fares as flat JSON',
   description:
     'POST /oneway: a route and a date in, every live Google Flights fare out. Stops, airline, time-window, cabin, and price filters; price_insights band and verdict; a buy_link that reopens the exact itinerary.',
   alternates: { canonical: '/flights-api/one-way' },
@@ -38,7 +38,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Is sort_type "Price" a strict cheapest-first sort?',
-    a: 'No — it reflects Google’s own “Price” ordering, which is not a strict numeric sort. If you need exact price order, sort locally on price_as_number; it is one line and the field exists precisely for that.',
+    a: 'No. It reflects Google’s own “Price” ordering, which is not a strict numeric sort. If you need exact price order, sort locally on price_as_number; it is one line and the field exists precisely for that.',
   },
   {
     q: 'How do I filter by airline or time of day?',
@@ -46,15 +46,15 @@ const faq: Faq[] = [
   },
   {
     q: 'What formats do dates and airports use?',
-    a: 'Requests take YYYY-MM-DD dates and IATA airport codes. Responses return airports as display strings in the form “City (IATA)” — for example “Tel Aviv (TLV)” — so parse accordingly if you store them.',
+    a: 'Requests take YYYY-MM-DD dates and IATA airport codes. Responses return airports as display strings in the form “City (IATA)”, for example “New York (JFK)”, so parse accordingly if you store them.',
   },
   {
     q: 'What does an empty array mean?',
-    a: 'On its own, nothing certain — which is why every response carries an X-Search-Status header. "empty" means Google genuinely has no itineraries for the route and date; "degraded" means the search did not complete and you should retry. Send strict: true if you would rather get an HTTP 503 than a misleading [].',
+    a: 'On its own, nothing certain. That is why every response carries an X-Search-Status header. "empty" means Google genuinely has no itineraries for the route and date; "degraded" means the search did not complete and you should retry. Send strict: true if you would rather get an HTTP 503 than a misleading [].',
   },
   {
     q: 'Can I search business class, or for a family?',
-    a: 'seat_type selects the cabin: 1 for Economy, 3 for Business. passengers is an array of per-passenger codes: 1 adult, 2 child, 3 infant on lap, 4 infant in seat — so [1, 1, 2] is two adults and a child.',
+    a: 'seat_type selects the cabin: 1 for Economy, 3 for Business. passengers is an array of per-passenger codes: 1 adult, 2 child, 3 infant on lap, 4 infant in seat, so [1, 1, 2] is two adults and a child.',
   },
   {
     q: 'Do I pay extra for the price-insights fields?',
@@ -63,7 +63,7 @@ const faq: Faq[] = [
 ];
 
 export default function OneWayPage() {
-  const fx = FIXTURES.onewayTlvJfk;
+  const fx = FIXTURES.onewayJfkCun;
   const rec = fx.data[0]!;
 
   return (
@@ -105,13 +105,13 @@ export default function OneWayPage() {
                 One route, one date, <span className="text-signal-500">every live fare</span>
               </h1>
               <p className="lede mt-5">
-                POST a route and a departure date; get every live Google Flights itinerary back as flat JSON — priced, timed,
+                POST a route and a departure date; get every live Google Flights itinerary back as flat JSON: priced, timed,
                 judged, and linkable.
               </p>
               <div className="mt-7">
                 <CheckBullets
                   items={[
-                    <>Filters matching the real Google Flights UI — stops, carriers, time windows, cabin, passenger mix, max price</>,
+                    <>Filters matching the real Google Flights UI: stops, carriers, time windows, cabin, passenger mix, max price</>,
                     <>
                       Google&apos;s <code className="font-mono text-[13px] text-signal-400">price_insights</code> band and verdict
                       on every result
@@ -150,11 +150,11 @@ export default function OneWayPage() {
         <SectionHead
           eyebrow="The same capture, rendered"
           title="Four live fares, one field access from a UI"
-          lede="The response is flat on purpose — each row below is one array element, no unpacking."
+          lede="The response is flat on purpose. Each row below is one array element, no unpacking."
         />
         <div className="mt-8 max-w-3xl rounded-2xl border rule bg-ink-900/60 p-6">
           <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
-            <p className="font-mono text-[11px] text-ink-500">TLV→JFK · {rec.departure_date}</p>
+            <p className="font-mono text-[11px] text-ink-500">JFK→CUN · {rec.departure_date}</p>
             <CapturedBadge date={fx.captured_at} />
           </div>
           <FlightResults flights={fx.data} />
@@ -165,7 +165,7 @@ export default function OneWayPage() {
         <SectionHead
           eyebrow="Request"
           title="Every request field"
-          lede="Three required fields. Everything else narrows the search — and each optional field maps to a control in the Google Flights UI."
+          lede="Three required fields. Everything else narrows the search, and each optional field maps to a control in the Google Flights UI."
         />
         <div className="mt-8 max-w-3xl">
           <p className="font-mono text-[11px] uppercase tracking-wider text-signal-500">Required</p>
@@ -174,7 +174,7 @@ export default function OneWayPage() {
               The travel date, <code className="field">YYYY-MM-DD</code>.
             </FieldRow>
             <FieldRow name="from_airport" type="string">
-              Origin IATA code — New York is <code className="field">JFK</code>.
+              Origin IATA code. New York is <code className="field">JFK</code>.
             </FieldRow>
             <FieldRow name="to_airport" type="string">
               Destination IATA code.
@@ -184,11 +184,11 @@ export default function OneWayPage() {
           <p className="mt-10 font-mono text-[11px] uppercase tracking-wider text-signal-500">Optional</p>
           <div className="mt-2">
             <FieldRow name="max_stops" type="int">
-              Maximum stops per itinerary — <code className="field">0</code> returns nonstop only.
+              Maximum stops per itinerary: <code className="field">0</code> returns nonstop only.
             </FieldRow>
             <FieldRow name="sort_type" type='"Overall" | "Price" | "Duration"'>
               Default <code className="field">Overall</code>. <code className="field">&quot;Price&quot;</code> reflects
-              Google&apos;s own ordering — see the note below.
+              Google&apos;s own ordering, see the note below.
             </FieldRow>
             <FieldRow name="airline_codes" type="string[]">
               Restrict results to these carriers.
@@ -221,7 +221,7 @@ export default function OneWayPage() {
             </FieldRow>
             <FieldRow name="strict" type="bool">
               Opt-in, default <code className="field">false</code>. A search that did not complete returns HTTP 503 instead of an
-              empty array — the{' '}
+              empty array, the{' '}
               <Link href="/flights-api/search-status" className="text-signal-400 underline underline-offset-4">
                 search-status page
               </Link>{' '}
@@ -250,7 +250,7 @@ export default function OneWayPage() {
         <SectionHead
           eyebrow="Response"
           title="Every response field"
-          lede="Values below in brackets are from the captured TLV→JFK run above — real output, not invented examples."
+          lede="Values below in brackets are from the captured JFK→CUN run above. Real output, not invented examples."
         />
         <div className="mt-8 max-w-3xl">
           <FieldRow name="price / price_as_number" type="string · number">
@@ -258,7 +258,7 @@ export default function OneWayPage() {
             you can sort and compare on.
           </FieldRow>
           <FieldRow name="airline" type="string">
-            Operating carrier — <code className="field">{rec.airline}</code> in the capture, where a pipe joins codeshare
+            Operating carrier: <code className="field">{rec.airline}</code> in the capture, where a pipe joins codeshare
             partners.
           </FieldRow>
           <FieldRow name="duration / duration_seconds" type="string · number">
@@ -269,18 +269,18 @@ export default function OneWayPage() {
             <code className="field">stop_duration_seconds</code>. Empty on nonstop flights, like the captured one.
           </FieldRow>
           <FieldRow name="departure_description / arrival_description" type="string">
-            Local times in plain text — <code className="field">&quot;{rec.departure_description}&quot;</code> — ready to show a
+            Local times in plain text, like <code className="field">&quot;{rec.departure_description}&quot;</code>, ready to show a
             user or hand to an agent without timezone math.
           </FieldRow>
           <FieldRow name="buy_link" type="string">
-            A Google Flights deep link that reopens this exact itinerary — carrier, flight, date — rather than a fresh search.
+            A Google Flights deep link that reopens this exact itinerary (carrier, flight, date) rather than a fresh search.
           </FieldRow>
           <FieldRow name="price_insights_low / price_insights_high" type="number | null">
-            Google&apos;s historical price band for the route and dates — ${rec.price_insights_low}–${rec.price_insights_high} in
+            Google&apos;s historical price band for the route and dates: ${rec.price_insights_low} to ${rec.price_insights_high} in
             the capture. Null when Google doesn&apos;t publish a band.
           </FieldRow>
           <FieldRow name="price_range_in_relation_to_other_periods" type='"low" | "typical" | "high" | null'>
-            Google&apos;s verdict on the current fare against that band — <code className="field">&quot;{rec.price_range_in_relation_to_other_periods}&quot;</code>{' '}
+            Google&apos;s verdict on the current fare against that band: <code className="field">&quot;{rec.price_range_in_relation_to_other_periods}&quot;</code>{' '}
             in the capture. The{' '}
             <Link href="/flights-api/price-insights" className="text-signal-400 underline underline-offset-4">
               price-insights page
@@ -322,7 +322,7 @@ export default function OneWayPage() {
         <CtaBand
           medium="endpoint"
           title="A route and a date is all it takes"
-          body="Live fares with Google's price band, a verdict, and a booking link — from your first request."
+          body="Live fares with Google's price band, a verdict, and a booking link, from your first request."
         />
       </Section>
     </>

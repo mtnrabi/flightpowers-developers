@@ -23,7 +23,7 @@ import { FLIGHT_PLANS } from '@/lib/pricing';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Flight Price Insights API — Google’s price band & low/typical/high verdict',
+  title: 'Flight Price Insights API: Google’s price band & low/typical/high verdict',
   description:
     'Every fare returns with price_insights_low, price_insights_high, and Google’s own low | typical | high verdict for the route and dates. Build price alerts and “book now” recommendations without maintaining your own fare history.',
   alternates: { canonical: '/flights-api/price-insights' },
@@ -34,15 +34,15 @@ export const dynamic = 'force-static';
 const faq: Faq[] = [
   {
     q: 'Where do the price insights come from?',
-    a: 'From Google Flights itself. Google computes a historical price range for a route and date window and, when available, a verdict on how the current fare compares. The API surfaces those exact values as price_insights_low, price_insights_high, and price_range_in_relation_to_other_periods — nothing is modelled on our side.',
+    a: 'From Google Flights itself. Google computes a historical price range for a route and date window and, when available, a verdict on how the current fare compares. The API surfaces those exact values as price_insights_low, price_insights_high, and price_range_in_relation_to_other_periods. Nothing is modelled on our side.',
   },
   {
     q: 'Is the verdict on every result?',
-    a: 'No — it appears when Google publishes it for that route and date, which is most well-travelled routes. When Google doesn’t provide a band, the fields are null and your code should treat the fare as unjudged rather than bad. The captured example on this page shows real values.',
+    a: 'No. It appears when Google publishes it for that route and date, which is most well-travelled routes. When Google doesn’t provide a band, the fields are null and your code should treat the fare as unjudged rather than bad. The captured example on this page shows real values.',
   },
   {
     q: 'What values can the verdict take?',
-    a: 'price_range_in_relation_to_other_periods is one of "low", "typical", or "high" — Google’s own wording. "low" means the current fare sits below the usual range for that route and dates: the buy signal.',
+    a: 'price_range_in_relation_to_other_periods is one of "low", "typical", or "high", in Google’s own wording. "low" means the current fare sits below the usual range for that route and dates: the buy signal.',
   },
   {
     q: 'How do I build a price alert with this?',
@@ -50,7 +50,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Do competing flight APIs return this?',
-    a: 'Check their docs for a price-insights or price-band field — most Google Flights wrappers return fares only, which leaves “is this a good price?” unanswerable without your own history. It is the main reason this API exists as a separate product. Our comparison pages quote competitors’ own documentation, dated.',
+    a: 'Check their docs for a price-insights or price-band field. Most Google Flights wrappers return fares only, which leaves “is this a good price?” unanswerable without your own history. It is the main reason this API exists as a separate product. Our comparison pages quote competitors’ own documentation, dated.',
   },
   {
     q: 'Does it cost extra?',
@@ -59,7 +59,7 @@ const faq: Faq[] = [
 ];
 
 export default function PriceInsightsPage() {
-  const fx = FIXTURES.onewayTlvJfk;
+  const fx = FIXTURES.onewayJfkCun;
   const rec = fx.data[0]!;
 
   return (
@@ -107,14 +107,14 @@ export default function PriceInsightsPage() {
                 <CheckBullets
                   items={[
                     <>
-                      <code className="font-mono text-[13px] text-signal-400">price_insights_low / high</code> — Google&apos;s historical
+                      <code className="font-mono text-[13px] text-signal-400">price_insights_low / high</code>: Google&apos;s historical
                       band for the route &amp; dates
                     </>,
                     <>
-                      <code className="font-mono text-[13px] text-signal-400">price_range_in_relation_to_other_periods</code> — the
+                      <code className="font-mono text-[13px] text-signal-400">price_range_in_relation_to_other_periods</code>: the
                       verdict, straight from Google
                     </>,
-                    <>On every plan, on every search — including round-trips and the free tier</>,
+                    <>On every plan, on every search, including round-trips and the free tier</>,
                   ]}
                 />
               </div>
@@ -145,7 +145,7 @@ export default function PriceInsightsPage() {
         <SectionHead
           eyebrow="The three fields"
           title="What the response tells you"
-          lede="Captured from a real search — TLV→JFK, October 13 — on the date stamped above."
+          lede="Captured from a real search (JFK→Cancún, January 1) on the date stamped above."
         />
         <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:items-start">
           <div>
@@ -157,7 +157,7 @@ export default function PriceInsightsPage() {
               route; over the high end, objectively expensive.
             </FieldRow>
             <FieldRow name="price_range_in_relation_to_other_periods" type='"low" | "typical" | "high" | null'>
-              Google&apos;s own comparison of the current fare against that band — the field your alerting, ranking, and
+              Google&apos;s own comparison of the current fare against that band: the field your alerting, ranking, and
               &quot;book now&quot; logic can branch on directly. In the capture: <VerdictBadge verdict={rec.price_range_in_relation_to_other_periods} />
             </FieldRow>
           </div>
@@ -166,11 +166,11 @@ export default function PriceInsightsPage() {
               low={rec.price_insights_low!}
               high={rec.price_insights_high!}
               price={rec.price_as_number}
-              label={`The captured fare (${rec.price}) on Google's band for TLV→JFK`}
+              label={`The captured fare (${rec.price}) on Google's band for JFK→CUN`}
             />
             <p className="mt-5 text-[14px] text-ink-400 leading-relaxed">
               This is the whole feature in one picture: the band says what the route usually costs, the dot says what it costs right
-              now. Rendering this — or just reading the verdict — is one field access.
+              now. Rendering this, or just reading the verdict, is one field access.
             </p>
           </div>
         </div>
@@ -185,11 +185,11 @@ export default function PriceInsightsPage() {
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
           <div>
             <h3 className="text-[16px] font-semibold text-ink-100 mb-3">A price alert without a database</h3>
-            <Code label="python · poll & alert">{`fares = search("TLV", "LHR", "2026-12-10")
+            <Code label="python · poll & alert">{`fares = search("JFK", "LHR", "2026-12-10")
 best = min(fares, key=lambda f: f["price_as_number"])
 
 if best["price_range_in_relation_to_other_periods"] == "low":
-    alert(f"TLV→LHR is LOW: {best['price']}",
+    alert(f"JFK→LHR is LOW: {best['price']}",
           link=best["buy_link"])`}</Code>
           </div>
           <div>
@@ -201,8 +201,8 @@ if best["price_range_in_relation_to_other_periods"] == "low":
   "price_range_in_relation_to_other_periods":
       "${rec.price_range_in_relation_to_other_periods}"
 }
-// "That fare is ${rec.price_range_in_relation_to_other_periods} for this route —
-//  the usual range is $${rec.price_insights_low}–$${rec.price_insights_high}."`}</Code>
+// "That fare is ${rec.price_range_in_relation_to_other_periods} for this route.
+//  The usual range is $${rec.price_insights_low} to $${rec.price_insights_high}."`}</Code>
           </div>
           <div>
             <h3 className="text-[16px] font-semibold text-ink-100 mb-3">Ranking results by value</h3>

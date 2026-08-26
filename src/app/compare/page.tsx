@@ -5,7 +5,7 @@ import { Breadcrumbs, Container, JsonLd, Section, SectionHead } from '@/componen
 import { SITE } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Compare — honest comparisons against the alternatives',
+  title: 'Compare: honest comparisons against the alternatives',
   description:
     'FlightPowers against SerpApi, Duffel, Amadeus Self-Service and the RapidAPI field. Competitor facts are quoted from their own live pages with retrieval dates, and where they are better we say so.',
   alternates: { canonical: '/compare' },
@@ -17,25 +17,25 @@ const PAGES = [
   {
     href: '/compare/serpapi',
     title: 'vs SerpApi',
-    sub: 'The general-purpose Google scraping platform against a flights specialist. Cost per search at every tier, the two-request round-trip flow, and the rows SerpApi wins — price history, multi-city, the legal shield.',
+    sub: 'The general-purpose Google scraping platform against a flights specialist. Cost per search at every tier, the two-request round-trip flow, and the rows SerpApi wins: price history, multi-city, the legal shield.',
     stamp: 'competitor data retrieved 2026-08-24',
   },
   {
     href: '/compare/duffel',
     title: 'vs Duffel',
-    sub: 'A booking platform against a data API — they can issue a real ticket and we cannot. What their order-based pricing means for non-booking workloads, and when you should simply use Duffel.',
+    sub: 'A booking platform against a data API: they can issue a real ticket and we cannot. What their order-based pricing means for non-booking workloads, and when you should simply use Duffel.',
     stamp: 'competitor data retrieved 2026-08-24',
   },
   {
     href: '/compare/amadeus',
     title: 'vs Amadeus Self-Service',
-    sub: 'The Self-Service portal and sandbox are no longer reachable — verifiable with four commands, all shown. What we replace for Self-Service users, the parameter mapping, and what we honestly do not replace.',
+    sub: 'The Self-Service portal and sandbox are no longer reachable, verifiable with four commands, all shown. What we replace for Self-Service users, the parameter mapping, and what we honestly do not replace.',
     stamp: 'observed state retrieved 2026-08-24',
   },
   {
     href: '/guides/best-flight-data-apis-2026',
     title: 'Best flight data APIs on RapidAPI, 2026',
-    sub: 'The listicle, with disclosed bias — it starts with our own API and says so. Includes the finding that Air Scraper is cheaper per request than we are, and when that should decide it.',
+    sub: 'The listicle, with disclosed bias: it starts with our own API and says so. Includes the finding that Air Scraper is cheaper per request than we are, and when that should decide it.',
     stamp: 'competitor data retrieved 2026-08-24',
   },
 ];
@@ -68,7 +68,7 @@ export default function CompareIndexPage() {
         </h1>
         <p className="lede mt-5 max-w-2xl">
           Every competitor fact on these pages is quoted from the competitor’s own live pages, with the retrieval date stamped on the
-          page. Negatives are scoped to what we actually checked — and where the other product is better, the page says so, because a
+          page. Negatives are scoped to what we actually checked, and where the other product is better, the page says so, because a
           comparison you can’t trust downward you can’t trust upward either.
         </p>
       </Container>

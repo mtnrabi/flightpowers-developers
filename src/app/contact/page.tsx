@@ -4,9 +4,9 @@ import { Container, JsonLd, Section, SectionHead } from '@/components/ui';
 import { LINKS, SITE } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Contact — message the developer directly',
+  title: 'Contact: message the developer directly',
   description:
-    'No support team, no ticket queue. Messages on the RapidAPI listings and issues on the GitHub skills repo land directly with the developer who runs FlightPowers — and get answered.',
+    'No support team, no ticket queue. Messages on the RapidAPI listings and issues on the GitHub skills repo land directly with the developer who runs FlightPowers, and get answered.',
   alternates: { canonical: '/contact' },
 };
 
@@ -14,19 +14,19 @@ export const dynamic = 'force-static';
 
 const channels: { label: string; sub: string; href: string; note: string }[] = [
   {
-    label: 'Flights API — listing discussions',
+    label: 'Flights API: listing discussions',
     sub: 'rapidapi.com · google-flights-live-api',
     href: `${LINKS.rapidapiFlights}/discussions`,
-    note: 'Questions, feature requests, and bug reports about the Google Flights Live API. Subscription and billing questions belong here too — billing runs on RapidAPI.',
+    note: 'Questions, feature requests, and bug reports about the Google Flights Live API. Subscription and billing questions belong here too: billing runs on RapidAPI.',
   },
   {
-    label: 'Hotels API — listing discussions',
+    label: 'Hotels API: listing discussions',
     sub: 'rapidapi.com · booking-live-api',
     href: `${LINKS.rapidapiHotels}/discussions`,
     note: 'Everything about the Booking Live API: search, by-name lookups, proxy_country behaviour, filters.',
   },
   {
-    label: 'GitHub issues — travel-agent-skills',
+    label: 'GitHub issues: travel-agent-skills',
     sub: 'github.com/mtnrabi/travel-agent-skills',
     href: `${LINKS.skills}/issues`,
     note: 'For the open-source skills and anything MCP-related: setup problems, tool-call quirks, ideas for new skills.',
@@ -52,7 +52,7 @@ export default function ContactPage() {
         </h1>
         <p className="lede mt-5 max-w-2xl">
           FlightPowers is run by one developer, so there&apos;s no routing to get through. Pick the channel that matches what
-          you&apos;re writing about — each one is an inbox I actually read, and the listings&apos; sign-off is a promise:
+          you&apos;re writing about. Each one is an inbox I actually read, and the listings&apos; sign-off is a promise:
           &ldquo;Message me. I keep improving this API and I answer.&rdquo;
         </p>
       </Container>
@@ -76,7 +76,7 @@ export default function ContactPage() {
             Include three things: the <strong className="text-ink-100">route</strong>, the{' '}
             <strong className="text-ink-100">date</strong>, and the{' '}
             <code className="font-mono text-[13px] text-signal-400">X-Search-Status</code> value from the response. That header
-            exists to make bug reports precise — it already says whether your search came back{' '}
+            exists to make bug reports precise: it already says whether your search came back{' '}
             <span className="font-mono text-[13px]">ok</span>, <span className="font-mono text-[13px]">empty</span>,{' '}
             <span className="font-mono text-[13px]">partial</span>, or <span className="font-mono text-[13px]">degraded</span>,
             which is usually most of the diagnosis.

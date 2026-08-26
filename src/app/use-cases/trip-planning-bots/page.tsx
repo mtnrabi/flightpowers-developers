@@ -4,7 +4,7 @@ import { CtaBand } from '@/components/bands';
 import { CheckBullets, Container, FaqSection, Feature, Section, SectionHead, type Faq } from '@/components/ui';
 
 export const metadata: Metadata = {
-  title: 'Trip-Planning Bots — flight answers a chatbot can stand behind',
+  title: 'Trip-Planning Bots: flight answers a chatbot can stand behind',
   description:
     'Build Telegram, Discord, Slack, or n8n travel bots on live data: paired round-trip itineraries in one call, a low | typical | high verdict to back every recommendation, and honest “no flights” answers backed by X-Search-Status.',
   alternates: { canonical: '/use-cases/trip-planning-bots' },
@@ -19,11 +19,11 @@ const faq: Faq[] = [
   },
   {
     q: 'Can a no-code bot use this?',
-    a: 'Yes — there is a first-party n8n community node (n8n-nodes-flightpowers on npm), so an n8n workflow can take a chat trigger, run a flight or hotel search, and post the reply without custom HTTP code. Agent frameworks connect through the hosted MCP servers instead.',
+    a: 'Yes: there is a first-party n8n community node (n8n-nodes-flightpowers on npm), so an n8n workflow can take a chat trigger, run a flight or hotel search, and post the reply without custom HTTP code. Agent frameworks connect through the hosted MCP servers instead.',
   },
   {
     q: 'What should the bot say when the search comes back empty?',
-    a: 'Whatever the X-Search-Status header justifies. “empty” means Google genuinely has no itineraries — the bot can say “no flights that day” with confidence. “degraded” means the search didn’t complete; the honest reply is “let me retry,” and opt-in strict mode can turn that case into a hard error your bot code catches.',
+    a: 'Whatever the X-Search-Status header justifies. “empty” means Google genuinely has no itineraries: the bot can say “no flights that day” with confidence. “degraded” means the search didn’t complete; the honest reply is “let me retry,” and opt-in strict mode can turn that case into a hard error your bot code catches.',
   },
 ];
 
@@ -41,11 +41,11 @@ export default function TripPlanningBotsPage() {
         <h1 className="mt-4 text-hero font-semibold max-w-3xl">
           A trip bot users can <span className="text-signal-500">trust</span> by the third answer
         </h1>
-        <p className="lede mt-5 max-w-2xl">Chat in, live itineraries out — with the price context that turns a reply into a recommendation.</p>
+        <p className="lede mt-5 max-w-2xl">Chat in, live itineraries out, with the price context that turns a reply into a recommendation.</p>
         <p className="mt-6 max-w-3xl text-[15px] text-ink-300 leading-relaxed">
           A travel bot gets exactly one chance: the first time it quotes a fare that doesn&apos;t exist, or says &ldquo;no
           flights&rdquo; when there were plenty, the user stops asking. Behind the chat window the hard parts are all data
-          problems — round-trip quotes that need two searches awkwardly combined, prices with nothing to justify a
+          problems: round-trip quotes that need two searches awkwardly combined, prices with nothing to justify a
           &ldquo;that&apos;s a good deal&rdquo;, and empty responses that could mean anything. The bot&apos;s tone can be
           casual; its data can&apos;t be.
         </p>
@@ -55,12 +55,12 @@ export default function TripPlanningBotsPage() {
         <SectionHead eyebrow="How FlightPowers helps" title="Chat-ready responses from a live source" />
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           <Feature title="Round-trips arrive paired">
-            One call to /roundtrip returns complete itineraries — total_price, both legs, layovers — so &ldquo;TLV to Rome,
+            One call to /roundtrip returns complete itineraries (total_price, both legs, layovers), so &ldquo;JFK to Rome,
             out Friday back Sunday&rdquo; is one request and one message, not a stitching job.
           </Feature>
           <Feature title="The verdict writes the recommendation">
             Google&apos;s low | typical | high call plus the price band gives the bot a defensible sentence: &ldquo;$517 is
-            typical for this route — the usual range is $460–$610.&rdquo; No invented judgment.
+            typical for this route: the usual range is $460–$610.&rdquo; No invented judgment.
           </Feature>
           <Feature title="X-Search-Status scripts the hard replies">
             The header tells the bot which of its three honest answers applies: here are your flights, there are genuinely
@@ -76,16 +76,16 @@ export default function TripPlanningBotsPage() {
             items={[
               <>
                 <strong className="text-ink-100">Parse intent to parameters.</strong> Route, dates, and constraints
-                (&ldquo;nonstop&rdquo;, &ldquo;under $400&rdquo;, &ldquo;morning flight&rdquo;) map to real request fields —
+                (&ldquo;nonstop&rdquo;, &ldquo;under $400&rdquo;, &ldquo;morning flight&rdquo;) map to real request fields:
                 max_stops, max_price, departure-time windows.
               </>,
               <>
                 <strong className="text-ink-100">Search live at ask time.</strong> Every query is scanned at request time, so
-                the quoted fare is current — the bot never apologises for a stale cache.
+                the quoted fare is current. The bot never apologises for a stale cache.
               </>,
               <>
                 <strong className="text-ink-100">Compose from plain-text fields.</strong> departure_description and
-                arrival_description are already human-readable — the reply template is mostly field insertion.
+                arrival_description are already human-readable: the reply template is mostly field insertion.
               </>,
               <>
                 <strong className="text-ink-100">Recommend with the band.</strong> Lead with the cheapest fare, attach the
@@ -127,7 +127,7 @@ export default function TripPlanningBotsPage() {
           medium="use-case"
           api="flights"
           title="Give your bot answers worth repeating"
-          body="Live itineraries, paired round-trips, and a verdict on every fare — one POST away from your chat handler."
+          body="Live itineraries, paired round-trips, and a verdict on every fare, one POST away from your chat handler."
         />
       </Section>
     </>

@@ -19,7 +19,7 @@ import { FLIGHT_PLANS, HOTEL_PLANS } from '@/lib/pricing';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 /**
- * The {agent} × {task} recipe matrix — ~42 statically generated pages, all
+ * The {agent} × {task} recipe matrix: ~42 statically generated pages, all
  * rendered from the verified dataset in src/lib/matrix.ts. Docs published as
  * landing pages: the CTA is the copyable config, not a signup.
  */
@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   if (!pair) return {};
   const { agent, task } = pair;
   return {
-    title: `${task.name} with ${agent.name} — live ${apiName(task)} data`,
+    title: `${task.name} with ${agent.name}: live ${apiName(task)} data`,
     description: `Connect ${agent.name} to live ${apiName(task)} data and run a ${task.name.toLowerCase()}: the exact config, the prompt, the call it makes, and the response fields your logic reads.`,
     alternates: { canonical: `/integrations/${agent.slug}/${task.slug}` },
   };
@@ -58,18 +58,18 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
 /**
  * One-line meanings for every response field the matrix references, keyed per
  * API because `price` is a display string on flights and a number on hotels.
- * All meanings derive from the listing READMEs — nothing modelled.
+ * All meanings derive from the listing READMEs. Nothing modelled.
  */
 const FLIGHT_FIELDS: Record<string, { type: string; meaning: string }> = {
   price: {
     type: 'string',
     meaning:
-      'The fare as Google Flights displays it — “$56”. The numeric twin price_as_number rides alongside for sorting and arithmetic.',
+      'The fare as Google Flights displays it: “$56”. The numeric twin price_as_number rides alongside for sorting and arithmetic.',
   },
   price_insights_low: {
     type: 'number | null',
     meaning:
-      'The bottom of Google’s historical price band for this route and dates. Null when Google doesn’t publish a band — treat the fare as unjudged, not bad.',
+      'The bottom of Google’s historical price band for this route and dates. Null when Google doesn’t publish a band: treat the fare as unjudged, not bad.',
   },
   price_insights_high: {
     type: 'number | null',
@@ -78,7 +78,7 @@ const FLIGHT_FIELDS: Record<string, { type: string; meaning: string }> = {
   price_range_in_relation_to_other_periods: {
     type: '"low" | "typical" | "high" | null',
     meaning:
-      'Google’s verdict on the current fare against that band — the single field alerting, ranking, and “book now” logic branch on.',
+      'Google’s verdict on the current fare against that band, the single field alerting, ranking, and “book now” logic branch on.',
   },
   buy_link: {
     type: 'string (URL)',
@@ -87,11 +87,11 @@ const FLIGHT_FIELDS: Record<string, { type: string; meaning: string }> = {
   total_price: {
     type: 'string',
     meaning:
-      'The combined price of the paired round-trip itinerary — one number for both legs, because they were searched together. total_price_as_number is the integer.',
+      'The combined price of the paired round-trip itinerary: one number for both legs, because they were searched together. total_price_as_number is the integer.',
   },
   total_duration_seconds: {
     type: 'number',
-    meaning: 'Travel time across both legs, in seconds — sortable without parsing a display string.',
+    meaning: 'Travel time across both legs, in seconds, sortable without parsing a display string.',
   },
   departure_flight_airline: {
     type: 'string',
@@ -99,11 +99,11 @@ const FLIGHT_FIELDS: Record<string, { type: string; meaning: string }> = {
   },
   return_flight_airline: {
     type: 'string',
-    meaning: 'Operating carrier on the return leg — paired to the same itinerary, not cross-joined.',
+    meaning: 'Operating carrier on the return leg, paired to the same itinerary, not cross-joined.',
   },
   departure_date: {
     type: 'string (YYYY-MM-DD)',
-    meaning: 'The date this fare applies to — the axis a date-range scan pivots on.',
+    meaning: 'The date this fare applies to, the axis a date-range scan pivots on.',
   },
 };
 
@@ -111,20 +111,20 @@ const HOTEL_FIELDS: Record<string, { type: string; meaning: string }> = {
   name: { type: 'string', meaning: 'The property name as listed on Booking.com.' },
   price_string: {
     type: 'string',
-    meaning: 'The total rate for the stay as Booking.com displays it — “US$2,434”.',
+    meaning: 'The total rate for the stay as Booking.com displays it: “US$2,434”.',
   },
   price: {
     type: 'number',
     meaning: 'The same rate as a plain number, for comparing quotes across markets or dates.',
   },
   review_score: { type: 'number', meaning: 'Booking.com guest score out of 10.' },
-  review_count: { type: 'number', meaning: 'How many reviews the score rests on — a 9.1 from 12 reviews is not a 9.1 from 1,200.' },
-  room_type: { type: 'string', meaning: 'Which room the rate belongs to — compare like with like across markets.' },
+  review_count: { type: 'number', meaning: 'How many reviews the score rests on: a 9.1 from 12 reviews is not a 9.1 from 1,200.' },
+  room_type: { type: 'string', meaning: 'Which room the rate belongs to: compare like with like across markets.' },
   link: { type: 'string (URL)', meaning: 'A working Booking.com link to the property.' },
   available: {
     type: 'boolean',
     meaning:
-      'False means sold out for the dates — the response keeps the same shape with nulls, so parsing never branches on an error format.',
+      'False means sold out for the dates: the response keeps the same shape with nulls, so parsing never branches on an error format.',
   },
 };
 
@@ -137,14 +137,14 @@ function callFraming(agent: AgentDef): { heading: string; lede: string; codeLabe
   if (agent.connectKind === 'n8n-node') {
     return {
       heading: 'What the node sends',
-      lede: 'The node issues this request against the same live API — real parameter names, exactly as the endpoint takes them.',
+      lede: 'The node issues this request against the same live API: real parameter names, exactly as the endpoint takes them.',
       codeLabel: 'request the node issues',
     };
   }
   if (agent.connectKind === 'skill') {
     return {
       heading: 'What the skill calls',
-      lede: 'The skill calls the same API with your key — this is the call behind the answer, with real parameter names.',
+      lede: 'The skill calls the same API with your key. This is the call behind the answer, with real parameter names.',
       codeLabel: 'the call the skill makes',
     };
   }
@@ -170,14 +170,14 @@ function faqFor(agent: AgentDef, task: TaskDef): Faq[] {
 
   const server =
     agent.connectKind === 'n8n-node'
-      ? 'Only your n8n instance — cloud or self-hosted. The node calls the API directly from wherever n8n runs; there is nothing of ours to deploy.'
+      ? 'Only your n8n instance, cloud or self-hosted. The node calls the API directly from wherever n8n runs; there is nothing of ours to deploy.'
       : agent.connectKind === 'skill'
         ? `No. The skill runs inside ${agent.name} and calls the hosted API over the network. Nothing to deploy, nothing to keep warm.`
-        : `No. The MCP servers are hosted at flights.flightpowers.com and hotels.flightpowers.com — you add a URL to ${agent.name}, not a deployment.`;
+        : `No. The MCP servers are hosted at flights.flightpowers.com and hotels.flightpowers.com: you add a URL to ${agent.name}, not a deployment.`;
 
-  let cost = `The ${listing}'s free tier is ${free.quota} requests/month with a hard cap — enough to verify your key works, not to evaluate. The PRO plan is $${pro.priceMonthly}/month for ${pro.quota.toLocaleString('en-US')} requests, and every plan includes every endpoint.`;
+  let cost = `The ${listing}'s free tier is ${free.quota} requests/month with a hard cap: enough to verify your key works, not to evaluate. The PRO plan is $${pro.priceMonthly}/month for ${pro.quota.toLocaleString('en-US')} requests, and every plan includes every endpoint.`;
   if (task.slug === 'fare-alert-cron') {
-    cost += ' A single daily check is about 30 requests a month — past the free tier’s 10, comfortably inside PRO.';
+    cost += ' A single daily check is about 30 requests a month: past the free tier’s 10, comfortably inside PRO.';
   }
   if (task.slug === 'cheapest-date-scan') {
     cost += ' Budget one request per date scanned: a 30-day sweep meters as 30 requests.';
@@ -204,7 +204,7 @@ export default async function MatrixPage({ params }: { params: Promise<Params> }
   const promptLede =
     agent.connectKind === 'n8n-node'
       ? 'The job in plain words. In n8n you express it as the node configuration below instead of a prompt.'
-      : 'Verbatim — paste it, or anything shaped like it. The agent maps it to the call below.';
+      : 'Verbatim: paste it, or anything shaped like it. The agent maps it to the call below.';
 
   return (
     <>
@@ -261,7 +261,7 @@ export default async function MatrixPage({ params }: { params: Promise<Params> }
             {agent.connectSnippet}
           </Code>
           <p className="mt-3 font-mono text-[12px] text-ink-500">
-            Bring your own RapidAPI key — every request is billed to your own subscription, never ours.
+            Bring your own RapidAPI key: every request is billed to your own subscription, never ours.
           </p>
         </div>
       </Section>

@@ -21,9 +21,9 @@ import { HOTEL_PLANS } from '@/lib/pricing';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Hotel by Name API — availability and price without property IDs',
+  title: 'Hotel by Name API: availability and price without property IDs',
   description:
-    'POST /hotel_by_name takes the hotel name a human would type — name resolution included — and returns availability, live price, review score and a booking link. Sold out and not found return the same shape with available: false, so parsing never branches.',
+    'POST /hotel_by_name takes the hotel name a human would type (name resolution included) and returns availability, live price, review score and a booking link. Sold out and not found return the same shape with available: false, so parsing never branches.',
   alternates: { canonical: '/hotels-api/by-name' },
 };
 
@@ -47,23 +47,23 @@ const RESPONSE_SHAPE = `{
 const faq: Faq[] = [
   {
     q: 'What if two hotels share a name?',
-    a: 'Pass area — a city or region like "Budapest" or "Antalya". The search query becomes "<hotel_name>, <area>" while name matching still uses only hotel_name, so the area steers the search without polluting the match.',
+    a: 'Pass area, a city or region like "Budapest" or "Antalya". The search query becomes "<hotel_name>, <area>" while name matching still uses only hotel_name, so the area steers the search without polluting the match.',
   },
   {
     q: 'What comes back when the hotel is sold out or not found?',
-    a: 'The same response shape, with "available": false and nulls in the price fields. There is no separate error format to branch on — check one boolean and move on.',
+    a: 'The same response shape, with "available": false and nulls in the price fields. There is no separate error format to branch on: check one boolean and move on.',
   },
   {
     q: 'Do I ever need a property ID?',
-    a: 'Not on this endpoint — resolution from name to property happens inside the call. If you check the same property repeatedly, the ID-based path is faster to build on: POST /resolve turns the name into a Booking.com ID once, then POST /hotel returns the full room list directly. The competitive-set tracking page covers that pattern.',
+    a: 'Not on this endpoint: resolution from name to property happens inside the call. If you check the same property repeatedly, the ID-based path is faster to build on: POST /resolve turns the name into a Booking.com ID once, then POST /hotel returns the full room list directly. The competitive-set tracking page covers that pattern.',
   },
   {
     q: 'Can I price the same hotel from another market?',
-    a: 'Yes — proxy_country works here like on every endpoint. The captured example on this page was one of three requests that differed only in proxy_country; the geo-pricing page shows the full comparison.',
+    a: 'Yes. proxy_country works here like on every endpoint. The captured example on this page was one of three requests that differed only in proxy_country; the geo-pricing page shows the full comparison.',
   },
   {
     q: 'Is the price per night?',
-    a: 'No — price is the total for the stay, and the response carries nights so a nightly rate is one division away.',
+    a: 'No: price is the total for the stay, and the response carries nights so a nightly rate is one division away.',
   },
 ];
 
@@ -124,16 +124,16 @@ export default function HotelByNamePage() {
                 <CheckBullets
                   items={[
                     <>
-                      Send <code className="font-mono text-[13px] text-signal-400">hotel_name</code> + dates — availability, live
+                      Send <code className="font-mono text-[13px] text-signal-400">hotel_name</code> + dates: availability, live
                       price and a booking link come back
                     </>,
                     <>
-                      <code className="font-mono text-[13px] text-signal-400">area</code> disambiguates generic names — the match
+                      <code className="font-mono text-[13px] text-signal-400">area</code> disambiguates generic names: the match
                       still runs on the name alone
                     </>,
                     <>
                       Sold out and not found return the same shape with{' '}
-                      <code className="font-mono text-[13px] text-signal-400">available: false</code> — parsing never branches
+                      <code className="font-mono text-[13px] text-signal-400">available: false</code>, so parsing never branches
                     </>,
                   ]}
                 />
@@ -165,14 +165,14 @@ export default function HotelByNamePage() {
         <SectionHead
           eyebrow="Request fields"
           title="Name and dates in, one flat object out"
-          lede="The captured run above sent “Kremlin Palace” with area “Antalya” — a generic name a plain search could mismatch — and got the property back with its live rate for the stay."
+          lede="The captured run above sent “Kremlin Palace” with area “Antalya” (a generic name a plain search could mismatch) and got the property back with its live rate for the stay."
         />
         <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:items-start">
           <div>
             <p className="font-mono text-[11px] uppercase tracking-wider text-signal-500">Required</p>
             <div className="mt-3">
               <FieldRow name="hotel_name" type="string">
-                Free text — the name a person would type. Matching runs on this field only.
+                Free text: the name a person would type. Matching runs on this field only.
               </FieldRow>
               <FieldRow name="checkin_date / checkout_date" type="string">
                 <code className="field">YYYY-MM-DD</code>.
@@ -192,7 +192,7 @@ export default function HotelByNamePage() {
                 Defaults to <code className="field">USD</code>.
               </FieldRow>
               <FieldRow name="proxy_country" type="string">
-                Price the property from another market —{' '}
+                Price the property from another market:{' '}
                 <Link href="/hotels-api/geo-pricing" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
                   the geo-pricing page
                 </Link>{' '}
@@ -207,7 +207,7 @@ export default function HotelByNamePage() {
             <h3 className="text-[16px] font-semibold text-ink-100 mb-3">One shape, always</h3>
             <Code label="the response shape">{RESPONSE_SHAPE}</Code>
             <p className="mt-3 text-[14px] text-ink-400 leading-relaxed">
-              Sold out and not-found return this same shape with <code className="field">available: false</code> and nulls — never a
+              Sold out and not-found return this same shape with <code className="field">available: false</code> and nulls, never a
               different error format. Your integration checks one boolean; there is no second code path to test.
             </p>
           </div>
@@ -222,11 +222,11 @@ export default function HotelByNamePage() {
         />
         <div className="mt-8 max-w-3xl">
           <FieldRow name="POST /resolve">
-            Turns a hotel name into its Booking.com ID — for example{' '}
+            Turns a hotel name into its Booking.com ID, for example{' '}
             <code className="field">cy/four-seasons-limassol</code>. Call it once per property and cache the ID.
           </FieldRow>
           <FieldRow name="POST /hotel">
-            Takes that ID and returns the full room-by-room list — room type, meal plan, guest capacity and price for each —
+            Takes that ID and returns the full room-by-room list (room type, meal plan, guest capacity and price for each)
             instead of a single headline rate.
           </FieldRow>
         </div>
@@ -272,7 +272,7 @@ export default function HotelByNamePage() {
           medium="endpoint"
           api="hotels"
           title="Price any hotel by its name"
-          body="No ID lookups, no second error format — one POST with a name and dates, one flat object back."
+          body="No ID lookups, no second error format: one POST with a name and dates, one flat object back."
         />
       </Section>
     </>

@@ -19,9 +19,9 @@ import { HOTEL_PLANS } from '@/lib/pricing';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Booking.com Hotels API — live rates, priced from any market',
+  title: 'Booking.com Hotels API: live rates, priced from any market',
   description:
-    'A REST API for live Booking.com hotel prices. Search a destination or look up a hotel by name; every endpoint accepts proxy_country, so the same room can be priced from any market — the basis for rate-parity and geo-pricing monitoring.',
+    'A REST API for live Booking.com hotel prices. Search a destination or look up a hotel by name; every endpoint accepts proxy_country, so the same room can be priced from any market, the basis for rate-parity and geo-pricing monitoring.',
   alternates: { canonical: '/hotels-api' },
 };
 
@@ -38,7 +38,7 @@ const ENDPOINTS = [
     href: '/hotels-api/by-name',
     method: 'POST /hotel_by_name',
     label: 'Hotel by name',
-    sub: 'The name a human would type. Name resolution included — no property-ID step before you can ask anything.',
+    sub: 'The name a human would type. Name resolution included: no property-ID step before you can ask anything.',
   },
   {
     href: '/hotels-api/geo-pricing',
@@ -112,7 +112,7 @@ const faq: Faq[] = [
   },
   {
     q: 'What fields does /search require?',
-    a: 'destination (free text — "Paris", "Tokyo Shibuya"), checkin_date, and checkout_date in YYYY-MM-DD. Note the field is destination, not location — sending location returns a 400 with a clear message naming the fields it needs.',
+    a: 'destination (free text: "Paris", "Tokyo Shibuya"), checkin_date, and checkout_date in YYYY-MM-DD. Note the field is destination, not location. Sending location returns a 400 with a clear message naming the fields it needs.',
   },
   {
     q: 'How do sold-out and not-found come back?',
@@ -120,7 +120,7 @@ const faq: Faq[] = [
   },
   {
     q: 'What does the free tier include?',
-    a: `Every endpoint, ${HOTEL_PLANS[0]!.quota} requests per month, hard cap. That verifies your key and your integration — it is not enough volume to evaluate data quality. Paid plans start at $${HOTEL_PLANS[1]!.priceMonthly}/month on RapidAPI.`,
+    a: `Every endpoint, ${HOTEL_PLANS[0]!.quota} requests per month, hard cap. That verifies your key and your integration. It is not enough volume to evaluate data quality. Paid plans start at $${HOTEL_PLANS[1]!.priceMonthly}/month on RapidAPI.`,
   },
 ];
 
@@ -176,13 +176,13 @@ export default function HotelsApiHubPage() {
               <div className="mt-7">
                 <CheckBullets
                   items={[
-                    <>Live at request time — nothing is served from a cache, so the rate returned is the rate the guest would be quoted</>,
+                    <>Live at request time: nothing is served from a cache, so the rate returned is the rate the guest would be quoted</>,
                     <>
-                      <code className="font-mono text-[13px] text-signal-400">proxy_country</code> — price the same room from any
+                      <code className="font-mono text-[13px] text-signal-400">proxy_country</code>: price the same room from any
                       market through a residential proxy
                     </>,
                     <>
-                      Name-based lookup — <code className="font-mono text-[13px] text-signal-400">/hotel_by_name</code> takes the name
+                      Name-based lookup: <code className="font-mono text-[13px] text-signal-400">/hotel_by_name</code> takes the name
                       a human would type, no property IDs first
                     </>,
                   ]}
@@ -215,7 +215,7 @@ export default function HotelsApiHubPage() {
         <SectionHead
           eyebrow="Endpoints"
           title="Four ways in, one subscription"
-          lede="Every plan includes every endpoint — you only choose volume and rate limit. Each page below shows a real captured request and what came back."
+          lede="Every plan includes every endpoint: you only choose volume and rate limit. Each page below shows a real captured request and what came back."
         />
         <div className="mt-10 grid gap-4 sm:grid-cols-2">
           {ENDPOINTS.map((e) => (
@@ -232,7 +232,7 @@ export default function HotelsApiHubPage() {
         <SectionHead
           eyebrow="filters"
           title={`${COUNTS.hotelFilters} filters, matching the Booking.com UI`}
-          lede="Pass any of these as a filters array on /search — the same facets Booking.com shows its own users — plus budget_per_night in whatever currency you set."
+          lede="Pass any of these as a filters array on /search (the same facets Booking.com shows its own users), plus budget_per_night in whatever currency you set."
         />
         <div className="mt-8 overflow-x-auto rounded-2xl border rule">
           <table className="w-full text-[14px]">
@@ -304,7 +304,7 @@ export default function HotelsApiHubPage() {
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { href: '/flights-api', label: 'Flights API', sub: 'Google Flights fares with a price verdict' },
-            { href: '/tools/hotel-price-by-country', label: 'Hotel price by country', sub: 'Free tool — proxy_country in action' },
+            { href: '/tools/hotel-price-by-country', label: 'Hotel price by country', sub: 'Free tool: proxy_country in action' },
             { href: '/mcp', label: 'MCP servers', sub: 'The same data for your agent' },
             { href: '/pricing', label: 'Pricing', sub: 'Plans, quotas, rate limits' },
           ].map((l) => (
@@ -321,7 +321,7 @@ export default function HotelsApiHubPage() {
           medium="endpoint"
           api="hotels"
           title="Live Booking.com rates, one key away"
-          body="Destination search, name lookup, room-level pricing and per-market rates — one subscription covers every endpoint."
+          body="Destination search, name lookup, room-level pricing and per-market rates. One subscription covers every endpoint."
         />
       </Section>
     </>

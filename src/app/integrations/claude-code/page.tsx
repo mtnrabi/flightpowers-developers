@@ -7,7 +7,7 @@ import { COUNTS, LINKS } from '@/lib/site';
 export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
-  title: 'Live flight & hotel data in Claude Code — skills install',
+  title: 'Live flight & hotel data in Claude Code: skills install',
   description:
     'One install line gives Claude Code eight open-source travel skills over the live FlightPowers API: cheapest dates, fare watch, trip planning, hotel search, rate-parity monitoring. MIT-licensed, bring your own RapidAPI key.',
   alternates: { canonical: '/integrations/claude-code' },
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 const steps: ConnectStep[] = [
   {
     title: 'Get a RapidAPI key',
-    body: 'Subscribe on the listing’s pricing tab — the free tier needs no card. The skills bill every call to your own subscription.',
+    body: 'Subscribe on the listing’s pricing tab. The free tier needs no card. The skills bill every call to your own subscription.',
   },
   {
     title: 'Install the skills',
@@ -24,14 +24,14 @@ const steps: ConnectStep[] = [
   },
   {
     title: 'Give them your key',
-    body: 'The skills talk to the same API over MCP or plain REST with your key — the repo’s README documents both paths per skill. Then just ask; Claude Code picks the right skill from the request.',
+    body: 'The skills talk to the same API over MCP or plain REST with your key. The repo’s README documents both paths per skill. Then just ask; Claude Code picks the right skill from the request.',
   },
 ];
 
 const tools: ToolLine[] = [
   {
     name: 'Cheapest dates',
-    note: 'Scans a date range and answers with the cheapest days to fly — one request per date under the hood.',
+    note: 'Scans a date range and answers with the cheapest days to fly, one request per date under the hood.',
   },
   {
     name: 'Fare watch',
@@ -58,15 +58,15 @@ const faq: Faq[] = [
   },
   {
     q: 'Do the skills need an MCP server?',
-    a: 'No — they work over MCP or plain REST with your key, whichever your setup prefers. If you would rather skip skills entirely, the hosted MCP servers work in Claude Code too; see the MCP page.',
+    a: 'No. They work over MCP or plain REST with your key, whichever your setup prefers. If you would rather skip skills entirely, the hosted MCP servers work in Claude Code too; see the MCP page.',
   },
   {
     q: 'What license are the skills under?',
-    a: 'MIT, in a public GitHub repository. Read them before you run them, fork them, or lift the API calls straight into your own automation — all fine.',
+    a: 'MIT, in a public GitHub repository. Read them before you run them, fork them, or lift the API calls straight into your own automation. All fine.',
   },
   {
     q: 'Which plan do I need?',
-    a: 'The free tier is 10 requests/month with a hard cap — enough to verify your key, not to work with. A daily fare watch alone is about 30 requests a month, so the $10 PRO plan (2,500 requests/month on flights) is the realistic floor.',
+    a: 'The free tier is 10 requests/month with a hard cap: enough to verify your key, not to work with. A daily fare watch alone is about 30 requests a month, so the $10 PRO plan (2,500 requests/month on flights) is the realistic floor.',
   },
 ];
 
@@ -74,14 +74,14 @@ export default function ClaudeCodeIntegrationPage() {
   return (
     <AgentIntegrationPage
       slug="claude-code"
-      lede="One install line gives Claude Code eight open-source travel skills on the same live API — cheapest dates, fare watch, trip planning, hotel search, rate-parity monitoring."
+      lede="One install line gives Claude Code eight open-source travel skills on the same live API: cheapest dates, fare watch, trip planning, hotel search, rate-parity monitoring."
       heroCodeLabel="terminal"
       steps={steps}
-      promptsLede="After the install, plain requests route to the right skill — these all work as written."
+      promptsLede="After the install, plain requests route to the right skill: these all work as written."
       prompts={[
-        'Find the cheapest week to fly TLV to Lisbon this winter.',
-        'Check TLV to LHR for December 10 and tell me whether Google calls the fare low, typical, or high.',
-        'Plan a 5-day Lisbon trip in October: flights from TLV plus a hotel with a review score above 8.',
+        'Find the cheapest week to fly LGW to Lisbon this winter.',
+        'Check JFK to LHR for December 10 and tell me whether Google calls the fare low, typical, or high.',
+        'Plan a 5-day Lisbon trip in October: flights from LGW plus a hotel with a review score above 8.',
         'Is the Rixos Sungate cheaper booked from the US than from Israel for October 5 to 10?',
         'Scan November for the cheapest LIS to JFK date and write the results to a CSV.',
       ]}
@@ -94,7 +94,7 @@ export default function ClaudeCodeIntegrationPage() {
           <SectionHead
             eyebrow="Open source"
             title="Read the code before you run it"
-            lede="The skills are plain, readable files in a public repo — the API calls inside them are the same ones documented on this site."
+            lede="The skills are plain, readable files in a public repo: the API calls inside them are the same ones documented on this site."
           />
           <div className="mt-6 flex flex-wrap gap-2.5">
             <a href={LINKS.skills} rel="noopener" className="chip">

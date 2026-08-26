@@ -7,9 +7,9 @@ import { FIXTURES } from '@/lib/fixtures';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Cheapest Month to Fly — a whole month of fares as one price grid',
+  title: 'Cheapest Month to Fly: a whole month of fares as one price grid',
   description:
-    'Pick a route and a month and see every sampled departure date priced side by side, live from Google Flights. Free, no signup; live scans are rate-limited and sample ~10 dates — the full every-day scan is what the API is for.',
+    'Pick a route and a month and see every sampled departure date priced side by side, live from Google Flights. Free, no signup; live scans are rate-limited and sample ~10 dates; the full every-day scan is what the API is for.',
   alternates: { canonical: '/tools/cheapest-month-to-fly' },
 };
 
@@ -18,11 +18,11 @@ export const dynamic = 'force-static';
 const faq: Faq[] = [
   {
     q: 'Is this scanner really free?',
-    a: 'Yes — no account, no email. Each live scan fires ~10 real searches against live Google Flights data on our own API key, which is why it samples the month instead of pricing all 30 days, and why runs are capped per visitor per day. The page shows a captured full-month scan until you run one.',
+    a: 'Yes: no account, no email. Each live scan fires ~10 real searches against live Google Flights data on our own API key, which is why it samples the month instead of pricing all 30 days, and why runs are capped per visitor per day. The page shows a captured full-month scan until you run one.',
   },
   {
     q: 'Why does the live scan only sample ~10 dates?',
-    a: 'Cost, plainly: every date is a real search on our key. Sampling every ~3 days is enough to see the shape of the month; the full every-day grid is one request per date on your own key — that is what the API is for, and the card under the results shows the exact code.',
+    a: 'Cost, plainly: every date is a real search on our key. Sampling every ~3 days is enough to see the shape of the month; the full every-day grid is one request per date on your own key. That is what the API is for, and the card under the results shows the exact code.',
   },
   {
     q: 'What do the colors in the grid mean?',
@@ -30,7 +30,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Why do some days show a dash?',
-    a: 'Either Google genuinely returned no itineraries for that date (X-Search-Status: empty — a real answer) or that one search didn’t complete (degraded). The tool shows the status per day instead of inventing a price.',
+    a: 'Either Google genuinely returned no itineraries for that date (X-Search-Status: empty, a real answer) or that one search didn’t complete (degraded). The tool shows the status per day instead of inventing a price.',
   },
   {
     q: 'How would I scan a whole month from my own code?',
@@ -38,7 +38,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Can I scan arrival cities or nearby airports too?',
-    a: 'This tool scans one origin, one destination, one month. From code you can fan out across airports the same way you fan out across dates — it is the same one-request-per-query pattern, just a bigger burst.',
+    a: 'This tool scans one origin, one destination, one month. From code you can fan out across airports the same way you fan out across dates. It is the same one-request-per-query pattern, just a bigger burst.',
   },
 ];
 
@@ -47,7 +47,7 @@ export default function CheapestMonthPage() {
   const captured = {
     days: fx.data,
     capturedAt: fx.captured_at,
-    note: 'A REAL full 30-day scan — one live request per November departure date, captured on ' + fx.captured_at + '. Live demo runs sample ~10 dates; this is what a full scan on your own key looks like.',
+    note: 'A REAL full 30-day scan: one live request per November departure date, captured on ' + fx.captured_at + '. Live demo runs sample ~10 dates; this is what a full scan on your own key looks like.',
     query: { from: 'LIS', to: 'JFK', month: '2026-11' },
   };
 
@@ -78,7 +78,7 @@ export default function CheapestMonthPage() {
         </h1>
         <p className="lede mt-5 max-w-2xl">
           Flexible on dates? Stop checking them one by one. Pick a route and a month and see the sampled dates priced side by
-          side — the cheapest day jumps out.
+          side. The cheapest day jumps out.
         </p>
       </Container>
 
@@ -90,9 +90,9 @@ export default function CheapestMonthPage() {
         <SectionHead eyebrow="How it works" title="One month, one grid, one obvious answer" />
         <ol className="mt-8 grid gap-6 md:grid-cols-3">
           {[
-            ['Pick a route and a month', 'Airport codes and a month — the scan turns each sampled date into one real search.'],
+            ['Pick a route and a month', 'Airport codes and a month. The scan turns each sampled date into one real search.'],
             ['We scan live, in parallel', 'Around 10 dates spread across the month, each a real Google Flights search on our key at request time. The demo samples; the API does every day.'],
-            ['Read the grid', 'Each cell is that day’s cheapest live fare. Green is the month’s low end, red its high end — and the cheapest day is called out under the grid.'],
+            ['Read the grid', 'Each cell is that day’s cheapest live fare. Green is the month’s low end, red its high end, and the cheapest day is called out under the grid.'],
           ].map(([title, body], i) => (
             <li key={title} className="rounded-2xl border rule bg-ink-900/50 p-5">
               <p className="font-mono text-[13px] text-signal-500">{i + 1}</p>
@@ -153,7 +153,7 @@ export default function CheapestMonthPage() {
           <SectionHead
             eyebrow="Scale it"
             title="Scanning hundreds of routes? That's what the API is for"
-            lede="A date scan is a burst, not a loop — serially at one request a second a month is a coffee break; in parallel it is one rate-limit window."
+            lede="A date scan is a burst, not a loop. Serially at one request a second a month is a coffee break; in parallel it is one rate-limit window."
           />
           <div className="mt-8 grid gap-6 md:grid-cols-3">
             <div>
@@ -172,7 +172,7 @@ export default function CheapestMonthPage() {
             <div>
               <p className="text-[15px] font-semibold text-ink-100">A verdict on every day</p>
               <p className="mt-1.5 text-[14px] text-ink-400 leading-relaxed">
-                Each fare carries Google&apos;s price band and low | typical | high verdict where published — cheap for the month
+                Each fare carries Google&apos;s price band and low | typical | high verdict where published. Cheap for the month
                 <em> and</em> cheap for the route are different questions, and a scan answers both.
               </p>
             </div>
@@ -212,7 +212,7 @@ export default function CheapestMonthPage() {
         <CtaBand
           medium="tool"
           title="The full grid, every day, on your own key"
-          body="One request per date in one parallel burst — with the price band and verdict judging each fare for you. Free tier on RapidAPI — no card to try."
+          body="One request per date in one parallel burst, with the price band and verdict judging each fare for you. Free tier on RapidAPI, no card to try."
         />
       </Section>
     </>

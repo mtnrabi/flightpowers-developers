@@ -23,9 +23,9 @@ import { hotelGeoSnippets } from '@/lib/snippets';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Hotel Geo-Pricing API — rate parity by market with proxy_country',
+  title: 'Hotel Geo-Pricing API: rate parity by market with proxy_country',
   description:
-    'Rate-parity and geo-pricing monitoring from a single API. proxy_country prices the same room through a residential proxy in any market — this page shows a real captured $195 spread on one room, and a real capture where parity held.',
+    'Rate-parity and geo-pricing monitoring from a single API. proxy_country prices the same room through a residential proxy in any market. This page shows a real captured $195 spread on one room, and a real capture where parity held.',
   alternates: { canonical: '/hotels-api/geo-pricing' },
 };
 
@@ -36,7 +36,7 @@ const MARKETS = ['us', 'de', 'il'] as const;
 const faq: Faq[] = [
   {
     q: 'Why do hotel rates differ by country at all?',
-    a: 'Booking.com shows different rates depending on where the visitor is browsing from. The API does not create that difference — it routes your request through a residential proxy in the market you name, so you can observe what each market is actually quoted.',
+    a: 'Booking.com shows different rates depending on where the visitor is browsing from. The API does not create that difference: it routes your request through a residential proxy in the market you name, so you can observe what each market is actually quoted.',
   },
   {
     q: 'How does proxy_country work?',
@@ -44,15 +44,15 @@ const faq: Faq[] = [
   },
   {
     q: 'Could the captured spread just be currency conversion?',
-    a: 'No — all three captured requests asked for USD explicitly, so the $195 difference on the Rixos Sungate room is market pricing, not exchange rates.',
+    a: 'No. All three captured requests asked for USD explicitly, so the $195 difference on the Rixos Sungate room is market pricing, not exchange rates.',
   },
   {
     q: 'What does a three-market check cost?',
-    a: 'Three requests against your plan quota — one per market. proxy_country is an ordinary request field on every plan, including the free tier.',
+    a: 'Three requests against your plan quota, one per market. proxy_country is an ordinary request field on every plan, including the free tier.',
   },
   {
     q: 'What if every market comes back the same?',
-    a: 'Then parity is holding, and that is also an answer — the Kremlin Palace capture on this page priced within a dollar across three markets. Monitoring means confirming parity most days and catching the exceptions the day they appear.',
+    a: 'Then parity is holding, and that is also an answer: the Kremlin Palace capture on this page priced within a dollar across three markets. Monitoring means confirming parity most days and catching the exceptions the day they appear.',
   },
   {
     q: 'Which endpoints accept proxy_country?',
@@ -125,10 +125,10 @@ export default function GeoPricingPage() {
                   items={[
                     <>
                       A real captured spread: {rx.data.us.price_string} from the US for the room Germany and Israel saw at $
-                      {rx.data.de.price!.toLocaleString('en-US')} — same dates, same currency
+                      {rx.data.de.price!.toLocaleString('en-US')}, same dates, same currency
                     </>,
                     <>
-                      One request per market — vary only{' '}
+                      One request per market: vary only{' '}
                       <code className="font-mono text-[13px] text-signal-400">proxy_country</code>, on any hotels endpoint
                     </>,
                     <>Honest by design: when parity holds, the API shows you that too (captured counter-example below)</>,
@@ -163,7 +163,7 @@ export default function GeoPricingPage() {
         <SectionHead
           eyebrow="The mechanism, honestly"
           title="One field, one proxy exit per market"
-          lede="proxy_country takes a two-letter code and routes that single request through a residential proxy in that country, so the rates returned are the rates Booking.com quotes that market. Leave it out and the request uses the global residential pool. Each market is one request against your quota — a three-market check costs three requests."
+          lede="proxy_country takes a two-letter code and routes that single request through a residential proxy in that country, so the rates returned are the rates Booking.com quotes that market. Leave it out and the request uses the global residential pool. Each market is one request against your quota. A three-market check costs three requests."
         />
         <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:items-start">
           <div>
@@ -172,17 +172,17 @@ export default function GeoPricingPage() {
           </div>
           <div className="text-[15px] text-ink-300 leading-relaxed space-y-4">
             <p>
-              The hero table is not an illustration — it is three real requests from {rx.captured_at}, identical except for{' '}
+              The hero table is not an illustration: it is three real requests from {rx.captured_at}, identical except for{' '}
               <code className="field">proxy_country</code>. The US market was quoted {rx.data.us.price_string} for the{' '}
               {rx.data.us.room_type} the German and Israeli markets were quoted US${rx.data.de.price!.toLocaleString('en-US')} for:
               a ${spread} spread on one room, one stay.
             </p>
             <p>
-              The check itself becomes the trivial part: no per-market scraping infrastructure to run — your BI stack calls the API
+              The check itself becomes the trivial part: no per-market scraping infrastructure to run. Your BI stack calls the API
               from wherever it already runs and compares numbers.
             </p>
             <p>
-              This is what makes rate-parity monitoring possible from a single API — which general-purpose hotel scrapers can&apos;t
+              This is what makes rate-parity monitoring possible from a single API, which general-purpose hotel scrapers can&apos;t
               do: a request without market routing only ever shows you one market&apos;s rate.
             </p>
           </div>
@@ -207,12 +207,12 @@ export default function GeoPricingPage() {
           </div>
           <div className="text-[15px] text-ink-300 leading-relaxed space-y-4">
             <p>
-              Kremlin Palace, Antalya — the same five-night stay, the same three markets, captured the same day as the Rixos run. The
+              Kremlin Palace, Antalya: the same five-night stay, the same three markets, captured the same day as the Rixos run. The
               quotes came back within a dollar of each other.
             </p>
             <p>
               For a revenue manager this is the point: most checks should confirm parity. The value of the monitor is that the day a
-              market drifts — like the ${spread} Rixos spread — the number is in your data, not in a guest&apos;s screenshot.
+              market drifts (like the ${spread} Rixos spread), the number is in your data, not in a guest&apos;s screenshot.
             </p>
           </div>
         </div>
@@ -227,14 +227,14 @@ export default function GeoPricingPage() {
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
           <Feature title="Rate-parity enforcement">
             Price your own properties from the markets you sell in, on a schedule, and flag any market where the OTA quote drifts
-            from your contracted rate — with the exact figure and a link to the live page.
+            from your contracted rate, with the exact figure and a link to the live page.
           </Feature>
           <Feature title="OTA vs direct monitoring">
             Compare what Booking.com quotes each market against your direct-booking price for the same room and dates, so
             &ldquo;book direct and save&rdquo; stays a checkable claim per market rather than a hope.
           </Feature>
           <Feature title="Market-entry pricing research">
-            Before pricing a new market, sweep your competitive set from that market&apos;s point of view — the quotes its residents
+            Before pricing a new market, sweep your competitive set from that market&apos;s point of view: the quotes its residents
             actually see, not the ones your office IP sees.
           </Feature>
         </div>

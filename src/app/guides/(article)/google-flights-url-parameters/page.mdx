@@ -1,7 +1,7 @@
 export const metadata = {
-  title: 'Google Flights URL parameters, decoded — tfs=, q=, and curr=',
+  title: 'Google Flights URL parameters, decoded: tfs=, q=, and curr=',
   description:
-    'What is actually inside a Google Flights URL: the base64url-encoded tfs= protobuf that encodes the whole search, the q= natural-language form, and the curr= currency override — how to decode tfs at the wire level, and the honest caveats about relying on an undocumented format.',
+    'What is actually inside a Google Flights URL: the base64url-encoded tfs= protobuf that encodes the whole search, the q= natural-language form, and the curr= currency override. How to decode tfs at the wire level, and the honest caveats about relying on an undocumented format.',
   alternates: { canonical: '/guides/google-flights-url-parameters' },
 };
 
@@ -17,7 +17,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
     '@type': 'TechArticle',
     headline: 'Google Flights URL parameters, decoded',
     description:
-      'The tfs= base64url protobuf, the q= natural-language search form, and curr= — how to decode a Google Flights URL at the wire level, and why you may not want to build on it.',
+      'The tfs= base64url protobuf, the q= natural-language search form, and curr=. How to decode a Google Flights URL at the wire level, and why you may not want to build on it.',
     url: `${SITE.url}/guides/google-flights-url-parameters`,
     datePublished: '2026-08-26',
     dateModified: '2026-08-26',
@@ -34,7 +34,7 @@ Copy a URL out of Google Flights after setting up a search and you get something
 https://www.google.com/travel/flights?tfs=CBwQAhopEgoyMDI2LTEwLTE1...&curr=USD
 ```
 
-Everything you clicked — origin, destination, dates, passengers, cabin, stops — is in
+Everything you clicked (origin, destination, dates, passengers, cabin, stops) is in
 there. It is just not in there in a form meant for you to read. This guide covers
 what each parameter does, how far you can get decoding the big one, and where the
 honest limits are.
@@ -43,14 +43,14 @@ honest limits are.
 
 **`tfs=`** is the search itself. It is a **protocol-buffer message, serialized and
 base64url-encoded**. One opaque blob encodes the full flight query: the legs (origin,
-destination, date — one leg for a one-way, two for a round-trip), passenger counts,
+destination, date: one leg for a one-way, two for a round-trip), passenger counts,
 cabin, and filters like stops and airlines. When Google Flights loads a URL with
 `tfs=`, it reconstructs the entire search UI state from this blob.
 
 **`q=`** is the informal cousin: a free-text query, the same thing you could type
 into the search box. `?q=flights to tokyo` opens Google Flights with the query parsed
 out of natural language. It is convenient for hand-written links, and useless for
-precision — you cannot pin dates, filters, or a specific itinerary with it the way
+precision: you cannot pin dates, filters, or a specific itinerary with it the way
 `tfs=` does.
 
 **`curr=`** sets the display currency (`curr=USD`, `curr=EUR`). It rides alongside
@@ -80,7 +80,7 @@ print(raw.hex())
 **2. Walk the protobuf wire format.** Every field in the byte stream is a varint tag
 (field number shifted left three bits, ORed with a wire type) followed by a payload
 whose shape the wire type determines: varint, 64-bit, length-delimited, or 32-bit.
-Length-delimited fields are where the interesting things live — strings like airport
+Length-delimited fields are where the interesting things live: strings like airport
 codes and dates are directly readable, and nested messages (the legs) decode
 recursively. If you have `protoc` installed, it will do the walk for you:
 
@@ -92,14 +92,14 @@ sys.stdout.buffer.write(base64.urlsafe_b64decode(tfs + '=' * (-len(tfs) % 4)))
 " "$TFS_BLOB" | protoc --decode_raw
 ```
 
-`--decode_raw` prints the field-number tree with strings legible — you will spot
+`--decode_raw` prints the field-number tree with strings legible. You will spot
 IATA codes and `YYYY-MM-DD` dates immediately. What you will not get is names or
 guarantees: field 2 is just "field 2," and nothing promises it means the same thing
 next quarter.
 
 If you would rather not install anything, the
 [Google Flights URL parser](/tools/google-flights-url-parser) on this site does the
-base64url + wire-format walk client-side in your browser — paste a URL, see the
+base64url + wire-format walk client-side in your browser: paste a URL, see the
 decoded tree.
 
 ## The honest caveats
@@ -107,10 +107,10 @@ decoded tree.
 - **The format is undocumented.** Google publishes no schema for `tfs=` and owes
   nobody stability. Everything decoded from it is inference from observed bytes.
 - **Reading is safer than writing.** Decoding a blob you already have degrades
-  gracefully — worst case, a field you relied on moves and your parser shows an
+  gracefully: worst case, a field you relied on moves and your parser shows an
   unknown. *Constructing* `tfs=` blobs yourself is the fragile direction: an encoding
   quirk you did not reproduce, or a silent format revision, produces links that open
-  a wrong or empty search — and nothing errors to tell you.
+  a wrong or empty search, and nothing errors to tell you.
 - **A decoded URL is not an API.** Even a perfect decoder only tells you what a
   search *asks*; it gets you no prices. To act on the data you still need something
   that returns fares.
@@ -121,7 +121,7 @@ The main practical reason people try to encode `tfs=` themselves is to build "bo
 this" links programmatically. That problem is already solved from the other
 direction: every result returned by the
 <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">Google Flights Live API</a>
-carries a `buy_link` — a working deep link into Google Flights for that exact
+carries a `buy_link`, a working deep link into Google Flights for that exact
 itinerary, with the blob already encoded by the same pipeline that read the fare:
 
 ```json
@@ -135,7 +135,7 @@ itinerary, with the blob already encoded by the same pipeline that read the fare
 
 So the division of labour that actually works is: **decode** URLs when a user hands
 you one (the [parser tool](/tools/google-flights-url-parser) or the snippet above),
-and **never encode** them — search via the API and pass along the `buy_link` it
+and **never encode** them. Search via the API and pass along the `buy_link` it
 returns per itinerary. You get the deep link without owning the format risk, and the
 same response carries the price context (`price_insights_low/high` and Google's
 low | typical | high verdict) that the URL alone never had. The
@@ -143,12 +143,12 @@ low | typical | high verdict) that the URL alone never had. The
 
 ## Related
 
-- [Google Flights URL parser](/tools/google-flights-url-parser) — paste a URL, see the decoded tree, free
-- [How to get real-time Google Flights data](/guides/real-time-google-flights-data) — the full API walkthrough
-- [Price Insights API](/flights-api/price-insights) — the context a URL never carries
+- [Google Flights URL parser](/tools/google-flights-url-parser): paste a URL, see the decoded tree, free
+- [How to get real-time Google Flights data](/guides/real-time-google-flights-data): the full API walkthrough
+- [Price Insights API](/flights-api/price-insights): the context a URL never carries
 
 <CtaBand
   medium="guide"
   title="Skip the blob entirely"
-  body="Search by route and date, get fares with a working buy_link on every result — the deep link is built for you."
+  body="Search by route and date, get fares with a working buy_link on every result. The deep link is built for you."
 />

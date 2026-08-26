@@ -6,7 +6,7 @@ import { CapturedBadge } from './ui';
 
 /**
  * The canned [Execute] proof device: a real captured request + its real
- * captured response, replayed with a short delay. Honestly labelled — the
+ * captured response, replayed with a short delay. Honestly labelled: the
  * button runs the captured request, it does not spend anyone's quota.
  * The full response is in the server HTML (hidden until executed).
  */
@@ -62,7 +62,7 @@ export function ExecuteWidget({
           {state === 'running' ? 'Running…' : state === 'done' ? 'Run again' : 'Execute'}
         </button>
         <span className="font-mono text-[11px] text-ink-500">
-          Replays the captured request — free, no account, nobody&apos;s quota.
+          Replays the captured request: free, no account, nobody&apos;s quota.
         </span>
       </div>
 

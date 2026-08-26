@@ -108,7 +108,7 @@ export function monthScanSnippets(params: { from: string; to: string; month: str
   const path = '/api/google_flights/oneway/v1';
   const exampleBody = { from_airport: params.from, to_airport: params.to, departure_date: `${params.month}-01`, currency: 'usd' };
   return {
-    curl: `# one request per date — your plan's rate limit is built for this
+    curl: `# one request per date. your plan's rate limit is built for this
 ${curlFor(FLIGHTS_HOST, path, exampleBody)}`,
     python: `import os, requests
 from concurrent.futures import ThreadPoolExecutor
@@ -129,7 +129,7 @@ def day(d):
     fares = r.json()
     return (d, min((f["price_as_number"] for f in fares), default=None))
 
-# ${params.days} dates, fired in parallel — finishes in one rate-limit burst
+# ${params.days} dates, fired in parallel. finishes in one rate-limit burst
 with ThreadPoolExecutor(max_workers=25) as ex:
     for d, price in ex.map(day, range(1, ${params.days + 1})):
         print(f"${params.month}-{d:02d}", price)`,
@@ -168,7 +168,7 @@ export function hotelGeoSnippets(params: { hotel: string; area?: string; checkin
     currency: 'USD',
   };
   return {
-    curl: `# one request per market — vary proxy_country
+    curl: `# one request per market. vary proxy_country
 ${curlFor(HOTELS_HOST, path, { ...base, proxy_country: params.countries[0] ?? 'us' })}`,
     python: `import os, requests
 

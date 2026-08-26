@@ -23,9 +23,9 @@ import { hotelSearchSnippets } from '@/lib/snippets';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Hotel Search API — free-text destination, live Booking.com rates',
+  title: 'Hotel Search API: free-text destination, live Booking.com rates',
   description:
-    'POST /search takes a free-text destination and dates and returns ranked properties with live Booking.com prices, review scores, room types and booking links. 24 filters matching the Booking.com UI. The required field is destination — not location.',
+    'POST /search takes a free-text destination and dates and returns ranked properties with live Booking.com prices, review scores, room types and booking links. 24 filters matching the Booking.com UI. The required field is destination, not location.',
   alternates: { canonical: '/hotels-api/search' },
 };
 
@@ -50,7 +50,7 @@ const FILTER_CATEGORIES: { category: string; filters: string[] }[] = [
 const faq: Faq[] = [
   {
     q: 'Why did I get a 400 about missing fields?',
-    a: 'The usual cause: the request sent location instead of destination. The three required fields are destination, checkin_date and checkout_date — the 400 body names them plainly. destination appears in the request; a location string can appear per property in the response. They are different fields.',
+    a: 'The usual cause: the request sent location instead of destination. The three required fields are destination, checkin_date and checkout_date. The 400 body names them plainly. destination appears in the request; a location string can appear per property in the response. They are different fields.',
   },
   {
     q: 'What can destination be?',
@@ -58,19 +58,19 @@ const faq: Faq[] = [
   },
   {
     q: 'Is price per night or for the stay?',
-    a: 'The price on each property is the total for the stay — the response carries nights, so a nightly rate is one division away. budget_per_night, by contrast, is per night, in whatever currency you set: 300 with "currency": "EUR" means 300 EUR per night.',
+    a: 'The price on each property is the total for the stay: the response carries nights, so a nightly rate is one division away. budget_per_night, by contrast, is per night, in whatever currency you set: 300 with "currency": "EUR" means 300 EUR per night.',
   },
   {
     q: 'How do the filters work?',
-    a: `Pass a filters array with any of the ${COUNTS.hotelFilters} documented values — they match the facets Booking.com shows its own users, from free_cancellation to all_inclusive to stars_5. The full list is on this page.`,
+    a: `Pass a filters array with any of the ${COUNTS.hotelFilters} documented values. They match the facets Booking.com shows its own users, from free_cancellation to all_inclusive to stars_5. The full list is on this page.`,
   },
   {
     q: 'Can I price a destination from another country?',
-    a: 'Yes — /search accepts proxy_country like every other endpoint. A two-letter code routes the request through a residential proxy in that market; leave it out and the request uses the global pool. The geo-pricing page shows a real captured spread.',
+    a: 'Yes. /search accepts proxy_country like every other endpoint. A two-letter code routes the request through a residential proxy in that market; leave it out and the request uses the global pool. The geo-pricing page shows a real captured spread.',
   },
   {
     q: 'How fresh are the prices?',
-    a: 'Every search runs against Booking.com at request time — nothing is cached. That is also why response time tracks how much work Booking.com has to do for the query.',
+    a: 'Every search runs against Booking.com at request time: nothing is cached. That is also why response time tracks how much work Booking.com has to do for the query.',
   },
 ];
 
@@ -130,7 +130,7 @@ export default function HotelSearchPage() {
                 <CheckBullets
                   items={[
                     <>
-                      Free-text <code className="font-mono text-[13px] text-signal-400">destination</code> — &ldquo;Paris&rdquo;,
+                      Free-text <code className="font-mono text-[13px] text-signal-400">destination</code>: &ldquo;Paris&rdquo;,
                       &ldquo;Tokyo Shibuya&rdquo;, even a hotel name
                     </>,
                     <>
@@ -167,7 +167,7 @@ export default function HotelSearchPage() {
           <SectionHead
             eyebrow="The response, rendered"
             title="What came back for Lisbon"
-            lede="Six of the properties returned by the request above — filtered to review score 8+ with free cancellation, priced in EUR for a 3-night stay."
+            lede="Six of the properties returned by the request above, filtered to review score 8+ with free cancellation, priced in EUR for a 3-night stay."
           />
           <CapturedBadge date={fx.captured_at} />
         </div>
@@ -225,7 +225,7 @@ export default function HotelSearchPage() {
             <div className="mt-3">
               <FieldRow name="destination" type="string">
                 Free text, the way a person would type it: &ldquo;Paris&rdquo;, &ldquo;Tokyo Shibuya&rdquo;, &ldquo;Hilton
-                NYC&rdquo;. Not <code className="field">location</code> — that name 400s.
+                NYC&rdquo;. Not <code className="field">location</code> (that name 400s).
               </FieldRow>
               <FieldRow name="checkin_date / checkout_date" type="string">
                 <code className="field">YYYY-MM-DD</code>.
@@ -243,11 +243,11 @@ export default function HotelSearchPage() {
                 Defaults to <code className="field">USD</code>.
               </FieldRow>
               <FieldRow name="budget_per_night" type="number">
-                Max price per night, in the currency you set — <code className="field">300</code> with{' '}
+                Max price per night, in the currency you set: <code className="field">300</code> with{' '}
                 <code className="field">&quot;currency&quot;: &quot;EUR&quot;</code> means 300 EUR per night.
               </FieldRow>
               <FieldRow name="proxy_country" type="string">
-                Two-letter code — price the search from that market. See{' '}
+                Two-letter code: price the search from that market. See{' '}
                 <Link href="/hotels-api/geo-pricing" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
                   geo-pricing
                 </Link>
@@ -332,7 +332,7 @@ export default function HotelSearchPage() {
           medium="endpoint"
           api="hotels"
           title="Start with one destination"
-          body="Live Booking.com rates with review scores, room types and booking links — as flat JSON your code or your agent can use directly."
+          body="Live Booking.com rates with review scores, room types and booking links, as flat JSON your code or your agent can use directly."
         />
       </Section>
     </>

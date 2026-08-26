@@ -26,7 +26,7 @@ const mono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: 'FlightPowers — live flight & hotel pricing APIs with a price verdict',
+    default: 'FlightPowers: live flight & hotel pricing APIs with a price verdict',
     template: '%s · FlightPowers',
   },
   description:
@@ -39,14 +39,14 @@ export const metadata: Metadata = {
     type: 'website',
     siteName: SITE.name,
     url: SITE.url,
-    title: 'FlightPowers — live flight & hotel pricing APIs with a price verdict',
+    title: 'FlightPowers: live flight & hotel pricing APIs with a price verdict',
     description:
       'Live fares, and the context to judge them. Google price bands, paired-leg round trips, ' +
-      'per-country hotel pricing, and honest empty-result signalling — for developers and AI agents.',
+      'per-country hotel pricing, and honest empty-result signalling. For developers and AI agents.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'FlightPowers — live flight & hotel pricing APIs',
+    title: 'FlightPowers: live flight & hotel pricing APIs',
     description:
       'Live fares, and the context to judge them. Price bands and verdicts on every result.',
   },

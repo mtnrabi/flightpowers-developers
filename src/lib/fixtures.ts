@@ -15,7 +15,8 @@ import novscanLisJfk from './fixtures/novscan-lis-jfk.json';
 import hotelGeoRixos from './fixtures/hotel-geo-rixos.json';
 import hotelGeoKremlin from './fixtures/hotel-geo-kremlin.json';
 import hotelSearchLisbon from './fixtures/hotel-search-lisbon.json';
-import dealHuntSun from './fixtures/deal-hunt-sun.json';
+import dealHuntLgw from './fixtures/deal-hunt-lgw.json';
+import onewayJfkCun from './fixtures/oneway-jfk-cun.json';
 
 export type OnewayFlight = {
   price_range_in_relation_to_other_periods: 'low' | 'typical' | 'high' | null;
@@ -119,7 +120,8 @@ export const FIXTURES = {
   novscanLisJfk: novscanLisJfk as unknown as Fixture<ScanDay[]>,
   hotelGeoRixos: hotelGeoRixos as unknown as Fixture<Record<'us' | 'de' | 'il', HotelByName>>,
   hotelGeoKremlin: hotelGeoKremlin as unknown as Fixture<Record<'us' | 'de' | 'il', HotelByName>>,
-  dealHuntSun: dealHuntSun as unknown as Fixture<DealHuntRow[]>,
+  dealHuntLgw: dealHuntLgw as unknown as Fixture<DealHuntRow[]>,
+  onewayJfkCun: onewayJfkCun as unknown as Fixture<OnewayFlight[]>,
   hotelSearchLisbon: hotelSearchLisbon as unknown as Fixture<{
     destination: string;
     properties: {
@@ -137,5 +139,5 @@ export const FIXTURES = {
 
 /** The standard honesty label rendered next to anything canned. */
 export function capturedLabel(f: Fixture<unknown>): string {
-  return `Captured run — real response from a live request on ${f.captured_at}`;
+  return `Captured run: real response from a live request on ${f.captured_at}`;
 }

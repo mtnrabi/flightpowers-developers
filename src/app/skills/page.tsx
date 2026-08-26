@@ -16,7 +16,7 @@ import {
 import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: `Agent skills — ${COUNTS.skills} open-source travel skills for Claude Code & OpenClaw`,
+  title: `Agent skills: ${COUNTS.skills} open-source travel skills for Claude Code & OpenClaw`,
   description:
     'Eight MIT-licensed agent skills for live flight and hotel pricing: cheapest dates, fare watch, trip planning, hotel search, rate-parity monitoring. One install line, works over MCP or plain REST with your own RapidAPI key.',
   alternates: { canonical: '/skills' },
@@ -27,27 +27,27 @@ export const dynamic = 'force-static';
 const faq: Faq[] = [
   {
     q: 'What exactly is an agent skill here?',
-    a: 'A packaged workflow the agent follows — which tool or endpoint to call, which fields to branch on, how to present the answer. The skills talk to the same live FlightPowers API as everything else on this site, over MCP or plain REST, with your key.',
+    a: 'A packaged workflow the agent follows: which tool or endpoint to call, which fields to branch on, how to present the answer. The skills talk to the same live FlightPowers API as everything else on this site, over MCP or plain REST, with your key.',
   },
   {
     q: 'What does the MIT license let me do?',
-    a: 'Use, copy, modify, and ship the skills — commercially included — with attribution per the license text in the repo. The skills are open source; the API behind them is metered on your own RapidAPI plan.',
+    a: 'Use, copy, modify, and ship the skills (commercially included) with attribution per the license text in the repo. The skills are open source; the API behind them is metered on your own RapidAPI plan.',
   },
   {
     q: 'Do I need an API key to use the skills?',
-    a: 'Yes — the skills bring the workflow and you bring a RapidAPI key. The free BASIC tier (10 requests/month, hard cap, no card) verifies the setup works; the paid tiers start at $10/month for real daily use.',
+    a: 'Yes: the skills bring the workflow and you bring a RapidAPI key. The free BASIC tier (10 requests/month, hard cap, no card) verifies the setup works; the paid tiers start at $10/month for real daily use.',
   },
   {
     q: 'Which agents can run them?',
-    a: 'Claude Code, via npx skills add mtnrabi/travel-agent-skills, and OpenClaw, via the ClawHub listings for the flights and hotels skills. The repo is plain files — other skill-compatible runtimes can load it from GitHub.',
+    a: 'Claude Code, via npx skills add mtnrabi/travel-agent-skills, and OpenClaw, via the ClawHub listings for the flights and hotels skills. The repo is plain files, so other skill-compatible runtimes can load it from GitHub.',
   },
   {
     q: 'How is this different from connecting the MCP server?',
-    a: 'The MCP server provides the tools; a skill packages the judgment around them — when to scan a range, what a verdict flip means, how to compare markets. They are complementary, and by the repo’s own description the skills work over MCP or plain REST.',
+    a: 'The MCP server provides the tools; a skill packages the judgment around them: when to scan a range, what a verdict flip means, how to compare markets. They are complementary, and by the repo’s own description the skills work over MCP or plain REST.',
   },
   {
     q: 'Can I see what a skill does before installing it?',
-    a: 'Yes — the repository is public on GitHub. Every skill is readable source, so you can see exactly what the agent will follow before you install anything.',
+    a: 'Yes: the repository is public on GitHub. Every skill is readable source, so you can see exactly what the agent will follow before you install anything.',
   },
 ];
 
@@ -77,16 +77,16 @@ export default function SkillsPage() {
                 {COUNTS.skills} travel skills your agent can <span className="text-signal-500">read</span>
               </h1>
               <p className="lede mt-5">
-                Agent skills for live flight and hotel pricing — one install line, readable source, MIT license.
+                Agent skills for live flight and hotel pricing: one install line, readable source, MIT license.
               </p>
               <div className="mt-7">
                 <CheckBullets
                   items={[
                     <>
-                      {COUNTS.skills} MIT-licensed skills in one public repo — cheapest dates, fare watch, trip planning, hotel
+                      {COUNTS.skills} MIT-licensed skills in one public repo: cheapest dates, fare watch, trip planning, hotel
                       search, rate-parity monitoring
                     </>,
-                    <>Works over MCP or plain REST — the same live API either way, with your own key</>,
+                    <>Works over MCP or plain REST: the same live API either way, with your own key</>,
                     <>Runs in Claude Code and OpenClaw today</>,
                   ]}
                 />
@@ -106,7 +106,7 @@ export default function SkillsPage() {
               <Code label="terminal · claude code">{`npx skills add mtnrabi/travel-agent-skills
 
 # then just ask:
-# "watch TLV→LHR for my December dates and
+# "watch JFK→LHR for my December dates and
 #  tell me when Google calls the fare low"`}</Code>
               <p className="mt-3 text-[15px] text-ink-300">One line. The skills land in your agent&apos;s skill directory, readable before they run.</p>
             </div>
@@ -119,11 +119,11 @@ export default function SkillsPage() {
         <SectionHead
           eyebrow="Coverage"
           title="What the skills cover"
-          lede="Five jobs, drawn from the repo's own description — each one packages the workflow and the judgment fields, so the agent knows not just what to call but what the answer means."
+          lede="Five jobs, drawn from the repo's own description. Each one packages the workflow and the judgment fields, so the agent knows not just what to call but what the answer means."
         />
         <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <Feature title="Cheapest dates">
-            Scan a flexible window for a route and come back with the cheapest day and what picking it saves — built on the date-range
+            Scan a flexible window for a route and come back with the cheapest day and what picking it saves, built on the date-range
             search and per-day fares.
           </Feature>
           <Feature title="Fare watch">
@@ -131,19 +131,19 @@ export default function SkillsPage() {
             &ldquo;low&rdquo;, with the buy_link ready to hand over.
           </Feature>
           <Feature title="Trip planning">
-            Turn &ldquo;I want a week in Lisbon this fall&rdquo; into paired round-trip options and a hotel shortlist — every leg and
+            Turn &ldquo;I want a week in Lisbon this fall&rdquo; into paired round-trip options and a hotel shortlist, every leg and
             property with a working booking link.
           </Feature>
           <Feature title="Hotel search">
-            Live Booking.com availability with the filters the real site has — review-score floors, free cancellation, budget per
-            night — returned as a shortlist the user can act on.
+            Live Booking.com availability with the filters the real site has (review-score floors, free cancellation, budget per
+            night), returned as a shortlist the user can act on.
           </Feature>
           <Feature title="Rate-parity monitoring">
-            Price the same room from different markets via proxy_country and report the spread — the revenue-manager job that
+            Price the same room from different markets via proxy_country and report the spread: the revenue-manager job that
             general-purpose scrapers can&apos;t do from one API.
           </Feature>
           <Feature title="…and the source is the spec">
-            The repo holds {COUNTS.skills} skills across these themes. Rather than trust a marketing list, read them — every skill
+            The repo holds {COUNTS.skills} skills across these themes. Rather than trust a marketing list, read them: every skill
             is plain, auditable text on{' '}
             <a href={LINKS.skills} rel="noopener" className="text-signal-400 underline underline-offset-4">
               GitHub
@@ -168,7 +168,7 @@ export default function SkillsPage() {
             </div>
             <p className="mt-3 text-[14.5px] text-ink-400 leading-relaxed">
               The skills load alongside your project and trigger when a travel question comes up. Set your RapidAPI key once and
-              they talk to the same live API — over MCP or plain REST.
+              they talk to the same live API, over MCP or plain REST.
             </p>
             <Link href="/integrations/claude-code" className="mt-3 inline-block text-sm text-signal-400 underline underline-offset-4 hover:text-signal-500">
               Claude Code setup →
@@ -203,7 +203,7 @@ export default function SkillsPage() {
           <SectionHead
             eyebrow="The one dependency"
             title="The skills bring the workflow; you bring the key"
-            lede="Nothing in the repo phones home. Every request the skills make runs on your own RapidAPI key, against your own plan — the free tier verifies the setup, the $10 Pro tier covers real daily use."
+            lede="Nothing in the repo phones home. Every request the skills make runs on your own RapidAPI key, against your own plan. The free tier verifies the setup, the $10 Pro tier covers real daily use."
           />
           <div className="flex flex-wrap items-center gap-3">
             <Cta href={rapidApiPricingUrl('flights', 'mcp')} external variant="primary">
@@ -221,7 +221,7 @@ export default function SkillsPage() {
         <div className="rounded-3xl border rule bg-ink-900/50 p-6 sm:p-10 max-w-3xl">
           <h2 className="text-2xl font-semibold">An honest ask</h2>
           <p className="mt-3 text-[15px] text-ink-400 leading-relaxed">
-            If the skills save you an afternoon, a GitHub star helps other people find them. That&apos;s the whole pitch — no
+            If the skills save you an afternoon, a GitHub star helps other people find them. That&apos;s the whole pitch: no
             newsletter, no signup.
           </p>
           <div className="mt-5">
@@ -258,7 +258,7 @@ export default function SkillsPage() {
         <CtaBand
           medium="mcp"
           title="Install the skills, add a key, ask a travel question"
-          body="Eight open-source workflows on live Google Flights and Booking.com data — with the price band and verdict that let your agent answer, not just fetch."
+          body="Eight open-source workflows on live Google Flights and Booking.com data, with the price band and verdict that let your agent answer, not just fetch."
         />
       </Section>
     </>

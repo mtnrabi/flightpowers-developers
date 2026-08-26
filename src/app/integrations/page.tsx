@@ -7,14 +7,14 @@ import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
-  title: 'Integrations — RapidAPI, MCP, n8n, Apify, agents & more',
+  title: 'Integrations: RapidAPI, MCP, n8n, Apify, agents & more',
   description:
     'Every surface the FlightPowers travel-data APIs ship on: RapidAPI listings, hosted MCP servers, Claude, ChatGPT, Cursor, Claude Code, OpenClaw, n8n, Apify actors, open-source skills, and plain REST.',
   alternates: { canonical: '/integrations' },
 };
 
 /**
- * One local dataset renders the hub. Only surfaces that are live today —
+ * One local dataset renders the hub. Only surfaces that are live today:
  * Zapier and Make are deliberately a single in-review line, not cards.
  */
 type SurfaceCard = {
@@ -30,7 +30,7 @@ const CARDS: SurfaceCard[] = [
     title: 'MCP servers',
     href: '/mcp',
     tag: `${COUNTS.mcpServers} hosted servers`,
-    blurb: 'Hosted at flights. and hotels.flightpowers.com — add a URL and your key, no install. The config block is above the fold.',
+    blurb: 'Hosted at flights. and hotels.flightpowers.com: add a URL and your key, no install. The config block is above the fold.',
   },
   {
     title: 'Claude',
@@ -42,25 +42,25 @@ const CARDS: SurfaceCard[] = [
     title: 'ChatGPT',
     href: '/integrations/chatgpt',
     tag: 'MCP connector',
-    blurb: 'Developer-mode connector on the same servers — the key rides in settings, never in the chat.',
+    blurb: 'Developer-mode connector on the same servers: the key rides in settings, never in the chat.',
   },
   {
     title: 'Cursor',
     href: '/integrations/cursor',
     tag: '.cursor/mcp.json',
-    blurb: 'The agent that writes your travel feature can also run it — live responses instead of guessed schemas.',
+    blurb: 'The agent that writes your travel feature can also run it: live responses instead of guessed schemas.',
   },
   {
     title: 'Claude Code',
     href: '/integrations/claude-code',
     tag: `${COUNTS.skills} open-source skills`,
-    blurb: 'npx skills add mtnrabi/travel-agent-skills — cheapest dates, fare watch, rate-parity monitoring and more, MIT-licensed.',
+    blurb: 'npx skills add mtnrabi/travel-agent-skills: cheapest dates, fare watch, rate-parity monitoring and more, MIT-licensed.',
   },
   {
     title: 'OpenClaw',
     href: '/integrations/openclaw',
     tag: 'ClawHub skills',
-    blurb: 'Two ClawHub listings — live Google Flights deals and Booking.com availability — installed with one line each.',
+    blurb: 'Two ClawHub listings (live Google Flights deals and Booking.com availability), installed with one line each.',
   },
   {
     title: 'Smithery',
@@ -72,13 +72,13 @@ const CARDS: SurfaceCard[] = [
     title: 'n8n',
     href: '/integrations/n8n',
     tag: 'n8n-nodes-flightpowers',
-    blurb: 'A community node installed by name from Settings — fare-watch crons and rate-parity checks without writing HTTP requests.',
+    blurb: 'A community node installed by name from Settings: fare-watch crons and rate-parity checks without writing HTTP requests.',
   },
   {
     title: 'Apify',
     href: '/integrations/apify',
     tag: 'pay-per-event actors',
-    blurb: 'Both APIs as actors with no monthly fee — the fit for occasional batch jobs with zero baseline volume.',
+    blurb: 'Both APIs as actors with no monthly fee: the fit for occasional batch jobs with zero baseline volume.',
   },
   {
     title: 'REST API',
@@ -90,26 +90,26 @@ const CARDS: SurfaceCard[] = [
     title: 'Skills (open source)',
     href: '/skills',
     tag: 'GitHub · MIT',
-    blurb: `${COUNTS.skills} agent skills for flight and hotel pricing in a public repo — read them, fork them, run them.`,
+    blurb: `${COUNTS.skills} agent skills for flight and hotel pricing in a public repo: read them, fork them, run them.`,
   },
 ];
 
 const faq: Faq[] = [
   {
     q: 'Which integration should I start with?',
-    a: 'If you write code, the REST API — one POST returns flat JSON. If you use an MCP client (Claude, ChatGPT, Cursor), the hosted servers are a URL plus your key, nothing to install. If you automate in n8n, the community node. All of them read the same live data with the same key.',
+    a: 'If you write code, the REST API: one POST returns flat JSON. If you use an MCP client (Claude, ChatGPT, Cursor), the hosted servers are a URL plus your key, nothing to install. If you automate in n8n, the community node. All of them read the same live data with the same key.',
   },
   {
     q: 'Do the integrations cost extra?',
-    a: 'No. Every surface here is a different door to the same two RapidAPI subscriptions — you pay for API usage on your own plan, wherever the calls come from. The one exception is Apify, where the actors bill pay-per-event through Apify instead.',
+    a: 'No. Every surface here is a different door to the same two RapidAPI subscriptions: you pay for API usage on your own plan, wherever the calls come from. The one exception is Apify, where the actors bill pay-per-event through Apify instead.',
   },
   {
     q: 'Where do I get the key all of these use?',
-    a: 'From RapidAPI, on either listing’s pricing tab. The free tier is 10 requests/month with a hard cap — enough to verify your key works — and one key covers both APIs once you subscribe to each.',
+    a: 'From RapidAPI, on either listing’s pricing tab. The free tier is 10 requests/month with a hard cap (enough to verify your key works), and one key covers both APIs once you subscribe to each.',
   },
   {
     q: 'Is there a Zapier or Make integration?',
-    a: 'In review, and we don’t publish doors that don’t open yet. The REST API already works in both today through a webhook / HTTP-request step — the guides show how.',
+    a: 'In review, and we don’t publish doors that don’t open yet. The REST API already works in both today through a webhook / HTTP-request step. The guides show how.',
   },
 ];
 
@@ -153,10 +153,10 @@ export default function IntegrationsPage() {
           <div className="grid gap-8 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-center">
             <div>
               <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-signal-500">Start here</p>
-              <h2 className="mt-3 text-2xl sm:text-3xl font-semibold">RapidAPI — where the key and the bill live</h2>
+              <h2 className="mt-3 text-2xl sm:text-3xl font-semibold">RapidAPI: where the key and the bill live</h2>
               <p className="mt-3 text-[15px] text-ink-400 leading-relaxed max-w-xl">
-                Every integration on this page authenticates with a RapidAPI key. Two listings — Google Flights Live and
-                Booking.com Live — with a free tier on each, account, metering, and invoicing all handled by RapidAPI.
+                Every integration on this page authenticates with a RapidAPI key. Two listings (Google Flights Live and
+                Booking.com Live) with a free tier on each, account, metering, and invoicing all handled by RapidAPI.
               </p>
               <Link href="/integrations/rapidapi" className="mt-4 inline-block text-sm text-signal-400 underline underline-offset-4 hover:text-signal-500">
                 How billing works →
@@ -197,7 +197,7 @@ export default function IntegrationsPage() {
           ))}
         </div>
         <p className="mt-8 max-w-3xl text-[14px] text-ink-400 leading-relaxed border rule rounded-2xl bg-ink-900/40 px-5 py-4">
-          Zapier and Make integrations are in review — the REST API works in both today via a webhook / HTTP-request step. The{' '}
+          Zapier and Make integrations are in review. The REST API works in both today via a webhook / HTTP-request step. The{' '}
           <Link href="/guides" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
             guides
           </Link>{' '}

@@ -18,16 +18,16 @@ import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
-  title: 'REST API direct — api.flightpowers.com',
+  title: 'REST API direct: api.flightpowers.com',
   description:
-    'Call the FlightPowers travel-data API directly at api.flightpowers.com: six endpoints for flights and hotels plus GET /v1/verify. Auth via x-rapidapi-key, x-api-key, or Bearer — the same key from RapidAPI.',
+    'Call the FlightPowers travel-data API directly at api.flightpowers.com: six endpoints for flights and hotels plus GET /v1/verify. Auth via x-rapidapi-key, x-api-key, or Bearer, the same key from RapidAPI.',
   alternates: { canonical: '/integrations/api' },
 };
 
 const CURL = `curl -X POST "https://api.flightpowers.com/v1/flights/oneway" \\
   -H "x-api-key: $RAPIDAPI_KEY" \\
   -H "Content-Type: application/json" \\
-  -d '{"from_airport":"TLV","to_airport":"JFK","departure_date":"2026-10-13"}'`;
+  -d '{"from_airport":"LHR","to_airport":"JFK","departure_date":"2026-10-13"}'`;
 
 /** Verbatim 401 body from a keyless POST, captured 2026-08-26. */
 const MISSING_KEY_401 = `{
@@ -50,7 +50,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Which auth header should I use?',
-    a: 'Any of the three: x-rapidapi-key, x-api-key, or Authorization: Bearer <key>. They are equivalent. A key in the query string (?api_key=) works too but is discouraged — keys in URLs end up in server logs and browser history, as the API’s own 401 message puts it.',
+    a: 'Any of the three: x-rapidapi-key, x-api-key, or Authorization: Bearer <key>. They are equivalent. A key in the query string (?api_key=) works too but is discouraged: keys in URLs end up in server logs and browser history, as the API’s own 401 message puts it.',
   },
   {
     q: 'Why call this host instead of the RapidAPI host?',
@@ -58,11 +58,11 @@ const faq: Faq[] = [
   },
   {
     q: 'What does GET /v1/verify do?',
-    a: 'It checks the key you send and answers with which header it found the key in and your plan’s request quota and remainder. Its 401s are specific — a placeholder like YOUR_API_KEY is called out by name — which makes it the endpoint to smoke-test your setup against. The key checker on the pricing page uses it.',
+    a: 'It checks the key you send and answers with which header it found the key in and your plan’s request quota and remainder. Its 401s are specific (a placeholder like YOUR_API_KEY is called out by name), which makes it the endpoint to smoke-test your setup against. The key checker on the pricing page uses it.',
   },
   {
     q: 'Where is the full parameter reference?',
-    a: 'The interactive docs at api.flightpowers.com/docs and the machine-readable spec at /openapi.json — both generated from the same API. The listing READMEs on RapidAPI carry the same reference with response examples.',
+    a: 'The interactive docs at api.flightpowers.com/docs and the machine-readable spec at /openapi.json, both generated from the same API. The listing READMEs on RapidAPI carry the same reference with response examples.',
   },
 ];
 
@@ -123,14 +123,14 @@ export default function RestApiIntegrationPage() {
             One-way fares with Google&apos;s price band, the low | typical | high verdict, and a buy_link on every result.
           </FieldRow>
           <FieldRow name="POST /v1/flights/roundtrip" type="flights">
-            Paired-leg round-trip itineraries — one object per option with both legs matched and a combined total_price.
+            Paired-leg round-trip itineraries: one object per option with both legs matched and a combined total_price.
           </FieldRow>
           <FieldRow name="POST /v1/hotels/search" type="hotels">
-            Destination search over live Booking.com rates. The destination field is required — it takes free text like
+            Destination search over live Booking.com rates. The destination field is required: it takes free text like
             &ldquo;Paris&rdquo; or &ldquo;Tokyo Shibuya&rdquo;.
           </FieldRow>
           <FieldRow name="POST /v1/hotels/by-name" type="hotels">
-            Availability and price for one property by the name a human would type — resolution included. proxy_country
+            Availability and price for one property by the name a human would type, resolution included. proxy_country
             prices it from any market.
           </FieldRow>
           <FieldRow name="POST /v1/hotels/rooms" type="hotels">
@@ -158,7 +158,7 @@ export default function RestApiIntegrationPage() {
         <SectionHead
           eyebrow="Auth"
           title="Three headers, one key"
-          lede="Send your RapidAPI key as x-rapidapi-key, x-api-key, or Authorization: Bearer — whichever your HTTP client makes easiest. Get it wrong and the API tells you exactly what to fix:"
+          lede="Send your RapidAPI key as x-rapidapi-key, x-api-key, or Authorization: Bearer, whichever your HTTP client makes easiest. Get it wrong and the API tells you exactly what to fix:"
         />
         <div className="mt-8 max-w-3xl">
           <Code label="keyless request → HTTP 401, verbatim">{MISSING_KEY_401}</Code>
@@ -195,7 +195,7 @@ export default function RestApiIntegrationPage() {
         <CtaBand
           medium="integration"
           title="The first call is a curl paste away"
-          body="Get a key, paste the one-liner above, and read a real fare with Google's own verdict attached — before you write a line of application code."
+          body="Get a key, paste the one-liner above, and read a real fare with Google's own verdict attached, before you write a line of application code."
         />
       </Section>
     </>

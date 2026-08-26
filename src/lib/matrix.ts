@@ -1,5 +1,5 @@
 /**
- * The {agent} × {task} matrix — one dataset, ~42 recipe pages at
+ * The {agent} × {task} matrix: one dataset, ~42 recipe pages at
  * /integrations/<agent>/<task>. Every fact here was verified 2026-08-26:
  * MCP tool names and parameters via a live tools/list against
  * flights.flightpowers.com and hotels.flightpowers.com; REST fields from the
@@ -108,8 +108,8 @@ export const TASKS: TaskDef[] = [
     name: 'One-way flight search',
     api: 'flights',
     tool: 'search_oneway_flights',
-    prompt: 'Find me a nonstop TLV to JFK flight on October 13 and tell me if the price is any good.',
-    toolCall: { from_airport: 'TLV', to_airport: 'JFK', departure_date: '2026-10-13', max_stops: 0, limit: 5 },
+    prompt: 'Find me a nonstop JFK to Cancun flight on January 1 and tell me if the price is any good.',
+    toolCall: { from_airport: 'JFK', to_airport: 'CUN', departure_date: '2027-01-01', max_stops: 0, limit: 5 },
     fields: ['price', 'price_insights_low', 'price_insights_high', 'price_range_in_relation_to_other_periods', 'buy_link'],
     description:
       'The agent searches live Google Flights data and answers with fares it can actually judge: every result carries Google’s historical price band and a low | typical | high verdict, so “is the price any good” is a field read, not a guess. The buy_link hands the user a working booking deep link.',
@@ -119,19 +119,19 @@ export const TASKS: TaskDef[] = [
     name: 'Round-trip search',
     api: 'flights',
     tool: 'search_roundtrip_flights',
-    prompt: 'I need a round trip TLV to Paris, out October 6, back October 13. What are my options?',
-    toolCall: { from_airport: 'TLV', to_airport: 'CDG', departure_date: '2026-10-06', return_date: '2026-10-13', limit: 5 },
+    prompt: 'I need a round trip New York to Paris, out October 6, back October 13. What are my options?',
+    toolCall: { from_airport: 'JFK', to_airport: 'CDG', departure_date: '2026-10-06', return_date: '2026-10-13', limit: 5 },
     fields: ['total_price', 'total_duration_seconds', 'departure_flight_airline', 'return_flight_airline', 'buy_link'],
     description:
-      'Round-trip is a first-class paired-leg search — one object per itinerary with both legs already matched and a combined total, not two one-way lists the agent has to cross-join. The agent reads total_price and presents real bookable combinations.',
+      'Round-trip is a first-class paired-leg search: one object per itinerary with both legs already matched and a combined total, not two one-way lists the agent has to cross-join. The agent reads total_price and presents real bookable combinations.',
   },
   {
     slug: 'price-insights-check',
     name: 'Price-insights check',
     api: 'flights',
     tool: 'search_oneway_flights',
-    prompt: 'I was quoted $480 for TLV→JFK in mid-October. Should I take it?',
-    toolCall: { from_airport: 'TLV', to_airport: 'JFK', departure_date: '2026-10-13', limit: 3 },
+    prompt: 'I was quoted $129 for JFK→Cancún on January 1. Should I take it?',
+    toolCall: { from_airport: 'JFK', to_airport: 'CUN', departure_date: '2027-01-01', limit: 3 },
     fields: ['price_insights_low', 'price_insights_high', 'price_range_in_relation_to_other_periods'],
     description:
       'The recipe that only this API can run: the agent compares a quoted fare against Google’s own price band for the route and dates. Below the band’s low end → take it; above the high end → wait. The verdict field gives the agent a defensible recommendation with a source.',
@@ -145,7 +145,7 @@ export const TASKS: TaskDef[] = [
     toolCall: { from_airport: 'LIS', to_airport: 'JFK', departure_date_from: '2026-11-01', departure_date_to: '2026-11-30', limit: 5 },
     fields: ['departure_date', 'price', 'price_range_in_relation_to_other_periods'],
     description:
-      'The tool accepts a date RANGE and expands it internally — one call, not thirty. The agent gets a fare per day and answers with the cheapest date and how much picking it saves. Over REST, the same scan is a parallel burst of per-date requests; the rate limits (150–500/min by tier) exist exactly for this.',
+      'The tool accepts a date RANGE and expands it internally: one call, not thirty. The agent gets a fare per day and answers with the cheapest date and how much picking it saves. Over REST, the same scan is a parallel burst of per-date requests; the rate limits (150–500/min by tier) exist exactly for this.',
   },
   {
     slug: 'hotel-search',
@@ -156,7 +156,7 @@ export const TASKS: TaskDef[] = [
     toolCall: { destination: 'Lisbon', checkin_date: '2026-10-09', checkout_date: '2026-10-12', adults: 2, filters: ['review_score_8', 'free_cancellation'] },
     fields: ['name', 'price_string', 'review_score', 'review_count', 'room_type', 'link'],
     description:
-      'Live Booking.com rates with the filters the real site has (24 of them). Every property returns with a price, review score, room type, and a working booking link — the agent can present a shortlist the user can act on immediately.',
+      'Live Booking.com rates with the filters the real site has (24 of them). Every property returns with a price, review score, room type, and a working booking link, so the agent can present a shortlist the user can act on immediately.',
   },
   {
     slug: 'rate-parity-check',
@@ -167,18 +167,18 @@ export const TASKS: TaskDef[] = [
     toolCall: { hotel_name: 'Rixos Sungate', area: 'Antalya', checkin_date: '2026-10-05', checkout_date: '2026-10-10', proxy_country: 'us' },
     fields: ['available', 'price_string', 'price', 'room_type'],
     description:
-      'One call per market, identical except proxy_country — a two-letter code that routes through a residential proxy in that country. The agent compares the quotes and reports the spread. In a real capture on 2026-08-26 the US market saw the same room $195 cheaper than Germany and Israel.',
+      'One call per market, identical except proxy_country, a two-letter code that routes through a residential proxy in that country. The agent compares the quotes and reports the spread. In a real capture on 2026-08-26 the US market saw the same room $195 cheaper than Germany and Israel.',
   },
   {
     slug: 'fare-alert-cron',
     name: 'Fare-alert cron',
     api: 'flights',
     tool: 'search_oneway_flights',
-    prompt: 'Every morning, check TLV→LHR fares for my December dates and alert me when Google’s verdict flips to low.',
-    toolCall: { from_airport: 'TLV', to_airport: 'LHR', departure_date: '2026-12-10', limit: 3 },
+    prompt: 'Every morning, check JFK→LHR fares for my December dates and alert me when Google’s verdict flips to low.',
+    toolCall: { from_airport: 'JFK', to_airport: 'LHR', departure_date: '2026-12-10', limit: 3 },
     fields: ['price', 'price_range_in_relation_to_other_periods', 'buy_link'],
     description:
-      'The verdict field makes alerting trivial: poll on a schedule and fire only when price_range_in_relation_to_other_periods === "low" — no home-grown price-history database needed, because Google’s band IS the history. Send the buy_link in the alert so the user can book from the notification.',
+      'The verdict field makes alerting trivial: poll on a schedule and fire only when price_range_in_relation_to_other_periods === "low". No home-grown price-history database needed, because Google’s band IS the history. Send the buy_link in the alert so the user can book from the notification.',
   },
 ];
 

@@ -4,9 +4,9 @@ import { CtaBand } from '@/components/bands';
 import { CheckBullets, Container, FaqSection, Feature, Section, SectionHead, type Faq } from '@/components/ui';
 
 export const metadata: Metadata = {
-  title: 'Rate-Parity Monitoring — see your hotel rates the way each market sees them',
+  title: 'Rate-Parity Monitoring: see your hotel rates the way each market sees them',
   description:
-    'Booking.com shows different rates depending on where the visitor browses from. proxy_country routes each request through a residential proxy in the market you choose — so parity checks across countries come from one API, by hotel name, on a schedule.',
+    'Booking.com shows different rates depending on where the visitor browses from. proxy_country routes each request through a residential proxy in the market you choose, so parity checks across countries come from one API, by hotel name, on a schedule.',
   alternates: { canonical: '/use-cases/rate-parity-monitoring' },
 };
 
@@ -15,7 +15,7 @@ export const dynamic = 'force-static';
 const faq: Faq[] = [
   {
     q: 'How does per-country pricing actually work?',
-    a: 'Every hotels endpoint accepts proxy_country, a two-letter code like "us", "de", or "il". The request is routed through a residential proxy in that country, so Booking.com responds exactly as it would to a local visitor. Ask for the same room from three markets and compare what comes back — that is the parity check.',
+    a: 'Every hotels endpoint accepts proxy_country, a two-letter code like "us", "de", or "il". The request is routed through a residential proxy in that country, so Booking.com responds exactly as it would to a local visitor. Ask for the same room from three markets and compare what comes back: that is the parity check.',
   },
   {
     q: 'Do I need Booking.com property IDs to monitor my hotels?',
@@ -41,11 +41,11 @@ export default function RateParityPage() {
         <h1 className="mt-4 text-hero font-semibold max-w-3xl">
           Rate parity, checked from <span className="text-signal-500">inside each market</span>
         </h1>
-        <p className="lede mt-5 max-w-2xl">The same room, priced as a visitor from the US, Germany, or Israel would see it — from one API.</p>
+        <p className="lede mt-5 max-w-2xl">The same room, priced as a visitor from the US, Germany, or Israel would see it, from one API.</p>
         <p className="mt-6 max-w-3xl text-[15px] text-ink-300 leading-relaxed">
           Booking.com shows different rates depending on where the visitor is browsing from, which means a hotel&apos;s
           published rate and the rate a given market actually sees can quietly diverge. Checking that by hand means VPNs,
-          browser profiles, and screenshots — and it still doesn&apos;t scale past a handful of spot checks. A parity
+          browser profiles, and screenshots, and it still doesn&apos;t scale past a handful of spot checks. A parity
           programme needs the market-specific view as structured data, on a schedule, for every property that matters.
         </p>
       </Container>
@@ -55,14 +55,14 @@ export default function RateParityPage() {
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           <Feature title="proxy_country is the whole trick">
             A two-letter code routes the request through a residential proxy in that country. Same hotel, same dates,{' '}
-            proxy_country varied — the response is what a local guest would be quoted, as JSON you can diff.
+            proxy_country varied: the response is what a local guest would be quoted, as JSON you can diff.
           </Feature>
           <Feature title="Query by name, not internal ID">
             /hotel_by_name resolves the hotel name a revenue manager would actually type. No ID-mapping table to build before
             the first check runs; an area field disambiguates the generic names.
           </Feature>
           <Feature title="One shape, even when sold out">
-            Unavailable properties come back as available: false with nulls — the same shape as a priced result. Scheduled
+            Unavailable properties come back as available: false with nulls, the same shape as a priced result. Scheduled
             jobs keep running instead of crashing on the exceptional case.
           </Feature>
         </div>
@@ -81,7 +81,7 @@ export default function RateParityPage() {
               </>,
               <>
                 <strong className="text-ink-100">Loop the markets.</strong> One{' '}
-                <code className="font-mono text-[13px] text-signal-400">/hotel_by_name</code> call per country per property —
+                <code className="font-mono text-[13px] text-signal-400">/hotel_by_name</code> call per country per property:
                 three markets is three requests.
               </>,
               <>
@@ -91,11 +91,11 @@ export default function RateParityPage() {
               </>,
               <>
                 <strong className="text-ink-100">Flag the deltas.</strong> Alert when the spread between markets crosses your
-                threshold — that spread is the parity violation, timestamped.
+                threshold: that spread is the parity violation, timestamped.
               </>,
               <>
                 <strong className="text-ink-100">Go room-level when it matters.</strong> <code className="font-mono text-[13px] text-signal-400">/hotel</code>{' '}
-                returns every room with its type, meal plan, and price — for the cases where the headline rate isn&apos;t the
+                returns every room with its type, meal plan, and price, for the cases where the headline rate isn&apos;t the
                 one that&apos;s off.
               </>,
             ]}
@@ -130,7 +130,7 @@ export default function RateParityPage() {
           medium="use-case"
           api="hotels"
           title="See what each market is really being quoted"
-          body="Live Booking.com rates through a residential proxy in the country you choose — by hotel name, on your schedule."
+          body="Live Booking.com rates through a residential proxy in the country you choose, by hotel name, on your schedule."
         />
       </Section>
     </>

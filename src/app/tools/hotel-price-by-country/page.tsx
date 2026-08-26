@@ -8,7 +8,7 @@ import { FIXTURES } from '@/lib/fixtures';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Hotel Price by Country — the same room, priced from 3 markets',
+  title: 'Hotel Price by Country: the same room, priced from 3 markets',
   description:
     'Pick a hotel and dates and see what Booking.com quotes visitors from 2–3 different countries for the same stay, via per-country residential proxies. The free demo behind rate-parity and geo-pricing monitoring.',
   alternates: { canonical: '/tools/hotel-price-by-country' },
@@ -19,11 +19,11 @@ export const dynamic = 'force-static';
 const faq: Faq[] = [
   {
     q: 'Why would the same room cost different amounts by country?',
-    a: 'Booking.com shows different rates depending on where the visitor is browsing from — market-specific promotions, currency handling, and channel deals all move the number. The only way to see it is to genuinely ask from each market, which is what the per-country residential proxy does.',
+    a: 'Booking.com shows different rates depending on where the visitor is browsing from: market-specific promotions, currency handling, and channel deals all move the number. The only way to see it is to genuinely ask from each market, which is what the per-country residential proxy does.',
   },
   {
     q: 'Is this tool really free?',
-    a: 'Yes — no account, no email. But each selected market is a real request routed through a residential proxy in that country, the most expensive kind of call we serve, so this tool carries the tightest per-visitor cap on the site and repeated queries come from a short cache. The page shows captured runs until you run one.',
+    a: 'Yes: no account, no email. But each selected market is a real request routed through a residential proxy in that country, the most expensive kind of call we serve, so this tool carries the tightest per-visitor cap on the site and repeated queries come from a short cache. The page shows captured runs until you run one.',
   },
   {
     q: 'What is proxy_country exactly?',
@@ -31,15 +31,15 @@ const faq: Faq[] = [
   },
   {
     q: 'What if all markets come back with the same price?',
-    a: 'Then parity is holding for that property and dates — a real answer, not a failed check. The captured Kremlin Palace example on this page shows exactly that, within a dollar across three markets. A monitoring setup wants both outcomes: the spread and the all-clear.',
+    a: 'Then parity is holding for that property and dates. That is a real answer, not a failed check. The captured Kremlin Palace example on this page shows exactly that, within a dollar across three markets. A monitoring setup wants both outcomes: the spread and the all-clear.',
   },
   {
     q: 'Why only 2–3 markets, and only from a fixed list?',
-    a: 'Demo economics: each market is one proxied call on our key, so the demo allows 13 allowlisted countries and at most 3 per run. From your own code there is no such list — one request per market you care about, as many as your plan’s rate limit lets you fire.',
+    a: 'Demo economics: each market is one proxied call on our key, so the demo allows 13 allowlisted countries and at most 3 per run. From your own code there is no such list: one request per market you care about, as many as your plan’s rate limit lets you fire.',
   },
   {
     q: 'What does “sold out” or “search failed” in a row mean?',
-    a: 'Sold out means Booking.com answered from that market with no availability for your dates. Search failed means that one proxied request didn’t complete — the other markets still stand, and the tool reports the row honestly instead of dropping it.',
+    a: 'Sold out means Booking.com answered from that market with no availability for your dates. Search failed means that one proxied request didn’t complete. The other markets still stand, and the tool reports the row honestly instead of dropping it.',
   },
   {
     q: 'Can I automate this across a whole comp set?',
@@ -86,7 +86,7 @@ export default function HotelGeoPage() {
           Hotel Price <span className="text-signal-500">by Country</span>
         </h1>
         <p className="lede mt-5 max-w-2xl">
-          Booking.com doesn&apos;t quote one price — it quotes one per market. Pick a hotel and dates and see what the same room costs
+          Booking.com doesn&apos;t quote one price; it quotes one per market. Pick a hotel and dates and see what the same room costs
           a visitor from the US, Germany, or eleven other countries.
         </p>
       </Container>
@@ -99,9 +99,9 @@ export default function HotelGeoPage() {
         <SectionHead eyebrow="How it works" title="One parameter does all the travelling" />
         <ol className="mt-8 grid gap-6 md:grid-cols-3">
           {[
-            ['Name the hotel, pick the markets', 'The name a human would type — no property IDs. Add an area to disambiguate, choose 2–3 countries.'],
+            ['Name the hotel, pick the markets', 'The name a human would type, no property IDs. Add an area to disambiguate, choose 2–3 countries.'],
             ['We ask from each country', 'One real Booking.com lookup per market, identical except proxy_country, each routed through a residential proxy in that country at request time.'],
-            ['Compare the quotes', 'Same room, same dates, side by side — with the spread computed. When the markets agree, the tool says parity is holding rather than inventing a difference.'],
+            ['Compare the quotes', 'Same room, same dates, side by side, with the spread computed. When the markets agree, the tool says parity is holding rather than inventing a difference.'],
           ].map(([title, body], i) => (
             <li key={title} className="rounded-2xl border rule bg-ink-900/50 p-5">
               <p className="font-mono text-[13px] text-signal-500">{i + 1}</p>
@@ -116,7 +116,7 @@ export default function HotelGeoPage() {
         <SectionHead
           eyebrow="Who it's for"
           title="A tool for people whose job is the rate"
-          lede="Travellers save a few dollars with a VPN. Businesses monitor this — that's who the API sells to."
+          lede="Travellers save a few dollars with a VPN. Businesses monitor this; that's who the API sells to."
         />
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           <div className="rounded-2xl border rule bg-ink-900/50 p-5">
@@ -156,7 +156,7 @@ export default function HotelGeoPage() {
           </div>
           <HotelMarketsTable markets={marketsOf(kremlin)} />
           <p className="mt-3 text-[13.5px] text-ink-400 leading-relaxed">
-            Three markets, all within a dollar. The Rixos Sungate capture above — same dates, same markets — showed a $195 spread
+            Three markets, all within a dollar. The Rixos Sungate capture above (same dates, same markets) showed a $195 spread
             on the same room. Which of the two your property looks like is exactly what monitoring answers.
           </p>
         </div>
@@ -173,14 +173,14 @@ export default function HotelGeoPage() {
             <div>
               <p className="text-[15px] font-semibold text-ink-100">Any market, not an allowlist</p>
               <p className="mt-1.5 text-[14px] text-ink-400 leading-relaxed">
-                proxy_country takes a two-letter code on every hotels endpoint — the demo&apos;s 13-country list is a demo budget, not
+                proxy_country takes a two-letter code on every hotels endpoint; the demo&apos;s 13-country list is a demo budget, not
                 an API limit.
               </p>
             </div>
             <div>
               <p className="text-[15px] font-semibold text-ink-100">By name, on a schedule</p>
               <p className="mt-1.5 text-[14px] text-ink-400 leading-relaxed">
-                The by-name endpoint resolves the property for you, so a comp-set sweep is a list of names and a cron — no ID
+                The by-name endpoint resolves the property for you, so a comp-set sweep is a list of names and a cron, no ID
                 bookkeeping.
               </p>
             </div>
@@ -227,7 +227,7 @@ export default function HotelGeoPage() {
           medium="tool"
           api="hotels"
           title="Rate-parity monitoring is one parameter away"
-          body="Live Booking.com rates with proxy_country on every endpoint — the same check you just ran, as a scheduled job. Free tier on RapidAPI — no card to try."
+          body="Live Booking.com rates with proxy_country on every endpoint: the same check you just ran, as a scheduled job. Free tier on RapidAPI, no card to try."
         />
       </Section>
     </>

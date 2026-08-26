@@ -62,7 +62,7 @@ export function requestBudget(req: Request, cost: number): BudgetDecision {
       body: {
         error: 'cross_origin',
         message:
-          'The live demo only serves flightpowers.com pages. For your own integration, get a key on RapidAPI — the free tier takes about a minute.',
+          'The live demo only serves flightpowers.com pages. For your own integration, get a key on RapidAPI. The free tier takes about a minute.',
       },
     };
   }
@@ -76,7 +76,7 @@ export function requestBudget(req: Request, cost: number): BudgetDecision {
       body: {
         error: 'daily_budget_spent',
         message:
-          "The live demo hit today's backend budget — every run here is a real request against live Google Flights and Booking.com data, and we cap what a day can cost. Captured example runs are shown instead. With your own free RapidAPI key, your requests are your own.",
+          "The live demo hit today's backend budget. Every run here is a real request against live Google Flights and Booking.com data, and we cap what a day can cost. Captured example runs are shown instead. With your own free RapidAPI key, your requests are your own.",
       },
     };
   }
@@ -93,7 +93,7 @@ export function requestBudget(req: Request, cost: number): BudgetDecision {
       status: 429,
       body: {
         error: 'per_ip_cap',
-        message: `That's the live-demo limit for today (${PER_IP_DAILY} backend calls per visitor per day — each run is a real search against live data). It resets at midnight UTC. If you're evaluating seriously, a free RapidAPI key takes about a minute and the Pro tier is $10/month.`,
+        message: `That's the live-demo limit for today (${PER_IP_DAILY} backend calls per visitor per day; each run is a real search against live data). It resets at midnight UTC. If you're evaluating seriously, a free RapidAPI key takes about a minute and the Pro tier is $10/month.`,
       },
     };
   }

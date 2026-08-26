@@ -38,7 +38,7 @@ export default function TermsPage() {
 
         <h2>There is no site account</h2>
         <p>
-          This site has no signup, no login, and no account system. Anything account-shaped — keys, billing, usage metering —
+          This site has no signup, no login, and no account system. Anything account-shaped (keys, billing, usage metering)
           lives with the marketplace that issued your key.
         </p>
 
@@ -59,7 +59,7 @@ export default function TermsPage() {
 
         <h2>Questions</h2>
         <p>
-          If anything here is unclear, ask — <Link href="/contact">the contact page</Link> lists the channels the developer
+          If anything here is unclear, ask: <Link href="/contact">the contact page</Link> lists the channels the developer
           actually reads.
         </p>
       </article>

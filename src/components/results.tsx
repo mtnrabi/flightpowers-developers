@@ -65,7 +65,7 @@ export function FlightResults({ flights, showBand = true }: { flights: OnewayFli
             low={withBand.price_insights_low}
             high={withBand.price_insights_high}
             price={cheapest.price_as_number}
-            label={`Google's price band for this route & dates — cheapest live fare ${cheapest.price}`}
+            label={`Google's price band for this route & dates. Cheapest live fare: ${cheapest.price}`}
           />
         </div>
       ) : null}
@@ -121,7 +121,7 @@ export function RoundtripResults({ itineraries }: { itineraries: RoundtripItiner
             low={withBand.price_insights_low}
             high={withBand.price_insights_high}
             price={cheapest.total_price_as_number}
-            label={`Google's price band — cheapest paired itinerary ${cheapest.total_price}`}
+            label={`Google's price band. Cheapest paired itinerary: ${cheapest.total_price}`}
           />
         </div>
       ) : null}
@@ -161,7 +161,7 @@ export function StealRow({ r, destName }: { r: DealHuntRow; destName: string }) 
 }
 
 /** Destination x date price matrix for a multi-destination hunt. */
-export function DealHuntGrid({ rows, destNames }: { rows: DealHuntRow[]; destNames: Record<string, string> }) {
+export function DealHuntGrid({ rows, destNames, origin }: { rows: DealHuntRow[]; destNames: Record<string, string>; origin: string }) {
   const dests = [...new Set(rows.map((r) => r.dest))];
   const dates = [...new Set(rows.map((r) => r.date))].sort();
   const prices = rows.map((r) => r.price).filter((p): p is number => p != null);
@@ -186,7 +186,7 @@ export function DealHuntGrid({ rows, destNames }: { rows: DealHuntRow[]; destNam
         <tbody>
           {dests.map((dest) => (
             <tr key={dest}>
-              <td className="pr-2 font-mono text-[12px] text-ink-300 whitespace-nowrap">TLV→{dest}</td>
+              <td className="pr-2 font-mono text-[12px] text-ink-300 whitespace-nowrap">{origin}→{dest}</td>
               {dates.map((d) => {
                 const r = cell.get(`${dest}|${d}`);
                 const p = r?.price ?? null;
@@ -322,7 +322,7 @@ export function HotelMarketsTable({ markets }: { markets: { country: string; res
           most expensive market for the same room.
         </p>
       ) : min != null ? (
-        <p className="mt-2 text-[13px] text-ink-400">All markets quoted the same rate — parity holding is an answer too.</p>
+        <p className="mt-2 text-[13px] text-ink-400">All markets quoted the same rate. Parity holding is an answer too.</p>
       ) : null}
     </div>
   );

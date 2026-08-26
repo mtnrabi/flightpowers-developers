@@ -5,9 +5,9 @@ import { Container, JsonLd, Section, SectionHead } from '@/components/ui';
 import { SITE } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Use Cases — what people build on live flight & hotel data',
+  title: 'Use Cases: what people build on live flight & hotel data',
   description:
-    'Fare alerts, AI travel agents, rate-parity monitoring, fare calendars, metasearch, market analysis, comp-set tracking, and trip-planning bots — each mapped to the exact API capabilities that make it work.',
+    'Fare alerts, AI travel agents, rate-parity monitoring, fare calendars, metasearch, market analysis, comp-set tracking, and trip-planning bots, each mapped to the exact API capabilities that make it work.',
   alternates: { canonical: '/use-cases' },
 };
 
@@ -17,7 +17,7 @@ const useCases: { slug: string; title: string; sub: string }[] = [
   {
     slug: 'fare-alerts',
     title: 'Fare alerts',
-    sub: 'Fire on Google’s own low | typical | high verdict — no price-history database to build.',
+    sub: 'Fire on Google’s own low | typical | high verdict: no price-history database to build.',
   },
   {
     slug: 'ai-travel-agents',
@@ -27,7 +27,7 @@ const useCases: { slug: string; title: string; sub: string }[] = [
   {
     slug: 'rate-parity-monitoring',
     title: 'Rate-parity monitoring',
-    sub: 'The same room priced from different countries with proxy_country — parity checks from one API.',
+    sub: 'The same room priced from different countries with proxy_country: parity checks from one API.',
   },
   {
     slug: 'fare-calendars',
@@ -37,7 +37,7 @@ const useCases: { slug: string; title: string; sub: string }[] = [
   {
     slug: 'metasearch',
     title: 'Metasearch & comparison sites',
-    sub: 'Live fares with a working buy_link on every result — no booking URL to reconstruct.',
+    sub: 'Live fares with a working buy_link on every result: no booking URL to reconstruct.',
   },
   {
     slug: 'market-analysis',
@@ -47,7 +47,7 @@ const useCases: { slug: string; title: string; sub: string }[] = [
   {
     slug: 'hotel-comp-set-tracking',
     title: 'Hotel comp-set tracking',
-    sub: 'Your competitive set by hotel name, on a schedule — no internal property IDs required.',
+    sub: 'Your competitive set by hotel name, on a schedule: no internal property IDs required.',
   },
   {
     slug: 'trip-planning-bots',
@@ -79,8 +79,8 @@ export default function UseCasesPage() {
           What people <span className="text-signal-500">build</span> on this data
         </h1>
         <p className="lede mt-5 max-w-2xl">
-          Eight jobs the APIs are actually used for. Each page names the specific capability that makes the job workable —
-          a field, a header, an endpoint, a rate limit — not a generic promise.
+          Eight jobs the APIs are actually used for. Each page names the specific capability that makes the job workable
+          (a field, a header, an endpoint, a rate limit), not a generic promise.
         </p>
       </Container>
 

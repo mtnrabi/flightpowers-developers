@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'Handling empty flight search results — when [] is an answer and when it is a lie',
+  title: 'Handling empty flight search results: when [] is an answer and when it is a lie',
   description:
     'A 200 with an empty array is the most dangerous response a search API can return, because it collapses two opposite facts into one byte sequence. The failure taxonomy behind empty results, why retry policies built on ambiguous emptiness are all wrong, and a vendor-neutral checklist for evaluating any search API’s empty-result semantics.',
   alternates: { canonical: '/guides/handle-empty-flight-search-results' },
@@ -15,7 +15,7 @@ import { SITE } from '@/lib/site';
   data={{
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
-    headline: 'Handling empty flight search results — when [] is an answer and when it is a lie',
+    headline: 'Handling empty flight search results: when [] is an answer and when it is a lie',
     description:
       'Why HTTP 200 with an empty array is ambiguous in search APIs backed by scraping, what the failure taxonomy actually looks like, and how a status channel fixes it.',
     url: `${SITE.url}/guides/handle-empty-flight-search-results`,
@@ -29,7 +29,7 @@ import { SITE } from '@/lib/site';
 # Handling empty flight search results
 
 *I run a Google Flights API. This essay exists because the worst bug in it was not a
-crash — it was a `200 []` that meant two different things, and for a long time I could
+crash: it was a `200 []` that meant two different things, and for a long time I could
 not tell you which. The fix changed how I think about search APIs in general, so most
 of what follows is vendor-neutral. The specifics of how my own API reports it are at
 the end, quoted from its public docs so you can check the wording against mine.*
@@ -38,10 +38,10 @@ the end, quoted from its public docs so you can check the wording against mine.*
 
 A flight search API returns `200` with an empty JSON array. What happened?
 
-Either **there are no flights** — the route has no service on that date, and the empty
-array is a complete, correct, cacheable answer. Or **the search failed** — somewhere
+Either **there are no flights**: the route has no service on that date, and the empty
+array is a complete, correct, cacheable answer. Or **the search failed**: somewhere
 behind the API, a page did not load, a session got challenged, a parser hit markup it
-did not recognize — and the empty array is not an answer at all. It is an error that
+did not recognize, and the empty array is not an answer at all. It is an error that
 lost its error-ness on the way to you.
 
 These are opposite facts. One says "tell the user to pick another date." The other
@@ -49,7 +49,7 @@ says "tell the user nothing, because you know nothing." And in most search APIs 
 are delivered as the same three bytes: `[]`.
 
 This is not specific to flights. Any API whose backend is a search over an external
-system — scraped pages, a federated query, a fan-out to suppliers — has a version of
+system (scraped pages, a federated query, a fan-out to suppliers) has a version of
 this problem. Flights just make it vivid, because an airline route genuinely having
 no flights is common, so you cannot treat empty as suspicious by default.
 
@@ -58,18 +58,18 @@ no flights is common, so you cannot treat empty as suspicious by default.
 When the backend is a scrape of a real website, an empty result set has at least four
 mundane, unglamorous causes that have nothing to do with flight availability:
 
-1. **The consent wall.** The scraper got an interstitial — a cookie-consent page, a
-   region gate — instead of results. The page parsed fine. It contained zero flights,
+1. **The consent wall.** The scraper got an interstitial (a cookie-consent page, a
+   region gate) instead of results. The page parsed fine. It contained zero flights,
    because it contained zero content.
 2. **The bot check.** A challenge page. Same shape: valid HTML, no flights on it.
-3. **The truncated page.** The response was cut off mid-body — a proxy hiccup, a
+3. **The truncated page.** The response was cut off mid-body: a proxy hiccup, a
    timeout upstream. The parser found the results container empty or absent and
    reported what it found: nothing.
 4. **The markup change.** The most insidious one. The site shipped a redesign; flight
    rows are present on the page but the selectors no longer match, or prices moved
    into a structure the parser cannot read. From the inside, this looks like a page
-   that has flights and refuses to give up their prices. From the outside — if the
-   API is careless — it looks like every route in the world went quiet at once.
+   that has flights and refuses to give up their prices. From the outside, if the
+   API is careless, it looks like every route in the world went quiet at once.
 
 None of these are exotic. All of them happen every week at scraping scale. And every
 one of them, passed through a naive pipeline, comes out the other end as `200 []`.
@@ -78,22 +78,22 @@ one of them, passed through a naive pipeline, comes out the other end as `200 []
 
 Here is the trap: once empty is ambiguous, **every** downstream policy is wrong.
 
-- **Never retry empties** — you accept every consent wall and bot check as a fact
+- **Never retry empties**: you accept every consent wall and bot check as a fact
   about the world. Your fare-alert product tells a user their route has no service.
   Your cache stores the lie and serves it for an hour. On the markup-change failure
   mode, your product reports zero availability *globally* until a human notices.
-- **Always retry empties** — now genuinely empty routes get hammered. A route that
+- **Always retry empties**: now genuinely empty routes get hammered. A route that
   truly has no Tuesday service gets re-searched three, five, ten times, each retry
   costing quota and latency, returning the same honest emptiness. You are paying to
   re-verify a fact you already had, and your p99 goes to the retries.
-- **Retry with heuristics** — "retry if the route usually has flights" means you now
+- **Retry with heuristics**: "retry if the route usually has flights" means you now
   maintain a model of world flight schedules to work around your data vendor. The
   workaround is bigger than the feature.
 
 The policies differ; the wrongness is constant. That is the tell that the defect is
 not in your code. **A retry policy cannot be correct when its input is ambiguous.**
-No amount of client-side cleverness manufactures the missing bit. The information —
-"did the search actually complete?" — existed at the moment of the search, inside the
+No amount of client-side cleverness manufactures the missing bit. The information
+("did the search actually complete?") existed at the moment of the search, inside the
 vendor, and was discarded before it reached you. Only the vendor can stop discarding
 it.
 
@@ -101,7 +101,7 @@ it.
 
 The fix is embarrassingly old-fashioned: a status channel. The search reports not
 just its results but whether it completed, and an empty result is only presented as
-an answer when the underlying source *positively said so* — a page that actually
+an answer when the underlying source *positively said so*: a page that actually
 rendered "no flights for these dates," not a page that merely contained no rows.
 
 On my own API this ships as an `X-Search-Status` response header with four values.
@@ -112,7 +112,7 @@ Quoting the listing's own documentation:
 | `ok` | Results returned, array complete |
 | `empty` | The search completed and Google genuinely has no itineraries for that route and date. **The empty array is the answer**, not a failure you should retry |
 | `partial` | There are itineraries, but the array is knowingly short: rows whose price could not be read were dropped, or a round-trip's return-leg fan-out lost some of the outbound candidates it set out to price. Real results, minus the ones the search could not deliver |
-| `degraded` | The search did not complete. The empty array says nothing about availability — retry it |
+| `degraded` | The search did not complete. The empty array says nothing about availability - retry it |
 
 And the client code, also from the listing:
 
@@ -131,11 +131,11 @@ if not flights:
 
 Notice what the four values buy. `empty` is now **load-bearing**: it is a promise
 that the source was read and positively reported nothing, so you can cache it, alert
-on it, and say "no flights" to a user with a straight face — and a real empty result
+on it, and say "no flights" to a user with a straight face. And a real empty result
 is never retried, so honesty costs nothing extra. `degraded` is an honest "I don't
 know," which is the answer `[]` was silently impersonating all along. `partial` is
-the subtle one — real results with a confession attached that some could not be
-delivered — which matters when your product claims to show *the cheapest* option: on
+the subtle one (real results with a confession attached that some could not be
+delivered), which matters when your product claims to show *the cheapest* option: on
 a `partial`, "cheapest of what I could read" is the honest phrasing.
 
 The docs are worth quoting on the hard case, round-trips, because it shows what the
@@ -146,7 +146,7 @@ guarantee costs to provide:
 > fetches can fail on its own. `empty` is only reported when every candidate was
 > attempted and every one of them read a real Google Flights page saying it had
 > nothing. A fan-out that was blocked, or that stopped on the request's time ceiling,
-> reports `degraded` or `partial` — never "no flights".
+> reports `degraded` or `partial` - never "no flights".
 
 There is also a second escape hatch for callers who would rather have an error than a
 headers-checking obligation:
@@ -168,7 +168,7 @@ Vendor-neutral, and I would apply it to my own API before trusting it:
 1. **Ask the docs what `[]` means.** If the documentation never distinguishes "no
    results" from "search failed," the distinction does not exist, and you have found
    it before your users did.
-2. **Look for a completeness signal** — a header, an envelope field, a status enum.
+2. **Look for a completeness signal**: a header, an envelope field, a status enum.
    Any channel works; the crime is not having one.
 3. **Check whether "empty" is a positive claim.** "We found nothing" should mean
    "the source said nothing," not "our parser produced nothing." Ask the vendor which
@@ -179,10 +179,10 @@ Vendor-neutral, and I would apply it to my own API before trusting it:
 5. **Ask what a retry costs.** If failed searches bill quota and the API cannot tell
    you which searches failed, you are buying the same missing answer repeatedly.
 6. **Test the hard route, not the easy one.** JFK–LHR will never show you any of
-   this. A small regional airport, a 2-stop itinerary, a date eleven months out —
+   this. A small regional airport, a 2-stop itinerary, a date eleven months out:
    that is where the empty-result semantics actually get exercised.
-7. **Prefer an API that will fail loudly on request.** A `strict`-style mode — an
-   explicit error instead of an ambiguous empty — means the vendor is confident
+7. **Prefer an API that will fail loudly on request.** A `strict`-style mode (an
+   explicit error instead of an ambiguous empty) means the vendor is confident
    enough in their own completeness signal to take errors for it. That confidence is
    the product.
 
@@ -192,12 +192,12 @@ cannot tell you when it failed is not returning data. It is returning moods.
 
 ## Related
 
-- [Search Status, field by field](/flights-api/search-status) — the header reference, with a captured degraded response
-- [How to get real-time Google Flights data](/guides/real-time-google-flights-data) — the full API walkthrough
-- [Round-Trip API](/flights-api/round-trip) — where the fan-out completeness guarantee earns its keep
+- [Search Status, field by field](/flights-api/search-status): the header reference, with a captured degraded response
+- [How to get real-time Google Flights data](/guides/real-time-google-flights-data): the full API walkthrough
+- [Round-Trip API](/flights-api/round-trip): where the fan-out completeness guarantee earns its keep
 
 <CtaBand
   medium="guide"
   title="An empty array you can actually trust"
-  body="Every search reports whether it completed — ok, empty, partial, or degraded — and strict mode turns ambiguity into a 503. Free tier on RapidAPI."
+  body="Every search reports whether it completed (ok, empty, partial, or degraded), and strict mode turns ambiguity into a 503. Free tier on RapidAPI."
 />

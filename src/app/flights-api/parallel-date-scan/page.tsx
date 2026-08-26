@@ -22,7 +22,7 @@ import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 import { monthScanSnippets } from '@/lib/snippets';
 
 export const metadata: Metadata = {
-  title: 'Parallel Date Scans — a month of flight prices in one burst',
+  title: 'Parallel Date Scans: a month of flight prices in one burst',
   description:
     'Each date is one request, and the per-minute rate limits (150 on Pro, 250 on Ultra, 500 on Mega) are sized for firing them in parallel. Cheapest-month calendars, fare heatmaps, and flexible-date search become practical to build.',
   alternates: { canonical: '/flights-api/parallel-date-scan' },
@@ -50,11 +50,11 @@ function scanQuotaCost(price: number, quota: number): string {
 const faq: Faq[] = [
   {
     q: 'How do I scan a whole month of flight prices?',
-    a: 'One request per departure date, fired in parallel, then merge on price_as_number. The November scan on this page is exactly that: 30 requests, LIS→JFK, one per date, run in parallel batches — the heat grid is the merged result.',
+    a: 'One request per departure date, fired in parallel, then merge on price_as_number. The November scan on this page is exactly that: 30 requests, LIS→JFK, one per date, run in parallel batches. The heat grid is the merged result.',
   },
   {
     q: 'How many requests does a flexible-date search use?',
-    a: `One per date-and-duration combination. The listing's own worked example — "3 to 5 nights, TLV to Paris or Prague, anywhere in May" — is 31 dates × 3 durations × 2 destinations = ${EXAMPLE_REQUESTS} requests. Fire them in batches sized to your plan's per-minute limit and merge the results.`,
+    a: `One per date-and-duration combination. The listing's own worked example, "3 to 5 nights, TLV to Paris or Prague, anywhere in May", is 31 dates × 3 durations × 2 destinations = ${EXAMPLE_REQUESTS} requests. Fire them in batches sized to your plan's per-minute limit and merge the results.`,
   },
   {
     q: 'Will parallel requests get me blocked by Google?',
@@ -62,19 +62,19 @@ const faq: Faq[] = [
   },
   {
     q: 'How many full-month scans does each plan cover?',
-    a: `Straight division of quota by ${SCAN_DAYS} requests per scan: Pro's ${PAID_PLANS[0]!.quota.toLocaleString('en-US')} requests/month is ${scansPerMonth(PAID_PLANS[0]!.quota)} full-month scans, Ultra's ${PAID_PLANS[1]!.quota.toLocaleString('en-US')} is ${scansPerMonth(PAID_PLANS[1]!.quota)}, and Mega's ${PAID_PLANS[2]!.quota.toLocaleString('en-US')} is ${scansPerMonth(PAID_PLANS[2]!.quota)} — before overage, which stays available on every paid plan.`,
+    a: `Straight division of quota by ${SCAN_DAYS} requests per scan: Pro's ${PAID_PLANS[0]!.quota.toLocaleString('en-US')} requests/month is ${scansPerMonth(PAID_PLANS[0]!.quota)} full-month scans, Ultra's ${PAID_PLANS[1]!.quota.toLocaleString('en-US')} is ${scansPerMonth(PAID_PLANS[1]!.quota)}, and Mega's ${PAID_PLANS[2]!.quota.toLocaleString('en-US')} is ${scansPerMonth(PAID_PLANS[2]!.quota)}, before overage, which stays available on every paid plan.`,
   },
   {
     q: 'Is there a bulk calendar endpoint that returns a month in one call?',
-    a: 'No — and that is a deliberate honesty about how the data is gathered: every date is a live scan of its own Google Flights page. Each date is one request; the rate limits are sized so the whole month still finishes in about a minute. The free cheapest-month tool on this site runs the same pattern.',
+    a: 'No, and that is a deliberate honesty about how the data is gathered: every date is a live scan of its own Google Flights page. Each date is one request; the rate limits are sized so the whole month still finishes in about a minute. The free cheapest-month tool on this site runs the same pattern.',
   },
   {
     q: 'What concurrency should my client use?',
-    a: `Keep in-flight requests under your plan's per-minute figure — ${PAID_PLANS.map((p) => `${p.ratePerMinute} on ${p.name[0] + p.name.slice(1).toLowerCase()}`).join(', ')}. A ${SCAN_DAYS}-date month fits inside a single burst on every paid plan; the ${EXAMPLE_REQUESTS}-request example needs ${minutesForExample(PAID_PLANS[0]!.ratePerMinute)} on Pro and ${minutesForExample(PAID_PLANS[1]!.ratePerMinute)} on Ultra.`,
+    a: `Keep in-flight requests under your plan's per-minute figure: ${PAID_PLANS.map((p) => `${p.ratePerMinute} on ${p.name[0] + p.name.slice(1).toLowerCase()}`).join(', ')}. A ${SCAN_DAYS}-date month fits inside a single burst on every paid plan; the ${EXAMPLE_REQUESTS}-request example needs ${minutesForExample(PAID_PLANS[0]!.ratePerMinute)} on Pro and ${minutesForExample(PAID_PLANS[1]!.ratePerMinute)} on Ultra.`,
   },
   {
     q: 'What does a month scan cost?',
-    a: `Derived from the plan prices: ${SCAN_DAYS} requests is ${scanQuotaCost(PAID_PLANS[0]!.priceMonthly, PAID_PLANS[0]!.quota)} of Pro's quota, ${scanQuotaCost(PAID_PLANS[1]!.priceMonthly, PAID_PLANS[1]!.quota)} of Ultra's, and ${scanQuotaCost(PAID_PLANS[2]!.priceMonthly, PAID_PLANS[2]!.quota)} of Mega's. A daily cheapest-month product on one route runs about ${SCAN_DAYS * 30} requests a month — it fits inside even Pro's quota.`,
+    a: `Derived from the plan prices: ${SCAN_DAYS} requests is ${scanQuotaCost(PAID_PLANS[0]!.priceMonthly, PAID_PLANS[0]!.quota)} of Pro's quota, ${scanQuotaCost(PAID_PLANS[1]!.priceMonthly, PAID_PLANS[1]!.quota)} of Ultra's, and ${scanQuotaCost(PAID_PLANS[2]!.priceMonthly, PAID_PLANS[2]!.quota)} of Mega's. A daily cheapest-month product on one route runs about ${SCAN_DAYS * 30} requests a month. It fits inside even Pro's quota.`,
   },
 ];
 
@@ -123,7 +123,7 @@ export default function ParallelDateScanPage() {
                 A month of fares in <span className="text-signal-500">one burst</span>
               </h1>
               <p className="lede mt-5">
-                Each date is one request, and the rate limits are sized for exactly that — fire a whole month in parallel and
+                Each date is one request, and the rate limits are sized for exactly that: fire a whole month in parallel and
                 merge the results.
               </p>
               <div className="mt-7">
@@ -219,7 +219,7 @@ export default function ParallelDateScanPage() {
           </div>
         </div>
         <p className="mt-4 max-w-3xl font-mono text-[11px] text-ink-500">
-          Scans-per-month and per-scan cost are straight arithmetic on the live listing&apos;s quotas and prices — nothing
+          Scans-per-month and per-scan cost are straight arithmetic on the live listing&apos;s quotas and prices. Nothing
           estimated. Overage stays available on every paid plan if a scan lands past the quota.
         </p>
       </Section>
@@ -233,7 +233,7 @@ export default function ParallelDateScanPage() {
         <div className="mt-8 max-w-3xl">
           <CodeTabs snippets={snippets} tool="parallel-date-scan" />
           <p className="mt-4 text-[14px] text-ink-400 leading-relaxed">
-            Every response in the scan still carries the full result shape — the{' '}
+            Every response in the scan still carries the full result shape, including the{' '}
             <Link href="/flights-api/price-insights" className="text-signal-400 underline underline-offset-4">
               price band and verdict
             </Link>{' '}

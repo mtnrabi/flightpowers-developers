@@ -20,7 +20,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 /**
  * Shared skeleton for the per-agent-brand integration pages
  * (/integrations/{claude,chatgpt,cursor,claude-code,openclaw}).
- * Same structure on every page — Postiz-style — with agent-specific config,
+ * Same structure on every page (Postiz-style) with agent-specific config,
  * prompts, and FAQ passed in. The CTA is the copyable connect block itself.
  *
  * Not a route: the leading underscore keeps it out of the router.
@@ -93,7 +93,7 @@ export function AgentIntegrationPage({
                 <CheckBullets
                   items={[
                     <>Google&apos;s price band + a low | typical | high verdict on every fare</>,
-                    <>Bring your own key — usage bills to your own RapidAPI plan, never ours</>,
+                    <>Bring your own key: usage bills to your own RapidAPI plan, never ours</>,
                     <>
                       Live Booking.com rates too, with <code className="font-mono text-[13px] text-signal-400">proxy_country</code>{' '}
                       per-market pricing

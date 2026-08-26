@@ -30,7 +30,7 @@ export default function PrivacyPage() {
 
         <h2>A first-party anonymous event beacon</h2>
         <p>
-          To learn which pages and tools are actually useful, the site records interaction events — which tool was used, which
+          To learn which pages and tools are actually useful, the site records interaction events: which tool was used, which
           action was taken (like copying a code snippet or clicking through to a listing), and the page path. These events
           carry no identifiers: no user ID, no fingerprint, no cross-site anything. They answer &ldquo;was this feature
           used?&rdquo;, not &ldquo;who used it?&rdquo;.
@@ -39,7 +39,7 @@ export default function PrivacyPage() {
         <h2>Demo searches are transient</h2>
         <p>
           When you run a live demo or free tool, your query (a route, a date, a hotel name) is processed to answer that
-          request and cached briefly, keyed by the query itself — not by you — so repeated searches don&apos;t cost extra API
+          request and cached briefly, keyed by the query itself, not by you, so repeated searches don&apos;t cost extra API
           calls. Queries are not tied to a profile, because no profile exists.
         </p>
 
@@ -63,7 +63,7 @@ export default function PrivacyPage() {
 
         <h2>Questions</h2>
         <p>
-          If you want to know anything about how this site handles data, ask directly — <Link href="/contact">the contact
+          If you want to know anything about how this site handles data, ask directly: <Link href="/contact">the contact
           page</Link> reaches the person who wrote this page.
         </p>
       </article>

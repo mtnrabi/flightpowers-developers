@@ -5,7 +5,7 @@ import { Breadcrumbs, Container, JsonLd, Section, SectionHead } from '@/componen
 import { SITE } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Guides — working code for flight & hotel data',
+  title: 'Guides: working code for flight & hotel data',
   description:
     'How-to guides for live flight and hotel pricing: getting real-time Google Flights data, handling empty search results correctly, decoding Google Flights URLs, monitoring hotel rate parity, fare watches in n8n, and an honest comparison of the 2026 flight-API field.',
   alternates: { canonical: '/guides' },
@@ -29,25 +29,25 @@ const GUIDES = [
   {
     href: '/guides/google-flights-url-parameters',
     title: 'Google Flights URL parameters, decoded',
-    sub: 'What is inside a Google Flights URL — the tfs= base64url protobuf, the q= natural-language form, curr= — how to decode tfs at the wire level, and why you should never encode it yourself.',
+    sub: 'What is inside a Google Flights URL: the tfs= base64url protobuf, the q= natural-language form, curr=. How to decode tfs at the wire level, and why you should never encode it yourself.',
     tag: 'deep dive',
   },
   {
     href: '/guides/monitor-hotel-rate-parity',
     title: 'How to monitor hotel rate parity',
-    sub: 'The proxy_country mechanism — the same room priced from the US, Germany and Israel in three requests — with a real captured spread, a scheduling pattern, and honest notes on how often parity holds.',
+    sub: 'The proxy_country mechanism (the same room priced from the US, Germany and Israel in three requests), with a real captured spread, a scheduling pattern, and honest notes on how often parity holds.',
     tag: 'hotels',
   },
   {
     href: '/guides/flight-api-in-n8n',
     title: 'Using a flight API in n8n',
-    sub: 'A four-node fare watch that fires when Google’s verdict says “low” — with the community node or a plain HTTP Request node, exact POST body included.',
+    sub: 'A four-node fare watch that fires when Google’s verdict says “low”, with the community node or a plain HTTP Request node, exact POST body included.',
     tag: 'automation',
   },
   {
     href: '/guides/best-flight-data-apis-2026',
     title: 'The best flight data APIs in 2026',
-    sub: 'The listicle, with disclosed bias — it starts with our own API and says so, quotes every competitor price with a retrieval date, and names the competitor that is cheaper per request than we are.',
+    sub: 'The listicle, with disclosed bias: it starts with our own API and says so, quotes every competitor price with a retrieval date, and names the competitor that is cheaper per request than we are.',
     tag: 'comparison',
   },
 ];
@@ -80,7 +80,7 @@ export default function GuidesIndexPage() {
         </h1>
         <p className="lede mt-5 max-w-2xl">
           Every guide is written against the live API, code first, with the limitations stated before you find them. Prices are never
-          restated in guides — they go stale there; the current numbers always live on{' '}
+          restated in guides: they go stale there; the current numbers always live on{' '}
           <Link href="/pricing" className="text-signal-400 underline underline-offset-4">/pricing</Link>.
         </p>
       </Container>
@@ -101,7 +101,7 @@ export default function GuidesIndexPage() {
         <SectionHead
           eyebrow="Prefer to click than to read?"
           title="The free tools run the same code"
-          lede="Each guide has a tool that does its job in the browser, on our key — judge the data before writing a line."
+          lede="Each guide has a tool that does its job in the browser, on our key. Judge the data before writing a line."
         />
         <div className="mt-8 grid gap-4 sm:grid-cols-3">
           {[
@@ -121,7 +121,7 @@ export default function GuidesIndexPage() {
         <CtaBand
           medium="guide"
           title="Every guide ends the same way: run it"
-          body="Live flight and hotel data with the context to judge it. Free tier on RapidAPI — no card to try."
+          body="Live flight and hotel data with the context to judge it. Free tier on RapidAPI, no card to try."
         />
       </Section>
     </>

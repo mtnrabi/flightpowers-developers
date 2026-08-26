@@ -23,7 +23,7 @@ const TOOLS: {
     href: '/tools/google-flights-url-parser',
     name: 'Google Flights URL Parser & Builder',
     tier: 'ungated, 100% client-side',
-    body: 'Paste a Google Flights URL and decode its tfs= parameter into a readable tree — route, dates, and the equivalent API request. Or build a shareable search link from a route. Runs entirely in your browser.',
+    body: 'Paste a Google Flights URL and decode its tfs= parameter into a readable tree: route, dates, and the equivalent API request. Or build a shareable search link from a route. Runs entirely in your browser.',
     output: 'decoded tree → API request',
   },
   {
@@ -37,7 +37,7 @@ const TOOLS: {
     href: '/tools/cheapest-month-to-fly',
     name: 'Cheapest Month to Fly',
     tier: 'live demo, rate-limited',
-    body: 'Route + month → sampled departure dates priced as a heat grid, live. The cheapest day jumps out — and the full every-day scan is a parallel burst on your own key.',
+    body: 'Route + month → sampled departure dates priced as a heat grid, live. The cheapest day jumps out, and the full every-day scan is a parallel burst on your own key.',
     output: 'month heat grid',
   },
   {
@@ -77,7 +77,7 @@ export default function ToolsIndexPage() {
           Free <span className="text-signal-500">travel-data tools</span>
         </h1>
         <p className="lede mt-5 max-w-2xl">
-          Real results before we ask you for anything — every tool runs on the same live API we sell.
+          Real results before we ask you for anything: every tool runs on the same live API we sell.
         </p>
       </Container>
 
@@ -102,7 +102,7 @@ export default function ToolsIndexPage() {
           ))}
         </div>
         <p className="mt-6 font-mono text-[12px] text-ink-500">
-          The URL parser runs entirely in your browser — no cap. The three live tools run real searches on our key, so they&apos;re
+          The URL parser runs entirely in your browser, no cap. The three live tools run real searches on our key, so they&apos;re
           capped per visitor per day; the pages say exactly how.
         </p>
       </Container>

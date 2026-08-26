@@ -42,7 +42,7 @@ function daysFromNow(date: string): number {
 function validDate(date: string, label: string): string | null {
   if (!DATE.test(date) || Number.isNaN(Date.parse(date))) return `${label} must be a real date in YYYY-MM-DD form.`;
   const d = daysFromNow(date);
-  if (d < 0) return `${label} is in the past — live fares only exist for future dates.`;
+  if (d < 0) return `${label} is in the past. Live fares only exist for future dates.`;
   if (d > MAX_DAYS_AHEAD) return `${label} is too far out for the demo (max ~${MAX_DAYS_AHEAD} days ahead).`;
   return null;
 }
@@ -54,7 +54,7 @@ export function checkShape(input: ShapeRequest): ShapeOk | ShapeError {
     case 'roundtrip': {
       const from = input.from?.toUpperCase?.() ?? '';
       const to = input.to?.toUpperCase?.() ?? '';
-      if (!IATA.test(from) || !IATA.test(to)) return { valid: false, message: 'Airports must be 3-letter IATA codes (like TLV or JFK).' };
+      if (!IATA.test(from) || !IATA.test(to)) return { valid: false, message: 'Airports must be 3-letter IATA codes (like JFK or LHR).' };
       if (from === to) return { valid: false, message: 'Origin and destination are the same airport.' };
       const dateErr = validDate(input.date, 'Departure date');
       if (dateErr) return { valid: false, message: dateErr };

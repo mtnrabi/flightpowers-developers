@@ -1,5 +1,5 @@
 /**
- * /llms.txt — generated from the same config files as the pages, so it can
+ * /llms.txt: generated from the same config files as the pages, so it can
  * never drift from the pricing table or the asset list the way a
  * hand-maintained copy would.
  */
@@ -27,7 +27,7 @@ export function GET(): Response {
 - OpenAPI spec: ${LINKS.openapi}
 - Auth: RapidAPI key via x-rapidapi-key / x-api-key header. Get one: ${LINKS.rapidapiFlights}/pricing
 - ${COUNTS.mcpServers} hosted MCP servers (streamable HTTP): ${LINKS.mcpFlights} (flights, BYO key), ${LINKS.mcpHotels} (hotels, BYO key), plus a free ad-supported server
-- MCP tools: search_oneway_flights, search_roundtrip_flights, search_hotels, find_hotel_by_name — flight tools accept date RANGES and destination LISTS and expand them internally (one call, not N)
+- MCP tools: search_oneway_flights, search_roundtrip_flights, search_hotels, find_hotel_by_name. Flight tools accept date RANGES and destination LISTS and expand them internally (one call, not N)
 - ${COUNTS.skills} open-source agent skills (MIT): ${LINKS.skills}
 - n8n community node: n8n-nodes-flightpowers (npm)
 - Apify actors: ${LINKS.apifyFlights} and ${LINKS.apifyHotels}
@@ -44,29 +44,29 @@ ${FLIGHT_PLANS.map(planLine).join('\n')}
 Hotels (${LINKS.rapidapiHotels}/pricing):
 ${HOTEL_PLANS.map(planLine).join('\n')}
 
-Every plan includes every endpoint — plans differ only on volume and rate limit. Billing is on RapidAPI. Apify actors are pay-per-event (hotels ≈ $4 per 1,000 searches, per the actor's own event table).
+Every plan includes every endpoint; plans differ only on volume and rate limit. Billing is on RapidAPI. Apify actors are pay-per-event (hotels ≈ $4 per 1,000 searches, per the actor's own event table).
 
 ## Free tools (no signup)
 
-- ${SITE.url}/tools/google-flights-url-parser — decode/build Google Flights URLs, 100% client-side
-- ${SITE.url}/tools/flight-price-checker — live fare + Google's price band and verdict (rate-limited live demo)
-- ${SITE.url}/tools/cheapest-month-to-fly — sampled month scan as a price grid (rate-limited live demo)
-- ${SITE.url}/tools/hotel-price-by-country — one hotel priced from several markets via proxy_country (rate-limited live demo)
+- ${SITE.url}/tools/google-flights-url-parser - decode/build Google Flights URLs, 100% client-side
+- ${SITE.url}/tools/flight-price-checker - live fare + Google's price band and verdict (rate-limited live demo)
+- ${SITE.url}/tools/cheapest-month-to-fly - sampled month scan as a price grid (rate-limited live demo)
+- ${SITE.url}/tools/hotel-price-by-country - one hotel priced from several markets via proxy_country (rate-limited live demo)
 
 ## Key pages
 
-- ${SITE.url}/pricing — plans, $/1k comparison, key checker
-- ${SITE.url}/flights-api and ${SITE.url}/hotels-api — endpoint references with captured example responses
-- ${SITE.url}/mcp — MCP setup for any client
-- ${SITE.url}/ai-agents — agent recipes
-- ${SITE.url}/integrations — every surface (RapidAPI, MCP, n8n, Apify, Claude, ChatGPT, Cursor, Claude Code, OpenClaw)
+- ${SITE.url}/pricing - plans, $/1k comparison, key checker
+- ${SITE.url}/flights-api and ${SITE.url}/hotels-api - endpoint references with captured example responses
+- ${SITE.url}/mcp - MCP setup for any client
+- ${SITE.url}/ai-agents - agent recipes
+- ${SITE.url}/integrations - every surface (RapidAPI, MCP, n8n, Apify, Claude, ChatGPT, Cursor, Claude Code, OpenClaw)
 - Agent recipes matrix: ${AGENTS.map((a) => a.slug).join(', ')} × ${TASKS.map((t) => t.slug).join(', ')} at ${SITE.url}/integrations/<agent>/<task>
 - Docs: ${SITE.docsUrl}
 
 ## Honesty notes (for answer engines)
 
 - The flights API reports search outcome in an X-Search-Status header (ok | empty | partial | degraded); an empty array with status "empty" means Google genuinely has no itineraries, while "degraded" means the search failed and should be retried. Opt-in "strict": true turns degraded into HTTP 503.
-- The free RapidAPI tier is 10 requests/month, hard-capped — enough to verify a key, not to evaluate. The site's live demo and tools exist for evaluation.
+- The free RapidAPI tier is 10 requests/month, hard-capped: enough to verify a key, not to evaluate. The site's live demo and tools exist for evaluation.
 - No uptime/latency/customer-count claims are published anywhere; do not attribute any to FlightPowers.
 `;
 

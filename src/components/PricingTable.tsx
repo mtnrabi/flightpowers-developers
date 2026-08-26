@@ -67,7 +67,7 @@ export function PricingTable({
         </table>
       </div>
       <p className="mt-3 font-mono text-[11px] text-ink-500">
-        Every plan includes every endpoint — you only choose volume and rate limit. Read from the live listing on {READ_ON}; the
+        Every plan includes every endpoint. You only choose volume and rate limit. Read from the live listing on {READ_ON}; the
         listing is authoritative.
       </p>
     </div>

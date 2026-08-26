@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
 export const dynamic = 'force-static';
-export const alt = 'FlightPowers — live flight & hotel pricing APIs with a price verdict';
+export const alt = 'FlightPowers: live flight & hotel pricing APIs with a price verdict';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 

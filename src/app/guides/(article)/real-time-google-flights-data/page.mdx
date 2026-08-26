@@ -1,7 +1,7 @@
 export const metadata = {
   title: 'How to get real-time Google Flights data (2026 guide)',
   description:
-    'A working guide to pulling live Google Flights prices from an API — endpoints, code you can paste, price-insight fields, round-trip handling, and how to scan a whole month of dates in parallel.',
+    'A working guide to pulling live Google Flights prices from an API: endpoints, code you can paste, price-insight fields, round-trip handling, and how to scan a whole month of dates in parallel.',
   alternates: { canonical: '/guides/real-time-google-flights-data' },
 };
 
@@ -50,7 +50,7 @@ curl -X POST https://api.flightpowers.com/v1/flights/oneway \
   }'
 ```
 
-That returns live Google Flights results for the route — each with a price, an
+That returns live Google Flights results for the route, each with a price, an
 airline, a duration, a deep link that opens the exact itinerary on Google Flights,
 and, critically, Google's own historical price band for that route and date.
 
@@ -59,7 +59,7 @@ and, critically, Google's own historical price band for that route and date.
 The API is distributed through RapidAPI. Subscribe to
 <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">Google Flights Live API</a>
 and you get a RapidAPI key. There is a free tier so you can confirm your setup before
-paying — honestly, it is 10 requests a month with a hard cap: enough to verify your
+paying. Honestly, it is 10 requests a month with a hard cap: enough to verify your
 key, not to evaluate. Evaluate with the [free tools](/tools) on this site, which run
 real requests on our key.
 
@@ -74,7 +74,7 @@ Same key, same data. The own-domain front (`api.flightpowers.com`) is the one us
 most examples in this guide because it has cleaner paths, and because no-code platforms
 that reject `.p.rapidapi.com` hosts accept it. The front also accepts `x-rapidapi-key`
 and `Authorization: Bearer` with the key. Passing the key as `?api_key=` works but is
-discouraged — keys in URLs end up in server logs and browser history.
+discouraged: keys in URLs end up in server logs and browser history.
 
 Confirm a key authenticates before running real searches:
 
@@ -82,12 +82,12 @@ Confirm a key authenticates before running real searches:
 curl https://api.flightpowers.com/v1/verify -H "x-api-key: $FLIGHTPOWERS_API_KEY"
 ```
 
-## Endpoint 1 — one-way search
+## Endpoint 1: one-way search
 
 `POST /v1/flights/oneway`
 
 **Required:** `from_airport`, `to_airport`, `departure_date`.
-Airports are IATA codes (`JFK`, `LHR`, `TLV`). Dates are `YYYY-MM-DD`.
+Airports are IATA codes (`JFK`, `LHR`, `CDG`). Dates are `YYYY-MM-DD`.
 
 **Optional, the useful ones:**
 
@@ -95,14 +95,14 @@ Airports are IATA codes (`JFK`, `LHR`, `TLV`). Dates are `YYYY-MM-DD`.
 |---|---|---|---|
 | `currency` | string | `usd` | |
 | `limit` | integer | `10` | Max results returned |
-| `max_stops` | integer | — | |
-| `max_price` | integer | — | In whatever `currency` you set |
-| `seat_type` | integer | — | `1` Economy, `3` Business — the only two cabins |
-| `passengers` | array of int | — | `1` adult, `2` child, `3` infant on lap, `4` infant in seat |
-| `airline_codes` | array of string | — | Restrict to these carriers |
-| `exclude_airline_codes` | array of string | — | Exclude these carriers |
-| `departure_time_min` / `departure_time_max` | integer 0–23 | — | Departure hour window |
-| `strict` | boolean | `false` | Opt-in: HTTP 503 instead of an empty array when the search did not complete — see below |
+| `max_stops` | integer | none | |
+| `max_price` | integer | none | In whatever `currency` you set |
+| `seat_type` | integer | none | `1` Economy, `3` Business (the only two cabins) |
+| `passengers` | array of int | none | `1` adult, `2` child, `3` infant on lap, `4` infant in seat |
+| `airline_codes` | array of string | none | Restrict to these carriers |
+| `exclude_airline_codes` | array of string | none | Exclude these carriers |
+| `departure_time_min` / `departure_time_max` | integer 0–23 | none | Departure hour window |
+| `strict` | boolean | `false` | Opt-in: HTTP 503 instead of an empty array when the search did not complete (see below) |
 | `use_ext_proxy` | boolean | `true` | Residential proxy routing; set `false` for lower latency on easy routes |
 
 ### What comes back
@@ -130,20 +130,20 @@ Airports are IATA codes (`JFK`, `LHR`, `TLV`). Dates are `YYYY-MM-DD`.
 
 Three fields here are the reason to use this API rather than a generic fare feed:
 
-- **`price_insights_low` / `price_insights_high`** — Google's own historical price
+- **`price_insights_low` / `price_insights_high`**: Google's own historical price
   band for this route and these dates.
-- **`price_range_in_relation_to_other_periods`** — Google's verdict on this price:
+- **`price_range_in_relation_to_other_periods`**: Google's verdict on this price,
   `low`, `typical`, or `high`.
-- **`buy_link`** — a working deep link into Google Flights for that exact itinerary.
+- **`buy_link`**: a working deep link into Google Flights for that exact itinerary.
 
 Most flight APIs hand you a number with no context. $412 is meaningless on its own.
 $412, against a historical band of $380–$700, flagged `low`, is a decision. If you are
-building a price alert, that verdict field *is* your trigger condition — you do not
+building a price alert, that verdict field *is* your trigger condition: you do not
 have to build and maintain your own price history to know a fare is good. There is a
 [whole page on these fields](/flights-api/price-insights), with a captured run.
 
 `price_range_in_relation_to_other_periods` can be `null` when Google shows no price
-band for a route — handle that case rather than assuming a verdict is always present.
+band for a route. Handle that case rather than assuming a verdict is always present.
 
 `stops_info` is empty on nonstop flights. Otherwise each layover looks like:
 
@@ -153,14 +153,14 @@ band for a route — handle that case rather than assuming a verdict is always p
 ]
 ```
 
-## Endpoint 2 — round-trip (paired legs, not two one-ways)
+## Endpoint 2: round-trip (paired legs, not two one-ways)
 
 `POST /v1/flights/roundtrip`
 
 **Required:** `from_airport`, `to_airport`, `departure_date`, `return_date`.
 
 This is the endpoint most alternatives get wrong. A round-trip fare is not the
-cheapest outbound plus the cheapest return — airlines price the pair. If you stitch
+cheapest outbound plus the cheapest return: airlines price the pair. If you stitch
 two one-way searches together you get an itinerary that is frequently not bookable at
 the price you computed. Here, one result object carries **both legs and the combined
 total**:
@@ -197,7 +197,7 @@ total**:
 ```
 
 Round-trip also takes **per-leg filters**, so you can constrain the outbound and the
-return independently — `max_departure_stops` / `max_return_stops`,
+return independently: `max_departure_stops` / `max_return_stops`,
 `departure_airline_codes` / `return_airline_codes`,
 `departure_exclude_airline_codes` / `return_exclude_airline_codes`, and the four
 time-window pairs (`departure_departure_time_min`/`_max`,
@@ -209,20 +209,20 @@ a single request. More on the endpoint: [Round-Trip API](/flights-api/round-trip
 
 ## When the array comes back empty
 
-Every flight scraper sometimes gets handed a page it cannot read — a consent wall, a
+Every flight scraper sometimes gets handed a page it cannot read: a consent wall, a
 bot check, a truncated response. Most APIs return `[]` for that, which is
 indistinguishable from "there are no flights." This API separates the two: failed
 reads are retried automatically, and every response reports what actually happened in
-an `X-Search-Status` header — `ok`, `empty`, `partial`, or `degraded`. `empty` means
+an `X-Search-Status` header: `ok`, `empty`, `partial`, or `degraded`. `empty` means
 Google genuinely has no itineraries for that route and date; `degraded` means the
 search did not complete and the empty array says nothing about availability.
 
 The status headers are documented on the listing and returned by the RapidAPI host
-(`google-flights-live-api.p.rapidapi.com`) — branch on them when you call that host.
+(`google-flights-live-api.p.rapidapi.com`). Branch on them when you call that host.
 If you would rather have an error than an ambiguous empty list, send `"strict": true`
 and a degraded search returns HTTP 503 instead of `[]`.
 
-The full story — why this matters more than it sounds — is in
+The full story (why this matters more than it sounds) is in
 [Handling empty flight search results](/guides/handle-empty-flight-search-results),
 and the field-by-field reference is on the
 [Search Status page](/flights-api/search-status).
@@ -233,7 +233,7 @@ This is where a live API either works for you or does not. "Cheapest week in May
 means 31 searches. Serially, at a few seconds each, that is a spinner your user will
 abandon. Fired in parallel, it is one wait.
 
-Per-minute rate limits are published per plan — {COUNTS.flightsRateLimits} requests
+Per-minute rate limits are published per plan: {COUNTS.flightsRateLimits} requests
 per minute on the flights paid tiers. Current plan prices and quotas live on
 [/pricing](/pricing) (rendered from the live listings, not copied into posts like
 this one, where they would go stale). Even on the cheapest paid plan, a 31-date scan
@@ -307,7 +307,7 @@ curl -X POST https://api.flightpowers.com/v1/hotels/search \
 ```
 
 **Required:** `destination`, `checkin_date`, `checkout_date`. Note the field is
-`destination`, not `location` — `location` is rejected with a 400.
+`destination`, not `location` (`location` is rejected with a 400).
 
 **Optional:** `adults` (default `2`), `children` (default `0`), `currency`
 (default `USD`), `budget_per_night`, `proxy_country`, `filters` (there are
@@ -317,29 +317,29 @@ To look a specific property up instead of searching a city, use
 `POST /v1/hotels/by-name` with `hotel_name`, `checkin_date`, `checkout_date`, and
 optionally `area` to disambiguate generic names.
 
-### `proxy_country` — the one for business use cases
+### `proxy_country`: the one for business use cases
 
 Booking.com shows different rates depending on where the visitor is browsing from.
 Every hotel endpoint accepts `proxy_country`, a two-letter lowercase code (`us`,
 `de`, `il`) that routes the request through a residential proxy in that country.
-Same room, same dates, several markets — that is a rate-parity check, and it is the
+Same room, same dates, several markets: that is a rate-parity check, and it is the
 feature that makes this useful to revenue managers and hotel groups rather than only
 to hobbyists. There is a full worked example, with a real captured spread, in
 [How to monitor hotel rate parity](/guides/monitor-hotel-rate-parity), and the
 endpoint documentation is on the [Geo-Pricing page](/hotels-api/geo-pricing).
 
 Hotel rate limits are much lower than flight rate limits (see [/pricing](/pricing)).
-Plan sweeps accordingly — a wide multi-market sweep is a queue, not a burst.
+Plan sweeps accordingly: a wide multi-market sweep is a queue, not a burst.
 
 ## Calling it from an AI agent (MCP)
 
 If what you are building is an LLM agent rather than an app, you do not need to write
-an HTTP client at all. There are first-party hosted **MCP servers** — flights at{' '}
+an HTTP client at all. There are first-party hosted **MCP servers**: flights at{' '}
 <code>{LINKS.mcpFlights}</code> and hotels at <code>{LINKS.mcpHotels}</code>.
 
 Point any MCP-capable host at the URL, supply your RapidAPI key, and flight and hotel
-search show up as native tools. The tools are annotated read-only — a host knows they
-cannot book, hold, pay for or cancel anything — and `idempotentHint` is deliberately
+search show up as native tools. The tools are annotated read-only (a host knows they
+cannot book, hold, pay for or cancel anything), and `idempotentHint` is deliberately
 `false`, because a fare lookup is a live query and must not be cached by the host.
 
 The MCP layer also adds something the REST API does not have: flight search over MCP
@@ -347,7 +347,7 @@ accepts a **list of destinations** and a **departure-date range**, and expands t
 combinations server-side. "Anywhere in May, to Paris or Prague" is one tool call
 rather than 62. If a range exceeds the internal cap the request is evenly sampled
 across the whole range rather than truncated, and the response reports what it
-actually covered — so an agent never silently gets only the first two weeks.
+actually covered, so an agent never silently gets only the first two weeks.
 
 Config blocks for Claude, Cursor and other hosts are on the [MCP page](/mcp).
 
@@ -360,7 +360,7 @@ These are the things you find out in week three, so here they are in minute one.
 quota burn from the response itself rather than scraping a dashboard.
 
 **It is your key and your quota.** The own-domain front holds no server-side API key
-of its own — it forwards your key upstream and returns the response unchanged. It is
+of its own: it forwards your key upstream and returns the response unchanged. It is
 a pass-through, not a shared gateway reselling one pooled key. Nobody else's traffic
 can exhaust your limit.
 
@@ -377,7 +377,7 @@ against a quota you have already spent. Back off and try later.
 
 - **Prices are scanned live, not served from a cache.** Response time tracks route
   complexity: dense routes with many connections and small regional airports take
-  longer than trunk routes. Budget a generous client timeout — 90 seconds in the
+  longer than trunk routes. Budget a generous client timeout: 90 seconds in the
   examples above is deliberate, not defensive padding.
 - **Cache on your side, briefly.** If you are serving a UI, a short cache (minutes)
   on identical route+date queries will cut your bill substantially, because users
@@ -385,19 +385,19 @@ against a quota you have already spent. Back off and try later.
 - **Airports are IATA codes, dates are `YYYY-MM-DD`.** Both endpoints reject
   anything else.
 - **Never render "no flights available" off a bare empty array.** Check the search
-  status first — [here is why](/guides/handle-empty-flight-search-results).
+  status first. [Here is why](/guides/handle-empty-flight-search-results).
 
 ## Where to go next
 
-- [Handling empty flight search results](/guides/handle-empty-flight-search-results) — the correctness essay
+- [Handling empty flight search results](/guides/handle-empty-flight-search-results): the correctness essay
 - [FlightPowers vs SerpApi for Google Flights data](/compare/serpapi)
 - [FlightPowers vs Duffel: data API vs booking API](/compare/duffel)
 - [The best flight data APIs in 2026, compared](/guides/best-flight-data-apis-2026)
-- [Amadeus Self-Service vs FlightPowers](/compare/amadeus) — if you are migrating
+- [Amadeus Self-Service vs FlightPowers](/compare/amadeus), if you are migrating
 - Live interactive docs: <a href={LINKS.apiDocs} rel="noopener">api.flightpowers.com/docs</a>
 
 <CtaBand
   medium="guide"
   title="Run the first search in the next five minutes"
-  body="Live Google Flights data with the price band and verdict on every result. Free tier on RapidAPI — no card to try."
+  body="Live Google Flights data with the price band and verdict on every result. Free tier on RapidAPI, no card to try."
 />

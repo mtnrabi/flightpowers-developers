@@ -19,12 +19,12 @@ type RunState =
 /**
  * The live price-checker form. The page around it is complete server-rendered
  * copy; this component only adds the interaction. Live runs are real
- * requests on the site's own key, behind per-IP and daily caps — the copy
+ * requests on the site's own key, behind per-IP and daily caps. The copy
  * on the page says so.
  */
 export function PriceCheckerTool({ captured }: { captured: { flights: OnewayFlight[]; headers: Record<string, string>; capturedAt: string; query: { from: string; to: string; date: string } } }) {
-  const [from, setFrom] = useState('TLV');
-  const [to, setTo] = useState('JFK');
+  const [from, setFrom] = useState('JFK');
+  const [to, setTo] = useState('CUN');
   const [date, setDate] = useState('');
   const [state, setState] = useState<RunState>({ phase: 'idle' });
 
@@ -41,7 +41,7 @@ export function PriceCheckerTool({ captured }: { captured: { flights: OnewayFlig
       });
       const data = await res.json();
       if (!res.ok) {
-        setState({ phase: 'error', message: String(data.message ?? 'The check failed — try again.') });
+        setState({ phase: 'error', message: String(data.message ?? 'The check failed. Try again.') });
         return;
       }
       const flights = data.flights as OnewayFlight[];
@@ -57,7 +57,7 @@ export function PriceCheckerTool({ captured }: { captured: { flights: OnewayFlig
         query: { from: from.toUpperCase(), to: to.toUpperCase(), date },
       });
     } catch {
-      setState({ phase: 'error', message: 'Could not reach the server — try again.' });
+      setState({ phase: 'error', message: 'Could not reach the server. Try again.' });
     }
   }
 
@@ -74,7 +74,7 @@ export function PriceCheckerTool({ captured }: { captured: { flights: OnewayFlig
               onChange={(e) => setFrom(e.target.value.toUpperCase())}
               maxLength={3}
               required
-              placeholder="TLV"
+              placeholder="JFK"
               className="mt-1.5 w-full rounded-xl border rule bg-ink-950 px-3.5 py-2.5 font-mono text-[15px] text-ink-100 uppercase placeholder:text-ink-600 focus:border-signal-600 focus:outline-none"
             />
           </label>
@@ -85,7 +85,7 @@ export function PriceCheckerTool({ captured }: { captured: { flights: OnewayFlig
               onChange={(e) => setTo(e.target.value.toUpperCase())}
               maxLength={3}
               required
-              placeholder="JFK"
+              placeholder="CUN"
               className="mt-1.5 w-full rounded-xl border rule bg-ink-950 px-3.5 py-2.5 font-mono text-[15px] text-ink-100 uppercase placeholder:text-ink-600 focus:border-signal-600 focus:outline-none"
             />
           </label>
@@ -106,7 +106,7 @@ export function PriceCheckerTool({ captured }: { captured: { flights: OnewayFlig
           </div>
         </div>
         <p className="mt-3 font-mono text-[11px] text-ink-500">
-          Runs a REAL search on our key — live against Google Flights, capped per visitor per day. Complex routes can take ~5–20s.
+          Runs a REAL search on our key, live against Google Flights, capped per visitor per day. Complex routes can take ~5–20s.
         </p>
       </form>
 
@@ -114,8 +114,8 @@ export function PriceCheckerTool({ captured }: { captured: { flights: OnewayFlig
       {state.phase === 'empty' ? (
         <p className="text-[14.5px] text-ink-300 leading-relaxed">
           {state.status === 'empty'
-            ? 'Google genuinely has no itineraries for that route and date — X-Search-Status: empty means the empty result IS the answer.'
-            : 'The search did not complete (X-Search-Status: ' + state.status + '). The API says so instead of pretending "no flights" — try once more.'}
+            ? 'Google genuinely has no itineraries for that route and date. X-Search-Status: empty means the empty result IS the answer.'
+            : 'The search did not complete (X-Search-Status: ' + state.status + '). The API says so instead of pretending "no flights". Try once more.'}
         </p>
       ) : null}
 
@@ -129,7 +129,7 @@ export function PriceCheckerTool({ captured }: { captured: { flights: OnewayFlig
             showing.mode === 'live' ? (
               <span className="live-badge">live result</span>
             ) : (
-              <span className="font-mono text-[11px] text-ink-400">from the demo cache — a recent live run of the same query</span>
+              <span className="font-mono text-[11px] text-ink-400">from the demo cache, a recent live run of the same query</span>
             )
           ) : (
             <CapturedBadge date={captured.capturedAt} />

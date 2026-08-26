@@ -45,33 +45,33 @@ export default function RebuildingPost() {
           </h1>
 
           <p className="mt-6">
-            This site is new. The APIs behind it aren&apos;t — they&apos;ve been live on RapidAPI, serving real traffic, while
+            This site is new. The APIs behind it aren&apos;t: they&apos;ve been live on RapidAPI, serving real traffic, while
             their own website did almost nothing for them. This post is the honest version of why I rebuilt it and what the
             new site actually does.
           </p>
 
           <h2>Why the old site failed</h2>
           <p>
-            Two numbers tell most of the story. Across two domains — the consumer site and the developer site — I had{' '}
+            Two numbers tell most of the story. Across two domains (the consumer site and the developer site) I had{' '}
             <strong>13 indexable URLs</strong>. Companies whose playbooks I studied while planning this rebuild ship hundreds
             to thousands of pages; I was trying to be found with thirteen.
           </p>
           <p>
             The deeper problem was what those pages did: they <em>described</em> the product. Paragraphs about live data,
-            about price insights, about round-trip search — and no way to see any of it without leaving for a marketplace
+            about price insights, about round-trip search, and no way to see any of it without leaving for a marketplace
             listing and signing up. For an API, description is the weakest possible pitch. The response shape is the product.
             If a visitor can&apos;t see JSON, they haven&apos;t seen anything.
           </p>
 
           <h2>What the new site does instead</h2>
           <p>
-            <strong>The hero runs real searches.</strong> The demo on the homepage sends actual requests to the live API — the
-            same one customers call — behind per-visitor limits and a daily budget cap. When the day&apos;s budget runs out,
+            <strong>The hero runs real searches.</strong> The demo on the homepage sends actual requests to the live API (the
+            same one customers call) behind per-visitor limits and a daily budget cap. When the day&apos;s budget runs out,
             the demo says so and switches to a labelled captured run. It never fakes a spinner into a canned answer.
           </p>
           <p>
-            <strong>Every canned example carries its capture date.</strong> Anything pre-recorded on this site — fixture
-            responses, example runs, sample outputs — is a real response from a live request, stamped with the date it was
+            <strong>Every canned example carries its capture date.</strong> Anything pre-recorded on this site (fixture
+            responses, example runs, sample outputs) is a real response from a live request, stamped with the date it was
             captured. If a badge says &ldquo;captured run · 2026-08-26&rdquo;, that&apos;s a real API response from that day.
             If there&apos;s no badge, it ran live.
           </p>
@@ -83,7 +83,7 @@ export default function RebuildingPost() {
           </p>
           <p>
             <strong>llms.txt comes from the same config.</strong> The machine-readable summary of the site is generated from
-            the same data that renders the pages, so an AI assistant reading it gets the same facts a human gets — and both
+            the same data that renders the pages, so an AI assistant reading it gets the same facts a human gets, and both
             get corrected in the same commit.
           </p>
 
@@ -98,7 +98,7 @@ export default function RebuildingPost() {
               is the only unlabelled output.
             </li>
             <li>
-              <strong>Scoped claims.</strong> Statements about competitors say what their documentation shows, dated — never
+              <strong>Scoped claims.</strong> Statements about competitors say what their documentation shows, dated: never
               &ldquo;they can&apos;t.&rdquo; Statements about this API say what the code does. Where something has a known
               limitation, the page says it before you find it.
             </li>
@@ -110,8 +110,8 @@ export default function RebuildingPost() {
 
           <h2>What&apos;s next</h2>
           <p>
-            Intentions, not promises: I want to add per-route pages generated from the API&apos;s own data — the one kind of
-            programmatic page only a data API can honestly build — and grow the comparison pages as I collect properly dated
+            Intentions, not promises: I want to add per-route pages generated from the API&apos;s own data (the one kind of
+            programmatic page only a data API can honestly build), and grow the comparison pages as I collect properly dated
             sourcing on more competitors. If those ship, they&apos;ll show up in{' '}
             <Link href="/changelog">the changelog</Link> with a date; if they don&apos;t, this paragraph stays here as a
             record of what I thought would happen.
@@ -138,7 +138,7 @@ export default function RebuildingPost() {
         <CtaBand
           medium="blog"
           title="See the API the way this site shows it"
-          body="Live searches, labelled captures, and pricing read from the listings — judge the data before you spend a request on it."
+          body="Live searches, labelled captures, and pricing read from the listings. Judge the data before you spend a request on it."
         />
       </Section>
     </>

@@ -20,7 +20,7 @@ import { FLIGHT_PLANS } from '@/lib/pricing';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Google Flights API — live fares with a price verdict on every result',
+  title: 'Google Flights API: live fares with a price verdict on every result',
   description:
     'A REST API over live Google Flights results. POST /oneway and POST /roundtrip return flat JSON with Google’s price_insights band, a low | typical | high verdict, honest X-Search-Status headers, and a booking link on every itinerary.',
   alternates: { canonical: '/flights-api' },
@@ -33,13 +33,13 @@ const ENDPOINT_PAGES = [
     href: '/flights-api/one-way',
     method: 'POST /oneway',
     label: 'One-way search',
-    sub: 'The base endpoint: route and date in, every live fare out — full filter set, flat JSON.',
+    sub: 'The base endpoint: route and date in, every live fare out. Full filter set, flat JSON.',
   },
   {
     href: '/flights-api/round-trip',
     method: 'POST /roundtrip',
     label: 'Round-trip search',
-    sub: 'One object per itinerary — both legs pre-paired, with combined price, duration, and stops.',
+    sub: 'One object per itinerary, both legs pre-paired, with combined price, duration, and stops.',
   },
   {
     href: '/flights-api/price-insights',
@@ -51,13 +51,13 @@ const ENDPOINT_PAGES = [
     href: '/flights-api/search-status',
     method: 'response headers',
     label: 'Search status',
-    sub: 'ok | empty | partial | degraded — an empty array is an answer, never a shrug.',
+    sub: 'ok | empty | partial | degraded. An empty array is an answer, never a shrug.',
   },
   {
     href: '/flights-api/parallel-date-scan',
     method: 'rate limits',
     label: 'Parallel date scans',
-    sub: `${COUNTS.flightsRateLimits} req/min by plan — a whole month of dates in one burst.`,
+    sub: `${COUNTS.flightsRateLimits} req/min by plan: a whole month of dates in one burst.`,
   },
 ] as const;
 
@@ -75,7 +75,7 @@ const GAPS: { problem: string; answer: string }[] = [
     answer: 'One subscription. No third-party key, no second bill.',
   },
   {
-    problem: 'An empty response could mean “no flights” or a failed scrape — and you cannot tell which',
+    problem: 'An empty response could mean “no flights” or a failed scrape, and you cannot tell which',
     answer:
       'Failed reads are retried, and an empty array counts as an answer only when the page said so. X-Search-Status tells a real empty apart from a degraded search, and opt-in strict turns a degraded one into a 503.',
   },
@@ -89,7 +89,7 @@ const GAPS: { problem: string; answer: string }[] = [
   },
   {
     problem: 'Serial only, so flexible dates take minutes',
-    answer: `Rate limits sized for parallel date scans — ${COUNTS.flightsRateLimits} requests per minute by plan.`,
+    answer: `Rate limits sized for parallel date scans: ${COUNTS.flightsRateLimits} requests per minute by plan.`,
   },
 ];
 
@@ -99,7 +99,7 @@ const planName = (n: string) => n[0] + n.slice(1).toLowerCase();
 const faq: Faq[] = [
   {
     q: 'Is this an official Google API?',
-    a: 'No. FlightPowers is an independent API that reads the public Google Flights site live at request time; it is not affiliated with or endorsed by Google. The fields it returns — including the price band and the low | typical | high verdict — are the values Google shows travellers, passed through as-is.',
+    a: 'No. FlightPowers is an independent API that reads the public Google Flights site live at request time; it is not affiliated with or endorsed by Google. The fields it returns, including the price band and the low | typical | high verdict, are the values Google shows travellers, passed through as-is.',
   },
   {
     q: 'What data does each flight result include?',
@@ -107,15 +107,15 @@ const faq: Faq[] = [
   },
   {
     q: 'Is the round-trip endpoint really one search?',
-    a: 'Yes. POST /roundtrip returns one object per itinerary with total_price, total_duration_seconds, total_stops, and the outbound and return legs already paired — not two one-way responses you have to combine yourself. Each leg takes its own filters.',
+    a: 'Yes. POST /roundtrip returns one object per itinerary with total_price, total_duration_seconds, total_stops, and the outbound and return legs already paired, not two one-way responses you have to combine yourself. Each leg takes its own filters.',
   },
   {
     q: 'What happens when a route has no flights?',
-    a: 'The response says so explicitly. X-Search-Status: empty means the search completed and Google genuinely has no itineraries — the empty array is the answer. X-Search-Status: degraded means the search did not complete and the empty array says nothing about availability. Opt-in strict: true turns a degraded search into an HTTP 503 instead.',
+    a: 'The response says so explicitly. X-Search-Status: empty means the search completed and Google genuinely has no itineraries. The empty array is the answer. X-Search-Status: degraded means the search did not complete and the empty array says nothing about availability. Opt-in strict: true turns a degraded search into an HTTP 503 instead.',
   },
   {
     q: 'How do I search flexible dates?',
-    a: `One request per date, fired in parallel. “3 to 5 nights, TLV to Paris or Prague, anywhere in May” is 31 dates × 3 durations × 2 destinations = 186 requests — the per-minute rate limits (${PAID.map((p) => `${p.ratePerMinute} on ${planName(p.name)}`).join(', ')}) are sized so that finishes in a burst or two, not a serial loop.`,
+    a: `One request per date, fired in parallel. “3 to 5 nights, JFK to Paris or Prague, anywhere in May” is 31 dates × 3 durations × 2 destinations = 186 requests. The per-minute rate limits (${PAID.map((p) => `${p.ratePerMinute} on ${planName(p.name)}`).join(', ')}) are sized so that finishes in a burst or two, not a serial loop.`,
   },
   {
     q: 'Do I need a SerpApi key or another scraping subscription?',
@@ -123,16 +123,16 @@ const faq: Faq[] = [
   },
   {
     q: 'How much does the Google Flights API cost?',
-    a: `Plans on RapidAPI: a $0 BASIC tier (10 requests/month, hard cap — it verifies your key, it doesn’t evaluate), then ${PAID.map((p) => `$${p.priceMonthly}`).join(', ')} per month for ${PAID.map((p) => p.quota.toLocaleString('en-US')).join(', ')} requests. Every plan includes both endpoints and every response field.`,
+    a: `Plans on RapidAPI: a $0 BASIC tier (10 requests/month, hard cap: it verifies your key, it doesn’t evaluate), then ${PAID.map((p) => `$${p.priceMonthly}`).join(', ')} per month for ${PAID.map((p) => p.quota.toLocaleString('en-US')).join(', ')} requests. Every plan includes both endpoints and every response field.`,
   },
   {
     q: 'How fast is a search?',
-    a: 'Results are scanned live against Google Flights at request time, not served from a cache, so response time tracks route complexity — dense routes with many connections take longer than trunk routes, and a search that has to retry an unreadable page takes longer still. Set a generous client timeout.',
+    a: 'Results are scanned live against Google Flights at request time, not served from a cache, so response time tracks route complexity. Dense routes with many connections take longer than trunk routes, and a search that has to retry an unreadable page takes longer still. Set a generous client timeout.',
   },
 ];
 
 export default function FlightsApiHubPage() {
-  const fx = FIXTURES.onewayTlvJfk;
+  const fx = FIXTURES.onewayJfkCun;
 
   return (
     <>
@@ -176,7 +176,7 @@ export default function FlightsApiHubPage() {
                 Live Google Flights data, with a <span className="text-signal-500">price verdict</span>
               </h1>
               <p className="lede mt-5">
-                Two endpoints over live Google Flights results — fares as flat JSON, with Google&apos;s price band, a
+                Two endpoints over live Google Flights results: fares as flat JSON, with Google&apos;s price band, a
                 low | typical | high verdict, and a booking link.
               </p>
               <div className="mt-7">
@@ -184,7 +184,7 @@ export default function FlightsApiHubPage() {
                   items={[
                     <>
                       <code className="font-mono text-[13px] text-signal-400">POST /oneway</code> and{' '}
-                      <code className="font-mono text-[13px] text-signal-400">POST /roundtrip</code> — round-trips come back as
+                      <code className="font-mono text-[13px] text-signal-400">POST /roundtrip</code>: round-trips come back as
                       paired itineraries, not stapled legs
                     </>,
                     <>
@@ -225,7 +225,7 @@ export default function FlightsApiHubPage() {
         <SectionHead
           eyebrow="The endpoints"
           title="Two endpoints, five things worth a page each"
-          lede="Every plan gets all of it — you only ever choose volume and rate limit."
+          lede="Every plan gets all of it. You only ever choose volume and rate limit."
         />
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {ENDPOINT_PAGES.map((p) => (
@@ -251,20 +251,20 @@ export default function FlightsApiHubPage() {
               The travel date as <code className="field">YYYY-MM-DD</code>.
             </FieldRow>
             <FieldRow name="from_airport" type="string">
-              Origin IATA code — New York is <code className="field">JFK</code>.
+              Origin IATA code. New York is <code className="field">JFK</code>.
             </FieldRow>
             <FieldRow name="to_airport" type="string">
               Destination IATA code.
             </FieldRow>
           </div>
 
-          <p className="mt-10 font-mono text-[11px] uppercase tracking-wider text-signal-500">Optional — filtering</p>
+          <p className="mt-10 font-mono text-[11px] uppercase tracking-wider text-signal-500">Optional · filtering</p>
           <div className="mt-2">
             <FieldRow name="max_stops" type="int">
               Maximum stops per itinerary. <code className="field">0</code> for nonstop only.
             </FieldRow>
             <FieldRow name="airline_codes / exclude_airline_codes" type="string[]">
-              Restrict results to these carriers — or keep everything except them.
+              Restrict results to these carriers, or keep everything except them.
             </FieldRow>
             <FieldRow name="departure_time_min / _max, arrival_time_min / _max" type="int 0–23">
               Hour-of-day windows for departure and arrival.
@@ -277,11 +277,11 @@ export default function FlightsApiHubPage() {
             </FieldRow>
           </div>
 
-          <p className="mt-10 font-mono text-[11px] uppercase tracking-wider text-signal-500">Optional — shape &amp; behavior</p>
+          <p className="mt-10 font-mono text-[11px] uppercase tracking-wider text-signal-500">Optional · shape &amp; behavior</p>
           <div className="mt-2">
             <FieldRow name="sort_type" type='"Overall" | "Price" | "Duration"'>
               Default <code className="field">Overall</code>. Note that <code className="field">&quot;Price&quot;</code> reflects
-              Google&apos;s own ordering, not a strict sort — sort locally on <code className="field">price_as_number</code> for
+              Google&apos;s own ordering, not a strict sort. Sort locally on <code className="field">price_as_number</code> for
               exact price order.
             </FieldRow>
             <FieldRow name="passengers" type="int[]">
@@ -310,7 +310,7 @@ export default function FlightsApiHubPage() {
         <SectionHead
           eyebrow="POST /api/google_flights/roundtrip/v1"
           title="Round-trip: same controls, split per leg"
-          lede="Four required fields, and every one-way filter exists twice — once for the outbound, once for the return."
+          lede="Four required fields, and every one-way filter exists twice: once for the outbound, once for the return."
         />
         <div className="mt-8 max-w-3xl">
           <p className="font-mono text-[11px] uppercase tracking-wider text-signal-500">Required</p>
@@ -323,10 +323,10 @@ export default function FlightsApiHubPage() {
             </FieldRow>
           </div>
 
-          <p className="mt-10 font-mono text-[11px] uppercase tracking-wider text-signal-500">Optional — per leg</p>
+          <p className="mt-10 font-mono text-[11px] uppercase tracking-wider text-signal-500">Optional · per leg</p>
           <div className="mt-2">
             <FieldRow name="max_departure_stops / max_return_stops" type="int">
-              Stop limits set independently — nonstop out, one stop back is a valid ask.
+              Stop limits set independently. Nonstop out, one stop back is a valid ask.
             </FieldRow>
             <FieldRow name="departure_airline_codes / return_airline_codes" type="string[]">
               Per-leg carrier restrictions, with matching <code className="field">_exclude_</code> variants for both legs.
@@ -338,7 +338,7 @@ export default function FlightsApiHubPage() {
             </FieldRow>
           </div>
 
-          <p className="mt-10 font-mono text-[11px] uppercase tracking-wider text-signal-500">Optional — shared</p>
+          <p className="mt-10 font-mono text-[11px] uppercase tracking-wider text-signal-500">Optional · shared</p>
           <div className="mt-2">
             <FieldRow name="sort_type · currency · max_price · seat_type · passengers · limit · strict · use_ext_proxy">
               Exactly as on one-way, applied to the paired search as a whole.
@@ -356,7 +356,7 @@ export default function FlightsApiHubPage() {
         <SectionHead
           eyebrow="Why this one"
           title="Common gaps in other Google Flights APIs"
-          lede="Each row is a failure mode this API was designed against — and every right-hand answer is provable on the pages above, not adjectives."
+          lede="Each row is a failure mode this API was designed against, and every right-hand answer is provable on the pages above, not adjectives."
         />
         <div className="mt-8 overflow-x-auto rounded-2xl border rule">
           <table className="w-full text-[14px]">
@@ -409,7 +409,7 @@ export default function FlightsApiHubPage() {
       <Section bordered={false} className="!pt-4">
         <CtaBand
           medium="endpoint"
-          title="Every fare, judged — from one subscription"
+          title="Every fare, judged, from one subscription"
           body="Live Google Flights data with the price band, verdict, and booking link attached to every result."
         />
       </Section>

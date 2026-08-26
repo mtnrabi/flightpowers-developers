@@ -1,0 +1,113 @@
+{
+ "captured_at": "2026-08-26",
+ "captured_from": "api.flightpowers.com",
+ "note": "Real response captured from a live request. Prices were live at capture time.",
+ "request": {
+  "endpoint": "/v1/flights/oneway",
+  "body": {
+   "from_airport": "JFK",
+   "to_airport": "CUN",
+   "departure_date": "2027-01-01",
+   "limit": 5,
+   "currency": "usd"
+  }
+ },
+ "headers": {
+  "x-search-attempts": "1",
+  "x-search-combinations": "1",
+  "x-search-results": "5",
+  "x-search-status": "ok"
+ },
+ "data": [
+  {
+   "price_range_in_relation_to_other_periods": "typical",
+   "price_insights_low": 140,
+   "price_insights_high": 180,
+   "from_airport": "New York (JFK)",
+   "to_airport": "Cancun (CUN)",
+   "departure_date": "2027-01-01",
+   "price": "$177",
+   "price_as_number": 177,
+   "duration": "4 hr 25 min",
+   "duration_seconds": 15900,
+   "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMDEiHwoDSkZLEgoyMDI3LTAxLTAxGgNDVU4qAkFBMgM4MTZqBRIDSkZLcgUSA0NVTkIBAUgBmAEC&curr=usd",
+   "airline": "American",
+   "stops": 0,
+   "stops_info": [],
+   "departure_description": "7:10 AM on Fri, Jan 1",
+   "arrival_description": "11:35 AM on Fri, Jan 1"
+  },
+  {
+   "price_range_in_relation_to_other_periods": "typical",
+   "price_insights_low": 140,
+   "price_insights_high": 180,
+   "from_airport": "New York (JFK)",
+   "to_airport": "Cancun (CUN)",
+   "departure_date": "2027-01-01",
+   "price": "$177",
+   "price_as_number": 177,
+   "duration": "4 hr 30 min",
+   "duration_seconds": 16200,
+   "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMDEiIAoDSkZLEgoyMDI3LTAxLTAxGgNDVU4qAkFBMgQxMzI2agUSA0pGS3IFEgNDVU5CAQFIAZgBAg&curr=usd",
+   "airline": "American",
+   "stops": 0,
+   "stops_info": [],
+   "departure_description": "11:05 AM on Fri, Jan 1",
+   "arrival_description": "3:35 PM on Fri, Jan 1"
+  },
+  {
+   "price_range_in_relation_to_other_periods": "typical",
+   "price_insights_low": 140,
+   "price_insights_high": 180,
+   "from_airport": "New York (JFK)",
+   "to_airport": "Cancun (CUN)",
+   "departure_date": "2027-01-01",
+   "price": "$191",
+   "price_as_number": 191,
+   "duration": "4 hr 15 min",
+   "duration_seconds": 15300,
+   "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMDEiHwoDSkZLEgoyMDI3LTAxLTAxGgNDVU4qAkI2MgMxNTFqBRIDSkZLcgUSA0NVTkIBAUgBmAEC&curr=usd",
+   "airline": "Jet | Blue",
+   "stops": 0,
+   "stops_info": [],
+   "departure_description": "7:00 AM on Fri, Jan 1",
+   "arrival_description": "11:15 AM on Fri, Jan 1"
+  },
+  {
+   "price_range_in_relation_to_other_periods": "typical",
+   "price_insights_low": 140,
+   "price_insights_high": 180,
+   "from_airport": "New York (JFK)",
+   "to_airport": "Cancun (CUN)",
+   "departure_date": "2027-01-01",
+   "price": "$191",
+   "price_as_number": 191,
+   "duration": "4 hr 25 min",
+   "duration_seconds": 15900,
+   "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMDEiHwoDSkZLEgoyMDI3LTAxLTAxGgNDVU4qAkI2MgM3NTFqBRIDSkZLcgUSA0NVTkIBAUgBmAEC&curr=usd",
+   "airline": "Jet | Blue",
+   "stops": 0,
+   "stops_info": [],
+   "departure_description": "8:00 AM on Fri, Jan 1",
+   "arrival_description": "12:25 PM on Fri, Jan 1"
+  },
+  {
+   "price_range_in_relation_to_other_periods": "typical",
+   "price_insights_low": 140,
+   "price_insights_high": 180,
+   "from_airport": "New York (JFK)",
+   "to_airport": "Cancun (CUN)",
+   "departure_date": "2027-01-01",
+   "price": "$191",
+   "price_as_number": 191,
+   "duration": "4 hr 18 min",
+   "duration_seconds": 15480,
+   "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMDEiIAoDSkZLEgoyMDI3LTAxLTAxGgNDVU4qAkI2MgQxODUxagUSA0pGS3IFEgNDVU5CAQFIAZgBAg&curr=usd",
+   "airline": "Jet | Blue",
+   "stops": 0,
+   "stops_info": [],
+   "departure_description": "9:40 AM on Fri, Jan 1",
+   "arrival_description": "1:58 PM on Fri, Jan 1"
+  }
+ ]
+}

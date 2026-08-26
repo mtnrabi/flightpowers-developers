@@ -4,7 +4,7 @@ import { useState, type ReactNode } from 'react';
 
 /**
  * The two-door hero toggle (Postiz's self-segmentation mechanic).
- * BOTH doors' content is server-rendered into the HTML — the toggle only
+ * BOTH doors' content is server-rendered into the HTML; the toggle only
  * switches visibility, so crawlers and no-JS visitors get everything
  * (door A shows by default).
  */

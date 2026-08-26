@@ -114,7 +114,7 @@ export function parseIntent(text: string, now = new Date()): ParsedIntent {
     return {
       kind: 'unparsed',
       hint:
-        'For hotel geo-pricing, use the Hotel Price by Country tool — pick the hotel, dates, and 2–3 markets and it runs the same proxy_country comparison live.',
+        'For hotel geo-pricing, use the Hotel Price by Country tool: pick the hotel, dates, and 2–3 markets and it runs the same proxy_country comparison live.',
     };
   }
 
@@ -122,7 +122,7 @@ export function parseIntent(text: string, now = new Date()): ParsedIntent {
     return {
       kind: 'unparsed',
       hint:
-        'Tell me a route and a date — like "TLV to JFK on 2026-10-13", "cheapest day LIS to New York in November", or tap one of the examples.',
+        'Tell me a route and a date, like "JFK to CUN on 2027-01-01", "cheapest day LIS to New York in November", or tap one of the examples.',
     };
   }
   const [from, to] = [airports[0]!, airports[1]!];

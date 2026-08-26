@@ -68,7 +68,7 @@ export function CheapestMonthTool({
       });
       const data = await res.json();
       if (!res.ok) {
-        setState({ phase: 'error', message: String(data.message ?? 'The scan failed — try again.') });
+        setState({ phase: 'error', message: String(data.message ?? 'The scan failed. Try again.') });
         return;
       }
       setState({
@@ -79,7 +79,7 @@ export function CheapestMonthTool({
         query: { from: from.toUpperCase(), to: to.toUpperCase(), month },
       });
     } catch {
-      setState({ phase: 'error', message: 'Could not reach the server — try again.' });
+      setState({ phase: 'error', message: 'Could not reach the server. Try again.' });
     }
   }
 
@@ -132,7 +132,7 @@ export function CheapestMonthTool({
           </div>
         </div>
         <p className="mt-3 font-mono text-[11px] text-ink-500">
-          Runs REAL searches on our key — live scans sample ~10 dates across the month to stay inside the demo budget. Can take
+          Runs REAL searches on our key. Live scans sample ~10 dates across the month to stay inside the demo budget. Can take
           ~10–30s.
         </p>
       </form>
@@ -149,7 +149,7 @@ export function CheapestMonthTool({
             showing.mode === 'live' ? (
               <span className="live-badge">live result</span>
             ) : (
-              <span className="font-mono text-[11px] text-ink-400">from the demo cache — a recent live run of the same query</span>
+              <span className="font-mono text-[11px] text-ink-400">from the demo cache: a recent live run of the same query</span>
             )
           ) : (
             <CapturedBadge date={captured.capturedAt} />
@@ -159,7 +159,7 @@ export function CheapestMonthTool({
           days={days}
           note={
             showing
-              ? `Live demo scan — sampled every ${showing.sampledEvery} day${showing.sampledEvery > 1 ? 's' : ''} to stay inside the demo budget. A full every-day scan is one request per date on your own key.`
+              ? `Live demo scan, sampled every ${showing.sampledEvery} day${showing.sampledEvery > 1 ? 's' : ''} to stay inside the demo budget. A full every-day scan is one request per date on your own key.`
               : captured.note
           }
         />
@@ -184,7 +184,7 @@ export function CheapestMonthTool({
         pricingHref={rapidApiPricingUrl('flights', 'tool')}
         docsHref="/flights-api/parallel-date-scan"
         headline="Run the full every-day scan from your own code"
-        body="One request per date, fired in parallel — the grid you are looking at, at full resolution, with Google’s price band and verdict on every fare."
+        body="One request per date, fired in parallel: the grid you are looking at, at full resolution, with Google’s price band and verdict on every fare."
       />
     </div>
   );
