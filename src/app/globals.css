@@ -1,15 +1,18 @@
 @import "tailwindcss";
 
 /*
-  FlightPowers developer site — design tokens.
-  Reference: an airport departure board. Near-black ground, hairline rules,
-  amber for the live/primary signal, cyan for structural accents, monospace
-  for anything that is literally data.
+  FlightPowers — design tokens.
+  Reference: an airport departure board, read at night. Near-black ground,
+  hairline rules, amber for the live signal, monospace for anything that is
+  literally data. Dark-only by intent: this site speaks to developers.
+
+  The verdict palette (low | typical | high) is the product's own color
+  language — Google's price verdict rendered the way the API returns it.
 */
 @theme {
-  --color-ink-950: #08090b;
+  --color-ink-950: #07080a;
   --color-ink-900: #0c0e11;
-  --color-ink-850: #111418;
+  --color-ink-850: #101318;
   --color-ink-800: #171b21;
   --color-ink-700: #222831;
   --color-ink-600: #333c48;
@@ -22,15 +25,17 @@
   --color-signal-400: #ffc352;
   --color-signal-600: #d98c00;
 
-  --color-beacon-400: #4fd1c5;
-  --color-beacon-500: #2bb3a6;
+  --color-verdict-low: #4ade80;
+  --color-verdict-typical: #ffb020;
+  --color-verdict-high: #f87171;
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-sans: var(--font-sans-face), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-display-face), var(--font-sans-face), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-mono-face), ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, monospace;
 
-  --text-hero: clamp(2.5rem, 6vw, 4.25rem);
+  --text-hero: clamp(2.75rem, 6.5vw, 4.75rem);
   --text-hero--line-height: 1.02;
-  --text-hero--letter-spacing: -0.035em;
+  --text-hero--letter-spacing: -0.03em;
 }
 
 @layer base {
@@ -42,6 +47,7 @@
     background-color: var(--color-ink-950);
     color: var(--color-ink-200);
     font-family: var(--font-sans);
+    font-size: 1.0625rem; /* big type, low density */
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -50,6 +56,7 @@
     color: var(--color-ink-950);
   }
   h1, h2, h3, h4 {
+    font-family: var(--font-display);
     color: var(--color-ink-100);
     letter-spacing: -0.02em;
     text-wrap: balance;
@@ -60,6 +67,8 @@
     outline-offset: 2px;
     border-radius: 2px;
   }
+  /* Prices and quotas line up or they look amateur. */
+  table { font-variant-numeric: tabular-nums; }
 }
 
 @layer components {
@@ -75,15 +84,15 @@
     color: var(--color-signal-500);
   }
   .lede {
-    font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
-    line-height: 1.6;
+    font-size: clamp(1.125rem, 1.7vw, 1.3125rem);
+    line-height: 1.65;
     color: var(--color-ink-300);
     text-wrap: pretty;
   }
   .field {
     font-family: var(--font-mono);
     font-size: 0.8125rem;
-    color: var(--color-beacon-400);
+    color: var(--color-signal-400);
   }
   .board-grid {
     background-image:
@@ -91,10 +100,157 @@
       linear-gradient(to bottom, color-mix(in oklab, var(--color-ink-700) 34%, transparent) 1px, transparent 1px);
     background-size: 64px 64px;
   }
+  /* Amber glow behind the hero terminal — the "alive" signal. */
+  .hero-glow {
+    background: radial-gradient(
+      42rem 26rem at 70% 20%,
+      color-mix(in oklab, var(--color-signal-600) 13%, transparent),
+      transparent 70%
+    );
+  }
+
+  /* Buttons. Primary = white pill (hovers amber), the Postiz move. */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    padding: 0.7rem 1.375rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.2;
+    transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+    white-space: nowrap;
+  }
+  .btn-primary {
+    background: var(--color-ink-100);
+    color: var(--color-ink-950);
+  }
+  .btn-primary:hover {
+    background: var(--color-signal-500);
+    color: var(--color-ink-950);
+  }
+  .btn-accent {
+    background: var(--color-signal-500);
+    color: var(--color-ink-950);
+  }
+  .btn-accent:hover { background: var(--color-signal-400); }
+  .btn-ghost {
+    border: 1px solid var(--color-ink-600);
+    color: var(--color-ink-200);
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-ink-400);
+    color: var(--color-ink-100);
+  }
+
+  /* Verdict badges — the product's own color language. */
+  .verdict {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    border-radius: 9999px;
+    padding: 0.125rem 0.625rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+  }
+  .verdict-low {
+    color: var(--color-verdict-low);
+    background: color-mix(in oklab, var(--color-verdict-low) 12%, transparent);
+  }
+  .verdict-typical {
+    color: var(--color-verdict-typical);
+    background: color-mix(in oklab, var(--color-verdict-typical) 12%, transparent);
+  }
+  .verdict-high {
+    color: var(--color-verdict-high);
+    background: color-mix(in oklab, var(--color-verdict-high) 12%, transparent);
+  }
+
+  /* Terminal / JSON proof cards. */
+  .terminal {
+    border: 1px solid color-mix(in oklab, var(--color-ink-700) 80%, transparent);
+    border-radius: 0.875rem;
+    background: color-mix(in oklab, var(--color-ink-900) 92%, transparent);
+    overflow: hidden;
+  }
+  .terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+    border-bottom: 1px solid color-mix(in oklab, var(--color-ink-700) 70%, transparent);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    color: var(--color-ink-400);
+  }
+  .terminal-dots span {
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 9999px;
+  }
+
+  /* Honesty label for anything canned. */
+  .captured-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.05em;
+    color: var(--color-ink-400);
+    border: 1px dashed var(--color-ink-600);
+    border-radius: 9999px;
+    padding: 0.2rem 0.7rem;
+  }
+  .live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.05em;
+    color: var(--color-verdict-low);
+  }
+  .live-badge::before {
+    content: "";
+    width: 0.4375rem;
+    height: 0.4375rem;
+    border-radius: 9999px;
+    background: var(--color-verdict-low);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--color-ink-600);
+    border-radius: 9999px;
+    padding: 0.375rem 0.875rem;
+    font-size: 0.8125rem;
+    color: var(--color-ink-300);
+    transition: border-color 150ms ease, color 150ms ease, background-color 150ms ease;
+    cursor: pointer;
+    text-align: left;
+  }
+  .chip:hover {
+    border-color: var(--color-signal-600);
+    color: var(--color-ink-100);
+    background: color-mix(in oklab, var(--color-signal-600) 8%, transparent);
+  }
+
   /* Long-form MDX / prose. Deliberately hand-rolled; no typography plugin. */
-  .prose-fp { color: var(--color-ink-300); line-height: 1.72; }
-  .prose-fp h2 { font-size: 1.5rem; margin-top: 2.75rem; margin-bottom: 0.875rem; }
-  .prose-fp h3 { font-size: 1.125rem; margin-top: 2rem; margin-bottom: 0.5rem; }
+  .prose-fp { color: var(--color-ink-300); line-height: 1.72; font-size: 1rem; }
+  .prose-fp h2 { font-size: 1.625rem; margin-top: 3rem; margin-bottom: 1rem; }
+  .prose-fp h3 { font-size: 1.1875rem; margin-top: 2.125rem; margin-bottom: 0.5rem; }
   .prose-fp p { margin-bottom: 1.125rem; text-wrap: pretty; }
   .prose-fp ul { list-style: none; margin-bottom: 1.125rem; padding-left: 0; }
   .prose-fp ul li { position: relative; padding-left: 1.25rem; margin-bottom: 0.5rem; }
@@ -105,17 +261,25 @@
   .prose-fp ol { list-style: decimal; padding-left: 1.25rem; margin-bottom: 1.125rem; }
   .prose-fp ol li { margin-bottom: 0.5rem; }
   .prose-fp a { color: var(--color-signal-400); text-underline-offset: 3px; text-decoration: underline; }
+  .prose-fp strong { color: var(--color-ink-100); }
+  .prose-fp blockquote {
+    border-left: 2px solid var(--color-signal-600);
+    padding-left: 1rem;
+    color: var(--color-ink-300);
+    margin-bottom: 1.125rem;
+  }
   .prose-fp code {
     font-family: var(--font-mono); font-size: 0.85em;
-    background: var(--color-ink-850); border: 1px solid var(--color-ink-700);
-    padding: 0.1em 0.35em; border-radius: 3px; color: var(--color-beacon-400);
+    background: var(--color-ink-800); border: 1px solid var(--color-ink-700);
+    padding: 0.1em 0.35em; border-radius: 3px; color: var(--color-signal-400);
   }
   .prose-fp pre {
     background: var(--color-ink-900); border: 1px solid var(--color-ink-700);
-    border-radius: 6px; padding: 1rem; overflow-x: auto; margin-bottom: 1.25rem;
+    border-radius: 10px; padding: 1rem; overflow-x: auto; margin-bottom: 1.25rem;
+    font-size: 0.8125rem;
   }
   .prose-fp pre code { background: none; border: 0; padding: 0; color: var(--color-ink-200); }
-  .prose-fp table { width: 100%; border-collapse: collapse; margin-bottom: 1.25rem; font-size: 0.9rem; }
+  .prose-fp table { display: block; width: 100%; overflow-x: auto; border-collapse: collapse; margin-bottom: 1.25rem; font-size: 0.9rem; }
   .prose-fp th, .prose-fp td {
     text-align: left; padding: 0.625rem 0.75rem;
     border-bottom: 1px solid color-mix(in oklab, var(--color-ink-700) 70%, transparent);

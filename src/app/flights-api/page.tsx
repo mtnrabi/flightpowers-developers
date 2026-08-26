@@ -328,11 +328,7 @@ export default function FlightsApiPage() {
       <Section>
         <SectionHead eyebrow="Pricing" title="Plans on RapidAPI" />
         <div className="mt-8 max-w-4xl">
-          <PricingTable
-            plans={FLIGHT_PLANS}
-            href={LINKS.rapidapiFlights}
-            label="Subscribe on RapidAPI"
-          />
+          <PricingTable api="flights" plans={FLIGHT_PLANS} medium="endpoint" />
         </div>
       </Section>
 

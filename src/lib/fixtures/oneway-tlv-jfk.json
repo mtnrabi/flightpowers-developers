@@ -1,0 +1,114 @@
+{
+ "captured_at": "2026-08-26",
+ "captured_from": "api.flightpowers.com",
+ "note": "Real response captured from a live request. Prices were live at capture time.",
+ "request": {
+  "endpoint": "/v1/flights/oneway",
+  "body": {
+   "from_airport": "TLV",
+   "to_airport": "JFK",
+   "departure_date": "2026-10-13",
+   "limit": 6,
+   "currency": "usd"
+  }
+ },
+ "headers": {
+  "x-search-attempts": "1",
+  "x-search-combinations": "1",
+  "x-search-results": "4",
+  "x-search-status": "ok"
+ },
+ "data": [
+  {
+   "price_range_in_relation_to_other_periods": "typical",
+   "price_insights_low": 500,
+   "price_insights_high": 880,
+   "from_airport": "Tel Aviv (TLV)",
+   "to_airport": "New York (JFK)",
+   "departure_date": "2026-10-13",
+   "price": "$983",
+   "price_as_number": 983,
+   "duration": "11 hr 40 min",
+   "duration_seconds": 42000,
+   "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjYtMTAtMTMiHgoDVExWEgoyMDI2LTEwLTEzGgNKRksqAkxZMgIxMWoFEgNUTFZyBRIDSkZLQgEBSAGYAQI&curr=usd",
+   "airline": "El Al | Delta",
+   "stops": 0,
+   "stops_info": [],
+   "departure_description": "4:55 PM on Tue, Oct 13",
+   "arrival_description": "9:35 PM on Tue, Oct 13"
+  },
+  {
+   "price_range_in_relation_to_other_periods": "typical",
+   "price_insights_low": 500,
+   "price_insights_high": 880,
+   "from_airport": "Tel Aviv (TLV)",
+   "to_airport": "New York (JFK)",
+   "departure_date": "2026-10-13",
+   "price": "$643",
+   "price_as_number": 643,
+   "duration": "17 hr 35 min",
+   "duration_seconds": 63300,
+   "buy_link": "https://www.google.com/travel/flights?tfs=GloSCjIwMjYtMTAtMTMiHwoDVExWEgoyMDI2LTEwLTEzGgNXQVcqAkxPMgMxNTIiHQoDV0FXEgoyMDI2LTEwLTEzGgNKRksqAkxPMgE2agUSA1RMVnIFEgNKRktCAQFIAZgBAg&curr=usd",
+   "airline": "LOT",
+   "stops": 1,
+   "stops_info": [
+    {
+     "stop_airport": "WAW",
+     "stop_duration_seconds": 15000
+    }
+   ],
+   "departure_description": "5:05 AM on Tue, Oct 13",
+   "arrival_description": "3:40 PM on Tue, Oct 13"
+  },
+  {
+   "price_range_in_relation_to_other_periods": "typical",
+   "price_insights_low": 500,
+   "price_insights_high": 880,
+   "from_airport": "Tel Aviv (TLV)",
+   "to_airport": "New York (JFK)",
+   "departure_date": "2026-10-13",
+   "price": "$643",
+   "price_as_number": 643,
+   "duration": "16 hr 35 min",
+   "duration_seconds": 59700,
+   "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjYtMTAtMTMiHwoDVExWEgoyMDI2LTEwLTEzGgNXQVcqAkxPMgMxNTYiHgoDV0FXEgoyMDI2LTEwLTEzGgNKRksqAkxPMgIyNmoFEgNUTFZyBRIDSkZLQgEBSAGYAQI&curr=usd",
+   "airline": "LOTOperated by Electra Airways, EUROATLANTIC Airways",
+   "stops": 1,
+   "stops_info": [
+    {
+     "stop_airport": "WAW",
+     "stop_duration_seconds": 11100
+    }
+   ],
+   "departure_description": "10:45 AM on Tue, Oct 13",
+   "arrival_description": "8:20 PM on Tue, Oct 13"
+  },
+  {
+   "price_range_in_relation_to_other_periods": "typical",
+   "price_insights_low": 500,
+   "price_insights_high": 880,
+   "from_airport": "Tel Aviv (TLV)",
+   "to_airport": "New York (JFK)",
+   "departure_date": "2026-10-13",
+   "price": "$560",
+   "price_as_number": 560,
+   "duration": "21 hr 5 min",
+   "duration_seconds": 75900,
+   "buy_link": "https://www.google.com/travel/flights?tfs=Gn4SCjIwMjYtMTAtMTMiHwoDVExWEgoyMDI2LTEwLTEzGgNPVFAqAlJPMgMxNTYiHwoDT1RQEgoyMDI2LTEwLTEzGgNGUkEqAlJPMgMzMDEiIAoDRlJBEgoyMDI2LTEwLTEzGgNKRksqAkRFMgQyMDE2agUSA1RMVnIFEgNKRktCAQFIAZgBAg&curr=usd",
+   "airline": "TAROM, Condor",
+   "stops": 2,
+   "stops_info": [
+    {
+     "stop_airport": "OTP",
+     "stop_duration_seconds": 19800
+    },
+    {
+     "stop_airport": "FRA",
+     "stop_duration_seconds": 5100
+    }
+   ],
+   "departure_description": "12:20 AM on Tue, Oct 13",
+   "arrival_description": "2:25 PM on Tue, Oct 13"
+  }
+ ]
+}

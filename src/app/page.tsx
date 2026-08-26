@@ -1,114 +1,91 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import {
-  Container,
-  Section,
-  SectionHead,
-  Cta,
+  CheckBullets,
   Code,
-  Feature,
+  Container,
+  Cta,
   FaqSection,
   JsonLd,
+  Section,
+  SectionHead,
   type Faq,
 } from '@/components/ui';
+import { AgentBand, CtaBand, SurfaceStrip } from '@/components/bands';
+import { AgentDemo } from '@/components/AgentDemo';
+import { HeroDoors } from '@/components/HeroDoors';
+import { ExecuteWidget } from '@/components/ExecuteWidget';
 import { PricingTable } from '@/components/PricingTable';
 import { FLIGHT_PLANS, HOTEL_PLANS } from '@/lib/pricing';
-import { LINKS, SITE } from '@/lib/site';
-
-export const dynamic = 'force-static';
+import { FIXTURES } from '@/lib/fixtures';
+import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
+import { DIFFERENTIATORS } from '@/lib/diff';
 
 export const metadata: Metadata = {
-  title: 'FlightPowers — real-time flight and hotel pricing APIs',
+  title: 'FlightPowers — live flight & hotel pricing APIs with a price verdict',
   description:
-    'REST APIs for live Google Flights and Booking.com prices. Google price-insights bands with a ' +
-    'low/typical/high verdict, paired-leg round-trip search, per-country hotel pricing, and a ' +
-    'Google Flights deep link on every itinerary.',
+    'Real-time Google Flights and Booking.com data as clean JSON. Google’s own price band and a low | typical | high verdict on every fare — for AI travel agents, developers, and automation teams.',
   alternates: { canonical: '/' },
 };
 
-const REQUEST = `curl -X POST https://api.flightpowers.com/v1/flights/oneway \\
-  -H "x-api-key: $RAPIDAPI_KEY" \\
-  -H "content-type: application/json" \\
-  -d '{
-    "from_airport": "JFK",
-    "to_airport": "LHR",
-    "departure_date": "2026-09-22",
-    "limit": 3
-  }'`;
+export const dynamic = 'force-static';
 
-const RESPONSE = `[
+const faq: Faq[] = [
   {
-    "price_insights_low": 65,
-    "price_insights_high": 135,
-    "price_range_in_relation_to_other_periods": "low",
-    "from_airport": "New York (JFK)",
-    "to_airport": "London (LHR)",
-    "departure_date": "2026-09-22",
-    "price": "$56",
-    "price_as_number": 56,
-    "duration": "6 hr 55 min",
-    "duration_seconds": 24900,
-    "airline": "Norse Atlantic UK",
-    "stops": 0,
-    "stops_info": [],
-    "departure_description": "8:35 PM on Tue, Sep 22",
-    "arrival_description": "8:30 AM on Wed, Sep 23",
-    "buy_link": "https://www.google.com/travel/flights?tfs=...&curr=usd"
-  }
-]`;
-
-const faqs: Faq[] = [
-  {
-    q: 'What exactly does price_insights_low and price_insights_high mean?',
-    a:
-      'They are the low and high ends of the historical price band Google Flights itself shows for ' +
-      'that route and date, read from the Google Flights page the search loads. They come back as ' +
-      'integers in the requested currency, and they are null when Google does not publish a band ' +
-      'for that search. Alongside them, price_range_in_relation_to_other_periods carries Google’s ' +
-      'own verdict on the current fare: "low", "typical" or "high".',
+    q: 'What does the Google Flights API return?',
+    a: 'Flat JSON per itinerary: price as a string and a number, airline, duration, stops with layover details, local departure and arrival times, a working buy_link into Google Flights, plus Google’s own price_insights_low/high band and a low | typical | high verdict for the route and dates.',
   },
   {
-    q: 'How is your round trip different from calling a one-way endpoint twice?',
-    a:
-      'POST /v1/flights/roundtrip is a single paired-leg search. The outbound leg selected drives a ' +
-      'filtered return-leg query, so the outbound and return you get back are an itinerary that can ' +
-      'actually be bought together, at a combined price, with one buy_link. Two independent one-way ' +
-      'searches give you two fares that may not be sellable as one ticket. It also lets you filter ' +
-      'each leg separately — max_departure_stops and max_return_stops, departure_airline_codes and ' +
-      'return_airline_codes, and independent time windows on each leg.',
+    q: 'Is there a free tier?',
+    a: 'Yes — the BASIC plan on RapidAPI is $0 and needs no card. It is 10 requests per month with a hard cap: enough to verify your key and see the response shape, not enough to evaluate. Evaluate with the live demo and free tools on this site instead; they run real requests on our key.',
   },
   {
-    q: 'What is proxy_country for?',
-    a:
-      'Every hotels endpoint accepts an optional proxy_country. It routes that single request through ' +
-      'a residential proxy exiting in that country, so the prices you get back are the prices a ' +
-      'resident of that country sees. Send the same hotel and the same dates several times with ' +
-      'different values and you have a rate-parity or geo-pricing comparison. Omit it and the request ' +
-      'uses a global rotating pool.',
+    q: 'How is this different from scraping Google Flights myself?',
+    a: 'A scraper you maintain breaks on every markup change and cannot tell “no flights” from “my scrape failed.” This API retries unreadable pages automatically, reports the outcome in an X-Search-Status header (ok, empty, partial, degraded), and returns Google’s price band with every fare — a field most scrapers never see.',
   },
   {
-    q: 'Do I need an account with you?',
-    a:
-      'No. Both APIs are sold through RapidAPI and you use your RapidAPI key. api.flightpowers.com is ' +
-      'a pass-through front for the same APIs under one host and one credential — it holds no key ' +
-      'of its own, and your calls are billed to your own RapidAPI subscription either way.',
+    q: 'Does round-trip really return paired legs?',
+    a: 'Yes. POST /roundtrip returns one object per itinerary with total_price, total_duration_seconds, total_stops, and the outbound and return legs already paired — not two one-way results you have to combine yourself.',
   },
   {
-    q: 'Which authentication headers does api.flightpowers.com accept?',
-    a:
-      'x-api-key, x-rapidapi-key, x-rapidapi-token, or Authorization with a Bearer, ApiKey or Token ' +
-      'prefix. Headers take precedence over the query string, where api_key, apikey, rapidapi_key and ' +
-      'key are also accepted.',
+    q: 'How do I know whether a fare is a good deal?',
+    a: 'Every result carries price_insights_low and price_insights_high — Google’s historical band for that route and date — and price_range_in_relation_to_other_periods, Google’s own low | typical | high verdict. Compare the fare to the band, or just branch on the verdict.',
   },
   {
-    q: 'What happens when a plan’s rate limit is hit?',
-    a:
-      'A 429 from upstream is returned to you as-is and is never retried, so an exhausted plan cannot ' +
-      'be double-billed by a retry. Server errors (500, 502, 503, 504) are retried once.',
+    q: 'Can I get hotel prices as seen from another country?',
+    a: 'Yes. Every hotels endpoint accepts proxy_country, a two-letter code that routes the request through a residential proxy in that market. Ask for the same room from us, de, and il and compare — that is rate-parity monitoring in three requests.',
+  },
+  {
+    q: 'What are the rate limits?',
+    a: 'Flights: 150 requests/minute on Pro ($10/mo, 2,500 requests), 250/min on Ultra ($25/mo, 10,000), 500/min on Mega ($50/mo, 50,000). Hotels: 25/min on Pro and Ultra, 50/min on Mega. The limits are sized for parallel date scans — a whole month in one burst.',
+  },
+  {
+    q: 'Can my AI agent use this without me writing HTTP code?',
+    a: 'Yes — three ways: hosted MCP servers (a URL, no install) for Claude, Cursor, and any MCP client; open-source agent skills for Claude Code and OpenClaw; and an n8n community node. All first-party, all on the same live data.',
   },
 ];
 
 export default function HomePage() {
+  const oneway = FIXTURES.onewayTlvJfk;
+  const berCdg = FIXTURES.roundtripBerCdg;
+  const degraded = FIXTURES.degradedExample;
+  const geo = FIXTURES.hotelGeoRixos;
+
+  // First-paint payload for the agent demo — the captured TLV→JFK exchange.
+  const initialChipPayload = {
+    mode: 'canned',
+    capturedAt: oneway.captured_at,
+    question: 'Is $480 TLV→JFK in October a good price?',
+    askedPrice: 480,
+    kind: 'oneway',
+    request: oneway.request,
+    flights: oneway.data,
+    headers: oneway.headers,
+  } as Record<string, unknown>;
+
+  const onewayRecord = oneway.data[0]!;
+  const berRecord = berCdg.data[0]!;
+
   return (
     <>
       <JsonLd
@@ -117,263 +94,387 @@ export default function HomePage() {
           '@type': 'WebSite',
           name: SITE.name,
           url: SITE.url,
-          description:
-            'REST APIs for real-time flight and hotel pricing, with Google price-insights bands and per-country hotel rates.',
+          publisher: {
+            '@type': 'Person',
+            name: 'Matan Rabi',
+            url: `${SITE.url}/about`,
+          },
         }}
       />
 
-      {/* ---------- Hero ---------- */}
-      <div className="board-grid border-b rule">
-        <Container className="py-20 sm:py-28">
-          <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,28rem)] lg:items-start">
-            <div>
-              <p className="eyebrow">Flight &amp; hotel pricing &middot; REST &amp; MCP</p>
-              <h1 className="mt-5 text-[length:var(--text-hero)] leading-[var(--text-hero--line-height)] tracking-[var(--text-hero--letter-spacing)] font-semibold">
-                Live fares, and the context to judge them.
-              </h1>
-              <p className="lede mt-6 max-w-xl">
-                Two REST APIs that return what a traveller sees right now on Google Flights and
-                Booking.com &mdash; plus the fields that tell you whether a price is any good:
-                Google&rsquo;s own historical price band, its low / typical / high verdict, and a
-                deep link straight to the itinerary.
-              </p>
-              <div className="mt-9 flex flex-wrap gap-3">
-                <Cta href={LINKS.rapidapiFlights} external>
-                  Get a flights key
-                </Cta>
-                <Cta href="/flights-api" variant="ghost">
-                  Read the flights reference
-                </Cta>
+      {/* ============================== HERO ============================== */}
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 hero-glow" aria-hidden="true" />
+        <Container className="relative pt-14 sm:pt-20 pb-16 sm:pb-24">
+          <HeroDoors
+            doorALabel="I’m building an AI travel agent"
+            doorBLabel="I need a flight & hotel data API"
+            doorA={
+              <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
+                <div className="pt-2">
+                  <p className="eyebrow">Real-time travel data for AI agents</p>
+                  <h1 className="mt-4 text-hero font-semibold">
+                    A travel agent that <span className="text-signal-500">never sleeps</span>
+                  </h1>
+                  <p className="lede mt-5">
+                    Talk to it in plain language. It scans live Google Flights and Booking.com data and tells you whether a fare is
+                    low, typical, or high — using Google&apos;s own numbers.
+                  </p>
+                  <div className="mt-7">
+                    <CheckBullets
+                      items={[
+                        <>
+                          Google&apos;s price band + a <strong className="text-ink-100">low | typical | high verdict</strong> on every fare
+                        </>,
+                        <>Round-trip as one paired-leg search, not two one-ways stapled together</>,
+                        <>
+                          Tells you <em>&quot;no flights&quot;</em> apart from <em>&quot;the search failed&quot;</em>
+                        </>,
+                      ]}
+                    />
+                  </div>
+                  <div className="mt-8 flex flex-wrap gap-3">
+                    <Cta href="#demo" variant="primary">
+                      Try the live demo ↓
+                    </Cta>
+                    <Cta href="/mcp" variant="ghost">
+                      Connect the MCP →
+                    </Cta>
+                  </div>
+                  <p className="mt-4 font-mono text-[12px] text-ink-500">Free tier on RapidAPI. No card to try.</p>
+                </div>
+                <div id="demo" className="scroll-mt-24">
+                  <AgentDemo initialChipPayload={initialChipPayload} />
+                </div>
               </div>
-              <p className="mt-5 font-mono text-[11px] text-ink-400">
-                Free tier: 10 requests / month, no card. Paid plans from $10 / month.
-              </p>
-            </div>
-
-            <div className="space-y-4 min-w-0">
-              <Code label="request">{REQUEST}</Code>
-              <Code label="200 &mdash; response">{RESPONSE}</Code>
-            </div>
-          </div>
+            }
+            doorB={
+              <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
+                <div className="pt-2">
+                  <p className="eyebrow">Flight &amp; hotel data API</p>
+                  <h1 className="mt-4 text-hero font-semibold">
+                    Live fares, and the <span className="text-signal-500">context to judge them</span>
+                  </h1>
+                  <p className="lede mt-5">
+                    One-way, round-trip, and hotel pricing as clean JSON — with Google&apos;s own price insights attached to every
+                    result.
+                  </p>
+                  <div className="mt-7">
+                    <CheckBullets
+                      items={[
+                        <>
+                          {COUNTS.restEndpoints} endpoints, flat JSON, a working <code className="font-mono text-[13px] text-signal-400">buy_link</code> on
+                          every itinerary
+                        </>,
+                        <>
+                          {COUNTS.flightsRateLimits} req/min by tier — a whole month scanned in one parallel burst
+                        </>,
+                        <>
+                          <code className="font-mono text-[13px] text-signal-400">X-Search-Status</code> headers: empty, partial, and degraded are
+                          different answers
+                        </>,
+                      ]}
+                    />
+                  </div>
+                  <div className="mt-8 flex flex-wrap gap-3">
+                    <Cta href={rapidApiPricingUrl('flights', 'hero')} external variant="primary">
+                      Get a key on RapidAPI →
+                    </Cta>
+                    <Cta href={SITE.docsUrl} external variant="ghost">
+                      Read the docs
+                    </Cta>
+                  </div>
+                  <p className="mt-4 font-mono text-[12px] text-ink-500">Free tier on RapidAPI. No card to try.</p>
+                </div>
+                <ExecuteWidget
+                  title="POST /v1/flights/oneway"
+                  tool="home-execute"
+                  capturedAt={oneway.captured_at}
+                  requestText={JSON.stringify(oneway.request.body, null, 2)}
+                  responseText={JSON.stringify(oneway.data.slice(0, 2), null, 2)}
+                  headers={oneway.headers}
+                />
+              </div>
+            }
+          />
         </Container>
       </div>
 
-      {/* ---------- Differentiators ---------- */}
-      <Section bordered={false}>
+      {/* ========================= SURFACE STRIP ========================= */}
+      <Section className="!py-10">
+        <SurfaceStrip />
+      </Section>
+
+      {/* ========================= WHO IS IT FOR ========================= */}
+      <Section>
         <SectionHead
-          eyebrow="What the response carries"
-          title="Three fields that decide whether you have to build the hard part yourself."
-          lede="Anyone can hand you a price. These are the parts that usually cost you a second data source, a pricing model, or a support ticket."
+          eyebrow="Who is it for"
+          title="Three kinds of builders, one data layer"
+          lede="The same six endpoints and the same live data, packaged for the way you work."
         />
-
-        <div className="mt-12 grid gap-x-10 gap-y-8 md:grid-cols-3">
-          <div>
-            <p className="field">price_insights_low / _high</p>
-            <h3 className="mt-3 text-lg font-semibold">Google&rsquo;s own price band</h3>
-            <p className="mt-2.5 text-sm text-ink-400 leading-relaxed">
-              The low and high ends of the historical fare range Google Flights displays for that
-              route and date, as integers, plus{' '}
-              <code className="field">price_range_in_relation_to_other_periods</code> &mdash; Google&rsquo;s
-              verdict on today&rsquo;s fare, <code className="field">&quot;low&quot;</code>,{' '}
-              <code className="field">&quot;typical&quot;</code> or{' '}
-              <code className="field">&quot;high&quot;</code>. You get &ldquo;is this a good price?&rdquo;
-              without modelling it yourself.
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <div className="rounded-2xl border rule bg-ink-900/60 p-6">
+            <h3 className="text-[17px] font-semibold text-ink-100">Agent builders</h3>
+            <p className="mt-2.5 text-[15px] text-ink-400 leading-relaxed">
+              Hosted MCP servers and open-source skills. Your agent asks in plain language; the response is small, flat JSON that
+              drops straight into a tool call — with a verdict it can reason about.
             </p>
+            <Link href="/ai-agents" className="mt-4 inline-block text-sm text-signal-400 underline underline-offset-4">
+              Agent recipes →
+            </Link>
           </div>
-
-          <div>
-            <p className="field">POST /v1/flights/roundtrip</p>
-            <h3 className="mt-3 text-lg font-semibold">A real paired-leg round trip</h3>
-            <p className="mt-2.5 text-sm text-ink-400 leading-relaxed">
-              One request, one billed call, one sellable itinerary: the chosen outbound drives a
-              filtered return-leg search, and you get a combined price and a single{' '}
-              <code className="field">buy_link</code>. Each leg takes its own stop limit, airline
-              filter and time window.
+          <div className="rounded-2xl border rule bg-ink-900/60 p-6">
+            <h3 className="text-[17px] font-semibold text-ink-100">Developers</h3>
+            <p className="mt-2.5 text-[15px] text-ink-400 leading-relaxed">
+              A REST API that behaves: consistent shapes, honest error semantics, filters matching the real Google Flights and
+              Booking.com UIs, and rate limits sized for parallel scans.
             </p>
+            <Link href="/flights-api" className="mt-4 inline-block text-sm text-signal-400 underline underline-offset-4">
+              Endpoint reference →
+            </Link>
           </div>
-
-          <div>
-            <p className="field">proxy_country</p>
-            <h3 className="mt-3 text-lg font-semibold">Hotel prices from a chosen country</h3>
-            <p className="mt-2.5 text-sm text-ink-400 leading-relaxed">
-              Every hotels endpoint takes an optional country code and routes that request through a
-              residential proxy exiting there. The same room, priced from five markets, is five
-              calls &mdash; which is what rate-parity and geo-pricing monitoring actually require.
+          <div className="rounded-2xl border rule bg-ink-900/60 p-6">
+            <h3 className="text-[17px] font-semibold text-ink-100">Automation &amp; BI teams</h3>
+            <p className="mt-2.5 text-[15px] text-ink-400 leading-relaxed">
+              Fare-watch crons in n8n, rate-parity monitoring with per-country hotel pricing, competitive-set tracking — no code
+              beyond a workflow node if you don&apos;t want it.
             </p>
+            <Link href="/integrations/n8n" className="mt-4 inline-block text-sm text-signal-400 underline underline-offset-4">
+              n8n node →
+            </Link>
           </div>
         </div>
       </Section>
 
-      {/* ---------- Honest empty results ---------- */}
+      {/* ===================== FEATURE: PRICE INSIGHTS ==================== */}
       <Section>
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,30rem)] lg:items-start">
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
-            <p className="eyebrow">Search outcome headers</p>
-            <h2 className="mt-3 text-2xl sm:text-3xl font-semibold">
-              An empty array is not an answer.
-            </h2>
-            <p className="lede mt-4">
-              A bare <code className="field">200 []</code> is ambiguous: it can mean Google returned
-              no itineraries, or it can mean the search did not complete. Those are opposite facts
-              and a fare-alert app that confuses them sends the wrong alert.
+            <SectionHead
+              eyebrow="The flagship field"
+              title="Every fare comes with a verdict"
+              accent="verdict"
+              lede="Most flight APIs give you a price. This one gives you Google's own historical band for the route and dates — and Google's call on whether today's fare is low, typical, or high."
+            />
+            <p className="mt-5 text-[15px] text-ink-400 leading-relaxed">
+              That one field turns a fare feed into a buying signal: price alerts that fire on{' '}
+              <code className="font-mono text-[13px] text-signal-400">&quot;low&quot;</code>, agents that can say &quot;book it&quot; with a reason,
+              dashboards that show value instead of noise.
             </p>
-            <p className="mt-4 text-sm text-ink-400 leading-relaxed">
-              Flight searches served from the RapidAPI host carry the outcome in response headers.{' '}
-              <code className="field">x-search-status</code> is one of{' '}
-              <code className="field">ok</code>, <code className="field">partial</code>,{' '}
-              <code className="field">degraded</code> or <code className="field">empty</code> &mdash;{' '}
-              <code className="field">empty</code> means Google genuinely had nothing,{' '}
-              <code className="field">degraded</code> means the search failed and the response says
-              nothing about availability. <code className="field">x-search-reason</code> names the
-              cause. Send <code className="field">&quot;strict&quot;: true</code> and a degraded
-              search returns <code className="field">503</code> instead of a misleading empty array.
-            </p>
-            <p className="mt-5 rounded border rule bg-ink-900 px-4 py-3 text-[13px] text-ink-400 leading-relaxed">
-              <span className="font-mono text-[11px] uppercase tracking-wider text-signal-500">
-                Scope
-              </span>
-              <br />
-              Verified on the RapidAPI host on 2026-08-25 by making a real call and reading the
-              headers. The same call through <code className="field">api.flightpowers.com</code>{' '}
-              returns only quota headers today &mdash; that front does not yet forward the search
-              headers. Use the RapidAPI host if your application depends on them.
-            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Cta href="/flights-api/price-insights" variant="ghost">
+                The price-insights endpoint →
+              </Cta>
+              <Cta href="/tools/flight-price-checker" variant="ghost">
+                Check a live fare free →
+              </Cta>
+            </div>
           </div>
+          <Code label={`captured ${berCdg.captured_at} · POST /v1/flights/roundtrip`}>{JSON.stringify(
+            {
+              price_range_in_relation_to_other_periods: berRecord.price_range_in_relation_to_other_periods,
+              price_insights_low: berRecord.price_insights_low,
+              price_insights_high: berRecord.price_insights_high,
+              total_price: berRecord.total_price,
+              from_airport: berRecord.from_airport,
+              to_airport: berRecord.to_airport,
+              buy_link: berRecord.buy_link.slice(0, 60) + '…',
+            },
+            null,
+            2
+          )}</Code>
+        </div>
+      </Section>
 
-          <Code label="response headers &middot; RapidAPI host">{`x-search-status: ok
-x-search-results: 3
-x-search-combinations: 1
-x-search-attempts: 2
+      {/* ===================== FEATURE: SEARCH STATUS ===================== */}
+      <Section>
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+          <div className="lg:order-2">
+            <SectionHead
+              eyebrow="Failure-mode honesty"
+              title='An empty response now means something'
+              lede='Every scraper gets handed pages it cannot read. Most return an empty list anyway — and your product tells a user something false. This API separates "no flights" from "the search failed", on every response.'
+            />
+            <p className="mt-5 text-[15px] text-ink-400 leading-relaxed">
+              <code className="font-mono text-[13px] text-signal-400">X-Search-Status</code> reports{' '}
+              <span className="text-verdict-low font-mono text-[13px]">ok</span> ·{' '}
+              <span className="font-mono text-[13px]">empty</span> ·{' '}
+              <span className="text-verdict-typical font-mono text-[13px]">partial</span> ·{' '}
+              <span className="text-verdict-high font-mono text-[13px]">degraded</span>, and opt-in{' '}
+              <code className="font-mono text-[13px] text-signal-400">strict</code> mode turns a degraded search into an HTTP 503.
+              The capture on the right is a real degraded search — and its immediate retry succeeding.
+            </p>
+            <div className="mt-6">
+              <Cta href="/flights-api/search-status" variant="ghost">
+                How the status headers work →
+              </Cta>
+            </div>
+          </div>
+          <div className="lg:order-1 space-y-4">
+            <Code label={`captured ${degraded.captured_at} · a real degraded search`}>{`HTTP/2 200
+x-search-status: degraded
+x-search-reason: blocked_page
+x-search-attempts: 3
+x-search-results: 0
+
+[]   ← says NOTHING about availability. Retry it.`}</Code>
+            <Code label="the same request, retried seconds later">{`HTTP/2 200
+x-search-status: ok
 x-search-retries: 1
-x-search-unreadable-pages: 1
-x-search-reason: blocked_page`}</Code>
-        </div>
-      </Section>
+x-search-results: 5
 
-      {/* ---------- Endpoints ---------- */}
-      <Section>
-        <SectionHead
-          eyebrow="Surface"
-          title="Six endpoints, one host, one credential."
-          lede="api.flightpowers.com fronts both APIs. It stores no key of its own — it forwards yours, so calls are billed to your own subscription."
-        />
-        <div className="mt-10 grid gap-10 md:grid-cols-2">
-          <div>
-            <p className="font-mono text-[11px] uppercase tracking-wider text-ink-400">Flights</p>
-            <ul className="mt-4 space-y-3">
-              {[
-                ['POST /v1/flights/oneway', 'One-way search'],
-                ['POST /v1/flights/roundtrip', 'Paired-leg round trip'],
-              ].map(([path, desc]) => (
-                <li key={path} className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                  <code className="field">{path}</code>
-                  <span className="text-sm text-ink-400">{desc}</span>
-                </li>
-              ))}
-            </ul>
-            <Link
-              href="/flights-api"
-              className="mt-5 inline-block text-sm text-signal-400 hover:text-signal-500"
-            >
-              Flights API reference &rarr;
-            </Link>
-          </div>
-          <div>
-            <p className="font-mono text-[11px] uppercase tracking-wider text-ink-400">Hotels</p>
-            <ul className="mt-4 space-y-3">
-              {[
-                ['POST /v1/hotels/search', 'Search a destination'],
-                ['POST /v1/hotels/by-name', 'Price one named property'],
-                ['POST /v1/hotels/rooms', 'Room-by-room breakdown'],
-                ['POST /v1/hotels/resolve', 'Resolve a name to a property'],
-              ].map(([path, desc]) => (
-                <li key={path} className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                  <code className="field">{path}</code>
-                  <span className="text-sm text-ink-400">{desc}</span>
-                </li>
-              ))}
-            </ul>
-            <Link
-              href="/hotels-api"
-              className="mt-5 inline-block text-sm text-signal-400 hover:text-signal-500"
-            >
-              Hotels API reference &rarr;
-            </Link>
+[ { "total_price": "$823", ... } ]`}</Code>
           </div>
         </div>
       </Section>
 
-      {/* ---------- Agents / integrations ---------- */}
+      {/* ====================== FEATURE: GEO PRICING ====================== */}
       <Section>
-        <SectionHead
-          eyebrow="Beyond REST"
-          title="Already packaged for the tools you use."
-        />
-        <div className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-4">
-          <Feature title="MCP server">
-            A bring-your-own-key, ad-free MCP server for flight search, listed on Smithery.{' '}
-            <a href={LINKS.smithery} rel="noopener" className="text-signal-400 hover:text-signal-500">
-              View it &rarr;
-            </a>
-          </Feature>
-          <Feature title="n8n community node">
-            <code className="field">n8n-nodes-flight-hotel-data</code> on npm &mdash; one-way and
-            round-trip flight search, hotel search and lookup.{' '}
-            <a href={LINKS.npmNode} rel="noopener" className="text-signal-400 hover:text-signal-500">
-              View it &rarr;
-            </a>
-          </Feature>
-          <Feature title="Agent skills">
-            Eight MIT-licensed skills for cheapest dates, fare watch, trip planning, hotel search and
-            rate-parity monitoring.{' '}
-            <a href={LINKS.skills} rel="noopener" className="text-signal-400 hover:text-signal-500">
-              GitHub &rarr;
-            </a>
-          </Feature>
-          <Feature title="Apify actors">
-            Both APIs are also published as Apify actors if that is where your pipeline already
-            lives.{' '}
-            <a href={LINKS.apifyFlights} rel="noopener" className="text-signal-400 hover:text-signal-500">
-              Flights &rarr;
-            </a>
-          </Feature>
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+          <div>
+            <SectionHead
+              eyebrow="Hotels · proxy_country"
+              title="The same room does not cost the same everywhere"
+              lede="Booking.com quotes different rates depending on where the visitor browses from. Every hotels endpoint accepts proxy_country — a residential proxy in that market — so rate-parity and geo-pricing monitoring is three requests, not an infrastructure project."
+            />
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Cta href="/hotels-api/geo-pricing" variant="ghost">
+                The geo-pricing endpoint →
+              </Cta>
+              <Cta href="/tools/hotel-price-by-country" variant="ghost">
+                Try it on a real hotel →
+              </Cta>
+            </div>
+          </div>
+          <Code label={`captured ${geo.captured_at} · same room, three markets`}>{`POST /hotel_by_name   { "proxy_country": "us" | "de" | "il" }
+
+  us → ${geo.data.us.price_string}   ← the US market's quote
+  de → ${geo.data.de.price_string}
+  il → ${geo.data.il.price_string}
+
+same hotel, same room, same dates.`}</Code>
         </div>
       </Section>
 
-      {/* ---------- Pricing ---------- */}
+      {/* ====================== REMAINING DIFFS ROW ====================== */}
+      <Section>
+        <div className="grid gap-6 md:grid-cols-3">
+          {DIFFERENTIATORS.filter((d) => ['paired-round-trip', 'buy-link', 'parallel-scans'].includes(d.id)).map((d) => (
+            <div key={d.id} className="rounded-2xl border rule bg-ink-900/60 p-6">
+              <h3 className="text-[16px] font-semibold text-ink-100">{d.title}</h3>
+              <p className="mt-2.5 text-[14.5px] text-ink-400 leading-relaxed">{d.short}</p>
+              <Link href={d.provenBy.href} className="mt-4 inline-block text-sm text-signal-400 underline underline-offset-4">
+                {d.provenBy.label} →
+              </Link>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* ============================ THE APIS =========================== */}
+      <Section id="apis">
+        <SectionHead
+          eyebrow="The APIs"
+          title="Six endpoints. Every plan gets all of them."
+          lede="You choose volume and rate limit; no feature is ever withheld."
+        />
+        <div className="mt-10 grid gap-6 lg:grid-cols-2">
+          <div className="rounded-2xl border rule bg-ink-900/60 p-6 sm:p-8">
+            <h3 className="text-xl font-semibold text-ink-100">Google Flights Live API</h3>
+            <p className="mt-2 text-[15px] text-ink-400">
+              Live fares with the price band, verdict, and booking link on every result.
+            </p>
+            <ul className="mt-5 space-y-2 font-mono text-[13px] text-ink-300">
+              <li>
+                <Link href="/flights-api/one-way" className="hover:text-signal-400">
+                  POST /oneway <span className="text-ink-500">— one-way search</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/flights-api/round-trip" className="hover:text-signal-400">
+                  POST /roundtrip <span className="text-ink-500">— paired itineraries</span>
+                </Link>
+              </li>
+            </ul>
+            <div className="mt-6">
+              <Cta href="/flights-api" variant="ghost">
+                Flights API →
+              </Cta>
+            </div>
+          </div>
+          <div className="rounded-2xl border rule bg-ink-900/60 p-6 sm:p-8">
+            <h3 className="text-xl font-semibold text-ink-100">Booking.com Live API</h3>
+            <p className="mt-2 text-[15px] text-ink-400">
+              Live rates, review scores, room-level pricing, and per-country quotes with proxy_country.
+            </p>
+            <ul className="mt-5 space-y-2 font-mono text-[13px] text-ink-300">
+              <li>
+                <Link href="/hotels-api/search" className="hover:text-signal-400">
+                  POST /search <span className="text-ink-500">— destination search, {COUNTS.hotelFilters} filters</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/hotels-api/by-name" className="hover:text-signal-400">
+                  POST /hotel_by_name <span className="text-ink-500">— no property IDs needed</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/hotels-api/bulk" className="hover:text-signal-400">
+                  POST /hotel <span className="text-ink-500">— every room in one property</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/hotels-api/geo-pricing" className="hover:text-signal-400">
+                  proxy_country <span className="text-ink-500">— on every endpoint</span>
+                </Link>
+              </li>
+            </ul>
+            <div className="mt-6">
+              <Cta href="/hotels-api" variant="ghost">
+                Hotels API →
+              </Cta>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* ========================== AGENT BAND =========================== */}
+      <Section>
+        <AgentBand />
+      </Section>
+
+      {/* ============================ PRICING ============================ */}
       <Section>
         <SectionHead
           eyebrow="Pricing"
-          title="Subscribe on RapidAPI. Both APIs start free."
-          lede="Billing, keys and quota are RapidAPI's. There is no separate account here."
+          title="Simple tiers, billed on RapidAPI"
+          lede="Every plan includes every endpoint. The free tier (10 requests, hard cap) verifies your key; the demo above is how you evaluate."
         />
-        <div className="mt-10 grid gap-16 max-w-4xl">
+        <div className="mt-10 space-y-10">
           <div>
-            <h3 className="text-lg font-semibold">Google Flights Live API</h3>
-            <div className="mt-5">
-              <PricingTable
-                plans={FLIGHT_PLANS}
-                href={LINKS.rapidapiFlights}
-                label="Subscribe to the flights API"
-              />
-            </div>
+            <h3 className="mb-4 text-[16px] font-semibold text-ink-100">Flights</h3>
+            <PricingTable api="flights" plans={FLIGHT_PLANS} medium="pricing" />
           </div>
           <div>
-            <h3 className="text-lg font-semibold">Booking Live API</h3>
-            <div className="mt-5">
-              <PricingTable
-                plans={HOTEL_PLANS}
-                href={LINKS.rapidapiHotels}
-                label="Subscribe to the hotels API"
-              />
-            </div>
+            <h3 className="mb-4 text-[16px] font-semibold text-ink-100">Hotels</h3>
+            <PricingTable api="hotels" plans={HOTEL_PLANS} medium="pricing" />
           </div>
+        </div>
+        <div className="mt-8">
+          <Cta href="/pricing" variant="ghost">
+            Full pricing, Apify option &amp; key check →
+          </Cta>
         </div>
       </Section>
 
-      {/* ---------- FAQ ---------- */}
+      {/* ============================== FAQ ============================== */}
       <Section>
-        <FaqSection items={faqs} />
+        <FaqSection items={faq} />
+      </Section>
+
+      {/* =========================== CLOSING CTA ========================= */}
+      <Section bordered={false} className="!pt-4">
+        <CtaBand medium="hero" />
       </Section>
     </>
   );

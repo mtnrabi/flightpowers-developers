@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { NAV, LINKS } from '@/lib/site';
+import { NAV, rapidApiPricingUrl } from '@/lib/site';
 import { Wordmark } from './Wordmark';
 
 export function SiteHeader() {
@@ -12,41 +12,39 @@ export function SiteHeader() {
           </Link>
 
           <nav aria-label="Primary" className="hidden md:flex items-center gap-7">
-            {NAV.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-sm text-ink-300 hover:text-ink-100 transition-colors"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {NAV.map((item) =>
+              item.external ? (
+                <a key={item.href} href={item.href} rel="noopener" className="text-sm text-ink-300 hover:text-ink-100 transition-colors">
+                  {item.label}
+                </a>
+              ) : (
+                <Link key={item.href} href={item.href} className="text-sm text-ink-300 hover:text-ink-100 transition-colors">
+                  {item.label}
+                </Link>
+              )
+            )}
           </nav>
 
           <div className="flex items-center gap-3">
-            <a
-              href={LINKS.rapidapiFlights}
-              className="text-sm font-medium bg-signal-500 text-ink-950 px-3.5 py-1.5 rounded hover:bg-signal-400 transition-colors"
-            >
+            <a href={rapidApiPricingUrl('flights', 'hero')} rel="noopener" className="btn btn-accent !px-4 !py-2 text-sm">
               Get a key
             </a>
           </div>
         </div>
 
-        {/* Mobile nav: still server-rendered links, no JS. */}
-        <nav
-          aria-label="Primary mobile"
-          className="md:hidden flex items-center gap-5 overflow-x-auto pb-3 -mt-1"
-        >
-          {NAV.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-[13px] whitespace-nowrap text-ink-300 hover:text-ink-100"
-            >
-              {item.label}
-            </Link>
-          ))}
+        {/* Mobile nav: server-rendered links, no JS. */}
+        <nav aria-label="Primary mobile" className="md:hidden flex items-center gap-5 overflow-x-auto pb-3 -mt-1">
+          {NAV.map((item) =>
+            item.external ? (
+              <a key={item.href} href={item.href} rel="noopener" className="text-[13px] whitespace-nowrap text-ink-300 hover:text-ink-100">
+                {item.label}
+              </a>
+            ) : (
+              <Link key={item.href} href={item.href} className="text-[13px] whitespace-nowrap text-ink-300 hover:text-ink-100">
+                {item.label}
+              </Link>
+            )
+          )}
         </nav>
       </div>
     </header>

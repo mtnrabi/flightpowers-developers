@@ -1,0 +1,116 @@
+{
+ "captured_at": "2026-08-26",
+ "captured_from": "api.flightpowers.com",
+ "note": "Real response captured live, truncated to the first 6 properties for display.",
+ "request": {
+  "endpoint": "/v1/hotels/search",
+  "body": {
+   "destination": "Lisbon",
+   "checkin_date": "2026-10-09",
+   "checkout_date": "2026-10-12",
+   "adults": 2,
+   "currency": "EUR",
+   "filters": [
+    "review_score_8",
+    "free_cancellation"
+   ]
+  }
+ },
+ "headers": {},
+ "data": {
+  "destination": "Lisbon",
+  "checkin_date": "2026-10-09",
+  "checkout_date": "2026-10-12",
+  "applied_filters": [
+   "review_score_8",
+   "free_cancellation"
+  ],
+  "budget_per_night": null,
+  "properties": [
+   {
+    "name": "Avenue Hostel & Suites",
+    "price_string": "\u20ac215",
+    "price": 215,
+    "review_score": 8.2,
+    "review_count": 2392,
+    "room_type": "Twin Room with Shared Bathroom",
+    "location": null,
+    "image_url": "https://cf.bstatic.com/xdata/images/hotel/square240/205495152.webp?k=2a6e08b8e0b8c1e63a884c6774f5c6d1e3f624b77eca503d592c7953057e4ddb&o=",
+    "link": "https://www.booking.com/hotel/pt/avenue-rooms-amp-suites.html?aid=304142&label=gen173nr-10CAQoggJCDXNlYXJjaF9saXNib25IMVgEaC-IAQGYATO4AQfIAQzYAQPoAQH4AQGIAgGoAgG4AtuGu9QGwAIB0gIkNzk4YmJkNzItOGM2NS00ZDQ5LWI0N2EtMjk1YmE4MmY0OTY32AIB4AIB&ucfs=1&arphpl=1&checkin=2026-10-09&checkout=2026-10-12&group_adults=2&req_adults=2&no_rooms=1&group_children=0&req_children=0&hpos=1&hapos=1&sr_order=popularity&nflt=review_score%3D80%3Bfc%3D2&srpvid=33df4b6d6f270679&srepoch=1787741020&all_sr_blocks=142896504_437589598_0_0_0&highlighted_blocks=142896504_437589598_0_0_0&matching_block_id=142896504_437589598_0_0_0&sr_pri_blocks=142896504_437589598_0_0_0__19128&from=searchresults",
+    "nights": 3,
+    "adults": 2,
+    "children": null
+   },
+   {
+    "name": "Oscar Concept Apartments",
+    "price_string": "\u20ac452",
+    "price": 452,
+    "review_score": 9.2,
+    "review_count": 1828,
+    "room_type": "Standard Studio",
+    "location": null,
+    "image_url": "https://cf.bstatic.com/xdata/images/hotel/square240/280804710.webp?k=9f960f34b50f89d45d6299c406c434a2b013ca9d7f857e40db8b16a589a51748&o=",
+    "link": "https://www.booking.com/hotel/pt/oscar-living-and-business.html?aid=304142&label=gen173nr-10CAQoggJCDXNlYXJjaF9saXNib25IMVgEaC-IAQGYATO4AQfIAQzYAQPoAQH4AQGIAgGoAgG4AtuGu9QGwAIB0gIkNzk4YmJkNzItOGM2NS00ZDQ5LWI0N2EtMjk1YmE4MmY0OTY32AIB4AIB&ucfs=1&arphpl=1&checkin=2026-10-09&checkout=2026-10-12&group_adults=2&req_adults=2&no_rooms=1&group_children=0&req_children=0&hpos=2&hapos=2&sr_order=popularity&nflt=review_score%3D80%3Bfc%3D2&srpvid=33df4b6d6f270679&srepoch=1787741020&all_sr_blocks=697269505_404099289_2_0_0&highlighted_blocks=697269505_404099289_2_0_0&matching_block_id=697269505_404099289_2_0_0&sr_pri_blocks=697269505_404099289_2_0_0__42750&from=searchresults",
+    "nights": 3,
+    "adults": 2,
+    "children": null
+   },
+   {
+    "name": "HF F\u00e9nix Urban",
+    "price_string": "\u20ac509",
+    "price": 509,
+    "review_score": 8.8,
+    "review_count": 2434,
+    "room_type": "Economy Double or Twin Room",
+    "location": null,
+    "image_url": "https://cf.bstatic.com/xdata/images/hotel/square240/351732850.webp?k=4e236197e3f87531a1810bc2a0b2ba42ffeed795e915375f86c0e4ebf2b8a2c9&o=",
+    "link": "https://www.booking.com/hotel/pt/hf-fenix-urban.html?aid=304142&label=gen173nr-10CAQoggJCDXNlYXJjaF9saXNib25IMVgEaC-IAQGYATO4AQfIAQzYAQPoAQH4AQGIAgGoAgG4AtuGu9QGwAIB0gIkNzk4YmJkNzItOGM2NS00ZDQ5LWI0N2EtMjk1YmE4MmY0OTY32AIB4AIB&ucfs=1&arphpl=1&checkin=2026-10-09&checkout=2026-10-12&group_adults=2&req_adults=2&no_rooms=1&group_children=0&req_children=0&hpos=3&hapos=3&sr_order=popularity&nflt=review_score%3D80%3Bfc%3D2&srpvid=33df4b6d6f270679&srepoch=1787741020&all_sr_blocks=17950125_385254565_2_0_0&highlighted_blocks=17950125_385254565_2_0_0&matching_block_id=17950125_385254565_2_0_0&sr_pri_blocks=17950125_385254565_2_0_0__48500&from=searchresults",
+    "nights": 3,
+    "adults": 2,
+    "children": null
+   },
+   {
+    "name": "WC by The Beautique Hotels",
+    "price_string": "\u20ac540",
+    "price": 540,
+    "review_score": 8.6,
+    "review_count": 2457,
+    "room_type": "Superior Double Room",
+    "location": null,
+    "image_url": "https://cf.bstatic.com/xdata/images/hotel/square240/462781858.webp?k=28b989a23dd339f0671d40ace01d36db04e0c9c6ec2d557bcda98243d05b6603&o=",
+    "link": "https://www.booking.com/hotel/pt/the-beautique-hotels-wc.html?aid=304142&label=gen173nr-10CAQoggJCDXNlYXJjaF9saXNib25IMVgEaC-IAQGYATO4AQfIAQzYAQPoAQH4AQGIAgGoAgG4AtuGu9QGwAIB0gIkNzk4YmJkNzItOGM2NS00ZDQ5LWI0N2EtMjk1YmE4MmY0OTY32AIB4AIB&ucfs=1&arphpl=1&checkin=2026-10-09&checkout=2026-10-12&group_adults=2&req_adults=2&no_rooms=1&group_children=0&req_children=0&hpos=4&hapos=4&sr_order=popularity&nflt=review_score%3D80%3Bfc%3D2&srpvid=33df4b6d6f270679&srepoch=1787741020&all_sr_blocks=272724602_372157674_2_2_0_600973&highlighted_blocks=272724602_372157674_2_2_0_600973&matching_block_id=272724602_372157674_2_2_0_600973&sr_pri_blocks=272724602_372157674_2_2_0_600973_51610&from=searchresults",
+    "nights": 3,
+    "adults": 2,
+    "children": null
+   },
+   {
+    "name": "Dorma Liberdade",
+    "price_string": "\u20ac521",
+    "price": 521,
+    "review_score": 8.6,
+    "review_count": 3774,
+    "room_type": "Double or Twin Room",
+    "location": null,
+    "image_url": "https://cf.bstatic.com/xdata/images/hotel/square240/151242042.webp?k=69e26044df7fd70dd16013d92bc42398a02aefa2182626caebb2f5eef6c09487&o=",
+    "link": "https://www.booking.com/hotel/pt/dorma-liberdade.html?aid=304142&label=gen173nr-10CAQoggJCDXNlYXJjaF9saXNib25IMVgEaC-IAQGYATO4AQfIAQzYAQPoAQH4AQGIAgGoAgG4AtuGu9QGwAIB0gIkNzk4YmJkNzItOGM2NS00ZDQ5LWI0N2EtMjk1YmE4MmY0OTY32AIB4AIB&ucfs=1&arphpl=1&checkin=2026-10-09&checkout=2026-10-12&group_adults=2&req_adults=2&no_rooms=1&group_children=0&req_children=0&hpos=5&hapos=5&sr_order=popularity&nflt=review_score%3D80%3Bfc%3D2&srpvid=33df4b6d6f270679&srepoch=1787741020&all_sr_blocks=374756501_408694217_2_2_0&highlighted_blocks=374756501_408694217_2_2_0&matching_block_id=374756501_408694217_2_2_0&sr_pri_blocks=374756501_408694217_2_2_0__49698&from_sustainable_property_sr=1&from=searchresults",
+    "nights": 3,
+    "adults": 2,
+    "children": null
+   },
+   {
+    "name": "Vila Garden Guesthouse",
+    "price_string": "\u20ac454",
+    "price": 454,
+    "review_score": 9.1,
+    "review_count": 1868,
+    "room_type": "Double Room",
+    "location": null,
+    "image_url": "https://cf.bstatic.com/xdata/images/hotel/square240/360302575.webp?k=45574ea6d4b0f34dd652e69ecc66376ff73b9364af9c3af5a4c37aa335f2528a&o=",
+    "link": "https://www.booking.com/hotel/pt/vila-garden-guest-house.html?aid=304142&label=gen173nr-10CAQoggJCDXNlYXJjaF9saXNib25IMVgEaC-IAQGYATO4AQfIAQzYAQPoAQH4AQGIAgGoAgG4AtuGu9QGwAIB0gIkNzk4YmJkNzItOGM2NS00ZDQ5LWI0N2EtMjk1YmE4MmY0OTY32AIB4AIB&ucfs=1&arphpl=1&checkin=2026-10-09&checkout=2026-10-12&group_adults=2&req_adults=2&no_rooms=1&group_children=0&req_children=0&hpos=6&hapos=6&sr_order=popularity&nflt=review_score%3D80%3Bfc%3D2&srpvid=33df4b6d6f270679&srepoch=1787741020&all_sr_blocks=105596601_407775413_2_0_0_535295&highlighted_blocks=105596601_407775413_2_0_0_535295&matching_block_id=105596601_407775413_2_0_0_535295&sr_pri_blocks=105596601_407775413_2_0_0_535295_43000&from=searchresults",
+    "nights": 3,
+    "adults": 2,
+    "children": null
+   }
+  ]
+ }
+}

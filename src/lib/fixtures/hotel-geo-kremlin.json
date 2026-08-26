@@ -1,0 +1,62 @@
+{
+ "captured_at": "2026-08-26",
+ "captured_from": "api.flightpowers.com",
+ "note": "Captured live. This property priced almost identically across the three markets -- rate parity holding is also an answer, and the tool reports it honestly.",
+ "request": {
+  "endpoint": "/v1/hotels/by-name",
+  "note": "three requests, identical except proxy_country",
+  "body": {
+   "hotel_name": "Kremlin Palace",
+   "area": "Antalya",
+   "checkin_date": "2026-10-05",
+   "checkout_date": "2026-10-10",
+   "currency": "USD",
+   "proxy_country": "us|de|il"
+  }
+ },
+ "headers": {},
+ "data": {
+  "us": {
+   "name": "Kremlin Palace",
+   "available": true,
+   "price_string": "$1319",
+   "price": 1319,
+   "review_score": 8.4,
+   "review_count": 803,
+   "room_type": "Superior Double or Twin Room",
+   "image_url": "https://cf.bstatic.com/xdata/images/hotel/square240/501059778.webp?k=d798971642ff387e93760479b1a1a3ba4eb9c8ccb2c1f71f6c2fe9bca3c25d74&o=",
+   "link": "https://www.booking.com/hotel/tr/kremlin-palace.html?aid=304142&label=gen173nr-10CAQoggJCC2hvdGVsXzg2NDk0SDFYBGixAogBAZgBM7gBB8gBDNgBA-gBAfgBAYgCAagCAbgCy4a71AbAAgHSAiRlYzFiZDEwZC03NmY5LTQ4ZmYtYTU5MC0yMDg4N2ZjZWVlYznYAgHgAgE&ucfs=1&arphpl=1&checkin=2026-10-05&checkout=2026-10-10&dest_id=86494&dest_type=hotel&group_adults=2&req_adults=2&no_rooms=1&group_children=0&req_children=0&hpos=1&hapos=1&sr_order=popularity&srpvid=22014b651d791bf4&srepoch=1787741005&all_sr_blocks=8649413_0_2_85_0&highlighted_blocks=8649413_0_2_85_0&matching_block_id=8649413_0_2_85_0&sr_pri_blocks=8649413_0_2_85_0__101768&from=searchresults",
+   "nights": 5,
+   "adults": 2,
+   "children": null
+  },
+  "de": {
+   "name": "Kremlin Palace",
+   "available": true,
+   "price_string": "US$1,318",
+   "price": 1318,
+   "review_score": 8.4,
+   "review_count": 803,
+   "room_type": "Superior Double or Twin Room",
+   "image_url": "https://cf.bstatic.com/xdata/images/hotel/square240/501059778.webp?k=d798971642ff387e93760479b1a1a3ba4eb9c8ccb2c1f71f6c2fe9bca3c25d74&o=",
+   "link": "https://www.booking.com/hotel/tr/kremlin-palace.html?aid=304142&label=gen173nr-10CAQoggJCC2hvdGVsXzg2NDk0SDFYBGhiiAEBmAEzuAEHyAEM2AED6AEB-AEBiAIBqAIBuALMhrvUBsACAdICJDZlM2Y1MWEyLTlmNmEtNGMyNS05MGZmLTdlZGEyMGQxMjJjYdgCAeACAQ&ucfs=1&arphpl=1&checkin=2026-10-05&checkout=2026-10-10&dest_id=86494&dest_type=hotel&group_adults=2&req_adults=2&no_rooms=1&group_children=0&req_children=0&hpos=1&hapos=1&sr_order=popularity&srpvid=c7fb4b6649880050&srepoch=1787741005&all_sr_blocks=8649413_0_2_85_0&highlighted_blocks=8649413_0_2_85_0&matching_block_id=8649413_0_2_85_0&sr_pri_blocks=8649413_0_2_85_0__112959&from=searchresults",
+   "nights": 5,
+   "adults": 2,
+   "children": null
+  },
+  "il": {
+   "name": "Kremlin Palace",
+   "available": true,
+   "price_string": "US$1,318",
+   "price": 1318,
+   "review_score": 8.4,
+   "review_count": 803,
+   "room_type": "Superior Double or Twin Room",
+   "image_url": "https://cf.bstatic.com/xdata/images/hotel/square240/501059778.webp?k=d798971642ff387e93760479b1a1a3ba4eb9c8ccb2c1f71f6c2fe9bca3c25d74&o=",
+   "link": "https://www.booking.com/hotel/tr/kremlin-palace.html?aid=304142&label=gen173nr-10CAQoggJCC2hvdGVsXzg2NDk0SDFYBGi1AYgBAZgBM7gBB8gBDNgBA-gBAfgBAYgCAagCAbgC0Ya71AbAAgHSAiQ1NjI5MTc2Ni01MTMyLTRlMjAtYTk2NS03ZGNlNjQ3ZTkwZjPYAgHgAgE&ucfs=1&arphpl=1&checkin=2026-10-05&checkout=2026-10-10&dest_id=86494&dest_type=hotel&group_adults=2&req_adults=2&no_rooms=1&group_children=0&req_children=0&hpos=1&hapos=1&sr_order=popularity&srpvid=47f14b687c68063c&srepoch=1787741011&all_sr_blocks=8649413_0_2_85_0&highlighted_blocks=8649413_0_2_85_0&matching_block_id=8649413_0_2_85_0&sr_pri_blocks=8649413_0_2_85_0__112959&from=searchresults",
+   "nights": 5,
+   "adults": 2,
+   "children": null
+  }
+ }
+}

@@ -1,0 +1,28 @@
+{
+ "captured_at": "2026-08-26",
+ "captured_from": "api.flightpowers.com",
+ "note": "A real degraded search captured live: Google blocked the page, retries were exhausted, and the API said so instead of returning a fake empty result. The immediate retry of the same request succeeded.",
+ "request": {
+  "endpoint": "/v1/flights/roundtrip",
+  "body": {
+   "from_airport": "JFK",
+   "to_airport": "LHR",
+   "departure_date": "2026-10-20",
+   "return_date": "2026-10-27",
+   "limit": 5,
+   "currency": "usd"
+  }
+ },
+ "headers": {
+  "x-search-attempts": "3",
+  "x-search-combinations": "1",
+  "x-search-fallback": "exhausted",
+  "x-search-lost-combinations": "1",
+  "x-search-reason": "blocked_page",
+  "x-search-results": "0",
+  "x-search-retries": "1",
+  "x-search-status": "degraded",
+  "x-search-unreadable-pages": "2"
+ },
+ "data": []
+}

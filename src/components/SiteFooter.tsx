@@ -1,30 +1,69 @@
 import Link from 'next/link';
-import { LINKS, SITE } from '@/lib/site';
+import { LINKS, SITE, SURFACES } from '@/lib/site';
 
-const columns: { heading: string; links: { href: string; label: string; external?: boolean }[] }[] = [
+/**
+ * The footer is the crawl graph: four columns, ~45 links, identical on every
+ * page. Long-tail pages feed link equity into the money pages from here.
+ */
+
+type FooterLink = { href: string; label: string; external?: boolean };
+
+const columns: { heading: string; links: FooterLink[] }[] = [
+  {
+    heading: 'Company',
+    links: [
+      { href: '/', label: 'Home' },
+      { href: '/about', label: 'About' },
+      { href: '/pricing', label: 'Pricing' },
+      { href: '/changelog', label: 'Changelog' },
+      { href: '/blog', label: 'Blog' },
+      { href: '/contact', label: 'Contact' },
+      { href: '/terms', label: 'Terms' },
+      { href: '/privacy', label: 'Privacy' },
+    ],
+  },
   {
     heading: 'APIs',
     links: [
       { href: '/flights-api', label: 'Flights API' },
+      { href: '/flights-api/one-way', label: 'One-way search' },
+      { href: '/flights-api/round-trip', label: 'Round-trip search' },
+      { href: '/flights-api/price-insights', label: 'Price insights' },
+      { href: '/flights-api/search-status', label: 'Search status' },
+      { href: '/flights-api/parallel-date-scan', label: 'Parallel date scans' },
       { href: '/hotels-api', label: 'Hotels API' },
-      { href: '/changelog', label: 'Changelog' },
+      { href: '/hotels-api/search', label: 'Hotel search' },
+      { href: '/hotels-api/by-name', label: 'Hotel by name' },
+      { href: '/hotels-api/geo-pricing', label: 'Geo-pricing' },
+      { href: '/hotels-api/bulk', label: 'Competitive sets' },
     ],
   },
   {
-    heading: 'Get a key',
+    heading: 'For AI agents',
     links: [
-      { href: LINKS.rapidapiFlights, label: 'RapidAPI — Flights', external: true },
-      { href: LINKS.rapidapiHotels, label: 'RapidAPI — Hotels', external: true },
-      { href: LINKS.apifyFlights, label: 'Apify — Flights actor', external: true },
-      { href: LINKS.apifyHotels, label: 'Apify — Hotels actor', external: true },
+      { href: '/mcp', label: 'MCP servers' },
+      { href: '/ai-agents', label: 'AI agents' },
+      { href: '/skills', label: 'Agent skills' },
+      { href: '/integrations/claude', label: 'Claude' },
+      { href: '/integrations/chatgpt', label: 'ChatGPT' },
+      { href: '/integrations/cursor', label: 'Cursor' },
+      { href: '/integrations/claude-code', label: 'Claude Code' },
+      { href: LINKS.openapi, label: 'OpenAPI spec', external: true },
+      { href: '/llms.txt', label: 'llms.txt' },
     ],
   },
   {
-    heading: 'For agents',
+    heading: 'Free tools & more',
     links: [
-      { href: LINKS.smithery, label: 'MCP server on Smithery', external: true },
-      { href: LINKS.npmNode, label: 'n8n community node', external: true },
-      { href: LINKS.skills, label: 'Agent skills (MIT)', external: true },
+      { href: '/tools', label: 'All free tools' },
+      { href: '/tools/google-flights-url-parser', label: 'Google Flights URL parser' },
+      { href: '/tools/flight-price-checker', label: 'Flight price checker' },
+      { href: '/tools/cheapest-month-to-fly', label: 'Cheapest month to fly' },
+      { href: '/tools/hotel-price-by-country', label: 'Hotel price by country' },
+      { href: '/integrations', label: 'Integrations' },
+      { href: '/compare', label: 'Compare' },
+      { href: '/use-cases', label: 'Use cases' },
+      { href: '/guides', label: 'Guides' },
     ],
   },
 ];
@@ -33,55 +72,58 @@ export function SiteFooter() {
   return (
     <footer className="border-t rule mt-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
           <div>
             <p className="text-[15px] font-semibold text-ink-100">FlightPowers</p>
-            <p className="mt-2 text-sm text-ink-400 max-w-[24ch]">{SITE.tagline}</p>
+            <p className="mt-2 text-sm text-ink-400 max-w-[26ch]">{SITE.tagline}</p>
             <p className="mt-4 font-mono text-[11px] text-ink-600">{SITE.apiHost}</p>
+            <div className="mt-5 flex flex-wrap gap-x-3 gap-y-1.5">
+              {SURFACES.map((s) =>
+                s.external ? (
+                  <a key={s.label} href={s.href} rel="noopener" className="font-mono text-[11px] text-ink-500 hover:text-signal-400">
+                    {s.label}
+                  </a>
+                ) : (
+                  <Link key={s.label} href={s.href} className="font-mono text-[11px] text-ink-500 hover:text-signal-400">
+                    {s.label}
+                  </Link>
+                )
+              )}
+            </div>
           </div>
 
           {columns.map((col) => (
             <div key={col.heading}>
               <p className="eyebrow">{col.heading}</p>
               <ul className="mt-4 space-y-2.5">
-                {col.links.map((link) =>
-                  link.external ? (
-                    <li key={link.href}>
-                      <a
-                        href={link.href}
-                        rel="noopener"
-                        className="text-sm text-ink-300 hover:text-signal-400 transition-colors"
-                      >
+                {col.links.map((link) => (
+                  <li key={link.href}>
+                    {link.external ? (
+                      <a href={link.href} rel="noopener" className="text-sm text-ink-300 hover:text-signal-400 transition-colors">
                         {link.label}
                       </a>
-                    </li>
-                  ) : (
-                    <li key={link.href}>
-                      <Link
-                        href={link.href}
-                        className="text-sm text-ink-300 hover:text-signal-400 transition-colors"
-                      >
+                    ) : (
+                      <Link href={link.href} className="text-sm text-ink-300 hover:text-signal-400 transition-colors">
                         {link.label}
                       </Link>
-                    </li>
-                  )
-                )}
+                    )}
+                  </li>
+                ))}
               </ul>
             </div>
           ))}
         </div>
 
         <div className="mt-14 pt-6 border-t rule flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
-          <p className="font-mono text-[11px] text-ink-600">
-            &copy; {new Date().getFullYear()} FlightPowers
-          </p>
-          <a
-            href={LINKS.product}
-            rel="noopener"
-            className="font-mono text-[11px] text-ink-600 hover:text-ink-400 transition-colors"
-          >
-            flightpowers.com &rarr;
-          </a>
+          <p className="font-mono text-[11px] text-ink-600">&copy; {new Date().getFullYear()} FlightPowers</p>
+          <div className="flex items-center gap-5">
+            <a href={LINKS.skills} rel="noopener" className="font-mono text-[11px] text-ink-600 hover:text-ink-400 transition-colors">
+              GitHub
+            </a>
+            <a href={SITE.docsUrl} rel="noopener" className="font-mono text-[11px] text-ink-600 hover:text-ink-400 transition-colors">
+              API docs &rarr;
+            </a>
+          </div>
         </div>
       </div>
     </footer>

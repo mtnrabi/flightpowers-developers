@@ -1,0 +1,349 @@
+{
+ "captured_at": "2026-08-26",
+ "captured_from": "api.flightpowers.com",
+ "note": "A real 30-request parallel date scan captured live. Each day's entry is the cheapest of that day's results.",
+ "request": {
+  "endpoint": "/v1/flights/oneway",
+  "note": "30 requests, one per departure date 2026-11-01..30, limit 5 each, fired in parallel batches of 6",
+  "body": {
+   "from_airport": "LIS",
+   "to_airport": "JFK",
+   "departure_date": "2026-11-01..2026-11-30",
+   "limit": 5,
+   "currency": "usd"
+  }
+ },
+ "headers": {},
+ "data": [
+  {
+   "date": "2026-11-01",
+   "status": "ok",
+   "price": 448,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "British Airways | American, Finnair, Iberia",
+   "stops": 1,
+   "duration": "12 hr 20 min"
+  },
+  {
+   "date": "2026-11-02",
+   "status": "ok",
+   "price": 398,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "Vueling, LEVEL",
+   "stops": 1,
+   "duration": "33 hr 20 min"
+  },
+  {
+   "date": "2026-11-03",
+   "status": "ok",
+   "price": 392,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "Vueling, LEVEL",
+   "stops": 1,
+   "duration": "17 hr 55 min"
+  },
+  {
+   "date": "2026-11-04",
+   "status": "ok",
+   "price": 386,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "Vueling, LEVEL",
+   "stops": 1,
+   "duration": "33 hr 20 min"
+  },
+  {
+   "date": "2026-11-05",
+   "status": "ok",
+   "price": 386,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "Vueling, LEVEL",
+   "stops": 1,
+   "duration": "12 hr 55 min"
+  },
+  {
+   "date": "2026-11-06",
+   "status": "ok",
+   "price": 430,
+   "verdict": null,
+   "low": null,
+   "high": null,
+   "airline": "EI",
+   "stops": 1,
+   "duration": "13 hr 39 min"
+  },
+  {
+   "date": "2026-11-07",
+   "status": "ok",
+   "price": 404,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "Vueling, LEVEL",
+   "stops": 1,
+   "duration": "12 hr 55 min"
+  },
+  {
+   "date": "2026-11-08",
+   "status": "ok",
+   "price": 435,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "Iberia | Finnair, American",
+   "stops": 1,
+   "duration": "12 hr 50 min"
+  },
+  {
+   "date": "2026-11-09",
+   "status": "ok",
+   "price": 410,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "Vueling, LEVEL",
+   "stops": 1,
+   "duration": "33 hr 20 min"
+  },
+  {
+   "date": "2026-11-10",
+   "status": "ok",
+   "price": 398,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "Vueling, LEVEL",
+   "stops": 1,
+   "duration": "12 hr 55 min"
+  },
+  {
+   "date": "2026-11-11",
+   "status": "ok",
+   "price": 398,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "Vueling, LEVEL",
+   "stops": 1,
+   "duration": "32 hr"
+  },
+  {
+   "date": "2026-11-12",
+   "status": "ok",
+   "price": 411,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "Iberia, American | Finnair, British Airways",
+   "stops": 1,
+   "duration": "11 hr 35 min"
+  },
+  {
+   "date": "2026-11-13",
+   "status": "ok",
+   "price": 398,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "Vueling, LEVEL",
+   "stops": 1,
+   "duration": "32 hr"
+  },
+  {
+   "date": "2026-11-14",
+   "status": "ok",
+   "price": 411,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "Iberia, American | Finnair, British Airways",
+   "stops": 1,
+   "duration": "11 hr 35 min"
+  },
+  {
+   "date": "2026-11-15",
+   "status": "ok",
+   "price": 420,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "Royal Air Maroc",
+   "stops": 1,
+   "duration": "29 hr"
+  },
+  {
+   "date": "2026-11-16",
+   "status": "ok",
+   "price": 411,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "Iberia, American | Finnair, British Airways",
+   "stops": 1,
+   "duration": "11 hr 35 min"
+  },
+  {
+   "date": "2026-11-17",
+   "status": "ok",
+   "price": 404,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "Vueling, LEVEL",
+   "stops": 1,
+   "duration": "12 hr 55 min"
+  },
+  {
+   "date": "2026-11-18",
+   "status": "ok",
+   "price": 375,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "Vueling, LEVEL",
+   "stops": 1,
+   "duration": "32 hr"
+  },
+  {
+   "date": "2026-11-19",
+   "status": "ok",
+   "price": 398,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "Vueling, LEVEL",
+   "stops": 1,
+   "duration": "12 hr 55 min"
+  },
+  {
+   "date": "2026-11-20",
+   "status": "ok",
+   "price": 381,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "Vueling, LEVEL",
+   "stops": 1,
+   "duration": "33 hr 20 min"
+  },
+  {
+   "date": "2026-11-21",
+   "status": "ok",
+   "price": 398,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "Vueling, LEVEL",
+   "stops": 1,
+   "duration": "17 hr 55 min"
+  },
+  {
+   "date": "2026-11-22",
+   "status": "ok",
+   "price": 435,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "Iberia | Finnair, American",
+   "stops": 1,
+   "duration": "12 hr 50 min"
+  },
+  {
+   "date": "2026-11-23",
+   "status": "ok",
+   "price": 398,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "Vueling, LEVEL",
+   "stops": 1,
+   "duration": "33 hr 20 min"
+  },
+  {
+   "date": "2026-11-24",
+   "status": "ok",
+   "price": 398,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "Vueling, LEVEL",
+   "stops": 1,
+   "duration": "12 hr 55 min"
+  },
+  {
+   "date": "2026-11-25",
+   "status": "ok",
+   "price": 381,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "Vueling, LEVEL",
+   "stops": 1,
+   "duration": "33 hr 20 min"
+  },
+  {
+   "date": "2026-11-26",
+   "status": "ok",
+   "price": 386,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "Vueling, LEVEL",
+   "stops": 1,
+   "duration": "17 hr 55 min"
+  },
+  {
+   "date": "2026-11-27",
+   "status": "ok",
+   "price": 435,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "Iberia, American | Finnair, British Airways",
+   "stops": 1,
+   "duration": "11 hr 35 min"
+  },
+  {
+   "date": "2026-11-28",
+   "status": "ok",
+   "price": 448,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "British Airways | American, Finnair, Iberia",
+   "stops": 1,
+   "duration": "16 hr 20 min"
+  },
+  {
+   "date": "2026-11-29",
+   "status": "ok",
+   "price": 447,
+   "verdict": null,
+   "low": null,
+   "high": null,
+   "airline": "BA",
+   "stops": 1,
+   "duration": "27 hr 25 min"
+  },
+  {
+   "date": "2026-11-30",
+   "status": "ok",
+   "price": 411,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "Iberia, American | Finnair, British Airways",
+   "stops": 1,
+   "duration": "11 hr 35 min"
+  }
+ ]
+}

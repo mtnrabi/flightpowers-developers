@@ -327,11 +327,7 @@ export default function HotelsApiPage() {
       <Section>
         <SectionHead eyebrow="Pricing" title="Plans on RapidAPI" />
         <div className="mt-8 max-w-4xl">
-          <PricingTable
-            plans={HOTEL_PLANS}
-            href={LINKS.rapidapiHotels}
-            label="Subscribe on RapidAPI"
-          />
+          <PricingTable api="hotels" plans={HOTEL_PLANS} medium="endpoint" />
         </div>
       </Section>
 

@@ -1,0 +1,62 @@
+{
+ "captured_at": "2026-08-26",
+ "captured_from": "api.flightpowers.com",
+ "note": "Three real requests captured live, identical except proxy_country. The US market was quoted $1,771 for the same room the German and Israeli markets were quoted $1,966 for.",
+ "request": {
+  "endpoint": "/v1/hotels/by-name",
+  "note": "three requests, identical except proxy_country",
+  "body": {
+   "hotel_name": "Rixos Sungate",
+   "area": "Antalya",
+   "checkin_date": "2026-10-05",
+   "checkout_date": "2026-10-10",
+   "currency": "USD",
+   "proxy_country": "us|de|il"
+  }
+ },
+ "headers": {},
+ "data": {
+  "us": {
+   "name": "Rixos Sungate - The Land of Legends Access",
+   "available": true,
+   "price_string": "$1,771",
+   "price": 1771,
+   "review_score": null,
+   "review_count": 375,
+   "room_type": "Marine Room",
+   "image_url": "https://cf.bstatic.com/xdata/images/hotel/square240/881289953.webp?k=afbc6783061647a77f75c326bc69c0f947eee5e87c2122c1ccb8b765ff7d1c7b&o=",
+   "link": "https://www.booking.com/hotel/tr/rixos-sungate.html?aid=304142&label=gen173nr-10CAQoggJCDGhvdGVsXzE4NjY1MUgxWARojgKIAQGYATO4AQfIAQzYAQPoAQH4AQGIAgGoAgG4AvWGu9QGwAIB0gIkNmQxMmNiN2YtMDkxZC00NjFiLWE2NjgtOTRjYjc5OWM0Njgy2AIB4AIB&ucfs=1&arphpl=1&checkin=2026-10-05&checkout=2026-10-10&dest_id=186651&dest_type=hotel&group_adults=2&req_adults=2&no_rooms=1&group_children=0&req_children=0&hpos=1&hapos=1&sr_order=popularity&srpvid=59894b7a8a70030c&srepoch=1787741046&all_sr_blocks=18665135_91466302_2_85_0&highlighted_blocks=18665135_91466302_2_85_0&matching_block_id=18665135_91466302_2_85_0&sr_pri_blocks=18665135_91466302_2_85_0__151784&from_sustainable_property_sr=1&from=searchresults",
+   "nights": 5,
+   "adults": 2,
+   "children": null
+  },
+  "de": {
+   "name": "Rixos Sungate - The Land of Legends Access",
+   "available": true,
+   "price_string": "US$1,966",
+   "price": 1966,
+   "review_score": null,
+   "review_count": 375,
+   "room_type": "Marine Room",
+   "image_url": "https://cf.bstatic.com/xdata/images/hotel/square240/881289953.webp?k=afbc6783061647a77f75c326bc69c0f947eee5e87c2122c1ccb8b765ff7d1c7b&o=",
+   "link": "https://www.booking.com/hotel/tr/rixos-sungate.html?aid=304142&label=gen173nr-10CAQoggJCDGhvdGVsXzE4NjY1MUgxWARoYogBAZgBM7gBB8gBDNgBA-gBAfgBAYgCAagCAbgCgYe71AbAAgHSAiQ1MGM1YjcxNi1kZGZiLTRlMjUtODgyOC05NDZkM2I1MDJmMDjYAgHgAgE&ucfs=1&arphpl=1&checkin=2026-10-05&checkout=2026-10-10&dest_id=186651&dest_type=hotel&group_adults=2&req_adults=2&no_rooms=1&group_children=0&req_children=0&hpos=1&hapos=1&sr_order=popularity&srpvid=b66c4b805f86033a&srepoch=1787741058&all_sr_blocks=18665135_91466302_2_85_0&highlighted_blocks=18665135_91466302_2_85_0&matching_block_id=18665135_91466302_2_85_0&sr_pri_blocks=18665135_91466302_2_85_0__168480&from_sustainable_property_sr=1&from=searchresults",
+   "nights": 5,
+   "adults": 2,
+   "children": null
+  },
+  "il": {
+   "name": "Rixos Sungate - The Land of Legends Access",
+   "available": true,
+   "price_string": "US$1,966",
+   "price": 1966,
+   "review_score": null,
+   "review_count": 375,
+   "room_type": "Marine Room",
+   "image_url": "https://cf.bstatic.com/xdata/images/hotel/square240/881289953.webp?k=afbc6783061647a77f75c326bc69c0f947eee5e87c2122c1ccb8b765ff7d1c7b&o=",
+   "link": "https://www.booking.com/hotel/tr/rixos-sungate.html?aid=304142&label=gen173nr-10CAQoggJCDGhvdGVsXzE4NjY1MUgxWARotQGIAQGYATO4AQfIAQzYAQPoAQH4AQGIAgGoAgG4AvqGu9QGwAIB0gIkMWE2NDMwZjUtMWY0YS00YzMyLThlNWMtOTRjNzQ3ZDBkMWU52AIB4AIB&ucfs=1&arphpl=1&checkin=2026-10-05&checkout=2026-10-10&dest_id=186651&dest_type=hotel&group_adults=2&req_adults=2&no_rooms=1&group_children=0&req_children=0&hpos=1&hapos=1&sr_order=popularity&srpvid=3d344b7d1b530ad0&srepoch=1787741051&all_sr_blocks=18665135_91466302_2_85_0&highlighted_blocks=18665135_91466302_2_85_0&matching_block_id=18665135_91466302_2_85_0&sr_pri_blocks=18665135_91466302_2_85_0__168480&from_sustainable_property_sr=1&from=searchresults",
+   "nights": 5,
+   "adults": 2,
+   "children": null
+  }
+ }
+}
