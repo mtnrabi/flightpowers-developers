@@ -5,6 +5,7 @@ import { track } from '@/lib/track';
 import { rapidApiPricingUrl } from '@/lib/site';
 import { hotelGeoSnippets, monthScanSnippets, onewaySnippets, type Snippets } from '@/lib/snippets';
 import type { HotelByName, OnewayFlight, ScanDay } from '@/lib/fixtures';
+import { airlineText } from '@/lib/format';
 import { FlightResults, HeatGrid, HotelMarketsTable, SearchHeaderChips } from './results';
 import { ApiUpsellCard } from './ApiUpsellCard';
 import { CapturedBadge } from './ui';
@@ -62,7 +63,7 @@ function onewayNarrative(flights: OnewayFlight[], askedPrice?: number): string {
     }
   }
   parts.push(
-    `Cheapest fare in this search: ${cheapest.price} (${cheapest.airline}, ${cheapest.stops === 0 ? 'nonstop' : `${cheapest.stops} stop${cheapest.stops > 1 ? 's' : ''}`})${
+    `Cheapest fare in this search: ${cheapest.price} (${airlineText(cheapest.airline)}, ${cheapest.stops === 0 ? 'nonstop' : `${cheapest.stops} stop${cheapest.stops > 1 ? 's' : ''}`})${
       cheapest.price_range_in_relation_to_other_periods ? ` — Google calls it “${cheapest.price_range_in_relation_to_other_periods}”.` : '.'
     }`
   );

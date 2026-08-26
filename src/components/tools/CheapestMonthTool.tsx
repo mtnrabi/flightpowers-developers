@@ -5,6 +5,7 @@ import { ApiUpsellCard } from '@/components/ApiUpsellCard';
 import { HeatGrid } from '@/components/results';
 import { CapturedBadge, VerdictBadge } from '@/components/ui';
 import type { ScanDay } from '@/lib/fixtures';
+import { airlineText } from '@/lib/format';
 import { monthScanSnippets } from '@/lib/snippets';
 import { rapidApiPricingUrl } from '@/lib/site';
 import { track } from '@/lib/track';
@@ -166,7 +167,7 @@ export function CheapestMonthTool({
           <p className="mt-3 text-[14px] text-ink-300">
             Cheapest {showing ? 'sampled ' : ''}day: <span className="font-mono text-verdict-low">{best.date}</span> at{' '}
             <span className="font-mono text-verdict-low font-semibold">${best.price}</span>
-            {best.airline ? <span className="text-ink-400"> · {best.airline}</span> : null}
+            {best.airline ? <span className="text-ink-400"> · {airlineText(best.airline)}</span> : null}
             {best.verdict ? (
               <span className="text-ink-400">
                 {' '}

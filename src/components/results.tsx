@@ -5,7 +5,19 @@
  */
 
 import type { HotelByName, OnewayFlight, RoundtripItinerary, ScanDay } from '@/lib/fixtures';
+import { splitAirline } from '@/lib/format';
 import { PriceBand, VerdictBadge } from './ui';
+
+/** Airline string with the operating-carrier clause styled as secondary text. */
+export function AirlineLabel({ airline, className = 'text-[13.5px] text-ink-300' }: { airline: string; className?: string }) {
+  const { main, operatedBy } = splitAirline(airline);
+  return (
+    <span className={`${className} min-w-0 break-words`}>
+      {main}
+      {operatedBy ? <span className="text-[12px] text-ink-500"> · operated by {operatedBy}</span> : null}
+    </span>
+  );
+}
 
 export function SearchHeaderChips({ headers }: { headers: Record<string, string> }) {
   const entries = Object.entries(headers).filter(([k]) => k.startsWith('x-search-'));
@@ -26,7 +38,7 @@ export function FlightRow({ f }: { f: OnewayFlight }) {
     <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 border-t rule py-3 first:border-t-0">
       <span className="font-mono text-[15px] font-semibold text-ink-100 tabular-nums w-16">{f.price}</span>
       <VerdictBadge verdict={f.price_range_in_relation_to_other_periods} />
-      <span className="text-[13.5px] text-ink-300">{f.airline}</span>
+      <AirlineLabel airline={f.airline} />
       <span className="font-mono text-[12px] text-ink-400">
         {f.duration} · {f.stops === 0 ? 'nonstop' : `${f.stops} stop${f.stops > 1 ? 's' : ''}`}
       </span>
@@ -87,11 +99,11 @@ export function RoundtripRow({ t }: { t: RoundtripItinerary }) {
       <div className="mt-1.5 grid gap-x-6 gap-y-0.5 sm:grid-cols-2 text-[13px] text-ink-400">
         <span>
           <span className="font-mono text-[11px] text-ink-500 mr-1.5">OUT</span>
-          {t.departure_flight_airline} · {t.departure_flight_duration} · {t.departure_flight_departure_description}
+          <AirlineLabel airline={t.departure_flight_airline} className="" /> · {t.departure_flight_duration} · {t.departure_flight_departure_description}
         </span>
         <span>
           <span className="font-mono text-[11px] text-ink-500 mr-1.5">RET</span>
-          {t.return_flight_airline} · {t.return_flight_duration} · {t.return_flight_departure_description}
+          <AirlineLabel airline={t.return_flight_airline} className="" /> · {t.return_flight_duration} · {t.return_flight_departure_description}
         </span>
       </div>
     </div>
