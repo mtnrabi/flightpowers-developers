@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
@@ -6,12 +7,12 @@ import { Code, Container, Cta, FaqSection, JsonLd, Section, SectionHead, type Fa
 import { FIXTURES } from '@/lib/fixtures';
 import { SITE } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Google Flights URL Parser & Builder: decode tfs= in your browser',
   description:
     'Paste a Google Flights URL and decode its tfs= parameter into a readable tree, with the route and dates extracted and the equivalent API request. Or build a shareable search link from a route. 100% client-side, no signup, no rate limit.',
   alternates: { canonical: '/tools/google-flights-url-parser' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -113,7 +114,7 @@ export default function UrlParserPage() {
 
       <Section>
         <SectionHead eyebrow="How it works" title="Wire format in, working request out" />
-        <ol className="mt-8 grid gap-6 md:grid-cols-3">
+        <ol className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
           {[
             ['Paste the URL', 'Any Google Flights link with a tfs= parameter: a share link, or a buy_link straight from an API response.'],
             ['We decode it in your browser', 'base64url to bytes, then a generic protobuf wire-format parse: field numbers, wire types, nested messages. No server, no schema, no upload.'],
@@ -134,7 +135,7 @@ export default function UrlParserPage() {
           title="What’s inside a tfs parameter"
           lede="Undocumented doesn’t mean unreadable: the protobuf wire format always reveals its structure, even without the schema."
         />
-        <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:items-start">
+        <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start">
           <div className="space-y-4 text-[15px] text-ink-300 leading-relaxed">
             <p>
               The <code className="field">tfs</code> value is URL-safe base64 wrapping a binary protocol-buffer message. Protobuf
@@ -160,7 +161,7 @@ export default function UrlParserPage() {
 
       <Section>
         <SectionHead eyebrow="Who uses it" title="A dev-tools page for a dev-tools problem" />
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
           <div className="rounded-2xl border rule bg-ink-900/50 p-5">
             <p className="text-[15.5px] font-semibold text-ink-100">Debugging a scraper</p>
             <p className="mt-1.5 text-[14px] text-ink-400 leading-relaxed">
@@ -209,7 +210,7 @@ export default function UrlParserPage() {
 
       <Section>
         <SectionHead eyebrow="Related tools" title="Keep going" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {[
             { href: '/tools/flight-price-checker', label: 'Flight Price Checker', sub: 'Live fare + Google’s verdict' },
             { href: '/tools/cheapest-month-to-fly', label: 'Cheapest Month to Fly', sub: 'A whole month as a price grid' },

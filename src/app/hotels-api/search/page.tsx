@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
@@ -22,12 +23,12 @@ import { HOTEL_PLANS } from '@/lib/pricing';
 import { hotelSearchSnippets } from '@/lib/snippets';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Hotel Search API: free-text destination, live Booking.com rates',
   description:
     'POST /search takes a free-text destination and dates and returns ranked properties with live Booking.com prices, review scores, room types and booking links. 24 filters matching the Booking.com UI. The required field is destination, not location.',
   alternates: { canonical: '/hotels-api/search' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -116,7 +117,7 @@ export default function HotelSearchPage() {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 hero-glow" aria-hidden="true" />
         <Container className="relative pt-8 sm:pt-12 pb-16">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
             <div>
               <p className="eyebrow">Hotel Search API</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
@@ -171,7 +172,8 @@ export default function HotelSearchPage() {
           />
           <CapturedBadge date={fx.captured_at} />
         </div>
-        <div className="mt-8 overflow-x-auto rounded-2xl border rule">
+        <div className="mt-8 scroll-x rounded-2xl border rule">
+          <div className="overflow-x-auto rounded-2xl">
           <table className="w-full text-[14px]">
             <thead>
               <tr className="text-left font-mono text-[11px] uppercase tracking-wider text-ink-500 bg-ink-900/80">
@@ -205,6 +207,7 @@ export default function HotelSearchPage() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
         <p className="mt-3 text-[14px] text-ink-400 leading-relaxed max-w-3xl">
           Each row is one object in the <code className="field">properties</code> array: <code className="field">price</code> is the
@@ -219,7 +222,7 @@ export default function HotelSearchPage() {
           title="The field is destination, not location"
           lede="The one trap on this endpoint, stated up front: the required search field is named destination. Send location instead and the API returns a 400 with a clear message naming the fields it needs."
         />
-        <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:items-start">
+        <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-start">
           <div>
             <p className="font-mono text-[11px] uppercase tracking-wider text-signal-500">Required</p>
             <div className="mt-3">
@@ -271,7 +274,8 @@ export default function HotelSearchPage() {
           title={`All ${COUNTS.hotelFilters} filters, by category`}
           lede="The same facets Booking.com shows its own users. Pass any combination as a filters array."
         />
-        <div className="mt-8 overflow-x-auto rounded-2xl border rule">
+        <div className="mt-8 scroll-x rounded-2xl border rule">
+          <div className="overflow-x-auto rounded-2xl">
           <table className="w-full text-[14px]">
             <thead>
               <tr className="text-left font-mono text-[11px] uppercase tracking-wider text-ink-500 bg-ink-900/80">
@@ -296,6 +300,7 @@ export default function HotelSearchPage() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
       </Section>
 
@@ -312,7 +317,7 @@ export default function HotelSearchPage() {
 
       <Section>
         <SectionHead eyebrow="Explore more" title="More Hotels API" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { href: '/hotels-api/by-name', label: 'Hotel by name', sub: 'No property-ID step' },
             { href: '/hotels-api/geo-pricing', label: 'Geo-pricing', sub: 'proxy_country, captured spread' },

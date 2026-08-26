@@ -446,6 +446,7 @@ export function AgentDemo({ initialChipPayload }: { initialChipPayload: Record<s
         >
           <input
             type="text"
+            aria-label="Ask the travel agent a question"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder='Ask it like a travel agent: "cheapest day JFK to Miami in November"'

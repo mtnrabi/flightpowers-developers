@@ -1,14 +1,15 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Container, JsonLd, Section, SectionHead } from '@/components/ui';
 import { LINKS, SITE } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Contact: message the developer directly',
   description:
     'No support team, no ticket queue. Messages on the RapidAPI listings and issues on the GitHub skills repo land directly with the developer who runs FlightPowers, and get answered.',
   alternates: { canonical: '/contact' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -58,7 +59,7 @@ export default function ContactPage() {
       </Container>
 
       <Section bordered={false} className="!pt-10">
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {channels.map((c) => (
             <a key={c.label} href={c.href} rel="noopener" className="rounded-2xl border rule bg-ink-900/50 p-6 hover:border-ink-500 transition-colors">
               <p className="text-[15.5px] font-semibold text-ink-100">{c.label}</p>
@@ -93,7 +94,7 @@ export default function ContactPage() {
 
       <Section>
         <SectionHead eyebrow="While you're here" title="Nearby pages" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {[
             { href: '/about', label: 'About', sub: 'Who builds this, and the rules the site runs by' },
             { href: '/pricing', label: 'Pricing', sub: 'Plans, quotas, and the key checker' },

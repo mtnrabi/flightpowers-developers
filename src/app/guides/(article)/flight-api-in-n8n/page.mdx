@@ -1,9 +1,11 @@
-export const metadata = {
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
   title: 'Using a flight API in n8n: build a fare watch that fires on “low”',
   description:
     'Build a scheduled fare-watch workflow in n8n two ways: with the n8n-nodes-flightpowers community node (schedule → search → IF verdict is low → notify), or with a plain HTTP Request node and the exact POST body. Google’s own price verdict is the trigger condition, so there is no price-history database to build.',
   alternates: { canonical: '/guides/flight-api-in-n8n' },
-};
+});
 
 export const dynamic = 'force-static';
 

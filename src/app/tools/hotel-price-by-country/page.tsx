@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
@@ -7,12 +8,12 @@ import { CapturedBadge, Container, Cta, FaqSection, JsonLd, Section, SectionHead
 import { FIXTURES } from '@/lib/fixtures';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Hotel Price by Country: the same room, priced from 3 markets',
   description:
     'Pick a hotel and dates and see what Booking.com quotes visitors from 2–3 different countries for the same stay, via per-country residential proxies. The free demo behind rate-parity and geo-pricing monitoring.',
   alternates: { canonical: '/tools/hotel-price-by-country' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -97,7 +98,7 @@ export default function HotelGeoPage() {
 
       <Section>
         <SectionHead eyebrow="How it works" title="One parameter does all the travelling" />
-        <ol className="mt-8 grid gap-6 md:grid-cols-3">
+        <ol className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
           {[
             ['Name the hotel, pick the markets', 'The name a human would type, no property IDs. Add an area to disambiguate, choose 2–3 countries.'],
             ['We ask from each country', 'One real Booking.com lookup per market, identical except proxy_country, each routed through a residential proxy in that country at request time.'],
@@ -118,7 +119,7 @@ export default function HotelGeoPage() {
           title="A tool for people whose job is the rate"
           lede="Travellers save a few dollars with a VPN. Businesses monitor this; that's who the API sells to."
         />
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
           <div className="rounded-2xl border rule bg-ink-900/50 p-5">
             <p className="text-[15.5px] font-semibold text-ink-100">Revenue managers</p>
             <p className="mt-1.5 text-[14px] text-ink-400 leading-relaxed">
@@ -169,7 +170,7 @@ export default function HotelGeoPage() {
             title="Watching a whole comp set? That's what the API is for"
             lede="This page checks one hotel at a time, from at most three markets. Your code doesn't have those limits."
           />
-          <div className="mt-8 grid gap-6 md:grid-cols-3">
+          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
             <div>
               <p className="text-[15px] font-semibold text-ink-100">Any market, not an allowlist</p>
               <p className="mt-1.5 text-[14px] text-ink-400 leading-relaxed">
@@ -208,7 +209,7 @@ export default function HotelGeoPage() {
 
       <Section>
         <SectionHead eyebrow="Related tools" title="Keep going" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {[
             { href: '/tools/flight-price-checker', label: 'Flight Price Checker', sub: 'Live fare + Google’s verdict' },
             { href: '/tools/cheapest-month-to-fly', label: 'Cheapest Month to Fly', sub: 'A whole month as a price grid' },

@@ -1,15 +1,16 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { CheckBullets, Container, Cta, JsonLd, Section, SectionHead } from '@/components/ui';
 import { COUNTS, LINKS, SITE } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'About: the developer who runs FlightPowers',
   description:
     'FlightPowers is built and operated by one software engineer, Matan Rabi. The consumer flight-search product came first; the data infrastructure underneath it became the real product. Here is the honest version of that story, and the rules this site runs by.',
   alternates: { canonical: '/about' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -115,7 +116,7 @@ export default function AboutPage() {
           title="Everything the APIs power right now"
           lede="One data layer, published on the surfaces developers and agents already use. All first-party, all maintained by me."
         />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {surfaces.map((s) =>
             s.external ? (
               <a key={s.label} href={s.href} rel="noopener" className="rounded-2xl border rule bg-ink-900/50 p-5 hover:border-ink-500 transition-colors">

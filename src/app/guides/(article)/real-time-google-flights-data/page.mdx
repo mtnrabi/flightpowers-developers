@@ -1,9 +1,11 @@
-export const metadata = {
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
   title: 'How to get real-time Google Flights data (2026 guide)',
   description:
     'A working guide to pulling live Google Flights prices from an API: endpoints, code you can paste, price-insight fields, round-trip handling, and how to scan a whole month of dates in parallel.',
   alternates: { canonical: '/guides/real-time-google-flights-data' },
-};
+});
 
 export const dynamic = 'force-static';
 

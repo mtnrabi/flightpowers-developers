@@ -19,7 +19,8 @@ export function PricingTable({
 }) {
   return (
     <div>
-      <div className="overflow-x-auto rounded-2xl border rule">
+      <div className="scroll-x rounded-2xl border rule">
+        <div className="overflow-x-auto rounded-2xl">
         <table className="w-full text-[14px]">
           <thead>
             <tr className="text-left font-mono text-[11px] uppercase tracking-wider text-ink-500 bg-ink-900/80">
@@ -29,7 +30,10 @@ export function PricingTable({
               <th className="px-4 py-3 font-normal text-right">$ / 1k req</th>
               <th className="px-4 py-3 font-normal text-right">Overage</th>
               <th className="px-4 py-3 font-normal text-right">Rate limit</th>
-              {!compact ? <th className="px-4 py-3 font-normal" /> : null}
+              {/* aria-label, NOT an sr-only span: position:absolute inside the
+                  position:relative scroll wrapper would park the span at the
+                  column's static offset and silently widen the page on mobile. */}
+              {!compact ? <th className="px-4 py-3 font-normal" aria-label="Subscribe" /> : null}
             </tr>
           </thead>
           <tbody>
@@ -65,7 +69,9 @@ export function PricingTable({
             ))}
           </tbody>
         </table>
+        </div>
       </div>
+      <p className="scroll-hint">Swipe the table sideways for overage and rate limits.</p>
       <p className="mt-3 font-mono text-[11px] text-ink-500">
         Every plan includes every endpoint. You only choose volume and rate limit. Read from the live listing on {READ_ON}; the
         listing is authoritative.

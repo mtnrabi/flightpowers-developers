@@ -86,7 +86,7 @@ export function CheckBullets({ items }: { items: ReactNode[] }) {
           <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true" className="mt-0.5 shrink-0 text-verdict-low">
             <path d="M4 10.5 8.5 15 16 5.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          <span>{item}</span>
+          <span className="min-w-0">{item}</span>
         </li>
       ))}
     </ul>
@@ -107,7 +107,7 @@ export function Code({ label, children }: { label?: string; children: string }) 
           <span className="uppercase tracking-wider">{label}</span>
         </figcaption>
       ) : null}
-      <pre className="overflow-x-auto p-4 text-[12.5px] leading-relaxed">
+      <pre tabIndex={0} className="overflow-x-auto p-4 text-[12.5px] leading-relaxed">
         <code className="font-mono text-ink-200">{children}</code>
       </pre>
     </figure>
@@ -116,7 +116,7 @@ export function Code({ label, children }: { label?: string; children: string }) 
 
 export function FieldRow({ name, type, children }: { name: string; type?: string; children: ReactNode }) {
   return (
-    <div className="grid gap-1 sm:grid-cols-[minmax(0,16rem)_1fr] sm:gap-6 py-4 border-b rule last:border-b-0">
+    <div className="grid grid-cols-1 gap-1 sm:grid-cols-[minmax(0,16rem)_1fr] sm:gap-6 py-4 border-b rule last:border-b-0">
       <div className="flex flex-wrap items-baseline gap-x-2">
         <code className="field">{name}</code>
         {type ? <span className="font-mono text-[11px] text-ink-600">{type}</span> : null}

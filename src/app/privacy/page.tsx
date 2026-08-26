@@ -1,13 +1,14 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Container } from '@/components/ui';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Privacy',
   description:
     'Plain-language privacy notes for flightpowers.com: no cookies, no third-party trackers, no ad pixels. A first-party anonymous event beacon, transient demo processing, and API keys that are forwarded once and never stored.',
   alternates: { canonical: '/privacy' },
-};
+});
 
 export const dynamic = 'force-static';
 

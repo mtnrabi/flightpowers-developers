@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -48,11 +49,11 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const pair = lookup(await params);
   if (!pair) return {};
   const { agent, task } = pair;
-  return {
+  return withOg({
     title: `${task.name} with ${agent.name}: live ${apiName(task)} data`,
     description: `Connect ${agent.name} to live ${apiName(task)} data and run a ${task.name.toLowerCase()}: the exact config, the prompt, the call it makes, and the response fields your logic reads.`,
     alternates: { canonical: `/integrations/${agent.slug}/${task.slug}` },
-  };
+  });
 }
 
 /**
@@ -313,7 +314,7 @@ export default async function MatrixPage({ params }: { params: Promise<Params> }
         </div>
         <div className="mt-12">
           <SectionHead eyebrow="More recipes" title={`More to build in ${agent.name}`} />
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {siblingTasks.map((t) => (
               <Link
                 key={t.slug}

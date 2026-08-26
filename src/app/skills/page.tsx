@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
@@ -15,12 +16,12 @@ import {
 } from '@/components/ui';
 import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: `Agent skills: ${COUNTS.skills} open-source travel skills for Claude Code & OpenClaw`,
   description:
     'Eight MIT-licensed agent skills for live flight and hotel pricing: cheapest dates, fare watch, trip planning, hotel search, rate-parity monitoring. One install line, works over MCP or plain REST with your own RapidAPI key.',
   alternates: { canonical: '/skills' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -70,7 +71,7 @@ export default function SkillsPage() {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 hero-glow" aria-hidden="true" />
         <Container className="relative pt-14 sm:pt-20 pb-16">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
             <div>
               <p className="eyebrow">Open source · MIT</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
@@ -119,9 +120,9 @@ export default function SkillsPage() {
         <SectionHead
           eyebrow="Coverage"
           title="What the skills cover"
-          lede="Five jobs, drawn from the repo's own description. Each one packages the workflow and the judgment fields, so the agent knows not just what to call but what the answer means."
+          lede="Five jobs, drawn from the repo's own description. Each one packages the workflow and the judgment fields, so the agent knows what to call and what the answer means."
         />
-        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           <Feature title="Cheapest dates">
             Scan a flexible window for a route and come back with the cheapest day and what picking it saves, built on the date-range
             search and per-day fares.
@@ -160,7 +161,7 @@ export default function SkillsPage() {
           title="Works where your agent lives"
           lede="Two supported homes today, one repo behind both."
         />
-        <div className="mt-10 grid gap-6 lg:grid-cols-2">
+        <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <div className="rounded-2xl border rule bg-ink-900/60 p-6">
             <h3 className="text-[16px] font-semibold text-ink-100">Claude Code</h3>
             <div className="mt-4">
@@ -199,7 +200,7 @@ export default function SkillsPage() {
 
       {/* ============================== BYO KEY ============================== */}
       <Section>
-        <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-center">
           <SectionHead
             eyebrow="The one dependency"
             title="The skills bring the workflow; you bring the key"
@@ -239,7 +240,7 @@ export default function SkillsPage() {
       {/* ============================== RELATED ============================== */}
       <Section>
         <SectionHead eyebrow="Keep going" title="Where to next" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { href: '/mcp', label: 'The MCP servers', sub: 'Prefer tools over skills? One URL' },
             { href: '/ai-agents', label: 'For AI agents', sub: 'Six things to build this week' },
@@ -258,7 +259,7 @@ export default function SkillsPage() {
         <CtaBand
           medium="mcp"
           title="Install the skills, add a key, ask a travel question"
-          body="Eight open-source workflows on live Google Flights and Booking.com data, with the price band and verdict that let your agent answer, not just fetch."
+          body="Eight open-source workflows on live Google Flights and Booking.com data, with the price band and verdict your agent needs to give a real answer."
         />
       </Section>
     </>

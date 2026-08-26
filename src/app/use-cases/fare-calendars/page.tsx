@@ -1,15 +1,16 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { CheckBullets, Container, FaqSection, Feature, Section, SectionHead, type Faq } from '@/components/ui';
 import { COUNTS } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Fare Calendars: price a whole month of dates in one burst',
   description:
     'Fare calendars and heatmaps need one search per date. Rate limits of 150–500 requests/minute make a 31-day scan a single parallel burst, price_as_number makes every cell sortable, and X-Search-Status keeps failed cells from rendering as “no flights.”',
   alternates: { canonical: '/use-cases/fare-calendars' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -54,7 +55,7 @@ export default function FareCalendarsPage() {
 
       <Section bordered={false} className="!pt-10">
         <SectionHead eyebrow="How FlightPowers helps" title="Built for the grid, not the single query" />
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
           <Feature title="Rate limits sized for scans">
             {COUNTS.flightsRateLimits} requests/minute on Pro / Ultra / Mega. A 31-date month fires as one parallel batch and
             the grid fills in seconds of wall-clock, not minutes of loop.
@@ -109,7 +110,7 @@ export default function FareCalendarsPage() {
 
       <Section>
         <SectionHead eyebrow="Related resources" title="Keep going" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {[
             { href: '/flights-api/parallel-date-scan', label: 'Parallel Date Scans', sub: 'The rate limits and the batch pattern' },
             { href: '/flights-api/one-way', label: 'One-Way API', sub: 'The endpoint each cell calls' },

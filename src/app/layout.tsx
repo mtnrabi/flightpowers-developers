@@ -35,20 +35,15 @@ export const metadata: Metadata = {
     'and headers that tell “no flights” apart from “the search failed.”',
   applicationName: SITE.name,
   authors: [{ name: 'Matan Rabi' }],
+  // Fallbacks only: every page wraps its own metadata in withOg(), which
+  // replaces these wholesale with per-route card fields. No og:url here, so a
+  // page that somehow skips withOg() ships no url rather than the wrong one.
   openGraph: {
     type: 'website',
     siteName: SITE.name,
-    url: SITE.url,
-    title: 'FlightPowers: live flight & hotel pricing APIs with a price verdict',
-    description:
-      'Live fares, and the context to judge them. Google price bands, paired-leg round trips, ' +
-      'per-country hotel pricing, and honest empty-result signalling. For developers and AI agents.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'FlightPowers: live flight & hotel pricing APIs',
-    description:
-      'Live fares, and the context to judge them. Price bands and verdicts on every result.',
   },
   robots: { index: true, follow: true },
 };

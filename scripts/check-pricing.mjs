@@ -84,7 +84,11 @@ function normalizeLive(plan) {
     priceMonthly: version.price ?? null,
     quota: limit?.amount ?? null,
     overagePerRequest: limit?.overageprice ?? null,
-    ratePerMinute: version.rateLimit?.amount ?? null,
+    // A rate limit only counts if the listing actually enforces it per minute:
+    // enabled:false means RapidAPI's platform default applies (not our number),
+    // and unit:60 would be a per-HOUR window, not per-minute.
+    ratePerMinute:
+      version.rateLimit?.enabled && version.rateLimit?.unit === 1 ? version.rateLimit.amount : null,
     visibility: plan.visibility,
   };
 }

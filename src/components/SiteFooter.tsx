@@ -72,11 +72,11 @@ export function SiteFooter() {
   return (
     <footer className="border-t rule mt-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5">
           <div>
             <p className="text-[15px] font-semibold text-ink-100">FlightPowers</p>
             <p className="mt-2 text-sm text-ink-400 max-w-[26ch]">{SITE.tagline}</p>
-            <p className="mt-4 font-mono text-[11px] text-ink-600">{SITE.apiHost}</p>
+            <p className="mt-4 font-mono text-[11px] text-ink-400">{SITE.apiHost}</p>
             <div className="mt-5 flex flex-wrap gap-x-3 gap-y-1.5">
               {SURFACES.map((s) =>
                 s.external ? (
@@ -115,12 +115,12 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-14 pt-6 border-t rule flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
-          <p className="font-mono text-[11px] text-ink-600">&copy; {new Date().getFullYear()} FlightPowers</p>
+          <p className="font-mono text-[11px] text-ink-400">&copy; {new Date().getFullYear()} FlightPowers</p>
           <div className="flex items-center gap-5">
-            <a href={LINKS.skills} rel="noopener" className="font-mono text-[11px] text-ink-600 hover:text-ink-400 transition-colors">
+            <a href={LINKS.skills} rel="noopener" className="font-mono text-[11px] text-ink-400 hover:text-ink-200 transition-colors">
               GitHub
             </a>
-            <a href={SITE.docsUrl} rel="noopener" className="font-mono text-[11px] text-ink-600 hover:text-ink-400 transition-colors">
+            <a href={SITE.docsUrl} rel="noopener" className="font-mono text-[11px] text-ink-400 hover:text-ink-200 transition-colors">
               API docs &rarr;
             </a>
           </div>

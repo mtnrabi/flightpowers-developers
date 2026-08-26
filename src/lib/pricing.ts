@@ -31,7 +31,7 @@ export const FLIGHT_PLANS: Plan[] = [
 ];
 
 export const HOTEL_PLANS: Plan[] = [
-  { name: 'BASIC', priceMonthly: 0, quota: 10, overagePerRequest: null, ratePerMinute: 250, hardLimit: true },
+  { name: 'BASIC', priceMonthly: 0, quota: 10, overagePerRequest: null, ratePerMinute: null, hardLimit: true },
   { name: 'PRO', priceMonthly: 10, quota: 2000, overagePerRequest: 0.006, ratePerMinute: 25, hardLimit: false },
   { name: 'ULTRA', priceMonthly: 20, quota: 6500, overagePerRequest: 0.003, ratePerMinute: 25, hardLimit: false },
   { name: 'MEGA', priceMonthly: 50, quota: 25000, overagePerRequest: 0.002, ratePerMinute: 50, hardLimit: false },

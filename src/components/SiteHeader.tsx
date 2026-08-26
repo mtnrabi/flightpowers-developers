@@ -26,21 +26,21 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <a href={rapidApiPricingUrl('flights', 'hero')} rel="noopener" className="btn btn-accent !px-4 !py-2 text-sm">
+            <a href={rapidApiPricingUrl('flights', 'nav')} rel="noopener" className="btn btn-accent !px-4 !py-2 text-sm">
               Get a key
             </a>
           </div>
         </div>
 
         {/* Mobile nav: server-rendered links, no JS. */}
-        <nav aria-label="Primary mobile" className="md:hidden flex items-center gap-5 overflow-x-auto pb-3 -mt-1">
+        <nav aria-label="Primary mobile" className="md:hidden flex items-center gap-6 overflow-x-auto pb-1 -mt-2">
           {NAV.map((item) =>
             item.external ? (
-              <a key={item.href} href={item.href} rel="noopener" className="text-[13px] whitespace-nowrap text-ink-300 hover:text-ink-100">
+              <a key={item.href} href={item.href} rel="noopener" className="text-sm whitespace-nowrap text-ink-300 hover:text-ink-100 py-2.5">
                 {item.label}
               </a>
             ) : (
-              <Link key={item.href} href={item.href} className="text-[13px] whitespace-nowrap text-ink-300 hover:text-ink-100">
+              <Link key={item.href} href={item.href} className="text-sm whitespace-nowrap text-ink-300 hover:text-ink-100 py-2.5">
                 {item.label}
               </Link>
             )

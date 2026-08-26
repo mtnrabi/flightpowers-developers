@@ -20,12 +20,14 @@ const APP_DIR = path.join(process.cwd(), 'src', 'app');
 const PAGE_FILES = new Set(['page.tsx', 'page.ts', 'page.mdx', 'page.md', 'page.jsx', 'page.js']);
 
 /** Segments App Router treats specially and that must not become URL segments. */
-function isSkippedSegment(name: string): boolean {
+function isSkippedSegment(name: string, prefix: string): boolean {
   return (
     name.startsWith('_') || // private folder
     name.startsWith('.') ||
     name.startsWith('@') || // parallel route
-    name === 'api' || // route handlers, not pages
+    // Route handlers live at the ROOT /api only. A nested segment named "api"
+    // (e.g. /integrations/api) is a real page and belongs in the sitemap.
+    (name === 'api' && prefix === '') ||
     name.includes('[') // dynamic segment: enumerate these explicitly when they exist
   );
 }
@@ -55,7 +57,7 @@ export function discoverRoutes(dir: string = APP_DIR, prefix = ''): DiscoveredRo
 
   for (const entry of entries) {
     if (!entry.isDirectory()) continue;
-    if (isSkippedSegment(entry.name)) continue;
+    if (isSkippedSegment(entry.name, prefix)) continue;
     const nextPrefix = isRouteGroup(entry.name) ? prefix : `${prefix}/${entry.name}`;
     out.push(...discoverRoutes(path.join(dir, entry.name), nextPrefix));
   }

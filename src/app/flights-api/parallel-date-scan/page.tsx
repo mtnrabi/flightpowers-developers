@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
@@ -21,12 +22,12 @@ import { FLIGHT_PLANS } from '@/lib/pricing';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 import { monthScanSnippets } from '@/lib/snippets';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Parallel Date Scans: a month of flight prices in one burst',
   description:
     'Each date is one request, and the per-minute rate limits (150 on Pro, 250 on Ultra, 500 on Mega) are sized for firing them in parallel. Cheapest-month calendars, fare heatmaps, and flexible-date search become practical to build.',
   alternates: { canonical: '/flights-api/parallel-date-scan' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -116,7 +117,7 @@ export default function ParallelDateScanPage() {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 hero-glow" aria-hidden="true" />
         <Container className="relative pt-8 sm:pt-12 pb-16">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
             <div>
               <p className="eyebrow">Parallel Date Scans</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
@@ -174,7 +175,7 @@ export default function ParallelDateScanPage() {
           title="What a flexible-date search really costs"
           lede="From the listing itself: “3 to 5 nights, TLV to Paris or Prague, anywhere in May.” Requests are the unit, so the math is public."
         />
-        <div className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:items-start">
+        <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:items-start">
           <div className="rounded-2xl border rule bg-ink-900/60 p-6">
             <p className="font-mono text-[13px] text-ink-300 leading-loose">
               31 dates in May
@@ -189,7 +190,8 @@ export default function ParallelDateScanPage() {
               &quot;surprise me&quot; search practical to build.
             </p>
           </div>
-          <div className="overflow-x-auto rounded-2xl border rule">
+          <div className="scroll-x rounded-2xl border rule">
+            <div className="overflow-x-auto rounded-2xl">
             <table className="w-full text-[14px]">
               <thead>
                 <tr className="text-left font-mono text-[11px] uppercase tracking-wider text-ink-500 bg-ink-900/80">
@@ -216,6 +218,7 @@ export default function ParallelDateScanPage() {
                 ))}
               </tbody>
             </table>
+            </div>
           </div>
         </div>
         <p className="mt-4 max-w-3xl font-mono text-[11px] text-ink-500">
@@ -259,7 +262,7 @@ export default function ParallelDateScanPage() {
 
       <Section>
         <SectionHead eyebrow="Explore more" title="More Flights API" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { href: '/flights-api/one-way', label: 'One-way search', sub: 'The base endpoint' },
             { href: '/flights-api/round-trip', label: 'Round-trip search', sub: 'Paired-leg itineraries' },

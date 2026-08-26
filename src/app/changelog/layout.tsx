@@ -1,12 +1,13 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import { Container, Breadcrumbs } from '@/components/ui';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Changelog',
   description:
     'Dated notes on changes to the FlightPowers flight and hotel APIs and to this developer site.',
   alternates: { canonical: '/changelog' },
-};
+});
 
 export default function ChangelogLayout({ children }: { children: React.ReactNode }) {
   return (

@@ -55,7 +55,7 @@ export function CodeTabs({ snippets, tool }: { snippets: Snippets; tool: string 
           {copied ? 'copied ✓' : 'copy'}
         </button>
       </div>
-      <pre className="overflow-x-auto p-4 text-[12.5px] leading-relaxed">
+      <pre tabIndex={0} className="overflow-x-auto p-4 text-[12.5px] leading-relaxed">
         <code className="font-mono text-ink-200">{snippets[active]}</code>
       </pre>
     </div>

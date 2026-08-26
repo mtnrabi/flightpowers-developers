@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { AgentBand, CtaBand } from '@/components/bands';
@@ -17,12 +18,12 @@ import { FIXTURES } from '@/lib/fixtures';
 import { AGENTS } from '@/lib/matrix';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Travel data for AI agents: MCP, skills, and REST on one key',
   description:
     'Live Google Flights and Booking.com prices as flat JSON an agent can act on: price band, low | typical | high verdict, booking links, per-country hotel rates. One RapidAPI key authenticates MCP, the open-source skills, and REST.',
   alternates: { canonical: '/ai-agents' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -151,7 +152,7 @@ export default function AiAgentsPage() {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 hero-glow" aria-hidden="true" />
         <Container className="relative pt-14 sm:pt-20 pb-16">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
             <div>
               <p className="eyebrow">For agent builders</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
@@ -215,7 +216,7 @@ export default function AiAgentsPage() {
           title="How agents use FlightPowers"
           lede="One key, four steps, and every surface points at the same live data."
         />
-        <ol className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <ol className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {[
             [
               'Get one RapidAPI key',
@@ -250,7 +251,7 @@ export default function AiAgentsPage() {
           title="Six things you can build this week"
           lede="Each card names the exact tool chain. The per-agent pages below turn every one into a copy-paste setup."
         />
-        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {RECIPES.map((r) => (
             <div key={r.title} className="rounded-2xl border rule bg-ink-900/60 p-6">
               <h3 className="text-[16px] font-semibold text-ink-100">{r.title}</h3>
@@ -284,10 +285,11 @@ export default function AiAgentsPage() {
       <Section>
         <SectionHead
           eyebrow="The decision"
-          title="Why not just scrape?"
+          title="Why not scrape it yourself?"
           lede="Five ways to get flight and hotel prices into an agent, compared on the three things that end up mattering."
         />
-        <div className="mt-10 overflow-x-auto rounded-2xl border rule">
+        <div className="mt-10 scroll-x rounded-2xl border rule">
+          <div className="overflow-x-auto rounded-2xl">
           <table className="w-full min-w-[52rem] text-left text-[14px]">
             <thead>
               <tr className="border-b rule bg-ink-900/70">
@@ -308,6 +310,7 @@ export default function AiAgentsPage() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
         <p className="mt-4 max-w-3xl text-[13px] text-ink-500 leading-relaxed">
           The competitor rows describe categories, not any single vendor. Evaluate the specific tool you are considering against
@@ -335,7 +338,7 @@ export default function AiAgentsPage() {
       {/* ============================== RELATED ============================== */}
       <Section>
         <SectionHead eyebrow="Keep going" title="Where to next" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { href: '/mcp', label: 'The MCP servers', sub: 'One URL, four tools, your key' },
             { href: '/skills', label: 'The agent skills', sub: `${COUNTS.skills} open-source skills, MIT` },

@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
@@ -20,12 +21,12 @@ import { FIXTURES } from '@/lib/fixtures';
 import { FLIGHT_PLANS } from '@/lib/pricing';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'X-Search-Status: telling “no flights” from “the search failed”',
   description:
     'Every response carries X-Search-Status: ok, empty, partial, or degraded. An empty array is only ever reported when the page it came from positively said so, and opt-in strict mode turns a degraded search into an HTTP 503.',
   alternates: { canonical: '/flights-api/search-status' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -135,7 +136,7 @@ export default function SearchStatusPage() {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 hero-glow" aria-hidden="true" />
         <Container className="relative pt-8 sm:pt-12 pb-16">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
             <div>
               <p className="eyebrow">X-Search-Status</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
@@ -212,7 +213,8 @@ export default function SearchStatusPage() {
 
       <Section>
         <SectionHead eyebrow="The contract" title="The four states of X-Search-Status" />
-        <div className="mt-8 overflow-x-auto rounded-2xl border rule">
+        <div className="mt-8 scroll-x rounded-2xl border rule">
+          <div className="overflow-x-auto rounded-2xl">
           <table className="w-full text-[14px]">
             <thead>
               <tr className="text-left font-mono text-[11px] uppercase tracking-wider text-ink-500 bg-ink-900/80">
@@ -231,6 +233,7 @@ export default function SearchStatusPage() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
         <p className="mt-4 max-w-3xl text-[14px] text-ink-400 leading-relaxed">
           Round-trip gets the same treatment as one-way, which is harder than it sounds: a round-trip prices a return leg for
@@ -287,7 +290,7 @@ export default function SearchStatusPage() {
           title="Branch on the status, not the array length"
           lede="The whole integration is one if-statement before you touch the body."
         />
-        <div className="mt-8 grid gap-6 lg:grid-cols-2 lg:items-start">
+        <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2 lg:items-start">
           <Code label="python · the pattern">{`r = requests.post(url, headers=headers, json=body)
 
 if r.headers.get("X-Search-Status") == "degraded":
@@ -343,7 +346,7 @@ if not flights:
 
       <Section>
         <SectionHead eyebrow="Explore more" title="More Flights API" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { href: '/flights-api/one-way', label: 'One-way search', sub: 'The base endpoint' },
             { href: '/flights-api/round-trip', label: 'Round-trip search', sub: 'Paired-leg itineraries' },

@@ -96,7 +96,7 @@ export function RoundtripRow({ t }: { t: RoundtripItinerary }) {
           buy_link →
         </a>
       </div>
-      <div className="mt-1.5 grid gap-x-6 gap-y-0.5 sm:grid-cols-2 text-[13px] text-ink-400">
+      <div className="mt-1.5 grid grid-cols-1 gap-x-6 gap-y-0.5 sm:grid-cols-2 text-[13px] text-ink-400">
         <span>
           <span className="font-mono text-[11px] text-ink-500 mr-1.5">OUT</span>
           <AirlineLabel airline={t.departure_flight_airline} className="" /> · {t.departure_flight_duration} · {t.departure_flight_departure_description}
@@ -171,7 +171,8 @@ export function DealHuntGrid({ rows, destNames, origin }: { rows: DealHuntRow[];
   const span = max - min || 1;
   const cell = new Map(rows.map((r) => [`${r.dest}|${r.date}`, r]));
   return (
-    <div className="overflow-x-auto">
+    <div className="scroll-x">
+      <div className="overflow-x-auto">
       <table className="w-full border-separate border-spacing-1">
         <thead>
           <tr>
@@ -218,6 +219,7 @@ export function DealHuntGrid({ rows, destNames, origin }: { rows: DealHuntRow[];
           ))}
         </tbody>
       </table>
+      </div>
       <p className="mt-1.5 font-mono text-[10.5px] text-ink-500">
         {destNames && Object.keys(destNames).length ? Object.entries(destNames).map(([c, n]) => `${c} ${n}`).join(' · ') + ' · ' : ''}dots are searches that
         came back degraded and would simply be retried

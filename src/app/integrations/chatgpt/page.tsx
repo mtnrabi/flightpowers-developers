@@ -1,15 +1,16 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import { AgentIntegrationPage, type ConnectStep, type ToolLine } from '../_agent-page';
 import type { Faq } from '@/components/ui';
 
 export const dynamic = 'force-static';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Live flight & hotel data in ChatGPT: MCP connector setup',
   description:
     'Connect ChatGPT to live Google Flights and Booking.com data through a developer-mode MCP connector. One URL, your own RapidAPI key, and Google’s low/typical/high price verdict on every fare.',
   alternates: { canonical: '/integrations/chatgpt' },
-};
+});
 
 const steps: ConnectStep[] = [
   {
@@ -83,7 +84,7 @@ export default function ChatGptIntegrationPage() {
       prompts={[
         'Is $480 for LHR to JFK in mid-October a good price, or should I wait?',
         'Find me the cheapest nonstop from Berlin to Paris in the second week of June.',
-        'Round trip JFK to London, out September 22, back September 29. Rank the options by value, not just price.',
+        'Round trip JFK to London, out September 22, back September 29. Rank the options by value rather than price alone.',
         'Find a hotel in Tokyo Shibuya for November 3 to 7, 2 adults, breakfast included.',
         'Compare what the same room at the Kremlin Palace in Antalya costs when booked from Germany versus the US.',
       ]}

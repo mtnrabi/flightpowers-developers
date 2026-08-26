@@ -12,7 +12,7 @@ export const SITE = {
   tagline: 'Live flight and hotel prices, and the context to judge them.',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://flightpowers.com',
   apiHost: 'api.flightpowers.com',
-  docsUrl: 'https://developers.flightpowers.com',
+  docsUrl: '/flights-api',
 } as const;
 
 /** Verified counts. One place. */
@@ -32,6 +32,7 @@ export const COUNTS = {
  * survives RapidAPI's login chain.
  */
 export type UtmMedium =
+  | 'nav'
   | 'hero'
   | 'pricing'
   | 'docs'
@@ -99,7 +100,7 @@ export const NAV: { href: string; label: string; external?: boolean }[] = [
   { href: '/#apis', label: 'APIs' },
   { href: '/tools', label: 'Free Tools' },
   { href: '/pricing', label: 'Pricing' },
-  { href: SITE.docsUrl, label: 'Docs', external: true },
+  { href: SITE.docsUrl, label: 'Docs' },
   { href: '/blog', label: 'Blog' },
 ];
 

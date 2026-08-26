@@ -1,9 +1,11 @@
-export const metadata = {
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
   title: 'The best flight data APIs in 2026, compared honestly',
   description:
     'A sourced comparison of the flight data APIs people actually shortlist (Google Flights Live API, Air Scraper, SerpApi, Duffel), with real quoted prices, retrieval dates, the data-source differences that matter, and where the cheaper option genuinely wins.',
   alternates: { canonical: '/guides/best-flight-data-apis-2026' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -68,9 +70,9 @@ account.
 **Source: Skyscanner. Best for: raw request volume, and scope beyond flights.**
 
 The headline finding, stated up front because it is true: **Air Scraper is cheaper
-per request than my API.** Prices read off its live RapidAPI listing on 2026-08-24:
-free tier 20 requests/month, then $9/month for 10,600 requests, $49 for 55,000, $120
-for 140,000, which works out to roughly $0.00085–$0.00089 per request at every paid
+per request than my API.** Prices read off its live RapidAPI listing on 2026-08-26:
+free tier 20 requests/month, then $9.99/month for 10,600 requests, $49 for 55,000, $120
+for 140,000, which works out to roughly $0.00086–$0.00094 per request at every paid
 tier, against {`$${(FLIGHT_PLANS[3].priceMonthly / FLIGHT_PLANS[3].quota).toFixed(4)}`}–{`$${(FLIGHT_PLANS[1].priceMonthly / FLIGHT_PLANS[1].quota).toFixed(4)}`}
 per request on mine. Its own listing describes it as an API that *"helps to query
 prices for real-time flights, hotels, rental cars, etc… to create a travel website
@@ -115,7 +117,7 @@ several dozen engines on one subscription and one credit pool. From its own page
 searches count toward quota, a genuinely customer-friendly billing policy.
 
 Where it beats me, plainly: its `price_insights` object includes a `price_history`
-array, not just a band; it returns per-itinerary carbon emissions; it supports
+array where we return a band; it returns per-itinerary carbon emissions; it supports
 multi-city and four cabin classes; and it advertises a legal indemnity of up to $2
 million for search-engine scraping. The full side-by-side, with everything quoted
 and dated, is at [/compare/serpapi](/compare/serpapi).

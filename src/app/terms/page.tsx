@@ -1,13 +1,14 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Container } from '@/components/ui';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Terms of Use',
   description:
     'Plain-language terms for flightpowers.com: this site is informational, API usage is governed by the marketplace you buy through, there is no site account, and the live demos are rate-limited and provided as-is.',
   alternates: { canonical: '/terms' },
-};
+});
 
 export const dynamic = 'force-static';
 

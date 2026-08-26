@@ -1,15 +1,16 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { Breadcrumbs, Container, JsonLd, Section, SectionHead } from '@/components/ui';
 import { SITE } from '@/lib/site';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Compare: honest comparisons against the alternatives',
   description:
     'FlightPowers against SerpApi, Duffel, Amadeus Self-Service and the RapidAPI field. Competitor facts are quoted from their own live pages with retrieval dates, and where they are better we say so.',
   alternates: { canonical: '/compare' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -74,7 +75,7 @@ export default function CompareIndexPage() {
       </Container>
 
       <Section bordered={false} className="!pt-10">
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {PAGES.map((p) => (
             <Link key={p.href} href={p.href} className="rounded-2xl border rule bg-ink-900/50 p-6 hover:border-ink-500 transition-colors flex flex-col">
               <h2 className="text-[18px] font-semibold text-ink-100">{p.title}</h2>
@@ -93,7 +94,7 @@ export default function CompareIndexPage() {
 
       <Section>
         <SectionHead eyebrow="The evidence" title="The claims behind the claims" lede="Each differentiator these pages lean on has a page that proves it with a captured, dated run." />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { href: '/flights-api/price-insights', label: 'Price Insights', sub: "Google's band + verdict" },
             { href: '/flights-api/round-trip', label: 'Round-Trip', sub: 'Paired legs, one request' },

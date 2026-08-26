@@ -1,3 +1,4 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import { AgentIntegrationPage, type ConnectStep, type ToolLine } from '../_agent-page';
 import type { Faq } from '@/components/ui';
@@ -5,12 +6,12 @@ import { LINKS } from '@/lib/site';
 
 export const dynamic = 'force-static';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Live flight & hotel data in OpenClaw: ClawHub skill install',
   description:
     'Install the ClawHub skills and your OpenClaw agent searches live Google Flights and Booking.com data: one-way, round-trip, hotel availability and rates, billed to your own RapidAPI key.',
   alternates: { canonical: '/integrations/openclaw' },
-};
+});
 
 const steps: ConnectStep[] = [
   {

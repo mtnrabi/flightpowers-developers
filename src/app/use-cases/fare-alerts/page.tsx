@@ -1,14 +1,15 @@
+import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { CheckBullets, Container, FaqSection, Feature, Section, SectionHead, type Faq } from '@/components/ui';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = withOg({
   title: 'Fare Alerts: flight price alerts without a price-history database',
   description:
     'Build fare alerts that fire on Google’s own low | typical | high verdict instead of a threshold you guessed. Poll a route on a schedule, branch on one field, and never alert on a failed search.',
   alternates: { canonical: '/use-cases/fare-alerts' },
-};
+});
 
 export const dynamic = 'force-static';
 
@@ -53,7 +54,7 @@ export default function FareAlertsPage() {
 
       <Section bordered={false} className="!pt-10">
         <SectionHead eyebrow="How FlightPowers helps" title="Three capabilities carry the whole job" />
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
           <Feature title="The verdict field is the trigger">
             price_range_in_relation_to_other_periods returns Google&apos;s own low | typical | high call on every fare, next to
             the price_insights_low/high band it was judged against. Your alert logic is one comparison, not one model.
@@ -107,7 +108,7 @@ export default function FareAlertsPage() {
 
       <Section>
         <SectionHead eyebrow="Related resources" title="Keep going" />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {[
             { href: '/flights-api/price-insights', label: 'Price Insights API', sub: 'The band and verdict fields, documented' },
             { href: '/flights-api/search-status', label: 'Search Status', sub: 'Why “empty” and “degraded” must differ' },
