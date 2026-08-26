@@ -15,6 +15,7 @@ import novscanLisJfk from './fixtures/novscan-lis-jfk.json';
 import hotelGeoRixos from './fixtures/hotel-geo-rixos.json';
 import hotelGeoKremlin from './fixtures/hotel-geo-kremlin.json';
 import hotelSearchLisbon from './fixtures/hotel-search-lisbon.json';
+import dealHuntSun from './fixtures/deal-hunt-sun.json';
 
 export type OnewayFlight = {
   price_range_in_relation_to_other_periods: 'low' | 'typical' | 'high' | null;
@@ -75,6 +76,20 @@ export type HotelByName = {
   children: number | null;
 };
 
+export type DealHuntRow = {
+  dest: string;
+  date: string;
+  status: string;
+  price: number | null;
+  verdict: 'low' | 'typical' | 'high' | null;
+  low: number | null;
+  high: number | null;
+  airline: string | null;
+  stops: number | null;
+  duration: string | null;
+  buy_link: string | null;
+};
+
 export type ScanDay = {
   date: string;
   status: string;
@@ -104,6 +119,7 @@ export const FIXTURES = {
   novscanLisJfk: novscanLisJfk as unknown as Fixture<ScanDay[]>,
   hotelGeoRixos: hotelGeoRixos as unknown as Fixture<Record<'us' | 'de' | 'il', HotelByName>>,
   hotelGeoKremlin: hotelGeoKremlin as unknown as Fixture<Record<'us' | 'de' | 'il', HotelByName>>,
+  dealHuntSun: dealHuntSun as unknown as Fixture<DealHuntRow[]>,
   hotelSearchLisbon: hotelSearchLisbon as unknown as Fixture<{
     destination: string;
     properties: {

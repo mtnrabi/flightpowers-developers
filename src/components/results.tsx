@@ -4,7 +4,7 @@
  * alike, so canned and live output look identical and are labelled apart.
  */
 
-import type { HotelByName, OnewayFlight, RoundtripItinerary, ScanDay } from '@/lib/fixtures';
+import type { DealHuntRow, HotelByName, OnewayFlight, RoundtripItinerary, ScanDay } from '@/lib/fixtures';
 import { splitAirline } from '@/lib/format';
 import { PriceBand, VerdictBadge } from './ui';
 
@@ -128,6 +128,100 @@ export function RoundtripResults({ itineraries }: { itineraries: RoundtripItiner
       {itineraries.map((t, i) => (
         <RoundtripRow key={i} t={t} />
       ))}
+    </div>
+  );
+}
+
+
+/** One steal row from a deal hunt: route, date, price, verdict, buy_link. */
+export function StealRow({ r, destName }: { r: DealHuntRow; destName: string }) {
+  if (r.price == null) return null;
+  return (
+    <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 border-t rule py-3 first:border-t-0">
+      <span className="font-mono text-[15px] font-semibold text-ink-100 tabular-nums w-16">${r.price}</span>
+      <VerdictBadge verdict={r.verdict} />
+      <span className="text-[13.5px] text-ink-200">{destName}</span>
+      <span className="font-mono text-[12px] text-ink-400">
+        {new Date(r.date + 'T00:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' })}
+        {r.airline ? ` · ${r.airline}` : ''}
+        {r.stops != null ? ` · ${r.stops === 0 ? 'nonstop' : `${r.stops} stop${r.stops > 1 ? 's' : ''}`}` : ''}
+      </span>
+      {r.buy_link ? (
+        <a
+          href={r.buy_link}
+          rel="noopener nofollow"
+          target="_blank"
+          className="ml-auto font-mono text-[12px] text-signal-400 hover:text-signal-500 underline underline-offset-4"
+        >
+          buy_link →
+        </a>
+      ) : null}
+    </div>
+  );
+}
+
+/** Destination x date price matrix for a multi-destination hunt. */
+export function DealHuntGrid({ rows, destNames }: { rows: DealHuntRow[]; destNames: Record<string, string> }) {
+  const dests = [...new Set(rows.map((r) => r.dest))];
+  const dates = [...new Set(rows.map((r) => r.date))].sort();
+  const prices = rows.map((r) => r.price).filter((p): p is number => p != null);
+  if (prices.length === 0) return null;
+  const min = Math.min(...prices);
+  const max = Math.max(...prices);
+  const span = max - min || 1;
+  const cell = new Map(rows.map((r) => [`${r.dest}|${r.date}`, r]));
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full border-separate border-spacing-1">
+        <thead>
+          <tr>
+            <th className="text-left font-mono text-[10px] uppercase tracking-wider text-ink-500 font-normal pr-2">route</th>
+            {dates.map((d) => (
+              <th key={d} className="font-mono text-[10px] text-ink-500 font-normal">
+                {d.slice(8)}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {dests.map((dest) => (
+            <tr key={dest}>
+              <td className="pr-2 font-mono text-[12px] text-ink-300 whitespace-nowrap">TLV→{dest}</td>
+              {dates.map((d) => {
+                const r = cell.get(`${dest}|${d}`);
+                const p = r?.price ?? null;
+                const heat = p == null ? null : (p - min) / span;
+                const bg =
+                  heat == null
+                    ? 'transparent'
+                    : heat < 0.2
+                      ? 'color-mix(in oklab, var(--color-verdict-low) 24%, transparent)'
+                      : heat < 0.55
+                        ? 'color-mix(in oklab, var(--color-verdict-typical) 15%, transparent)'
+                        : 'color-mix(in oklab, var(--color-verdict-high) 15%, transparent)';
+                return (
+                  <td
+                    key={d}
+                    className="rounded-md border rule px-1 py-1.5 text-center font-mono text-[11.5px] tabular-nums"
+                    style={{ background: bg }}
+                    title={
+                      p == null
+                        ? `${dest} ${d}: ${r?.status ?? 'no data'}`
+                        : `${dest} ${d}: $${p}${r?.verdict ? ` (${r.verdict})` : ''}`
+                    }
+                  >
+                    {p == null ? <span className="text-ink-600">·</span> : <span className={p === min ? 'text-verdict-low font-bold' : 'text-ink-200'}>{p}</span>}
+                  </td>
+                );
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p className="mt-1.5 font-mono text-[10.5px] text-ink-500">
+        {destNames && Object.keys(destNames).length ? Object.entries(destNames).map(([c, n]) => `${c} ${n}`).join(' · ') + ' · ' : ''}dots are searches that
+        came back degraded and would simply be retried
+      </p>
     </div>
   );
 }

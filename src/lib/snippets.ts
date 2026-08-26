@@ -227,3 +227,64 @@ export function hotelSearchSnippets(params: { destination: string; checkin: stri
     node: nodeFor(HOTELS_HOST, path, body, `const { properties } = await res.json();`),
   };
 }
+
+export function dealHuntSnippets(params: { from: string; dests: string[]; dates: string[] }): Snippets {
+  const path = '/api/google_flights/oneway/v1';
+  const exampleBody = { from_airport: params.from, to_airport: params.dests[0] ?? 'ATH', departure_date: params.dates[0] ?? '2027-01-01', currency: 'usd' };
+  const n = params.dests.length * params.dates.length;
+  return {
+    curl: `# ${n} requests: one per (destination, date). Your rate limit is built for the burst.
+${curlFor(FLIGHTS_HOST, path, exampleBody)}`,
+    python: `import os, requests
+from concurrent.futures import ThreadPoolExecutor
+from itertools import product
+
+HEADERS = {
+    "Content-Type": "application/json",
+    "x-rapidapi-host": "${FLIGHTS_HOST}",
+    "x-rapidapi-key": os.environ["RAPIDAPI_KEY"],
+}
+DESTS = ${JSON.stringify(params.dests)}
+DATES = ${JSON.stringify(params.dates)}
+
+def search(pair):
+    dest, date = pair
+    r = requests.post(
+        "https://${FLIGHTS_HOST}${path}",
+        headers=HEADERS,
+        json={"from_airport": "${params.from}", "to_airport": dest,
+              "departure_date": date, "currency": "usd"},
+    )
+    fares = r.json()
+    best = min(fares, key=lambda f: f["price_as_number"], default=None)
+    return dest, date, best
+
+# ${n} searches, one parallel burst
+with ThreadPoolExecutor(max_workers=25) as ex:
+    for dest, date, best in ex.map(search, product(DESTS, DATES)):
+        if best:
+            print(dest, date, best["price"],
+                  best["price_range_in_relation_to_other_periods"], best["buy_link"])`,
+    node: `const dests = ${JSON.stringify(params.dests)};
+const dates = ${JSON.stringify(params.dates)};
+
+const results = await Promise.all(
+  dests.flatMap((dest) =>
+    dates.map(async (date) => {
+      const res = await fetch("https://${FLIGHTS_HOST}${path}", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-rapidapi-host": "${FLIGHTS_HOST}",
+          "x-rapidapi-key": process.env.RAPIDAPI_KEY,
+        },
+        body: JSON.stringify({ from_airport: "${params.from}", to_airport: dest, departure_date: date, currency: "usd" }),
+      });
+      const fares = await res.json();
+      const best = fares.sort((a, b) => a.price_as_number - b.price_as_number)[0];
+      return { dest, date, best };
+    })
+  )
+);`,
+  };
+}

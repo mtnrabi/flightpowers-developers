@@ -70,17 +70,16 @@ export default function HomePage() {
   const berCdg = FIXTURES.roundtripBerCdg;
   const degraded = FIXTURES.degradedExample;
   const geo = FIXTURES.hotelGeoRixos;
+  const hunt = FIXTURES.dealHuntSun;
 
-  // First-paint payload for the agent demo — the captured TLV→JFK exchange.
+  // First-paint payload for the agent demo: the captured 30-search deal hunt.
   const initialChipPayload = {
     mode: 'canned',
-    capturedAt: oneway.captured_at,
-    question: 'Is $480 TLV→JFK in October a good price?',
-    askedPrice: 480,
-    kind: 'oneway',
-    request: oneway.request,
-    flights: oneway.data,
-    headers: oneway.headers,
+    capturedAt: hunt.captured_at,
+    question: 'Find me a cheap warm getaway from TLV in January',
+    kind: 'deal-hunt',
+    request: hunt.request,
+    rows: hunt.data,
   } as Record<string, unknown>;
 
   const onewayRecord = oneway.data[0]!;

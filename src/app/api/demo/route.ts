@@ -35,16 +35,15 @@ const CHIPS: Record<string, () => unknown> = {
       headers: f.headers,
     };
   },
-  'cheapest-november-lis-nyc': () => {
-    const f = FIXTURES.novscanLisJfk;
+  'warm-getaway-january': () => {
+    const f = FIXTURES.dealHuntSun;
     return {
       mode: 'canned',
       capturedAt: f.captured_at,
-      question: 'Scan November for the cheapest LIS→NYC dates',
-      kind: 'month-scan',
+      question: 'Find me a cheap warm getaway from TLV in January',
+      kind: 'deal-hunt',
       request: f.request,
-      days: f.data,
-      sampledEvery: 1,
+      rows: f.data,
     };
   },
   'hotel-three-markets': () => {

@@ -3,23 +3,24 @@
 import { useEffect, useRef, useState } from 'react';
 import { track } from '@/lib/track';
 import { rapidApiPricingUrl } from '@/lib/site';
-import { hotelGeoSnippets, monthScanSnippets, onewaySnippets, type Snippets } from '@/lib/snippets';
-import type { HotelByName, OnewayFlight, ScanDay } from '@/lib/fixtures';
+import { dealHuntSnippets, hotelGeoSnippets, monthScanSnippets, onewaySnippets, type Snippets } from '@/lib/snippets';
+import type { DealHuntRow, HotelByName, OnewayFlight, ScanDay } from '@/lib/fixtures';
 import { airlineText } from '@/lib/format';
-import { FlightResults, HeatGrid, HotelMarketsTable, SearchHeaderChips } from './results';
+import { DealHuntGrid, FlightResults, HeatGrid, HotelMarketsTable, SearchHeaderChips, StealRow } from './results';
 import { ApiUpsellCard } from './ApiUpsellCard';
 import { CapturedBadge } from './ui';
 
 /**
  * The homepage centerpiece: a chat box that IS the product.
- * First paint shows a captured exchange (server-rendered — the transcript
- * is real HTML before any JS runs). The three chips replay captured runs
- * for free; typing runs a LIVE search through /api/demo behind the
- * budget caps, and says which is which at every step.
+ * First paint shows a captured deal hunt (server-rendered, real HTML before
+ * any JS runs). Chips replay captured runs for free; typing runs a LIVE
+ * search through /api/demo behind the budget caps, and the UI says which
+ * is which at every step.
  */
 
 type Answer =
   | { kind: 'oneway'; flights: OnewayFlight[]; headers?: Record<string, string>; request?: unknown; askedPrice?: number }
+  | { kind: 'deal-hunt'; rows: DealHuntRow[] }
   | { kind: 'month-scan'; days: ScanDay[]; sampledEvery?: number }
   | { kind: 'hotel-geo'; markets: { country: string; result: HotelByName | null }[] }
   | { kind: 'note'; text: string };
@@ -35,13 +36,62 @@ type Turn = {
 };
 
 const CHIPS = [
+  { id: 'warm-getaway-january', label: 'Find me a cheap warm getaway from TLV in January' },
   { id: 'good-price-tlv-jfk', label: 'Is $480 TLV→JFK in October a good price?' },
-  { id: 'cheapest-november-lis-nyc', label: 'Scan November for the cheapest LIS→NYC dates' },
   { id: 'hotel-three-markets', label: 'Same hotel, priced from the US, Germany and Israel' },
 ] as const;
 
+const DEST_NAMES: Record<string, string> = { ATH: 'Athens', LIS: 'Lisbon', LPA: 'Gran Canaria' };
+
 function money(n: number): string {
   return `$${n.toLocaleString('en-US')}`;
+}
+
+function shortDate(iso: string): string {
+  return new Date(iso + 'T00:00:00Z').toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+}
+
+function dealHuntNarrative(rows: DealHuntRow[]): string {
+  const priced = rows.filter((r): r is DealHuntRow & { price: number } => r.price != null);
+  if (priced.length === 0) return 'None of the searches in this hunt returned a priced fare.';
+  const dests = [...new Set(rows.map((r) => r.dest))];
+  const dates = new Set(rows.map((r) => r.date)).size;
+  const destList = dests.map((d) => DEST_NAMES[d] ?? d);
+  const listText =
+    destList.length > 1 ? `${destList.slice(0, -1).join(', ')} and ${destList[destList.length - 1]}` : destList[0]!;
+  const parts: string[] = [`I ran ${rows.length} real searches for this: ${listText}, ${dates} January dates each.`];
+
+  const bestPerDest = dests
+    .map((d) => priced.filter((r) => r.dest === d).sort((a, b) => a.price - b.price)[0])
+    .filter((r): r is DealHuntRow & { price: number } => r != null)
+    .sort((a, b) => a.price - b.price);
+
+  const best = bestPerDest[0]!;
+  const bestBits: string[] = [
+    `Best find: ${DEST_NAMES[best.dest] ?? best.dest}${best.stops === 0 ? ' nonstop' : ''} for ${money(best.price)} on ${shortDate(best.date)}.`,
+  ];
+  if (best.verdict === 'low' && best.low != null && best.high != null) {
+    bestBits.push(
+      `Google's own verdict on that fare is "low". The usual range for the route is ${money(best.low)} to ${money(best.high)}, so ${money(best.price)} is under the floor.`
+    );
+  } else if (best.verdict) {
+    bestBits.push(`Google calls that fare "${best.verdict}" for the route.`);
+  }
+  parts.push(bestBits.join(' '));
+
+  for (const r of bestPerDest.slice(1)) {
+    parts.push(
+      `${DEST_NAMES[r.dest] ?? r.dest} bottoms out at ${money(r.price)}${r.verdict === 'low' ? ', also flagged low' : r.verdict ? ` (${r.verdict})` : ''}.`
+    );
+  }
+
+  const degraded = rows.filter((r) => r.status === 'degraded').length;
+  if (degraded > 0) {
+    parts.push(
+      `${degraded} of the ${rows.length} searches came back degraded. The API says so instead of pretending those dates are sold out, so a real run retries exactly those ${degraded}.`
+    );
+  }
+  return parts.join(' ');
 }
 
 function onewayNarrative(flights: OnewayFlight[], askedPrice?: number): string {
@@ -50,21 +100,21 @@ function onewayNarrative(flights: OnewayFlight[], askedPrice?: number): string {
   const parts: string[] = [];
   if (withBand?.price_insights_low != null && withBand.price_insights_high != null) {
     parts.push(
-      `Google's own price band for this route and date is ${money(withBand.price_insights_low)}–${money(withBand.price_insights_high)}.`
+      `Google's own price band for this route and date is ${money(withBand.price_insights_low)} to ${money(withBand.price_insights_high)}.`
     );
     if (askedPrice != null) {
       if (askedPrice < withBand.price_insights_low) {
-        parts.push(`${money(askedPrice)} sits below the low end of that band — if you're seeing it, that's a good fare. Book it.`);
+        parts.push(`${money(askedPrice)} sits below the low end of that band. If you're seeing it, that's a good fare. Book it.`);
       } else if (askedPrice <= withBand.price_insights_high) {
-        parts.push(`${money(askedPrice)} sits inside the band — a normal price for this route, not a steal.`);
+        parts.push(`${money(askedPrice)} sits inside the band. A normal price for this route, not a steal.`);
       } else {
-        parts.push(`${money(askedPrice)} is above the high end of the band — you can usually do better on this route.`);
+        parts.push(`${money(askedPrice)} is above the high end of the band. You can usually do better on this route.`);
       }
     }
   }
   parts.push(
     `Cheapest fare in this search: ${cheapest.price} (${airlineText(cheapest.airline)}, ${cheapest.stops === 0 ? 'nonstop' : `${cheapest.stops} stop${cheapest.stops > 1 ? 's' : ''}`})${
-      cheapest.price_range_in_relation_to_other_periods ? ` — Google calls it “${cheapest.price_range_in_relation_to_other_periods}”.` : '.'
+      cheapest.price_range_in_relation_to_other_periods ? `. Google calls it "${cheapest.price_range_in_relation_to_other_periods}".` : '.'
     }`
   );
   return parts.join(' ');
@@ -75,9 +125,7 @@ function scanNarrative(days: ScanDay[]): string {
   if (priced.length === 0) return 'No priced days came back for that month.';
   const best = priced.reduce((a, b) => (a.price <= b.price ? a : b));
   const worst = priced.reduce((a, b) => (a.price >= b.price ? a : b));
-  const d = new Date(best.date + 'T00:00:00Z');
-  const nice = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
-  return `Cheapest day found: ${nice} at ${money(best.price)}${best.verdict ? ` (Google's verdict: ${best.verdict}${best.low != null && best.high != null ? `, band ${money(best.low)}–${money(best.high)}` : ''})` : ''}. Flying on the most expensive day would cost ${money(worst.price)} — picking the right date saves ${money(worst.price - best.price)}.`;
+  return `Cheapest day found: ${shortDate(best.date)} at ${money(best.price)}${best.verdict ? ` (Google's verdict: ${best.verdict}${best.low != null && best.high != null ? `, band ${money(best.low)} to ${money(best.high)}` : ''})` : ''}. Flying on the most expensive day would cost ${money(worst.price)}. Picking the right date saves ${money(worst.price - best.price)}.`;
 }
 
 function hotelNarrative(markets: { country: string; result: HotelByName | null }[]): string {
@@ -86,13 +134,27 @@ function hotelNarrative(markets: { country: string; result: HotelByName | null }
   const min = avail.reduce((a, b) => (a.result!.price! <= b.result!.price! ? a : b));
   const max = avail.reduce((a, b) => (a.result!.price! >= b.result!.price! ? a : b));
   if (min.result!.price === max.result!.price) {
-    return `All markets were quoted the same rate — rate parity is holding for this property and dates. When it breaks, this is exactly how you catch it.`;
+    return `All markets were quoted the same rate. Rate parity is holding for this property and dates, and when it breaks, this is exactly how you catch it.`;
   }
-  return `The ${min.country.toUpperCase()} market was quoted ${min.result!.price_string} for the same room the ${max.country.toUpperCase()} market sees at ${max.result!.price_string} — a ${money(max.result!.price! - min.result!.price!)} spread on one booking. That's proxy_country doing rate-parity work.`;
+  return `The ${min.country.toUpperCase()} market was quoted ${min.result!.price_string} for the same room the ${max.country.toUpperCase()} market sees at ${max.result!.price_string}. That's a ${money(max.result!.price! - min.result!.price!)} spread on one booking, caught by varying proxy_country.`;
 }
 
-/** Build the first-paint turn from the captured fixture (passed by the server). */
-export function buildCannedTurn(chip: (typeof CHIPS)[number]['id'], payload: Record<string, unknown>): Turn {
+/** Build the first-paint turn from a captured chip payload (passed by the server). */
+export function buildCannedTurn(payload: Record<string, unknown>): Turn {
+  if (payload.kind === 'deal-hunt') {
+    const rows = payload.rows as DealHuntRow[];
+    const dests = [...new Set(rows.map((r) => r.dest))];
+    const dates = [...new Set(rows.map((r) => r.date))].sort();
+    return {
+      question: String(payload.question),
+      mode: 'canned',
+      capturedAt: String(payload.capturedAt),
+      answer: { kind: 'deal-hunt', rows },
+      narrative: dealHuntNarrative(rows),
+      snippets: dealHuntSnippets({ from: 'TLV', dests, dates }),
+      snippetTool: 'agent-demo-deal-hunt',
+    };
+  }
   if (payload.kind === 'oneway') {
     const flights = payload.flights as OnewayFlight[];
     const askedPrice = payload.askedPrice as number | undefined;
@@ -137,6 +199,26 @@ export function buildCannedTurn(chip: (typeof CHIPS)[number]['id'], payload: Rec
   };
 }
 
+function DealHuntAnswer({ rows }: { rows: DealHuntRow[] }) {
+  const dests = [...new Set(rows.map((r) => r.dest))];
+  const steals = dests
+    .map((d) => rows.filter((r) => r.dest === d && r.price != null).sort((a, b) => a.price! - b.price!)[0])
+    .filter((r): r is DealHuntRow => r != null)
+    .sort((a, b) => a.price! - b.price!);
+  return (
+    <div>
+      <p className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-ink-500 mb-1">the steals</p>
+      <div className="mb-4">
+        {steals.map((r) => (
+          <StealRow key={`${r.dest}-${r.date}`} r={r} destName={DEST_NAMES[r.dest] ?? r.dest} />
+        ))}
+      </div>
+      <p className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-ink-500 mb-1">every search in the hunt</p>
+      <DealHuntGrid rows={rows} destNames={DEST_NAMES} />
+    </div>
+  );
+}
+
 function AnswerBlock({ turn }: { turn: Turn }) {
   return (
     <div className="rounded-xl border rule bg-ink-900/70 p-4">
@@ -146,12 +228,14 @@ function AnswerBlock({ turn }: { turn: Turn }) {
         ) : turn.mode === 'live' ? (
           <span className="live-badge">live search</span>
         ) : turn.mode === 'cached' ? (
-          <span className="font-mono text-[11px] text-ink-400">served from the demo cache — a repeat of a recent live search</span>
+          <span className="font-mono text-[11px] text-ink-400">from the demo cache, a repeat of a recent live search</span>
         ) : null}
       </div>
       <p className="text-[14.5px] text-ink-200 leading-relaxed">{turn.narrative}</p>
       <div className="mt-4">
-        {turn.answer.kind === 'oneway' ? (
+        {turn.answer.kind === 'deal-hunt' ? (
+          <DealHuntAnswer rows={turn.answer.rows} />
+        ) : turn.answer.kind === 'oneway' ? (
           <>
             <FlightResults flights={turn.answer.flights.slice(0, 3)} />
             {turn.answer.headers ? (
@@ -165,7 +249,7 @@ function AnswerBlock({ turn }: { turn: Turn }) {
             days={turn.answer.days}
             note={
               turn.answer.sampledEvery && turn.answer.sampledEvery > 1
-                ? `Live scans here sample every ${turn.answer.sampledEvery} days to respect the demo budget — with your own key you scan all 30 in one parallel burst.`
+                ? `Live scans here sample every ${turn.answer.sampledEvery} days to respect the demo budget. With your own key you scan every date in one parallel burst.`
                 : undefined
             }
           />
@@ -178,7 +262,7 @@ function AnswerBlock({ turn }: { turn: Turn }) {
 }
 
 export function AgentDemo({ initialChipPayload }: { initialChipPayload: Record<string, unknown> }) {
-  const [turns, setTurns] = useState<Turn[]>(() => [buildCannedTurn('good-price-tlv-jfk', initialChipPayload)]);
+  const [turns, setTurns] = useState<Turn[]>(() => [buildCannedTurn(initialChipPayload)]);
   const [input, setInput] = useState('');
   const [busy, setBusy] = useState(false);
   const [elapsed, setElapsed] = useState(0);
@@ -200,7 +284,7 @@ export function AgentDemo({ initialChipPayload }: { initialChipPayload: Record<s
     timerRef.current = null;
   }
 
-  async function runChip(id: (typeof CHIPS)[number]['id'], label: string) {
+  async function runChip(id: (typeof CHIPS)[number]['id']) {
     if (busy) return;
     started.current = true;
     setBusy(true);
@@ -213,9 +297,9 @@ export function AgentDemo({ initialChipPayload }: { initialChipPayload: Record<s
         body: JSON.stringify({ chip: id }),
       });
       const payload = (await res.json()) as Record<string, unknown>;
-      setTurns((t) => [...t, buildCannedTurn(id, payload)]);
+      setTurns((t) => [...t, buildCannedTurn(payload)]);
     } catch {
-      setNotice('Could not load the example — try again.');
+      setNotice('Could not load the example. Try again.');
     } finally {
       setBusy(false);
     }
@@ -254,8 +338,8 @@ export function AgentDemo({ initialChipPayload }: { initialChipPayload: Record<s
           const status = (payload.headers as Record<string, string>)?.['x-search-status'];
           setNotice(
             status === 'empty'
-              ? 'Google genuinely has no itineraries for that route and date (X-Search-Status: empty) — the empty result is the answer, not a failure.'
-              : 'The search did not complete (X-Search-Status: degraded) — the API says so instead of pretending "no flights". Try once more.'
+              ? 'Google genuinely has no itineraries for that route and date (X-Search-Status: empty). The empty result is the answer, not a failure.'
+              : 'The search did not complete (X-Search-Status: degraded). The API says so instead of pretending "no flights". Try once more.'
           );
           return;
         }
@@ -271,7 +355,6 @@ export function AgentDemo({ initialChipPayload }: { initialChipPayload: Record<s
           },
         ]);
       } else if (payload.kind === 'roundtrip') {
-        // Render round-trips through the oneway narrative path is wrong — keep it simple and honest.
         const itins = payload.itineraries as unknown[];
         if (itins.length === 0) {
           setNotice('No paired itineraries came back for those dates. Try nearby dates.');
@@ -284,7 +367,7 @@ export function AgentDemo({ initialChipPayload }: { initialChipPayload: Record<s
             question: message,
             mode,
             answer: { kind: 'note', text: '' },
-            narrative: `Found ${itins.length} paired round-trip itineraries. The full round-trip demo lives on the Round-Trip API page — this box keeps to one-way, date-scan, and hotel questions.`,
+            narrative: `Found ${itins.length} paired round-trip itineraries. The full round-trip demo lives on the Round-Trip API page. This box keeps to one-way, date-scan, and hotel questions.`,
           },
         ]);
       } else if (payload.kind === 'month-scan') {
@@ -302,7 +385,7 @@ export function AgentDemo({ initialChipPayload }: { initialChipPayload: Record<s
         ]);
       }
     } catch {
-      setNotice('The live search failed to reach the server — try again.');
+      setNotice('The live search failed to reach the server. Try again.');
     } finally {
       stopTimer();
       setBusy(false);
@@ -338,7 +421,8 @@ export function AgentDemo({ initialChipPayload }: { initialChipPayload: Record<s
 
         {busy ? (
           <p className="font-mono text-[12.5px] text-ink-400">
-            scanning live against Google Flights — nothing here is cached, complex routes take longer{elapsed > 0 ? ` · ${elapsed}s` : ''}
+            scanning live against Google Flights. nothing here is cached, hard routes take longer
+            {elapsed > 0 ? ` · ${elapsed}s` : ''}
           </p>
         ) : null}
         {notice ? <p className="text-[13.5px] text-verdict-typical leading-relaxed">{notice}</p> : null}
@@ -348,7 +432,7 @@ export function AgentDemo({ initialChipPayload }: { initialChipPayload: Record<s
       <div className="border-t rule p-4 sm:p-5 space-y-3">
         <div className="flex flex-wrap gap-2">
           {CHIPS.map((chip) => (
-            <button key={chip.id} type="button" className="chip" onClick={() => runChip(chip.id, chip.label)} disabled={busy}>
+            <button key={chip.id} type="button" className="chip" onClick={() => runChip(chip.id)} disabled={busy}>
               {chip.label}
             </button>
           ))}
@@ -364,7 +448,7 @@ export function AgentDemo({ initialChipPayload }: { initialChipPayload: Record<s
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder='Ask it like a travel agent — "cheapest day TLV to London in November"'
+            placeholder='Ask it like a travel agent: "cheapest day TLV to London in November"'
             maxLength={300}
             className="min-w-0 flex-1 rounded-full border rule bg-ink-900 px-4 py-2.5 text-[14px] text-ink-100 placeholder:text-ink-500 focus:border-signal-600 focus:outline-none"
           />
@@ -373,8 +457,8 @@ export function AgentDemo({ initialChipPayload }: { initialChipPayload: Record<s
           </button>
         </form>
         <p className="font-mono text-[11px] text-ink-500">
-          Examples replay captured runs (free). Typed questions run REAL searches on our own key — capped per visitor and per day, so
-          the demo stays honest and affordable. Understands routes, dates, and &quot;cheapest day in &lt;month&gt;&quot;.
+          The examples replay captured runs, free. Typed questions run REAL searches on our own key, capped per visitor and per day
+          so the demo stays honest and affordable. It understands routes, dates, and &quot;cheapest day in &lt;month&gt;&quot;.
         </p>
       </div>
 
@@ -385,8 +469,8 @@ export function AgentDemo({ initialChipPayload }: { initialChipPayload: Record<s
             tool={latest.snippetTool ?? 'agent-demo'}
             pricingHref={rapidApiPricingUrl('flights', 'demo-upsell')}
             docsHref="/flights-api"
-            headline="The call that produced this answer"
-            body="Same request, your code, your key — with the price band, the verdict, and X-Search-Status on every response."
+            headline="The calls that produced this answer"
+            body="Same requests, your code, your key. The price band, the verdict, and X-Search-Status ride on every response."
           />
         </div>
       ) : null}
