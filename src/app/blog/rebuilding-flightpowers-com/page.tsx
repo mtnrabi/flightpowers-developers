@@ -23,8 +23,13 @@ export default function RebuildingPost() {
           '@context': 'https://schema.org',
           '@type': 'TechArticle',
           headline: 'Rebuilding flightpowers.com',
-          datePublished: '2026-09',
+          // Full ISO-8601. The previous value was '2026-09': a year-month, which
+          // is not a valid Date for schema.org, and dated in the future.
+          datePublished: '2026-08-26',
+          dateModified: '2026-08-27',
           author: { '@type': 'Person', name: 'Matan Rabi', url: `${SITE.url}/about` },
+          publisher: { '@id': `${SITE.url}/#organization` },
+          image: `${SITE.url}/og?title=${encodeURIComponent('Rebuilding flightpowers.com')}`,
           url: `${SITE.url}/blog/rebuilding-flightpowers-com`,
           description:
             'Why the old FlightPowers site failed, what the new one does differently, and the honesty rules it commits to.',
