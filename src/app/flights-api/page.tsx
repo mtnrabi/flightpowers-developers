@@ -140,6 +140,23 @@ export default function FlightsApiHubPage() {
       <JsonLd
         data={{
           '@context': 'https://schema.org',
+          '@type': 'WebAPI',
+          name: 'FlightPowers Google Flights API',
+          url: `${SITE.url}/flights-api`,
+          description:
+            'REST API over live Google Flights results: one-way and paired round-trip search, Google\u2019s price_insights band with a low | typical | high verdict on every itinerary, and X-Search-Status headers that make an empty result unambiguous.',
+          documentation: `${SITE.url}/flights-api`,
+          termsOfService: `${SITE.url}/terms`,
+          provider: { '@type': 'Organization', name: 'FlightPowers', url: SITE.url },
+          potentialAction: {
+            '@type': 'ConsumeAction',
+            target: { '@type': 'EntryPoint', urlTemplate: `https://${SITE.apiHost}/v1/flights/oneway`, httpMethod: 'POST', contentType: 'application/json' },
+          },
+        }}
+      />
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
           '@type': 'CollectionPage',
           name: 'Google Flights API',
           url: `${SITE.url}/flights-api`,
