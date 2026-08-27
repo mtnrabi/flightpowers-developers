@@ -59,11 +59,11 @@ export default function LangchainIntegrationPage() {
             <div>
               <p className="eyebrow">Integrations · LangChain</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3rem] leading-[1.05] font-semibold">
-                Flight tools for your agent, via <span className="text-signal-500">MCP</span>
+                Flight &amp; hotel tools for your agent, via <span className="text-signal-500">MCP</span>
               </h1>
               <p className="lede mt-5">
-                LangChain&apos;s MCP adapters load the hosted FlightPowers servers as ordinary tools. Your agent searches live
-                fares and quotes Google&apos;s verdict; you write no HTTP code.
+                LangChain&apos;s MCP adapters load both hosted FlightPowers servers as ordinary tools. Your agent searches
+                live fares and hotel rates and quotes Google&apos;s verdict on every fare; you write no HTTP code.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Cta href={rapidApiPricingUrl('flights', 'integration')} external variant="primary">
@@ -100,21 +100,34 @@ agent = create_agent(model, tools)  # any chat model`}</Code>
       <Section>
         <SectionHead
           eyebrow="The REST alternative"
-          title="No MCP? Wrap one endpoint as a tool"
-          lede="The API is one POST with flat JSON, so a hand-rolled tool is a few lines."
+          title="No MCP? Wrap the endpoints as tools"
+          lede="The API is one POST with flat JSON per endpoint, so a hand-rolled tool is a few lines: one for flights, one for hotels."
         />
         <div className="mt-8 max-w-3xl">
-          <Code label="a plain langchain tool over the REST API">{`import os, requests
+          <Code label="plain langchain tools over the REST API">{`import os, requests
 from langchain_core.tools import tool
+
+HEADERS = {"x-api-key": os.environ["RAPIDAPI_KEY"]}
 
 @tool
 def search_flights(from_airport: str, to_airport: str, departure_date: str) -> list:
     """Live one-way fares with Google's price band and low|typical|high verdict."""
     r = requests.post(
         "https://api.flightpowers.com/v1/flights/oneway",
-        headers={"x-api-key": os.environ["RAPIDAPI_KEY"]},
+        headers=HEADERS,
         json={"from_airport": from_airport, "to_airport": to_airport,
               "departure_date": departure_date},
+    )
+    return r.json()
+
+@tool
+def search_hotels(destination: str, checkin_date: str, checkout_date: str) -> dict:
+    """Live Booking.com rates for a destination (free text, e.g. "Lisbon")."""
+    r = requests.post(
+        "https://api.flightpowers.com/v1/hotels/search",
+        headers=HEADERS,
+        json={"destination": destination, "checkin_date": checkin_date,
+              "checkout_date": checkout_date},
     )
     return r.json()`}</Code>
           <p className="mt-4 text-[14px] text-ink-400 leading-relaxed">

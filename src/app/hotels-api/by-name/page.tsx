@@ -217,6 +217,53 @@ export default function HotelByNamePage() {
 
       <Section>
         <SectionHead
+          eyebrow="Response"
+          title="Every response field"
+          lede="Values in brackets are from the captured Kremlin Palace run above (the us request). Real output, not invented examples."
+        />
+        <div className="mt-8 max-w-3xl">
+          <FieldRow name="name" type="string | null">
+            The matched property&apos;s listed name: <code className="field">&quot;{us.name}&quot;</code> in the capture.{' '}
+            <code className="field">null</code> when nothing matched.
+          </FieldRow>
+          <FieldRow name="available" type="boolean">
+            The one field to branch on. <code className="field">false</code> means sold out for the dates or not found, and the
+            price fields are null; there is no separate error shape.
+          </FieldRow>
+          <FieldRow name="price / price_string" type="number · string | null">
+            The stay total, twice: a number ({us.price}) and the formatted version (<code className="field">{us.price_string}</code>),
+            in the currency you set. Total for all {us.nights} nights, not per night: divide by{' '}
+            <code className="field">nights</code> for the nightly rate.
+          </FieldRow>
+          <FieldRow name="review_score / review_count" type="number | null · number | null">
+            Booking.com&apos;s guest score and review count: {us.review_score} from {us.review_count} reviews in the capture.{' '}
+            <code className="field">review_score</code> can be null even on an available property: the Rixos Sungate capture on
+            the{' '}
+            <Link href="/hotels-api/geo-pricing" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+              geo-pricing page
+            </Link>{' '}
+            returned null score with 375 reviews counted, so null-check it independently of{' '}
+            <code className="field">available</code>.
+          </FieldRow>
+          <FieldRow name="room_type" type="string | null">
+            The room the price is for: <code className="field">&quot;{us.room_type}&quot;</code> in the capture.
+          </FieldRow>
+          <FieldRow name="image_url" type="string | null">
+            A property thumbnail hosted by Booking.com, ready for an {'<img>'} tag.
+          </FieldRow>
+          <FieldRow name="link" type="string | null">
+            A working Booking.com URL for exactly this room, these dates, and this party.
+          </FieldRow>
+          <FieldRow name="nights / adults / children" type="number | null">
+            The stay as priced: nights computed from the dates ({us.nights} in the capture), adults as applied ({us.adults},
+            the default since the request sent none), and children, <code className="field">null</code> when the request did not
+            send any.
+          </FieldRow>
+        </div>
+      </Section>
+
+      <Section>
+        <SectionHead
           eyebrow="Repeated checks"
           title="The ID-based fast path"
           lede="Name resolution is convenience you pay for on every call. If you check the same property on a schedule, resolve once and go direct instead."

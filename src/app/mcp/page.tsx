@@ -213,13 +213,14 @@ export default function McpPage() {
               booking link, filterable with the {COUNTS.hotelFilters} documented filters.
             </FieldRow>
             <FieldRow name="find_hotel_by_name">
-              Availability and price for one named hotel: takes the name a human would type plus an optional{' '}
-              <code className="field">area</code> to disambiguate; name resolution is included.
+              Availability and price for one named hotel: takes the name a human would type (add the city to disambiguate a
+              chain); name resolution is included.
             </FieldRow>
             <p className="mt-5 text-[14px] text-ink-400 leading-relaxed">
               Hotel tools take <code className="field">checkin_date</code> / <code className="field">checkout_date</code>,{' '}
-              <code className="field">adults</code>, and <code className="field">proxy_country</code>, a two-letter code that prices
-              the stay as seen from that market, the field rate-parity checks are built on.
+              <code className="field">adults</code>, and <code className="field">price_as_seen_from</code>, a two-letter country
+              code that prices the stay as a shopper in that market would see it, the field rate-parity checks are built on.
+              (The REST API's name for the same control is <code className="field">proxy_country</code>.)
             </p>
           </div>
         </div>
@@ -257,10 +258,10 @@ export default function McpPage() {
           <p className="eyebrow">Separate, and honestly labelled</p>
           <h2 className="mt-3 text-2xl font-semibold">A free, ad-supported server also exists</h2>
           <p className="mt-4 text-[15px] text-ink-400 leading-relaxed">
-            <code className="field">{LINKS.mcpFree.replace('https://', '')}</code> serves the flight tools with no key at all. The
-            trade: results carry sponsored content, and the server runs on a capped daily budget: when the day&apos;s budget is
-            spent, it stops. Use it to try the tools before getting a key; point production and anything you ship at the keyed
-            servers above.
+            <code className="field">{LINKS.mcpFree.replace('https://', '')}</code> serves all four tools, flights and hotels,
+            with no key at all. The trade: results carry sponsored content, and the server runs on a capped daily budget shared
+            by all callers: when the day&apos;s budget is spent, it stops. Use it to try the tools before getting a key; point
+            production and anything you ship at the keyed servers above.
           </p>
         </div>
       </Section>

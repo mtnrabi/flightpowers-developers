@@ -99,10 +99,6 @@ IATA codes and `YYYY-MM-DD` dates immediately. What you will not get is names or
 guarantees: field 2 is just "field 2," and nothing promises it means the same thing
 next quarter.
 
-If you would rather not install anything, the
-[Google Flights URL parser](/tools/google-flights-url-parser) on this site does the
-base64url + wire-format walk client-side in your browser: paste a URL, see the
-decoded tree.
 
 ## The honest caveats
 
@@ -136,7 +132,7 @@ itinerary, with the blob already encoded by the same pipeline that read the fare
 ```
 
 So the division of labour that actually works is: **decode** URLs when a user hands
-you one (the [parser tool](/tools/google-flights-url-parser) or the snippet above),
+you one (the `protoc` snippet above),
 and **never encode** them. Search via the API and pass along the `buy_link` it
 returns per itinerary. You get the deep link without owning the format risk, and the
 same response carries the price context (`price_insights_low/high` and Google's
@@ -145,7 +141,6 @@ low | typical | high verdict) that the URL alone never had. The
 
 ## Related
 
-- [Google Flights URL parser](/tools/google-flights-url-parser): paste a URL, see the decoded tree, free
 - [How to get real-time Google Flights data](/guides/real-time-google-flights-data): the full API walkthrough
 - [Price Insights API](/flights-api/price-insights): the context a URL never carries
 

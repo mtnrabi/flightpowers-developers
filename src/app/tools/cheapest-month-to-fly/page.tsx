@@ -140,7 +140,7 @@ export default function CheapestMonthPage() {
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Cta href="/tools/flight-price-checker" variant="accent">
-              Check a live fare
+              Try it for free
             </Cta>
             <Cta href="/tools" variant="ghost">
               See all free tools
@@ -198,7 +198,7 @@ export default function CheapestMonthPage() {
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {[
             { href: '/tools/flight-price-checker', label: 'Flight Price Checker', sub: 'Live fare + Google’s verdict' },
-            { href: '/tools/google-flights-url-parser', label: 'Google Flights URL Parser', sub: 'Decode a tfs= URL into an API call' },
+            { href: '/flights-api/parallel-date-scan', label: 'Parallel Date Scan', sub: 'The full every-day scan on your own key' },
             { href: '/tools/hotel-price-by-country', label: 'Hotel Price by Country', sub: 'The same room, priced from 3 markets' },
           ].map((l) => (
             <Link key={l.href} href={l.href} className="rounded-2xl border rule bg-ink-900/50 p-5 hover:border-ink-500 transition-colors">

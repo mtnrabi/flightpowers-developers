@@ -92,7 +92,9 @@ export default function N8nIntegrationPage() {
             <div>
               <Code label="settings → community nodes → install">{`n8n-nodes-flightpowers`}</Code>
               <p className="mt-3 text-[13.5px] text-ink-400 leading-relaxed">
-                v0.2.2 on npm. Install by name, then add your RapidAPI key once as a credential. Every workflow reuses it.
+                v0.2.2 on npm, one node for both APIs: a Flight resource (Search One-Way, Search Round-Trip) and a Hotel
+                resource (Search Destination, Get by Name). Add your RapidAPI key once as a credential; every workflow reuses
+                it.
               </p>
             </div>
           </div>

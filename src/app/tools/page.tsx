@@ -7,7 +7,7 @@ import { SITE } from '@/lib/site';
 export const metadata: Metadata = withOg({
   title: 'Free travel-data tools',
   description:
-    'Four free tools on the same live API we sell: decode Google Flights URLs, check a fare against Google’s price band, scan a month for the cheapest day, and price one hotel from several countries. No signup.',
+    'Free travel tools on the same live API we sell: a full flight search engine, live fare checks against Google’s price band, cheapest-month scans, and per-country hotel pricing. No signup.',
   alternates: { canonical: '/tools' },
 });
 
@@ -20,13 +20,6 @@ const TOOLS: {
   body: string;
   output: string;
 }[] = [
-  {
-    href: '/tools/google-flights-url-parser',
-    name: 'Google Flights URL Parser & Builder',
-    tier: 'ungated, 100% client-side',
-    body: 'Paste a Google Flights URL and decode its tfs= parameter into a readable tree: route, dates, and the equivalent API request. Or build a shareable search link from a route. Runs entirely in your browser.',
-    output: 'decoded tree → API request',
-  },
   {
     href: '/tools/flight-price-checker',
     name: 'Flight Price Checker',
@@ -50,6 +43,14 @@ const TOOLS: {
   },
 ];
 
+const FLAGSHIP = {
+  href: 'https://demo.flightpowers.com',
+  name: 'FlightPowers Search',
+  tier: 'flagship · the full product, free',
+  tagline: 'A more powerful flight search engine',
+  body: 'The consumer flight search engine we built on the exact API sold here. Search a route like a traveler and you are watching the API work end to end, live, with no signup. The most complete free thing we have.',
+} as const;
+
 export default function ToolsIndexPage() {
   return (
     <>
@@ -61,10 +62,10 @@ export default function ToolsIndexPage() {
           url: `${SITE.url}/tools`,
           description:
             'Free flight and hotel data tools running on the FlightPowers APIs: URL parsing, live price checks, month scans, and per-country hotel pricing.',
-          hasPart: TOOLS.map((t) => ({
+          hasPart: [{ name: FLAGSHIP.name, href: FLAGSHIP.href }, ...TOOLS].map((t) => ({
             '@type': 'WebApplication',
             name: t.name,
-            url: `${SITE.url}${t.href}`,
+            url: t.href.startsWith('http') ? t.href : `${SITE.url}${t.href}`,
             applicationCategory: 'TravelApplication',
             operatingSystem: 'Any',
             offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
@@ -78,12 +79,37 @@ export default function ToolsIndexPage() {
           Free <span className="text-signal-500">travel-data tools</span>
         </h1>
         <p className="lede mt-5 max-w-2xl">
-          Real results before we ask you for anything: every tool runs on the same live API we sell.
+          Real results before we ask you for anything: every tool runs on the same live API we sell (with limited usage &amp;
+          features).
         </p>
       </Container>
 
       <Container className="pb-16 pt-6">
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+        <a
+          href={FLAGSHIP.href}
+          rel="noopener"
+          className="group flex flex-col sm:flex-row items-stretch gap-6 rounded-2xl border border-signal-600/40 bg-ink-900/60 p-6 hover:border-signal-500 transition-colors"
+        >
+          <div className="flex flex-col justify-center min-w-0">
+            <p className="font-mono text-[11px] uppercase tracking-wider text-signal-400">{FLAGSHIP.tier}</p>
+            <h2 className="mt-2 text-[22px] font-semibold text-ink-100">{FLAGSHIP.name}</h2>
+            <p className="mt-1 text-[14px] text-ink-300 italic">“{FLAGSHIP.tagline}”</p>
+            <p className="mt-3 text-[14.5px] text-ink-400 leading-relaxed">{FLAGSHIP.body}</p>
+            <p className="mt-4 font-mono text-[11.5px] text-ink-500">
+              demo.flightpowers.com <span className="text-signal-400 group-hover:text-signal-500">open the engine →</span>
+            </p>
+          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/tools/demo-engine.jpg"
+            alt="The FlightPowers search engine mascot: a blue robot with a glowing plane emblem"
+            width={1024}
+            height={1024}
+            loading="lazy"
+            className="w-full sm:w-44 sm:h-44 h-40 shrink-0 rounded-xl border rule object-cover object-top self-center"
+          />
+        </a>
+        <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-3">
           {TOOLS.map((t) => (
             <Link
               key={t.href}
@@ -103,8 +129,8 @@ export default function ToolsIndexPage() {
           ))}
         </div>
         <p className="mt-6 font-mono text-[12px] text-ink-500">
-          The URL parser runs entirely in your browser, no cap. The three live tools run real searches on our key, so they&apos;re
-          capped per visitor per day; the pages say exactly how.
+          The three tools run real searches on our key, so they&apos;re capped per visitor per day; the pages say exactly how. The
+          search engine is the full consumer product, free at demo.flightpowers.com.
         </p>
       </Container>
 

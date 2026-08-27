@@ -178,7 +178,8 @@ export default function SkillsPage() {
           <div className="rounded-2xl border rule bg-ink-900/60 p-6">
             <h3 className="text-[16px] font-semibold text-ink-100">OpenClaw</h3>
             <div className="mt-4">
-              <Code label="terminal">{`clawhub install mtnrabi/google-flights-realtime-api`}</Code>
+              <Code label="terminal">{`clawhub install mtnrabi/google-flights-realtime-api
+clawhub install mtnrabi/booking-hotel-search`}</Code>
             </div>
             <p className="mt-3 text-[14.5px] text-ink-400 leading-relaxed">
               Both listings are on ClawHub:{' '}

@@ -8,7 +8,7 @@ export const dynamic = 'force-static';
 export const metadata: Metadata = withOg({
   title: 'Live flight & hotel data in ChatGPT: MCP connector setup',
   description:
-    'Connect ChatGPT to live Google Flights and Booking.com data through a developer-mode MCP connector. One URL, your own RapidAPI key, and Google’s low/typical/high price verdict on every fare.',
+    'Connect ChatGPT to live Google Flights and Booking.com data through developer-mode MCP connectors: one URL per API, your own RapidAPI key, and Google’s low/typical/high price verdict on every fare.',
   alternates: { canonical: '/integrations/chatgpt' },
 });
 
@@ -18,8 +18,8 @@ const steps: ConnectStep[] = [
     body: 'Subscribe on the listing’s pricing tab. The free tier needs no card. The key is the only credential this integration uses.',
   },
   {
-    title: 'Add the connector in developer mode',
-    body: 'Settings → Connectors, enable developer mode, and add the server URL above with your key in place of YOUR_RAPIDAPI_KEY. For hotels, add https://hotels.flightpowers.com/mcp the same way. One RapidAPI key covers both once you subscribe to each listing.',
+    title: 'Add both connectors in developer mode',
+    body: 'Settings → Connectors, enable developer mode, and add each server URL above (flights, then hotels) with your key in place of YOUR_RAPIDAPI_KEY. Developer mode is what gates custom connectors, and OpenAI ships it on the Pro and Business plans (per its own help pages, checked 2026-08-27). They are separate servers; one RapidAPI key covers both once you subscribe to each listing.',
   },
   {
     title: 'Use it in a chat',
@@ -46,7 +46,7 @@ const tools: ToolLine[] = [
   {
     name: 'find_hotel_by_name',
     type: 'hotels server',
-    note: 'One property by the name a human would type. proxy_country prices it from any market, the rate-parity tool.',
+    note: 'One property by the name a human would type. price_as_seen_from prices it from any market, the rate-parity tool.',
   },
 ];
 
@@ -64,8 +64,12 @@ const faq: Faq[] = [
     a: 'The free tier is 10 requests/month with a hard cap: enough to verify the connector works, not to use it. For day-to-day use, the $10 PRO plan (2,500 requests/month on flights) is the realistic floor. Every plan includes all of its API’s endpoints.',
   },
   {
-    q: 'Why developer mode?',
-    a: 'Custom MCP connectors in ChatGPT are added through its developer-mode connector settings. Nothing about the server itself is experimental: the same URL serves Claude, Cursor, and any other MCP client.',
+    q: 'Why developer mode, and which ChatGPT plan has it?',
+    a: 'Custom MCP connectors in ChatGPT are added through its developer-mode connector settings, which OpenAI documents as a Pro and Business plan feature (checked 2026-08-27). Nothing about the server itself is experimental: the same URL serves Claude, Cursor, and any other MCP client.',
+  },
+  {
+    q: 'Can ChatGPT run these searches on a schedule?',
+    a: 'Not confirmed. ChatGPT has scheduled Tasks on every plan, but OpenAI does not document whether custom developer-mode connectors run inside a Task, and we have not verified that they do. If you want a scheduled daily fare scan today, Claude is the verified path: its scheduled tasks run the same two connector URLs on any paid Claude plan.',
   },
   {
     q: 'Can I try it before adding a key?',
@@ -77,8 +81,8 @@ export default function ChatGptIntegrationPage() {
   return (
     <AgentIntegrationPage
       slug="chatgpt"
-      lede="ChatGPT’s developer-mode connectors speak MCP. One URL connects it to live Google Flights and Booking.com data, billed to your own key, judged by Google’s own price band."
-      heroCodeLabel="add as a connector (developer mode)"
+      lede="ChatGPT’s developer-mode connectors speak MCP. Two URLs, flights and hotels, connect it to live Google Flights and Booking.com data, billed to your own key, judged by Google’s own price band."
+      heroCodeLabel="add each as a connector (developer mode)"
       steps={steps}
       promptsLede="ChatGPT picks the tool and fills the parameters itself: these all work as written."
       prompts={[

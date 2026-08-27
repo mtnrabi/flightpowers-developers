@@ -77,6 +77,7 @@ const faq: Faq[] = [
 
 export default function HotelSearchPage() {
   const fx = FIXTURES.hotelSearchLisbon;
+  const p0 = fx.data.properties[0]!;
   const snippets = hotelSearchSnippets({ destination: 'Lisbon', checkin: '2026-10-09', checkout: '2026-10-12' });
 
   return (
@@ -210,9 +211,8 @@ export default function HotelSearchPage() {
           </div>
         </div>
         <p className="mt-3 text-[14px] text-ink-400 leading-relaxed max-w-3xl">
-          Each row is one object in the <code className="field">properties</code> array: <code className="field">price</code> is the
-          stay total as a number, <code className="field">price_string</code> the formatted version, and{' '}
-          <code className="field">link</code> a working Booking.com URL for exactly that room and dates.
+          Each row is one object in the <code className="field">properties</code> array. Every field of that object, with the
+          values this exact capture returned, is documented below.
         </p>
       </Section>
 
@@ -300,6 +300,70 @@ export default function HotelSearchPage() {
               ))}
             </tbody>
           </table>
+          </div>
+        </div>
+      </Section>
+
+      <Section>
+        <SectionHead
+          eyebrow="Response"
+          title="Every response field"
+          lede="Values in brackets are from the captured Lisbon run above. Real output, not invented examples. The top level echoes the search; properties carries one flat object per result."
+        />
+        <div className="mt-8 max-w-3xl">
+          <p className="font-mono text-[11px] uppercase tracking-wider text-signal-500">Top level</p>
+          <div className="mt-2">
+            <FieldRow name="destination" type="string">
+              Echo of the destination searched: <code className="field">&quot;{fx.data.destination}&quot;</code>.
+            </FieldRow>
+            <FieldRow name="checkin_date / checkout_date" type="string">
+              Echo of the stay, <code className="field">YYYY-MM-DD</code>: {fx.data.checkin_date} to {fx.data.checkout_date} in
+              the capture.
+            </FieldRow>
+            <FieldRow name="applied_filters" type="string[]">
+              The filters the search ran with: <code className="field">{JSON.stringify(fx.data.applied_filters)}</code> in the
+              capture, matching the request. Confirm here that the facets you asked for were used.
+            </FieldRow>
+            <FieldRow name="budget_per_night" type="number | null">
+              <code className="field">null</code> when the request set no per-night cap, as in the capture.
+            </FieldRow>
+            <FieldRow name="properties" type="object[]">
+              The results, ranked as Booking.com ranks them. One flat object per property; its fields are below.
+            </FieldRow>
+          </div>
+
+          <p className="mt-10 font-mono text-[11px] uppercase tracking-wider text-signal-500">Per property</p>
+          <div className="mt-2">
+            <FieldRow name="name" type="string">
+              The property name as listed: <code className="field">&quot;{p0.name}&quot;</code> in the capture.
+            </FieldRow>
+            <FieldRow name="price / price_string" type="number · string">
+              The stay total, twice: a number ({p0.price}) to sort and compare on, and the formatted version (
+              <code className="field">{p0.price_string}</code>), both in the currency you set. It is the total for all{' '}
+              {p0.nights} nights, not a nightly rate: divide by <code className="field">nights</code> for that.
+            </FieldRow>
+            <FieldRow name="review_score / review_count" type="number · number">
+              Booking.com&apos;s guest score and how many reviews it rests on: {p0.review_score} from{' '}
+              {p0.review_count.toLocaleString('en-US')} reviews in the capture.
+            </FieldRow>
+            <FieldRow name="room_type" type="string">
+              The room the price is for: <code className="field">&quot;{p0.room_type}&quot;</code> in the capture.
+            </FieldRow>
+            <FieldRow name="location" type="string | null">
+              A location string when Booking.com surfaces one on the result; <code className="field">null</code> otherwise (all
+              six captured properties returned null).
+            </FieldRow>
+            <FieldRow name="image_url" type="string | null">
+              A property thumbnail hosted by Booking.com, ready for an {'<img>'} tag.
+            </FieldRow>
+            <FieldRow name="link" type="string">
+              A working Booking.com URL for exactly this room, these dates, and this party: hand it to a user and the page shows
+              what the API priced.
+            </FieldRow>
+            <FieldRow name="nights / adults / children" type="number · number · number | null">
+              The stay as priced: nights computed from the dates ({p0.nights} in the capture), adults as applied ({p0.adults}),
+              and children, <code className="field">null</code> when the request did not send any.
+            </FieldRow>
           </div>
         </div>
       </Section>

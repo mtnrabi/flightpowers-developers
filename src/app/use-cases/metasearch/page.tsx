@@ -105,11 +105,10 @@ export default function MetasearchPage() {
 
       <Section>
         <SectionHead eyebrow="Related resources" title="Keep going" />
-        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { href: '/flights-api/one-way', label: 'One-Way API', sub: 'The base search, field by field' },
             { href: '/flights-api/round-trip', label: 'Round-Trip API', sub: 'Paired itineraries with one total price' },
-            { href: '/tools/google-flights-url-parser', label: 'URL Parser', sub: 'Turn a Google Flights URL into the API call' },
             { href: '/guides/google-flights-url-parameters', label: 'URL parameters guide', sub: 'How Google encodes a search' },
             { href: '/use-cases/market-analysis', label: 'Market analysis', sub: 'The same data as a time series' },
           ].map((l) => (

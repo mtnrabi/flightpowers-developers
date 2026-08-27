@@ -124,6 +124,10 @@ export const FIXTURES = {
   onewayJfkCun: onewayJfkCun as unknown as Fixture<OnewayFlight[]>,
   hotelSearchLisbon: hotelSearchLisbon as unknown as Fixture<{
     destination: string;
+    checkin_date: string;
+    checkout_date: string;
+    applied_filters: string[];
+    budget_per_night: number | null;
     properties: {
       name: string;
       price_string: string;
@@ -132,7 +136,11 @@ export const FIXTURES = {
       review_count: number;
       room_type: string;
       location: string | null;
+      image_url: string | null;
       link: string;
+      nights: number;
+      adults: number;
+      children: number | null;
     }[];
   }>,
 } as const;

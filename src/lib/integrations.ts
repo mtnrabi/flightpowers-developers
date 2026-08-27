@@ -23,7 +23,7 @@ export const INTEGRATIONS: Integration[] = [
     slug: 'claude',
     name: 'Claude',
     href: '/integrations/claude',
-    line: 'Live fares, quoted mid-conversation',
+    line: 'Live fares and hotel rates, quoted mid-conversation',
     tag: 'MCP connector',
   },
   {
@@ -65,7 +65,7 @@ export const INTEGRATIONS: Integration[] = [
     slug: 'make',
     name: 'Make',
     href: '/integrations/make',
-    line: 'Scenarios on live fares via the HTTP module',
+    line: 'Scenarios on live fares and hotel rates',
     tag: 'HTTP module',
   },
   {

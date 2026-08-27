@@ -144,7 +144,7 @@ export default function ParallelDateScanPage() {
                   Get a key on RapidAPI →
                 </Cta>
                 <Cta href="/tools/cheapest-month-to-fly" variant="ghost">
-                  Try it as a free tool
+                  Try it for free
                 </Cta>
               </div>
               <p className="mt-4 font-mono text-[12px] text-ink-500">Free tier on RapidAPI. No card to try.</p>
