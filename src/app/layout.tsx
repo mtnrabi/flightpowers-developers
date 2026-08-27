@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google';
 import { SITE } from '@/lib/site';
 import { SiteHeader } from '@/components/SiteHeader';
 import { SiteFooter } from '@/components/SiteFooter';
+import { JsonLd } from '@/components/ui';
 import './globals.css';
 
 const sans = Inter({
@@ -29,10 +30,11 @@ export const metadata: Metadata = {
     default: 'FlightPowers: live flight & hotel pricing APIs with a price verdict',
     template: '%s · FlightPowers',
   },
+  // Fallback only, and kept inside Google's ~160-char snippet window. Every
+  // page sets its own; this is what a page that skipped withOg() would ship.
   description:
-    'Real-time Google Flights and Booking.com data as clean JSON. Google’s own price band and a ' +
-    'low | typical | high verdict on every fare, paired-leg round trips, per-country hotel rates, ' +
-    'and headers that tell “no flights” apart from “the search failed.”',
+    'Real-time Google Flights and Booking.com data as clean JSON, with Google’s own price band ' +
+    'and a low | typical | high verdict on every fare.',
   applicationName: SITE.name,
   authors: [{ name: 'Matan Rabi' }],
   // Fallbacks only: every page wraps its own metadata in withOg(), which
@@ -53,6 +55,37 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${sans.variable} ${display.variable} ${mono.variable}`}>
       <head>
         <link rel="author" href="/llms.txt" type="text/plain" title="LLM Information" />
+        {/*
+          The brand entity. Before this the site had no Organization node at
+          all, so nothing tied the name, the logo, and the marketplace profiles
+          together; the only Organization on the site was a bare {name} stub
+          nested in article publisher fields. It carries an @id so those
+          publisher references resolve to a real node instead of a stub.
+
+          Every sameAs below is a live profile we control. Nothing here is a
+          claim about size, rating, or customers.
+        */}
+        <JsonLd
+          data={{
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            '@id': `${SITE.url}/#organization`,
+            name: SITE.name,
+            url: SITE.url,
+            logo: {
+              '@type': 'ImageObject',
+              url: `${SITE.url}/apple-icon.png`,
+            },
+            description: SITE.tagline,
+            founder: { '@type': 'Person', name: 'Matan Rabi', url: `${SITE.url}/about` },
+            sameAs: [
+              'https://rapidapi.com/user/mtnrabi',
+              'https://github.com/mtnrabi',
+              'https://apify.com/mtnrabi',
+              'https://www.npmjs.com/package/n8n-nodes-flight-hotel-data',
+            ],
+          }}
+        />
       </head>
       <body className="min-h-screen flex flex-col antialiased">
         <a

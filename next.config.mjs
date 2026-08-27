@@ -17,6 +17,26 @@ const OLD_CONSUMER_POSTS = [
   'aws-lambda-good-bad-ugly',
 ];
 
+/**
+ * Non-blog paths the old consumer engine served on the apex and that Google
+ * crawled (confirmed 200 in the Wayback CDX index for flightpowers.com).
+ * They moved with the engine, so they get the same treatment as the posts.
+ * Without this /saved is a hard 404 on an indexed URL.
+ */
+const OLD_CONSUMER_PATHS = ['/saved'];
+
+/**
+ * This project is served on four hosts. Only the apex should be indexable;
+ * the other three are byte-identical duplicates. Every page already emits a
+ * canonical pointing at the apex, but a canonical is a hint and a 308 is not,
+ * so the aliases redirect and Google gets one URL per page.
+ */
+const ALIAS_HOSTS = [
+  'www.flightpowers.com',
+  'developers.flightpowers.com',
+  'flightpowers-developers.vercel.app',
+];
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
@@ -24,9 +44,20 @@ const nextConfig = {
   poweredByHeader: false,
   async redirects() {
     return [
+      ...ALIAS_HOSTS.map((host) => ({
+        source: '/:path*',
+        has: [{ type: 'host', value: host }],
+        destination: 'https://flightpowers.com/:path*',
+        permanent: true,
+      })),
       ...OLD_CONSUMER_POSTS.map((slug) => ({
         source: `/blog/${slug}`,
         destination: `https://demo.flightpowers.com/blog/${slug}`,
+        permanent: true,
+      })),
+      ...OLD_CONSUMER_PATHS.map((path) => ({
+        source: path,
+        destination: `https://demo.flightpowers.com${path}`,
         permanent: true,
       })),
       // The integrations hub's MCP entry is the /mcp page.
