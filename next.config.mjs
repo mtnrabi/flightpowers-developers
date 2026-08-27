@@ -26,6 +26,15 @@ const OLD_CONSUMER_POSTS = [
 const OLD_CONSUMER_PATHS = ['/saved'];
 
 /**
+ * Retired pages on THIS site that were live long enough to be linked and
+ * crawled. /tools/google-flights-url-parser shipped in the sitemap and was
+ * footer-linked before it was removed; without this it is a hard 404 on a
+ * known URL. Point each at its nearest surviving equivalent, never the
+ * homepage, which Google reads as a soft 404.
+ */
+const RETIRED_PAGES = [['/tools/google-flights-url-parser', '/tools']];
+
+/**
  * This project is served on four hosts. Only the apex should be indexable;
  * the other three are byte-identical duplicates. Every page already emits a
  * canonical pointing at the apex, but a canonical is a hint and a 308 is not,
@@ -58,6 +67,11 @@ const nextConfig = {
       ...OLD_CONSUMER_PATHS.map((path) => ({
         source: path,
         destination: `https://demo.flightpowers.com${path}`,
+        permanent: true,
+      })),
+      ...RETIRED_PAGES.map(([source, destination]) => ({
+        source,
+        destination,
         permanent: true,
       })),
       // The integrations hub's MCP entry is the /mcp page.
