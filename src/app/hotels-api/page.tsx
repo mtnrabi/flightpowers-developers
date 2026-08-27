@@ -144,6 +144,23 @@ export default function HotelsApiHubPage() {
       <JsonLd
         data={{
           '@context': 'https://schema.org',
+          '@type': 'WebAPI',
+          name: 'FlightPowers Booking.com Hotels API',
+          url: `${SITE.url}/hotels-api`,
+          description:
+            'REST API over live Booking.com prices: destination search with 24 filters, hotel lookup by name, room-level pricing, and proxy_country for querying the same property from different markets (rate-parity and geo-pricing monitoring).',
+          documentation: `${SITE.url}/hotels-api`,
+          termsOfService: `${SITE.url}/terms`,
+          provider: { '@type': 'Organization', name: 'FlightPowers', url: SITE.url },
+          potentialAction: {
+            '@type': 'ConsumeAction',
+            target: { '@type': 'EntryPoint', urlTemplate: `https://${SITE.apiHost}/v1/hotels/search`, httpMethod: 'POST', contentType: 'application/json' },
+          },
+        }}
+      />
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
           '@type': 'CollectionPage',
           name: 'Booking.com Hotels API',
           description:

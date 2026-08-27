@@ -89,7 +89,8 @@ export const LINKS = {
   skills: 'https://github.com/mtnrabi/travel-agent-skills',
   clawhubFlights: 'https://clawhub.ai/mtnrabi/google-flights-realtime-api',
   clawhubHotels: 'https://clawhub.ai/mtnrabi/booking-hotel-search',
-  openapi: 'https://api.flightpowers.com/openapi.json',
+  /** The complete authored spec (servers, auth, request/response schemas). */
+  openapi: 'https://flightpowers.com/openapi.json',
   apiDocs: 'https://api.flightpowers.com/docs',
   github: 'https://github.com/mtnrabi',
   demoProduct: 'https://demo.flightpowers.com',

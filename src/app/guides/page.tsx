@@ -28,6 +28,12 @@ const GUIDES = [
     tag: 'start here',
   },
   {
+    href: '/guides/google-flights-api',
+    title: 'Is there a Google Flights API? What actually exists in 2026',
+    sub: 'No, and there has not been one since QPX Express closed in April 2018. The three real options today: extraction APIs, GDS/booking APIs, and self-hosted scrapers, with the trade-offs stated plainly.',
+    tag: 'explainer',
+  },
+  {
     href: '/guides/handle-empty-flight-search-results',
     title: 'Handling empty flight search results',
     sub: 'Why 200 [] is the most dangerous response a search API can return, the failure taxonomy behind it, and a vendor-neutral checklist for evaluating any search API’s empty-result semantics.',

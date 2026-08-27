@@ -1,0 +1,151 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'Is there a Google Flights API? What actually exists in 2026',
+  description:
+    'No. Google shut down QPX Express in April 2018 and has offered no public flights API since. Here are the three real ways to get Google Flights data today: extraction APIs, GDS/booking APIs, and running an open-source scraper yourself, with the trade-offs stated plainly.',
+  alternates: { canonical: '/guides/google-flights-api' },
+});
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'Is there a Google Flights API? What actually exists in 2026',
+    description:
+      'Google has no public flights API since QPX Express closed in April 2018. The three real options today: extraction APIs, GDS/booking APIs, and self-hosted scrapers.',
+    url: `${SITE.url}/guides/google-flights-api`,
+    datePublished: '2026-08-27',
+    dateModified: '2026-08-27',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Does Google offer an official Google Flights API?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. Google shut down QPX Express, its public flight-search API, in April 2018. The Travel Partner API that remains is for airlines and online travel agencies under contract with Google, not for general developers. Every "Google Flights API" on the market today is a third-party service that extracts data from the public Google Flights site.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How do developers get Google Flights prices today?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Three ways: (1) a hosted extraction API that returns live Google Flights results as JSON (FlightPowers, SerpApi, SearchAPI and others), (2) a flight data or booking API built on airline/GDS inventory instead of Google (Amadeus, Duffel), which returns different fares from a different source, or (3) running an open-source scraper yourself and absorbing the maintenance.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Is there a free Google Flights API?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Not a usable production one. Free tiers in this niche are verification-sized: FlightPowers’ free RapidAPI tier is 10 requests per month, hard capped, which verifies a key but cannot evaluate the data. Open-source scrapers are free to run but you pay in maintenance every time the page changes.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What data does a Google Flights extraction API return?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Itineraries for a route and date as JSON: price, airline, stops, duration, and a booking deep link. FlightPowers additionally returns Google’s own historical price band (price_insights_low/high) with a low, typical or high verdict on every itinerary, and an X-Search-Status header that distinguishes a genuinely empty result from a failed search.',
+        },
+      },
+    ],
+  }}
+/>
+
+# Is there a Google Flights API? What actually exists in 2026
+
+No. Google Flights has no public API. Google shut down **QPX Express**, the last
+public flight-search API it offered, in **April 2018**, and its remaining **Travel
+Partner API** is for airlines and OTAs under contract, not for developers who want
+to query a route and get a price back. Everything sold as a "Google Flights API"
+since then is a third party reading the public Google Flights site for you. That
+includes mine. This page lays out the three real options and how to choose.
+
+## What happened to the official API
+
+QPX Express came out of Google's ITA Software acquisition and let anyone query
+fares for a few cents per request. Google announced its retirement in late 2017
+and switched it off in April 2018. Nothing public replaced it. The demand did not
+go anywhere, which is why the search results for "Google Flights API" are now a
+wall of third-party services with similar names.
+
+## The three real options
+
+**1. A hosted extraction API.** A vendor runs live searches against the public
+Google Flights site and returns the results as JSON. You trade a per-request fee
+for not owning the scraping problem. This is what FlightPowers is, and also what
+SerpApi and SearchAPI sell. The differences that matter: which fields survive the
+extraction (price context is the big one), how the API behaves when a search
+fails, and price per request. I compare those honestly, with dated quotes, in
+[the best flight data APIs in 2026](/guides/best-flight-data-apis-2026).
+
+**2. A GDS or booking API.** Amadeus, Duffel and the other travel-industry APIs
+do not touch Google. They sell airline inventory through GDS/NDC channels. You
+get bookable fares and ticketing, which extraction APIs cannot give you, but the
+prices are not what a traveler sees on Google Flights, coverage skews to the
+carriers in the deal, and getting production access involves sales conversations.
+If your product needs to *issue tickets*, start there:
+[FlightPowers vs Duffel](/compare/duffel) and
+[vs Amadeus](/compare/amadeus) spell out the split.
+
+**3. Run a scraper yourself.** Open-source projects (the best known is
+`fast-flights` on GitHub) parse Google Flights for free. For a personal script
+this is a fine answer. For anything with users, you now own proxy rotation,
+consent walls, page redesigns, and the fact that a broken parser returns an empty
+array that looks exactly like "no flights". That last failure mode is the reason
+[this API reports search status explicitly](/guides/handle-empty-flight-search-results).
+
+## The 60-second version of option 1
+
+```bash
+curl -X POST https://api.flightpowers.com/v1/flights/oneway \
+  -H "x-api-key: $RAPIDAPI_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"from_airport": "JFK", "to_airport": "LHR", "departure_date": "2026-10-15"}'
+```
+
+Each itinerary in the response carries the fare, airline, stops, duration, a
+booking deep link, and the two fields the official API never had: Google's own
+historical price band for the route (`price_insights_low` / `price_insights_high`)
+and a `low | typical | high` verdict. That verdict is what turns a price feed
+into "book now or wait" logic. The machine-readable contract is public:
+[OpenAPI spec](/openapi.json), [llms.txt](/llms.txt),
+[full reference](/llms-full.txt).
+
+## How to choose, in three questions
+
+1. **Do you need to issue tickets?** GDS/booking API. Nothing else will do it.
+2. **Do you need the prices travelers actually compare?** Google Flights data,
+   which means an extraction API or your own scraper.
+3. **Is this a product or a weekend script?** Products need the failure-mode
+   contract (what does an empty array mean?) and a rate limit that supports
+   date scans. Scripts can use anything, including free scrapers.
+
+## Related
+
+- [How to get real-time Google Flights data](/guides/real-time-google-flights-data): the full walkthrough with paste-and-run code
+- [The best flight data APIs in 2026](/guides/best-flight-data-apis-2026): the comparison, bias disclosed
+- [MCP servers](/mcp): the same data as tools for Claude, ChatGPT, Cursor, or any MCP client
+- <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">Get a key on RapidAPI</a>: free tier included (10 requests/month, hard cap: verifies your key, doesn't evaluate)
+
+<CtaBand
+  medium="guide"
+  title="Test it on your own routes"
+  body="Run your three hardest routes and read the response headers. If the data doesn't earn the fee, you've spent nothing."
+/>
