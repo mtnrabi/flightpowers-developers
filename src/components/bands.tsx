@@ -37,7 +37,7 @@ export function CtaBand({
   api?: 'flights' | 'hotels';
 }) {
   return (
-    <div className="rounded-3xl border rule bg-ink-900/70 px-6 py-12 sm:px-12 sm:py-16 text-center">
+    <div className="rounded-3xl border rule bg-ink-900/70 px-6 py-10 sm:px-12 sm:py-16 text-center">
       <h2 className="text-[1.75rem] sm:text-4xl font-semibold">{title}</h2>
       <p className="lede mx-auto mt-4 max-w-2xl">{body}</p>
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">

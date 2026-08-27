@@ -70,10 +70,10 @@ const columns: { heading: string; links: FooterLink[] }[] = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t rule mt-24">
+    <footer className="border-t rule mt-16 sm:mt-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5">
-          <div>
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-5">
+          <div className="col-span-2 lg:col-span-1">
             <p className="text-[15px] font-semibold text-ink-100">FlightPowers</p>
             <p className="mt-2 text-sm text-ink-400 max-w-[26ch]">{SITE.tagline}</p>
             <p className="mt-4 font-mono text-[11px] text-ink-400">{SITE.apiHost}</p>

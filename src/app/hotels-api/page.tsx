@@ -216,7 +216,7 @@ export default function HotelsApiHubPage() {
         <SectionHead
           eyebrow="Endpoints"
           title="Four ways in, one subscription"
-          lede="Every plan includes every endpoint: you only choose volume and rate limit. Each page below shows a real captured request and what came back."
+          lede="Every hotels plan includes every hotels endpoint: you only choose volume and rate limit. Each page below shows a real captured request and what came back."
         />
         <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
           {ENDPOINTS.map((e) => (

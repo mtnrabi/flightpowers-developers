@@ -98,6 +98,7 @@ export const LINKS = {
 /** Top navigation — five items, everything else lives in the footer. */
 export const NAV: { href: string; label: string; external?: boolean }[] = [
   { href: '/#apis', label: 'APIs' },
+  { href: '/integrations', label: 'Integrations' },
   { href: '/tools', label: 'Free Tools' },
   { href: '/pricing', label: 'Pricing' },
   { href: SITE.docsUrl, label: 'Docs' },
@@ -105,8 +106,9 @@ export const NAV: { href: string; label: string; external?: boolean }[] = [
 ];
 
 /**
- * The surface strip — the breadth argument. Only surfaces that are live today.
- * Zapier and Make are deliberately absent until those integrations are published.
+ * The surface strip — the breadth argument. Every label links to a real page
+ * with a working setup (Zapier and Make document the HTTP-step path until
+ * their native apps list).
  */
 export const SURFACES: { label: string; href: string; external?: boolean }[] = [
   { label: 'RapidAPI', href: '/integrations/rapidapi' },
@@ -115,6 +117,9 @@ export const SURFACES: { label: string; href: string; external?: boolean }[] = [
   { label: 'ChatGPT', href: '/integrations/chatgpt' },
   { label: 'Cursor', href: '/integrations/cursor' },
   { label: 'n8n', href: '/integrations/n8n' },
+  { label: 'Zapier', href: '/integrations/zapier' },
+  { label: 'Make', href: '/integrations/make' },
+  { label: 'LangChain', href: '/integrations/langchain' },
   { label: 'Apify', href: '/integrations/apify' },
   { label: 'npm', href: LINKS.npmNode, external: true },
   { label: 'GitHub', href: LINKS.skills, external: true },

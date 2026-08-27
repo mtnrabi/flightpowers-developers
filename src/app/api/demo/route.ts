@@ -46,6 +46,18 @@ const CHIPS: Record<string, () => unknown> = {
       rows: f.data,
     };
   },
+  'cheapest-day-november': () => {
+    const f = FIXTURES.novscanLisJfk;
+    return {
+      mode: 'canned',
+      capturedAt: f.captured_at,
+      question: 'Cheapest day to fly Lisbon to New York in November',
+      kind: 'month-scan',
+      request: f.request,
+      days: f.data,
+      sampledEvery: 1,
+    };
+  },
   'hotel-three-markets': () => {
     const f = FIXTURES.hotelGeoRixos;
     return {

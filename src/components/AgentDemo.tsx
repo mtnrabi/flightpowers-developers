@@ -12,10 +12,17 @@ import { CapturedBadge } from './ui';
 
 /**
  * The homepage centerpiece: a chat box that IS the product.
- * First paint shows a captured deal hunt (server-rendered, real HTML before
- * any JS runs). Chips replay captured runs for free; typing runs a LIVE
- * search through /api/demo behind the budget caps, and the UI says which
- * is which at every step.
+ *
+ * Layout is input-FIRST: the question box and example chips sit at the top of
+ * the terminal, the pending state renders directly under the input the moment
+ * you press Ask, and the newest answer lands right below it, exactly where
+ * your eyes already are. History stacks underneath, dimmed. (The old layout
+ * appended answers above the input inside a scroll region; on a phone you
+ * pressed Ask and saw nothing change.)
+ *
+ * Chips are context-aware: a flights conversation offers flight follow-ups;
+ * the hotel geo-pricing example lives behind its own clearly-labelled
+ * affordance and only joins the chip row in a hotel context.
  */
 
 type Answer =
@@ -35,11 +42,15 @@ type Turn = {
   snippetTool?: string;
 };
 
-const CHIPS = [
-  { id: 'warm-getaway-january', label: 'Find me a cheap winter-sun escape from London in January' },
-  { id: 'good-price-jfk-cun', label: 'Is $129 JFK→Cancún on Jan 1 a good price?' },
-  { id: 'hotel-three-markets', label: 'Same hotel, priced from the US, Germany and Israel' },
-] as const;
+type Chip = { id: string; label: string };
+
+const FLIGHT_CHIPS: Chip[] = [
+  { id: 'warm-getaway-january', label: 'Cheap winter sun from London in January' },
+  { id: 'good-price-jfk-cun', label: 'Is $129 JFK→Cancún a good price?' },
+  { id: 'cheapest-day-november', label: 'Cheapest day LIS→JFK in November' },
+];
+
+const HOTEL_CHIPS: Chip[] = [{ id: 'hotel-three-markets', label: 'Same hotel from the US, Germany and Israel' }];
 
 const DEST_NAMES: Record<string, string> = { LPA: 'Gran Canaria', RAK: 'Marrakech', AGP: 'Málaga' };
 
@@ -139,7 +150,7 @@ function hotelNarrative(markets: { country: string; result: HotelByName | null }
   return `The ${min.country.toUpperCase()} market was quoted ${min.result!.price_string} for the same room the ${max.country.toUpperCase()} market sees at ${max.result!.price_string}. That's a ${money(max.result!.price! - min.result!.price!)} spread on one booking, caught by varying proxy_country.`;
 }
 
-/** Build the first-paint turn from a captured chip payload (passed by the server). */
+/** Build a display turn from a captured chip payload (server-provided). */
 export function buildCannedTurn(payload: Record<string, unknown>): Turn {
   if (payload.kind === 'deal-hunt') {
     const rows = payload.rows as DealHuntRow[];
@@ -268,12 +279,14 @@ export function AgentDemo({ initialChipPayload }: { initialChipPayload: Record<s
   const [elapsed, setElapsed] = useState(0);
   const [notice, setNotice] = useState<string | null>(null);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const bottomRef = useRef<HTMLDivElement | null>(null);
+  const statusRef = useRef<HTMLDivElement | null>(null);
   const started = useRef(false);
 
+  // Keep the status/answer zone in view. The pending line and the newest
+  // answer both render directly under the input, so one anchor serves both.
   useEffect(() => {
-    if (started.current) bottomRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }, [turns, notice]);
+    if (started.current) statusRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }, [turns, notice, busy]);
 
   function startTimer() {
     setElapsed(0);
@@ -284,7 +297,7 @@ export function AgentDemo({ initialChipPayload }: { initialChipPayload: Record<s
     timerRef.current = null;
   }
 
-  async function runChip(id: (typeof CHIPS)[number]['id']) {
+  async function runChip(id: string) {
     if (busy) return;
     started.current = true;
     setBusy(true);
@@ -392,7 +405,12 @@ export function AgentDemo({ initialChipPayload }: { initialChipPayload: Record<s
     }
   }
 
-  const latest = turns[turns.length - 1];
+  // Newest answer first; a short dimmed history under it.
+  const ordered = [...turns].reverse();
+  const latest = ordered[0];
+  const earlier = ordered.slice(1, 3);
+  const hotelContext = latest?.answer.kind === 'hotel-geo';
+  const chips = hotelContext ? [...HOTEL_CHIPS, ...FLIGHT_CHIPS.slice(0, 2)] : FLIGHT_CHIPS;
 
   return (
     <div className="terminal">
@@ -408,35 +426,8 @@ export function AgentDemo({ initialChipPayload }: { initialChipPayload: Record<s
         <span className="live-badge">live API behind this box</span>
       </div>
 
-      <div className="p-4 sm:p-5 space-y-5 max-h-[560px] overflow-y-auto">
-        {turns.map((turn, i) => (
-          <div key={i} className="space-y-3">
-            <p className="text-[14px] text-ink-100">
-              <span className="font-mono text-[11px] text-signal-500 mr-2">you →</span>
-              {turn.question}
-            </p>
-            <AnswerBlock turn={turn} />
-          </div>
-        ))}
-
-        {busy ? (
-          <p className="font-mono text-[12.5px] text-ink-400">
-            scanning live against Google Flights. nothing here is cached, hard routes take longer
-            {elapsed > 0 ? ` · ${elapsed}s` : ''}
-          </p>
-        ) : null}
-        {notice ? <p className="text-[13.5px] text-verdict-typical leading-relaxed">{notice}</p> : null}
-        <div ref={bottomRef} />
-      </div>
-
-      <div className="border-t rule p-4 sm:p-5 space-y-3">
-        <div className="flex flex-wrap gap-2">
-          {CHIPS.map((chip) => (
-            <button key={chip.id} type="button" className="chip" onClick={() => runChip(chip.id)} disabled={busy}>
-              {chip.label}
-            </button>
-          ))}
-        </div>
+      {/* Input first: ask here, the answer appears right below. */}
+      <div className="p-4 sm:p-5 space-y-3">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -449,7 +440,7 @@ export function AgentDemo({ initialChipPayload }: { initialChipPayload: Record<s
             aria-label="Ask the travel agent a question"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder='Ask it like a travel agent: "cheapest day JFK to Miami in November"'
+            placeholder='Try: "cheapest day JFK to Miami in November"'
             maxLength={300}
             className="min-w-0 flex-1 rounded-full border rule bg-ink-900 px-4 py-2.5 text-[14px] text-ink-100 placeholder:text-ink-500 focus:border-signal-600 focus:outline-none"
           />
@@ -457,14 +448,54 @@ export function AgentDemo({ initialChipPayload }: { initialChipPayload: Record<s
             {busy ? '…' : 'Ask'}
           </button>
         </form>
+        <div className="flex flex-wrap items-center gap-2">
+          {chips.map((chip) => (
+            <button key={chip.id} type="button" className="chip" onClick={() => runChip(chip.id)} disabled={busy}>
+              {chip.label}
+            </button>
+          ))}
+          {!hotelContext ? (
+            <button
+              type="button"
+              className="chip !border-dashed"
+              onClick={() => runChip('hotel-three-markets')}
+              disabled={busy}
+            >
+              Hotels: same room, 3 markets →
+            </button>
+          ) : null}
+        </div>
         <p className="font-mono text-[11px] text-ink-500">
-          The examples replay captured runs, free. Typed questions run REAL searches on our own key, capped per visitor and per day
-          so the demo stays honest and affordable. It understands routes, dates, and &quot;cheapest day in &lt;month&gt;&quot;.
+          Chips replay captured runs, free. Typed questions run REAL searches on our key, capped per visitor and per day. It
+          understands routes, dates, and &quot;cheapest day in &lt;month&gt;&quot;.
         </p>
       </div>
 
-      {latest?.snippets ? (
-        <div className="border-t rule p-4 sm:p-5">
+      {/* Status + answers: everything lands HERE, right under the input. */}
+      <div className="border-t rule p-4 sm:p-5 space-y-4">
+        <div ref={statusRef} className="scroll-mt-24" aria-hidden="true" />
+        {busy ? (
+          <div className="font-mono text-[12.5px] text-signal-400" role="status">
+            <p className="flex items-center gap-2">
+              <span className="live-badge" aria-hidden="true" />
+              scanning live against Google Flights{elapsed > 0 ? ` · ${elapsed}s` : '…'}
+            </p>
+            <p className="mt-1 text-ink-500">nothing here is cached; hard routes can take ~30s</p>
+          </div>
+        ) : null}
+        {notice ? <p className="text-[13.5px] text-verdict-typical leading-relaxed">{notice}</p> : null}
+
+        {latest ? (
+          <div className="space-y-3">
+            <p className="text-[14px] text-ink-100">
+              <span className="font-mono text-[11px] text-signal-500 mr-2">you →</span>
+              {latest.question}
+            </p>
+            <AnswerBlock turn={latest} />
+          </div>
+        ) : null}
+
+        {latest?.snippets ? (
           <ApiUpsellCard
             snippets={latest.snippets}
             tool={latest.snippetTool ?? 'agent-demo'}
@@ -473,8 +504,23 @@ export function AgentDemo({ initialChipPayload }: { initialChipPayload: Record<s
             headline="The calls that produced this answer"
             body="Same requests, your code, your key. The price band, the verdict, and X-Search-Status ride on every response."
           />
-        </div>
-      ) : null}
+        ) : null}
+
+        {earlier.length > 0 ? (
+          <div className="space-y-4 opacity-60">
+            <p className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-ink-500">earlier</p>
+            {earlier.map((turn, i) => (
+              <div key={`${turn.question}-${i}`} className="space-y-3">
+                <p className="text-[14px] text-ink-100">
+                  <span className="font-mono text-[11px] text-signal-500 mr-2">you →</span>
+                  {turn.question}
+                </p>
+                <AnswerBlock turn={turn} />
+              </div>
+            ))}
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 }

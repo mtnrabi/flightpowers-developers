@@ -10,7 +10,7 @@ import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 export const metadata: Metadata = withOg({
   title: 'Pricing: plans from $0, billed on RapidAPI',
   description:
-    'Flights: free tier, then $10 / $25 / $50 per month with 150–500 requests/minute. Hotels: free tier, then $10 / $20 / $50. Every plan includes every endpoint; compare $ per 1,000 requests. Billing is on RapidAPI, so there is no new vendor to onboard.',
+    'Two APIs, two plan sets. Flights: $0, then $10 / $25 / $50 per month at 150 to 500 requests/minute. Hotels: $0, then $10 / $20 / $50 at 25 to 50 requests/minute. Billed on RapidAPI; compare $ per 1,000 requests.',
   alternates: { canonical: '/pricing' },
 });
 
@@ -18,12 +18,16 @@ export const dynamic = 'force-static';
 
 const faq: Faq[] = [
   {
+    q: 'Do flights and hotels share one plan?',
+    a: 'No. They are two listings on RapidAPI with different plans: flights runs $0 / $10 / $25 / $50 at 150 to 500 requests/minute, hotels $0 / $10 / $20 / $50 at 25 to 50. Subscribe to each API you use; the same account key then works for both.',
+  },
+  {
     q: 'Where does billing actually happen?',
     a: 'On RapidAPI. You subscribe to a plan on the listing’s pricing tab, RapidAPI issues the key and meters usage, and their invoice is your invoice. We never see your card. If your company already uses RapidAPI, there is no new vendor to onboard.',
   },
   {
     q: 'Is the free tier enough to evaluate the API?',
-    a: 'Honestly, no. BASIC is 10 requests per month with a hard cap: enough to verify your key works and see the response shape. Evaluate with the live demo on the homepage and the free tools on this site: they run real requests against the live API on our own key.',
+    a: 'Honestly, no. It is 10 requests per month, hard-capped: enough to verify your key. Evaluate with the live demo on the homepage and the free tools here; they run real requests on our key.',
   },
   {
     q: 'What counts as a request?',
@@ -31,19 +35,11 @@ const faq: Faq[] = [
   },
   {
     q: 'Do the plans differ in features?',
-    a: 'No. Every plan includes every endpoint on its API. Plans differ only on monthly volume, overage price, and requests-per-minute. There is no feature gate to hit later.',
+    a: 'No. Within each API, every plan includes every endpoint. Plans differ only on monthly volume, overage price, and requests per minute. There is no feature gate to hit later.',
   },
   {
     q: 'What happens when I exceed my quota?',
     a: 'On paid plans the quota is soft: extra requests bill at the plan’s overage rate ($0.003/request on flights Pro and Ultra, $0.001 on Mega; $0.006 / $0.003 / $0.002 on hotels). The free tier is a hard cap: requests beyond 10 are rejected, not billed.',
-  },
-  {
-    q: 'Is there an approval step before I can subscribe?',
-    a: 'No. All public plans on both listings have request-approval disabled, so subscribing is immediate and the free tier needs no card.',
-  },
-  {
-    q: 'Can I pay per use instead of a subscription?',
-    a: 'Yes. The Apify actors are pay-per-event with no monthly fee. The hotels actor works out to roughly $4 per 1,000 searches by its own event table. Note Apify prices per SEARCH (plus a tiny per-result event), so compare against searches, not result rows.',
   },
   {
     q: 'What if I need more than 50,000 requests a month?',
@@ -66,11 +62,11 @@ export default function PricingPage() {
       <Container className="pt-14 sm:pt-20 pb-4">
         <p className="eyebrow">Pricing</p>
         <h1 className="mt-4 text-hero font-semibold max-w-3xl">
-          Simple tiers, billed on <span className="text-signal-500">RapidAPI</span>
+          Two APIs, priced <span className="text-signal-500">separately</span>
         </h1>
         <p className="lede mt-5 max-w-2xl">
-          This page is for deciding; the checkout is the listing&apos;s pricing tab. Every plan includes every endpoint. You only
-          choose volume and rate limit. Prices below were read from the live listings on {READ_ON}; the listing is authoritative.
+          Flights and hotels are separate products on RapidAPI, each with its own plans, prices, and rate limits. One account key
+          works for both once you subscribe to each. Prices below were read from the live listings on {READ_ON}.
         </p>
       </Container>
 
@@ -105,9 +101,9 @@ export default function PricingPage() {
 
       <Section>
         <SectionHead
-          eyebrow="Which plan for which job"
+          eyebrow="Which flights plan for which job"
           title="Price the job, not the tier"
-          lede="Requests map directly onto work: one search is one request, and a flexible-date scan is one request per date."
+          lede="One search is one request; a flexible-date scan is one request per date. Flight plans shown; the same logic sizes a hotels plan."
         />
         <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
           <div className="rounded-2xl border rule bg-ink-900/60 p-6">
@@ -145,12 +141,12 @@ export default function PricingPage() {
         />
         <ol className="mt-10 max-w-3xl space-y-4">
           {[
-            ['Open the pricing tab', 'The buttons on this site land you there directly. One step saved.'],
-            ['Create a RapidAPI account (or log in)', 'The wall. It is a standard signup, off our domain; RapidAPI runs the accounts and billing.'],
-            ['Pick a plan', 'BASIC is free with no card. Paid plans take a card. No approval step on any public plan. Access is immediate.'],
-            ['Hit "Test Endpoint" on the Endpoints tab', 'Your key is bound automatically and the response renders in the browser.'],
-            ['Copy a code snippet', 'The Code Snippets tab emits your language of choice with the key already in place.'],
-            ['Verify the key below', 'Paste it into the checker and confirm it authenticates against the live API, the step RapidAPI leaves out.'],
+            ['Open the pricing tab', 'The buttons on this site land you there directly.'],
+            ['Create a RapidAPI account (or log in)', 'The wall. Standard signup; RapidAPI runs accounts and billing.'],
+            ['Pick a plan', 'BASIC is free, no card, no approval. Access is immediate.'],
+            ['Hit "Test Endpoint" on the Endpoints tab', 'Your key is bound automatically; the response renders in the browser.'],
+            ['Copy a code snippet', 'The Code Snippets tab emits your language with the key in place.'],
+            ['Verify the key below', 'Confirm it authenticates against the live API, the step RapidAPI leaves out.'],
           ].map(([title, body], i) => (
             <li key={title} className="flex gap-4 rounded-2xl border rule bg-ink-900/50 p-5">
               <span className="font-mono text-[15px] text-signal-500 tabular-nums">{i + 1}</span>
