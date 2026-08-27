@@ -16,6 +16,12 @@ export const dynamic = 'force-static';
 
 const GUIDES = [
   {
+    href: '/guides/ai-travel-agent',
+    title: 'Create your 24/7 AI travel agent',
+    sub: 'Connect live flight and hotel data to Claude or ChatGPT in about 15 minutes, then schedule a daily scan of your routes that only pings you when Google’s own verdict says the fare is low. Real captured runs, honest cost math.',
+    tag: 'flagship',
+  },
+  {
     href: '/guides/real-time-google-flights-data',
     title: 'How to get real-time Google Flights data',
     sub: 'The full walkthrough: endpoints, paste-and-run code, the price-insight fields, paired round-trips, and scanning a whole month of dates in one parallel burst.',
