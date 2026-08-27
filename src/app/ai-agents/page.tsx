@@ -44,8 +44,8 @@ const RECIPES: Recipe[] = [
   },
   {
     title: 'A rate-parity watcher',
-    chips: ['find_hotel_by_name', 'proxy_country', 'price'],
-    body: `One call per market, identical except proxy_country, then compare the quotes. In a captured run on ${geo.captured_at}, the US market was quoted ${geo.data.us.price_string} for the same room Germany and Israel saw at ${geo.data.de.price_string}.`,
+    chips: ['find_hotel_by_name', 'price_as_seen_from', 'price'],
+    body: `One call per market, identical except price_as_seen_from (proxy_country over REST), then compare the quotes. In a captured run on ${geo.captured_at}, the US market was quoted ${geo.data.us.price_string} for the same room Germany and Israel saw at ${geo.data.de.price_string}.`,
   },
   {
     title: 'A trip-planning agent that answers with booking links',
@@ -124,7 +124,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Is there a way to demo without a key?',
-    a: 'The free ad-supported MCP server runs the flight tools with no key: results carry sponsored content and it has a capped daily budget, so it is for trying, not production. The free tools on this site also run live requests on our own key.',
+    a: 'The free ad-supported MCP server runs the flight and hotel tools with no key: results carry sponsored content and it has a capped daily budget, so it is for trying, not production. The free tools on this site also run live requests on our own key.',
   },
 ];
 
@@ -169,7 +169,7 @@ export default function AiAgentsPage() {
                       key authenticates all of it
                     </>,
                     <>Every fare carries Google&apos;s price band, a low | typical | high verdict, and a working buy_link</>,
-                    <>Hotels price per market via proxy_country: rate-parity checks from a single API</>,
+                    <>Hotels price per market (price_as_seen_from over MCP, proxy_country over REST): rate-parity checks from a single API</>,
                   ]}
                 />
               </div>

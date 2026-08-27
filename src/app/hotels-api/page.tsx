@@ -10,6 +10,7 @@ import {
   Container,
   Cta,
   FaqSection,
+  FieldRow,
   JsonLd,
   Section,
   SectionHead,
@@ -226,6 +227,74 @@ export default function HotelsApiHubPage() {
               <p className="mt-1.5 text-[14px] text-ink-400 leading-relaxed">{e.sub}</p>
             </Link>
           ))}
+        </div>
+        <p className="mt-6 text-[14.5px] text-ink-400">
+          After flight data instead? The{' '}
+          <Link href="/flights-api" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+            Google Flights API docs
+          </Link>{' '}
+          are documented to the same depth: one-way, round-trip, price insights and search status.
+        </p>
+      </Section>
+
+      <Section>
+        <SectionHead
+          eyebrow="Request fields"
+          title="The request surface, endpoint by endpoint"
+          lede="Dates are always YYYY-MM-DD, and every endpoint accepts proxy_country. Each dedicated page documents the response fields with captured values."
+        />
+        <div className="mt-8 max-w-3xl">
+          <p className="font-mono text-[11px] uppercase tracking-wider text-signal-500">POST /search · required</p>
+          <div className="mt-2">
+            <FieldRow name="destination" type="string">
+              Free text: &ldquo;Paris&rdquo;, &ldquo;Tokyo Shibuya&rdquo;. Not <code className="field">location</code>: that
+              name 400s, with a message naming the fields it needs.
+            </FieldRow>
+            <FieldRow name="checkin_date / checkout_date" type="string">
+              The stay. Required on every endpoint except <code className="field">/resolve</code>.
+            </FieldRow>
+          </div>
+
+          <p className="mt-10 font-mono text-[11px] uppercase tracking-wider text-signal-500">POST /hotel_by_name · required</p>
+          <div className="mt-2">
+            <FieldRow name="hotel_name" type="string">
+              The name a human would type; <code className="field">area</code> (optional) disambiguates generic names.
+            </FieldRow>
+          </div>
+
+          <p className="mt-10 font-mono text-[11px] uppercase tracking-wider text-signal-500">POST /resolve + POST /hotel · required</p>
+          <div className="mt-2">
+            <FieldRow name="hotel_name → hotel_booking_id" type="string">
+              <code className="field">/resolve</code> takes a name and returns the Booking.com path ID;{' '}
+              <code className="field">/hotel</code> takes that ID and returns the room-by-room list.
+            </FieldRow>
+          </div>
+
+          <p className="mt-10 font-mono text-[11px] uppercase tracking-wider text-signal-500">Optional · shared</p>
+          <div className="mt-2">
+            <FieldRow name="adults / children" type="int">
+              Default <code className="field">2</code> / <code className="field">0</code>.
+            </FieldRow>
+            <FieldRow name="currency" type="string">
+              Defaults to <code className="field">USD</code>; prices and links follow it.
+            </FieldRow>
+            <FieldRow name="proxy_country" type="string">
+              Two-letter lowercase code: route the request through a residential proxy in that market. Accepted by every
+              endpoint; the{' '}
+              <Link href="/hotels-api/geo-pricing" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+                geo-pricing page
+              </Link>{' '}
+              shows a real captured spread.
+            </FieldRow>
+            <FieldRow name="filters · budget_per_night" type="string[] · number">
+              <code className="field">/search</code> only: the {COUNTS.hotelFilters} facets below, plus a per-night cap in your
+              currency.
+            </FieldRow>
+            <FieldRow name="free_cancellation" type="boolean">
+              <code className="field">/hotel_by_name</code> and <code className="field">/hotel</code>: restrict to refundable
+              rates.
+            </FieldRow>
+          </div>
         </div>
       </Section>
 

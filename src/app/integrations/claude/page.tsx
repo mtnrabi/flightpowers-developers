@@ -8,7 +8,7 @@ export const dynamic = 'force-static';
 export const metadata: Metadata = withOg({
   title: 'Live flight & hotel data in Claude: MCP connector setup',
   description:
-    'Connect Claude to live Google Flights and Booking.com data with one custom-connector URL. Bring your own RapidAPI key; every fare returns with Google’s price band and a low/typical/high verdict.',
+    'Connect Claude to live Google Flights and Booking.com data with two custom-connector URLs, one per API. Bring your own RapidAPI key; every fare returns with Google’s price band and a low/typical/high verdict.',
   alternates: { canonical: '/integrations/claude' },
 });
 
@@ -18,8 +18,8 @@ const steps: ConnectStep[] = [
     body: 'Subscribe on the listing’s pricing tab. The free tier needs no card. The key is the only credential this integration uses.',
   },
   {
-    title: 'Add the connector',
-    body: 'Settings → Connectors → Add custom connector, then paste the URL above with your key in place of YOUR_RAPIDAPI_KEY. For hotels, add https://hotels.flightpowers.com/mcp the same way. The same RapidAPI key works for both once you subscribe to each listing.',
+    title: 'Add both connectors',
+    body: 'Settings → Connectors → Add custom connector, once per URL above: first flights, then hotels, each with your key in place of YOUR_RAPIDAPI_KEY. They are separate servers, and one RapidAPI key works for both once you subscribe to each listing.',
   },
   {
     title: 'Ask',
@@ -46,7 +46,7 @@ const tools: ToolLine[] = [
   {
     name: 'find_hotel_by_name',
     type: 'hotels server',
-    note: 'One property by the name a human would type. proxy_country prices it from any market, the rate-parity tool.',
+    note: 'One property by the name a human would type. price_as_seen_from prices it from any market, the rate-parity tool.',
   },
 ];
 
@@ -68,6 +68,10 @@ const faq: Faq[] = [
     a: 'Yes. The live demo on the homepage and the free tools on this site run real requests on our key, so you can see the exact responses Claude will get before you subscribe.',
   },
   {
+    q: 'Can Claude run these searches on a schedule?',
+    a: 'Yes. Claude has native scheduled tasks on paid plans (sidebar → Scheduled → New task, per Anthropic\u2019s help pages, checked 2026-08-27): they run server-side on a schedule you set and can use these connectors, which turns this setup into a daily fare scan that pings you when the verdict says low.',
+  },
+  {
     q: 'Flights and hotels are separate servers. Do I need both?',
     a: 'Only if you want both datasets. They are separate RapidAPI listings with separate subscriptions, but one RapidAPI key covers both once subscribed, and Claude handles the two connectors as one toolbox.',
   },
@@ -77,8 +81,8 @@ export default function ClaudeIntegrationPage() {
   return (
     <AgentIntegrationPage
       slug="claude"
-      lede="Add one connector URL and Claude searches live Google Flights and Booking.com data mid-conversation, with Google’s own price verdict attached to every fare it quotes."
-      heroCodeLabel="add as a custom connector"
+      lede="Add two connector URLs, flights and hotels, and Claude searches live Google Flights and Booking.com data mid-conversation, with Google’s own price verdict attached to every fare it quotes."
+      heroCodeLabel="add each as a custom connector"
       steps={steps}
       promptsLede="Claude picks the tool and fills the parameters itself: these all work as written."
       prompts={[

@@ -12,7 +12,7 @@ export const SITE = {
   tagline: 'Live flight and hotel prices, and the context to judge them.',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://flightpowers.com',
   apiHost: 'api.flightpowers.com',
-  docsUrl: '/flights-api',
+  docsUrl: '/docs',
 } as const;
 
 /** Verified counts. One place. */
@@ -21,7 +21,7 @@ export const COUNTS = {
   mcpServers: 3, // flights (paid), hotels (paid), free ad-supported
   skills: 8, // github.com/mtnrabi/travel-agent-skills
   hotelFilters: 24, // documented on the hotels listing
-  freeTools: 4, // /tools
+  freeTools: 4, // /tools: the demo search engine + 3 live tools
   flightsRateLimits: '150 / 250 / 500', // req/min on Pro / Ultra / Mega
 } as const;
 
@@ -98,6 +98,7 @@ export const LINKS = {
 /** Top navigation — five items, everything else lives in the footer. */
 export const NAV: { href: string; label: string; external?: boolean }[] = [
   { href: '/#apis', label: 'APIs' },
+  { href: '/guides/ai-travel-agent', label: 'Build a Travel Agent' },
   { href: '/integrations', label: 'Integrations' },
   { href: '/tools', label: 'Free Tools' },
   { href: '/pricing', label: 'Pricing' },

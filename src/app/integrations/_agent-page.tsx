@@ -94,10 +94,7 @@ export function AgentIntegrationPage({
                   items={[
                     <>Google&apos;s price band + a low | typical | high verdict on every fare</>,
                     <>Bring your own key: usage bills to your own RapidAPI plan, never ours</>,
-                    <>
-                      Live Booking.com rates too, with <code className="font-mono text-[13px] text-signal-400">proxy_country</code>{' '}
-                      per-market pricing
-                    </>,
+                    <>Live Booking.com rates too, with per-market pricing for rate-parity checks</>,
                   ]}
                 />
               </div>

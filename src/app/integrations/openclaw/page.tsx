@@ -20,7 +20,7 @@ const steps: ConnectStep[] = [
   },
   {
     title: 'Install from ClawHub',
-    body: 'Run the install line above for flights. Hotels is its own listing: clawhub install mtnrabi/booking-hotel-search. One RapidAPI key covers both once you subscribe to each listing.',
+    body: 'Run both install lines above, or just the one you need: flights and hotels are separate ClawHub listings. One RapidAPI key covers both once you subscribe to each listing.',
   },
   {
     title: 'Give it your key',
@@ -64,7 +64,7 @@ export default function OpenClawIntegrationPage() {
   return (
     <AgentIntegrationPage
       slug="openclaw"
-      lede="Install the ClawHub skill and your OpenClaw agent searches live Google Flights, with a second listing alongside for live Booking.com hotel rates."
+      lede="Two install lines and your OpenClaw agent searches live Google Flights fares and live Booking.com hotel rates: one ClawHub listing per API, one key for both."
       heroCodeLabel="terminal"
       steps={steps}
       promptsLede="Once installed, plain requests route to the skills: these all work as written."

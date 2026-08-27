@@ -287,6 +287,69 @@ export default function CompetitiveSetPage() {
               Restrict to refundable rates.
             </FieldRow>
           </div>
+
+          <p className="mt-12 font-mono text-[11px] uppercase tracking-wider text-signal-500">POST /resolve · request</p>
+          <div className="mt-3">
+            <FieldRow name="hotel_name" type="string">
+              Free text, the name a human would type, as in the example above. The only required field. Like every hotels
+              endpoint, <code className="field">/resolve</code> also accepts <code className="field">proxy_country</code> (per
+              the listing&apos;s API reference).
+            </FieldRow>
+          </div>
+        </div>
+      </Section>
+
+      <Section>
+        <SectionHead
+          eyebrow="Response"
+          title="Every response field"
+          lede="Field-by-field, as documented in the listing's API reference and shown in the examples above. These are reference examples, not captured runs."
+        />
+        <div className="mt-8 max-w-3xl">
+          <p className="font-mono text-[11px] uppercase tracking-wider text-signal-500">POST /resolve</p>
+          <div className="mt-2">
+            <FieldRow name="hotel_name" type="string">
+              Echo of the name you sent.
+            </FieldRow>
+            <FieldRow name="hotel_booking_id" type="string">
+              The Booking.com path ID to cache, for example <code className="field">it/boffenigoboutiquegarda</code>.
+            </FieldRow>
+            <FieldRow name="matched_name" type="string">
+              The listed name of the property the resolver actually matched. Compare it against what you meant before caching
+              the ID; a bad match caught here never reaches your nightly numbers.
+            </FieldRow>
+          </div>
+
+          <p className="mt-10 font-mono text-[11px] uppercase tracking-wider text-signal-500">POST /hotel</p>
+          <div className="mt-2">
+            <FieldRow name="hotel_booking_id" type="string">
+              Echo of the ID you sent.
+            </FieldRow>
+            <FieldRow name="checkin_date / checkout_date" type="string">
+              Echo of the stay, <code className="field">YYYY-MM-DD</code>.
+            </FieldRow>
+            <FieldRow name="booking_url" type="string">
+              The property&apos;s Booking.com page for these dates.
+            </FieldRow>
+            <FieldRow name="rooms" type="object[]">
+              One object per bookable room option, not one headline rate. The same room type appears once per occupancy it is
+              sold at (the example above prices the Classic Double at 2 guests and at 1).
+            </FieldRow>
+            <FieldRow name="rooms[].room_type" type="string">
+              The room name as listed, for example <code className="field">Classic Double Room</code>.
+            </FieldRow>
+            <FieldRow name="rooms[].room_economy" type="string">
+              The board and conditions line Booking.com shows for the option, for example{' '}
+              <code className="field">Exceptional breakfast included</code>.
+            </FieldRow>
+            <FieldRow name="rooms[].guests" type="int">
+              The occupancy this price is for.
+            </FieldRow>
+            <FieldRow name="rooms[].price / rooms[].price_as_number" type="string · number">
+              The stay total for that room and occupancy, formatted (<code className="field">€ 2,511</code> in the example) and
+              as a number (2511) in the currency you set.
+            </FieldRow>
+          </div>
         </div>
       </Section>
 

@@ -15,7 +15,7 @@ import {
   SectionHead,
   type Faq,
 } from '@/components/ui';
-import { AGENTS, TASKS, matrixPairs, type AgentDef, type TaskDef } from '@/lib/matrix';
+import { AGENTS, TASKS, connectSnippetFor, matrixPairs, type AgentDef, type TaskDef } from '@/lib/matrix';
 import { FLIGHT_PLANS, HOTEL_PLANS } from '@/lib/pricing';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
@@ -258,8 +258,16 @@ export default async function MatrixPage({ params }: { params: Promise<Params> }
           lede={agent.connectNote}
         />
         <div className="mt-8 max-w-3xl">
-          <Code label={agent.connectKind === 'n8n-node' ? 'community node package name' : agent.connectKind === 'skill' ? 'install' : 'connect'}>
-            {agent.connectSnippet}
+          <Code
+            label={
+              agent.connectKind === 'n8n-node'
+                ? 'community node package name'
+                : agent.connectKind === 'skill'
+                  ? 'install'
+                  : `connect · ${task.api} server`
+            }
+          >
+            {connectSnippetFor(agent, task.api)}
           </Code>
           <p className="mt-3 font-mono text-[12px] text-ink-500">
             Bring your own RapidAPI key: every request is billed to your own subscription, never ours.

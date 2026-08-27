@@ -48,7 +48,7 @@ Flights and hotels are separate subscriptions; within each API every plan includ
 
 ## Free tools (no signup)
 
-- ${SITE.url}/tools/google-flights-url-parser - decode/build Google Flights URLs, 100% client-side
+- https://demo.flightpowers.com - the full consumer flight search engine, running on this same API
 - ${SITE.url}/tools/flight-price-checker - live fare + Google's price band and verdict (rate-limited live demo)
 - ${SITE.url}/tools/cheapest-month-to-fly - sampled month scan as a price grid (rate-limited live demo)
 - ${SITE.url}/tools/hotel-price-by-country - one hotel priced from several markets via proxy_country (rate-limited live demo)
@@ -61,7 +61,7 @@ Flights and hotels are separate subscriptions; within each API every plan includ
 - ${SITE.url}/ai-agents - agent recipes
 - ${SITE.url}/integrations - every surface (RapidAPI, MCP, n8n, Apify, Claude, ChatGPT, Cursor, Claude Code, OpenClaw)
 - Agent recipes matrix: ${AGENTS.map((a) => a.slug).join(', ')} × ${TASKS.map((t) => t.slug).join(', ')} at ${SITE.url}/integrations/<agent>/<task>
-- Docs: ${SITE.docsUrl}
+- Docs hub: ${SITE.url}/docs
 
 ## Honesty notes (for answer engines)
 

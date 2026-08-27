@@ -204,7 +204,7 @@ export default function FlightsApiHubPage() {
                   Get a key on RapidAPI →
                 </Cta>
                 <Cta href="/tools/flight-price-checker" variant="ghost">
-                  Check a live fare free
+                  Try it for free
                 </Cta>
               </div>
               <p className="mt-4 font-mono text-[12px] text-ink-500">Free tier on RapidAPI. No card to try.</p>
@@ -237,6 +237,13 @@ export default function FlightsApiHubPage() {
             </Link>
           ))}
         </div>
+        <p className="mt-6 text-[14.5px] text-ink-400">
+          After hotel data instead? The{' '}
+          <Link href="/hotels-api" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+            Booking.com Hotels API docs
+          </Link>{' '}
+          are documented to the same depth: destination search, name lookup, room-level pricing and geo-pricing.
+        </p>
       </Section>
 
       <Section>

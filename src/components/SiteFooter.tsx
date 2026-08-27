@@ -25,6 +25,7 @@ const columns: { heading: string; links: FooterLink[] }[] = [
   {
     heading: 'APIs',
     links: [
+      { href: '/docs', label: 'Docs hub' },
       { href: '/flights-api', label: 'Flights API' },
       { href: '/flights-api/one-way', label: 'One-way search' },
       { href: '/flights-api/round-trip', label: 'Round-trip search' },
@@ -56,7 +57,6 @@ const columns: { heading: string; links: FooterLink[] }[] = [
     heading: 'Free tools & more',
     links: [
       { href: '/tools', label: 'All free tools' },
-      { href: '/tools/google-flights-url-parser', label: 'Google Flights URL parser' },
       { href: '/tools/flight-price-checker', label: 'Flight price checker' },
       { href: '/tools/cheapest-month-to-fly', label: 'Cheapest month to fly' },
       { href: '/tools/hotel-price-by-country', label: 'Hotel price by country' },

@@ -110,8 +110,23 @@ Headers  x-api-key: YOUR_RAPIDAPI_KEY
           ))}
         </ol>
         <p className="mt-6 max-w-3xl text-[14px] text-ink-400 leading-relaxed">
-          The same pattern works for hotels: POST /v1/hotels/search with a destination, or /v1/hotels/by-name with{' '}
-          <code className="font-mono text-[13px] text-signal-400">proxy_country</code> to watch a rate from another market.
+          The same three steps run a hotel rate-watch: only the Webhooks step changes. The{' '}
+          <code className="font-mono text-[13px] text-signal-400">destination</code> field is required and takes free text.
+        </p>
+        <div className="mt-4 max-w-3xl">
+          <Code label="webhooks by zapier · the hotels request">{`URL      https://api.flightpowers.com/v1/hotels/search
+Method   POST
+
+Data     {"destination": "Lisbon",
+          "checkin_date": "2026-10-09",
+          "checkout_date": "2026-10-12"}
+
+Headers  x-api-key: YOUR_RAPIDAPI_KEY
+         Content-Type: application/json`}</Code>
+        </div>
+        <p className="mt-4 max-w-3xl text-[14px] text-ink-400 leading-relaxed">
+          For a single property, POST /v1/hotels/by-name instead, with{' '}
+          <code className="font-mono text-[13px] text-signal-400">proxy_country</code> to watch its rate from another market.
         </p>
       </Section>
 

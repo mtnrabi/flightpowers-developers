@@ -104,11 +104,11 @@ export default function HomePage() {
             <div className="pt-2">
               <p className="eyebrow">Live flight &amp; hotel pricing APIs</p>
               <h1 className="mt-4 text-hero font-semibold">
-                Live travel prices, with a <span className="text-signal-500">verdict</span>
+                Your own travel agent, scan deals <span className="text-signal-500">24/7</span>
               </h1>
               <p className="lede mt-5">
-                Real-time Google Flights and Booking.com data as clean JSON. Google&apos;s own band says whether a fare is low,
-                typical, or high.
+                The APIs to build it: real-time Google Flights and Booking.com data as clean JSON, with Google&apos;s own low,
+                typical, or high verdict on every fare.
               </p>
               <div className="mt-6 hidden sm:block">
                 <CheckBullets
@@ -129,7 +129,7 @@ export default function HomePage() {
               </div>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Cta href="#demo" variant="primary">
-                  Send a live request ↓
+                  Try it for free ↓
                 </Cta>
                 <Cta href={rapidApiPricingUrl('flights', 'hero')} external variant="ghost">
                   Get a key on RapidAPI →
@@ -139,6 +139,12 @@ export default function HomePage() {
                 Free tier on RapidAPI. No card to try. Built for AI agents too:{' '}
                 <Link href="/mcp" className="text-signal-400 hover:text-signal-500">
                   hosted MCP servers →
+                </Link>
+              </p>
+              <p className="mt-2 font-mono text-[12px] text-ink-500">
+                New guide:{' '}
+                <Link href="/guides/ai-travel-agent" className="text-signal-400 hover:text-signal-500">
+                  Create your 24/7 AI travel agent →
                 </Link>
               </p>
             </div>
@@ -151,11 +157,17 @@ export default function HomePage() {
 
       {/* ========================= DATA SOURCES ========================= */}
       <Section className="!py-8">
-        <div className="flex flex-wrap items-baseline gap-x-6 gap-y-1.5">
+        {/* Wordmarks are deliberately plain text: neither mark is licensed for third-party
+            logo use without permission. See public/logos/SOURCES.md. */}
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2.5">
           <p className="w-full sm:w-auto font-mono text-[11px] uppercase tracking-[0.18em] text-ink-500">Live data from</p>
-          <span className="font-display text-[19px] font-semibold text-ink-200">Google Flights</span>
-          <span className="font-display text-[19px] font-semibold text-ink-200">Booking.com</span>
-          <span className="w-full sm:w-auto text-[13px] text-ink-500">queried in real time on every request. Sources, not partners.</span>
+          <span className="rounded-lg border rule bg-ink-900/60 px-3.5 py-1.5 font-display text-[17px] font-semibold text-ink-100">
+            Google Flights
+          </span>
+          <span className="rounded-lg border rule bg-ink-900/60 px-3.5 py-1.5 font-display text-[17px] font-semibold text-ink-100">
+            Booking.com
+          </span>
+          <span className="w-full sm:w-auto text-[13px] text-ink-500">queried in real time on every request.</span>
         </div>
       </Section>
 

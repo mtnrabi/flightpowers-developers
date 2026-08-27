@@ -30,6 +30,11 @@ const CURL = `curl -X POST "https://api.flightpowers.com/v1/flights/oneway" \\
   -H "Content-Type: application/json" \\
   -d '{"from_airport":"LHR","to_airport":"JFK","departure_date":"2026-10-13"}'`;
 
+const CURL_HOTELS = `curl -X POST "https://api.flightpowers.com/v1/hotels/search" \\
+  -H "x-api-key: $RAPIDAPI_KEY" \\
+  -H "Content-Type: application/json" \\
+  -d '{"destination":"Lisbon","checkin_date":"2026-10-09","checkout_date":"2026-10-12"}'`;
+
 /** Verbatim 401 body from a keyless POST, captured 2026-08-26. */
 const MISSING_KEY_401 = `{
   "error": {
@@ -108,7 +113,12 @@ export default function RestApiIntegrationPage() {
               </div>
               <p className="mt-4 font-mono text-[12px] text-ink-500">Free tier on RapidAPI. No card to try.</p>
             </div>
-            <Code label="your first call">{CURL}</Code>
+            <div>
+              <Code label="your first call · flights">{CURL}</Code>
+              <div className="mt-4">
+                <Code label="the same call · hotels">{CURL_HOTELS}</Code>
+              </div>
+            </div>
           </div>
         </Container>
       </div>

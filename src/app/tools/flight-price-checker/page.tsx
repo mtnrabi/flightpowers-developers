@@ -184,7 +184,7 @@ export default function FlightPriceCheckerPage() {
           {[
             { href: '/tools/cheapest-month-to-fly', label: 'Cheapest Month to Fly', sub: 'A whole month as a price grid' },
             { href: '/tools/hotel-price-by-country', label: 'Hotel Price by Country', sub: 'The same room, priced from 3 markets' },
-            { href: '/tools/google-flights-url-parser', label: 'Google Flights URL Parser', sub: 'Decode a tfs= URL into an API call' },
+            { href: '/flights-api/price-insights', label: 'Price Insights API', sub: 'The band and verdict, field by field' },
           ].map((l) => (
             <Link key={l.href} href={l.href} className="rounded-2xl border rule bg-ink-900/50 p-5 hover:border-ink-500 transition-colors">
               <p className="text-[15px] font-semibold text-ink-100">{l.label}</p>

@@ -86,7 +86,7 @@ export default function SmitheryIntegrationPage() {
             </a>
           </FieldRow>
           <FieldRow name="mrabi/booking" type="paid · BYO key">
-            Live Booking.com rates: destination search, hotel-by-name, and per-market pricing via proxy_country.{' '}
+            Live Booking.com rates: destination search, hotel-by-name, and per-market pricing via price_as_seen_from.{' '}
             <a href={LINKS.smitheryHotels} rel="noopener" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
               View on Smithery
             </a>

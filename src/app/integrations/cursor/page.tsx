@@ -19,7 +19,7 @@ const steps: ConnectStep[] = [
   },
   {
     title: 'Add the block to .cursor/mcp.json',
-    body: 'Project-level or global: paste the config above with your key. For hotels, add a second entry pointing at https://hotels.flightpowers.com/mcp; one RapidAPI key covers both once you subscribe to each listing.',
+    body: 'Project-level or global: paste the config above with your key. It registers both servers, flights and hotels; one RapidAPI key covers both once you subscribe to each listing, and dropping either entry is fine if you only need one.',
   },
   {
     title: 'Restart Cursor',
@@ -46,7 +46,7 @@ const tools: ToolLine[] = [
   {
     name: 'find_hotel_by_name',
     type: 'hotels server',
-    note: 'One property by the name a human would type. proxy_country prices it from any market, the rate-parity tool.',
+    note: 'One property by the name a human would type. price_as_seen_from prices it from any market, the rate-parity tool.',
   },
 ];
 
@@ -86,7 +86,7 @@ export default function CursorIntegrationPage() {
         'Fetch live fares for LIS to JFK across November and build a test fixture from the five cheapest days.',
         'Add a fareVerdict helper that maps price_range_in_relation_to_other_periods to a badge color, then check it against a live JFK to LHR search.',
         'Query search_hotels for Lisbon, October 9 to 12, and generate a TypeScript type from the response.',
-        'Run find_hotel_by_name for the Rixos Sungate with proxy_country us, de, and il, and print the price spread.',
+        'Run find_hotel_by_name for the Rixos Sungate with price_as_seen_from us, de, and il, and print the price spread.',
       ]}
       toolsEyebrow="Tool inventory"
       toolsTitle="The four tools in the Agent toolbox"

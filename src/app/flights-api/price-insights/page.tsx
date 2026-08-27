@@ -124,7 +124,7 @@ export default function PriceInsightsPage() {
                   Get a key on RapidAPI →
                 </Cta>
                 <Cta href="/tools/flight-price-checker" variant="ghost">
-                  Check a fare free
+                  Try it for free
                 </Cta>
               </div>
               <p className="mt-4 font-mono text-[12px] text-ink-500">Free tier on RapidAPI. No card to try.</p>

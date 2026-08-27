@@ -16,6 +16,12 @@ export const dynamic = 'force-static';
 
 const GUIDES = [
   {
+    href: '/guides/ai-travel-agent',
+    title: 'Create your 24/7 AI travel agent',
+    sub: 'Connect live flight and hotel data to Claude or ChatGPT in about 15 minutes, then schedule a daily scan of your routes that only pings you when Google’s own verdict says the fare is low. Real captured runs, honest cost math.',
+    tag: 'flagship',
+  },
+  {
     href: '/guides/real-time-google-flights-data',
     title: 'How to get real-time Google Flights data',
     sub: 'The full walkthrough: endpoints, paste-and-run code, the price-insight fields, paired round-trips, and scanning a whole month of dates in one parallel burst.',
@@ -107,7 +113,7 @@ export default function GuidesIndexPage() {
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {[
             { href: '/tools/flight-price-checker', label: 'Flight Price Checker', sub: 'A fare with its verdict' },
-            { href: '/tools/google-flights-url-parser', label: 'Google Flights URL Parser', sub: 'Decode a tfs= blob' },
+            { href: '/tools/cheapest-month-to-fly', label: 'Cheapest Month to Fly', sub: 'A whole month as a price grid' },
             { href: '/tools/hotel-price-by-country', label: 'Hotel Price by Country', sub: 'The 3-market parity check' },
           ].map((l) => (
             <Link key={l.href} href={l.href} className="rounded-2xl border rule bg-ink-900/50 p-5 hover:border-ink-500 transition-colors">

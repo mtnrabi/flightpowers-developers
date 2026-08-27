@@ -28,3 +28,25 @@ Notes:
   container.
 - All files verified standalone SVG with viewBox, no scripts, no external references,
   each under 10 KB.
+
+## Data-source wordmarks (homepage strip): deliberately text, not logos
+
+Decision 2026-08-27, after reading both companies' own terms. The "live data from"
+strip names Google Flights and Booking.com as plain styled text in the site font,
+not as logo images, because neither mark is obtainable under clear terms for this use:
+
+- **Google Flights:** Google's Brand Features Terms license logos only where "Google
+  expressly approves your permission request" (partnermarketinghub.withgoogle.com,
+  brand terms), and the brand guidance allows unapproved references "in plain text"
+  only (about.google/brand-resource-center/guidance/). No approval exists; no
+  Google Flights press asset with usable terms was found on the pages fetched.
+- **Booking.com:** the newsroom (news.booking.com/media-assets/) offers two
+  "Booking.com Logo" JPGs with no stated license terms, and Booking's General
+  Partner Terms (Clause 9) license the marks to contracted partners only, for
+  platform-distribution purposes, with prior written consent for anything else.
+  We are not a partner.
+
+Per the same nominative-use logic as the rest of this file, the strip therefore
+uses clean text wordmarks and factual wording only, with no partnership,
+affiliation, or endorsement implied. Do not "upgrade" these to logo images
+without documented written permission.
