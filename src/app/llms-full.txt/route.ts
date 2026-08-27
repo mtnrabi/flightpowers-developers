@@ -165,7 +165,7 @@ An empty array is never ambiguous here. Read the X-Search-Status response header
 - Hotels (bring your own RapidAPI key): ${LINKS.mcpHotels}
 - Tools: search_oneway_flights, search_roundtrip_flights, search_hotels, find_hotel_by_name. Flight tools accept date RANGES and destination LISTS and expand them internally: express a flexible search as ONE call with a range, never many single-date calls.
 - Official MCP registry names: com.flightpowers/google-flights, com.flightpowers/booking. Setup for Claude, ChatGPT, Cursor and any MCP client: ${SITE.url}/mcp
-- A free ad-supported flights server also exists (no key needed); it is kept separate from the paid, ad-free servers.
+- Free, ad-supported, no key and no signup: ${LINKS.mcpFree}. Serves all four tools (flights and hotels). Every successful result carries one labelled sponsored card; the two servers above are ad-free. One call searches at most 15 date × destination combinations (the paid servers do 30, with a max_searches argument to cap spend); a wider request is sampled evenly and comes back with truncated: true plus the exact dates searched in search_coverage.departure_dates_searched. No per-user quota; capacity is shared by all callers. The keyed servers additionally expose price_as_seen_from (per-country hotel pricing) and the documented Booking.com filters, which the free server does not. Because it carries ads it is not in any MCP directory or registry. Connect it: ${SITE.url}/tools#free-mcp
 
 ## Other surfaces
 
