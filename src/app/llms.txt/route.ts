@@ -102,6 +102,7 @@ Flights and hotels are separate subscriptions; within each API every plan includ
 - [Live demo](https://demo.flightpowers.com): the full consumer flight search engine, running on this same API
 - [Free MCP server](${u('/tools#free-mcp')}): ${LINKS.mcpFree}, connectable from Claude or ChatGPT with no key and no signup. All four tools (flights and hotels). Ad-supported: every successful result carries one labelled sponsored card, and the paid servers are ad-free. One call searches at most 15 date × destination combinations (the paid servers do 30) and over-wide requests are sampled evenly and flagged with truncated: true. No per-user quota; capacity is shared by all callers. Because it carries ads it is not in any MCP directory or registry; the paid servers are.
 - [Flight price checker](${u('/tools/flight-price-checker')}): live fare + Google's price band and verdict (rate-limited live demo)
+- [Cheapest time to fly](${u('/tools/cheapest-time-to-fly')}): one real search per coming month, charted with Google's verdict per fare (rate-limited live demo)
 - [Cheapest month to fly](${u('/tools/cheapest-month-to-fly')}): sampled month scan as a price grid (rate-limited live demo)
 - [Hotel price by country](${u('/tools/hotel-price-by-country')}): one hotel priced from several markets via proxy_country (rate-limited live demo)
 

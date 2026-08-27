@@ -30,6 +30,13 @@ const TOOLS: {
     output: 'live fare + verdict gauge',
   },
   {
+    href: '/tools/cheapest-time-to-fly',
+    name: 'Cheapest Time to Fly',
+    tier: 'live demo, rate-limited',
+    body: 'Route → one real search per coming month, charted side by side. Which month is actually cheapest, with Google’s verdict saying whether that fare is cheap for the route at all.',
+    output: 'year price chart',
+  },
+  {
     href: '/tools/cheapest-month-to-fly',
     name: 'Cheapest Month to Fly',
     tier: 'live demo, rate-limited',
@@ -308,7 +315,7 @@ export default function ToolsIndexPage() {
           ))}
         </div>
         <p className="mt-6 font-mono text-[12px] text-ink-400">
-          These three run real searches on our key, so they&apos;re capped per visitor per day; the pages say exactly how.
+          These four run real searches on our key, so they&apos;re capped per visitor per day; the pages say exactly how.
         </p>
       </Section>
 

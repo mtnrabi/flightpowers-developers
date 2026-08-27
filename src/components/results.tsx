@@ -4,7 +4,7 @@
  * alike, so canned and live output look identical and are labelled apart.
  */
 
-import type { DealHuntRow, HotelByName, OnewayFlight, RoundtripItinerary, ScanDay } from '@/lib/fixtures';
+import type { DealHuntRow, HotelByName, OnewayFlight, RoundtripItinerary, ScanDay, YearMonth } from '@/lib/fixtures';
 import { splitAirline } from '@/lib/format';
 import { PriceBand, VerdictBadge } from './ui';
 
@@ -259,6 +259,91 @@ export function HeatGrid({ days, note }: { days: ScanDay[]; note?: string }) {
               <p className={`font-mono text-[12.5px] tabular-nums ${d.price === min ? 'text-verdict-low font-bold' : 'text-ink-200'}`}>
                 {d.price == null ? '—' : `$${d.price}`}
               </p>
+            </div>
+          );
+        })}
+      </div>
+      {note ? <p className="mt-2 font-mono text-[11px] text-ink-500">{note}</p> : null}
+    </div>
+  );
+}
+
+
+/**
+ * Month-by-month price curve for a year scan. Bar length is the fare as a
+ * share of the scan's most expensive month (zero-based, so a flat year looks
+ * flat); color is relative within the scan, like the month heat grid.
+ */
+export function YearScanChart({ months, note }: { months: YearMonth[]; note?: string }) {
+  const prices = months.map((m) => m.price).filter((p): p is number => p != null);
+  if (prices.length === 0) return <p className="text-sm text-ink-400">No priced months in this scan.</p>;
+  const min = Math.min(...prices);
+  const max = Math.max(...prices);
+  const span = max - min || 1;
+  const firstCheapest = months.findIndex((m) => m.price === min);
+  return (
+    <div>
+      <div className="space-y-1.5">
+        {months.map((m, i) => {
+          const heat = m.price == null ? null : (m.price - min) / span;
+          const bg =
+            heat == null
+              ? 'transparent'
+              : heat < 0.25
+                ? 'color-mix(in oklab, var(--color-verdict-low) 26%, transparent)'
+                : heat < 0.6
+                  ? 'color-mix(in oklab, var(--color-verdict-typical) 18%, transparent)'
+                  : 'color-mix(in oklab, var(--color-verdict-high) 18%, transparent)';
+          const width = m.price == null ? 0 : Math.round((m.price / max) * 100);
+          const label = new Date(Date.parse(`${m.month}-01T00:00:00Z`)).toLocaleString('en-US', {
+            month: 'short',
+            year: 'numeric',
+            timeZone: 'UTC',
+          });
+          const cheapest = m.price != null && m.price === min;
+          const chip = i === firstCheapest;
+          return (
+            <div key={m.month} className="flex items-center gap-2 sm:gap-3">
+              <span className="w-16 shrink-0 font-mono text-[11px] text-ink-400">{label}</span>
+              <div
+                className="relative h-8 min-w-0 flex-1 overflow-hidden rounded-md border rule bg-ink-950/50"
+                title={
+                  m.price == null
+                    ? `${label}: ${m.status}`
+                    : `${label}: $${m.price} departing ${m.date} (${m.verdict ?? 'no band'})`
+                }
+              >
+                {m.price != null ? (
+                  <div className="h-full rounded-r-md" style={{ width: `${width}%`, background: bg }} />
+                ) : null}
+                {chip ? (
+                  <span className="absolute left-2 top-1/2 -translate-y-1/2 font-mono text-[9.5px] uppercase tracking-wider text-verdict-low">
+                    cheapest
+                  </span>
+                ) : null}
+                <span
+                  className={`absolute right-2 top-1/2 -translate-y-1/2 font-mono text-[12.5px] tabular-nums ${
+                    m.price == null ? 'text-ink-500' : cheapest ? 'font-bold text-verdict-low' : 'text-ink-200'
+                  }`}
+                >
+                  {m.price == null ? (m.status === 'empty' ? 'no fares' : 'search failed') : `$${m.price}`}
+                </span>
+              </div>
+              <span className="shrink-0">
+                <VerdictBadge verdict={m.verdict} />
+              </span>
+              {m.buy_link ? (
+                <a
+                  href={m.buy_link}
+                  rel="noopener nofollow"
+                  target="_blank"
+                  className="w-12 shrink-0 whitespace-nowrap text-right font-mono text-[11px] text-signal-400 underline underline-offset-4 hover:text-signal-500"
+                >
+                  book →
+                </a>
+              ) : (
+                <span className="w-12 shrink-0" aria-hidden="true" />
+              )}
             </div>
           );
         })}
