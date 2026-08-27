@@ -33,7 +33,7 @@ export function SiteHeader() {
         </div>
 
         {/* Mobile nav: server-rendered links, no JS. */}
-        <nav aria-label="Primary mobile" className="md:hidden flex items-center gap-6 overflow-x-auto pb-1 -mt-2">
+        <nav aria-label="Primary mobile" className="md:hidden flex items-center gap-6 overflow-x-auto no-scrollbar pb-1 -mt-2">
           {NAV.map((item) =>
             item.external ? (
               <a key={item.href} href={item.href} rel="noopener" className="text-sm whitespace-nowrap text-ink-300 hover:text-ink-100 py-2.5">

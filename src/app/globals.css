@@ -208,6 +208,29 @@
     border-radius: 9999px;
   }
 
+  /* Hide the scrollbar on horizontally scrollable chrome (mobile nav):
+     the overflow still scrolls by touch, the track just does not render. */
+  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+
+  /* Integration logo tiles: one cap height for icons, a shorter one for
+     wordmark-shaped files, so mixed marks carry even visual weight. */
+  .logo-mark {
+    display: flex;
+    align-items: center;
+    height: 2rem;
+  }
+  .logo-mark svg,
+  .logo-mark img {
+    height: 1.75rem;
+    width: auto;
+    display: block;
+  }
+  .logo-mark--word svg,
+  .logo-mark--word img {
+    height: 1.25rem;
+  }
+
   /* Honesty label for anything canned. */
   .captured-badge {
     display: inline-flex;

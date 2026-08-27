@@ -65,7 +65,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Which plan do I need?',
-    a: 'The free tier is 10 requests/month with a hard cap: enough to verify the config, not to develop against. For a development workflow, the $10 PRO plan (2,500 requests/month on flights) is the realistic floor. Every plan includes every endpoint.',
+    a: 'The free tier is 10 requests/month with a hard cap: enough to verify the config, not to develop against. For a development workflow, the $10 PRO plan (2,500 requests/month on flights) is the realistic floor. Every plan includes all of its API’s endpoints.',
   },
   {
     q: 'Does the same config work elsewhere?',
