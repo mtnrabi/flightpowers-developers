@@ -83,6 +83,7 @@ ${DIFFERENTIATORS.map((d) => `- ${d.title}: ${d.short}`).join('\n')}
 ## Integrations
 
 - [Every surface](${u('/integrations')}): RapidAPI, MCP, n8n, Zapier, Make, Apify, Claude, ChatGPT, Cursor, Claude Code, LangChain, OpenClaw
+- [Docs hub](${u('/docs')}): both APIs, endpoint by endpoint
 - [Pricing](${u('/pricing')}): plans, $/1k comparison, key checker
 - Agent recipes matrix: ${AGENTS.map((a) => a.slug).join(', ')} × ${TASKS.map((t) => t.slug).join(', ')} at ${SITE.url}/integrations/<agent>/<task>
 
