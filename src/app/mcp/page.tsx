@@ -74,7 +74,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Is there a way to try it without a key?',
-    a: 'Yes: a separate free, ad-supported server exists (see the bottom of this page). No key needed, but results carry sponsored content and it runs on a capped daily budget. It is for trying the tools before you get a key, not for production.',
+    a: 'Yes: a separate free, ad-supported server, with no key and no signup. Every result carries one labelled sponsored card, one call searches at most 15 date × destination combinations instead of 30, and capacity is shared with every other caller. Connect it from the free tools page. It is for trying the tools before you get a key, not for production.',
   },
 ];
 
@@ -259,10 +259,16 @@ export default function McpPage() {
           <h2 className="mt-3 text-2xl font-semibold">A free, ad-supported server also exists</h2>
           <p className="mt-4 text-[15px] text-ink-400 leading-relaxed">
             <code className="field">{LINKS.mcpFree.replace('https://', '')}</code> serves all four tools, flights and hotels,
-            with no key at all. The trade: results carry sponsored content, and the server runs on a capped daily budget shared
-            by all callers: when the day&apos;s budget is spent, it stops. Use it to try the tools before getting a key; point
-            production and anything you ship at the keyed servers above.
+            with no key at all. The trade: every result carries one labelled sponsored card, one call searches at most 15 date ×
+            destination combinations instead of 30, and there is no per-user quota, so you share capacity with everyone else on
+            it. Use it to try the tools before getting a key; point production and anything you ship at the keyed servers above.
           </p>
+          <Link
+            href="/tools#free-mcp"
+            className="mt-4 inline-block text-sm text-signal-400 underline underline-offset-4 hover:text-signal-500"
+          >
+            Connect it, and read the full list of what it does not do →
+          </Link>
         </div>
       </Section>
 

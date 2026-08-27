@@ -124,7 +124,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Is there a way to demo without a key?',
-    a: 'The free ad-supported MCP server runs the flight and hotel tools with no key: results carry sponsored content and it has a capped daily budget, so it is for trying, not production. The free tools on this site also run live requests on our own key.',
+    a: 'The free ad-supported MCP server runs the flight and hotel tools with no key: every result carries one labelled sponsored card, one call searches at most 15 date × destination combinations instead of 30, and capacity is shared with every other caller, so it is for trying, not production. The free tools on this site also run live requests on our own key.',
   },
 ];
 

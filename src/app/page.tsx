@@ -22,7 +22,7 @@ export const dynamic = 'force-static';
 const faq: Faq[] = [
   {
     q: 'Is there a free tier?',
-    a: 'Yes. BASIC is $0 on RapidAPI, no card, 10 requests per month with a hard cap. Enough to verify your key and see the response shape. Evaluate with the live demo above instead; it runs real requests on our key.',
+    a: 'Yes. BASIC is $0 on RapidAPI, no card, 10 requests per month with a hard cap. Enough to verify your key and see the response shape. Evaluate with the live demo above instead; it runs real requests on our key. If you want your own assistant to try it, the free ad-supported MCP server needs no key and no signup at all.',
   },
   {
     q: 'Do flights and hotels share one plan?',
@@ -139,6 +139,12 @@ export default function HomePage() {
                 Free tier on RapidAPI. No card to try. Built for AI agents too:{' '}
                 <Link href="/mcp" className="text-signal-400 hover:text-signal-500">
                   hosted MCP servers →
+                </Link>
+              </p>
+              <p className="mt-2 font-mono text-[12px] text-ink-500">
+                No key at all:{' '}
+                <Link href="/tools#free-mcp" className="text-signal-400 hover:text-signal-500">
+                  the free, ad-supported MCP server →
                 </Link>
               </p>
               <p className="mt-2 font-mono text-[12px] text-ink-500">
