@@ -12,6 +12,7 @@ import roundtripBerCdg from './fixtures/roundtrip-ber-cdg.json';
 import roundtripJfkLhr from './fixtures/roundtrip-jfk-lhr.json';
 import degradedExample from './fixtures/degraded-example.json';
 import novscanLisJfk from './fixtures/novscan-lis-jfk.json';
+import yearscanLisJfk from './fixtures/yearscan-lis-jfk.json';
 import hotelGeoRixos from './fixtures/hotel-geo-rixos.json';
 import hotelGeoKremlin from './fixtures/hotel-geo-kremlin.json';
 import hotelSearchLisbon from './fixtures/hotel-search-lisbon.json';
@@ -103,6 +104,21 @@ export type ScanDay = {
   duration: string | null;
 };
 
+/** One month of a year scan: the cheapest fare of one real mid-month search. */
+export type YearMonth = {
+  month: string; // YYYY-MM
+  date: string; // the sampled departure date, YYYY-MM-DD
+  status: string;
+  price: number | null;
+  verdict: 'low' | 'typical' | 'high' | null;
+  low: number | null;
+  high: number | null;
+  airline: string | null;
+  stops: number | null;
+  duration: string | null;
+  buy_link: string | null;
+};
+
 export type Fixture<T> = {
   captured_at: string;
   captured_from: string;
@@ -118,6 +134,7 @@ export const FIXTURES = {
   roundtripJfkLhr: roundtripJfkLhr as unknown as Fixture<RoundtripItinerary[]>,
   degradedExample: degradedExample as unknown as Fixture<RoundtripItinerary[]>,
   novscanLisJfk: novscanLisJfk as unknown as Fixture<ScanDay[]>,
+  yearscanLisJfk: yearscanLisJfk as unknown as Fixture<YearMonth[]>,
   hotelGeoRixos: hotelGeoRixos as unknown as Fixture<Record<'us' | 'de' | 'il', HotelByName>>,
   hotelGeoKremlin: hotelGeoKremlin as unknown as Fixture<Record<'us' | 'de' | 'il', HotelByName>>,
   dealHuntLgw: dealHuntLgw as unknown as Fixture<DealHuntRow[]>,

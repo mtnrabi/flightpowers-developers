@@ -158,6 +158,71 @@ const results = await Promise.all(
   };
 }
 
+/**
+ * Year scan: one request per coming month, departing mid-month. The scan the
+ * tool samples on our key, at full control on yours: every month, any sample
+ * dates, and the verdict on each fare.
+ */
+export function yearScanSnippets(params: { from: string; to: string; months: string[] }): Snippets {
+  const path = '/api/google_flights/oneway/v1';
+  const first = params.months[0] ?? '2026-09';
+  const exampleBody = { from_airport: params.from, to_airport: params.to, departure_date: `${first}-15`, currency: 'usd' };
+  const monthsJs = JSON.stringify(params.months);
+  return {
+    curl: `# one request per month (departing the 15th). fire them in parallel
+${curlFor(FLIGHTS_HOST, path, exampleBody)}`,
+    python: `import os, requests
+from concurrent.futures import ThreadPoolExecutor
+
+MONTHS = ${JSON.stringify(params.months)}
+HEADERS = {
+    "Content-Type": "application/json",
+    "x-rapidapi-host": "${FLIGHTS_HOST}",
+    "x-rapidapi-key": os.environ["RAPIDAPI_KEY"],
+}
+
+def month(m):
+    r = requests.post(
+        "https://${FLIGHTS_HOST}${path}",
+        headers=HEADERS,
+        json={"from_airport": "${params.from}", "to_airport": "${params.to}",
+              "departure_date": f"{m}-15", "currency": "usd"},
+    )
+    fares = r.json()
+    best = min(fares, key=lambda f: f["price_as_number"], default=None)
+    return (m, best and best["price_as_number"], best and best["price_range_in_relation_to_other_periods"])
+
+# ${params.months.length} months, fired in parallel. finishes in one rate-limit burst;
+# add more sample dates per month for a tighter answer
+with ThreadPoolExecutor(max_workers=25) as ex:
+    for m, price, verdict in ex.map(month, MONTHS):
+        print(m, price, verdict)`,
+    node: `const months = ${monthsJs};
+
+const results = await Promise.all(
+  months.map(async (m) => {
+    const res = await fetch("https://${FLIGHTS_HOST}${path}", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-rapidapi-host": "${FLIGHTS_HOST}",
+        "x-rapidapi-key": process.env.RAPIDAPI_KEY,
+      },
+      body: JSON.stringify({
+        from_airport: "${params.from}",
+        to_airport: "${params.to}",
+        departure_date: \`\${m}-15\`,
+        currency: "usd",
+      }),
+    });
+    const fares = await res.json();
+    const best = fares.reduce((a, b) => (a.price_as_number <= b.price_as_number ? a : b));
+    return { month: m, price: best.price_as_number, verdict: best.price_range_in_relation_to_other_periods };
+  })
+);`,
+  };
+}
+
 export function hotelGeoSnippets(params: { hotel: string; area?: string; checkin: string; checkout: string; countries: string[] }): Snippets {
   const path = '/hotel_by_name';
   const base: Record<string, unknown> = {

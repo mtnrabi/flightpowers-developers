@@ -21,7 +21,7 @@ export const COUNTS = {
   mcpServers: 3, // flights (paid), hotels (paid), free ad-supported
   skills: 8, // github.com/mtnrabi/travel-agent-skills
   hotelFilters: 24, // documented on the hotels listing
-  freeTools: 5, // /tools: the demo search engine + the free MCP server + 3 live tools
+  freeTools: 6, // /tools: the demo search engine + the free MCP server + 4 live tools
   flightsRateLimits: '150 / 250 / 500', // req/min on Pro / Ultra / Mega
 } as const;
 

@@ -1,0 +1,149 @@
+{
+ "captured_at": "2026-08-27",
+ "captured_from": "api.flightpowers.com",
+ "note": "A real 10-request year scan captured live: one one-way search per month, departing the 15th, September 2026 through June 2027. Each row is the cheapest fare that month's search returned.",
+ "request": {
+  "endpoint": "/v1/flights/oneway",
+  "note": "10 requests, one per mid-month departure date 2026-09-15..2027-06-15, limit 5 each, fired in parallel",
+  "body": {
+   "from_airport": "LIS",
+   "to_airport": "JFK",
+   "departure_date": "2026-09-15..2027-06-15 (the 15th of each month)",
+   "limit": 5,
+   "currency": "usd"
+  }
+ },
+ "headers": {},
+ "data": [
+  {
+   "month": "2026-09",
+   "date": "2026-09-15",
+   "status": "ok",
+   "price": 511,
+   "verdict": "typical",
+   "low": 405,
+   "high": 590,
+   "airline": "Azores Airlines",
+   "stops": 1,
+   "duration": "36 hr",
+   "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMDktMTUiHwoDTElTEgoyMDI2LTA5LTE1GgNQREwqAlM0MgMxMjMiHwoDUERMEgoyMDI2LTA5LTE2GgNKRksqAlM0MgMyNDdqBRIDTElTcgUSA0pGS0IBAUgBmAEC&curr=usd"
+  },
+  {
+   "month": "2026-10",
+   "date": "2026-10-15",
+   "status": "ok",
+   "price": 462,
+   "verdict": "typical",
+   "low": 410,
+   "high": 600,
+   "airline": "Royal Air Maroc",
+   "stops": 1,
+   "duration": "29 hr 5 min",
+   "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTAtMTUiHwoDTElTEgoyMDI2LTEwLTE1GgNDTU4qAkFUMgM5ODMiHwoDQ01OEgoyMDI2LTEwLTE2GgNKRksqAkFUMgMyMDBqBRIDTElTcgUSA0pGS0IBAUgBmAEC&curr=usd"
+  },
+  {
+   "month": "2026-11",
+   "date": "2026-11-15",
+   "status": "ok",
+   "price": 419,
+   "verdict": "typical",
+   "low": 345,
+   "high": 550,
+   "airline": "Royal Air Maroc",
+   "stops": 1,
+   "duration": "29 hr",
+   "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTEtMTUiHwoDTElTEgoyMDI2LTExLTE1GgNDTU4qAkFUMgM5ODMiHwoDQ01OEgoyMDI2LTExLTE2GgNKRksqAkFUMgMyMDBqBRIDTElTcgUSA0pGS0IBAUgBmAEC&curr=usd"
+  },
+  {
+   "month": "2026-12",
+   "date": "2026-12-15",
+   "status": "ok",
+   "price": 410,
+   "verdict": null,
+   "low": null,
+   "high": null,
+   "airline": "IB | AA",
+   "stops": 1,
+   "duration": "11 hr 45 min",
+   "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjYtMTItMTUiHwoDTElTEgoyMDI2LTEyLTE1GgNNQUQqAklCMgM1NDAiHgoDTUFEEgoyMDI2LTEyLTE1GgNKRksqAkFBMgI5NWoFEgNMSVNyBRIDSkZLQgEBSAGYAQI&curr=usd"
+  },
+  {
+   "month": "2027-01",
+   "date": "2027-01-15",
+   "status": "ok",
+   "price": 410,
+   "verdict": "typical",
+   "low": 370,
+   "high": 960,
+   "airline": "Iberia | Finnair, American",
+   "stops": 1,
+   "duration": "14 hr 5 min",
+   "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMTUiHwoDTElTEgoyMDI3LTAxLTE1GgNNQUQqAklCMgM1NDAiHwoDTUFEEgoyMDI3LTAxLTE1GgNKRksqAklCMgMyMTFqBRIDTElTcgUSA0pGS0IBAUgBmAEC&curr=usd"
+  },
+  {
+   "month": "2027-02",
+   "date": "2027-02-15",
+   "status": "ok",
+   "price": 410,
+   "verdict": "typical",
+   "low": 330,
+   "high": 520,
+   "airline": "Iberia, American | Finnair",
+   "stops": 1,
+   "duration": "11 hr 45 min",
+   "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjctMDItMTUiHwoDTElTEgoyMDI3LTAyLTE1GgNNQUQqAklCMgM1NDAiHgoDTUFEEgoyMDI3LTAyLTE1GgNKRksqAkFBMgI5NWoFEgNMSVNyBRIDSkZLQgEBSAGYAQI&curr=usd"
+  },
+  {
+   "month": "2027-03",
+   "date": "2027-03-15",
+   "status": "ok",
+   "price": 410,
+   "verdict": "typical",
+   "low": 345,
+   "high": 560,
+   "airline": "Iberia, American | Finnair",
+   "stops": 1,
+   "duration": "13 hr 25 min",
+   "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjctMDMtMTUiHwoDTElTEgoyMDI3LTAzLTE1GgNNQUQqAklCMgM1NDAiHgoDTUFEEgoyMDI3LTAzLTE1GgNKRksqAkFBMgI5NWoFEgNMSVNyBRIDSkZLQgEBSAGYAQI&curr=usd"
+  },
+  {
+   "month": "2027-04",
+   "date": "2027-04-15",
+   "status": "ok",
+   "price": 419,
+   "verdict": "typical",
+   "low": 370,
+   "high": 570,
+   "airline": "Iberia, American | Finnair",
+   "stops": 1,
+   "duration": "13 hr 5 min",
+   "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjctMDQtMTUiHwoDTElTEgoyMDI3LTA0LTE1GgNNQUQqAklCMgM1NDAiHgoDTUFEEgoyMDI3LTA0LTE1GgNKRksqAkFBMgI5NWoFEgNMSVNyBRIDSkZLQgEBSAGYAQI&curr=usd"
+  },
+  {
+   "month": "2027-05",
+   "date": "2027-05-15",
+   "status": "ok",
+   "price": 410,
+   "verdict": "typical",
+   "low": 400,
+   "high": 550,
+   "airline": "Iberia, American | Finnair, British Airways",
+   "stops": 1,
+   "duration": "13 hr 5 min",
+   "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjctMDUtMTUiHwoDTElTEgoyMDI3LTA1LTE1GgNNQUQqAklCMgM1NDAiHgoDTUFEEgoyMDI3LTA1LTE1GgNKRksqAkFBMgI5NWoFEgNMSVNyBRIDSkZLQgEBSAGYAQI&curr=usd"
+  },
+  {
+   "month": "2027-06",
+   "date": "2027-06-15",
+   "status": "ok",
+   "price": 435,
+   "verdict": "typical",
+   "low": 410,
+   "high": 550,
+   "airline": "Iberia | Finnair, American, British Airways",
+   "stops": 1,
+   "duration": "13 hr 20 min",
+   "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDYtMTUiHwoDTElTEgoyMDI3LTA2LTE1GgNNQUQqAklCMgM1NDAiHwoDTUFEEgoyMDI3LTA2LTE1GgNKRksqAklCMgMyMTFqBRIDTElTcgUSA0pGS0IBAUgBmAEC&curr=usd"
+  }
+ ]
+}

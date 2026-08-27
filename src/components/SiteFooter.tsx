@@ -58,6 +58,7 @@ const columns: { heading: string; links: FooterLink[] }[] = [
     links: [
       { href: '/tools', label: 'All free tools' },
       { href: '/tools/flight-price-checker', label: 'Flight price checker' },
+      { href: '/tools/cheapest-time-to-fly', label: 'Cheapest time to fly' },
       { href: '/tools/cheapest-month-to-fly', label: 'Cheapest month to fly' },
       { href: '/tools/hotel-price-by-country', label: 'Hotel price by country' },
       { href: '/integrations', label: 'Integrations' },
