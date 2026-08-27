@@ -1,5 +1,6 @@
 import { ImageResponse } from 'next/og';
 import type { NextRequest } from 'next/server';
+import { OG_ROBOT } from './og-robot';
 
 /**
  * Parameterised share-card image: /og?title=<page title>.
@@ -25,10 +26,9 @@ export function GET(req: NextRequest) {
           fontFamily: 'sans-serif',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <svg width="44" height="44" viewBox="0 0 16 16">
-            <path d="M1 9.2 15 2 9.6 15l-2-5.1L1 9.2Z" fill="none" stroke="#ffb020" strokeWidth="1.4" strokeLinejoin="round" />
-          </svg>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={OG_ROBOT} width={60} height={72} alt="" />
           <div style={{ color: '#e8edf2', fontSize: 40, fontWeight: 700 }}>FlightPowers</div>
         </div>
 

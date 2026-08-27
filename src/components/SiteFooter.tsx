@@ -74,7 +74,19 @@ export function SiteFooter() {
       <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14">
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-5">
           <div className="col-span-2 lg:col-span-1">
-            <p className="text-[15px] font-semibold text-ink-100">FlightPowers</p>
+            <p className="flex items-center gap-2 text-[15px] font-semibold text-ink-100">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/brand/robot-mark-28.png"
+                srcSet="/brand/robot-mark-28.png 1x, /brand/robot-mark-56.png 2x"
+                width={23}
+                height={28}
+                alt=""
+                aria-hidden="true"
+                className="h-7 w-auto select-none"
+              />
+              FlightPowers
+            </p>
             <p className="mt-2 text-sm text-ink-400 max-w-[26ch]">{SITE.tagline}</p>
             <p className="mt-4 font-mono text-[11px] text-ink-400">{SITE.apiHost}</p>
             <div className="mt-5 flex flex-wrap gap-x-3 gap-y-1.5">

@@ -1,21 +1,22 @@
+/**
+ * The FlightPowers lockup: the blue robot mascot (the same mark the demo
+ * engine wears) next to the wordmark. The robot IS the brand: an AI travel
+ * agent with an airplane on its chest. Raster asset, served at 1x/2x from
+ * /public/brand; the favicon set is cut from the same source image.
+ */
 export function Wordmark() {
   return (
-    <span className="flex items-center gap-1.5">
-      <svg
-        width="18"
-        height="18"
-        viewBox="0 0 16 16"
+    <span className="flex items-center gap-2">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/brand/robot-mark-28.png"
+        srcSet="/brand/robot-mark-28.png 1x, /brand/robot-mark-56.png 2x"
+        width={23}
+        height={28}
+        alt=""
         aria-hidden="true"
-        className="text-signal-500 translate-y-[1px]"
-      >
-        <path
-          d="M1 9.2 15 2 9.6 15l-2-5.1L1 9.2Z"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.4"
-          strokeLinejoin="round"
-        />
-      </svg>
+        className="h-7 w-auto translate-y-[1px] select-none"
+      />
       <span className="text-[16px] font-semibold tracking-tight text-ink-100">FlightPowers</span>
     </span>
   );
