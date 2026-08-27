@@ -3,7 +3,7 @@ import { withOg } from '@/lib/meta';
 export const metadata = withOg({
   title: 'Create your 24/7 AI travel agent',
   description:
-    'Build a travel agent you talk to in plain language, on Claude or ChatGPT, in about 15 minutes: live Google Flights and Booking.com data via one connector URL, then a scheduled task that scans your routes every morning and pings you only when Google’s own verdict says the fare is low.',
+    'How to build an AI travel agent without writing code, on Claude or ChatGPT, in about 15 minutes: live Google Flights and Booking.com data via one connector URL, then a scheduled task that scans your routes every morning and pings you only when Google’s own verdict says the fare is low.',
   alternates: { canonical: '/guides/ai-travel-agent' },
 });
 
@@ -28,12 +28,63 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
   }}
 />
 
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Can Claude or ChatGPT track flight prices?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, with a data connection: connected to a live flight API, either assistant can quote a current fare with Google\u2019s own low, typical, or high verdict. For tracking on a schedule, Claude\u2019s scheduled tasks (any paid plan) run connectors on Anthropic\u2019s servers; ChatGPT has scheduled tasks on every plan, but adding a custom connector needs Pro or a Business workspace, and whether a scheduled run calls it is undocumented, so test once before trusting it.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do I need to know how to code to build an AI travel agent?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. The connection is one URL pasted into the assistant\u2019s settings, and the alert logic is one sentence of a task prompt: report only fares whose verdict is low. No server, no cron job, no code.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What does a 24/7 AI travel agent cost?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Two subscriptions. Data: RapidAPI\u2019s free tier is 10 requests/month, hard-capped, enough to verify the setup; a real daily scan fits the $10 PRO plan (2,500 requests/month on flights). Assistant: any paid Claude plan for scheduling, or ChatGPT Pro or Business for the connector.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does the scheduled scan run while my computer is off?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'On Claude, yes: scheduled tasks run remotely on Anthropic\u2019s servers, on their cadence, with the app closed. On ChatGPT, task results arrive as push or email notifications rather than needing an open app.',
+        },
+      },
+    ],
+  }}
+/>
+
 # Create your 24/7 AI travel agent
 
-By the end of this page you will have two things. An assistant, Claude or ChatGPT,
-that searches live Google Flights fares and Booking.com hotel rates mid-conversation,
-in plain language, no code. And a scheduled task that scans your favourite routes
-every morning and only bothers you when a fare is genuinely cheap.
+This is how to build an AI travel agent without writing any code. By the end of
+this page you will have two things. An assistant, Claude or ChatGPT, that searches
+live Google Flights fares and Booking.com hotel rates mid-conversation, in plain
+language. And a scheduled task, an agent that tracks flight prices on your
+favourite routes every morning and only bothers you when a fare is genuinely
+cheap.
+
+An AI travel agent is a chat assistant connected to live travel data, so its
+answers come from current fares rather than from training-data memory. Building
+one takes two pieces: a data connection the assistant can search, and a schedule
+so the checking happens without being asked. The agent in this guide connects
+Claude or ChatGPT to live flight prices through one URL, judges every fare
+against Google's own price history, and runs a daily scan that flags the cheap
+ones: a flight price alert with judgment attached.
 
 The conversational part takes about ten minutes. The schedule takes five more.
 Every step below was run against the live products before it was written down; the
@@ -68,6 +119,8 @@ alerting brain of your agent is one instruction: *tell me only when the verdict 
 low*. Google's standard, not a threshold you guessed.
 
 ## What you need
+
+The prerequisites, in full:
 
 - **A RapidAPI key.** Subscribe to the
   <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">Google Flights Live API</a>
@@ -145,9 +198,10 @@ The four tools it now has: `search_oneway_flights`, `search_roundtrip_flights`,
 list of destinations in one call, which matters for the schedule below. More
 first prompts on the [Claude integration page](/integrations/claude).
 
-### A3. Schedule the morning scan
+### A3. Schedule the morning scan (the flight price alert)
 
-This is the 24/7 part. Claude's scheduled tasks live in Cowork mode, are available
+This is the 24/7 part: an agent that finds cheap flights while you are not
+looking. Claude's scheduled tasks live in Cowork mode, are available
 on every paid plan (Pro, Max, Team, Enterprise; Cowork itself is on the desktop
 app, with web and mobile in beta), and run on Anthropic's servers:
 the schedule fires with your computer asleep and the app closed. Scheduled tasks
@@ -248,6 +302,36 @@ One more moving part, for completeness: ChatGPT's separate "agent mode" is marke
 discontinued in OpenAI's own help pages in favour of ChatGPT Work, which is
 documented to support scheduled and triggered runs. That surface is mid-rollout
 and aimed at workspaces, so this guide does not build on it.
+
+## The whole setup, copyable
+
+Everything above in one block: the connector URLs and the scheduled-task prompt.
+Add the URLs as custom connectors (Claude: Customize &gt; Connectors; ChatGPT:
+developer mode under Settings &gt; Apps), then paste the prompt into a daily
+scheduled task and swap in your own airports.
+
+```text
+Flights connector URL:
+https://flights.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY
+
+Hotels connector URL (optional, separate subscription):
+https://hotels.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY
+
+Daily scheduled-task prompt:
+Run one search_roundtrip_flights call: from LHR to the destinations
+BCN, LIS and ATH, departing the coming Friday, nights=3, sort by
+price. For each destination report the cheapest fare, Google's band
+(price_insights_low to price_insights_high) and the verdict
+(price_range_in_relation_to_other_periods).
+
+If any destination's verdict is "low", lead with it and include its
+buy_link. If none is low, reply with one line: "Nothing cheap today",
+plus the single cheapest fare for context.
+
+If search_status is "partial", say which destinations actually
+returned results and treat the missing ones as unknown, not as
+empty.
+```
 
 ## What a run actually looks like
 
@@ -357,6 +441,32 @@ genuinely absent, not hidden; use the Claude path.
 **A ChatGPT scheduled run ignored the connector.** Known open question, covered
 in Path B: custom connectors inside scheduled tasks are undocumented. If your
 first run does not show the tool call, move the schedule to Claude or n8n.
+
+## Quick answers
+
+**Can Claude or ChatGPT track flight prices?** Yes, with a data connection: on
+their own, both only guess from training data. Connected to a live flight API,
+either can quote a current fare with Google's own low, typical, or high verdict.
+For tracking on a schedule: Claude's scheduled tasks (any paid plan) run
+connectors on Anthropic's servers; ChatGPT has scheduled tasks on every plan, but
+adding a custom connector needs Pro or a Business workspace, and whether a
+scheduled run calls it is undocumented, so test yours once before trusting it.
+
+**Do I need to know how to code to build an AI travel agent?** No. The connection
+is one URL pasted into the assistant's settings, and the alert logic is one
+sentence of the task prompt: report only fares whose verdict is "low". There is
+no server, no cron job, and no code in this guide.
+
+**What does a 24/7 AI travel agent cost?** Two subscriptions. The data side:
+RapidAPI's free tier is 10 requests/month, hard-capped, enough to verify the
+setup; a real daily scan fits the $10 PRO plan (2,500 requests/month on flights).
+The assistant side: any paid Claude plan for scheduling, or ChatGPT Pro or
+Business for the connector.
+
+**Does the scan run while my computer is off?** On Claude, yes: scheduled tasks
+run remotely on Anthropic's servers, on their cadence, with the app closed. On
+ChatGPT, task results arrive as push or email notifications rather than needing
+an open app, with the connector caveat above.
 
 ## Related
 
