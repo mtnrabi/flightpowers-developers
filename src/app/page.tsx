@@ -34,7 +34,7 @@ const faq: Faq[] = [
   },
   {
     q: 'How is this different from scraping Google Flights myself?',
-    a: 'A scraper you maintain breaks on markup changes and cannot tell "no flights" from "my scrape failed". This API retries unreadable pages, reports the outcome in an X-Search-Status header, and attaches Google's own price band to every fare. You also avoid the legal and infrastructure complexity of running your own scraping operation.',
+    a: 'A scraper you maintain breaks on markup changes and cannot tell "no flights" from "my scrape failed". This API retries unreadable pages, reports the outcome in an X-Search-Status header, and attaches Google\'s own price band to every fare. You also avoid the legal and infrastructure complexity of running your own scraping operation.',
   },
   {
     q: 'Can my AI agent use this without me writing HTTP code?',
