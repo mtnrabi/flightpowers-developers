@@ -94,6 +94,12 @@ const GUIDES = [
     tag: 'automation',
   },
   {
+    href: '/guides/google-flights-api-zapier',
+    title: 'Using Google Flights API in Zapier',
+    sub: 'Connect live Google Flights data to Zapier workflows with the HTTP Request action. Build fare watches, price feeds, and automated alerts with a POST request.',
+    tag: 'automation',
+  },
+  {
     href: '/guides/best-flight-data-apis-2026',
     title: 'The best flight data APIs in 2026',
     sub: 'The listicle, with disclosed bias: it starts with our own API and says so, quotes every competitor price with a retrieval date, and names the competitor that is cheaper per request than we are.',
