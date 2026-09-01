@@ -8,7 +8,7 @@ import { OG_ROBOT } from './og-robot';
  * Lives at /og (not /api/og) so robots.txt's Disallow: /api/ never applies.
  */
 export function GET(req: NextRequest) {
-  const raw = req.nextUrl.searchParams.get('title') ?? 'Live fares, and the context to judge them';
+  const raw = req.nextUrl.searchParams.get('title') ?? 'Scan deals 24/7 with real-time flight & hotel data';
   // Strip "FlightPowers - " prefix if present (og:site_name already carries it)
   const cleaned = raw.replace(/^FlightPowers\s*-\s*/i, '');
   const title = cleaned.slice(0, 120);
