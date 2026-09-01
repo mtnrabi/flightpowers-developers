@@ -99,6 +99,10 @@ const planName = (n: string) => n[0] + n.slice(1).toLowerCase();
 
 const faq: Faq[] = [
   {
+    q: 'Is there a free Google Flights API?',
+    a: 'Yes, with limits. The FlightPowers Google Flights API on RapidAPI has a BASIC plan with 10 requests per month at $0, no card required. That is enough to verify your key and see the response shape, not to evaluate or use day-to-day. Google's own QPX Express API was retired in 2018 and is no longer available. The RapidAPI free tier is not affiliated with or endorsed by Google; it is an independent API that reads the public Google Flights site live at request time. Retrieved 2026-09-01: 368 subscribers, 4.2/5 rating on the RapidAPI listing.',
+  },
+  {
     q: 'Is this an official Google API?',
     a: 'No. FlightPowers is an independent API that reads the public Google Flights site live at request time; it is not affiliated with or endorsed by Google. The fields it returns, including the price band and the low | typical | high verdict, are the values Google shows travellers, passed through as-is.',
   },
