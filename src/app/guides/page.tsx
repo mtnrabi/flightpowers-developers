@@ -118,6 +118,12 @@ const GUIDES = [
     tag: 'AI agents',
   },
   {
+    href: '/guides/google-flights-mcp-claude',
+    title: 'Using the Google Flights MCP in Claude',
+    sub: 'Connect live flight and hotel data to Claude Desktop and Claude Code with one block in your MCP config. Real-time pricing from Google Flights and Booking.com mid-conversation.',
+    tag: 'AI agents',
+  },
+  {
     href: '/guides/best-flight-data-apis-2026',
     title: 'The best flight data APIs in 2026',
     sub: 'The listicle, with disclosed bias: it starts with our own API and says so, quotes every competitor price with a retrieval date, and names the competitor that is cheaper per request than we are.',
