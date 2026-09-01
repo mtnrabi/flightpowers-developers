@@ -91,6 +91,12 @@ export default function PricingPage() {
             <PricingTable api="hotels" plans={HOTEL_PLANS} medium="pricing" />
           </div>
         </div>
+        <div className="mt-8 max-w-4xl rounded-xl border rule bg-ink-900/40 px-5 py-3.5">
+          <p className="text-[13px] text-ink-300 leading-relaxed">
+            <strong className="text-ink-100">Live on RapidAPI:</strong> Google Flights Live API — 9.9 popularity, 100% service level, ~1144ms latency · Booking Live API — 9.6 popularity, 98% service level, ~12475ms latency
+          </p>
+          <p className="mt-1 font-mono text-[10px] text-ink-500">Metrics retrieved from rapidapi.com/mtnrabi listings on 2026-09-01</p>
+        </div>
         <p className="mt-6 max-w-3xl text-[14px] text-ink-400 leading-relaxed">
           Honest note on the free tier: it is 10 requests/month, hard-capped. Enough to verify your key, not to evaluate. Evaluate
           with the <a href="/#demo" className="text-signal-400 underline underline-offset-4">live demo</a> and the{' '}
