@@ -1,0 +1,126 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'Using Google Flights API in Zapier with HTTP Request',
+  description:
+    'Connect live Google Flights data to any Zapier workflow with the HTTP Request action. Build a fare watch, feed prices into Airtable, or send daily route scans to Slack. No custom Zapier app required.',
+  alternates: { canonical: '/guides/google-flights-api-zapier' },
+});
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'Using Google Flights API in Zapier with HTTP Request',
+    description:
+      'Connect live Google Flights data to Zapier workflows using the HTTP Request action. Build fare watches, price feeds, and automated alerts with a POST request.',
+    url: `https://flightpowers.com/guides/google-flights-api-zapier`,
+    datePublished: '2026-09-01',
+    dateModified: '2026-09-01',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# Using Google Flights API in Zapier
+
+Zapier does not have a native Google Flights app in its directory yet, but the
+**HTTP Request** action (available in the **Webhooks by Zapier** app) calls the API
+directly. This unlocks the same live flight data for any Zapier workflow: fare
+watches that fire on schedule, price feeds into Airtable or Google Sheets, or alerts
+sent to Slack when a route drops below a threshold.
+
+## What you need
+
+- A
+  <a href="https://flightpowers.com/integrations/zapier" rel="noopener">
+    Zapier account
+  </a>
+  (free tier works for testing)
+- A RapidAPI key for the
+  <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">
+    Google Flights Live API
+  </a>
+  . The free tier verifies your key works; a scheduled fare watch fits comfortably in
+  the cheapest paid plan.
+
+## Setting up the HTTP Request
+
+Add the **Webhooks by Zapier** app to your Zap and choose the **Custom Request**
+action. Configure it as a `POST` request to:
+
+```
+https://google-flights-live-api.p.rapidapi.com/api/google_flights/roundtrip/v1
+```
+
+Add three headers:
+
+```
+Content-Type: application/json
+x-rapidapi-host: google-flights-live-api.p.rapidapi.com
+x-rapidapi-key: YOUR_RAPIDAPI_KEY
+```
+
+And set the body to **raw JSON**:
+
+```json
+{
+  "departure_date": "2026-04-15",
+  "return_date": "2026-04-22",
+  "from_airport": "JFK",
+  "to_airport": "LHR",
+  "currency": "usd"
+}
+```
+
+## Reading the response
+
+The API returns an array of itineraries. Each object includes:
+
+- `total_price`: the fare as a formatted string
+- `total_price_as_number`: the same fare as a number for filtering
+- `buy_link`: a deep link that opens the itinerary on Google Flights ready to book
+
+Zapier surfaces these fields under the step's output. Reference them in downstream
+actions the way you would any other Zap data: `{{step_name.total_price}}`.
+
+## Example workflows
+
+**Scheduled fare watch.** Schedule Trigger (daily at 8 AM) → HTTP Request (the
+search above) → Filter (only continue if `total_price_as_number` is below your
+threshold) → Gmail (send yourself the fare and `buy_link`).
+
+**Route comparison.** Looping by Zapier (a list of routes) → HTTP Request (one
+search per route) → Airtable (log each result with timestamp).
+
+**One-way searches.** Same host, path
+`/api/google_flights/oneway/v1`, drop `return_date`, and the price fields are
+`price` and `price_as_number` instead of the `total_` variants.
+
+## Timeout and rate limits
+
+Set the HTTP Request timeout to 90 seconds. This is a live scan of Google Flights,
+not a cache read, and response time tracks route complexity.
+
+If you are looping over multiple routes, mind your plan's per-minute rate limit.
+Space the iterations with Zapier's Delay action rather than firing them all at once.
+
+## Related
+
+- <a href="https://flightpowers.com/integrations/zapier" rel="noopener">
+    FlightPowers on Zapier
+  </a>: integration overview
+- [How to get real-time Google Flights data](/guides/real-time-google-flights-data): the full API walkthrough
+- [Using a flight API in n8n](/guides/flight-api-in-n8n): the same pattern for n8n workflows
+
+<CtaBand
+  medium="guide"
+  title="Test it on your own routes"
+  body="Run your three hardest routes in a test Zap. If the data doesn't earn the fee, you've spent nothing."
+/>
