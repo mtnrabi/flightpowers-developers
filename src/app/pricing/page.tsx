@@ -8,9 +8,9 @@ import { APIFY, FLIGHT_PLANS, HOTEL_PLANS, READ_ON } from '@/lib/pricing';
 import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const metadata: Metadata = withOg({
-  title: 'Pricing: plans from $0, billed on RapidAPI',
+  title: 'Pricing: Google Flights & Booking.com API Plans - From $0 to $50/month | FlightPowers',
   description:
-    'Two APIs, two plan sets. Flights: $0, then $10 / $25 / $50 per month at 150 to 500 requests/minute. Hotels: $0, then $10 / $20 / $50 at 25 to 50 requests/minute. Billed on RapidAPI; compare $ per 1,000 requests.',
+    'Transparent API pricing. Flights: $0, $10, $25, $50/month for 10 to 50,000 requests. Hotels: $0, $10, $20, $50/month for 10 to 25,000 requests. Free tier available with no credit card. Billed on RapidAPI. Compare $ per 1,000 requests. No feature gates.',
   alternates: { canonical: '/pricing' },
 });
 
@@ -62,12 +62,19 @@ export default function PricingPage() {
       <Container className="pt-14 sm:pt-20 pb-4">
         <p className="eyebrow">Pricing</p>
         <h1 className="mt-4 text-hero font-semibold max-w-3xl">
-          Two APIs, priced <span className="text-signal-500">separately</span>
+          Simple pricing: <span className="text-signal-500">pay for what you use</span>
         </h1>
         <p className="lede mt-5 max-w-2xl">
-          Flights and hotels are separate products on RapidAPI, each with its own plans, prices, and rate limits. One account key
-          works for both once you subscribe to each. Prices below were read from the live listings on {READ_ON}.
+          Free tier to start, paid plans from $10/month. No hidden fees, no feature gates. Flights and hotels are separate APIs with separate plans. One RapidAPI account key works for both once you subscribe to each.
         </p>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <Cta href={rapidApiPricingUrl('flights', 'pricing')} external variant="primary">
+            Start with free tier →
+          </Cta>
+          <Cta href="/#demo" variant="ghost">
+            Try live demo
+          </Cta>
+        </div>
       </Container>
 
       <Section bordered={false} className="!pt-10">

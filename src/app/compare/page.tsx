@@ -6,9 +6,9 @@ import { Breadcrumbs, Container, JsonLd, Section, SectionHead } from '@/componen
 import { SITE } from '@/lib/site';
 
 export const metadata: Metadata = withOg({
-  title: 'Compare: honest comparisons against the alternatives',
+  title: 'Compare FlightPowers vs SerpApi, Duffel, Amadeus, DataCrawler, Crawlio, ScrapeBadger',
   description:
-    'FlightPowers against SerpApi, Duffel, Amadeus Self-Service and the RapidAPI field. Competitor facts are quoted from their own live pages with retrieval dates, and where they are better we say so.',
+    'Honest comparisons of FlightPowers Google Flights & Booking.com APIs against alternatives: SerpApi, Duffel, Amadeus Self-Service, DataCrawler, Crawlio, ScrapeBadger. Competitor facts quoted from live pages with retrieval dates. Cost per search, round-trip flows, and feature comparison.',
   alternates: { canonical: '/compare' },
 });
 
@@ -83,22 +83,24 @@ export default function CompareIndexPage() {
       <Container className="pt-8 sm:pt-12 pb-4">
         <p className="eyebrow">Compare</p>
         <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold max-w-3xl">
-          Honest <span className="text-signal-500">comparisons</span>
+          How FlightPowers compares to <span className="text-signal-500">alternatives</span>
         </h1>
         <p className="lede mt-5 max-w-2xl">
-          Every competitor fact on these pages is quoted from the competitor’s own live pages, with the retrieval date stamped on the
-          page. Negatives are scoped to what we actually checked, and where the other product is better, the page says so, because a
-          comparison you can’t trust downward you can’t trust upward either.
+          Every competitor fact on these pages is quoted from the competitor's own live pages, with the retrieval date stamped on
+          each comparison. Where the other product is better, we say so — because a comparison you can't trust downward you can't trust upward either.
         </p>
       </Container>
 
       <Section bordered={false} className="!pt-10">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {PAGES.map((p) => (
-            <Link key={p.href} href={p.href} className="rounded-2xl border rule bg-ink-900/50 p-6 hover:border-ink-500 transition-colors flex flex-col">
-              <h2 className="text-[18px] font-semibold text-ink-100">{p.title}</h2>
+            <Link key={p.href} href={p.href} className="group rounded-2xl border rule bg-ink-900/50 p-6 hover:border-signal-500 transition-all flex flex-col">
+              <h2 className="text-[18px] font-semibold text-ink-100 group-hover:text-signal-400 transition-colors">{p.title}</h2>
               <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed flex-1">{p.sub}</p>
-              <p className="mt-4 font-mono text-[11px] text-ink-500">{p.stamp}</p>
+              <div className="mt-4 flex items-center justify-between">
+                <p className="font-mono text-[11px] text-ink-500">{p.stamp}</p>
+                <span className="text-signal-400 group-hover:translate-x-1 transition-transform">→</span>
+              </div>
             </Link>
           ))}
         </div>

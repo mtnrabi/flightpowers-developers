@@ -26,8 +26,11 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <a href={rapidApiPricingUrl('flights', 'nav')} rel="noopener" className="btn btn-accent !px-4 !py-2 text-sm">
-              Get a key
+            <a href={rapidApiPricingUrl('flights', 'nav')} rel="noopener" className="hidden sm:inline-block btn btn-accent !px-5 !py-2.5 text-sm font-semibold">
+              Get free API key →
+            </a>
+            <a href={rapidApiPricingUrl('flights', 'nav')} rel="noopener" className="sm:hidden btn btn-accent !px-4 !py-2 text-sm">
+              Get key
             </a>
           </div>
         </div>
