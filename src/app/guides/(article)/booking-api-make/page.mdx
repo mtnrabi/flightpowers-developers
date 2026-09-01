@@ -1,0 +1,167 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'Using the Booking.com API in Make.com',
+  description:
+    'Build a scheduled Make scenario with the HTTP module: search hotels, check a specific property by name, and send alerts. Working code with JSON body included.',
+  alternates: { canonical: '/guides/booking-api-make' },
+});
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { LINKS, SITE } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'Using the Booking.com API in Make.com',
+    description:
+      'A scheduled Make scenario that searches hotels and alerts on availability or pricing. No property IDs to look up first.',
+    url: `${SITE.url}/guides/booking-api-make`,
+    datePublished: '2026-09-01',
+    dateModified: '2026-09-01',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# Using the Booking.com API in Make.com
+
+This guide shows you how to build a scheduled scenario: search hotels in a destination,
+optionally check a specific property by name, and send yourself the results. Three modules
+(schedule trigger, hotel search, notification) and no property IDs to maintain.
+
+The simplest version is a daily check: search a city and dates, get back pricing and
+availability for that night, and send it as a message. The `hotel_by_name` variant
+lets you watch one specific property without looking up its Booking.com ID first.
+
+## What you need
+
+- A Make account (free tier works fine to verify your scenario works; a daily check
+  fits comfortably in the cheapest paid plan).
+- A RapidAPI key for the
+  <a href="https://rapidapi.com/mtnrabi/api/booking-live-api" rel="noopener">Booking Live API</a>.
+  The free tier verifies your key works; a daily check fits comfortably in the cheapest
+  paid plan (current numbers on [/pricing](/pricing)).
+
+## The three-module scenario
+
+A native Make app is in review, not listed yet. Everything below works today with
+Make's built-in **HTTP → Make a request** module.
+
+### Module 1: Schedule trigger
+
+Set the scenario to run once a day, at an hour when you will actually read the alert.
+Make's schedule trigger lets you pick the time and timezone.
+
+### Module 2: HTTP, Make a request (hotel search)
+
+This is the hotel search. Configure the HTTP module with:
+
+- **URL:** `https://booking-live-api.p.rapidapi.com/api/hotels/v1/search`
+- **Method:** `POST`
+- **Body type:** Raw
+- **Content type:** JSON (application/json)
+- **Parse response:** Yes (critical: this makes the JSON fields mappable in the next module)
+
+**Headers:**
+
+```
+x-rapidapi-host: booking-live-api.p.rapidapi.com
+x-rapidapi-key: YOUR_RAPIDAPI_KEY
+```
+
+Store your key in a Make connection or variable rather than pasting it directly into
+the module: it stays out of exported scenario JSON that way.
+
+**Request content** (the JSON body):
+
+```json
+{
+  "destination": "London, UK",
+  "checkin_date": "2026-10-15",
+  "checkout_date": "2026-10-18",
+  "adults": 2
+}
+```
+
+Replace the destination and dates with the city you are checking. The response is a
+JSON array: one object per property, each with `hotel_name`, `price_string`,
+`price_as_number`, `review_score`, `room_type`, and `booking_link`.
+
+Set the timeout to at least 30 seconds: this is a live scan of Booking.com, not a
+cache read, and response time tracks destination size.
+
+### Module 3: Notification
+
+Add your notification module: **Email**, **Slack**, **Telegram**, **Webhooks**, or
+whatever you already use. Include:
+
+- The hotel name: `hotel_name`
+- The price: `price_string` or `price_as_number`
+- The review score: `review_score`
+- The room type: `room_type`
+- The booking link: `booking_link` (this opens that exact property and dates on Booking.com)
+
+Run the scenario once manually to verify the search works. Then activate it and let
+it run on schedule.
+
+## Variant: check a specific hotel by name
+
+If you are watching one specific property, use the `hotel_by_name` endpoint instead
+of `search`. This skips the property ID lookup and returns availability and pricing
+for that exact hotel.
+
+Change the HTTP module URL to:
+
+- **URL:** `https://booking-live-api.p.rapidapi.com/api/hotels/v1/hotel_by_name`
+
+**Request content:**
+
+```json
+{
+  "hotel_name": "The Savoy",
+  "area": "London, UK",
+  "checkin_date": "2026-10-15",
+  "checkout_date": "2026-10-18",
+  "adults": 2
+}
+```
+
+The response is the same structure: pricing, room types, and the booking link. Name
+matching is fuzzy and handles chain properties.
+
+## Variations that reuse the same skeleton
+
+**Check several destinations.** Put the destinations in an array (a Data store or an
+Iterator fed by a Google Sheet), loop the HTTP search over them, and collect the
+results into one digest message. Mind your plan's per-minute rate limit if the list
+is long: space the iterations with a Sleep module rather than firing them all at once.
+
+**Price threshold filter.** Add a **Router** with a **Filter** after the HTTP module:
+only notify when `price_as_number` is below your budget. The filter logic is a
+numeric comparison.
+
+**Rate parity check.** Add `"proxy_country": "US"` to the request body to see the rate
+a US shopper sees. Run the same search three times with different `proxy_country`
+values (US, DE, IL) and compare the pricing. The full guide is in
+[How to monitor hotel rate parity](/guides/monitor-hotel-rate-parity).
+
+**Flights.** The companion Google Flights API follows the same pattern: a scheduled
+flight search scenario is written up in
+[Using the Google Flights API in Make.com](/guides/google-flights-api-make).
+
+## Related
+
+- [Make integration page](<https://flightpowers.com/integrations/make>): the HTTP module setup in more detail
+- [How to get a Booking.com API Key](/guides/booking-com-api-key): the full walkthrough
+- [How to monitor hotel rate parity](/guides/monitor-hotel-rate-parity): the `proxy_country` mechanism
+
+<CtaBand
+  medium="guide"
+  title="Three modules and working code"
+  body="Hotel search with the HTTP module, no property IDs to maintain. Free tier on RapidAPI, no card to try."
+/>
