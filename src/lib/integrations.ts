@@ -23,7 +23,7 @@ export const INTEGRATIONS: Integration[] = [
     slug: 'claude',
     name: 'Claude',
     href: '/integrations/claude',
-    line: 'Live fares and hotel rates, quoted mid-conversation',
+    line: 'Live prices and hotel rates, quoted mid-conversation',
     tag: 'MCP connector',
   },
   {
@@ -51,7 +51,7 @@ export const INTEGRATIONS: Integration[] = [
     slug: 'n8n',
     name: 'n8n',
     href: '/integrations/n8n',
-    line: 'Fare-watch crons without writing HTTP',
+    line: 'Price-watch crons without writing HTTP',
     tag: 'community node',
   },
   {
@@ -65,7 +65,7 @@ export const INTEGRATIONS: Integration[] = [
     slug: 'make',
     name: 'Make',
     href: '/integrations/make',
-    line: 'Scenarios on live fares and hotel rates',
+    line: 'Scenarios on live prices and hotel rates',
     tag: 'HTTP module',
   },
   {

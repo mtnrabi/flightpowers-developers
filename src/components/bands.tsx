@@ -26,8 +26,8 @@ export function SurfaceStrip({ label = 'One API, everywhere your stack already l
 
 /** Full-width closing CTA band. Every page ends with it. */
 export function CtaBand({
-  title = 'Put a verdict on every fare',
-  body = 'Live Google Flights and Booking.com data, with the price band and verdict attached to every result. Free tier on RapidAPI, no card to try.',
+  title = 'Get live flight and hotel data',
+  body = 'Live Google Flights and Booking.com data as clean JSON. Free tier on RapidAPI, no card to try.',
   medium,
   api = 'flights',
   showBoth = false,
