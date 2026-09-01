@@ -30,20 +30,33 @@ export function CtaBand({
   body = 'Live Google Flights and Booking.com data, with the price band and verdict attached to every result. Free tier on RapidAPI, no card to try.',
   medium,
   api = 'flights',
+  showBoth = false,
 }: {
   title?: string;
   body?: string;
   medium: UtmMedium;
   api?: 'flights' | 'hotels';
+  showBoth?: boolean;
 }) {
   return (
     <div className="rounded-3xl border rule bg-ink-900/70 px-6 py-10 sm:px-12 sm:py-16 text-center">
       <h2 className="text-[1.75rem] sm:text-4xl font-semibold">{title}</h2>
       <p className="lede mx-auto mt-4 max-w-2xl">{body}</p>
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-        <Cta href={rapidApiPricingUrl(api, medium)} external variant="primary">
-          Get a key on RapidAPI →
-        </Cta>
+        {showBoth ? (
+          <>
+            <Cta href={rapidApiPricingUrl('flights', medium)} external variant="primary">
+              Flights key →
+            </Cta>
+            <Cta href={rapidApiPricingUrl('hotels', medium)} external variant="primary">
+              Hotels key →
+            </Cta>
+          </>
+        ) : (
+          <Cta href={rapidApiPricingUrl(api, medium)} external variant="primary">
+            Get a key on RapidAPI →
+          </Cta>
+        )}
         <Cta href="/pricing" variant="ghost">
           See pricing
         </Cta>

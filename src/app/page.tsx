@@ -112,10 +112,11 @@ export default function HomePage() {
             <div className="pt-2">
               <p className="eyebrow">Live flight &amp; hotel pricing APIs</p>
               <h1 className="mt-4 text-hero font-semibold">
-                Google Flights &amp; Booking.com APIs <span className="text-signal-500">with price verdicts</span>
+                Your own travel agent, scan deals <span className="text-signal-500">24/7</span>
               </h1>
               <p className="lede mt-5">
-                Real-time flight and hotel pricing as clean JSON APIs. Get Google&apos;s own price band and verdict (low | typical | high) on every fare. Build AI agents, fare alerts, and travel tools in minutes, not months.
+                The APIs to build it: real-time Google Flights and Booking.com data as clean JSON, with Google&apos;s own low,
+                typical, or high verdict on every fare.
               </p>
               <div className="mt-6 hidden sm:block">
                 <CheckBullets
@@ -136,7 +137,10 @@ export default function HomePage() {
               </div>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Cta href={rapidApiPricingUrl('flights', 'hero')} external variant="primary">
-                  Get API key (free tier) →
+                  Flights key (free tier) →
+                </Cta>
+                <Cta href={rapidApiPricingUrl('hotels', 'hero')} external variant="primary">
+                  Hotels key (free tier) →
                 </Cta>
                 <Cta href="#demo" variant="ghost">
                   Try live demo ↓
@@ -356,7 +360,7 @@ export default function HomePage() {
 
       {/* =========================== CLOSING CTA ========================= */}
       <Section bordered={false} className="!pt-4">
-        <CtaBand medium="hero" />
+        <CtaBand medium="hero" showBoth={true} />
       </Section>
     </>
   );
