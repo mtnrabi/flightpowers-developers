@@ -1,0 +1,170 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'Using the Google Flights API in Make.com',
+  description:
+    'Build a scheduled Make scenario with the HTTP module: search flights every day and get notified only when the price is low. Working code with JSON body included.',
+  alternates: { canonical: '/guides/google-flights-api-make' },
+});
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'Using the Google Flights API in Make.com',
+    description:
+      'A scheduled Make scenario that searches flights and alerts when the price is low. No price history to maintain.',
+    url: `${SITE.url}/guides/google-flights-api-make`,
+    datePublished: '2026-09-01',
+    dateModified: '2026-09-01',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# Using the Google Flights API in Make.com
+
+This guide shows you how to build a scheduled scenario: every morning, search a route
+and send yourself a message only when the price is low. Three modules
+(schedule trigger, flight search, router) and no database to maintain between runs.
+
+The reason it stays this simple is one response field. Every result from the API
+includes a `price_range_in_relation_to_other_periods` field (one of `low`, `typical`, or `high`),
+computed against historical price data for that route and date. "Is this a
+good price?" is normally the hard part, because answering it yourself
+means logging prices for months first. Here it is a filter condition on day one.
+
+## What you need
+
+- A Make account (free tier works fine to verify your scenario works; a daily check
+  on a few routes fits comfortably in the cheapest paid plan).
+- A RapidAPI key for the
+  <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">Google Flights Live API</a>.
+  The free tier verifies your key works; a daily check on a handful of routes fits
+  comfortably in the cheapest paid plan (current numbers on [/pricing](/pricing)).
+
+## The three-module scenario
+
+A native Make app is in review, not listed yet. Everything below works today with
+Make's built-in **HTTP → Make a request** module.
+
+### Module 1: Schedule trigger
+
+Set the scenario to run once a day, at an hour when you will actually read the alert.
+Make's schedule trigger lets you pick the time and timezone.
+
+### Module 2: HTTP, Make a request
+
+This is the flight search. Configure the HTTP module with:
+
+- **URL:** `https://api.flightpowers.com/v1/flights/roundtrip`
+- **Method:** `POST`
+- **Body type:** Raw
+- **Content type:** JSON (application/json)
+- **Parse response:** Yes (critical: this makes the JSON fields mappable in the next module)
+
+**Headers:**
+
+```
+x-api-key: YOUR_RAPIDAPI_KEY
+```
+
+Store your key in a Make connection or variable rather than pasting it directly into
+the module: it stays out of exported scenario JSON that way.
+
+**Request content** (the JSON body):
+
+```json
+{
+  "from_airport": "JFK",
+  "to_airport": "LHR",
+  "departure_date": "2026-10-15",
+  "return_date": "2026-10-22",
+  "currency": "usd"
+}
+```
+
+Replace the airports and dates with the route you are checking. The response is a
+flat JSON array: one object per itinerary, each with `total_price`,
+`total_price_as_number`, both legs already paired, the price range field, and `buy_link`.
+
+Set the timeout to at least 90 seconds: this is a live scan of Google Flights, not a
+cache read, and response time tracks route complexity.
+
+### Module 3: Router, filter, notification
+
+Add a **Router** after the HTTP module. The first path out of the router should have
+a **Filter** with this condition:
+
+- The first result's `price_range_in_relation_to_other_periods` equals `low`
+
+That single comparison is the entire alerting logic.
+
+After the filter, add your notification module: **Email**, **Slack**, **Telegram**,
+**Webhooks**, or whatever you already use. Include:
+
+- The price: `total_price`
+- The price range: `price_range_in_relation_to_other_periods`
+- The price band: `price_insights_low` and `price_insights_high`
+- The booking link: `buy_link` (this opens that exact itinerary on Google Flights,
+  ready to book)
+
+Run the scenario once manually to verify the search works and the filter triggers
+correctly. Then activate it and let it run on schedule.
+
+## One honest handling note
+
+The `price_range_in_relation_to_other_periods` field can be `null` on routes where Google publishes no price band. Treat
+`null` as "no signal," not as "not low." If your route never gets this field populated, alert
+on a price threshold (`total_price_as_number` below a number you pick) instead.
+
+## Variations that reuse the same skeleton
+
+**Check several routes.** Put the routes in an array (a Data store or an Iterator
+fed by a Google Sheet), loop the HTTP search over them, and collect the `low` hits
+into one digest message instead of N alerts. Mind your plan's per-minute rate limit
+if the list is long: space the iterations with a Sleep module rather than firing them
+all at once.
+
+**One-way instead of round-trip.** Same host, path `/v1/flights/oneway`, drop
+`return_date`, and the price fields are `price` / `price_as_number` instead of the
+`total_` variants.
+
+**Threshold and price range.** The strictest trigger is an AND filter: `price_range_in_relation_to_other_periods` is `low`
+and `total_price_as_number` is under your budget. The price is low for the
+route, and it is low for you.
+
+**Hotels.** The companion Booking.com API follows the same pattern: the scheduled
+version of a rate-parity check is written up in
+[How to monitor hotel rate parity](/guides/monitor-hotel-rate-parity).
+
+## One correctness footnote
+
+An empty response array from a flight search is ambiguous by default: it can mean
+"no flights" or "the search behind the API did not complete." This API disambiguates
+with an `X-Search-Status` response header (`ok` / `empty` / `partial` / `degraded`),
+and in a Make scenario the simplest way to consume that honesty is to add
+`"strict": true` to the request body: an incomplete search then returns HTTP 503
+(which Make surfaces as a failed module run you can see and retry) instead of an
+empty array your filter would silently wave through as "nothing cheap today."
+The full story is in
+[Handling empty flight search results](/guides/handle-empty-flight-search-results).
+
+## Related
+
+- [Make integration page](/integrations/make): the HTTP module setup in more detail
+- [How to get real-time Google Flights data](/guides/real-time-google-flights-data): the full API walkthrough
+- [Price Insights API](/flights-api/price-insights): the price range field, documented and proven
+- [Handling empty flight search results](/guides/handle-empty-flight-search-results): why `strict: true` belongs in scheduled jobs
+
+<CtaBand
+  medium="guide"
+  title="Three modules and one filter condition"
+  body="The alerting logic is a filter condition, because price context ships in every response. Free tier on RapidAPI, no card to try."
+/>

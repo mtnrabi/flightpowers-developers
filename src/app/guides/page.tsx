@@ -82,6 +82,12 @@ const GUIDES = [
     tag: 'automation',
   },
   {
+    href: '/guides/google-flights-api-make',
+    title: 'Using the Google Flights API in Make.com',
+    sub: 'A three-module scenario with the HTTP module: schedule, search, filter. Alert when the price is low, no price history to build.',
+    tag: 'automation',
+  },
+  {
     href: '/guides/best-flight-data-apis-2026',
     title: 'The best flight data APIs in 2026',
     sub: 'The listicle, with disclosed bias: it starts with our own API and says so, quotes every competitor price with a retrieval date, and names the competitor that is cheaper per request than we are.',
