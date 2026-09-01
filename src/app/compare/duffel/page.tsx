@@ -41,7 +41,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Do the two APIs return the same kind of data?',
-    a: 'No. Booking APIs return bookable offers: what is purchasable right now through the platform’s contracted channels. FlightPowers returns what Google Flights shows: live consumer market pricing, with Google’s historical band and low | typical | high verdict attached. A checkout flow needs the first; research, alerting and comparison products usually need the second.',
+    a: 'No. Booking APIs return bookable offers: what is purchasable right now through the platform’s contracted channels. FlightPowers returns what Google Flights shows: live consumer market pricing, with Google’s historical band and price context attached. A checkout flow needs the first; research, alerting and comparison products usually need the second.',
   },
   {
     q: 'Can I use Duffel and FlightPowers together?',
@@ -268,7 +268,7 @@ export default function CompareDuffelPage() {
                 'Returns offers: the price you can transact at through their channels.',
                 <>
                   Returns the market: every result carries Google’s historical band (
-                  <code className="font-mono text-[12px]">price_insights_low/high</code>) and a low | typical | high verdict, so a
+                  <code className="font-mono text-[12px]">price_insights_low/high</code>) and a price context, so a
                   fare-alert product knows whether $412 is a good price without accumulating its own history.{' '}
                   <Link href="/flights-api/price-insights" className="text-signal-400 underline underline-offset-4">Price insights →</Link>
                 </>,

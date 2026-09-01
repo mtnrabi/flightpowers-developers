@@ -239,10 +239,10 @@ export default function CompareDataCrawlerPage() {
               [
                 'Price context',
                 <>
-                  Their documentation and APIHiver mention returning Google Flights data, but we have not verified whether their response includes Google <code className="font-mono text-[12px]">price_insights</code> band or the low | typical | high verdict field. Treat this as "we do not know," not "they lack it."
+                  Their documentation and APIHiver mention returning Google Flights data, but we have not verified whether their response includes Google <code className="font-mono text-[12px]">price_insights</code> band or the price context field. Treat this as "we do not know," not "they lack it."
                 </>,
                 <>
-                  Every result carries <code className="font-mono text-[12px]">price_insights_low/high</code> (the historical band Google shows) plus <code className="font-mono text-[12px]">price_insights_verdict</code> (low | typical | high), which is the fare-alert trigger condition.{' '}
+                  Every result carries <code className="font-mono text-[12px]">price_insights_low/high</code> (the historical band Google shows) plus <code className="font-mono text-[12px]">price_insights_verdict</code> (price context: low, typical, or high), which is the fare-alert trigger condition.{' '}
                   <Link href="/flights-api/price-insights" className="text-signal-400 underline underline-offset-4">Proven here →</Link>
                 </>,
               ],
@@ -299,7 +299,7 @@ export default function CompareDataCrawlerPage() {
               <li>One-way and round-trip cover your use case and you do not need multi-city.</li>
               <li>You are running 2,500–10,000 searches/month and unit economics matter: our $10 or $25 plans beat theirs on total cost.</li>
               <li>You scan date ranges in bursts and want published per-minute rate limits (150 to 500/min).</li>
-              <li>You need Google price verdict (low | typical | high) on every result for alerting logic.</li>
+              <li>You need Google price verdict (price context) on every result for alerting logic.</li>
               <li>You are wiring the data into an AI agent over MCP.</li>
             </ul>
           </div>
@@ -347,7 +347,7 @@ export default function CompareDataCrawlerPage() {
             { href: '/compare/serpapi', label: 'vs SerpApi', sub: 'Platform vs specialist' },
             { href: '/compare/duffel', label: 'vs Duffel', sub: 'Data API vs booking platform' },
             { href: '/guides/best-flight-data-apis-2026', label: 'Best flight data APIs 2026', sub: 'The full field, disclosed bias' },
-            { href: '/flights-api/price-insights', label: 'Price Insights API', sub: 'The verdict field, proven' },
+            { href: '/flights-api/price-insights', label: 'Price Insights API', sub: 'The price_range_in_relation_to_other_periods field, proven' },
           ].map((l) => (
             <Link key={l.href} href={l.href} className="rounded-2xl border rule bg-ink-900/50 p-5 hover:border-ink-500 transition-colors">
               <p className="text-[15px] font-semibold text-ink-100">{l.label}</p>

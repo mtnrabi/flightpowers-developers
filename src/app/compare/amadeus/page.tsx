@@ -381,7 +381,7 @@ hotelIds=MCLONGHM&adults=2&checkInDate=2026-09-10\\
             <h3 className="text-[16px] font-semibold text-ink-100">A verdict attached to every price</h3>
             <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed">
               Every flight result carries Google’s historical band ({code('price_insights_low')} / {code('price_insights_high')})
-              plus a low | typical | high verdict. Rebuilding a fare-alert feature? That field <em>is</em> the trigger condition, and
+              plus a price context. Rebuilding a fare-alert feature? That field <em>is</em> the trigger condition, and
               you don’t accumulate months of history first. It can be {code('null')} when Google shows no band. Handle that.{' '}
               <Link href="/flights-api/price-insights" className="text-signal-400 underline underline-offset-4">Proven here →</Link>
             </p>

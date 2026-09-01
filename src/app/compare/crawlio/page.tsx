@@ -195,7 +195,7 @@ export default function CompareCrawlioPage() {
             <ul className="mt-3 space-y-2 text-[14.5px] text-ink-400 leading-relaxed list-disc pl-5">
               <li>Round-trips are a large share of your searches and unit economics matter: one request instead of two.</li>
               <li>You scan date ranges in bursts and want published per-minute rate limits.</li>
-              <li>You need Google price verdict (low | typical | high) on every result for fare-alert logic.</li>
+              <li>You need Google price verdict (price context) on every result for fare-alert logic.</li>
             </ul>
           </div>
         </div>
