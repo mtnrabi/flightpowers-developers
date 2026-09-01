@@ -125,4 +125,7 @@ All pricing accurate as of 2026-09-01:
 
 ---
 
+**Deployment Fix Applied**: 2026-09-01
+- Commit authored with allowed email to unblock Vercel production deploys
+
 **Last Updated**: 2026-09-01 12:40 PM UTC
