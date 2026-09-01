@@ -9,7 +9,7 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 export const metadata: Metadata = withOg({
   title: 'ChatGPT flight API: connect live Google Flights data via MCP',
   description:
-    'How to connect ChatGPT to live Google Flights data through MCP developer-mode connectors: one URL, your RapidAPI key, and Google's price verdict on every result. Pro and Business plans only.',
+    "How to connect ChatGPT to live Google Flights data through MCP developer-mode connectors: one URL, your RapidAPI key, and Google's price verdict on every result. Pro and Business plans only.",
   alternates: { canonical: '/blog/chatgpt-flight-api' },
 });
 

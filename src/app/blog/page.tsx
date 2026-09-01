@@ -20,7 +20,7 @@ const posts = [
     title: 'ChatGPT flight API: connect live Google Flights data via MCP',
     date: 'September 2026',
     excerpt:
-      'How to connect ChatGPT to live Google Flights data through MCP developer-mode connectors: one URL, your RapidAPI key, and Google's price verdict on every result. Pro and Business plans only.',
+      "How to connect ChatGPT to live Google Flights data through MCP developer-mode connectors: one URL, your RapidAPI key, and Google's price verdict on every result. Pro and Business plans only.",
   },
   {
     slug: 'cheapest-month-to-fly-api',
