@@ -80,8 +80,31 @@ Restart Claude Desktop. The tools appear automatically.
 
 ### For Claude Code
 
-Add the same config block to `.cursor/mcp.json` in your project root (create the file
-if it does not exist yet). The format is identical to Claude Desktop.
+Create `.mcp.json` in your project root (commit this file) with this config:
+
+```json
+{
+  "mcpServers": {
+    "flights": {
+      "type": "http",
+      "url": "https://flights.flightpowers.com/mcp",
+      "headers": { "x-rapidapi-key": "YOUR_RAPIDAPI_KEY" }
+    },
+    "hotels": {
+      "type": "http",
+      "url": "https://hotels.flightpowers.com/mcp",
+      "headers": { "x-rapidapi-key": "YOUR_RAPIDAPI_KEY" }
+    }
+  }
+}
+```
+
+Replace `YOUR_RAPIDAPI_KEY` with your actual key. Both servers share the same key once
+you subscribe to each listing on RapidAPI.
+
+For user-wide config (applies to all projects), add the same block to `~/.claude.json`
+on Mac/Linux or `%USERPROFILE%\.claude.json` on Windows. You can also run `claude mcp
+add` and paste the URLs instead of hand-editing.
 
 Restart Claude Code. The tools appear in the toolbox.
 
