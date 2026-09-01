@@ -106,6 +106,12 @@ const GUIDES = [
     tag: 'automation',
   },
   {
+    href: '/guides/booking-api-zapier',
+    title: 'Using the Booking.com hotel API in Zapier',
+    sub: 'Connect live Booking.com hotel data to Zapier workflows with the HTTP Request action. Build rate watches, price feeds, and automated alerts.',
+    tag: 'automation',
+  },
+  {
     href: '/guides/best-flight-data-apis-2026',
     title: 'The best flight data APIs in 2026',
     sub: 'The listicle, with disclosed bias: it starts with our own API and says so, quotes every competitor price with a retrieval date, and names the competitor that is cheaper per request than we are.',

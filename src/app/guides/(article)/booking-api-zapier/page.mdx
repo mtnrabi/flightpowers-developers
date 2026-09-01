@@ -1,0 +1,146 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'Using the Booking.com hotel API in Zapier with HTTP Request',
+  description:
+    'Connect live Booking.com hotel data to any Zapier workflow with the HTTP Request action. Build a rate watch, feed hotel prices into Airtable, or send daily property checks to Slack. No custom Zapier app required.',
+  alternates: { canonical: '/guides/booking-api-zapier' },
+});
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'Using the Booking.com hotel API in Zapier with HTTP Request',
+    description:
+      'Connect live Booking.com hotel data to Zapier workflows using the HTTP Request action. Build rate watches, price feeds, and automated alerts with a POST request.',
+    url: `https://flightpowers.com/guides/booking-api-zapier`,
+    datePublished: '2026-09-01',
+    dateModified: '2026-09-01',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# Using the Booking.com hotel API in Zapier
+
+Zapier does not have a native Booking.com app in its directory yet, but the
+**HTTP Request** action (available in the **Webhooks by Zapier** app) calls the API
+directly. This unlocks the same live hotel data for any Zapier workflow: rate
+watches that fire on schedule, price feeds into Airtable or Google Sheets, or alerts
+sent to Slack when a property drops below a threshold.
+
+## What you need
+
+- A
+  <a href="https://flightpowers.com/integrations/zapier" rel="noopener">
+    Zapier account
+  </a>
+  (free tier works for testing)
+- A RapidAPI key for the
+  <a href={rapidApiPricingUrl('hotels', 'guide')} rel="noopener">
+    Booking Live API
+  </a>
+  . The free tier verifies your key works; a scheduled rate watch fits comfortably in
+  the cheapest paid plan.
+
+## Setting up the HTTP Request
+
+Add the **Webhooks by Zapier** app to your Zap and choose the **Custom Request**
+action. Configure it as a `POST` request to:
+
+```
+https://booking-live-api.p.rapidapi.com/api/hotels/v1/search
+```
+
+Add three headers:
+
+```
+Content-Type: application/json
+x-rapidapi-host: booking-live-api.p.rapidapi.com
+x-rapidapi-key: YOUR_RAPIDAPI_KEY
+```
+
+And set the body to **raw JSON**:
+
+```json
+{
+  "destination": "London, UK",
+  "checkin_date": "2026-10-15",
+  "checkout_date": "2026-10-18",
+  "adults": 2
+}
+```
+
+## Reading the response
+
+The API returns an array of hotel objects. Each object includes:
+
+- `hotel_name`: the property name
+- `price_string`: the fare as a formatted string
+- `price_as_number`: the same fare as a number for filtering
+- `review_score`: the Booking.com review score
+- `room_type`: the room description
+- `booking_link`: a deep link that opens the property on Booking.com ready to book
+
+Zapier surfaces these fields under the step's output. Reference them in downstream
+actions the way you would any other Zap data: `{{step_name.price_as_number}}`.
+
+## Example workflows
+
+**Scheduled rate watch.** Schedule Trigger (daily at 8 AM) → HTTP Request (the
+search above) → Filter (only continue if `price_as_number` is below your
+threshold) → Gmail (send yourself the hotel name, price, and `booking_link`).
+
+**Destination comparison.** Looping by Zapier (a list of cities) → HTTP Request (one
+search per destination) → Airtable (log each result with timestamp).
+
+**Check a specific hotel.** Same host, path
+`/api/hotels/v1/hotel_by_name`, and use this body instead:
+
+```json
+{
+  "hotel_name": "The Savoy",
+  "area": "London, UK",
+  "checkin_date": "2026-10-15",
+  "checkout_date": "2026-10-18",
+  "adults": 2
+}
+```
+
+The response is a single object with the same fields. This skips the property ID lookup
+and returns pricing for that exact hotel.
+
+## Multi-market pricing
+
+Add `"proxy_country": "US"` to the request body to see the rate a US shopper sees.
+Run the same search with different `proxy_country` values (US, DE, IL) to compare
+pricing across markets. The full pattern is documented in
+[How to monitor hotel rate parity](/guides/monitor-hotel-rate-parity).
+
+## Timeout and rate limits
+
+Set the HTTP Request timeout to 60 seconds. This is a live scan of Booking.com,
+not a cache read, and response time tracks destination complexity.
+
+If you are looping over multiple destinations, mind your plan's per-minute rate limit.
+Space the iterations with Zapier's Delay action rather than firing them all at once.
+
+## Related
+
+- [FlightPowers on Zapier](https://flightpowers.com/integrations/zapier): integration overview
+- [How to get a Booking.com API key](/guides/booking-com-api-key): the full setup walkthrough
+- [Using a hotel API in n8n](/guides/hotel-api-in-n8n): the same pattern for n8n workflows
+- [Using the Booking.com API in Make.com](/guides/booking-api-make): the Make.com variant
+
+<CtaBand
+  medium="guide"
+  title="Test it on your own hotels"
+  body="Run your three hardest destinations in a test Zap. If the data doesn't earn the fee, you've spent nothing."
+/>
