@@ -116,7 +116,6 @@ const faq: Faq[] = [
   },
   {
     q: 'What does the agent actually get back?',
-    a: 'Flat JSON per result. Flights: price as string and number, airline, duration, stops with layover details, Google’s price_insights_low/high band, price context from Google Flights, and a working buy_link. Hotels: price, review score and count, room type, availability, and a booking link.',
     a: 'Flat JSON per result. Flights: price as string and number, airline, duration, stops with layover details, and a working buy_link. Hotels: price, review score and count, room type, availability, and a booking link.',
   },
   {
@@ -357,7 +356,6 @@ export default function AiAgentsPage() {
         <CtaBand
           medium="mcp"
           title="Give your agent a travel budget it can defend"
-          body="Live flight prices with Google's own price band and price context, so the agent recommends with a source, not a hunch. One key covers MCP, skills, and REST."
           body="Live flight and hotel data, so your agent has current pricing. One key covers MCP, skills, and REST."
         />
       </Section>
