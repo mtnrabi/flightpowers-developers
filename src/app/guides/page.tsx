@@ -102,7 +102,13 @@ const GUIDES = [
   {
     href: '/guides/google-flights-api-zapier',
     title: 'Using Google Flights API in Zapier',
-    sub: 'Connect live Google Flights data to Zapier workflows with the HTTP Request action. Build fare watches, price feeds, and automated alerts with a POST request.',
+    sub: 'Connect live Google Flights data to Zapier workflows with the HTTP Request action. Build price watches, price feeds, and automated alerts with a POST request.',
+    tag: 'automation',
+  },
+  {
+    href: '/guides/booking-api-zapier',
+    title: 'Using the Booking.com hotel API in Zapier',
+    sub: 'Connect live Booking.com hotel data to Zapier workflows with the HTTP Request action. Build rate watches, price feeds, and automated alerts.',
     tag: 'automation',
   },
   {

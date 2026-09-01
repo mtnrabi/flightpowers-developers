@@ -127,6 +127,11 @@ Headers  x-api-key: YOUR_RAPIDAPI_KEY
         <p className="mt-4 max-w-3xl text-[14px] text-ink-400 leading-relaxed">
           For a single property, POST /v1/hotels/by-name instead, with{' '}
           <code className="font-mono text-[13px] text-signal-400">proxy_country</code> to watch its rate from another market.
+          The full setup is in{' '}
+          <a href="/guides/booking-api-zapier" className="text-signal-400 underline underline-offset-4">
+            Using the Booking.com hotel API in Zapier
+          </a>
+          .
         </p>
       </Section>
 
