@@ -137,7 +137,10 @@ export default function HomePage() {
               </div>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Cta href={rapidApiPricingUrl('flights', 'hero')} external variant="primary">
-                  Get API key (free tier) →
+                  Flights key (free tier) →
+                </Cta>
+                <Cta href={rapidApiPricingUrl('hotels', 'hero')} external variant="primary">
+                  Hotels key (free tier) →
                 </Cta>
                 <Cta href="#demo" variant="ghost">
                   Try live demo ↓
@@ -357,7 +360,7 @@ export default function HomePage() {
 
       {/* =========================== CLOSING CTA ========================= */}
       <Section bordered={false} className="!pt-4">
-        <CtaBand medium="hero" />
+        <CtaBand medium="hero" showBoth={true} />
       </Section>
     </>
   );
