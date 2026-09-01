@@ -19,9 +19,9 @@ import { TASKS } from '@/lib/matrix';
 import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const metadata: Metadata = withOg({
-  title: 'MCP servers: live flight & hotel data, one URL',
+  title: 'MCP Servers: Google Flights & Booking.com for Claude, Cursor, ChatGPT | FlightPowers',
   description:
-    'Hosted MCP servers for live Google Flights and Booking.com data. Works with Claude, Cursor, ChatGPT, and any MCP client. No install, bring your own RapidAPI key, and the flight tools accept date ranges and destination lists in a single call.',
+    'Hosted MCP servers for live Google Flights and Booking.com data. Works with Claude, Cursor, ChatGPT, and any MCP client. No install required, bring your own RapidAPI key. Flight date ranges and destination lists in a single call. Free tier: 10 requests/month.',
   alternates: { canonical: '/mcp' },
 });
 
@@ -101,10 +101,10 @@ export default function McpPage() {
             <div>
               <p className="eyebrow">Hosted MCP servers</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
-                Live travel data, <span className="text-signal-500">one MCP URL</span>
+                Connect Google Flights &amp; Booking.com to <span className="text-signal-500">any MCP client</span>
               </h1>
               <p className="lede mt-5">
-                Works with Claude, Cursor, ChatGPT, and any MCP client. No install, just a URL and your key.
+                Hosted MCP servers for Claude, Cursor, ChatGPT, and any MCP client. No installation required — just paste a URL and your RapidAPI key. Your AI agent gets live flight and hotel pricing in seconds.
               </p>
               <div className="mt-7">
                 <CheckBullets
@@ -120,13 +120,26 @@ export default function McpPage() {
               </div>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Cta href={rapidApiPricingUrl('flights', 'mcp')} external variant="primary">
-                  Get a key on RapidAPI →
+                  Get free API key →
                 </Cta>
                 <Cta href="/ai-agents" variant="ghost">
-                  What agents build with it
+                  Agent use cases
                 </Cta>
               </div>
-              <p className="mt-4 font-mono text-[12px] text-ink-500">Free tier: 10 requests/month. No card to try.</p>
+              <div className="mt-4 space-y-2">
+                <div className="flex items-center gap-2 font-mono text-[11px]">
+                  <svg className="w-3.5 h-3.5 text-signal-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-ink-300">Free tier: <strong className="text-ink-100">10 requests/month</strong>, no credit card</span>
+                </div>
+                <div className="flex items-center gap-2 font-mono text-[11px]">
+                  <svg className="w-3.5 h-3.5 text-signal-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-ink-300">Setup time: <strong className="text-ink-100">~30 seconds</strong> (paste config, restart client)</span>
+                </div>
+              </div>
             </div>
 
             <div>
