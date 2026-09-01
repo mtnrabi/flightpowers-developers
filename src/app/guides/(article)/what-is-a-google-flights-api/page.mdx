@@ -1,0 +1,289 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'What is a Google Flights API? Live fare search with a verdict on every result',
+  description:
+    'A Google Flights API returns shoppable live fares from the public Google Flights site as JSON, with Google\'s own low/typical/high verdict on every itinerary. The job it does: show what a traveler would pay right now, plus the historical context to decide if that fare is worth booking. How it works: REST endpoints and hosted MCP servers query the same live data. What it cannot do: issue tickets.',
+  alternates: { canonical: '/guides/what-is-a-google-flights-api' },
+});
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'What is a Google Flights API? Live fare search with a verdict on every result',
+    description:
+      'Definition and explanation of Google Flights APIs: what they do (return live fares with price context), how they work (REST and MCP), what they cannot do (ticketing), and why the niche exists (Amadeus Self-Service shut down, Kiwi Tequila closed, Google QPX Express never replaced).',
+    url: `${SITE.url}/guides/what-is-a-google-flights-api`,
+    datePublished: '2026-09-01',
+    dateModified: '2026-09-01',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What does a Google Flights API do?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'A Google Flights API returns shoppable live fares from the public Google Flights website as structured JSON. It runs a search on your behalf and parses the HTML into data you can work with. The best ones add Google\'s own price context: a low/typical/high verdict and the historical price band Google uses to compute it.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Why does this niche exist?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Google shut down QPX Express in April 2018 and never replaced it. Amadeus for Developers Self-Service shut down in 2026. Kiwi Tequila (the free tier) closed to new users. Developers still need fare data, so extraction APIs filled the hole: they scrape Google Flights and return JSON.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can a Google Flights API issue tickets?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. These are data APIs that return prices and booking deep links to Google Flights. They replace shopping endpoints (search and compare fares) but not booking endpoints (issue tickets, create PNRs). For ticketing, use Duffel or another booking API.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What is X-Search-Status and why does it matter?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'X-Search-Status is a response header that tells you whether a search succeeded (ok), returned no flights (empty), partially failed (partial), or encountered errors (degraded). Without it, an empty result array is ambiguous: you cannot tell if there are genuinely no flights or if the search broke.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What is the difference between REST and MCP for Google Flights APIs?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Both access the same live data. REST is a traditional POST endpoint you call from any language. MCP (Model Context Protocol) is a server you point Claude, Cursor, or ChatGPT at, and the model calls it as a tool. Same data source, same key, two doors depending on whether you\'re building an app or an AI agent.',
+        },
+      },
+    ],
+  }}
+/>
+
+# What is a Google Flights API?
+
+A **Google Flights API** returns shoppable live fares from the public Google Flights website as structured JSON. It queries the site on your behalf, parses the HTML into data, and hands you back an array of itineraries with prices, airlines, stops, durations, and booking links. The best ones also return **Google's own verdict** on every fare: whether the price is low, typical, or high compared to the historical band Google publishes for that route.
+
+The job this niche does: show what a traveler would pay **right now** if they opened Google Flights and searched that route, plus the historical context to decide whether to book or wait.
+
+## Why this niche exists: the hole
+
+Three closures created demand for Google Flights extraction APIs:
+
+1. **Google QPX Express** (the official flights API) shut down in **April 2018** and was never replaced. Google's remaining Travel Partner API is for airlines and OTAs under contract, not for developers who want to query a route and get a fare back.
+
+2. **Amadeus for Developers Self-Service** shut down in **2026**. The portal redirects to the homepage, the sandbox host is unreachable, and the GitHub repos are archived. This was the last credible self-serve GDS option for indie developers and early-stage startups.
+
+3. **Kiwi Tequila** (the free tier of Kiwi's search API) closed to new signups. It still serves existing users but no longer accepts new developers.
+
+The developers who chose those services because they were **self-serve** (no sales call, no accreditation, instant API key) still need fare data. Extraction APIs filled that hole. Instead of connecting to a GDS, they read the public Google Flights site and return structured JSON. That includes mine.
+
+## What a Google Flights API returns
+
+A request looks like this:
+
+```bash
+curl -X POST https://api.flightpowers.com/v1/flights/oneway \
+  -H "x-api-key: $RAPIDAPI_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "from_airport": "JFK",
+    "to_airport": "LHR",
+    "departure_date": "2026-10-15"
+  }'
+```
+
+The response is an array of itineraries, each with these fields:
+
+```json
+{
+  "price": "$487",
+  "price_as_number": 487,
+  "airline": "Norse Atlantic Airways",
+  "stops": 0,
+  "duration_minutes": 415,
+  "departure_airport": "JFK",
+  "arrival_airport": "LHR",
+  "departure_time": "2026-10-15T23:30",
+  "arrival_time": "2026-10-16T11:25",
+  "price_range_in_relation_to_other_periods": "typical",
+  "price_insights_low": 430,
+  "price_insights_high": 690,
+  "buy_link": "https://www.google.com/travel/flights?tfs=..."
+}
+```
+
+The three fields that set apart a good extraction API from a basic one:
+
+1. **`price_range_in_relation_to_other_periods`**: Google's own verdict on the fare (`"low"`, `"typical"`, or `"high"`)
+2. **`price_insights_low` / `price_insights_high`**: The dollar band Google shows to travelers under the price
+3. **`buy_link`**: A deep link that opens this exact itinerary on Google Flights, ready to book
+
+That verdict is what turns a raw price feed into "book now or wait" logic. Without it, you need to build your own price history database before you can judge a fare. With it, you ship a fare alert or agent on day one.
+
+## The X-Search-Status contract: empty vs failed
+
+The most dangerous response a search API can return is `200 []`: an empty array with a success code. That response is **ambiguous**. It could mean:
+
+- There are no flights on that route and date (legitimate empty result)
+- The search timed out and returned nothing (failure disguised as success)
+- The parser broke and extracted zero itineraries from a page full of fares (silent data loss)
+
+Without a way to distinguish these cases, your fare alert sends "no flights found" when it should have retried the search, or your date-scan logic concludes a date is unservable when the search simply failed.
+
+The **X-Search-Status** response header solves this:
+
+- **`ok`**: Search succeeded, results are complete
+- **`empty`**: Search succeeded, but Google returned no flights for this route/date
+- **`partial`**: Some data sources succeeded, others failed (results may be incomplete)
+- **`degraded`**: Search encountered errors, results may be unreliable
+
+You can now handle `empty` (show "no flights") separately from `degraded` (retry the search or escalate the error).
+
+FlightPowers also exposes this in JSON as `search_status` on the response body, so you don't have to parse headers if you're working in MCP or a tool that obscures them.
+
+## REST vs MCP: two doors, same data
+
+Google Flights APIs come in two forms, and both access the same live data:
+
+### REST: traditional POST endpoints
+
+You make an HTTP POST request from any language. The API returns JSON. This is what you use when building a web app, a mobile app, or a cron job that scans fares and sends alerts.
+
+```javascript
+const response = await fetch('https://api.flightpowers.com/v1/flights/oneway', {
+  method: 'POST',
+  headers: {
+    'x-api-key': process.env.RAPIDAPI_KEY,
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    from_airport: 'JFK',
+    to_airport: 'LHR',
+    departure_date: '2026-10-15',
+  }),
+});
+const data = await response.json();
+```
+
+### MCP: hosted servers for AI agents
+
+**MCP** (Model Context Protocol) is a standard for connecting AI models to external tools. You point Claude, Cursor, or ChatGPT at an MCP server URL, and the model calls it as a function when it needs flight data. No code: you give the agent your routes in natural language, and it queries the API.
+
+```json
+{
+  "mcpServers": {
+    "flights": {
+      "url": "https://flights.flightpowers.com/mcp",
+      "headers": { "x-rapidapi-key": "YOUR_KEY" }
+    }
+  }
+}
+```
+
+Same authentication, same data source, same price per request. The only difference is who writes the call: you (REST) or the agent (MCP).
+
+If you're building an AI travel agent, use MCP. If you're building a traditional product with a UI, use REST. If you're not sure, the [AI travel agent guide](/guides/ai-travel-agent) shows both in context.
+
+## How you get a key: RapidAPI checkout, not a custom portal
+
+Most Google Flights APIs (including FlightPowers) distribute through **RapidAPI**, a marketplace for developer APIs. This has two effects on your experience:
+
+1. **You already have an account.** If you've used any API on RapidAPI, you use the same key. One RapidAPI key works across every API you subscribe to on the platform.
+
+2. **Checkout is instant.** Click Subscribe, choose a plan, confirm. You have a working key in under a minute. No sales call, no application, no waiting for approval.
+
+The trade-off: the UX lives on RapidAPI's site, not a custom portal. You check usage, upgrade plans, and view invoices there. If you prefer a native developer portal, some APIs offer that (usually at a higher price floor). RapidAPI optimizes for **instant self-serve access**, which is why it became the standard distribution channel for Google Flights extraction APIs after Amadeus Self-Service closed.
+
+Getting started: [How to get a Google Flights API key](/guides/google-flights-api-key) (under 2 minutes, paste-ready code included)
+
+## What a Google Flights API cannot do
+
+These are **data APIs**, not booking platforms. They replace shopping endpoints (search fares, compare prices) but **not** booking endpoints (issue tickets, create PNRs, confirm reservations). Specifically:
+
+**Cannot:**
+- Issue tickets
+- Create bookings or reservations
+- Hold inventory
+- Process payments
+- Deliver PNRs to back-office systems
+- Support seat selection or ancillary bundling
+
+**Can:**
+- Return live fares with price context
+- Provide booking deep links to Google Flights or the airline
+- Support fare alerts, price calendars, and trip planners
+- Power AI agents with real-time shopping data
+
+**When a Google Flights API is the right answer:**
+- You're building fare alerts or price watches
+- You're powering a travel search engine or metasearch
+- You're building an AI travel agent (Claude, ChatGPT, Cursor)
+- You need market analysis or competitive pricing data
+- You want to show travelers what they'll pay on Google Flights
+
+**When it's the wrong answer:**
+- Your product issues tickets or completes bookings (use [Duffel](/compare/duffel))
+- You need NDC content or private fares (use a GDS or Amadeus Enterprise)
+- You require PNR delivery to back-office systems (use a booking platform)
+
+That "cannot ticket" limitation is stated plainly here because it's the most common source of confusion. If your user flow ends with "confirm booking," you need Duffel or another booking API, not a Google Flights extraction service.
+
+## Pricing and tiers
+
+Google Flights APIs on RapidAPI typically follow a four-tier model:
+
+- **BASIC**: Free tier, 10 requests/month (no credit card required, verification-sized)
+- **PRO**: $10/month, 2,500 requests (realistic floor for a production fare alert)
+- **ULTRA**: $25/month, 10,000 requests
+- **MEGA**: $50/month, 50,000 requests
+
+Hotels APIs (Booking.com extraction) are separate subscriptions with slightly different tiers. One RapidAPI key works for both once you subscribe.
+
+Rate limits, response times, and escalation mechanisms vary by vendor. Current FlightPowers pricing (no caching delay, failover to second data source, X-Search-Status on every response): [/pricing](/pricing)
+
+## How to choose between vendors
+
+Three questions:
+
+1. **Do you need Google's price verdict on every fare?** Not every extraction API returns `price_range_in_relation_to_other_periods` and the historical band. If you're building fare alerts or an agent that advises "book now or wait," this field is not optional. Without it, you need months of your own price history before you can judge a fare.
+
+2. **How does the API signal search failure?** If the API returns `200 []` for both "no flights" and "search timed out," your error-handling logic is blind. Look for explicit failure reporting: an `X-Search-Status` header, a `search_status` field, or documented error codes.
+
+3. **What is the rate limit?** If you're building a date-scan feature (show me the cheapest week to fly), you need to fire 30+ searches in parallel. A 10-requests-per-minute rate limit makes that flow unusable. Check the limit before committing.
+
+Honest comparison with dated quotes and disclosed bias: [The best flight data APIs in 2026](/guides/best-flight-data-apis-2026)
+
+## Related
+
+- [Is there a Google Flights API?](/guides/google-flights-api): The history and the three real options today
+- [How to get a Google Flights API key](/guides/google-flights-api-key): The 2-minute setup walkthrough
+- [How to get real-time Google Flights data](/guides/real-time-google-flights-data): Full code examples for REST and MCP
+- [Handling empty flight search results](/guides/handle-empty-flight-search-results): The failure taxonomy and why 200 [] is dangerous
+- [Create your 24/7 AI travel agent](/guides/ai-travel-agent): Connect live flight data to Claude or ChatGPT in 15 minutes
+- [Amadeus Self-Service alternatives](/guides/amadeus-self-service-alternatives): What replaced the deprecated Amadeus API
+- [MCP servers](/mcp): The same data as tools for Claude, ChatGPT, Cursor, or any MCP client
+- [FlightPowers vs Duffel](/compare/duffel): When you need ticketing instead of shopping data
+
+<CtaBand
+  medium="guide"
+  title="See the verdict on your routes"
+  body="Run your three hardest routes and read the price context. If the data doesn't earn the fee, you've spent nothing."
+/>

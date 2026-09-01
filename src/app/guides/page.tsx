@@ -40,6 +40,12 @@ const GUIDES = [
     tag: 'start here',
   },
   {
+    href: '/guides/what-is-a-google-flights-api',
+    title: 'What is a Google Flights API?',
+    sub: 'Category explainer: what these APIs do (return shoppable live fares with Google\'s verdict), why the niche exists (Amadeus Self-Service gone, Kiwi Tequila closed), and what they cannot do (issue tickets).',
+    tag: 'explainer',
+  },
+  {
     href: '/guides/google-flights-api',
     title: 'Is there a Google Flights API? What actually exists in 2026',
     sub: 'No, and there has not been one since QPX Express closed in April 2018. The three real options today: extraction APIs, GDS/booking APIs, and self-hosted scrapers, with the trade-offs stated plainly.',
