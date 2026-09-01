@@ -1,0 +1,265 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'How to get a Booking.com API Key in 2026',
+  description:
+    'Step-by-step guide to getting a Booking.com API key through RapidAPI. Booking.com\'s Partner API requires an existing OTA business. The Booking Live API on RapidAPI lets any developer pull live hotel data with proxy_country geo-pricing. Get your key in under 2 minutes.',
+  alternates: { canonical: '/guides/booking-com-api-key' },
+});
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'How to get a Booking.com API Key in 2026',
+    description:
+      'Step-by-step guide to obtaining a Booking.com API key through RapidAPI since Booking.com Partner API requires an existing OTA business.',
+    url: `${SITE.url}/guides/booking-com-api-key`,
+    datePublished: '2026-09-01',
+    dateModified: '2026-09-01',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How to get a Booking.com API Key',
+    description: 'Get a Booking.com API key through RapidAPI in under 2 minutes',
+    step: [
+      {
+        '@type': 'HowToStep',
+        name: 'Sign up for RapidAPI',
+        text: 'Create a free RapidAPI account if you don\'t have one. No credit card required for the free tier.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Subscribe to Booking Live API',
+        text: 'Navigate to the Booking Live API listing on RapidAPI and click Subscribe. Choose a plan: BASIC (free, 10 requests/month), PRO ($10/month, 2,000 requests), ULTRA ($20/month, 6,500 requests), or MEGA ($50/month, 25,000 requests).',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Copy your API key',
+        text: 'After subscribing, your RapidAPI key appears in the API dashboard. Copy it and add it to your application as the x-rapidapi-key header.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Make your first request',
+        text: 'Test the API with a hotel search, hotel_by_name lookup, or geo-pricing request using proxy_country.',
+      },
+    ],
+  }}
+/>
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Is there an official Booking.com API?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, but access is restricted. Booking.com Partner API (formerly Booking Basic and Content API) is for existing online travel agencies and accommodation providers with an established business relationship. For developers who need live Booking.com data without partnership requirements, third-party extraction APIs like Booking Live API on RapidAPI provide instant access.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How much does a Booking.com API key cost?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The Booking Live API on RapidAPI has four tiers: BASIC (free, 10 requests/month), PRO ($10/month, 2,000 requests), ULTRA ($20/month, 6,500 requests), and MEGA ($50/month, 25,000 requests). The free tier requires no credit card.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I book hotels through the API?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. The Booking Live API is a data extraction API that returns hotel pricing, availability, and Booking.com deep links. It does not handle reservations. Each result includes a working booking link that opens the exact property on Booking.com.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What is proxy_country and why does it matter?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'proxy_country lets you query any hotel as if searching from any market. Set proxy_country=DE to see the rate a German shopper sees; change it to US for US pricing. This is how rate-parity monitoring works: one hotel, three countries, three requests, and you have the full comp set.',
+        },
+      },
+    ],
+  }}
+/>
+
+# How to get a Booking.com API Key in 2026
+
+Booking.com's official **Partner API** (formerly Booking Basic and Content API) requires an existing OTA business and an application process. For developers who need live Booking.com hotel data without partnership requirements, the **Booking Live API** on RapidAPI provides instant access with a feature the official API never shipped: **`proxy_country`**, which lets you price any hotel from any market in one request.
+
+This guide walks you through getting a Booking.com API key in under 2 minutes, with no business verification and a free tier to test.
+
+## What you're actually getting
+
+When you get a Booking.com API key through RapidAPI, you're subscribing to a hosted service that:
+
+1. Runs live searches against Booking.com on your behalf
+2. Returns structured JSON instead of HTML
+3. Supports **`proxy_country`** on every endpoint: quote any hotel as a shopper in the US, Germany, Israel, or 150+ other markets would see it
+4. Includes **`hotel_by_name`**: search by property name + city, no need to look up Booking.com property IDs first
+5. Returns availability, pricing, room types, and working deep links
+
+This is not a workaround for the official API. It's a data extraction service for developers who need Booking.com rates without becoming a contracted travel partner.
+
+## Step 1: Sign up for RapidAPI (30 seconds)
+
+If you don't have a RapidAPI account:
+
+1. Go to <a href={rapidApiPricingUrl('hotels', 'guide')} rel="noopener">rapidapi.com</a>
+2. Click **Sign Up** (top right)
+3. Sign up with email, Google, or GitHub
+4. Confirm your email if required
+
+RapidAPI is a marketplace for APIs. One account works across every API they host. The free tier requires no credit card.
+
+## Step 2: Subscribe to Booking Live API (60 seconds)
+
+1. Navigate to the <a href={rapidApiPricingUrl('hotels', 'guide')} rel="noopener">Booking Live API</a> listing
+2. Click the **Pricing** tab to see the four plans:
+   - **BASIC**: $0/month, 10 requests/month (hard cap, no card required)
+   - **PRO**: $10/month, 2,000 requests/month
+   - **ULTRA**: $20/month, 6,500 requests/month
+   - **MEGA**: $50/month, 25,000 requests/month
+3. Click **Subscribe** on the plan you want (start with BASIC to verify integration)
+4. Complete the subscription flow
+
+You're subscribed immediately. No approval wait, no partnership application.
+
+## Step 3: Get your API key (10 seconds)
+
+After subscribing:
+
+1. Stay on the API listing page or click **Endpoints** tab
+2. Your **X-RapidAPI-Key** appears in the code examples on the right
+3. Copy it — this is your API key
+
+If you already subscribed to the Google Flights Live API, you use the **same RapidAPI key** for both. One key, multiple API subscriptions.
+
+## Step 4: Make your first request
+
+Test your key with a hotel search in London:
+
+```bash
+curl -X POST https://booking-live-api.p.rapidapi.com/api/hotels/v1/search \
+  -H "Content-Type: application/json" \
+  -H "x-rapidapi-host: booking-live-api.p.rapidapi.com" \
+  -H "x-rapidapi-key: YOUR_RAPIDAPI_KEY" \
+  -d '{
+    "destination": "London, UK",
+    "checkin_date": "2026-10-15",
+    "checkout_date": "2026-10-18",
+    "adults": 2
+  }'
+```
+
+Replace `YOUR_RAPIDAPI_KEY` with your actual key. Success looks like a JSON array of properties:
+
+```json
+{
+  "hotel_name": "The Savoy",
+  "price_string": "$450",
+  "price_as_number": 450,
+  "review_score": 9.1,
+  "review_count": 2847,
+  "room_type": "Deluxe River View Room",
+  "address": "Strand, London WC2R 0EZ",
+  "booking_link": "https://www.booking.com/hotel/gb/savoy.html?..."
+}
+```
+
+Each result includes a working `booking_link` that opens that exact property and dates on Booking.com.
+
+## What makes this API different: proxy_country
+
+The killer feature is **`proxy_country`**, a parameter that prices any hotel from any market's perspective. Add `"proxy_country": "DE"` to your request and you get the rate a German shopper sees. Change it to `"US"` and you get the US rate.
+
+Why this matters: **rate-parity monitoring**. One hotel, three requests with different `proxy_country` values, and you have the full competitive pricing picture:
+
+```bash
+# US shopper
+curl ... -d '{"destination": "Rixos Sungate, Antalya", "proxy_country": "US", ...}'
+# German shopper
+curl ... -d '{"destination": "Rixos Sungate, Antalya", "proxy_country": "DE", ...}'
+# Israeli shopper
+curl ... -d '{"destination": "Rixos Sungate, Antalya", "proxy_country": "IL", ...}'
+```
+
+Booking.com shows different rates to different markets. `proxy_country` lets you see all of them. The full guide is in [How to monitor hotel rate parity](/guides/monitor-hotel-rate-parity).
+
+## The four endpoints
+
+**POST /search**  
+Search by destination, dates, and guest count. Returns a ranked list of properties with pricing, reviews, room types, and links. Supports 24 filters documented on the listing.
+
+**POST /hotel_by_name**  
+Find one specific hotel by name, no property ID required. Pass `hotel_name` and `area` (city), get availability and pricing for that exact property. Name matching is fuzzy and handles chains.
+
+**POST /hotel**  
+Get every room type and rate for one property. Pass a Booking.com `hotel_id`, get back all available rooms with granular pricing.
+
+**POST /resolve**  
+Resolve a hotel name to its Booking.com property ID and metadata. Use when you need the `hotel_id` for another API call.
+
+Every endpoint accepts `proxy_country` to control market perspective.
+
+## Next steps
+
+**Build something:**
+- [Monitor hotel rate parity](/guides/monitor-hotel-rate-parity)
+- [Create a 24/7 AI travel agent](/guides/ai-travel-agent) with flights + hotels
+- [Connect to MCP](/mcp) for Claude Desktop, Cursor, or ChatGPT
+
+**Read the docs:**
+- [Hotel search endpoint reference](/hotels-api/search)
+- [Hotel by name reference](/hotels-api/by-name)
+- [Geo-pricing (proxy_country) docs](/hotels-api/geo-pricing)
+
+**Compare alternatives:**
+- [FlightPowers vs Amadeus](/compare/amadeus)
+- [Best flight data APIs in 2026](/guides/best-flight-data-apis-2026) (includes hotel APIs)
+
+## FAQs
+
+**Is there an official Booking.com API?**  
+Yes, but it's restricted. Booking.com Partner API requires an existing OTA business and a partnership application. The Booking Live API on RapidAPI gives developers instant access to live Booking.com data without partnership requirements.
+
+**How much does it cost?**  
+The free BASIC tier is 10 requests/month with no credit card required. The PRO tier ($10/month, 2,000 requests) fits rate-parity checks and small-scale scrapers. Pricing is on [/pricing](/pricing).
+
+**Can I book hotels through the API?**  
+No. This is a data API, not a booking API. Every result includes a `booking_link` that opens that exact property on Booking.com where the user completes the reservation.
+
+**What's the difference between this and Expedia or Hotels.com APIs?**  
+Booking.com has the largest inventory of any OTA: 28+ million listings globally as of 2026. The Booking Live API extracts from that full inventory. Expedia Group APIs (covering Expedia, Hotels.com, Vrbo) are separate and require partnership. Neither can price from arbitrary markets the way `proxy_country` does.
+
+**How fast are responses?**  
+Hotel searches typically return in 2-4 seconds. `hotel_by_name` is faster (1-2 seconds) because it queries one property. Complex searches with many filters or large areas can take up to 30 seconds.
+
+**Does the free tier expire?**  
+No. The BASIC plan resets monthly and stays free indefinitely. 10 requests/month is verification-sized, not production-sized, and that's stated plainly on [/pricing](/pricing).
+
+**Why would I use this instead of the official API?**  
+Two reasons: (1) you don't have an existing OTA business and can't get Partner API access, or (2) you need `proxy_country` geo-pricing, which the official API does not support. If you can get Partner API access and don't need geo-pricing, the official API is the right choice.
+
+<CtaBand
+  medium="guide"
+  title="Get your key and test it in 2 minutes"
+  body="BASIC plan is free and requires no credit card. Test geo-pricing with proxy_country, read the real rates, then scale to PRO when ready."
+/>
