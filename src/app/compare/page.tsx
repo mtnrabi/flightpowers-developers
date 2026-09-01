@@ -34,6 +34,24 @@ const PAGES = [
     stamp: 'observed state retrieved 2026-08-24',
   },
   {
+    href: '/compare/datacrawler',
+    title: 'vs DataCrawler on RapidAPI',
+    sub: 'Comprehensive 12-endpoint platform with multi-city, calendar grids, price graphs, and a generous 150-request free tier against specialist unit economics. When endpoint breadth matters, and when cost per search decides it.',
+    stamp: 'competitor data retrieved 2026-09-01',
+  },
+  {
+    href: '/compare/crawlio',
+    title: 'vs Crawlio on RapidAPI',
+    sub: 'Two-stage round-trip flow (pick outbound, then fetch priced returns) against one paired-leg request. When the leg-by-leg UI interaction model fits, and when one-request round-trips win on unit cost.',
+    stamp: 'competitor data retrieved 2026-09-01',
+  },
+  {
+    href: '/compare/scrapebadger',
+    title: 'vs ScrapeBadger',
+    sub: 'Pay-per-use credits that never expire (across 20+ Google APIs) against fixed monthly subscriptions. When occasional batch jobs beat subscriptions, and when steady volume makes PAYG expensive.',
+    stamp: 'competitor data retrieved 2026-09-01',
+  },
+  {
     href: '/guides/best-flight-data-apis-2026',
     title: 'Best flight data APIs on RapidAPI, 2026',
     sub: 'The listicle, with disclosed bias: it starts with our own API and says so. Includes the finding that Air Scraper is cheaper per request than we are, and when that should decide it.',
