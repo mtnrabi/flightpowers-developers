@@ -8,7 +8,7 @@ import { SITE } from '@/lib/site';
 export const metadata: Metadata = withOg({
   title: 'Guides: working code for flight & hotel data',
   description:
-    'How-to guides for live flight and hotel pricing: getting real-time Google Flights data, getting API keys, handling empty search results correctly, decoding Google Flights URLs, monitoring hotel rate parity, fare watches in n8n, and an honest comparison of the 2026 flight-API field.',
+    'How-to guides for live flight and hotel pricing: getting real-time Google Flights data, getting API keys, handling empty search results correctly, decoding Google Flights URLs, monitoring hotel rate parity, fare watches and hotel rate monitoring in n8n, and an honest comparison of the 2026 flight-API field.',
   alternates: { canonical: '/guides' },
 });
 
@@ -79,6 +79,12 @@ const GUIDES = [
     href: '/guides/flight-api-in-n8n',
     title: 'Using a flight API in n8n',
     sub: 'A four-node fare watch that fires when Google\'s verdict says "low", with the community node or a plain HTTP Request node, exact POST body included.',
+    tag: 'automation',
+  },
+  {
+    href: '/guides/hotel-api-in-n8n',
+    title: 'Using a hotel API in n8n',
+    sub: 'A four-node rate monitor for Booking.com: schedule, search, filter by price threshold. Alert when rates drop, no scraping required.',
     tag: 'automation',
   },
   {
