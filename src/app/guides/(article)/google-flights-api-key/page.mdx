@@ -1,0 +1,239 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'How to get a Google Flights API Key in 2026',
+  description:
+    'Step-by-step guide to getting a Google Flights API key through RapidAPI. Since Google shut down QPX Express in 2018, RapidAPI hosts the Google Flights Live API with free and paid tiers. Get your key in under 2 minutes and start pulling live flight data as JSON.',
+  alternates: { canonical: '/guides/google-flights-api-key' },
+});
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'How to get a Google Flights API Key in 2026',
+    description:
+      'Step-by-step guide to obtaining a Google Flights API key through RapidAPI since Google no longer offers a public flights API.',
+    url: `${SITE.url}/guides/google-flights-api-key`,
+    datePublished: '2026-09-01',
+    dateModified: '2026-09-01',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'How to get a Google Flights API Key',
+    description: 'Get a Google Flights API key through RapidAPI in under 2 minutes',
+    step: [
+      {
+        '@type': 'HowToStep',
+        name: 'Sign up for RapidAPI',
+        text: 'Create a free RapidAPI account if you don\'t have one. No credit card required for the free tier.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Subscribe to Google Flights Live API',
+        text: 'Navigate to the Google Flights Live API listing on RapidAPI and click Subscribe. Choose a plan: BASIC (free, 10 requests/month), PRO ($10/month, 2,500 requests), ULTRA ($25/month, 10,000 requests), or MEGA ($50/month, 50,000 requests).',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Copy your API key',
+        text: 'After subscribing, your RapidAPI key appears in the API dashboard. Copy it and add it to your application as the x-rapidapi-key header.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Make your first request',
+        text: 'Test the API with a simple cURL command or use one of the provided code examples in Python, JavaScript, or other languages.',
+      },
+    ],
+  }}
+/>
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Is there an official Google Flights API key?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. Google discontinued QPX Express, its public flights API, in April 2018. The only way to get Google Flights data today is through third-party extraction APIs like FlightPowers Google Flights Live API on RapidAPI, which query the public Google Flights website and return structured JSON.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How much does a Google Flights API key cost?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'The Google Flights Live API on RapidAPI has four tiers: BASIC (free, 10 requests/month), PRO ($10/month, 2,500 requests), ULTRA ($25/month, 10,000 requests), and MEGA ($50/month, 50,000 requests). The free tier requires no credit card.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I book flights through the API?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. The Google Flights Live API is an extraction API that returns flight pricing data and Google Flights deep links. It does not handle bookings. Each result includes a buy_link that opens the exact itinerary on Google Flights where the user can complete the booking.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What makes this API different from other flight APIs?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'FlightPowers returns Google\'s own price context on every fare: price_insights_low and price_insights_high define the historical band, and price_range_in_relation_to_other_periods is "low", "typical", or "high". It also returns an X-Search-Status header that distinguishes "no flights found" from "search failed".',
+        },
+      },
+    ],
+  }}
+/>
+
+# How to get a Google Flights API Key in 2026
+
+Google shut down **QPX Express**, its public flight-search API, in **April 2018** and offers no public flights API today. Every "Google Flights API key" you can get in 2026 comes from a third-party service that extracts data from the public Google Flights website. This guide walks you through getting a key for the **Google Flights Live API** on RapidAPI, the extraction API that returns Google's own price context with every fare.
+
+The process takes under 2 minutes. You'll have a working API key, a free tier to test with, and paste-ready code examples.
+
+## What you're actually getting
+
+When you "get a Google Flights API key" today, you're subscribing to a hosted service that:
+
+1. Runs live searches against Google Flights on your behalf
+2. Returns structured JSON instead of HTML
+3. Includes fields the official API never had: Google's historical price band and a low | typical | high verdict on every fare
+4. Reports search status explicitly (`X-Search-Status` header) so you know the difference between "no flights found" and "the search failed"
+
+This is not a workaround — it's the only way to get Google Flights data programmatically. Google's remaining Travel Partner API is for airlines and OTAs under contract, not for developers.
+
+## Step 1: Sign up for RapidAPI (30 seconds)
+
+If you don't have a RapidAPI account:
+
+1. Go to <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">rapidapi.com</a>
+2. Click **Sign Up** (top right)
+3. Sign up with email, Google, or GitHub
+4. Confirm your email if required
+
+RapidAPI is a marketplace for APIs. Your account works across every API they host, and the free tier of this API requires no credit card.
+
+## Step 2: Subscribe to Google Flights Live API (60 seconds)
+
+1. Navigate to the <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">Google Flights Live API</a> listing
+2. Click the **Pricing** tab to see the four plans:
+   - **BASIC**: $0/month, 10 requests/month (hard cap, no card required)
+   - **PRO**: $10/month, 2,500 requests/month
+   - **ULTRA**: $25/month, 10,000 requests/month
+   - **MEGA**: $50/month, 50,000 requests/month
+3. Click **Subscribe** on the plan you want (start with BASIC to verify integration)
+4. Complete the subscription flow
+
+You're subscribed immediately. No approval wait, no sales call.
+
+## Step 3: Get your API key (10 seconds)
+
+After subscribing:
+
+1. Stay on the API listing page or click **Endpoints** tab
+2. Your **X-RapidAPI-Key** appears in the code examples on the right
+3. Copy it — this is your API key
+
+The same RapidAPI key works for every API you subscribe to on the platform. If you later subscribe to the Booking.com API (hotels), you use the same key.
+
+## Step 4: Make your first request
+
+Test your key with a one-way search from JFK to LAX:
+
+```bash
+curl -X POST https://google-flights-live-api.p.rapidapi.com/api/google_flights/oneway/v1 \
+  -H "Content-Type: application/json" \
+  -H "x-rapidapi-host: google-flights-live-api.p.rapidapi.com" \
+  -H "x-rapidapi-key: YOUR_RAPIDAPI_KEY" \
+  -d '{
+    "from_airport": "JFK",
+    "to_airport": "LAX",
+    "departure_date": "2026-10-15"
+  }'
+```
+
+Replace `YOUR_RAPIDAPI_KEY` with your actual key. Success looks like a JSON array of flight itineraries, each with:
+
+```json
+{
+  "price": "$128",
+  "price_as_number": 128,
+  "airline": "Delta",
+  "stops": 0,
+  "duration_minutes": 360,
+  "price_range_in_relation_to_other_periods": "low",
+  "price_insights_low": 115,
+  "price_insights_high": 220,
+  "buy_link": "https://www.google.com/travel/flights?tfs=..."
+}
+```
+
+That `price_range_in_relation_to_other_periods` field is Google's own verdict. Every result includes it when Google publishes a price band for that route.
+
+## What the API returns that others don't
+
+Three fields set this API apart from competitors:
+
+1. **`price_range_in_relation_to_other_periods`**: `"low"`, `"typical"`, or `"high"` — Google's judgment of the current fare against historical data
+2. **`price_insights_low` / `price_insights_high`**: The dollar band Google uses to compute the verdict
+3. **`X-Search-Status` response header**: `ok`, `empty`, `partial`, or `degraded` — so an empty result array is not ambiguous
+
+These fields turn a raw price feed into actionable "is this a good deal?" logic on day one, without building your own price history database.
+
+## Next steps
+
+**Build something:**
+- [Create a 24/7 AI travel agent](/guides/ai-travel-agent) with Claude or ChatGPT
+- [Set up a fare alert in n8n](/guides/flight-api-in-n8n)
+- [Connect to MCP](/mcp) for Claude Desktop, Cursor, or ChatGPT
+
+**Read the docs:**
+- [One-way endpoint reference](/flights-api/one-way)
+- [Round-trip endpoint reference](/flights-api/round-trip)
+- [Price Insights API documentation](/flights-api/price-insights)
+
+**Compare alternatives:**
+- [FlightPowers vs SerpApi](/compare/serpapi)
+- [FlightPowers vs Amadeus](/compare/amadeus)
+- [Best flight data APIs in 2026](/guides/best-flight-data-apis-2026)
+
+## FAQs
+
+**Is there an official Google Flights API key?**  
+No. Google shut down QPX Express in 2018 and has offered no public flights API since. Every Google Flights API key today comes from a third-party extraction service.
+
+**How much does it cost?**  
+The free BASIC tier is 10 requests/month with no credit card required — enough to verify your integration works. The PRO tier ($10/month, 2,500 requests) is the realistic floor for a production fare alert or agent.
+
+**Can I book flights through the API?**  
+No. This is a data API, not a booking API. Every result includes a `buy_link` that opens that exact itinerary on Google Flights ready to book.
+
+**What's the difference between this and Duffel or Amadeus?**  
+Duffel and Amadeus sell GDS/airline inventory and can issue tickets. This API extracts data from the public Google Flights site, so you get the prices travelers actually see when they search, but you cannot book through the API. Full comparison: [FlightPowers vs Duffel](/compare/duffel), [vs Amadeus](/compare/amadeus).
+
+**How fast are responses?**  
+This is a live scan of Google Flights, not a cache read. Simple routes return in 1-2 seconds; complex routes (many stops, long date ranges) can take up to 90 seconds. The API retries failed searches and escalates to a second data source automatically.
+
+**Does the free tier expire?**  
+No. The BASIC plan resets monthly and stays free indefinitely. 10 requests/month is verification-sized, not production-sized, and that's stated plainly on [/pricing](/pricing).
+
+<CtaBand
+  medium="guide"
+  title="Get your key and test it in 2 minutes"
+  body="BASIC plan is free and requires no credit card. Verify the integration, read the price band and verdict, then scale to PRO when ready."
+/>

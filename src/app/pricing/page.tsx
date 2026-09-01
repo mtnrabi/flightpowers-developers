@@ -150,7 +150,7 @@ export default function PricingPage() {
         <SectionHead
           eyebrow="From click to working key"
           title="Six steps, honestly counted"
-          lede="Two of them are RapidAPI's walls, not ours, but none needs approval and the free tier needs no card."
+          lede="Two of them are RapidAPI's walls, not ours, but none needs approval and the free tier needs no card. Full guides: [How to get a Google Flights API key](/guides/google-flights-api-key) and [How to get a Booking.com API key](/guides/booking-com-api-key)."
         />
         <ol className="mt-10 max-w-3xl space-y-4">
           {[

@@ -129,6 +129,21 @@ export default function CompareIndexPage() {
         </div>
       </Section>
 
+      <Section>
+        <SectionHead eyebrow="Getting Started" title="Ready to build?" lede="Get your API key and make your first request in under 2 minutes. Free tier available, no credit card required." />
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 max-w-2xl">
+          {[
+            { href: '/guides/google-flights-api-key', label: 'Google Flights API Key', sub: 'Step-by-step guide with code examples' },
+            { href: '/guides/booking-com-api-key', label: 'Booking.com API Key', sub: 'Get started with hotel data in minutes' },
+          ].map((l) => (
+            <Link key={l.href} href={l.href} className="rounded-2xl border rule bg-ink-900/50 p-5 hover:border-ink-500 transition-colors">
+              <p className="text-[15px] font-semibold text-ink-100">{l.label}</p>
+              <p className="mt-1 text-[13px] text-ink-400">{l.sub}</p>
+            </Link>
+          ))}
+        </div>
+      </Section>
+
       <Section bordered={false} className="!pt-4">
         <CtaBand
           medium="compare"

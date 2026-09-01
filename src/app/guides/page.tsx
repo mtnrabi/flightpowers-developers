@@ -8,7 +8,7 @@ import { SITE } from '@/lib/site';
 export const metadata: Metadata = withOg({
   title: 'Guides: working code for flight & hotel data',
   description:
-    'How-to guides for live flight and hotel pricing: getting real-time Google Flights data, handling empty search results correctly, decoding Google Flights URLs, monitoring hotel rate parity, fare watches in n8n, and an honest comparison of the 2026 flight-API field.',
+    'How-to guides for live flight and hotel pricing: getting real-time Google Flights data, getting API keys, handling empty search results correctly, decoding Google Flights URLs, monitoring hotel rate parity, fare watches in n8n, and an honest comparison of the 2026 flight-API field.',
   alternates: { canonical: '/guides' },
 });
 
@@ -18,8 +18,20 @@ const GUIDES = [
   {
     href: '/guides/ai-travel-agent',
     title: 'Create your 24/7 AI travel agent',
-    sub: 'Connect live flight and hotel data to Claude or ChatGPT in about 15 minutes, then schedule a daily scan of your routes that only pings you when Google’s own verdict says the fare is low. Real captured runs, honest cost math.',
+    sub: 'Connect live flight and hotel data to Claude or ChatGPT in about 15 minutes, then schedule a daily scan of your routes that only pings you when Google\'s own verdict says the fare is low. Real captured runs, honest cost math.',
     tag: 'flagship',
+  },
+  {
+    href: '/guides/google-flights-api-key',
+    title: 'How to get a Google Flights API Key in 2026',
+    sub: 'Step-by-step guide to getting a Google Flights API key through RapidAPI. Since Google shut down QPX Express in 2018, this is the path to live flight data as JSON. Takes under 2 minutes, includes a free tier.',
+    tag: 'getting started',
+  },
+  {
+    href: '/guides/booking-com-api-key',
+    title: 'How to get a Booking.com API Key in 2026',
+    sub: 'Step-by-step guide to getting a Booking.com API key through RapidAPI. The official Partner API requires an OTA business; this path is instant access with proxy_country geo-pricing included.',
+    tag: 'getting started',
   },
   {
     href: '/guides/real-time-google-flights-data',
@@ -36,7 +48,7 @@ const GUIDES = [
   {
     href: '/guides/handle-empty-flight-search-results',
     title: 'Handling empty flight search results',
-    sub: 'Why 200 [] is the most dangerous response a search API can return, the failure taxonomy behind it, and a vendor-neutral checklist for evaluating any search API’s empty-result semantics.',
+    sub: 'Why 200 [] is the most dangerous response a search API can return, the failure taxonomy behind it, and a vendor-neutral checklist for evaluating any search API\'s empty-result semantics.',
     tag: 'engineering essay',
   },
   {
@@ -54,7 +66,7 @@ const GUIDES = [
   {
     href: '/guides/flight-api-in-n8n',
     title: 'Using a flight API in n8n',
-    sub: 'A four-node fare watch that fires when Google’s verdict says “low”, with the community node or a plain HTTP Request node, exact POST body included.',
+    sub: 'A four-node fare watch that fires when Google\'s verdict says "low", with the community node or a plain HTTP Request node, exact POST body included.',
     tag: 'automation',
   },
   {
