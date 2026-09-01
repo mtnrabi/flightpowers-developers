@@ -112,6 +112,12 @@ const GUIDES = [
     tag: 'automation',
   },
   {
+    href: '/guides/google-flights-mcp-cursor',
+    title: 'Using the Google Flights MCP in Cursor',
+    sub: 'Connect live flight and hotel data to Cursor with one block in .cursor/mcp.json. The agent can fetch real prices and test your travel features against live data.',
+    tag: 'AI agents',
+  },
+  {
     href: '/guides/best-flight-data-apis-2026',
     title: 'The best flight data APIs in 2026',
     sub: 'The listicle, with disclosed bias: it starts with our own API and says so, quotes every competitor price with a retrieval date, and names the competitor that is cheaper per request than we are.',
