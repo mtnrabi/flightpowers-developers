@@ -22,7 +22,19 @@ export const dynamic = 'force-static';
 const faq: Faq[] = [
   {
     q: 'How quickly can I start building?',
-    a: 'Free tier signup takes under 2 minutes on RapidAPI — no credit card required. You get your API key instantly and can make your first request within 5 minutes. Test with 10 requests/month free to verify integration, then upgrade when ready. Step-by-step guides: [How to get a Google Flights API key](/guides/google-flights-api-key) and [How to get a Booking.com API key](/guides/booking-com-api-key). MCP servers work the same way: paste a config, restart your AI client, done.',
+    a: (
+      <>
+        Free tier signup takes under 2 minutes on RapidAPI — no credit card required. You get your API key instantly and can make your first request within 5 minutes. Test with 10 requests/month free to verify integration, then upgrade when ready. Step-by-step guides:{' '}
+        <Link href="/guides/google-flights-api-key" className="text-signal-400 underline underline-offset-4">
+          How to get a Google Flights API key
+        </Link>{' '}
+        and{' '}
+        <Link href="/guides/booking-com-api-key" className="text-signal-400 underline underline-offset-4">
+          How to get a Booking.com API key
+        </Link>
+        . MCP servers work the same way: paste a config, restart your AI client, done.
+      </>
+    ),
   },
   {
     q: 'Is there a free tier?',

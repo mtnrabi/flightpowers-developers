@@ -31,7 +31,7 @@ export function SectionHead({
 }: {
   eyebrow?: string;
   title: string;
-  lede?: string;
+  lede?: string | ReactNode;
   /** substring of the title rendered in the accent color */
   accent?: string;
 }) {
@@ -156,18 +156,20 @@ export function Breadcrumbs({ trail }: { trail: { href: string; label: string }[
   );
 }
 
-export type Faq = { q: string; a: string };
+export type Faq = { q: string; a: string | ReactNode };
 
 /** Renders the FAQ as real HTML *and* emits FAQPage JSON-LD from the same array. */
 export function FaqSection({ items, heading = 'Questions, answered plainly' }: { items: Faq[]; heading?: string }) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: items.map((item) => ({
-      '@type': 'Question',
-      name: item.q,
-      acceptedAnswer: { '@type': 'Answer', text: item.a },
-    })),
+    mainEntity: items
+      .filter((item) => typeof item.a === 'string')
+      .map((item) => ({
+        '@type': 'Question',
+        name: item.q,
+        acceptedAnswer: { '@type': 'Answer', text: item.a },
+      })),
   };
   return (
     <>
