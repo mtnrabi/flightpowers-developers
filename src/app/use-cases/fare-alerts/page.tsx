@@ -16,7 +16,7 @@ export const dynamic = 'force-static';
 const faq: Faq[] = [
   {
     q: 'How do I know a fare is “low” without collecting my own price history?',
-    a: 'Every result carries price_insights_low and price_insights_high (Google’s historical price band for that route and date window), plus price_range_in_relation_to_other_periods, Google’s own low | typical | high verdict. Your alert branches on the verdict; Google’s band is the history you didn’t have to collect.',
+    a: 'Every result carries price_insights_low and price_insights_high (Google’s historical price band for that route and date window), plus price_range_in_relation_to_other_periods, Google’s own low | typical | high verdict. Your alert branches on the price_range_in_relation_to_other_periods field; Google’s band is the history you didn’t have to collect.',
   },
   {
     q: 'Will my alert misfire when a search fails?',

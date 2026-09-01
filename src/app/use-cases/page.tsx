@@ -42,8 +42,8 @@ const useCases: { slug: string; title: string; sub: string }[] = [
   },
   {
     slug: 'market-analysis',
+    title: 'Market analysis',
     sub: 'Track price movement with real-time data instead of a homegrown baseline.',
-    sub: 'Track fare movement against Google’s own price band instead of a homegrown baseline.',
   },
   {
     slug: 'hotel-comp-set-tracking',

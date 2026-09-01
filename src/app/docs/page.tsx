@@ -39,7 +39,7 @@ const FLIGHTS_PAGES = [
     href: '/flights-api/one-way',
     method: 'POST /oneway',
     label: 'One-way search',
-    sub: 'A route and a date in, every live fare out: full request and response reference.',
+    sub: 'A route and a date in, every live flight price out: full request and response reference.',
   },
   {
     href: '/flights-api/round-trip',
@@ -51,7 +51,7 @@ const FLIGHTS_PAGES = [
     href: '/flights-api/price-insights',
     method: 'response fields',
     label: 'Price insights',
-    sub: 'Google’s price band and its low | typical | high verdict, on every result.',
+    sub: 'Price context from Google Flights on every result.',
   },
   {
     href: '/flights-api/search-status',

@@ -60,7 +60,7 @@ const RECIPES: Recipe[] = [
   {
     title: 'A “should I book it now” advisor',
     chips: ['search_oneway_flights', 'price_insights_low / price_insights_high'],
-    body: 'The user brings a quoted fare; the agent compares it against Google’s own band for the route and dates. Below the low end: take it. Above the high end: wait. The recommendation cites a source instead of a hunch.',
+    body: 'The user brings a quoted price; the agent compares it against Google’s own band for the route and dates. Below the low end: take it. Above the high end: wait. The recommendation cites a source instead of a hunch.',
   },
 ];
 
@@ -89,14 +89,14 @@ const DECISION_ROWS: TableRow[] = [
     approach: 'FlightPowers REST',
     time: 'Minutes: one POST with your key',
     upkeep: 'Managed: automatic retries, X-Search-Status on every response',
-    judgment: 'Google’s band and a low | typical | high verdict on every fare',
+    judgment: 'Google’s band and a price context on every fare',
     ours: true,
   },
   {
     approach: 'FlightPowers MCP',
     time: '30 seconds: paste a URL into your client',
     upkeep: 'Hosted; nothing of yours to run',
-    judgment: 'The same verdict fields, delivered as a first-class tool result',
+    judgment: 'The same price context fields, delivered as a first-class tool result',
     ours: true,
   },
 ];
@@ -116,11 +116,11 @@ const faq: Faq[] = [
   },
   {
     q: 'How do the rate limits map to agent workloads?',
-    a: 'Flights: 150 requests/minute on Pro, 250 on Ultra, 500 on Mega, sized so a month-long flexible-date scan over REST finishes in one burst. Hotels: 25/minute on Pro and Ultra, 50 on Mega. A daily fare-watch across several routes fits comfortably in the $10 Pro tier’s 2,500 requests.',
+    a: 'Flights: 150 requests/minute on Pro, 250 on Ultra, 500 on Mega, sized so a month-long flexible-date scan over REST finishes in one burst. Hotels: 25/minute on Pro and Ultra, 50 on Mega. A daily price-watch across several routes fits comfortably in the $10 Pro tier’s 2,500 requests.',
   },
   {
     q: 'What does the agent actually get back?',
-    a: 'Flat JSON per result. Flights: price as string and number, airline, duration, stops with layover details, Google’s price_insights_low/high band, the low | typical | high verdict, and a working buy_link. Hotels: price, review score and count, room type, availability, and a booking link.',
+    a: 'Flat JSON per result. Flights: price as string and number, airline, duration, stops with layover details, Google’s price_insights_low/high band, price context from Google Flights, and a working buy_link. Hotels: price, review score and count, room type, availability, and a booking link.',
   },
   {
     q: 'Is there a way to demo without a key?',
@@ -168,7 +168,7 @@ export default function AiAgentsPage() {
                       {COUNTS.mcpServers} hosted MCP servers, {COUNTS.skills} open-source skills, an n8n node, and plain REST: one
                       key authenticates all of it
                     </>,
-                    <>Every fare carries Google&apos;s price band, a low | typical | high verdict, and a working buy_link</>,
+                    <>Every flight carries Google&apos;s price band, a price context, and a working buy_link</>,
                     <>Hotels price per market (price_as_seen_from over MCP, proxy_country over REST): rate-parity checks from a single API</>,
                   ]}
                 />
@@ -228,7 +228,7 @@ export default function AiAgentsPage() {
             ],
             [
               'Let the agent call the tools',
-              'Flat JSON per result: price, band, verdict, booking link for flights; price, availability, review score, link for hotels. Small enough to drop straight into a tool result.',
+              'Flat JSON per result: price, band, price context, booking link for flights; price, availability, review score, link for hotels. Small enough to drop straight into a tool result.',
             ],
             [
               'Branch on the judgment fields',
@@ -314,7 +314,7 @@ export default function AiAgentsPage() {
         </div>
         <p className="mt-4 max-w-3xl text-[13px] text-ink-500 leading-relaxed">
           The competitor rows describe categories, not any single vendor. Evaluate the specific tool you are considering against
-          them. The FlightPowers rows are checkable on this site: the verdict field on{' '}
+          them. The FlightPowers rows are checkable on this site: the price_range_in_relation_to_other_periods field on{' '}
           <Link href="/flights-api/price-insights" className="text-signal-400 underline underline-offset-4">
             the Price Insights page
           </Link>
@@ -357,7 +357,7 @@ export default function AiAgentsPage() {
         <CtaBand
           medium="mcp"
           title="Give your agent a travel budget it can defend"
-          body="Live fares with Google's own price band and verdict attached, so the agent recommends with a source, not a hunch. One key covers MCP, skills, and REST."
+          body="Live flight prices with Google's own price band and price context, so the agent recommends with a source, not a hunch. One key covers MCP, skills, and REST."
         />
       </Section>
     </>

@@ -21,7 +21,7 @@ const faq: Faq[] = [
   },
   {
     q: 'How does the agent know whether a fare is worth booking?',
-    a: 'Every result carries Google’s price_insights_low/high band and a low | typical | high verdict for the route and dates. The agent can say “$480 is low for this route: the usual range is $520–$700” by reading two fields, instead of hallucinating a judgment.',
+    a: 'Every result carries Google’s price_insights_low/high band and a price context for the route and dates. The agent can say “$480 is low for this route: the usual range is $520–$700” by reading two fields, instead of hallucinating a judgment.',
   },
   {
     q: 'What happens when there are no flights?',

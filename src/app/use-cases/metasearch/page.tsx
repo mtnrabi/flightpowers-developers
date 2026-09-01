@@ -42,7 +42,7 @@ export default function MetasearchPage() {
         <h1 className="mt-4 text-hero font-semibold max-w-3xl">
           Metasearch with a <span className="text-signal-500">bookable</span> result on every row
         </h1>
-        <p class="lede mt-5 max-w-2xl">Live flight prices in, ranked results out, and a working Google Flights link on each one.</p>
+        <p className="lede mt-5 max-w-2xl">Live flight prices in, ranked results out, and a working Google Flights link on each one.</p>
         <p className="mt-6 max-w-3xl text-[15px] text-ink-300 leading-relaxed">
           A comparison site lives or dies on two things: whether the price shown matches the price on click-through, and
           whether the result actually leads somewhere bookable. Stale caches break the first; scraped results with no booking
