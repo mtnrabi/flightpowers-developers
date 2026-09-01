@@ -21,6 +21,10 @@ export const dynamic = 'force-static';
 
 const faq: Faq[] = [
   {
+    q: 'How quickly can I start building?',
+    a: 'Free tier signup takes under 2 minutes on RapidAPI — no credit card required. You get your API key instantly and can make your first request within 5 minutes. Test with 10 requests/month free to verify integration, then upgrade when ready. MCP servers work the same way: paste a config, restart your AI client, done.',
+  },
+  {
     q: 'Is there a free tier?',
     a: 'Yes. BASIC is $0 on RapidAPI, no card, 10 requests per month with a hard cap. Enough to verify your key and see the response shape. Evaluate with the live demo above instead; it runs real requests on our key. If you want your own assistant to try it, the free ad-supported MCP server needs no key and no signup at all.',
   },
@@ -30,11 +34,15 @@ const faq: Faq[] = [
   },
   {
     q: 'How is this different from scraping Google Flights myself?',
-    a: 'A scraper you maintain breaks on markup changes and cannot tell "no flights" from "my scrape failed". This API retries unreadable pages, reports the outcome in an X-Search-Status header, and attaches Google’s own price band to every fare.',
+    a: 'A scraper you maintain breaks on markup changes and cannot tell "no flights" from "my scrape failed". This API retries unreadable pages, reports the outcome in an X-Search-Status header, and attaches Google's own price band to every fare. You also avoid the legal and infrastructure complexity of running your own scraping operation.',
   },
   {
     q: 'Can my AI agent use this without me writing HTTP code?',
     a: 'Yes. Hosted MCP servers for Claude, Cursor, and any MCP client; open-source skills for Claude Code and OpenClaw; and an n8n community node. All first-party, all on the same live data.',
+  },
+  {
+    q: 'What kind of support do you offer?',
+    a: 'All plans include documentation, code examples, and email support. Response times are typically within 24 hours. For enterprise needs requiring SLAs or custom integrations, contact us through RapidAPI messaging.',
   },
 ];
 
@@ -198,9 +206,9 @@ export default function HomePage() {
       {/* ====================== THE THREE ANSWERS ======================= */}
       <Section>
         <SectionHead
-          eyebrow="Why this one"
-          title="Three answers most travel APIs cannot give"
-          lede="Every fare feed has prices. These are the fields that turn prices into decisions."
+          eyebrow="Why choose FlightPowers"
+          title="Three critical answers most travel APIs can't provide"
+          lede="Every fare feed has prices. These are the fields that turn raw prices into actionable decisions for your users."
         />
         <div className="mt-8 grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-3">
           <div className="rounded-2xl border rule bg-ink-900/60 p-5 sm:p-6">
