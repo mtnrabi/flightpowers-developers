@@ -76,7 +76,6 @@ function PlanMiniRows({ plans }: { plans: Plan[] }) {
 
 export default function HomePage() {
   const oneway = FIXTURES.onewayJfkCun;
-  const berCdg = FIXTURES.roundtripBerCdg;
   const geo = FIXTURES.hotelGeoRixos;
 
   // First paint for the playground: captured runs, labelled as such.
@@ -97,8 +96,6 @@ export default function HomePage() {
       markets: (['us', 'de', 'il'] as const).map((c) => ({ country: c, result: geo.data[c] })),
     },
   };
-
-  const berRecord = berCdg.data[0]!;
 
   return (
     <>
