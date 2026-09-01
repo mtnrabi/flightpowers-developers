@@ -1,0 +1,151 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'Using the Google Flights MCP in ChatGPT',
+  description:
+    'Connect live Google Flights and Booking.com data to ChatGPT through developer-mode connectors. Real-time flight and hotel prices from Google Flights & Booking.com in your conversations. Pro and Business plans only.',
+  alternates: { canonical: '/guides/google-flights-mcp-chatgpt' },
+});
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'Using the Google Flights MCP in ChatGPT',
+    description:
+      'Connect live Google Flights and Booking.com data to ChatGPT using developer-mode MCP connectors. Real-time flight and hotel prices in conversations.',
+    url: `https://flightpowers.com/guides/google-flights-mcp-chatgpt`,
+    datePublished: '2026-09-01',
+    dateModified: '2026-09-01',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# Using the Google Flights MCP in ChatGPT
+
+ChatGPT can search live flight and hotel data mid-conversation when you connect the
+FlightPowers MCP servers through developer-mode connectors. Two URLs (flights and
+hotels) unlock four tools: live Google Flights pricing, Booking.com hotel searches, and
+the date-range and destination-list expansions that turn a single question into a
+multi-day scan.
+
+## What you need
+
+- <a href="https://chat.openai.com/" rel="noopener">ChatGPT</a> Pro or Business plan
+  (developer-mode connectors are a Pro and Business plan feature per OpenAI's own help
+  pages, checked 2026-08-27)
+- A RapidAPI key for the
+  <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">
+    Google Flights Live API
+  </a>
+  and the
+  <a href={rapidApiPricingUrl('hotels', 'guide')} rel="noopener">
+    Booking Live API
+  </a>
+  . One key covers both once you subscribe to each listing. The free tier (10
+  requests/month) verifies your config works; the $10 PRO plan (2,500 requests/month) is
+  the realistic floor for a conversational assistant you actually use.
+
+## Setting up the MCP connectors
+
+Open ChatGPT Settings, go to Connectors, and enable developer mode. Add each server URL
+as a connector:
+
+**Flights connector:**
+
+```
+https://flights.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY
+```
+
+**Hotels connector:**
+
+```
+https://hotels.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY
+```
+
+Replace `YOUR_RAPIDAPI_KEY` with your actual key. Both servers share the same key once
+you subscribe to each listing on RapidAPI. The key rides on the connector URL in your
+settings. ChatGPT never sees it in the chat itself. Treat the URL as a secret: anyone
+who has it can spend your quota.
+
+The tools appear automatically in conversations once the connectors are added.
+
+## The four tools
+
+**search_oneway_flights**: Live one-way flight prices from Google Flights. Pass a
+single date or a date range (`departure_date_from` / `departure_date_to`) and the
+server expands it internally. Each result includes `price`, `price_as_number`,
+`price_range_in_relation_to_other_periods` (the context field), and a `buy_link` that
+opens the itinerary on Google Flights ready to book.
+
+**search_roundtrip_flights**: Paired round-trip itineraries with both legs already
+matched. One object per option with a combined `total_price`, not two lists to
+cross-join. Takes a `return_date` or a trip length in `nights`.
+
+**search_hotels**: Live Booking.com destination search. Returns ranked properties with
+`price_string`, `price_as_number`, `review_score`, `room_type`, and a `booking_link`.
+Accepts the same filters the site offers: `review_score_8`, `free_cancellation`, and
+the rest.
+
+**find_hotel_by_name**: Availability and price for one named hotel. Takes the name a
+human would type (add the city to disambiguate a chain) and resolves the property
+internally. Supports `price_as_seen_from`, a two-letter country code that prices the
+stay as a shopper in that market would see it, the field rate-parity checks are built
+on.
+
+## Example prompts
+
+**Ask about a specific date.** "Is $480 for LHR to JFK in mid-October a good price, or
+should I wait?"
+
+**Scan for the cheapest option.** "Find me the cheapest nonstop from Berlin to Paris in
+the second week of June."
+
+**Plan a trip.** "Round trip JFK to London, out September 22, back September 29. Rank
+the options by value rather than price alone."
+
+**Search hotels.** "Find a hotel in Tokyo Shibuya for November 3 to 7, 2 adults,
+breakfast included."
+
+**Check rate parity.** "Compare what the same room at the Kremlin Palace in Antalya
+costs when booked from Germany versus the US."
+
+## How it works
+
+The servers are hosted at `https://flights.flightpowers.com/mcp` and
+`https://hotels.flightpowers.com/mcp`. Nothing runs on your machine. ChatGPT sends your
+RapidAPI key with each call (via the connector URL), so usage meters against your own
+subscription. The free BASIC tier (10 requests/month, hard cap, no card) verifies the
+config works. A conversational assistant you use daily fits the $10 PRO plan.
+
+## Date ranges and destination lists
+
+Both flight tools accept a date range (`departure_date_from` / `departure_date_to`) and
+a list of airports in `from_airport` and `to_airport` (comma-separated strings like
+`"JFK,EWR,LGA"`). The server expands them internally, so a flexible search is one call
+where the REST API would be a client-side fan-out of one request per date and
+destination combination.
+
+## When to use this
+
+Use the MCP connectors when you want ChatGPT to search live travel data
+mid-conversation. The response shape ChatGPT sees is the one production will see. Use the <a href="https://rapidapi.com/mtnrabi/api/google-flights-live-api" rel="noopener">REST API</a> for production traffic and scheduled scans outside ChatGPT.
+
+## Related
+
+- [FlightPowers on ChatGPT](https://flightpowers.com/integrations/chatgpt): the full integration overview
+- [MCP Servers](https://flightpowers.com/mcp): setup for Claude, Cursor, and other MCP clients
+- [Open-source agent skills](https://flightpowers.com/skills): the same workflows as MIT-licensed skills
+
+<CtaBand
+  medium="guide"
+  title="Ask ChatGPT for a live price"
+  body="The free tier verifies your key works; the paid tiers are sized for conversational assistants you use daily."
+/>
