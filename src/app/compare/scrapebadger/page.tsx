@@ -212,7 +212,7 @@ export default function CompareScrapeBadgerPage() {
             { href: '/compare/datacrawler', label: 'vs DataCrawler', sub: 'Comprehensive platform vs specialist' },
             { href: '/compare/serpapi', label: 'vs SerpApi', sub: 'Platform vs specialist' },
             { href: '/guides/best-flight-data-apis-2026', label: 'Best flight data APIs 2026', sub: 'The full field, disclosed bias' },
-            { href: '/flights-api/price-insights', label: 'Price Insights API', sub: 'The verdict field, proven' },
+            { href: '/flights-api/price-insights', label: 'Price Insights API', sub: 'The price_range_in_relation_to_other_periods field, proven' },
           ].map((l) => (
             <Link key={l.href} href={l.href} className="rounded-2xl border rule bg-ink-900/50 p-5 hover:border-ink-500 transition-colors">
               <p className="text-[15px] font-semibold text-ink-100">{l.label}</p>

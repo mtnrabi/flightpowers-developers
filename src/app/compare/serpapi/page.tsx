@@ -40,7 +40,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Does FlightPowers return price history like SerpApi?',
-    a: 'No. SerpApi’s price_insights object includes a price_history array of [timestamp, price] pairs; we return the band (price_insights_low / price_insights_high) and Google’s low | typical | high verdict, but no history series. If you want to chart a fare’s past without accumulating it yourself, SerpApi hands it to you and we do not.',
+    a: 'No. SerpApi’s price_insights object includes a price_history array of [timestamp, price] pairs; we return the band (price_insights_low / price_insights_high) and Google’s price context, but no history series. If you want to chart a fare’s past without accumulating it yourself, SerpApi hands it to you and we do not.',
   },
   {
     q: 'Why are round-trips cheaper on FlightPowers?',
@@ -296,7 +296,7 @@ export default function CompareSerpApiPage() {
                 </>,
                 <>
                   The band and the verdict: <code className="font-mono text-[12px]">price_insights_low/high</code> plus Google’s{' '}
-                  low | typical | high call on every result (the alerting trigger), but no history series.{' '}
+                  price context on every result (the alerting trigger), but no history series.{' '}
                   <Link href="/flights-api/price-insights" className="text-signal-400 underline underline-offset-4">See it proven →</Link>
                 </>,
               ],
@@ -433,7 +433,7 @@ export default function CompareSerpApiPage() {
             { href: '/compare/duffel', label: 'vs Duffel', sub: 'Data API vs booking platform' },
             { href: '/compare/amadeus', label: 'vs Amadeus Self-Service', sub: 'And when to migrate' },
             { href: '/guides/best-flight-data-apis-2026', label: 'Best flight data APIs 2026', sub: 'The full field, disclosed bias' },
-            { href: '/flights-api/price-insights', label: 'Price Insights API', sub: 'The verdict field, proven' },
+            { href: '/flights-api/price-insights', label: 'Price Insights API', sub: 'The price_range_in_relation_to_other_periods field, proven' },
           ].map((l) => (
             <Link key={l.href} href={l.href} className="rounded-2xl border rule bg-ink-900/50 p-5 hover:border-ink-500 transition-colors">
               <p className="text-[15px] font-semibold text-ink-100">{l.label}</p>
