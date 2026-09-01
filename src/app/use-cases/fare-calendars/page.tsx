@@ -92,8 +92,8 @@ export default function FareCalendarsPage() {
                 matter per date.
               </>,
               <>
-                <strong className="text-ink-100">Colour by the verdict.</strong> Google&apos;s low | typical | high verdict per
-                fare gives the heatmap a meaning beyond &ldquo;cheaper than the cell next to it.&rdquo;
+                <strong className="text-ink-100">Colour by price context.</strong> Price context from Google Flights per
+                flight gives the heatmap a meaning beyond &ldquo;cheaper than the cell next to it.&rdquo;
               </>,
               <>
                 <strong className="text-ink-100">Re-scan on a schedule.</strong> Refresh the grid daily and you have a
@@ -131,7 +131,7 @@ export default function FareCalendarsPage() {
           medium="use-case"
           api="flights"
           title="Build the calendar users actually want"
-          body="Live per-date fares, a sortable number per cell, and rate limits that let a month finish in one burst."
+          body="Live per-date flight prices, a sortable number per cell, and rate limits that let a month finish in one burst."
         />
       </Section>
     </>

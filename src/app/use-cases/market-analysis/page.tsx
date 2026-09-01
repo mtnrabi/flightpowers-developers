@@ -86,7 +86,7 @@ export default function MarketAnalysisPage() {
               <>
                 <strong className="text-ink-100">Store number, band, and status.</strong>{' '}
                 <code className="font-mono text-[13px] text-signal-400">price_as_number</code>, the two band fields, the
-                verdict, and <code className="font-mono text-[13px] text-signal-400">X-Search-Status</code>: five columns that
+                price_range_in_relation_to_other_periods field, and <code className="font-mono text-[13px] text-signal-400">X-Search-Status</code>: five columns that
                 make the series analysable and auditable.
               </>,
               <>
@@ -130,7 +130,7 @@ export default function MarketAnalysisPage() {
           medium="use-case"
           api="flights"
           title="Start the series with the baseline built in"
-          body="Live fares, Google’s band on every row, and volume tiers priced for daily sweeps."
+          body="Live flight prices, Google’s band on every row, and volume tiers priced for daily sweeps."
         />
       </Section>
     </>

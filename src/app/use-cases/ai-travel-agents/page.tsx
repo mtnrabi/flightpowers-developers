@@ -8,7 +8,7 @@ import { COUNTS } from '@/lib/site';
 export const metadata: Metadata = withOg({
   title: 'AI Travel Agents: live flight & hotel data your agent can reason with',
   description:
-    'Give an AI agent real fares instead of guesses: hosted MCP servers, flat JSON tool responses, Google’s low | typical | high verdict to ground recommendations, and a header that tells “no flights” apart from “the search failed.”',
+    'Give an AI agent real flight prices instead of guesses: hosted MCP servers, flat JSON tool responses, price context from Google Flights to ground recommendations, and a header that tells "no flights" apart from "the search failed."',
   alternates: { canonical: '/use-cases/ai-travel-agents' },
 });
 
@@ -60,8 +60,8 @@ export default function AiTravelAgentsPage() {
             {COUNTS.mcpServers} first-party MCP servers expose flights and hotels search to any MCP client. Your key goes in a
             header; usage bills to your own RapidAPI plan. No SDK, no glue service to run.
           </Feature>
-          <Feature title="A verdict the agent can quote">
-            Google&apos;s price band and low | typical | high verdict ride on every fare. The agent&apos;s &ldquo;book it
+          <Feature title="Price context the agent can quote">
+            Price context from Google Flights rides on every flight. The agent&apos;s &ldquo;book it
             now&rdquo; or &ldquo;wait&rdquo; is a field read: traceable, explainable, and never invented.
           </Feature>
           <Feature title="Paired round-trips in one call">
@@ -86,8 +86,8 @@ export default function AiTravelAgentsPage() {
                 time windows, max price.
               </>,
               <>
-                <strong className="text-ink-100">Ground the recommendation.</strong> Quote the fare with its band:
-                the verdict field is the difference between an opinion and a data point.
+                <strong className="text-ink-100">Ground the recommendation.</strong> Quote the price with its context:
+                the price_range_in_relation_to_other_periods field is the difference between an opinion and a data point.
               </>,
               <>
                 <strong className="text-ink-100">Handle empty honestly.</strong> Branch on{' '}
@@ -130,7 +130,7 @@ export default function AiTravelAgentsPage() {
           medium="use-case"
           api="flights"
           title="Give your agent something true to say"
-          body="Live fares, Google’s own price context, and honest empty-result signalling, over MCP, skills, or plain REST."
+          body="Live flight prices, Google’s own price context, and honest empty-result signalling, over MCP, skills, or plain REST."
         />
       </Section>
     </>

@@ -8,7 +8,7 @@ import { SITE } from '@/lib/site';
 export const metadata: Metadata = withOg({
   title: 'Use Cases: what people build on live flight & hotel data',
   description:
-    'Fare alerts, AI travel agents, rate-parity monitoring, fare calendars, metasearch, market analysis, comp-set tracking, and trip-planning bots, each mapped to the exact API capabilities that make it work.',
+    'Flight price alerts, AI travel agents, rate-parity monitoring, price calendars, metasearch, market analysis, comp-set tracking, and trip-planning bots, each mapped to the exact API capabilities that make it work.',
   alternates: { canonical: '/use-cases' },
 });
 
@@ -18,12 +18,12 @@ const useCases: { slug: string; title: string; sub: string }[] = [
   {
     slug: 'fare-alerts',
     title: 'Fare alerts',
-    sub: 'Fire on Google’s own low | typical | high verdict: no price-history database to build.',
+    sub: 'Price alerts backed by real-time flight data: no price-history database to build.',
   },
   {
     slug: 'ai-travel-agents',
     title: 'AI travel agents',
-    sub: 'Flat JSON tool calls, hosted MCP servers, and a verdict field your agent can reason with.',
+    sub: 'Flat JSON tool calls, hosted MCP servers, and price context your agent can reason with.',
   },
   {
     slug: 'rate-parity-monitoring',
@@ -38,11 +38,11 @@ const useCases: { slug: string; title: string; sub: string }[] = [
   {
     slug: 'metasearch',
     title: 'Metasearch & comparison sites',
-    sub: 'Live fares with a working buy_link on every result: no booking URL to reconstruct.',
+    sub: 'Live flight prices with a working buy_link on every result: no booking URL to reconstruct.',
   },
   {
     slug: 'market-analysis',
-    title: 'Market & fare analysis',
+    sub: 'Track price movement with real-time data instead of a homegrown baseline.',
     sub: 'Track fare movement against Google’s own price band instead of a homegrown baseline.',
   },
   {
@@ -100,7 +100,7 @@ export default function UseCasesPage() {
         <SectionHead eyebrow="Not sure where to start?" title="Two pages that answer most questions" />
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 max-w-3xl">
           {[
-            { href: '/flights-api/price-insights', label: 'Price Insights API', sub: 'The verdict field most of these use cases lean on' },
+            { href: '/flights-api/price-insights', label: 'Price Insights API', sub: 'Price context from Google Flights' },
             { href: '/pricing', label: 'Pricing', sub: 'Plans, quotas, rate limits, and the key checker' },
           ].map((l) => (
             <Link key={l.href} href={l.href} className="rounded-2xl border rule bg-ink-900/50 p-5 hover:border-ink-500 transition-colors">

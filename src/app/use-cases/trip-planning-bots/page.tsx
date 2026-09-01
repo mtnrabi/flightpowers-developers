@@ -7,7 +7,7 @@ import { CheckBullets, Container, FaqSection, Feature, Section, SectionHead, typ
 export const metadata: Metadata = withOg({
   title: 'Trip-Planning Bots: flight answers a chatbot can stand behind',
   description:
-    'Build Telegram, Discord, Slack, or n8n travel bots on live data: paired round-trip itineraries in one call, a low | typical | high verdict to back every recommendation, and honest “no flights” answers backed by X-Search-Status.',
+    'Build Telegram, Discord, Slack, or n8n travel bots on live data: paired round-trip itineraries in one call, a price context from Google Flights to back every recommendation, and honest “no flights” answers backed by X-Search-Status.',
   alternates: { canonical: '/use-cases/trip-planning-bots' },
 });
 
@@ -59,8 +59,8 @@ export default function TripPlanningBotsPage() {
             One call to /roundtrip returns complete itineraries (total_price, both legs, layovers), so &ldquo;JFK to Rome,
             out Friday back Sunday&rdquo; is one request and one message, not a stitching job.
           </Feature>
-          <Feature title="The verdict writes the recommendation">
-            Google&apos;s low | typical | high call plus the price band gives the bot a defensible sentence: &ldquo;$517 is
+          <Feature title="Price context writes the recommendation">
+            Price context from Google Flights plus the price band gives the bot a defensible sentence: &ldquo;$517 is
             typical for this route: the usual range is $460–$610.&rdquo; No invented judgment.
           </Feature>
           <Feature title="X-Search-Status scripts the hard replies">
@@ -89,8 +89,8 @@ export default function TripPlanningBotsPage() {
                 arrival_description are already human-readable: the reply template is mostly field insertion.
               </>,
               <>
-                <strong className="text-ink-100">Recommend with the band.</strong> Lead with the cheapest fare, attach the
-                verdict, and let the user decide with real context.
+                <strong className="text-ink-100">Recommend with the price band.</strong> Lead with the cheapest flight, attach the
+                price context, and let the user decide with real context.
               </>,
               <>
                 <strong className="text-ink-100">Close with buy_link.</strong> The bot&apos;s last message is a working link to
@@ -128,7 +128,7 @@ export default function TripPlanningBotsPage() {
           medium="use-case"
           api="flights"
           title="Give your bot answers worth repeating"
-          body="Live itineraries, paired round-trips, and a verdict on every fare, one POST away from your chat handler."
+          body="Live itineraries, paired round-trips, and price context on every flight, one POST away from your chat handler."
         />
       </Section>
     </>

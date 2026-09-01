@@ -21,7 +21,7 @@ import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 export const metadata: Metadata = withOg({
   title: 'Travel data for AI agents: MCP, skills, and REST on one key',
   description:
-    'Live Google Flights and Booking.com prices as flat JSON an agent can act on: price band, low | typical | high verdict, booking links, per-country hotel rates. One RapidAPI key authenticates MCP, the open-source skills, and REST.',
+    'Live Google Flights and Booking.com prices as flat JSON an agent can act on: price context from Google Flights, booking links, per-country hotel rates. One RapidAPI key authenticates MCP, the open-source skills, and REST.',
   alternates: { canonical: '/ai-agents' },
 });
 
@@ -33,14 +33,14 @@ const geo = FIXTURES.hotelGeoRixos;
 
 const RECIPES: Recipe[] = [
   {
-    title: 'A fare-alert cron on the verdict flip',
+    title: 'A price-alert cron with price context',
     chips: ['search_oneway_flights', 'price_range_in_relation_to_other_periods', 'buy_link'],
     body: 'Poll a route on a schedule and fire only when Google’s verdict flips to “low”: no home-grown price-history database, because Google’s band is the history. Send the buy_link in the alert so the user can book from the notification.',
   },
   {
     title: 'A cheapest-week scanner',
     chips: ['search_oneway_flights', 'departure_date_from / departure_date_to', 'price'],
-    body: 'The MCP tool takes a date range and expands it server-side: one call, not thirty. The agent gets a fare per day and answers with the cheapest date and what picking it saves. Over REST, the same scan is a parallel burst; the rate limits are sized for it.',
+    body: 'The MCP tool takes a date range and expands it server-side: one call, not thirty. The agent gets a flight price per day and answers with the cheapest date and what picking it saves. Over REST, the same scan is a parallel burst; the rate limits are sized for it.',
   },
   {
     title: 'A rate-parity watcher',
