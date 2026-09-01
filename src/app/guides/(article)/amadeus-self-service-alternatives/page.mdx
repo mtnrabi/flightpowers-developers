@@ -1,0 +1,356 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'Amadeus Self-Service Alternatives: What Replaces the Deprecated API',
+  description:
+    'Amadeus for Developers Self-Service is deprecated (archived GitHub repos, portal redirects to homepage, sandbox unreachable). For indie developers and early-stage teams who need flight shopping data: FlightPowers returns live Google Flights pricing with verdict. For booking: Duffel or Amadeus Enterprise.',
+  alternates: { canonical: '/guides/amadeus-self-service-alternatives' },
+});
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'Amadeus Self-Service Alternatives: What Replaces the Deprecated API',
+    description:
+      'Guide to alternatives after Amadeus Self-Service deprecation: FlightPowers for shopping, Duffel for booking, when to use Amadeus Enterprise.',
+    url: `${SITE.url}/guides/amadeus-self-service-alternatives`,
+    datePublished: '2026-09-01',
+    dateModified: '2026-09-01',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Is Amadeus Self-Service shut down?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Amadeus for Developers Self-Service is deprecated. Observable as of 2026-08-24: the portal and pricing pages redirect to the Amadeus homepage, the test sandbox host no longer resolves, and all 20 repositories in the amadeus4dev GitHub organisation are archived with a README stating the offer has been deprecated.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What replaces Amadeus Self-Service for flight shopping?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'For flight shopping (searching routes and getting prices without booking): FlightPowers returns live Google Flights data via REST API or MCP. For booking/ticketing: Duffel (direct-to-consumer booking API) or Amadeus Enterprise (requires travel industry accreditation).',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I book flights with FlightPowers?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. FlightPowers is a data API that returns pricing and buy_links to Google Flights. It replaces Amadeus Flight Offers Search but not Flight Create Orders. If your product issues tickets, use Duffel or Amadeus Enterprise.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Should I move to Amadeus Enterprise?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'If you are an accredited travel business (IATA, ARC, or work through a consolidator) and need booking/ticketing, Amadeus Enterprise is the appropriate path. For indie developers, early-stage startups, and AI-agent builders who need shopping data only, FlightPowers provides instant self-serve access.',
+        },
+      },
+    ],
+  }}
+/>
+
+# Amadeus Self-Service Alternatives: What Replaces the Deprecated API
+
+**Amadeus for Developers Self-Service** is deprecated. The portal redirects, the sandbox is unreachable, and the GitHub repos are archived. This guide covers what replaces it for the developers who chose Self-Service because it was self-serve: indie developers, early-stage startups, internal tools teams, and AI-agent builders.
+
+The split is simple:
+- **For shopping** (search routes, get prices, no booking): **FlightPowers** returns live Google Flights consumer pricing
+- **For booking** (issue tickets, create PNRs, confirm reservations): **Duffel** or **Amadeus Enterprise**
+
+If your product completes purchases, read the booking section. If you need pricing data to power fare alerts, calendars, trip planners, or AI agents, the shopping section is for you.
+
+## What happened to Amadeus Self-Service
+
+We're not asserting a shutdown date because we couldn't find one on an Amadeus page. What is observable as of **2026-08-24**:
+
+- The Self-Service portal (`developers.amadeus.com`) **301-redirects** to the Amadeus homepage
+- The pricing page (`developers.amadeus.com/pricing`) **301-redirects** to the homepage
+- The test sandbox host (`test.api.amadeus.com`) **no longer resolves** (DNS NXDOMAIN)
+- All **20 repositories** in the `amadeus4dev` GitHub organization are **archived**
+- Their `developer-guides` README opens with: "The Amadeus for Developers Self-Service offer has been deprecated."
+
+You can verify each of these yourself:
+
+```bash
+# Portal redirect
+curl -I https://developers.amadeus.com
+
+# Sandbox DNS failure
+dig test.api.amadeus.com
+
+# GitHub archive status
+curl -s https://api.github.com/orgs/amadeus4dev/repos | \
+  jq -r '.[] | "\(.name): archived=\(.archived)"'
+
+# README deprecation notice
+curl -s https://raw.githubusercontent.com/amadeus4dev/developer-guides/master/README.md | head -5
+```
+
+## For shopping: FlightPowers
+
+If you used **Flight Offers Search** and **Hotel List/Search** (the shopping endpoints) but never called **Flight Create Orders** or the **Hotel Booking API** (the booking endpoints), you need a data API, not a booking platform.
+
+### What FlightPowers replaces
+
+| Amadeus Self-Service endpoint | FlightPowers equivalent |
+| --- | --- |
+| Flight Offers Search (GET /shopping/flight-offers) | POST /v1/flights/oneway or /roundtrip |
+| Hotel List (GET /reference-data/locations/hotels/by-city) | POST /v1/hotels/search (destination string) |
+| Hotel Search (GET /shopping/hotel-offers) | POST /v1/hotels/search or /hotel_by_name |
+
+### What FlightPowers does NOT replace
+
+- **Flight Create Orders**: We don't issue tickets. Each result includes a `buy_link` to Google Flights where the user completes booking.
+- **Hotel Booking API**: We don't confirm reservations. Each result includes a `booking_link` to Booking.com.
+- **Flight Offers Price**: Fares are live-queried; no separate price-confirmation step.
+- **Flight Orders Management**: No PNRs, no order history, no ticketing.
+
+**When FlightPowers is the right answer:**
+- Fare alerts and price watches
+- Travel search and metasearch engines
+- Trip planning bots and AI agents
+- Market analysis and price tracking
+- Fare calendars and date flexibility tools
+
+**When it's the wrong answer:**
+- Your product issues tickets or completes bookings
+- You need NDC content or private fares
+- You require seat selection or ancillary bundling
+- You must deliver PNRs to back-office systems
+
+### Data difference: GDS vs consumer pricing
+
+Amadeus served **GDS-sourced** content (airline inventory through NDC/EDIFACT). FlightPowers returns **live Google Flights consumer pricing** and **live Booking.com hotel rates**.
+
+These are genuinely different datasets:
+- Carrier coverage differs (Google Flights includes low-cost carriers with no GDS presence)
+- Prices differ (published fares vs negotiated content)
+- Availability differs (public schedules vs GDS feeds)
+
+**Neither is a superset of the other.** Run your three hardest routes on both before migrating.
+
+### What FlightPowers adds that Amadeus didn't have
+
+Three fields that turn raw prices into actionable decisions:
+
+1. **`price_range_in_relation_to_other_periods`**: Google's verdict on the current fare (`"low"`, `"typical"`, or `"high"`)
+2. **`price_insights_low` / `price_insights_high`**: The dollar band Google uses to compute the verdict
+3. **`X-Search-Status` response header**: Distinguishes "no flights found" from "search failed" (Amadeus returned empty arrays for both)
+
+These fields power fare-watch logic without building a price history database first.
+
+### Migration path from Amadeus Self-Service
+
+**1. Authentication**  
+Amadeus used OAuth2 client credentials (fetch token, refresh on expiry). FlightPowers uses a static API key from RapidAPI:
+
+```bash
+# Before: Amadeus
+POST https://test.api.amadeus.com/v1/security/oauth2/token
+# Response: { "access_token": "...", "expires_in": 1799 }
+
+# After: FlightPowers
+# No token endpoint. One header on every request:
+x-api-key: YOUR_RAPIDAPI_KEY
+```
+
+Delete your token-refresh code and cache.
+
+**2. Flight Offers Search → One-way or Round-trip**
+
+Amadeus flight search:
+```
+GET /shopping/flight-offers?originLocationCode=JFK&destinationLocationCode=LAX&departureDate=2026-10-15&adults=1
+```
+
+FlightPowers equivalent:
+```bash
+POST https://api.flightpowers.com/v1/flights/oneway
+Content-Type: application/json
+x-api-key: YOUR_RAPIDAPI_KEY
+
+{
+  "from_airport": "JFK",
+  "to_airport": "LAX",
+  "departure_date": "2026-10-15"
+}
+```
+
+**3. Hotel Search → Destination search or by-name**
+
+Amadeus hotel search:
+```
+GET /shopping/hotel-offers?cityCode=LON&checkInDate=2026-10-15&checkOutDate=2026-10-18&adults=2
+```
+
+FlightPowers equivalent:
+```bash
+POST https://api.flightpowers.com/v1/hotels/search
+Content-Type: application/json
+x-api-key: YOUR_RAPIDAPI_KEY
+
+{
+  "destination": "London, UK",
+  "checkin_date": "2026-10-15",
+  "checkout_date": "2026-10-18",
+  "adults": 2
+}
+```
+
+Full parameter mapping: [FlightPowers vs Amadeus comparison](/compare/amadeus)
+
+## For booking: Duffel or Amadeus Enterprise
+
+If your product **issues tickets** or **confirms hotel reservations**, you need a booking platform, not a data API.
+
+### Duffel
+
+**Duffel** is a direct-to-consumer booking API. It connects to 20+ airlines via NDC and GDS, handles payment, issues tickets, and delivers PNRs.
+
+**When to choose Duffel:**
+- You're building a consumer travel product
+- You need to issue tickets programmatically
+- You want modern API design (REST, webhook events, Stripe-style developer experience)
+- You need global coverage without airline-by-airline contracts
+
+**Start:** [duffel.com](https://duffel.com)
+
+### Amadeus Enterprise
+
+**Amadeus Enterprise** is the production GDS/NDC platform for accredited travel businesses.
+
+**When to choose Amadeus Enterprise:**
+- You hold IATA or ARC accreditation (or work through a consolidator)
+- You need the full Amadeus suite (booking, ticketing, servicing, mid-office)
+- Your business model requires private fares and consolidator content
+- You already have relationships with host agencies or GDS providers
+
+**Start:** Contact Amadeus sales (enterprise.amadeus.com)
+
+## Pricing comparison
+
+### Amadeus Self-Service (when it existed)
+- Free tier: 2,000 calls/month (across all endpoints)
+- Enterprise-0: €0.01 per call beyond quota (billed monthly)
+- Enterprise-5k: €40/month for 5,000 calls, then €0.008 per call
+
+### FlightPowers
+- BASIC: $0/month, 10 requests/month (free tier, no card required)
+- PRO: $10/month, 2,500 requests (flights) or 2,000 requests (hotels)
+- ULTRA: $25/month (flights) or $20/month (hotels)
+- MEGA: $50/month, 50,000 requests (flights) or 25,000 requests (hotels)
+
+Flights and hotels are separate APIs with separate subscriptions. One RapidAPI key works for both once subscribed.
+
+Current pricing: [/pricing](/pricing)
+
+### Duffel
+- Free to integrate and test (sandbox)
+- Production: Per-booking fee (percentage of booking value)
+- Contact Duffel for pricing
+
+### Amadeus Enterprise
+- Contact Amadeus sales for pricing
+- Typically includes certification fees, integration costs, and per-transaction charges
+- Pricing varies by accreditation status and volume
+
+## Quick decision tree
+
+**Do you need to issue tickets or confirm reservations?**
+- **Yes** → Duffel (for direct-to-consumer) or Amadeus Enterprise (for accredited agencies)
+- **No** → Continue
+
+**Do you need NDC content, private fares, or GDS-specific features?**
+- **Yes** → Amadeus Enterprise (if accredited) or contact a GDS provider
+- **No** → Continue
+
+**Do you need consumer pricing for fare alerts, calendars, agents, or analysis?**
+- **Yes** → FlightPowers
+- **No** → Describe your use case on [/contact](/contact)
+
+## Getting started with FlightPowers
+
+**1. Get your API key**
+
+Subscribe on RapidAPI: [Google Flights Live API](https://rapidapi.com/mtnrabi/api/google-flights-live-api) and/or [Booking Live API](https://rapidapi.com/mtnrabi/api/booking-live-api)
+
+Free tier: 10 requests/month, no credit card required.
+
+**2. Make your first request**
+
+```bash
+curl -X POST https://google-flights-live-api.p.rapidapi.com/api/google_flights/oneway/v1 \
+  -H "Content-Type: application/json" \
+  -H "x-rapidapi-host: google-flights-live-api.p.rapidapi.com" \
+  -H "x-rapidapi-key: YOUR_RAPIDAPI_KEY" \
+  -d '{
+    "from_airport": "JFK",
+    "to_airport": "LAX",
+    "departure_date": "2026-10-15"
+  }'
+```
+
+**3. Read the migration guide**
+
+Full parameter mapping and code examples: [FlightPowers vs Amadeus](/compare/amadeus)
+
+**4. Test with your routes**
+
+Run your three hardest routes through FlightPowers and compare results against your Amadeus logs. Coverage and pricing differ; validate before cutting over.
+
+## FAQs
+
+**Is Amadeus Self-Service completely shut down?**  
+The portal redirects, the sandbox is unreachable, and the GitHub repos are archived with a deprecation notice. We don't assert an official shutdown date, but the service is not accessible as of 2026-08-24.
+
+**Should I move to Amadeus Enterprise?**  
+If you're an accredited travel business and need booking/ticketing, yes. If you're an indie developer or early-stage startup who chose Self-Service precisely because it was self-serve, FlightPowers provides instant access to consumer pricing data.
+
+**Can I book flights with FlightPowers?**  
+No. FlightPowers is a data API. It replaces Amadeus Flight Offers Search (shopping) but not Flight Create Orders (booking). If your product issues tickets, use Duffel or Amadeus Enterprise.
+
+**Is the data the same as Amadeus served?**  
+No. Amadeus served GDS content; FlightPowers returns live Google Flights consumer pricing. These are different datasets with different carrier coverage. Run your routes on both to validate.
+
+**What about hotels?**  
+Same split: FlightPowers returns live Booking.com rates for search/shopping. For confirmed reservations, use a booking platform.
+
+**How does authentication change?**  
+Amadeus used OAuth2 tokens that expired every 30 minutes. FlightPowers uses a static API key from RapidAPI. No token refresh code needed.
+
+**Where do I find detailed parameter mappings?**  
+Full mappings with code examples: [FlightPowers vs Amadeus comparison](/compare/amadeus)
+
+## Related
+
+- [FlightPowers vs Amadeus (detailed comparison)](/compare/amadeus)
+- [How to get a Google Flights API Key](/guides/google-flights-api-key)
+- [FlightPowers vs Duffel](/compare/duffel)
+- [Price Insights API](/flights-api/price-insights)
+- [All integrations](/integrations)
+
+<CtaBand
+  medium="guide"
+  title="Test the alternative in 2 minutes"
+  body="Free tier available, no credit card required. Run your hardest routes and compare the results against your Amadeus logs."
+/>

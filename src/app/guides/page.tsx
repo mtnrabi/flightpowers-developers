@@ -46,6 +46,12 @@ const GUIDES = [
     tag: 'explainer',
   },
   {
+    href: '/guides/amadeus-self-service-alternatives',
+    title: 'Amadeus Self-Service Alternatives',
+    sub: 'Amadeus for Developers Self-Service is deprecated. For shopping: FlightPowers returns live Google Flights pricing with verdict. For booking: Duffel or Amadeus Enterprise. Honest comparison with migration path.',
+    tag: 'migration guide',
+  },
+  {
     href: '/guides/handle-empty-flight-search-results',
     title: 'Handling empty flight search results',
     sub: 'Why 200 [] is the most dangerous response a search API can return, the failure taxonomy behind it, and a vendor-neutral checklist for evaluating any search API\'s empty-result semantics.',
