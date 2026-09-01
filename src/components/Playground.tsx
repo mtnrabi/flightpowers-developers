@@ -42,14 +42,14 @@ const MARKETS = ['us', 'de', 'il', 'gb', 'fr', 'jp'];
 const HOT_KEYS =
   /"(price_range_in_relation_to_other_periods|price_insights_low|price_insights_high|price_string|available)":/;
 
-function HighlightedJson({ value, maxH = 'max-h-[380px]' }: { value: unknown; maxH?: string }) {
+function HighlightedJson({ value, maxH = 'max-h-[260px]' }: { value: unknown; maxH?: string }) {
   const lines = JSON.stringify(value, null, 2).split('\n');
   return (
-    <pre tabIndex={0} className={`overflow-x-auto overflow-y-auto p-4 text-[12px] leading-relaxed ${maxH}`}>
+    <pre tabIndex={0} className={`overflow-x-auto overflow-y-auto p-3 text-[12px] leading-relaxed ${maxH}`}>
       <code className="font-mono text-ink-300">
         {lines.map((l, i) =>
           HOT_KEYS.test(l) ? (
-            <span key={i} className="block -mx-4 bg-signal-600/10 px-4 text-signal-400">
+            <span key={i} className="block -mx-3 bg-signal-600/10 px-3 text-signal-400">
               {l}
             </span>
           ) : (
@@ -171,7 +171,7 @@ export function Playground({ initial }: { initial: PlaygroundInitial }) {
         <span className="live-badge">live API behind this box</span>
       </div>
 
-      <form onSubmit={send} className="p-4 sm:p-5">
+      <form onSubmit={send} className="p-3 sm:p-4">
         {/* API toggle */}
         <div className="flex items-center gap-2" role="tablist" aria-label="Choose an API">
           {(
@@ -319,7 +319,7 @@ export function Playground({ initial }: { initial: PlaygroundInitial }) {
 
       {/* Response: lands directly under Send. */}
       <div className="border-t rule" ref={resultRef}>
-        <div className="flex flex-wrap items-center gap-2 px-4 pt-3 sm:px-5">
+        <div className="flex flex-wrap items-center gap-2 px-3 pt-2 sm:px-4">
           <span className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-ink-500">response</span>
           {state.phase === 'running' ? (
             <span className="font-mono text-[12px] text-signal-400" role="status">
@@ -340,21 +340,21 @@ export function Playground({ initial }: { initial: PlaygroundInitial }) {
         </div>
 
         {state.phase === 'capped' ? (
-          <div className="p-4 sm:p-5">
+          <div className="p-3 sm:p-4">
             <p className="text-[14px] text-verdict-typical leading-relaxed">{state.message}</p>
             <a href={rapidApiPricingUrl(api, 'demo-upsell')} rel="noopener" className="btn btn-primary mt-3 text-sm">
               Run it with your own key →
             </a>
           </div>
         ) : state.phase === 'error' ? (
-          <p className="p-4 sm:p-5 text-[14px] text-verdict-typical leading-relaxed">{state.message}</p>
+          <p className="p-3 sm:p-4 text-[14px] text-verdict-typical leading-relaxed">{state.message}</p>
         ) : state.phase === 'running' ? (
-          <p className="p-4 sm:p-5 font-mono text-[12px] text-ink-500">
+          <p className="p-3 sm:p-4 font-mono text-[12px] text-ink-500">
             nothing here is cached unless it says so; this is a real search
           </p>
         ) : state.phase === 'flights' ? (
           state.flights.length === 0 ? (
-            <div className="p-4 sm:p-5 space-y-2">
+            <div className="p-3 sm:p-4 space-y-2">
               <p className="text-[14px] text-ink-300 leading-relaxed">
                 Empty list, and the header says why. An honest &quot;empty&quot; means no itineraries exist for that route and
                 date; &quot;degraded&quot; means the search failed, so retry it.
@@ -363,33 +363,33 @@ export function Playground({ initial }: { initial: PlaygroundInitial }) {
             </div>
           ) : (
             <>
-              <div className="px-4 pt-2 sm:px-5">
+              <div className="px-3 pt-2 sm:px-4">
                 <SearchHeaderChips headers={state.headers} />
               </div>
               <HighlightedJson value={state.flights.slice(0, 3)} />
             </>
           )
         ) : state.phase === 'hotels' ? (
-          <div className="p-4 sm:p-5 pt-2 space-y-3">
+          <div className="p-3 sm:p-4 pt-2 space-y-3">
             <HotelMarketsTable markets={state.markets} />
             <HighlightedJson value={state.markets} maxH="max-h-[240px]" />
           </div>
         ) : api === 'flights' ? (
           <>
-            <div className="px-4 pt-2 sm:px-5">
+            <div className="px-3 pt-2 sm:px-4">
               <SearchHeaderChips headers={initial.flights.headers} />
             </div>
             <HighlightedJson value={initial.flights.flights.slice(0, 2)} />
           </>
         ) : (
-          <div className="p-4 sm:p-5 pt-2">
+          <div className="p-3 sm:p-4 pt-2">
             <HotelMarketsTable markets={initial.hotels.markets} />
           </div>
         )}
       </div>
 
       {/* The same request, your key. */}
-      <div className="border-t rule p-4 sm:p-5">
+      <div className="border-t rule p-3 sm:p-4">
         <p className="mb-2 font-mono text-[10.5px] uppercase tracking-[0.14em] text-ink-500">the same request with your key</p>
         <CodeTabs snippets={snippets} tool="playground" />
         <p className="mt-3 font-mono text-[11px] text-ink-500">

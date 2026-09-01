@@ -104,7 +104,7 @@ export default function McpPage() {
                 Connect Google Flights &amp; Booking.com to <span className="text-signal-500">any MCP client</span>
               </h1>
               <p className="lede mt-5">
-                Hosted MCP servers for Claude, Cursor, ChatGPT, and any MCP client. No installation required — just paste a URL and your RapidAPI key. Your AI agent gets live flight and hotel pricing in seconds.
+                Hosted MCP servers for Claude, Cursor, ChatGPT, and any MCP client. No installation required - just paste a URL and your RapidAPI key. Your AI agent gets live flight and hotel pricing in seconds.
               </p>
               <div className="mt-7">
                 <CheckBullets

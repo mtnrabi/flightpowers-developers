@@ -24,7 +24,7 @@ const faq: Faq[] = [
     q: 'How quickly can I start building?',
     a: (
       <>
-        Free tier signup takes under 2 minutes on RapidAPI — no credit card required. You get your API key instantly and can make your first request within 5 minutes. Test with 10 requests/month free to verify integration, then upgrade when ready. Step-by-step guides:{' '}
+        Free tier signup takes under 2 minutes on RapidAPI - no credit card required. You get your API key instantly and can make your first request within 5 minutes. Test with 10 requests/month free to verify integration, then upgrade when ready. Step-by-step guides:{' '}
         <Link href="/guides/google-flights-api-key" className="text-signal-400 underline underline-offset-4">
           How to get a Google Flights API key
         </Link>{' '}
@@ -46,7 +46,7 @@ const faq: Faq[] = [
   },
   {
     q: 'How is this different from scraping Google Flights myself?',
-    a: 'A scraper you maintain breaks on markup changes and cannot tell "no flights" from "my scrape failed". This API retries unreadable pages, reports the outcome in an X-Search-Status header, and attaches Google\'s own price band to every flight. You also avoid the legal and infrastructure complexity of running your own scraping operation.',
+    a: 'A scraper you maintain breaks on markup changes. This API retries unreadable pages and provides clean JSON. You also avoid the legal and infrastructure complexity of running your own scraping operation.',
   },
   {
     q: 'Can my AI agent use this without me writing HTTP code?',
@@ -76,7 +76,6 @@ function PlanMiniRows({ plans }: { plans: Plan[] }) {
 
 export default function HomePage() {
   const oneway = FIXTURES.onewayJfkCun;
-  const berCdg = FIXTURES.roundtripBerCdg;
   const geo = FIXTURES.hotelGeoRixos;
 
   // First paint for the playground: captured runs, labelled as such.
@@ -97,8 +96,6 @@ export default function HomePage() {
       markets: (['us', 'de', 'il'] as const).map((c) => ({ country: c, result: geo.data[c] })),
     },
   };
-
-  const berRecord = berCdg.data[0]!;
 
   return (
     <>
@@ -133,11 +130,7 @@ export default function HomePage() {
                 <CheckBullets
                   items={[
                     <>
-                      Real-time <strong className="text-ink-100">flight prices</strong> with context from Google Flights
-                    </>,
-                    <>
-                      <code className="font-mono text-[13px] text-signal-400">X-Search-Status</code>: &quot;no flights&quot; and
-                      &quot;search failed&quot; are different answers
+                      Real-time flight &amp; hotel prices from Google Flights &amp; Booking.com
                     </>,
                     <>
                       <code className="font-mono text-[13px] text-signal-400">proxy_country</code>: any hotel, priced from any
@@ -239,60 +232,6 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* ====================== THE THREE ANSWERS ======================= */}
-      <Section>
-        <SectionHead
-          eyebrow="Why choose FlightPowers"
-          title="Three critical answers most travel APIs can't provide"
-          lede="Every fare feed has prices. These are the fields that turn raw prices into actionable decisions for your users."
-        />
-        <div className="mt-8 grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-3">
-          <div className="rounded-2xl border rule bg-ink-900/60 p-5 sm:p-6">
-            <h3 className="text-[17px] font-semibold text-ink-100">&quot;Is this price a deal?&quot;</h3>
-            <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed">
-              Price context from Google Flights for the route and dates, on every result.
-            </p>
-            <p className="mt-4 rounded-lg bg-ink-950/70 border rule px-3 py-2 font-mono text-[12px] text-ink-300 overflow-x-auto whitespace-nowrap">
-              verdict: <span className="text-verdict-low">&quot;{berRecord.price_range_in_relation_to_other_periods}&quot;</span>{' '}
-              · band ${berRecord.price_insights_low} to ${berRecord.price_insights_high}
-            </p>
-            <Link href="/flights-api/price-insights" className="mt-4 inline-block text-sm text-signal-400 underline underline-offset-4">
-              Price insights →
-            </Link>
-          </div>
-          <div className="rounded-2xl border rule bg-ink-900/60 p-5 sm:p-6">
-            <h3 className="text-[17px] font-semibold text-ink-100">&quot;Did the search fail?&quot;</h3>
-            <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed">
-              An empty list is not an answer. <code className="font-mono text-[13px] text-signal-400">X-Search-Status</code> says
-              ok, empty, partial, or degraded on every response.
-            </p>
-            <p className="mt-4 rounded-lg bg-ink-950/70 border rule px-3 py-2 font-mono text-[12px] text-ink-300 overflow-x-auto whitespace-nowrap">
-              x-search-status: <span className="text-verdict-high">degraded</span> → retry →{' '}
-              <span className="text-verdict-low">ok</span>
-            </p>
-            <Link href="/flights-api/search-status" className="mt-4 inline-block text-sm text-signal-400 underline underline-offset-4">
-              Status headers →
-            </Link>
-          </div>
-          <div className="rounded-2xl border rule bg-ink-900/60 p-5 sm:p-6">
-            <h3 className="text-[17px] font-semibold text-ink-100">&quot;What does this room cost from Germany?&quot;</h3>
-            <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed">
-              <code className="font-mono text-[13px] text-signal-400">proxy_country</code> quotes any hotel from any market.
-              Rate-parity monitoring in three requests.
-            </p>
-            <p className="mt-4 rounded-lg bg-ink-950/70 border rule px-3 py-2 font-mono text-[12px] text-ink-300 overflow-x-auto whitespace-nowrap">
-              us {geo.data.us.price_string} · de {geo.data.de.price_string} · il {geo.data.il.price_string}
-            </p>
-            <Link href="/hotels-api/geo-pricing" className="mt-4 inline-block text-sm text-signal-400 underline underline-offset-4">
-              Geo-pricing →
-            </Link>
-          </div>
-        </div>
-        <p className="mt-5 font-mono text-[11px] text-ink-500">
-          The mono lines are captured runs: {berCdg.captured_at} (flights), {geo.captured_at} (hotels).
-        </p>
-      </Section>
-
       {/* ================== THE APIS + PRICING, TOGETHER ================== */}
       <Section id="apis">
         <SectionHead
@@ -303,7 +242,7 @@ export default function HomePage() {
         <div className="mt-8 grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2">
           <div className="rounded-2xl border rule bg-ink-900/60 p-5 sm:p-8 flex flex-col">
             <h3 className="text-xl font-semibold text-ink-100">Google Flights Live API</h3>
-            <p className="mt-2 text-[15px] text-ink-400">Live flight prices with booking links on every result.</p>
+            <p className="mt-2 text-[15px] text-ink-400">Live flight pricing with booking links.</p>
             <ul className="mt-4 space-y-1.5 font-mono text-[13px] text-ink-300">
               <li>
                 <Link href="/flights-api/one-way" className="hover:text-signal-400">

@@ -8,8 +8,10 @@ import { OG_ROBOT } from './og-robot';
  * Lives at /og (not /api/og) so robots.txt's Disallow: /api/ never applies.
  */
 export function GET(req: NextRequest) {
-  const raw = req.nextUrl.searchParams.get('title') ?? 'Live fares, and the context to judge them';
-  const title = raw.slice(0, 120);
+  const raw = req.nextUrl.searchParams.get('title') ?? 'Scan deals 24/7 with real-time flight and hotel data';
+  // Strip "FlightPowers - " prefix if present (og:site_name already carries it)
+  const cleaned = raw.replace(/^FlightPowers\s*-\s*/i, '');
+  const title = cleaned.slice(0, 120);
   const fontSize = title.length > 70 ? 46 : title.length > 45 ? 56 : 68;
 
   return new ImageResponse(
@@ -45,17 +47,8 @@ export function GET(req: NextRequest) {
           {title}
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
-          <div style={{ display: 'flex', color: '#4ade80', background: 'rgba(74,222,128,0.12)', borderRadius: 999, padding: '8px 26px', fontSize: 26 }}>
-            low
-          </div>
-          <div style={{ display: 'flex', color: '#ffb020', background: 'rgba(255,176,32,0.12)', borderRadius: 999, padding: '8px 26px', fontSize: 26 }}>
-            typical
-          </div>
-          <div style={{ display: 'flex', color: '#f87171', background: 'rgba(248,113,113,0.12)', borderRadius: 999, padding: '8px 26px', fontSize: 26 }}>
-            high
-          </div>
-          <div style={{ color: '#7d8794', fontSize: 26, marginLeft: 'auto' }}>flightpowers.com</div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+          <div style={{ color: '#7d8794', fontSize: 26 }}>flightpowers.com</div>
         </div>
       </div>
     ),

@@ -21,7 +21,7 @@ import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 export const metadata: Metadata = withOg({
   title: 'Travel data for AI agents: MCP, skills, and REST on one key',
   description:
-    'Live Google Flights and Booking.com prices as flat JSON an agent can act on: price context from Google Flights, booking links, per-country hotel rates. One RapidAPI key authenticates MCP, the open-source skills, and REST.',
+    'Live Google Flights and Booking.com prices as flat JSON an agent can act on: booking links, per-country hotel rates. One RapidAPI key authenticates MCP, the open-source skills, and REST.',
   alternates: { canonical: '/ai-agents' },
 });
 
@@ -33,9 +33,9 @@ const geo = FIXTURES.hotelGeoRixos;
 
 const RECIPES: Recipe[] = [
   {
-    title: 'A price-alert cron with price context',
+    title: 'A fare-alert cron',
     chips: ['search_oneway_flights', 'price_range_in_relation_to_other_periods', 'buy_link'],
-    body: 'Poll a route on a schedule and fire only when Google’s verdict flips to “low”: no home-grown price-history database, because Google’s band is the history. Send the buy_link in the alert so the user can book from the notification.',
+    body: 'Poll a route on a schedule and alert when prices drop. Send the buy_link in the alert so the user can book from the notification.',
   },
   {
     title: 'A cheapest-week scanner',
@@ -88,15 +88,15 @@ const DECISION_ROWS: TableRow[] = [
   {
     approach: 'FlightPowers REST',
     time: 'Minutes: one POST with your key',
-    upkeep: 'Managed: automatic retries, X-Search-Status on every response',
-    judgment: 'Google’s band and a price context on every fare',
+    upkeep: 'Managed: automatic retries and error handling',
+    judgment: 'Price context from Google Flights',
     ours: true,
   },
   {
     approach: 'FlightPowers MCP',
     time: '30 seconds: paste a URL into your client',
     upkeep: 'Hosted; nothing of yours to run',
-    judgment: 'The same price context fields, delivered as a first-class tool result',
+    judgment: 'The same context fields, delivered as a first-class tool result',
     ours: true,
   },
 ];
@@ -111,16 +111,12 @@ const faq: Faq[] = [
     a: 'Yes. All three surfaces authenticate with the same RapidAPI key and meter against the same plan. You subscribe once on RapidAPI; the MCP servers forward your key, the skills read it from your environment, and REST takes it as the x-rapidapi-key header.',
   },
   {
-    q: 'Can an agent tell “no flights” from “the search failed”?',
-    a: 'Over the REST API, yes: the X-Search-Status header separates a genuine empty (Google really has nothing) from degraded (the search did not complete; retry, and do not tell the user “no flights”). An opt-in strict mode turns a degraded search into an HTTP 503 instead of a misleading empty array.',
-  },
-  {
     q: 'How do the rate limits map to agent workloads?',
     a: 'Flights: 150 requests/minute on Pro, 250 on Ultra, 500 on Mega, sized so a month-long flexible-date scan over REST finishes in one burst. Hotels: 25/minute on Pro and Ultra, 50 on Mega. A daily price-watch across several routes fits comfortably in the $10 Pro tier’s 2,500 requests.',
   },
   {
     q: 'What does the agent actually get back?',
-    a: 'Flat JSON per result. Flights: price as string and number, airline, duration, stops with layover details, Google’s price_insights_low/high band, price context from Google Flights, and a working buy_link. Hotels: price, review score and count, room type, availability, and a booking link.',
+    a: 'Flat JSON per result. Flights: price as string and number, airline, duration, stops with layover details, and a working buy_link. Hotels: price, review score and count, room type, availability, and a booking link.',
   },
   {
     q: 'Is there a way to demo without a key?',
@@ -169,6 +165,7 @@ export default function AiAgentsPage() {
                       key authenticates all of it
                     </>,
                     <>Every flight carries Google&apos;s price band, a price context, and a working buy_link</>,
+                    <>Real-time pricing with booking links</>,
                     <>Hotels price per market (price_as_seen_from over MCP, proxy_country over REST): rate-parity checks from a single API</>,
                   ]}
                 />
@@ -229,6 +226,7 @@ export default function AiAgentsPage() {
             [
               'Let the agent call the tools',
               'Flat JSON per result: price, band, price context, booking link for flights; price, availability, review score, link for hotels. Small enough to drop straight into a tool result.',
+              'Flat JSON per result: price, booking link for flights; price, availability, review score, link for hotels. Small enough to drop straight into a tool result.',
             ],
             [
               'Branch on the judgment fields',
@@ -315,6 +313,7 @@ export default function AiAgentsPage() {
         <p className="mt-4 max-w-3xl text-[13px] text-ink-500 leading-relaxed">
           The competitor rows describe categories, not any single vendor. Evaluate the specific tool you are considering against
           them. The FlightPowers rows are checkable on this site: the price_range_in_relation_to_other_periods field on{' '}
+          them. The FlightPowers rows are checkable on this site: the API on{' '}
           <Link href="/flights-api/price-insights" className="text-signal-400 underline underline-offset-4">
             the Price Insights page
           </Link>
@@ -357,7 +356,7 @@ export default function AiAgentsPage() {
         <CtaBand
           medium="mcp"
           title="Give your agent a travel budget it can defend"
-          body="Live flight prices with Google's own price band and price context, so the agent recommends with a source, not a hunch. One key covers MCP, skills, and REST."
+          body="Live flight and hotel data, so your agent has current pricing. One key covers MCP, skills, and REST."
         />
       </Section>
     </>
