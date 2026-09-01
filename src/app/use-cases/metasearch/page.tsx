@@ -42,7 +42,7 @@ export default function MetasearchPage() {
         <h1 className="mt-4 text-hero font-semibold max-w-3xl">
           Metasearch with a <span className="text-signal-500">bookable</span> result on every row
         </h1>
-        <p className="lede mt-5 max-w-2xl">Live fares in, ranked results out, and a working Google Flights link on each one.</p>
+        <p className="lede mt-5 max-w-2xl">Live flight prices in, ranked results out, and a working Google Flights link on each one.</p>
         <p className="mt-6 max-w-3xl text-[15px] text-ink-300 leading-relaxed">
           A comparison site lives or dies on two things: whether the price shown matches the price on click-through, and
           whether the result actually leads somewhere bookable. Stale caches break the first; scraped results with no booking
@@ -83,8 +83,8 @@ export default function MetasearchPage() {
                 strict price sort (the listing says so), so exact price order is one local sort on the numeric field.
               </>,
               <>
-                <strong className="text-ink-100">Show the verdict as a badge.</strong> Google&apos;s low | typical | high call
-                per fare gives your ranking a value signal competitors&apos; bare price lists don&apos;t carry.
+                <strong className="text-ink-100">Show price context as a badge.</strong> Price context from Google Flights
+                per flight gives your ranking a value signal competitors&apos; bare price lists don&apos;t carry.
               </>,
               <>
                 <strong className="text-ink-100">Render round-trips as itineraries.</strong> The round-trip endpoint returns
@@ -125,7 +125,7 @@ export default function MetasearchPage() {
           medium="use-case"
           api="flights"
           title="Show a price a click-through will confirm"
-          body="Live scans at request time, a booking link on every row, and a verdict badge your competitors’ lists don’t have."
+          body="Live scans at request time, a booking link on every row, and a price context your competitors’ lists don’t have."
         />
       </Section>
     </>

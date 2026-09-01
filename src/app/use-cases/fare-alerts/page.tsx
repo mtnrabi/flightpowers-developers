@@ -7,7 +7,7 @@ import { CheckBullets, Container, FaqSection, Feature, Section, SectionHead, typ
 export const metadata: Metadata = withOg({
   title: 'Fare Alerts: flight price alerts without a price-history database',
   description:
-    'Build fare alerts that fire on Google’s own low | typical | high verdict instead of a threshold you guessed. Poll a route on a schedule, branch on one field, and never alert on a failed search.',
+    'Build price alerts backed by real-time flight data instead of a threshold you guessed. Poll a route on a schedule, branch on price context from Google Flights, and never alert on a failed search.',
   alternates: { canonical: '/use-cases/fare-alerts' },
 });
 
@@ -16,7 +16,7 @@ export const dynamic = 'force-static';
 const faq: Faq[] = [
   {
     q: 'How do I know a fare is “low” without collecting my own price history?',
-    a: 'Every result carries price_insights_low and price_insights_high (Google’s historical price band for that route and date window), plus price_range_in_relation_to_other_periods, Google’s own low | typical | high verdict. Your alert branches on the verdict; Google’s band is the history you didn’t have to collect.',
+    a: 'Every result carries price_insights_low and price_insights_high (Google’s historical price band for that route and date window), plus price_range_in_relation_to_other_periods, Google’s own low | typical | high verdict. Your alert branches on the price_range_in_relation_to_other_periods field; Google’s band is the history you didn’t have to collect.',
   },
   {
     q: 'Will my alert misfire when a search fails?',
@@ -40,11 +40,11 @@ export default function FareAlertsPage() {
       <Container className="pt-6 sm:pt-8 pb-4">
         <p className="eyebrow">Use case</p>
         <h1 className="mt-4 text-hero font-semibold max-w-3xl">
-          Fare alerts that fire on a <span className="text-signal-500">verdict</span>
+          Price alerts backed by <span className="text-signal-500">real-time data</span>
         </h1>
-        <p className="lede mt-5 max-w-2xl">Alert when Google itself says the fare is low, not when it crosses a threshold you guessed.</p>
+        <p className="lede mt-5 max-w-2xl">Alert when price context from Google Flights says it's low, not when it crosses a threshold you guessed.</p>
         <p className="mt-6 max-w-3xl text-[15px] text-ink-300 leading-relaxed">
-          A fare alert is only useful if it knows what a good price is, and most alert systems answer that by collecting
+          A price alert is only useful if it knows what a good price is, and most alert systems answer that by collecting
           months of their own price history before the first useful notification. That is a database, a backfill job, and a
           statistical model, all to reconstruct something Google Flights already computes per route and date. And once the
           alert runs unattended, a failed scrape that returns an empty list quietly becomes a false &ldquo;no flights&rdquo;
@@ -55,8 +55,8 @@ export default function FareAlertsPage() {
       <Section bordered={false} className="!pt-10">
         <SectionHead eyebrow="How FlightPowers helps" title="Three capabilities carry the whole job" />
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
-          <Feature title="The verdict field is the trigger">
-            price_range_in_relation_to_other_periods returns Google&apos;s own low | typical | high call on every fare, next to
+          <Feature title="Price context powers the trigger">
+            price_range_in_relation_to_other_periods returns price context from Google Flights on every flight, next to
             the price_insights_low/high band it was judged against. Your alert logic is one comparison, not one model.
           </Feature>
           <Feature title="X-Search-Status keeps alerts honest">
@@ -80,7 +80,7 @@ export default function FareAlertsPage() {
                 watched route once or twice a day: one request per route per check.
               </>,
               <>
-                <strong className="text-ink-100">Branch on the verdict.</strong> Fire when{' '}
+                <strong className="text-ink-100">Branch on price context.</strong> Fire when{' '}
                 <code className="font-mono text-[13px] text-signal-400">price_range_in_relation_to_other_periods</code> flips to{' '}
                 <code className="font-mono text-[13px] text-signal-400">&quot;low&quot;</code>; stay silent on typical and high.
               </>,
@@ -110,7 +110,7 @@ export default function FareAlertsPage() {
         <SectionHead eyebrow="Related resources" title="Keep going" />
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {[
-            { href: '/flights-api/price-insights', label: 'Price Insights API', sub: 'The band and verdict fields, documented' },
+            { href: '/flights-api/price-insights', label: 'Price Insights API', sub: 'Price context fields, documented' },
             { href: '/flights-api/search-status', label: 'Search Status', sub: 'Why “empty” and “degraded” must differ' },
             { href: '/tools/flight-price-checker', label: 'Flight Price Checker', sub: 'Run the exact check your alert would run' },
             { href: '/guides/real-time-google-flights-data', label: 'Real-time data guide', sub: 'How live scanning actually works' },

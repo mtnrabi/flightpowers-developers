@@ -39,7 +39,7 @@ const FLIGHTS_PAGES = [
     href: '/flights-api/one-way',
     method: 'POST /oneway',
     label: 'One-way search',
-    sub: 'A route and a date in, every live fare out: full request and response reference.',
+    sub: 'A route and a date in, every live flight price out: full request and response reference.',
   },
   {
     href: '/flights-api/round-trip',
@@ -51,7 +51,7 @@ const FLIGHTS_PAGES = [
     href: '/flights-api/price-insights',
     method: 'response fields',
     label: 'Price insights',
-    sub: 'Google’s price band and its low | typical | high verdict, on every result.',
+    sub: 'Price context from Google Flights on every result.',
   },
   {
     href: '/flights-api/search-status',
@@ -148,7 +148,7 @@ export default function DocsPage() {
             Two APIs, documented <span className="text-signal-500">endpoint by endpoint</span>
           </h1>
           <p className="lede mt-5 max-w-2xl">
-            Live Google Flights fares and live Booking.com hotel rates, each with full request and response references, captured
+            Live Google Flights prices and live Booking.com hotel rates, each with full request and response references, captured
             example runs, and code you can paste. Start with either hub, or jump straight to an endpoint.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
@@ -165,8 +165,8 @@ export default function DocsPage() {
       <Section>
         <SectionHead
           eyebrow="Google Flights API"
-          title="Flights: live fares with a price verdict"
-          lede="Two endpoints over live Google Flights results. Round-trips come back as paired itineraries, and every result carries Google's price band, a low | typical | high verdict, and a booking link."
+          title="Flights: live prices with price context"
+          lede="Two endpoints over live Google Flights results. Round-trips come back as paired itineraries, and every result carries price context from Google Flights and a booking link."
         />
         <EndpointGrid pages={FLIGHTS_PAGES} />
         <p className="mt-5 text-[14px] text-ink-400">

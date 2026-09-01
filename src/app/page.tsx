@@ -11,9 +11,9 @@ import { FIXTURES } from '@/lib/fixtures';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const metadata: Metadata = withOg({
-  title: 'Google Flights API & Booking.com API - Real-time Travel Data | FlightPowers',
+  title: 'FlightPowers - Scan deals 24/7 with real-time flight & hotel data',
   description:
-    'Google Flights API and Booking.com API with real-time pricing, price verdicts, and search status. Free tier available. Build AI travel agents, fare alerts, and metasearch engines. RapidAPI, MCP servers for Claude/Cursor/ChatGPT. Get API key instantly.',
+    'Scan deals 24/7 with real-time flight & hotel data, connected to your AI agent',
   alternates: { canonical: '/' },
 });
 
@@ -46,7 +46,7 @@ const faq: Faq[] = [
   },
   {
     q: 'How is this different from scraping Google Flights myself?',
-    a: 'A scraper you maintain breaks on markup changes and cannot tell "no flights" from "my scrape failed". This API retries unreadable pages, reports the outcome in an X-Search-Status header, and attaches Google\'s own price band to every fare. You also avoid the legal and infrastructure complexity of running your own scraping operation.',
+    a: 'A scraper you maintain breaks on markup changes and cannot tell "no flights" from "my scrape failed". This API retries unreadable pages, reports the outcome in an X-Search-Status header, and attaches Google\'s own price band to every flight. You also avoid the legal and infrastructure complexity of running your own scraping operation.',
   },
   {
     q: 'Can my AI agent use this without me writing HTTP code?',
@@ -127,14 +127,13 @@ export default function HomePage() {
                 Your own travel agent, scan deals <span className="text-signal-500">24/7</span>
               </h1>
               <p className="lede mt-5">
-                The APIs to build it: real-time Google Flights and Booking.com data as clean JSON, with Google&apos;s own low,
-                typical, or high verdict on every fare.
+                The APIs to build it: real-time Google Flights and Booking.com data as clean JSON.
               </p>
               <div className="mt-6 hidden sm:block">
                 <CheckBullets
                   items={[
                     <>
-                      Google&apos;s price band + a <strong className="text-ink-100">verdict</strong> on every fare
+                      Real-time <strong className="text-ink-100">flight prices</strong> with context from Google Flights
                     </>,
                     <>
                       <code className="font-mono text-[13px] text-signal-400">X-Search-Status</code>: &quot;no flights&quot; and
@@ -249,9 +248,9 @@ export default function HomePage() {
         />
         <div className="mt-8 grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-3">
           <div className="rounded-2xl border rule bg-ink-900/60 p-5 sm:p-6">
-            <h3 className="text-[17px] font-semibold text-ink-100">&quot;Is this fare a deal?&quot;</h3>
+            <h3 className="text-[17px] font-semibold text-ink-100">&quot;Is this price a deal?&quot;</h3>
             <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed">
-              Google&apos;s own price band for the route and dates, and its low | typical | high verdict, on every result.
+              Price context from Google Flights for the route and dates, on every result.
             </p>
             <p className="mt-4 rounded-lg bg-ink-950/70 border rule px-3 py-2 font-mono text-[12px] text-ink-300 overflow-x-auto whitespace-nowrap">
               verdict: <span className="text-verdict-low">&quot;{berRecord.price_range_in_relation_to_other_periods}&quot;</span>{' '}
@@ -304,7 +303,7 @@ export default function HomePage() {
         <div className="mt-8 grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-2">
           <div className="rounded-2xl border rule bg-ink-900/60 p-5 sm:p-8 flex flex-col">
             <h3 className="text-xl font-semibold text-ink-100">Google Flights Live API</h3>
-            <p className="mt-2 text-[15px] text-ink-400">Live fares with the band, verdict, and booking link on every result.</p>
+            <p className="mt-2 text-[15px] text-ink-400">Live flight prices with booking links on every result.</p>
             <ul className="mt-4 space-y-1.5 font-mono text-[13px] text-ink-300">
               <li>
                 <Link href="/flights-api/one-way" className="hover:text-signal-400">

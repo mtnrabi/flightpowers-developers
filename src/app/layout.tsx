@@ -27,14 +27,13 @@ const mono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: 'FlightPowers: live flight & hotel pricing APIs with a price verdict',
+    default: 'FlightPowers: Scan deals 24/7 with real-time flight & hotel data',
     template: '%s · FlightPowers',
   },
   // Fallback only, and kept inside Google's ~160-char snippet window. Every
   // page sets its own; this is what a page that skipped withOg() would ship.
   description:
-    'Real-time Google Flights and Booking.com data as clean JSON, with Google’s own price band ' +
-    'and a low | typical | high verdict on every fare.',
+    'Scan deals 24/7 with real-time flight & hotel data, connected to your AI agent',
   applicationName: SITE.name,
   authors: [{ name: 'Matan Rabi' }],
   // Fallbacks only: every page wraps its own metadata in withOg(), which

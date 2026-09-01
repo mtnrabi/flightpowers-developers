@@ -145,7 +145,7 @@ export default function McpPage() {
             <div>
               <Code label="mcp.json · both servers">{MCP_CONFIG}</Code>
               <p className="mt-3 text-[15px] text-ink-300">
-                Restart your client. Ask it for a fare. Done.
+                Restart your client. Ask it for a price. Done.
               </p>
               <div className="mt-5">
                 <Code label="no header support? put the key on the URL">{URL_PARAM_ALT}</Code>
@@ -204,7 +204,7 @@ export default function McpPage() {
           <div>
             <p className="font-mono text-[13px] text-ink-400 mb-2">{LINKS.mcpFlights.replace('https://', '')}</p>
             <FieldRow name="search_oneway_flights">
-              Live one-way fares with Google&apos;s price band, a low | typical | high verdict, and a buy_link on every result.
+              Live one-way flight prices with price context from Google Flights and a buy_link on every result.
             </FieldRow>
             <FieldRow name="search_roundtrip_flights">
               Paired round-trip itineraries: one object per trip with total_price and both legs already matched, not two lists to
@@ -297,7 +297,7 @@ export default function McpPage() {
             { href: '/ai-agents', label: 'For AI agents', sub: 'Six things to build this week' },
             { href: '/skills', label: 'The agent skills', sub: `${COUNTS.skills} open-source skills, MIT` },
             { href: '/integrations', label: 'All integrations', sub: 'Every surface we ship on' },
-            { href: '/flights-api/price-insights', label: 'Price Insights API', sub: 'The verdict field, explained' },
+            { href: '/flights-api/price-insights', label: 'Price Insights API', sub: 'Price context from Google Flights' },
           ].map((l) => (
             <Link key={l.href} href={l.href} className="rounded-2xl border rule bg-ink-900/50 p-5 hover:border-ink-500 transition-colors">
               <p className="text-[15px] font-semibold text-ink-100">{l.label}</p>
@@ -319,7 +319,7 @@ export default function McpPage() {
         <CtaBand
           medium="mcp"
           title="Hook your agent up in 30 seconds"
-          body="Paste the config, restart your client, ask it for a fare. The free tier verifies the connection; the paid tiers are sized for daily agents and scans."
+          body="Paste the config, restart your client, ask it for flight prices. The free tier verifies the connection; the paid tiers are sized for daily agents and scans."
         />
       </Section>
     </>
