@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google';
 import { SITE } from '@/lib/site';
 import { SiteHeader } from '@/components/SiteHeader';
 import { SiteFooter } from '@/components/SiteFooter';
+import { SessionBeacon } from '@/components/SessionBeacon';
 import { JsonLd } from '@/components/ui';
 import './globals.css';
 
@@ -87,6 +88,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="min-h-screen flex flex-col antialiased">
+        {/* One beacon per tab, carrying the campaign labels from the URL. It
+            is the denominator for every funnel rate we report. */}
+        <SessionBeacon />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-3 focus:left-3 focus:bg-signal-500 focus:text-ink-950 focus:px-3 focus:py-2 focus:rounded"

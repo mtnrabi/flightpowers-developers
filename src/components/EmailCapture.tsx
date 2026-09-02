@@ -3,6 +3,7 @@
 import { useId, useState } from 'react';
 import Link from 'next/link';
 import { track } from '@/lib/track';
+import { getAttribution } from '@/lib/attribution';
 
 /**
  * The only place this site asks for anything.
@@ -42,7 +43,10 @@ export function EmailCapture({
       const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ email, source, path: window.location.pathname }),
+        // The campaign labels ride along so a signup can be traced back to
+        // the post that produced it. Same first-touch values every event
+        // carries; see src/lib/attribution.ts.
+        body: JSON.stringify({ email, source, path: window.location.pathname, ...getAttribution() }),
       });
       const data = (await res.json().catch(() => ({}))) as { message?: string };
       if (!res.ok) {

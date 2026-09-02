@@ -36,6 +36,16 @@ export default function PrivacyPage() {
           carry no identifiers: no user ID, no fingerprint, no cross-site anything. They answer &ldquo;was this feature
           used?&rdquo;, not &ldquo;who used it?&rdquo;.
         </p>
+        <p>
+          Two more things ride along, and both are worth stating plainly. If you arrived through a link that carried
+          campaign labels in the address bar (<code>utm_source</code>, <code>utm_medium</code>, <code>utm_campaign</code>),
+          those labels are recorded, so we can tell whether a post we wrote actually sent anyone here. And the{' '}
+          <em>hostname</em> of the site you came from is recorded, never the full referring address, which can contain a
+          search query. To avoid counting the same visit twice, the labels are kept for the life of the browser tab in
+          <code>sessionStorage</code> and discarded when you close it. That is not a cookie, it is not shared between
+          tabs or sites, and it still contains no identifier of any kind &mdash; which is also its limit: it counts
+          arrivals, not people.
+        </p>
 
         <h2>Demo searches are transient</h2>
         <p>
@@ -58,8 +68,9 @@ export default function PrivacyPage() {
           shared, not sold, not passed to the marketplaces, and not used to build a profile of you.
         </p>
         <p>
-          Stored with it: where you signed up from (which tool or page), and when. No name, no company, no tracking
-          pixel in the mail. Every email carries an unsubscribe link, and{' '}
+          Stored with it: where you signed up from (which tool or page), when, and the campaign labels described above if
+          your link carried any. No name, no company, no tracking pixel in the mail. Every email carries an unsubscribe
+          link, and{' '}
           <Link href="/unsubscribe">the unsubscribe page</Link> works without one, straight from the address. Opting out
           takes effect immediately and needs no reason.
         </p>
