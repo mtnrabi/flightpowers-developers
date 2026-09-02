@@ -93,7 +93,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
         name: 'What is proxy_country and why does it matter?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'proxy_country lets you query any hotel as if searching from any market. Set proxy_country=DE to see the rate a German shopper sees; change it to US for US pricing. This is how rate-parity monitoring works: one hotel, three countries, three requests, and you have the full comp set.',
+          text: 'proxy_country lets you query any hotel as if searching from any market. Set proxy_country=DE to see the rate a German shopper sees; change it to JP for the Japanese rate. This is how rate-parity monitoring works: one named hotel, a couple of markets, and each market asked several times, because a rate can move between identical requests and one reading per market cannot tell the two apart.',
         },
       },
     ],
@@ -190,18 +190,16 @@ Each result includes a working `booking_link` that opens that exact property and
 
 The killer feature is **`proxy_country`**, a parameter that prices any hotel from any market's perspective. Add `"proxy_country": "DE"` to your request and you get the rate a German shopper sees. Change it to `"US"` and you get the US rate.
 
-Why this matters: **rate-parity monitoring**. One hotel, three requests with different `proxy_country` values, and you have the full competitive pricing picture:
+Why this matters: **rate-parity monitoring**. One named hotel, a couple of markets, each asked more than once, and you can tell a market being quoted differently from a rate that simply moved:
 
 ```bash
-# US shopper
-curl ... -d '{"destination": "Rixos Sungate, Antalya", "proxy_country": "US", ...}'
-# German shopper
+# German shopper -- repeat this call a few times, not just once
 curl ... -d '{"destination": "Rixos Sungate, Antalya", "proxy_country": "DE", ...}'
-# Israeli shopper
-curl ... -d '{"destination": "Rixos Sungate, Antalya", "proxy_country": "IL", ...}'
+# Japanese shopper -- same number of repeats
+curl ... -d '{"destination": "Rixos Sungate, Antalya", "proxy_country": "JP", ...}'
 ```
 
-Booking.com shows different rates to different markets. `proxy_country` lets you see all of them. The full guide is in [How to monitor hotel rate parity](/guides/monitor-hotel-rate-parity).
+Booking.com shows different rates to different markets. `proxy_country` lets you check any of them. Repeat each market a few times and treat a gap as real only when one market's whole range sits below the other's; the full method is in [How to monitor hotel rate parity](/guides/monitor-hotel-rate-parity).
 
 ## The four endpoints
 

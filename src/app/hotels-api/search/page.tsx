@@ -67,7 +67,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Can I price a destination from another country?',
-    a: 'Yes. /search accepts proxy_country like every other endpoint. A two-letter code routes the request through a residential proxy in that market; leave it out and the request uses the global pool. The geo-pricing page shows a real captured spread.',
+    a: 'Yes. /search accepts proxy_country like every other endpoint. A two-letter code routes the request through a residential proxy in that market; leave it out and the request uses the global pool. The geo-pricing page shows a repeat-sampled run and how to tell a real gap from ordinary movement.',
   },
   {
     q: 'How fresh are the prices?',
@@ -384,7 +384,7 @@ export default function HotelSearchPage() {
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { href: '/hotels-api/by-name', label: 'Hotel by name', sub: 'No property-ID step' },
-            { href: '/hotels-api/geo-pricing', label: 'Geo-pricing', sub: 'proxy_country, captured spread' },
+            { href: '/hotels-api/geo-pricing', label: 'Geo-pricing', sub: 'proxy_country, sampled properly' },
             { href: '/hotels-api/bulk', label: 'Competitive-set tracking', sub: 'Room-level, on a schedule' },
             { href: '/hotels-api', label: 'Hotels API hub', sub: 'All four endpoints' },
           ].map((l) => (

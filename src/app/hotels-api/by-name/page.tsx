@@ -60,7 +60,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Can I price the same hotel from another market?',
-    a: 'Yes. proxy_country works here like on every endpoint. The captured example on this page was one of three requests that differed only in proxy_country; the geo-pricing page shows the full comparison.',
+    a: 'Yes. proxy_country works here like on every endpoint. The captured example on this page was one of three requests that differed only in proxy_country; the geo-pricing page shows how to sample it properly before calling a difference a finding.',
   },
   {
     q: 'Is the price per night?',
@@ -302,7 +302,7 @@ export default function HotelByNamePage() {
         <SectionHead eyebrow="Explore more" title="More Hotels API" />
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            { href: '/hotels-api/geo-pricing', label: 'Geo-pricing', sub: 'This request, three markets' },
+            { href: '/hotels-api/geo-pricing', label: 'Geo-pricing', sub: 'This request, sampled per market' },
             { href: '/hotels-api/bulk', label: 'Competitive-set tracking', sub: 'Resolve once, poll /hotel' },
             { href: '/hotels-api/search', label: 'Destination search', sub: 'Ranked properties + 24 filters' },
             { href: '/hotels-api', label: 'Hotels API hub', sub: 'All four endpoints' },

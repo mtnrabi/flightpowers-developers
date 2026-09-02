@@ -101,7 +101,7 @@ Hotels:  ${LINKS.mcpHotels}?x-rapidapi-key=YOUR_RAPIDAPI_KEY`}</Code>
             <li>"Find me the cheapest nonstop from Berlin to Paris in the second week of June."</li>
             <li>"Round trip JFK to London, out September 22, back September 29. Rank the options by value rather than price alone."</li>
             <li>"Find a hotel in Tokyo Shibuya for November 3 to 7, 2 adults, breakfast included."</li>
-            <li>"Compare what the same room at the Kremlin Palace in Antalya costs when booked from Germany versus the US."</li>
+            <li>"Compare what the same room at the Kremlin Palace in Antalya costs when booked from Germany versus Japan, asking each market three times."</li>
           </ul>
           <p>
             The last prompt uses the <code className="font-mono text-[13px]">price_as_seen_from</code> parameter on the

@@ -86,7 +86,7 @@ export default function CursorIntegrationPage() {
         'Fetch live fares for LIS to JFK across November and build a test fixture from the five cheapest days.',
         'Add a fareVerdict helper that maps price_range_in_relation_to_other_periods to a badge color, then check it against a live JFK to LHR search.',
         'Query search_hotels for Lisbon, October 9 to 12, and generate a TypeScript type from the response.',
-        'Run find_hotel_by_name for the Rixos Sungate with price_as_seen_from us, de, and il, and print the price spread.',
+        'Run find_hotel_by_name for the Rixos Sungate with price_as_seen_from de and jp, three times each, and print the range each market landed in.',
       ]}
       toolsEyebrow="Tool inventory"
       toolsTitle="The four tools in the Agent toolbox"

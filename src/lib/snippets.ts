@@ -223,8 +223,16 @@ const results = await Promise.all(
   };
 }
 
-export function hotelGeoSnippets(params: { hotel: string; area?: string; checkin: string; checkout: string; countries: string[] }): Snippets {
+export function hotelGeoSnippets(params: {
+  hotel: string;
+  area?: string;
+  checkin: string;
+  checkout: string;
+  countries: string[];
+  samples?: number;
+}): Snippets {
   const path = '/hotel_by_name';
+  const samples = params.samples ?? 3;
   const base: Record<string, unknown> = {
     hotel_name: params.hotel,
     ...(params.area ? { area: params.area } : {}),
@@ -232,9 +240,12 @@ export function hotelGeoSnippets(params: { hotel: string; area?: string; checkin
     checkout_date: params.checkout,
     currency: 'USD',
   };
+  const a = params.countries[0] ?? 'de';
+  const b = params.countries[1] ?? 'jp';
   return {
-    curl: `# one request per market. vary proxy_country
-${curlFor(HOTELS_HOST, path, { ...base, proxy_country: params.countries[0] ?? 'us' })}`,
+    curl: `# one request. a real check repeats it: ${samples} times per market,
+# because a market's own quote moves between identical requests.
+${curlFor(HOTELS_HOST, path, { ...base, proxy_country: a })}`,
     python: `import os, requests
 
 HEADERS = {
@@ -243,31 +254,58 @@ HEADERS = {
     "x-rapidapi-key": os.environ["RAPIDAPI_KEY"],
 }
 
-for country in ${JSON.stringify(params.countries)}:
-    r = requests.post(
-        "https://${HOTELS_HOST}${path}",
-        headers=HEADERS,
-        json=${fmtJson({ ...base, proxy_country: '<country>' }, '        ').replace('"<country>"', 'country')},
-    )
-    hotel = r.json()
-    print(country, hotel["price_string"] if hotel["available"] else "sold out")`,
-    node: `const markets = ${JSON.stringify(params.countries)};
+SAMPLES = ${samples}  # one reading per market is not a comparison
 
-const quotes = await Promise.all(
-  markets.map(async (proxy_country) => {
-    const res = await fetch("https://${HOTELS_HOST}${path}", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-rapidapi-host": "${HOTELS_HOST}",
-        "x-rapidapi-key": process.env.RAPIDAPI_KEY,
-      },
-      body: JSON.stringify(${fmtJson({ ...base, proxy_country: '<pc>' }, '      ').replace('"<pc>"', 'proxy_country')}),
-    });
-    const hotel = await res.json();
-    return { market: proxy_country, price: hotel.available ? hotel.price_string : "sold out" };
-  })
-);`,
+ranges = {}
+for country in ${JSON.stringify(params.countries)}:
+    prices = []
+    for _ in range(SAMPLES):
+        r = requests.post(
+            "https://${HOTELS_HOST}${path}",
+            headers=HEADERS,
+            json=${fmtJson({ ...base, proxy_country: '<country>' }, '            ').replace('"<country>"', 'country')},
+        )
+        hotel = r.json()
+        if hotel["available"]:
+            prices.append(hotel["price"])
+    ranges[country] = (min(prices), max(prices)) if prices else None
+    print(country, ranges[country])
+
+# Call a gap real only when one market's whole range sits below the other's.
+lo, hi = ranges["${a}"], ranges["${b}"]
+if lo and hi and (lo[1] < hi[0] or hi[1] < lo[0]):
+    print("gap held across every sample")
+else:
+    print("ranges overlap: movement, not a parity break")`,
+    node: `const markets = ${JSON.stringify(params.countries)};
+const SAMPLES = ${samples}; // one reading per market is not a comparison
+
+async function quote(proxy_country) {
+  const res = await fetch("https://${HOTELS_HOST}${path}", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-rapidapi-host": "${HOTELS_HOST}",
+      "x-rapidapi-key": process.env.RAPIDAPI_KEY,
+    },
+    body: JSON.stringify(${fmtJson({ ...base, proxy_country: '<pc>' }, '      ').replace('"<pc>"', 'proxy_country')}),
+  });
+  const hotel = await res.json();
+  return hotel.available ? hotel.price : null;
+}
+
+const ranges = {};
+for (const market of markets) {
+  const prices = [];
+  for (let i = 0; i < SAMPLES; i++) prices.push(await quote(market));
+  const seen = prices.filter((p) => p != null);
+  ranges[market] = seen.length ? [Math.min(...seen), Math.max(...seen)] : null;
+}
+
+// Call a gap real only when one market's whole range sits below the other's.
+const [x, y] = markets.map((m) => ranges[m]);
+const gap = x && y && (x[1] < y[0] || y[1] < x[0]);
+console.log(ranges, gap ? "gap held across every sample" : "ranges overlap: movement, not a parity break");`,
   };
 }
 

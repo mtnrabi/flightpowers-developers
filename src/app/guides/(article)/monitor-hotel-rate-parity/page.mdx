@@ -3,13 +3,14 @@ import { withOg } from '@/lib/meta';
 export const metadata = withOg({
   title: 'How to monitor hotel rate parity with an API',
   description:
-    'What rate parity is, why revenue managers watch it, and how to check it programmatically: the proxy_country mechanism (the same room priced from the US, Germany and Israel in three requests), with a real captured spread, a scheduling pattern, and honest notes on how often parity simply holds.',
+    'What rate parity is, why revenue managers watch it, and how to check it programmatically: the proxy_country mechanism, a repeat-sampled run across markets, how to tell a real gap from ordinary movement, a scheduling pattern, and honest notes on how often nothing is drifting at all.',
   alternates: { canonical: '/guides/monitor-hotel-rate-parity' },
 });
 
 export const dynamic = 'force-static';
 
 import { CapturedBadge, JsonLd } from '@/components/ui';
+import { HotelRepeatSamplesTable } from '@/components/results';
 import { CtaBand } from '@/components/bands';
 import { FIXTURES } from '@/lib/fixtures';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
@@ -20,10 +21,10 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
     '@type': 'TechArticle',
     headline: 'How to monitor hotel rate parity with an API',
     description:
-      'Checking the same room from multiple markets with proxy_country, a real captured price spread, and how to schedule the check.',
+      'Checking the same room from multiple markets with proxy_country, a repeat-sampled run, how to tell a real gap from ordinary movement, and how to schedule the check.',
     url: `${SITE.url}/guides/monitor-hotel-rate-parity`,
     datePublished: '2026-08-26',
-    dateModified: '2026-08-26',
+    dateModified: '2026-08-28',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -43,7 +44,8 @@ the hotel's own direct channel, breach a partner agreement, or hand a competitor
 opening. But watching it manually means opening the same booking page through VPN
 endpoints in three countries and eyeballing the numbers: nobody sustains that daily.
 
-This guide shows the programmatic version: three API requests, one parameter varied.
+This guide shows the programmatic version: identical API requests with one parameter
+varied, repeated enough times that the answer means something.
 
 ## The mechanism: `proxy_country`
 
@@ -56,8 +58,8 @@ proxy in that country**, so the response is what a real visitor from that market
 sees, not what your server's location sees. Leave it out and the request goes through
 the global pool.
 
-A parity check is therefore the same request, N times, with only `proxy_country`
-changed:
+A parity check is therefore the same request, with only `proxy_country` changed, run
+several times per market:
 
 ```python
 import requests
@@ -68,84 +70,130 @@ HEADERS = {
     "x-rapidapi-key": RAPIDAPI_KEY,
 }
 
-for country in ["us", "de", "il"]:
-    r = requests.post(
-        "https://booking-live-api.p.rapidapi.com/hotel_by_name",
-        headers=HEADERS,
-        json={
-            "hotel_name": "Rixos Sungate",
-            "area": "Antalya",
-            "checkin_date": "2026-10-05",
-            "checkout_date": "2026-10-10",
-            "currency": "USD",
-            "proxy_country": country,
-        },
-    )
-    hotel = r.json()
-    print(country, hotel["price_string"] if hotel["available"] else "sold out")
+SAMPLES = 3  # one reading per market is not a comparison
+
+ranges = {}
+for country in ["de", "jp"]:
+    prices = []
+    for _ in range(SAMPLES):
+        r = requests.post(
+            "https://booking-live-api.p.rapidapi.com/hotel_by_name",
+            headers=HEADERS,
+            json={
+                "hotel_name": "Rixos Sungate",
+                "area": "Antalya",
+                "checkin_date": "2026-10-05",
+                "checkout_date": "2026-10-10",
+                "currency": "USD",
+                "proxy_country": country,
+            },
+        )
+        hotel = r.json()
+        if hotel["available"]:
+            prices.append(hotel["price"])
+    ranges[country] = (min(prices), max(prices)) if prices else None
+    print(country, ranges[country])
+
+de, jp = ranges["de"], ranges["jp"]
+if de and jp and (de[1] < jp[0] or jp[1] < de[0]):
+    print("gap held across every sample")
+else:
+    print("ranges overlap: movement, not a parity break")
 ```
 
+The loop is the whole method, and the `SAMPLES` line is the part most write-ups skip.
+Hold the property and the dates fixed, ask each market more than once, and compare the
+ranges rather than two single readings.
+
 `/hotel_by_name` takes the property name a human would type (plus an optional `area`
-to disambiguate) and returns one headline rate with the room type, so the three
-responses are directly comparable. For a room-by-room comparison there is `/hotel`,
-which returns the full room list for a property.
+to disambiguate) and returns one headline rate with the room type, so every response is
+directly comparable to every other. Naming the property matters: comparing "the first
+result" of a destination search compares result ordering, which churns between identical
+requests, not pricing. For a room-by-room comparison there is `/hotel`, which returns the
+full room list for a property.
 
-## A real spread, captured
+## A repeat-sampled run, captured
 
-The dramatization above is not hypothetical. Here is a run of exactly that check,
-captured live on {FIXTURES.hotelGeoRixos.captured_at}: same property
-({FIXTURES.hotelGeoRixos.data.us.name}), same room type
-({FIXTURES.hotelGeoRixos.data.us.room_type}), same dates
-(2026-10-05 to 2026-10-10), same currency, only `proxy_country` varied:
+On {FIXTURES.hotelGeoRepeatRome.captured_at} we ran exactly that check under controlled
+conditions: three Rome properties, three markets, {FIXTURES.hotelGeoRepeatRome.data.samples_per_market}
+identical requests per market, only `proxy_country` varied.
 
-| Market | Quoted price ({FIXTURES.hotelGeoRixos.data.us.nights} nights) |
-|---|---|
-| `us` | {FIXTURES.hotelGeoRixos.data.us.price_string} |
-| `de` | {FIXTURES.hotelGeoRixos.data.de.price_string} |
-| `il` | {FIXTURES.hotelGeoRixos.data.il.price_string} |
+<HotelRepeatSamplesTable run={FIXTURES.hotelGeoRepeatRome.data} />
 
-<CapturedBadge date={FIXTURES.hotelGeoRixos.captured_at} />
+<CapturedBadge date={FIXTURES.hotelGeoRepeatRome.captured_at} />
 
-The US market was quoted **${FIXTURES.hotelGeoRixos.data.us.price.toLocaleString('en-US')}**
-for the same room the German and Israeli markets were quoted
-**${FIXTURES.hotelGeoRixos.data.de.price.toLocaleString('en-US')}** for: a
-${(FIXTURES.hotelGeoRixos.data.de.price - FIXTURES.hotelGeoRixos.data.us.price).toLocaleString('en-US')}
-spread, or about
-{Math.round(((FIXTURES.hotelGeoRixos.data.de.price - FIXTURES.hotelGeoRixos.data.us.price) / FIXTURES.hotelGeoRixos.data.us.price) * 100)}%,
-on one property, found by three requests. (The raw captured responses ship in this
-site's source as a fixture, `src/lib/fixtures/hotel-geo-rixos.json`, booking links
-included, so the numbers are checkable, not decorative.)
+Two things fall out of it, and only one of them is the headline.
 
-## The honest part: parity often holds
+**Japan came in under Germany on all three properties**, by about the same proportion each
+time, and both markets returned an identical number on every one of the three requests.
+That is a difference you can act on: the ranges do not overlap and they did not move.
 
-Do not build the pitch deck off one screenshot. A second capture from the same day
-({FIXTURES.hotelGeoKremlin.data.us.name}, same three markets, same dates) came back
-at {FIXTURES.hotelGeoKremlin.data.us.price_string} /
+**The US market did not hold still.** On repeat runs of the same property it came back at
+different numbers between identical requests, and the size of that movement was larger
+than the Germany–Japan gap. Anchor a comparison on a market that behaves like this, take
+one reading from each side, and you can produce a "gap" that is entirely an artefact of
+when you asked.
+
+So the practical rule is short: **rates move, so sample each country a few times before
+you call a gap real.** A gap counts when one market's whole range sits below the other's.
+Overlapping ranges are movement, not a parity break. (The raw numbers ship in this site's
+source as a fixture, `src/lib/fixtures/hotel-geo-repeat-rome.json`, so they are checkable
+rather than decorative.)
+
+### Two methods that look fine and are not
+
+- **One request per country.** The most common write-up of this check, and the reason
+  phantom gaps get reported. It cannot distinguish a market being quoted differently from
+  a rate that happened to move between two calls.
+- **Comparing "the first result" of a destination search.** Result ordering churns between
+  identical requests, so a first-result delta measures ordering, not pricing. Name the
+  property with `/hotel_by_name`, or match on the property and room type before you compare
+  anything.
+
+## The honest part: often nothing is drifting
+
+Do not build the pitch deck off one screenshot. A single-reading capture from
+{FIXTURES.hotelGeoKremlin.captured_at} ({FIXTURES.hotelGeoKremlin.data.us.name}, three
+markets, same dates) came back at {FIXTURES.hotelGeoKremlin.data.us.price_string} /
 {FIXTURES.hotelGeoKremlin.data.de.price_string} /
-{FIXTURES.hotelGeoKremlin.data.il.price_string}: near-identical quotes, differing by
-a rounding artifact. Parity holding is also an answer, and a monitoring tool has to
-report it honestly rather than manufacture drama.
+{FIXTURES.hotelGeoKremlin.data.il.price_string}: near-identical quotes, differing by a
+rounding artefact. And a separate held-constant run on a chain hotel on
+{FIXTURES.hotelGeoRepeatRome.captured_at} returned the identical price from every market
+we tried: chain properties under parity contracts can show no gap at all.
 
-The operational consequence: **alert on deltas, don't assume them.** A parity monitor
-that runs daily and stays silent for weeks is working, not broken. The value is the
-morning it isn't silent, and having the captured evidence (price, room type,
-booking link, timestamp) attached when that morning comes.
+Gaps are property-dependent. Some properties segment by market and some simply do not, and
+a monitor has to report both honestly rather than manufacture drama.
+
+The same caution applies to the readings that look exciting. A capture from
+{FIXTURES.hotelGeoRixos.captured_at} ({FIXTURES.hotelGeoRixos.data.us.name},
+{FIXTURES.hotelGeoRixos.data.us.room_type}, same dates) came back at
+{FIXTURES.hotelGeoRixos.data.us.price_string} from `us` against
+{FIXTURES.hotelGeoRixos.data.de.price_string} from `de` and `il`. It is a real capture and
+it ships as a fixture (`src/lib/fixtures/hotel-geo-rixos.json`, booking links included), so
+the numbers are checkable. But it is one request per market, anchored on the market our
+repeat runs showed moving on its own, so what it establishes is "re-sample this property",
+not "this property breaks parity by X%". That is the whole reason the sampling loop above
+has a `SAMPLES` line.
+
+The operational consequence: **alert on gaps that survive sampling, don't assume them.** A
+parity monitor that runs daily and stays silent for weeks is working, not broken. The value
+is the morning it isn't silent, with enough samples behind the number that the conversation
+is about the rate rather than about your method.
 
 ## Scheduling it
 
 A parity check is a naturally periodic job. Two common shapes:
 
-**Cron.** Wrap the loop above in a script, run it daily, diff against yesterday's
-numbers, and send yourself a message when the spread between any two markets exceeds
-a threshold you choose (absolute or percentage: percentage travels better across
-properties). Persist the raw responses along with the verdict: when you escalate a
-parity breach, the evidence is the response, with its `price_string`, `room_type`
-and booking `link`.
+**Cron.** Wrap the loop above in a script, run it daily, and send yourself a message when
+one market's whole sampled range clears a threshold you choose against another's (absolute
+or percentage: percentage travels better across properties). Persist every raw response,
+not just the verdict: when you escalate a parity breach, the evidence is the set of
+responses, each with its `price_string`, `room_type` and booking `link`.
 
-**n8n or another workflow tool.** Schedule trigger → one HTTP request per market →
-compare → notify. The same pattern as a fare watch, which is written up step by step
-in [Using a flight API in n8n](/guides/flight-api-in-n8n): swap the flights node
-for the hotel request and the verdict condition for a spread threshold.
+**n8n or another workflow tool.** Schedule trigger → several HTTP requests per market →
+compare the ranges → notify. The same pattern as a fare watch, which is written up step by
+step in [Using a flight API in n8n](/guides/flight-api-in-n8n): swap the flights node for
+the hotel request and the verdict condition for a non-overlapping-range test.
 
 Two practical notes for scheduled sweeps:
 
@@ -155,16 +203,20 @@ Two practical notes for scheduled sweeps:
 - **Compare like with like.** The response includes `room_type`: check it matches
   across markets before alerting on the price. A cheaper quote for a different room
   is not a parity breach, it is inventory.
+- **Budget for the repeats.** Sampling multiplies the request count: two markets at three
+  samples each, across ten properties, is sixty requests per run. That is the cost of a
+  number you can defend, and it is what the larger tiers are for.
 
-## Beyond parity: the same three requests, other questions
+## Beyond parity: the same loop, other questions
 
-The identical mechanism answers adjacent revenue questions: geo-pricing analysis
+The identical mechanism, sampled the same way, answers adjacent revenue questions: geo-pricing analysis
 (which markets is a competitor discounting into?), competitive-set tracking
 (`/hotel_by_name` across your comp set, on the same schedule), and market-entry
 research. The [Geo-Pricing page](/hotels-api/geo-pricing) documents the endpoint
 parameters in full, and the free
-[Hotel Price by Country tool](/tools/hotel-price-by-country) runs the three-market
-check in your browser so you can see the response shape before writing any code.
+[Hotel Price by Country tool](/tools/hotel-price-by-country) runs the check in your
+browser, sampling each of two markets three times, so you can see the response shape
+before writing any code.
 
 ## Related
 
@@ -175,6 +227,6 @@ check in your browser so you can see the response shape before writing any code.
 <CtaBand
   api="hotels"
   medium="guide"
-  title="Three requests, one parameter, the whole picture"
+  title="One parameter, a few samples, an answer you can defend"
   body="Live Booking.com rates priced from any market with proxy_country. Free tier on RapidAPI, no card to try."
 />

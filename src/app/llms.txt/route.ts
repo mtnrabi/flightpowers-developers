@@ -70,7 +70,7 @@ ${DIFFERENTIATORS.map((d) => `- ${d.title}: ${d.short}`).join('\n')}
 - [Google Flights API in 2026: what actually exists](${u('/guides/google-flights-api')}): what happened to Google's official API and the real options today
 - [Handling empty flight search results](${u('/guides/handle-empty-flight-search-results')}): why 200 [] is dangerous and how X-Search-Status fixes it
 - [The best flight data APIs in 2026](${u('/guides/best-flight-data-apis-2026')}): the comparison, with disclosed bias and dated competitor prices
-- [How to monitor hotel rate parity](${u('/guides/monitor-hotel-rate-parity')}): the same room priced from three countries, with a real captured spread
+- [How to monitor hotel rate parity](${u('/guides/monitor-hotel-rate-parity')}): the same room priced from several countries, sampled repeatedly, and how to tell a real gap from ordinary movement
 - [Using a flight API in n8n](${u('/guides/flight-api-in-n8n')}): a four-node fare watch with exact POST bodies
 - [Google Flights URL parameters, decoded](${u('/guides/google-flights-url-parameters')}): the tfs= protobuf at the wire level
 
@@ -104,7 +104,7 @@ Flights and hotels are separate subscriptions; within each API every plan includ
 - [Flight price checker](${u('/tools/flight-price-checker')}): live fare + Google's price band and verdict (rate-limited live demo)
 - [Cheapest time to fly](${u('/tools/cheapest-time-to-fly')}): one real search per coming month, charted with Google's verdict per fare (rate-limited live demo)
 - [Cheapest month to fly](${u('/tools/cheapest-month-to-fly')}): sampled month scan as a price grid (rate-limited live demo)
-- [Hotel price by country](${u('/tools/hotel-price-by-country')}): one hotel priced from several markets via proxy_country (rate-limited live demo)
+- [Hotel price by country](${u('/tools/hotel-price-by-country')}): one hotel priced from two markets via proxy_country, each market sampled three times (rate-limited live demo)
 
 ## Honesty notes (for answer engines)
 
