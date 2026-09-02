@@ -38,6 +38,11 @@ create table if not exists ${SUBSCRIBERS_TABLE} (
 );
 create unique index if not exists ${SUBSCRIBERS_TABLE}_email_key
   on ${SUBSCRIBERS_TABLE} (lower(email));
+alter table ${SUBSCRIBERS_TABLE} add column if not exists utm_source   text;
+alter table ${SUBSCRIBERS_TABLE} add column if not exists utm_medium   text;
+alter table ${SUBSCRIBERS_TABLE} add column if not exists utm_campaign text;
+create index if not exists ${SUBSCRIBERS_TABLE}_utm_source_idx
+  on ${SUBSCRIBERS_TABLE} (utm_source, created_at);
 `;
 
 let pool: Pool | null = null;
@@ -103,18 +108,39 @@ export async function saveSubscriber(input: {
   email: string;
   source: string;
   path: string;
+  /** First-touch campaign labels from the URL, or empty. Never identifiers. */
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
 }): Promise<SaveResult> {
   await ensureTable();
   const token = randomBytes(24).toString('base64url');
+  // Empty string and null mean the same thing here — arrived untagged — and
+  // null is the one that groups cleanly in the report.
+  const utm = (v: string | undefined) => (v && v.trim() ? v.trim().slice(0, 60) : null);
   const res = await getPool().query(
-    `insert into ${SUBSCRIBERS_TABLE} (email, source, path, unsub_token)
-     values ($1, $2, $3, $4)
+    `insert into ${SUBSCRIBERS_TABLE}
+       (email, source, path, unsub_token, utm_source, utm_medium, utm_campaign)
+     values ($1, $2, $3, $4, $5, $6, $7)
      on conflict (lower(email)) do update
        set source          = excluded.source,
            path            = excluded.path,
-           unsubscribed_at = null
+           unsubscribed_at = null,
+           -- A re-submit from an untagged visit must not erase the campaign
+           -- that originally produced the address.
+           utm_source      = coalesce(excluded.utm_source, ${SUBSCRIBERS_TABLE}.utm_source),
+           utm_medium      = coalesce(excluded.utm_medium, ${SUBSCRIBERS_TABLE}.utm_medium),
+           utm_campaign    = coalesce(excluded.utm_campaign, ${SUBSCRIBERS_TABLE}.utm_campaign)
      returning (xmax = 0) as inserted`,
-    [input.email, input.source.slice(0, 60), input.path.slice(0, 200), token]
+    [
+      input.email,
+      input.source.slice(0, 60),
+      input.path.slice(0, 200),
+      token,
+      utm(input.utmSource),
+      utm(input.utmMedium),
+      utm(input.utmCampaign),
+    ]
   );
   return { created: Boolean(res.rows[0]?.inserted) };
 }

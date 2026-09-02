@@ -78,8 +78,21 @@ export async function POST(req: Request) {
       email,
       source: String(body.source ?? 'unknown'),
       path: String(body.path ?? ''),
+      utmSource: String(body.us ?? ''),
+      utmMedium: String(body.um ?? ''),
+      utmCampaign: String(body.uc ?? ''),
     });
-    console.log(`[fp-event] ${JSON.stringify({ t: new Date().toISOString(), e: 'email_saved', created, source: String(body.source ?? '').slice(0, 60) })}`);
+    console.log(
+      `[fp-event] ${JSON.stringify({
+        t: new Date().toISOString(),
+        e: 'email_saved',
+        created,
+        source: String(body.source ?? '').slice(0, 60),
+        us: String(body.us ?? '').slice(0, 60),
+        um: String(body.um ?? '').slice(0, 60),
+        uc: String(body.uc ?? '').slice(0, 60),
+      })}`
+    );
     return NextResponse.json({ ok: true, created });
   } catch (err) {
     console.error('[fp-subscribe] write failed', err);
