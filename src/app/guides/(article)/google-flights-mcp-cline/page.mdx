@@ -1,0 +1,188 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'Using the Google Flights MCP in Cline',
+  description:
+    'Connect live Google Flights and Booking.com data to Cline with one block in cline_mcp_settings.json. Write and test travel features against real pricing, billed to your own RapidAPI key. The agent can fetch flight and hotel prices while it codes.',
+  alternates: { canonical: '/guides/google-flights-mcp-cline' },
+});
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'Using the Google Flights MCP in Cline',
+    description:
+      'Connect live Google Flights and Booking.com data to Cline using MCP servers. The agent can fetch real flight prices and hotel rates while coding.',
+    url: `https://flightpowers.com/guides/google-flights-mcp-cline`,
+    datePublished: '2026-09-02',
+    dateModified: '2026-09-02',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# Using the Google Flights MCP in Cline
+
+Cline's agent can write and test your travel features against real flight and hotel
+data when you connect the FlightPowers MCP servers. One block in
+`cline_mcp_settings.json` unlocks four tools: live Google Flights pricing, Booking.com
+hotel searches, and the date-range and destination-list expansions that turn a single
+prompt into a multi-day scan.
+
+## What you need
+
+- <a href="https://github.com/cline/cline" rel="noopener">Cline</a> (VS Code extension or Cursor extension)
+- A RapidAPI key for the
+  <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">
+    Google Flights Live API
+  </a>
+  and the
+  <a href={rapidApiPricingUrl('hotels', 'guide')} rel="noopener">
+    Booking Live API
+  </a>
+  . One key covers both once you subscribe to each listing. The free tier (10
+  requests/month) verifies your config works; the $10 PRO plan (2,500 requests/month) is
+  the realistic floor for a development workflow.
+
+## Setting up the MCP servers
+
+### Option 1: Edit the config file directly
+
+Open the Cline MCP settings file at:
+
+- **macOS**: `~/Library/Application Support/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json`
+- **Windows**: `%APPDATA%\Code\User\globalStorage\saoudrizwan.claude-dev\settings\cline_mcp_settings.json`
+- **Linux**: `~/.config/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json`
+
+Or open it from the Cline panel: click the MCP Servers icon (stacked server icon in the
+top toolbar), open the Configure tab, and click Configure MCP Servers. This opens the
+`cline_mcp_settings.json` file in a new editor tab.
+
+Add this block:
+
+```json
+{
+  "mcpServers": {
+    "flights": {
+      "type": "streamableHttp",
+      "url": "https://flights.flightpowers.com/mcp",
+      "headers": {
+        "x-rapidapi-key": "YOUR_RAPIDAPI_KEY"
+      },
+      "disabled": false,
+      "autoApprove": []
+    },
+    "hotels": {
+      "type": "streamableHttp",
+      "url": "https://hotels.flightpowers.com/mcp",
+      "headers": {
+        "x-rapidapi-key": "YOUR_RAPIDAPI_KEY"
+      },
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}
+```
+
+Replace `YOUR_RAPIDAPI_KEY` with your actual key. Both servers share the same key once
+you subscribe to each listing on RapidAPI. The `type: "streamableHttp"` field is
+required (omitting it defaults to legacy SSE transport).
+
+Save the file, then reload the VS Code or Cursor window (Command Palette → Developer:
+Reload Window) or toggle the servers off and on in the Cline MCP Servers panel.
+
+### Option 2: Use the Remote Servers tab
+
+In the Cline panel, click the MCP Servers icon, then open the Remote Servers tab. Add
+each server:
+
+- **Server Name**: `flights`
+- **Server URL**: `https://flights.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY`
+- **Transport Type**: Streamable HTTP
+
+Repeat for the hotels server with `https://hotels.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY`.
+
+The tools appear in the agent toolbox once the servers are connected.
+
+## The four tools
+
+**search_oneway_flights**: Live one-way flight prices from Google Flights. Pass a
+single date or a date range (`departure_date_from` / `departure_date_to`) and the
+server expands it internally. Each result includes `price`, `price_as_number`,
+`price_range_in_relation_to_other_periods` (the context field), and a `buy_link` that
+opens the itinerary on Google Flights ready to book.
+
+**search_roundtrip_flights**: Paired round-trip itineraries with both legs already
+matched. One object per option with a combined `total_price`, not two lists to
+cross-join. Takes a `return_date` or a trip length in `nights`.
+
+**search_hotels**: Live Booking.com destination search. Returns ranked properties with
+`price_string`, `price_as_number`, `review_score`, `room_type`, and a `booking_link`.
+Accepts the same filters the site offers: `review_score_8`, `free_cancellation`, and
+the rest.
+
+**find_hotel_by_name**: Availability and price for one named hotel. Takes the name a
+human would type (add the city to disambiguate a chain) and resolves the property
+internally. Supports `price_as_seen_from`, a two-letter country code that prices the
+stay as a shopper in that market would see it, the field rate-parity checks are built
+on.
+
+## Example prompts
+
+**Generate types from a live response.** "Call search_oneway_flights for LHR to JFK on
+October 13 and show me the raw JSON so we can write a parser for it."
+
+**Build test fixtures.** "Fetch live prices for LIS to JFK across November and build a
+test fixture from the five cheapest days."
+
+**Test parsing logic.** "Add a priceContext helper that maps
+price_range_in_relation_to_other_periods to a badge color, then check it against a
+live JFK to LHR search."
+
+**Multi-market pricing.** "Run find_hotel_by_name for the Rixos Sungate with
+price_as_seen_from us, de, and il, and print the price spread."
+
+## How it works
+
+The servers are hosted at `https://flights.flightpowers.com/mcp` and
+`https://hotels.flightpowers.com/mcp`. Nothing runs on your machine. Cline sends your
+RapidAPI key with each call (in the `x-rapidapi-key` header), so usage meters against
+your own subscription. The free BASIC tier (10 requests/month, hard cap, no card)
+verifies the config works. A scheduled agent that scans routes daily fits the cheapest
+paid plan.
+
+## Date ranges and destination lists
+
+Both flight tools accept a date range (`departure_date_from` / `departure_date_to`) and
+a list of airports in `from_airport` and `to_airport` (comma-separated strings like
+`"JFK,EWR,LGA"`). The server expands them internally, so a flexible search is one call
+where the REST API would be a client-side fan-out of one request per date and
+destination combination.
+
+## When to use this
+
+Use the MCP servers when your agent is writing or testing travel features and needs
+real data to validate against. The response shape it codes against is the one
+production will see. Use the <a href="https://rapidapi.com/mtnrabi/api/google-flights-live-api" rel="noopener">REST API</a> for production traffic and scheduled scans outside Cline.
+
+## Related
+
+- [MCP Servers](https://flightpowers.com/mcp): setup for Cursor, Claude, ChatGPT, and other MCP clients
+- [FlightPowers integrations](https://flightpowers.com/integrations): all supported platforms and tools
+- [Using the Google Flights MCP in Cursor](https://flightpowers.com/guides/google-flights-mcp-cursor): setup for Cursor IDE
+- [Using the Google Flights MCP in Claude](https://flightpowers.com/guides/google-flights-mcp-claude): setup for Claude Desktop and Claude Code
+- [Using the Google Flights MCP in ChatGPT](https://flightpowers.com/guides/google-flights-mcp-chatgpt): setup for ChatGPT connectors
+
+<CtaBand
+  medium="guide"
+  title="Test it on your own routes"
+  body="Ask the agent to fetch a live price. The free tier verifies your key works; the paid tiers are sized for daily development."
+/>

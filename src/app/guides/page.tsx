@@ -130,6 +130,12 @@ const GUIDES = [
     tag: 'AI agents',
   },
   {
+    href: '/guides/google-flights-mcp-cline',
+    title: 'Using the Google Flights MCP in Cline',
+    sub: 'Connect live flight and hotel data to Cline with one block in cline_mcp_settings.json. Real-time flight & hotel prices from Google Flights & Booking.com while the agent codes.',
+    tag: 'AI agents',
+  },
+  {
     href: '/guides/best-flight-data-apis-2026',
     title: 'The best flight data APIs in 2026',
     sub: 'The listicle, with disclosed bias: it starts with our own API and says so, quotes every competitor price with a retrieval date, and names the competitor that is cheaper per request than we are.',
