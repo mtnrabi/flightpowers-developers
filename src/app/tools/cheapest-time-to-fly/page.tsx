@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { CheapestTimeTool } from '@/components/tools/CheapestTimeTool';
 import { Container, Cta, FaqSection, JsonLd, Section, SectionHead, type Faq } from '@/components/ui';
 import { FIXTURES } from '@/lib/fixtures';
-import { COUNTS, SITE } from '@/lib/site';
+import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const metadata: Metadata = withOg({
   title: 'Cheapest Time to Fly: a year of fares as one chart',
@@ -35,6 +35,10 @@ const faq: Faq[] = [
   {
     q: 'How is this different from the Cheapest Month to Fly grid?',
     a: 'This tool answers "which month?"; the month grid answers "which day inside that month?". Chain them: scan the year here, then run the month that wins through the month grid, then check the winning day’s live fare in the price checker before booking.',
+  },
+  {
+    q: 'Can my AI assistant run this scan for me?',
+    a: 'Yes. The same flight search is exposed on a free MCP server at ' + LINKS.mcpFree.replace('https://', '') + ', with no key and no signup, so you can paste the address into Claude, Cursor or any MCP client and just ask which month is cheapest. It is ad-supported: every result carries one labelled sponsored card, and capacity is shared with everyone using it. Connect it from the free tools page. For an ad-free server on your own key, see the MCP page.',
   },
   {
     q: 'How would I run this scan from my own code?',
@@ -169,12 +173,29 @@ export default function CheapestTimePage() {
               </p>
             </div>
           </div>
+          <div className="mt-8 rounded-2xl border rule bg-ink-900/50 p-5">
+            <p className="text-[15px] font-semibold text-ink-100">Or let your assistant run it</p>
+            <p className="mt-1.5 text-[14px] text-ink-400 leading-relaxed">
+              The same flight search is on a free MCP server at{' '}
+              <code className="font-mono text-[13px] text-ink-200">{LINKS.mcpFree.replace('https://', '')}</code>. No key, no
+              signup: paste the address into Claude, Cursor or any MCP client and ask it which month is cheapest for your route.
+              It is ad-supported, so every result carries one labelled sponsored card, and capacity is shared with everyone
+              using it.{' '}
+              <Link href="/tools#free-mcp" className="underline underline-offset-4 hover:text-signal-400">
+                Connect it here
+              </Link>
+              .
+            </p>
+          </div>
           <div className="mt-8 flex flex-wrap gap-3">
             <Cta href="/flights-api/parallel-date-scan" variant="ghost">
               View documentation
             </Cta>
-            <Cta href="/pricing" variant="primary">
-              See plans and pricing
+            <Cta href="/tools#free-mcp" variant="ghost">
+              Connect the free MCP server
+            </Cta>
+            <Cta href={rapidApiPricingUrl('flights', 'tool')} external variant="primary">
+              See pricing on RapidAPI →
             </Cta>
           </div>
         </div>
@@ -186,10 +207,11 @@ export default function CheapestTimePage() {
 
       <Section>
         <SectionHead eyebrow="Related tools" title="Keep going" />
-        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { href: '/tools/cheapest-month-to-fly', label: 'Cheapest Month to Fly', sub: 'Day-by-day heat grid for one month' },
             { href: '/tools/flight-price-checker', label: 'Flight Price Checker', sub: 'Live fare + Google’s verdict' },
+            { href: '/tools#free-mcp', label: 'Free MCP Server', sub: 'Ask your assistant instead. No key, ad-supported' },
             { href: '/flights-api/parallel-date-scan', label: 'Parallel Date Scan', sub: 'The full every-day scan on your own key' },
           ].map((l) => (
             <Link key={l.href} href={l.href} className="rounded-2xl border rule bg-ink-900/50 p-5 hover:border-ink-500 transition-colors">
