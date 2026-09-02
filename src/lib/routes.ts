@@ -37,6 +37,13 @@ function isRouteGroup(name: string): boolean {
   return name.startsWith('(') && name.endsWith(')');
 }
 
+/**
+ * Pages that exist but must never be announced. `/unsubscribe` is a utility
+ * page reached from an email link; indexing it would put an opt-out form in
+ * search results for the brand name.
+ */
+export const NOINDEX_ROUTES = new Set(['/unsubscribe']);
+
 export type DiscoveredRoute = { pathname: string; file: string };
 
 export function discoverRoutes(dir: string = APP_DIR, prefix = ''): DiscoveredRoute[] {

@@ -1,18 +1,20 @@
 import type { MetadataRoute } from 'next';
 import { SITE } from '@/lib/site';
 import path from 'node:path';
-import { discoverRoutes, lastModified, priorityFor } from '@/lib/routes';
+import { NOINDEX_ROUTES, discoverRoutes, lastModified, priorityFor } from '@/lib/routes';
 import { matrixPairs } from '@/lib/matrix';
 
 export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticRoutes = discoverRoutes().map(({ pathname, file }) => ({
-    url: new URL(pathname, SITE.url).toString(),
-    lastModified: lastModified(file),
-    changeFrequency: (pathname === '/' ? 'weekly' : 'monthly') as 'weekly' | 'monthly',
-    priority: priorityFor(pathname),
-  }));
+  const staticRoutes = discoverRoutes()
+    .filter(({ pathname }) => !NOINDEX_ROUTES.has(pathname))
+    .map(({ pathname, file }) => ({
+      url: new URL(pathname, SITE.url).toString(),
+      lastModified: lastModified(file),
+      changeFrequency: (pathname === '/' ? 'weekly' : 'monthly') as 'weekly' | 'monthly',
+      priority: priorityFor(pathname),
+    }));
 
   // Dynamic segments are enumerated explicitly from their datasets. These
   // pages have no file of their own, so their lastmod is the dataset's own

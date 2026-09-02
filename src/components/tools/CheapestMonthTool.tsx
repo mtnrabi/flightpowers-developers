@@ -2,11 +2,12 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { ApiUpsellCard } from '@/components/ApiUpsellCard';
+import { EmailCapture } from '@/components/EmailCapture';
 import { HeatGrid } from '@/components/results';
 import { CapturedBadge, VerdictBadge } from '@/components/ui';
 import type { ScanDay } from '@/lib/fixtures';
 import { airlineText } from '@/lib/format';
-import { monthScanSnippets } from '@/lib/snippets';
+import { bothHosts, monthScanSnippets } from '@/lib/snippets';
 import { rapidApiPricingUrl } from '@/lib/site';
 import { track } from '@/lib/track';
 
@@ -185,12 +186,14 @@ export function CheapestMonthTool({
 
       <ApiUpsellCard
         tool="cheapest-month"
-        snippets={monthScanSnippets({ from: query.from, to: query.to, month: query.month, days: daysInMonth(query.month) })}
+        snippets={bothHosts((host) => monthScanSnippets({ from: query.from, to: query.to, month: query.month, days: daysInMonth(query.month) }, host))}
         pricingHref={rapidApiPricingUrl('flights', 'tool')}
         docsHref="/flights-api/parallel-date-scan"
         headline="Run the full every-day scan from your own code"
         body="One request per date, fired in parallel: the grid you are looking at, at full resolution, with Google’s price band and verdict on every fare."
       />
+
+      <EmailCapture tool="cheapest-month" source="tool:cheapest-month" />
     </div>
   );
 }

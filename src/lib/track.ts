@@ -8,7 +8,7 @@
  */
 
 export type TrackEvent = {
-  e: 'api_upsell_click' | 'demo_run' | 'outbound' | 'verify_key';
+  e: 'api_upsell_click' | 'upsell_view' | 'demo_run' | 'outbound' | 'verify_key' | 'email_submit';
   tool?: string;
   action?: string;
   target?: string;

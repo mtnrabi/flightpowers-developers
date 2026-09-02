@@ -152,13 +152,20 @@ export default function DocsPage() {
             example runs, and code you can paste. Start with either hub, or jump straight to an endpoint.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <Cta href="/flights-api" variant="primary">
+            <Cta href="/docs/quickstart" variant="primary">
+              Five-minute quickstart
+            </Cta>
+            <Cta href="/flights-api" variant="ghost">
               Flights API docs
             </Cta>
-            <Cta href="/hotels-api" variant="primary">
+            <Cta href="/hotels-api" variant="ghost">
               Hotels API docs
             </Cta>
           </div>
+          <p className="mt-4 text-[14px] text-ink-400">
+            New here? The quickstart is five pastes from nothing to a live price, and it names the two field-name
+            mistakes that cost most people their first calls.
+          </p>
         </Container>
       </div>
 
