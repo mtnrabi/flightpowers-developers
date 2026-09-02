@@ -7,7 +7,7 @@ import { CheckBullets, Container, FaqSection, Feature, Section, SectionHead, typ
 export const metadata: Metadata = withOg({
   title: 'Rate-Parity Monitoring: see your hotel rates the way each market sees them',
   description:
-    'Booking.com shows different rates depending on where the visitor browses from. proxy_country routes each request through a residential proxy in the market you choose, so parity checks across countries come from one API, by hotel name, on a schedule.',
+    'Booking.com shows different rates depending on where the visitor browses from. proxy_country routes each request through a residential proxy in the market you choose, so parity checks across countries come from one API, by hotel name, sampled a few times per market, on a schedule.',
   alternates: { canonical: '/use-cases/rate-parity-monitoring' },
 });
 
@@ -16,7 +16,11 @@ export const dynamic = 'force-static';
 const faq: Faq[] = [
   {
     q: 'How does per-country pricing actually work?',
-    a: 'Every hotels endpoint accepts proxy_country, a two-letter code like "us", "de", or "il". The request is routed through a residential proxy in that country, so Booking.com responds exactly as it would to a local visitor. Ask for the same room from three markets and compare what comes back: that is the parity check.',
+    a: 'Every hotels endpoint accepts proxy_country, a two-letter code like "de", "jp", or "us". The request is routed through a residential proxy in that country, so Booking.com responds exactly as it would to a local visitor. Ask for the same room from each market a few times and compare the ranges: that is the parity check.',
+  },
+  {
+    q: 'How many samples does a parity check need?',
+    a: 'More than one per market. In a controlled run on 2026-08-28, holding the property and dates fixed, the German and Japanese markets returned the same number on every request while the US market moved between identical requests by more than the Germany–Japan gap. Sample each market about three times and treat a gap as real only when one market’s whole range sits below the other’s.',
   },
   {
     q: 'Do I need Booking.com property IDs to monitor my hotels?',
@@ -42,7 +46,7 @@ export default function RateParityPage() {
         <h1 className="mt-4 text-hero font-semibold max-w-3xl">
           Rate parity, checked from <span className="text-signal-500">inside each market</span>
         </h1>
-        <p className="lede mt-5 max-w-2xl">The same room, priced as a visitor from the US, Germany, or Israel would see it, from one API.</p>
+        <p className="lede mt-5 max-w-2xl">The same room, priced as a resident of Germany, Japan, or anywhere else would see it, from one API.</p>
         <p className="mt-6 max-w-3xl text-[15px] text-ink-300 leading-relaxed">
           Booking.com shows different rates depending on where the visitor is browsing from, which means a hotel&apos;s
           published rate and the rate a given market actually sees can quietly diverge. Checking that by hand means VPNs,
@@ -56,7 +60,8 @@ export default function RateParityPage() {
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
           <Feature title="proxy_country is the whole trick">
             A two-letter code routes the request through a residential proxy in that country. Same hotel, same dates,{' '}
-            proxy_country varied: the response is what a local guest would be quoted, as JSON you can diff.
+            proxy_country varied: the response is what a local guest would be quoted, as JSON you can diff. Repeat each market a
+            few times and the diff is one you can defend.
           </Feature>
           <Feature title="Query by name, not internal ID">
             /hotel_by_name resolves the hotel name a revenue manager would actually type. No ID-mapping table to build before
@@ -76,14 +81,14 @@ export default function RateParityPage() {
             items={[
               <>
                 <strong className="text-ink-100">Define the watchlist.</strong> Properties by name, the markets that matter
-                (say <code className="font-mono text-[13px] text-signal-400">us</code>,{' '}
-                <code className="font-mono text-[13px] text-signal-400">de</code>,{' '}
-                <code className="font-mono text-[13px] text-signal-400">il</code>), and the stay dates you track.
+                (say <code className="font-mono text-[13px] text-signal-400">de</code> and{' '}
+                <code className="font-mono text-[13px] text-signal-400">jp</code>), and the stay dates you track.
               </>,
               <>
-                <strong className="text-ink-100">Loop the markets.</strong> One{' '}
-                <code className="font-mono text-[13px] text-signal-400">/hotel_by_name</code> call per country per property:
-                three markets is three requests.
+                <strong className="text-ink-100">Sample each market, don&apos;t just poll it once.</strong> One{' '}
+                <code className="font-mono text-[13px] text-signal-400">/hotel_by_name</code> call per country per sample: two
+                markets asked three times each is six requests. One reading per market cannot tell a quoted difference from a
+                rate that simply moved.
               </>,
               <>
                 <strong className="text-ink-100">Normalise the currency.</strong> Set{' '}
@@ -91,8 +96,9 @@ export default function RateParityPage() {
                 unit and the comparison is a subtraction.
               </>,
               <>
-                <strong className="text-ink-100">Flag the deltas.</strong> Alert when the spread between markets crosses your
-                threshold: that spread is the parity violation, timestamped.
+                <strong className="text-ink-100">Flag the gaps that hold.</strong> Alert when one market&apos;s whole sampled
+                range clears your threshold against another&apos;s. Overlapping ranges are movement; a range that stays clear is
+                the parity violation, timestamped.
               </>,
               <>
                 <strong className="text-ink-100">Go room-level when it matters.</strong> <code className="font-mono text-[13px] text-signal-400">/hotel</code>{' '}

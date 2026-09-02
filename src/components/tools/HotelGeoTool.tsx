@@ -2,31 +2,28 @@
 
 import { useRef, useState } from 'react';
 import { ApiUpsellCard } from '@/components/ApiUpsellCard';
-import { HotelMarketsTable } from '@/components/results';
+import { HotelMarketSamplesTable, HotelRepeatSamplesTable } from '@/components/results';
 import { CapturedBadge } from '@/components/ui';
-import type { HotelByName } from '@/lib/fixtures';
+import type { GeoRepeatRun, HotelByName } from '@/lib/fixtures';
 import { hotelGeoSnippets } from '@/lib/snippets';
 import { rapidApiPricingUrl } from '@/lib/site';
 import { track } from '@/lib/track';
 
 /** Mirrors the server's allowlist: the demo may only proxy through these markets. */
 const MARKETS: { code: string; name: string }[] = [
-  { code: 'us', name: 'United States' },
   { code: 'de', name: 'Germany' },
-  { code: 'il', name: 'Israel' },
-  { code: 'gb', name: 'United Kingdom' },
-  { code: 'fr', name: 'France' },
-  { code: 'br', name: 'Brazil' },
-  { code: 'in', name: 'India' },
   { code: 'jp', name: 'Japan' },
-  { code: 'au', name: 'Australia' },
-  { code: 'es', name: 'Spain' },
-  { code: 'it', name: 'Italy' },
-  { code: 'nl', name: 'Netherlands' },
-  { code: 'tr', name: 'Türkiye' },
+  { code: 'us', name: 'United States' },
+  { code: 'gb', name: 'United Kingdom' },
+  { code: 'il', name: 'Israel' },
+  { code: 'br', name: 'Brazil' },
 ];
 
-type Market = { country: string; result: HotelByName | null };
+/** Mirrors the server: two markets, each asked the same question three times. */
+const MAX_MARKETS = 2;
+const SAMPLES_PER_MARKET = 3;
+
+type Market = { country: string; samples: (HotelByName | null)[] };
 
 type Query = { hotel: string; area?: string; checkin: string; checkout: string; countries: string[] };
 
@@ -38,21 +35,32 @@ type RunState =
 
 /**
  * The geo-pricing form. The page around it is complete server-rendered copy;
- * this component only adds the interaction. Each selected market is a real
- * request through a residential proxy in that country, the expensive kind
- * of call, which is why this tool has the tightest cap on the site (the page
- * says so).
+ * this component only adds the interaction.
+ *
+ * Two markets, three identical requests each. The earlier shape (one request
+ * per market, up to three markets) printed a single-sample delta as a spread,
+ * and a market's own quote moves between identical requests, so that number
+ * could be pure noise. Six calls buys a range per market instead of a
+ * difference between two readings, which is the comparison people can act on.
  */
-export function HotelGeoTool({ captured }: { captured: { markets: Market[]; capturedAt: string; query: Query } }) {
+export function HotelGeoTool({
+  captured,
+}: {
+  captured: { run: GeoRepeatRun; capturedAt: string; defaultQuery: Query };
+}) {
   const [hotel, setHotel] = useState('Rixos Sungate');
   const [area, setArea] = useState('Antalya');
   const [checkin, setCheckin] = useState('');
   const [checkout, setCheckout] = useState('');
-  const [countries, setCountries] = useState<string[]>(['us', 'de', 'il']);
+  const [countries, setCountries] = useState<string[]>(['de', 'jp']);
   const [state, setState] = useState<RunState>({ phase: 'idle' });
 
   function toggleCountry(code: string) {
-    setCountries((prev) => (prev.includes(code) ? prev.filter((c) => c !== code) : prev.length >= 3 ? prev : [...prev, code]));
+    setCountries((prev) => {
+      if (prev.includes(code)) return prev.filter((c) => c !== code);
+      if (prev.length >= MAX_MARKETS) return [...prev.slice(1), code];
+      return [...prev, code];
+    });
   }
 
   const inFlight = useRef(false); // ref, not state: two clicks inside one render can both pass a state check
@@ -60,8 +68,8 @@ export function HotelGeoTool({ captured }: { captured: { markets: Market[]; capt
   async function run(e: React.FormEvent) {
     e.preventDefault();
     if (inFlight.current || state.phase === 'running') return;
-    if (countries.length < 2) {
-      setState({ phase: 'error', message: 'Pick 2–3 markets to compare. One market is a price, two is a comparison.' });
+    if (countries.length !== MAX_MARKETS) {
+      setState({ phase: 'error', message: 'Pick two markets. One market is a price; two sampled markets is a comparison.' });
       return;
     }
     inFlight.current = true;
@@ -92,7 +100,7 @@ export function HotelGeoTool({ captured }: { captured: { markets: Market[]; capt
   }
 
   const showing = state.phase === 'done' ? state : null;
-  const query = showing ? showing.query : captured.query;
+  const query = showing ? showing.query : captured.defaultQuery;
 
   const inputCls =
     'mt-1.5 w-full rounded-xl border rule bg-ink-950 px-3.5 py-2.5 font-mono text-[14px] text-ink-100 placeholder:text-ink-600 focus:border-signal-600 focus:outline-none';
@@ -136,47 +144,57 @@ export function HotelGeoTool({ captured }: { captured: { markets: Market[]; capt
 
         <fieldset className="mt-4">
           <legend className="font-mono text-[11px] uppercase tracking-wider text-ink-500">
-            Markets to price from ({countries.length}/3 selected, pick 2–3)
+            Two markets to compare ({countries.length}/{MAX_MARKETS} selected)
           </legend>
           <div className="mt-2 flex flex-wrap gap-2">
             {MARKETS.map((m) => {
               const on = countries.includes(m.code);
-              const full = !on && countries.length >= 3;
               return (
                 <label
                   key={m.code}
                   className={`flex cursor-pointer items-center gap-1.5 rounded-lg border rule px-2.5 py-1.5 text-[13px] transition-colors ${
-                    on ? 'border-signal-600 bg-signal-600/10 text-ink-100' : full ? 'text-ink-600 cursor-not-allowed' : 'text-ink-300 hover:border-ink-500'
+                    on ? 'border-signal-600 bg-signal-600/10 text-ink-100' : 'text-ink-300 hover:border-ink-500'
                   }`}
                 >
-                  <input type="checkbox" checked={on} disabled={full} onChange={() => toggleCountry(m.code)} className="sr-only" />
+                  <input type="checkbox" checked={on} onChange={() => toggleCountry(m.code)} className="sr-only" />
                   <span className="font-mono text-[11px] text-signal-400">{m.code}</span>
                   {m.name}
                 </label>
               );
             })}
           </div>
+          <p className="mt-2 text-[12.5px] text-ink-400 leading-relaxed">
+            Germany and Japan to start with: in our own repeat runs those two held steady, so a difference between them means
+            something. Pick a third market and the oldest choice drops off.
+          </p>
         </fieldset>
 
         <div className="mt-4 flex flex-wrap items-center gap-3">
           <button type="submit" className="btn btn-accent" disabled={state.phase === 'running'}>
-            {state.phase === 'running' ? 'Pricing markets…' : 'Price it from each market'}
+            {state.phase === 'running' ? 'Sampling both markets…' : 'Price it from both markets'}
           </button>
           <p className="font-mono text-[11px] text-ink-500">
-            One REAL request per market, each through a residential proxy in that country, the expensive kind of call, so this
-            tool has the tightest cap on the site. Can take ~10–40s.
+            {MAX_MARKETS * SAMPLES_PER_MARKET} REAL requests: each market asked {SAMPLES_PER_MARKET} times, every request
+            through a residential proxy in that country. The expensive kind of call, so this tool has the tightest cap on the
+            site. Can take ~20–60s.
           </p>
         </div>
       </form>
 
       {state.phase === 'error' ? <p className="text-[14.5px] text-verdict-typical leading-relaxed">{state.message}</p> : null}
 
-      {/* Result: live if run, captured example on first paint */}
+      {/* Result: live if run, a captured repeat-sampling run on first paint */}
       <div className="rounded-2xl border rule bg-ink-900/60 p-5 sm:p-6">
         <div className="mb-4 flex flex-wrap items-center gap-3">
           <h3 className="text-[16px] font-semibold text-ink-100">
-            {query.hotel}
-            {query.area ? `, ${query.area}` : ''} · {query.checkin} → {query.checkout}
+            {showing ? (
+              <>
+                {query.hotel}
+                {query.area ? `, ${query.area}` : ''} · {query.checkin} → {query.checkout}
+              </>
+            ) : (
+              <>Three Rome properties, three markets, three requests each</>
+            )}
           </h3>
           {showing ? (
             showing.mode === 'live' ? (
@@ -188,16 +206,29 @@ export function HotelGeoTool({ captured }: { captured: { markets: Market[]; capt
             <CapturedBadge date={captured.capturedAt} />
           )}
         </div>
-        <HotelMarketsTable markets={showing ? showing.markets : captured.markets} />
+        {showing ? <HotelMarketSamplesTable markets={showing.markets} /> : <HotelRepeatSamplesTable run={captured.run} />}
+        {showing ? null : (
+          <p className="mt-3 text-[13.5px] text-ink-400 leading-relaxed">
+            Japan came in under Germany on all three properties, and both markets returned the same number on every request. The
+            US moved on its own between identical requests, by more than the Germany–Japan gap. Run your own check above.
+          </p>
+        )}
       </div>
 
       <ApiUpsellCard
         tool="hotel-geo"
-        snippets={hotelGeoSnippets({ hotel: query.hotel, area: query.area, checkin: query.checkin, checkout: query.checkout, countries: query.countries })}
+        snippets={hotelGeoSnippets({
+          hotel: query.hotel,
+          area: query.area,
+          checkin: query.checkin,
+          checkout: query.checkout,
+          countries: query.countries,
+          samples: SAMPLES_PER_MARKET,
+        })}
         pricingHref={rapidApiPricingUrl('hotels', 'tool')}
         docsHref="/hotels-api/geo-pricing"
-        headline="Monitor this spread from your own code"
-        body="The same check as JSON: one request per market, identical except proxy_country. Schedule it and rate-parity monitoring is a cron job."
+        headline="Run this check from your own code"
+        body="The same method as JSON: hold the property fixed, sample each market a few times, and compare the ranges. Schedule it and rate-parity monitoring is a cron job."
       />
     </div>
   );

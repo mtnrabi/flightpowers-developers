@@ -1,0 +1,31 @@
+{
+ "captured_at": "2026-08-28",
+ "captured_from": "booking-live-api.p.rapidapi.com",
+ "note": "A repeat-sampling run, not a single snapshot. Three Rome properties, three markets, three identical requests per market: only proxy_country varied, everything else held constant. Recorded so the movement between identical requests is visible next to the difference between markets.",
+ "request": {
+  "endpoint": "/search",
+  "note": "3 properties x 3 markets x 3 identical requests each",
+  "body": {
+   "proxy_country": "de|jp|us"
+  }
+ },
+ "headers": {},
+ "data": {
+  "samples_per_market": 3,
+  "markets": ["de", "jp", "us"],
+  "properties": [
+   {
+    "name": "Favola Romana - Guest House",
+    "quotes": { "de": [243, 243, 243], "jp": [234, 234, 234], "us": [242, 258, 258] }
+   },
+   {
+    "name": "Suite della Pigna",
+    "quotes": { "de": [486, 486, 486], "jp": [467, 467, 467], "us": [486, 523, 482] }
+   },
+   {
+    "name": "Suites 51",
+    "quotes": { "de": [477, 477, 477], "jp": [460, 460, 460], "us": [477, 512, 473] }
+   }
+  ]
+ }
+}

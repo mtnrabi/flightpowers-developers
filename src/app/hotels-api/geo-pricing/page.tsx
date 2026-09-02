@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { CodeTabs } from '@/components/CodeTabs';
 import { PricingTable } from '@/components/PricingTable';
-import { HotelMarketsTable } from '@/components/results';
+import { HotelMarketsTable, HotelRepeatSamplesTable } from '@/components/results';
 import {
   Breadcrumbs,
   CapturedBadge,
@@ -26,7 +26,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 export const metadata: Metadata = withOg({
   title: 'Hotel Geo-Pricing API: rate parity by market with proxy_country',
   description:
-    'Rate-parity and geo-pricing monitoring from a single API. proxy_country prices the same room through a residential proxy in any market. This page shows a real captured $195 spread on one room, and a real capture where parity held.',
+    'Rate-parity and geo-pricing monitoring from a single API. proxy_country prices the same room through a residential proxy in any market. This page shows a repeat-sampled run across three markets, and what it takes before a difference counts as a finding.',
   alternates: { canonical: '/hotels-api/geo-pricing' },
 });
 
@@ -44,16 +44,20 @@ const faq: Faq[] = [
     a: 'It is a two-letter lowercase country code ("us", "de", "il") accepted by every hotels endpoint. The request exits through a residential proxy in that country. Leave the field out and the request goes through the global residential pool instead.',
   },
   {
-    q: 'Could the captured spread just be currency conversion?',
-    a: 'No. All three captured requests asked for USD explicitly, so the $195 difference on the Rixos Sungate room is market pricing, not exchange rates.',
+    q: 'How many times should I ask each market?',
+    a: 'More than once. In a controlled run on 2026-08-28 the German and Japanese markets returned the same number on every request, while the US market moved between identical requests by more than the Germany–Japan gap. Three samples per market is enough to tell a steady quote from a moving one; a single reading per market cannot.',
   },
   {
-    q: 'What does a three-market check cost?',
-    a: 'Three requests against your plan quota, one per market. proxy_country is an ordinary request field on every plan, including the free tier.',
+    q: 'When is a difference between markets real?',
+    a: 'When one market’s whole sampled range sits below the other’s. Overlapping ranges mean the rate is moving, not that a market is being quoted differently. Set currency explicitly on every request so the comparison is a subtraction and not an exchange-rate question.',
+  },
+  {
+    q: 'What does a check cost?',
+    a: 'One request per market per sample: two markets sampled three times each is six requests against your plan quota. proxy_country is an ordinary request field on every plan, including the free tier.',
   },
   {
     q: 'What if every market comes back the same?',
-    a: 'Then parity is holding, and that is also an answer: the Kremlin Palace capture on this page priced within a dollar across three markets. Monitoring means confirming parity most days and catching the exceptions the day they appear.',
+    a: 'Then nothing is drifting, and that is also an answer: the Kremlin Palace capture on this page priced within a dollar across three markets, and a separate held-constant run on a chain hotel on 2026-08-28 returned the identical price from every market we tried. Chain properties under parity contracts often show no gap at all. Monitoring means confirming that most days and catching the exceptions the day they appear.',
   },
   {
     q: 'Which endpoints accept proxy_country?',
@@ -64,13 +68,14 @@ const faq: Faq[] = [
 export default function GeoPricingPage() {
   const rx = FIXTURES.hotelGeoRixos;
   const kx = FIXTURES.hotelGeoKremlin;
-  const spread = rx.data.de.price! - rx.data.us.price!;
+  const rep = FIXTURES.hotelGeoRepeatRome;
   const snippets = hotelGeoSnippets({
     hotel: 'Rixos Sungate',
     area: 'Antalya',
     checkin: '2026-10-05',
     checkout: '2026-10-10',
-    countries: [...MARKETS],
+    countries: ['de', 'jp'],
+    samples: rep.data.samples_per_market,
   });
 
   return (
@@ -125,14 +130,14 @@ export default function GeoPricingPage() {
                 <CheckBullets
                   items={[
                     <>
-                      A real captured spread: {rx.data.us.price_string} from the US for the room Germany and Israel saw at $
-                      {rx.data.de.price!.toLocaleString('en-US')}, same dates, same currency
-                    </>,
-                    <>
-                      One request per market: vary only{' '}
+                      Check the same room as a resident of another country: vary only{' '}
                       <code className="font-mono text-[13px] text-signal-400">proxy_country</code>, on any hotels endpoint
                     </>,
-                    <>Honest by design: when parity holds, the API shows you that too (captured counter-example below)</>,
+                    <>
+                      A repeat-sampled run, not one reading: {rep.data.samples_per_market} identical requests per market, so the
+                      movement inside a market is visible next to the difference between markets
+                    </>,
+                    <>Honest by design: when the markets agree, the API shows you that too (captured counter-example below)</>,
                   ]}
                 />
               </div>
@@ -150,11 +155,11 @@ export default function GeoPricingPage() {
             <div className="rounded-2xl border rule bg-ink-900/60 p-6">
               <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
                 <p className="font-mono text-[11px] uppercase tracking-wider text-ink-500">
-                  POST /hotel_by_name · 3 requests, only proxy_country varied
+                  3 properties × 3 markets × {rep.data.samples_per_market} identical requests
                 </p>
-                <CapturedBadge date={rx.captured_at} />
+                <CapturedBadge date={rep.captured_at} />
               </div>
-              <HotelMarketsTable markets={MARKETS.map((c) => ({ country: c, result: rx.data[c] }))} />
+              <HotelRepeatSamplesTable run={rep.data} />
             </div>
           </div>
         </Container>
@@ -164,27 +169,31 @@ export default function GeoPricingPage() {
         <SectionHead
           eyebrow="The mechanism, honestly"
           title="One field, one proxy exit per market"
-          lede="proxy_country takes a two-letter code and routes that single request through a residential proxy in that country, so the rates returned are the rates Booking.com quotes that market. Leave it out and the request uses the global residential pool. Each market is one request against your quota. A three-market check costs three requests."
+          lede="proxy_country takes a two-letter code and routes that single request through a residential proxy in that country, so the rates returned are the rates Booking.com quotes that market. Leave it out and the request uses the global residential pool. Every request counts against your quota, and a check worth trusting repeats each market a few times: two markets sampled three times each is six requests."
         />
         <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-start">
           <div>
-            <h3 className="text-[16px] font-semibold text-ink-100 mb-3">The exact check behind the capture above</h3>
+            <h3 className="text-[16px] font-semibold text-ink-100 mb-3">The exact check behind the run above</h3>
             <CodeTabs snippets={snippets} tool="hotel-geo-snippets" />
           </div>
           <div className="text-[15px] text-ink-300 leading-relaxed space-y-4">
             <p>
-              The hero table is not an illustration: it is three real requests from {rx.captured_at}, identical except for{' '}
-              <code className="field">proxy_country</code>. The US market was quoted {rx.data.us.price_string} for the{' '}
-              {rx.data.us.room_type} the German and Israeli markets were quoted US${rx.data.de.price!.toLocaleString('en-US')} for:
-              a ${spread} spread on one room, one stay.
+              The hero table is not an illustration: it is {rep.data.properties.length * rep.data.markets.length * rep.data.samples_per_market}{' '}
+              real requests from {rep.captured_at}, one property at a time, identical except for{' '}
+              <code className="field">proxy_country</code>. Japan came in under Germany on all three properties, and both markets
+              answered with the same number every time they were asked. The US market did not: it moved between identical
+              requests, by more than the Germany–Japan gap.
             </p>
             <p>
-              The check itself becomes the trivial part: no per-market scraping infrastructure to run. Your BI stack calls the API
-              from wherever it already runs and compares numbers.
+              That is the whole method. Hold the property and the dates fixed, ask each market more than once, and treat a gap as
+              real when one market&apos;s whole range sits below the other&apos;s. Rates move, so sample each country a few times
+              before you call a gap real.
             </p>
             <p>
-              This is what makes rate-parity monitoring possible from a single API, which general-purpose hotel scrapers can&apos;t
-              do: a request without market routing only ever shows you one market&apos;s rate.
+              The infrastructure is the trivial part: no per-market scraping to run. Your BI stack calls the API from wherever it
+              already runs and compares ranges. That is what makes rate-parity monitoring possible from a single API, which
+              general-purpose hotel scrapers can&apos;t do: a request without market routing only ever shows you one
+              market&apos;s rate.
             </p>
           </div>
         </div>
@@ -192,28 +201,40 @@ export default function GeoPricingPage() {
 
       <Section>
         <SectionHead
-          eyebrow="The counter-example"
-          title="When parity holds, you see that too"
-          lede="A monitoring tool that only ever finds discrepancies is a tool you cannot trust. Here is a capture from the same day where the three markets priced within a dollar of each other."
+          eyebrow="Two earlier readings"
+          title="What one request per market can and cannot tell you"
+          lede="Both captures below are real, taken on 2026-08-26, and both are a single request per market. That makes them readings rather than measured gaps: useful as the start of a check, not as its conclusion."
         />
         <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-start">
           <div className="rounded-2xl border rule bg-ink-900/60 p-6">
             <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
               <p className="font-mono text-[11px] uppercase tracking-wider text-ink-500">
-                POST /hotel_by_name · same three markets
+                POST /hotel_by_name · one request per market
               </p>
               <CapturedBadge date={kx.captured_at} />
             </div>
             <HotelMarketsTable markets={MARKETS.map((c) => ({ country: c, result: kx.data[c] }))} />
+            <div className="mt-6 border-t rule pt-6">
+              <p className="mb-4 font-mono text-[11px] uppercase tracking-wider text-ink-500">
+                Rixos Sungate, Antalya · one request per market
+              </p>
+              <HotelMarketsTable markets={MARKETS.map((c) => ({ country: c, result: rx.data[c] }))} />
+            </div>
           </div>
           <div className="text-[15px] text-ink-300 leading-relaxed space-y-4">
             <p>
-              Kremlin Palace, Antalya: the same five-night stay, the same three markets, captured the same day as the Rixos run. The
-              quotes came back within a dollar of each other.
+              Kremlin Palace, Antalya: a five-night stay quoted within a dollar of itself from all three markets. Nothing to
+              chase, and that is a real answer. Chain properties under parity contracts often look exactly like this.
             </p>
             <p>
-              For a revenue manager this is the point: most checks should confirm parity. The value of the monitor is that the day a
-              market drifts (like the ${spread} Rixos spread), the number is in your data, not in a guest&apos;s screenshot.
+              Rixos Sungate, same day and same markets, came back further apart. But that is one reading from each market, and the
+              repeat runs above show a market moving on its own by a comparable amount. So the honest call is &ldquo;re-sample
+              this one&rdquo;, not &ldquo;parity is broken&rdquo;.
+            </p>
+            <p>
+              For a revenue manager that distinction is the job. Most checks should come back quiet. The value of the monitor is
+              the morning one doesn&apos;t, with enough samples behind it that you can act on the number instead of arguing about
+              it.
             </p>
           </div>
         </div>
@@ -223,12 +244,12 @@ export default function GeoPricingPage() {
         <SectionHead
           eyebrow="Use cases"
           title="What teams build on this field"
-          lede="Each of these is the same three-line loop over markets, pointed at different properties."
+          lede="Each of these is the same loop: hold the property fixed, sample each market a few times, compare the ranges."
         />
         <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
           <Feature title="Rate-parity enforcement">
-            Price your own properties from the markets you sell in, on a schedule, and flag any market where the OTA quote drifts
-            from your contracted rate, with the exact figure and a link to the live page.
+            Price your own properties from the markets you sell in, on a schedule, and flag a market only when its whole sampled
+            range drifts from your contracted rate, with the figures and a link to the live page.
           </Feature>
           <Feature title="OTA vs direct monitoring">
             Compare what Booking.com quotes each market against your direct-booking price for the same room and dates, so
@@ -281,7 +302,7 @@ export default function GeoPricingPage() {
           medium="endpoint"
           api="hotels"
           title="Put a number on rate parity"
-          body="One parameter, one request per market, and the spread is in your data instead of somebody’s anecdote."
+          body="One parameter, a few samples per market, and the answer is in your data instead of somebody’s anecdote."
         />
       </Section>
     </>

@@ -72,7 +72,7 @@ const GUIDES = [
   {
     href: '/guides/monitor-hotel-rate-parity',
     title: 'How to monitor hotel rate parity',
-    sub: 'The proxy_country mechanism (the same room priced from the US, Germany and Israel in three requests), with a real captured spread, a scheduling pattern, and honest notes on how often parity holds.',
+    sub: 'The proxy_country mechanism, a repeat-sampled run across markets, how to tell a real gap from ordinary movement, a scheduling pattern, and honest notes on how often nothing is drifting at all.',
     tag: 'hotels',
   },
   {

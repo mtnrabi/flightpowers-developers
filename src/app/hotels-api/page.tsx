@@ -301,7 +301,7 @@ export default function HotelsApiHubPage() {
               <Link href="/hotels-api/geo-pricing" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
                 geo-pricing page
               </Link>{' '}
-              shows a real captured spread.
+              shows a repeat-sampled run and how to read it.
             </FieldRow>
             <FieldRow name="filters · budget_per_night" type="string[] · number">
               <code className="field">/search</code> only: the {COUNTS.hotelFilters} facets below, plus a per-night cap in your

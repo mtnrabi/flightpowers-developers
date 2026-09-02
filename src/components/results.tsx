@@ -4,7 +4,7 @@
  * alike, so canned and live output look identical and are labelled apart.
  */
 
-import type { DealHuntRow, HotelByName, OnewayFlight, RoundtripItinerary, ScanDay, YearMonth } from '@/lib/fixtures';
+import type { DealHuntRow, GeoRepeatRun, HotelByName, OnewayFlight, RoundtripItinerary, ScanDay, YearMonth } from '@/lib/fixtures';
 import { splitAirline } from '@/lib/format';
 import { PriceBand, VerdictBadge } from './ui';
 
@@ -405,11 +405,159 @@ export function HotelMarketsTable({ markets }: { markets: { country: string; res
       </div>
       {min != null && max != null && max > min ? (
         <p className="mt-2 text-[13px] text-ink-300">
-          Spread: <span className="font-mono text-verdict-low">${(max - min).toLocaleString('en-US')}</span> between the cheapest and the
-          most expensive market for the same room.
+          Difference in this sample: <span className="font-mono text-verdict-low">${(max - min).toLocaleString('en-US')}</span> between
+          the cheapest and the most expensive market. Rates move between identical requests, so sample each market a few times
+          before you call a gap real.
         </p>
       ) : min != null ? (
-        <p className="mt-2 text-[13px] text-ink-400">All markets quoted the same rate. Parity holding is an answer too.</p>
+        <p className="mt-2 text-[13px] text-ink-400">Every market quoted the same rate in this sample.</p>
+      ) : null}
+    </div>
+  );
+}
+
+/** min and max of a list of numbers. */
+function span(ns: number[]): { lo: number; hi: number } {
+  return { lo: Math.min(...ns), hi: Math.max(...ns) };
+}
+
+function pct(a: number, b: number): number {
+  return Math.round(((b - a) / a) * 100);
+}
+
+/**
+ * A repeat-sampling run rendered as properties x markets, each cell showing
+ * the observed range across identical requests. The point of the shape: you
+ * can see how much one market moves on its own before comparing markets.
+ */
+export function HotelRepeatSamplesTable({ run }: { run: GeoRepeatRun }) {
+  const worstWobble = Math.max(
+    ...run.properties.flatMap((p) =>
+      run.markets.map((m) => {
+        const { lo, hi } = span(p.quotes[m] ?? [0]);
+        return lo ? pct(lo, hi) : 0;
+      })
+    )
+  );
+  return (
+    <div>
+      <div className="overflow-x-auto">
+        <table className="w-full text-[14px]">
+          <thead>
+            <tr className="text-left font-mono text-[11px] uppercase tracking-wider text-ink-500">
+              <th className="py-2 pr-4 font-normal">Property</th>
+              {run.markets.map((m) => (
+                <th key={m} className="py-2 pr-4 font-normal text-right">
+                  {COUNTRY_NAMES[m] ?? m.toUpperCase()} <span className="text-signal-400">&quot;{m}&quot;</span>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {run.properties.map((p) => (
+              <tr key={p.name} className="border-t rule">
+                <td className="py-2.5 pr-4 text-ink-200">{p.name}</td>
+                {run.markets.map((m) => {
+                  const quotes = p.quotes[m] ?? [];
+                  const { lo, hi } = span(quotes);
+                  return (
+                    <td key={m} className="py-2.5 pr-4 text-right font-mono tabular-nums text-ink-100">
+                      {lo === hi ? lo.toLocaleString('en-US') : `${lo.toLocaleString('en-US')}–${hi.toLocaleString('en-US')}`}
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="mt-2 font-mono text-[11px] text-ink-500">
+        {run.samples_per_market} identical requests per market. One number means every request came back the same; a range means
+        the market moved on its own, by up to {worstWobble}% here.
+      </p>
+    </div>
+  );
+}
+
+/**
+ * The live tool's result: every market asked more than once, so a difference
+ * between markets is only claimed when their observed ranges do not overlap.
+ */
+export function HotelMarketSamplesTable({
+  markets,
+}: {
+  markets: { country: string; samples: (HotelByName | null)[] }[];
+}) {
+  const rows = markets.map((m) => {
+    const prices = m.samples.filter((s): s is HotelByName => s?.available === true && s.price != null).map((s) => s.price!);
+    const first = m.samples.find((s) => s?.price_string);
+    return { country: m.country, prices, tries: m.samples.length, currency: first?.price_string ?? null };
+  });
+  const priced = rows.filter((r) => r.prices.length > 0);
+  const name = markets.flatMap((m) => m.samples).find((s) => s?.name)?.name;
+  const room = markets.flatMap((m) => m.samples).find((s) => s?.room_type)?.room_type;
+
+  const ranges = priced.map((r) => ({ country: r.country, ...span(r.prices) }));
+  const lowest = ranges.length ? ranges.reduce((a, b) => (a.hi <= b.hi ? a : b)) : null;
+  const highest = ranges.length ? ranges.reduce((a, b) => (a.lo >= b.lo ? a : b)) : null;
+  const separated = lowest && highest && lowest.country !== highest.country && lowest.hi < highest.lo;
+
+  return (
+    <div>
+      {name ? (
+        <p className="text-[14px] text-ink-300 mb-3">
+          <span className="font-semibold text-ink-100">{name}</span>
+          {room ? <span className="text-ink-400"> · {room}</span> : null}
+        </p>
+      ) : null}
+      <div className="overflow-x-auto">
+        <table className="w-full text-[14px]">
+          <thead>
+            <tr className="text-left font-mono text-[11px] uppercase tracking-wider text-ink-500">
+              <th className="py-2 pr-4 font-normal">Priced from</th>
+              <th className="py-2 pr-4 font-normal">proxy_country</th>
+              <th className="py-2 pr-4 font-normal text-right">Each request</th>
+              <th className="py-2 pr-4 font-normal text-right">Observed range</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => {
+              const { lo, hi } = r.prices.length ? span(r.prices) : { lo: 0, hi: 0 };
+              return (
+                <tr key={r.country} className="border-t rule">
+                  <td className="py-2.5 pr-4 text-ink-200">{COUNTRY_NAMES[r.country] ?? r.country.toUpperCase()}</td>
+                  <td className="py-2.5 pr-4 font-mono text-[12px] text-signal-400">&quot;{r.country}&quot;</td>
+                  <td className="py-2.5 pr-4 text-right font-mono text-[12px] tabular-nums text-ink-400">
+                    {r.prices.length ? r.prices.map((p) => p.toLocaleString('en-US')).join(' · ') : 'n/a'}
+                  </td>
+                  <td className="py-2.5 pr-4 text-right font-mono tabular-nums">
+                    {r.prices.length === 0 ? (
+                      <span className="text-ink-500">no rate came back</span>
+                    ) : lo === hi ? (
+                      <span className="text-ink-100">{lo.toLocaleString('en-US')}</span>
+                    ) : (
+                      <span className="text-ink-100">
+                        {lo.toLocaleString('en-US')}–{hi.toLocaleString('en-US')}
+                      </span>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      {separated ? (
+        <p className="mt-2 text-[13px] text-ink-300">
+          Every {COUNTRY_NAMES[lowest!.country] ?? lowest!.country.toUpperCase()} request came in below every{' '}
+          {COUNTRY_NAMES[highest!.country] ?? highest!.country.toUpperCase()} request. Ranges that do not overlap are the point at
+          which a gap is worth acting on.
+        </p>
+      ) : priced.length > 1 ? (
+        <p className="mt-2 text-[13px] text-ink-400">
+          The markets&apos; ranges overlap. On this many samples that is not yet a gap: run it again, or take the check to your own
+          key where you can sample as often as you like.
+        </p>
       ) : null}
     </div>
   );

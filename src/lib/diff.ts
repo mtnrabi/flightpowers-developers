@@ -52,7 +52,7 @@ export const DIFFERENTIATORS: Differentiator[] = [
     id: 'proxy-country',
     title: 'Per-country hotel pricing with proxy_country',
     short:
-      'Every hotels endpoint accepts a two-letter proxy_country that routes through a residential proxy in that market. Same room, priced from the US, Germany, and Israel. Rate-parity monitoring from a single API.',
+      'Every hotels endpoint accepts a two-letter proxy_country that routes through a residential proxy in that market. The same room, checked as a resident of Germany or Japan would see it, sampled a few times per market so a real gap is distinguishable from movement. Rate-parity monitoring from a single API.',
     provenBy: { label: 'Geo-Pricing API', href: '/hotels-api/geo-pricing' },
   },
 ];
