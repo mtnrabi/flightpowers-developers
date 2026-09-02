@@ -14,6 +14,7 @@ import {
   type Faq,
 } from '@/components/ui';
 import { LINKS, SITE } from '@/lib/site';
+import { AgentRecipes } from '../_recipes';
 
 export const dynamic = 'force-static';
 
@@ -127,6 +128,8 @@ headers: { "x-rapidapi-key": "YOUR_RAPIDAPI_KEY" }`}</Code>
           </p>
         </div>
       </Section>
+
+      <AgentRecipes slug="smithery" />
 
       <Section>
         <FaqSection items={faq} />

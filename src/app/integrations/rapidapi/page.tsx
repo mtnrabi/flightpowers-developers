@@ -16,6 +16,8 @@ import {
 } from '@/components/ui';
 import { FLIGHT_PLANS, HOTEL_PLANS, READ_ON } from '@/lib/pricing';
 import { SITE, rapidApiListingUrl, rapidApiPricingUrl } from '@/lib/site';
+import { AgentRecipes } from '../_recipes';
+import { PortabilityBand } from '@/components/Portability';
 
 export const dynamic = 'force-static';
 
@@ -187,6 +189,10 @@ export default function RapidApiIntegrationPage() {
           .
         </p>
       </Section>
+
+      <PortabilityBand compact />
+
+      <AgentRecipes slug="rapidapi" />
 
       <Section>
         <FaqSection items={faq} />

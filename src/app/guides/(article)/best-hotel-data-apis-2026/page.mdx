@@ -1,0 +1,285 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'The best hotel data APIs in 2026, compared honestly',
+  description:
+    'A sourced comparison of the hotel data APIs people actually shortlist: Booking.com Live API, SerpApi Google Hotels, Makcorps, Bright Data, Apify scrapers, the Booking.com Demand API and Amadeus. Every competitor price quoted from their own live page with the date it was read.',
+  alternates: { canonical: '/guides/best-hotel-data-apis-2026' },
+});
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { HOTEL_PLANS, READ_ON, perThousand } from '@/lib/pricing';
+import { COUNTS, LINKS, SITE } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'The best hotel data APIs in 2026, compared honestly',
+    description:
+      'Booking.com Live API, SerpApi Google Hotels, Makcorps, Bright Data, Apify and the Booking.com Demand API compared with quoted, dated prices and disclosed bias.',
+    url: `${SITE.url}/guides/best-hotel-data-apis-2026`,
+    datePublished: '2026-09-02',
+    dateModified: '2026-09-02',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# The best hotel data APIs in 2026, compared
+
+"Hotel data API" covers at least three different products. Rate scrapers that read
+a public site. Aggregators that read many OTAs at once. And partner platforms that
+can actually hold a room. They get shortlisted against each other constantly, and
+they are not substitutes.
+
+I should say this in the first paragraph: **the first entry is mine.** I run
+FlightPowers and sell the Booking.com Live API, so read that section as a vendor
+describing his own product. Everything about everyone else is quoted from their own
+live page, read on **2026-09-02**, with the URL in the table. Where a page does not
+publish a price, that is what I write, because guessing one would be worse than
+leaving it blank. And two options here carry a lower list price per unit than mine.
+They are in the table too.
+
+## The prices, with their sources
+
+| API | Sits on | Published price | Read from |
+|---|---|---|---|
+| Booking.com Live API (mine) | Booking.com | ${HOTEL_PLANS[1].priceMonthly} / mo for {HOTEL_PLANS[1].quota.toLocaleString('en-US')} requests, up to ${HOTEL_PLANS[3].priceMonthly} / mo for {HOTEL_PLANS[3].quota.toLocaleString('en-US')} | RapidAPI listing, {READ_ON} |
+| SerpApi Google Hotels | Google Hotels | $25 / mo for 1,000 searches, up to $2,750 / mo for 500,000 | serpapi.com/pricing, 2026-09-02 |
+| Makcorps | 200+ OTAs | $350 / mo for 10k requests; $500 / mo for 50k; $4,000 / mo enterprise | makcorps.com, 2026-09-02 |
+| Bright Data Booking scraper | Booking.com | $1.5 per 1,000 records pay as you go; $499 / mo Scale | brightdata.com, 2026-09-02 |
+| Apify `voyager/booking-scraper` | Booking.com | from $2.00 per 1,000 scraped place results | apify.com, 2026-09-02 |
+| Apify actor (mine) | Booking.com | from $3.70 per 1,000 hotel lookups | apify.com, 2026-09-02 |
+| Booking.com Demand API | Booking.com inventory | no price on the pages I read | developers.booking.com, 2026-09-02 |
+| Amadeus Hotel Search | Amadeus | Self-Service URLs redirect, see below | developers.amadeus.com, 2026-09-02 |
+
+Units differ and the table cannot fix that. A "request" on mine returns a page of
+properties. A "record" on Bright Data is one property. Compare on your own workload,
+not on this table.
+
+## 1. Booking.com Live API (FlightPowers): mine
+
+**Sits on: Booking.com. Best for: live rate intelligence and competitive-set
+tracking.**
+
+Four things it does. [`/search`](/hotels-api/search) takes a free-text destination
+and dates and returns ranked properties with live prices.
+[`/hotel_by_name`](/hotels-api/by-name) takes the name a human would actually type,
+so there is no property-ID lookup step before you can ask a question.
+[`/hotel` and `/resolve`](/hotels-api/bulk) resolve a name to its Booking.com ID once
+and then pull the room list on a schedule, up to five properties per call, which is
+the shape of a competitive-set tracker. And every endpoint accepts
+[`proxy_country`](/hotels-api/geo-pricing), a two-letter input parameter that routes
+the request through a residential proxy in that country. It is an input, not a field
+in the response. What it buys you is the ability to price one named property from more
+than one market. Sample each market several times back to back before you read anything
+into a difference: rates move between identical calls, so one reading per country
+measures the noise as much as the market.
+
+The response keys are short and stable: `name`, `price_string`, `price`,
+`review_score`, `review_count`, `room_type`, `location`, `image_url`, `link`,
+`nights`, `adults`, `children`. There are {COUNTS.hotelFilters} documented filters.
+
+Plans, from the live listing on {READ_ON}: free tier {HOTEL_PLANS[0].quota} requests
+a month as a hard cap, then ${HOTEL_PLANS[1].priceMonthly} for{' '}
+{HOTEL_PLANS[1].quota.toLocaleString('en-US')} ({perThousand(HOTEL_PLANS[1])} per
+1,000), ${HOTEL_PLANS[2].priceMonthly} for{' '}
+{HOTEL_PLANS[2].quota.toLocaleString('en-US')} ({perThousand(HOTEL_PLANS[2])} per
+1,000), ${HOTEL_PLANS[3].priceMonthly} for{' '}
+{HOTEL_PLANS[3].quota.toLocaleString('en-US')} ({perThousand(HOTEL_PLANS[3])} per
+1,000). Rate limits are {HOTEL_PLANS[1].ratePerMinute} requests a minute on the two
+middle tiers and {HOTEL_PLANS[3].ratePerMinute} on the top one.
+
+The cons, because everyone else on this page gets to state theirs. One source, so
+what Booking.com does not list, I do not have. The free tier is ten requests, which
+verifies a key and nothing else. The rate limit is the lowest number on this page,
+so a wide nightly crawl needs scheduling rather than a burst. And the documented
+response has no amenity list and no coordinates.
+
+## 2. SerpApi Google Hotels
+
+**Sits on: Google Hotels. Best for: teams that want more of Google than hotels.**
+
+From serpapi.com/google-hotels-api, read 2026-09-02: it takes `q`,
+`check_in_date`, `check_out_date`, plus `gl` for a two-letter country, `hl`,
+`currency`, `adults`, `children`, `children_ages`, `property_types`, `sort_by` and a
+`min_price` / `max_price` range. Per property it documents `rate_per_night`,
+`total_rate`, a `prices` array with source and cancellation terms,
+`overall_rating`, `reviews`, `amenities`, `gps_coordinates` and `images`. It also
+documents a `vacation_rentals` parameter, and the vacation-rental response carries
+`bedrooms`, `bathrooms`, `check_in_time` and `check_out_time`.
+
+Two of those beat mine outright, and I would rather say so than have you find out
+later: amenities and coordinates come back in the response, and vacation rentals are
+documented. I have no documented vacation-rental endpoint in my reference.
+
+Pricing from serpapi.com/pricing, read 2026-09-02: free 250 searches, then $25 for
+1,000, $75 for 5,000, $275 for 30,000, and on up to $2,750 for 500,000. Their page
+states that "Only successful searches are
+counted toward your monthly searches. Cached, errored, and failed searches are not."
+That is a genuinely good billing policy and I do not match it. Their Production tier
+and above carries what they describe as up to $2 million in coverage for the
+scraping and parsing of search engine data.
+
+Credits are shared across all their engines, so a hotels-only price comparison
+understates what the credit buys. The full side by side on the flights engine is at
+[/compare/serpapi](/compare/serpapi).
+
+**Consider SerpApi if** hotels are one surface of a product that also needs Google
+Search, Maps or Shopping, if you need amenities and coordinates in the same call, or
+if your legal team wants the indemnity.
+
+## 3. Makcorps
+
+**Sits on: many OTAs. Best for: cross-OTA price comparison in one call.**
+
+From makcorps.com, read 2026-09-02: "200+ OTAs tracked", a demo of "30 Free API
+calls" with no credit card, and the API returns "hotel prices from top cheapest OTAs
+in JSON form" with "rates and availability in real time". Published plans on that
+page: Basic "$350 Per Month" for 10k requests, Advance "$500 Per Month" for 50k and
+marked Popular, Enterprise "$4,000 Per Month" for 10M credits. Annual billing is
+offered at two months free.
+
+This is the one entry here that answers a question I cannot answer at all: what the
+same property costs across many OTAs at once. If your product is "is this hotel
+cheaper on Expedia", that is Makcorps' shape and not mine. The entry price is the
+highest on this page, which tells you who it is built for.
+
+**Consider Makcorps if** your question spans OTAs rather than one of them, and the
+$350 floor is inside your budget.
+
+## 4. Bright Data Booking.com scraper
+
+**Sits on: Booking.com. Best for: bulk extraction into a warehouse.**
+
+From brightdata.com/products/web-scraper/booking, read 2026-09-02: a free tier of
+"5K records per month" with no card, pay as you go at "$1.5/1K record", a Scale plan
+at "$499/month" including 384,000 records with additional records at "$1.3/1K", and
+custom enterprise pricing. Output as "JSON, NDJSON, JSON lines, CSV, and .gz files
+(compressed)", delivered to Amazon S3, Google Cloud Storage, Google PubSub,
+Microsoft Azure Storage, Snowflake or SFTP. Documented fields include URL, location,
+check in and check out dates, rooms, reviews, score and address.
+
+Stated plainly: **their list price per unit is lower than mine, and their free tier
+is far larger than my ten requests.** The units are not the same thing, a record
+against a request that returns a page of properties, so the honest version is that
+you have to price your own job on both. But if the shape of your work is "load a lot
+of Booking.com rows into Snowflake on a schedule", the delivery integrations alone
+are an argument I do not have an answer to.
+
+**Consider Bright Data if** the destination is a warehouse rather than a request in
+a live product.
+
+## 5. Apify Booking scrapers
+
+**Sits on: Booking.com. Best for: a run you can schedule from a console.**
+
+`voyager/booking-scraper` on apify.com, read 2026-09-02: "from $2.00 / 1,000 scraped
+place results", pay per event. Its own page states "The Booking.com website will only
+display a maximum of 1,000 results, so that's how much the scraper can get at once",
+with a toggle to go past it. It extracts names, addresses, room availability,
+pricing, features, review counts, ratings, stars and image URLs.
+
+Disclosure: <a href={LINKS.apifyHotels} rel="noopener">my own actor</a> is also on
+Apify, priced on its page at "from $3.70 / 1,000 hotel lookups", read 2026-09-02.
+It is the same backend as the REST API above, with `endpoint` selecting `/search`,
+`/hotel_by_name`, `/hotel` or `/resolve`. On the list price per unit shown on the two
+pages, `voyager/booking-scraper` is the cheaper one.
+
+**Consider an Apify actor if** you want scheduled runs, a dataset and a console
+without building a job runner. Consider a REST API instead if the call happens inside
+a user request and you need it to answer now.
+
+## 6. Booking.com Demand API
+
+**Sits on: Booking.com inventory, directly. Best for: approved partners.**
+
+This is the official route, and the gate is the whole story. From
+developers.booking.com/demand, read 2026-09-02, the page asks "Are you a Managed
+Affiliate Partner? If so, this is for you!" It lists stays, car rentals and
+attractions, with flights and airport taxis described as coming soon. The overview
+page describes it as a way to "Seamlessly incorporate Booking.com inventory into
+your travel application" and mentions obtaining an authentication token as part of
+onboarding.
+
+**No price is stated on either page I read.** I did not find published sign-up terms
+or a contract description on those pages either, which is a statement about the two
+pages I read and not about what the partner programme actually costs or requires.
+
+**Consider the Demand API if** you are already a Managed Affiliate Partner, or can
+become one. Nothing on this page beats first-party inventory access if you can get it.
+
+## 7. Amadeus Hotel Search
+
+**Observed state, 2026-09-02.** The Self-Service hotel category URL
+(`developers.amadeus.com/self-service/category/hotels`) and the Self-Service pricing
+URL both return a 301 redirect to `developers.amadeus.com/`. The test sandbox host
+`test.api.amadeus.com` did not resolve in DNS. The developer homepage itself returns
+a JavaScript shell with no readable product text to the fetcher I used, so I could
+not read a hotel product description or a price there at all.
+
+I am not asserting a shutdown, a date, or that hotel APIs are gone from Amadeus.
+Enterprise access generally runs through an account manager and accreditation, which
+is a different purchase from anything else on this page. What I checked and what it
+returned is written above. The migration mapping for people arriving from
+Self-Service is at [/compare/amadeus](/compare/amadeus).
+
+## Who should not use mine
+
+Straightforwardly:
+
+- **You need more than Booking.com.** One source is one source. Makcorps for many
+  OTAs, SerpApi for Google Hotels.
+- **You are filling a warehouse, not a request.** Bright Data delivers to S3 and
+  Snowflake. I return JSON to a caller.
+- **You need amenities, coordinates or vacation rentals in the response.** Not in my
+  documented response keys. They are in SerpApi's.
+- **You want to sell the room.** No data API here books anything. That is the
+  Demand API, or a booking platform. The category map is at
+  [/guides/best-travel-data-apis-2026](/guides/best-travel-data-apis-2026).
+- **You need thousands of requests a minute.** My top published rate is
+  {HOTEL_PLANS[3].ratePerMinute} a minute.
+
+## How to test any of these yourself in an afternoon
+
+Comparison pages, this one included, are the wrong way to decide. Four tests, on
+whichever two you shortlist:
+
+1. **Ask for the response shape before you sign up.** Every vendor here publishes it.
+   If your feature needs a field, check the field exists rather than trusting the
+   marketing line above it.
+2. **Test a sold-out property.** Pick a date where the hotel genuinely has nothing
+   left. A good API says so. A weak one returns a stale price, or an empty body you
+   cannot tell apart from a failure.
+3. **Test a name that resolves ambiguously.** "Hilton London" is many hotels.
+   Watch whether you get a disambiguation, the wrong property, or an error you can
+   act on.
+4. **Check that empty and failed are different answers.** Break the call on purpose:
+   a nonsense destination, a date in the past. If both come back as `200` with an
+   empty array, your monitoring will never catch an outage. This is the same trap
+   that shows up on the flights side, written up in
+   [handling empty search results](/guides/handle-empty-flight-search-results).
+
+Then price your own job, in your own units, on both.
+
+## Related
+
+- [Booking.com Hotels API](/hotels-api): the reference for mine
+- [Geo-pricing and rate parity](/hotels-api/geo-pricing): what `proxy_country` is for
+- [Monitor hotel rate parity](/guides/monitor-hotel-rate-parity): the worked example
+- [FlightPowers vs SerpApi](/compare/serpapi): the full quoted side by side
+- [The best travel data APIs in 2026](/guides/best-travel-data-apis-2026): the
+  category map, including booking-side options
+- [Flight data APIs](/guides/best-flight-data-apis-2026): the same treatment, the
+  other half of the trip
+
+<CtaBand
+  api="hotels"
+  medium="guide"
+  title="Test it on a property you already know the price of"
+  body="Live Booking.com rates as JSON, with proxy_country on every endpoint. Free tier on RapidAPI, no card to try."
+/>

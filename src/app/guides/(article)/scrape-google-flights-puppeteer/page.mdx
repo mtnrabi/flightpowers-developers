@@ -1,0 +1,307 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'How to scrape Google Flights with Puppeteer',
+  description:
+    'A working Node and Puppeteer scraper for Google Flights: puppeteer vs puppeteer-core, headless modes, ARIA selectors instead of hashed classes, waitForFunction on a settled result count, and the browser-pool maths that decides whether a 30 date scan is feasible.',
+  alternates: { canonical: '/guides/scrape-google-flights-puppeteer' },
+});
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'How to scrape Google Flights with Puppeteer',
+    description:
+      'Scraping Google Flights fares from Node with Puppeteer: selector strategy, waiting on a streaming result list, and why concurrency, not scraping, is the part that decides if the project ships.',
+    url: `${SITE.url}/guides/scrape-google-flights-puppeteer`,
+    datePublished: '2026-09-02',
+    dateModified: '2026-09-02',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# How to scrape Google Flights with Puppeteer
+
+Puppeteer will scrape Google Flights. Getting one fare out of one page takes an
+afternoon. Getting a month of dates every morning without the container falling over
+is a different project, and that second project is most of this page.
+
+The [Python version of this guide](/guides/scrape-google-flights-python) does the same
+job with Playwright. Read that one for the selector argument, this one for the
+concurrency argument. Both apply either way.
+
+## Setup: which package, which headless
+
+Puppeteer's installation guide draws the line: `puppeteer` is "a _product_ for browser
+automation. When installed, it downloads a version of Chrome, which it then drives
+using `puppeteer-core`", while `puppeteer-core` is "a _library_ to help drive anything
+that supports DevTools protocol" and "will not download Chrome when installed"
+([pptr.dev/guides/installation](https://pptr.dev/guides/installation), retrieved
+2026-09-02). Use the first on your laptop and consider the second in your image, so
+the browser version is something you pinned rather than something an install script
+picked on a Tuesday.
+
+```bash
+npm i puppeteer          # local dev, brings its own Chrome
+npm i puppeteer-core     # container, points at a Chrome you control
+```
+
+By default "Puppeteer launches the browser in the Headless mode". `headless: true` is
+the new headless mode, `headless: 'shell'` runs `chrome-headless-shell`, "currently
+more performant for automation tasks where the complete Chrome feature set is not
+needed", and `headless: false` is a visible browser. The docs warn that
+`chrome-headless-shell` "does not match the behavior of the regular Chrome completely"
+([pptr.dev/guides/headless-modes](https://pptr.dev/guides/headless-modes), retrieved
+2026-09-02). Develop headful, run headless, keep the flag. When a scrape starts
+returning zero rows the fastest diagnosis is still your own eyes on the page.
+
+## The URL: drive the UI, do not encode it
+
+A Google Flights search lives in the `tfs=` query parameter, a serialized protocol
+buffer in base64url. I took the format apart in
+[Google Flights URL parameters, decoded](/guides/google-flights-url-parameters), and
+the operational rule is the same in Node as in Python: decode a `tfs=` blob when a
+user hands you one, never construct one. Type into the boxes, let Google build the
+URL, keep `page.url()` as the canonical link for that search.
+
+## Selectors: ARIA, not classes
+
+Google ships minified class names that rotate with every build, so a scraper anchored
+on them has an expiry date it cannot see. Puppeteer can select through the
+accessibility tree instead: "ARIA selectors can be used to find elements using the
+computed accessible name and role", useful when you "do not want to depend on any
+particular DOM structure or DOM attributes"
+([pptr.dev/guides/page-interactions](https://pptr.dev/guides/page-interactions),
+retrieved 2026-09-02).
+
+```js
+import puppeteer from 'puppeteer';
+
+const FLIGHTS = 'https://www.google.com/travel/flights';
+
+async function openSearch(page, origin, destination, depart) {
+  await page.goto(FLIGHTS, { waitUntil: 'domcontentloaded' });
+
+  // consent interstitial: present in some regions, absent in others
+  const accept = await page.$('::-p-aria([role="button"][name="Accept all"])');
+  if (accept) await accept.click();
+
+  for (const [name, value] of [['Where from?', origin], ['Where to?', destination]]) {
+    const box = await page.waitForSelector(`::-p-aria([role="combobox"][name="${name}"])`);
+    await box.click();
+    await box.type(value, { delay: 40 });
+    const option = await page.waitForSelector('::-p-aria([role="option"])');
+    await option.click();
+  }
+
+  const dep = await page.$('::-p-aria([role="textbox"][name="Departure"])');
+  await dep.type(depart);
+  await page.keyboard.press('Enter');
+  await page.click('::-p-aria([role="button"][name="Search"])');
+}
+```
+
+Two caveats. Accessible names are English strings Google can change, so pin
+`Accept-Language` and expect to revisit them. And the delay on `type()` is not
+superstition: the airport autocomplete filters on input events, so pasting a value in
+one shot can leave the option list unfiltered.
+
+## waitForSelector is the wrong wait
+
+`waitForSelector` resolves the moment one row exists. Google Flights fills the result
+list progressively, so that moment is usually mid-render, and a cheapest fare computed
+there is a partial answer that looks exactly like a complete one.
+
+You want a settled count. `page.waitForFunction` "waits for the provided function,
+`pageFunction`, to return a truthy value when evaluated in the page's context"
+([pptr.dev/api/puppeteer.page.waitforfunction](https://pptr.dev/api/puppeteer.page.waitforfunction),
+retrieved 2026-09-02), which expresses "the row count has not moved for a while":
+
+```js
+const ROWS = '[role="listitem"]';
+
+async function waitForSettled(page, quietMs = 1500, timeout = 30_000) {
+  await page.waitForSelector(ROWS, { timeout });
+  await page.waitForFunction(
+    (sel, quiet) => {
+      const n = document.querySelectorAll(sel).length;
+      if (window.__n !== n) { window.__n = n; window.__at = Date.now(); return false; }
+      return n > 0 && Date.now() - window.__at >= quiet;
+    },
+    { polling: 250, timeout },
+    ROWS,
+    quietMs,
+  );
+}
+```
+
+Then pull the rows in one hop. `page.$$eval` "returns all elements matching the
+selector and passes the resulting array as the first argument to the `pageFunction`"
+([pptr.dev/api/puppeteer.page.\_\_eval](https://pptr.dev/api/puppeteer.page.__eval),
+retrieved 2026-09-02), so parsing happens in the browser and one array crosses the
+wire instead of a handle per row:
+
+```js
+async function readFares(page) {
+  return page.$$eval(ROWS, (els) =>
+    els
+      .map((el) => {
+        const label = el.getAttribute('aria-label') || el.innerText || '';
+        const price = (label.match(/[$€£]\s?[\d,]+/) || [])[0] || null;
+        return { price, summary: label.replace(/\s+/g, ' ').trim() };
+      })
+      .filter((row) => row.price),
+  );
+}
+```
+
+A row's `aria-label` is written for assistive technology, so it carries carrier,
+times, stops and price in one sentence. Regexing English is unpleasant and it is still
+the most stable string available here.
+
+## One browser per date does not scale
+
+This is where a working scraper turns into a scheduling problem. Google Flights has no
+multi-date response, so a month scan is 30 searches and 30 navigations. People write
+`Promise.all(dates.map(scrapeOneDate))`, launch 30 browsers, and watch the box die.
+
+**A browser is not a request.** Each Chrome instance is a process tree with its own
+renderers, and every open page holds live DOM, JS heap and compositor memory until it
+closes. The ceiling gets measured, not guessed: raise the pool size one step at a time
+on your real host and watch resident memory and page latency together. Nobody can hand
+you the number, it depends on the host, the image and the page.
+
+**Reuse browsers, isolate contexts.** Launching Chrome is the expensive part. Keep a
+small fixed pool alive and give each job a fresh incognito context inside one of them,
+so consent and cookie state cannot leak between dates while startup is paid once per
+worker.
+
+```js
+async function runPool(dates, { size = 4, task }) {
+  const queue = [...dates];
+  const results = [];
+
+  const worker = async () => {
+    const browser = await puppeteer.launch({
+      headless: true,
+      args: ['--disable-dev-shm-usage', '--no-sandbox'],
+    });
+    try {
+      for (let date = queue.shift(); date; date = queue.shift()) {
+        const context = await browser.createBrowserContext();
+        const page = await context.newPage();
+        try {
+          results.push({ date, fares: await task(page, date) });
+        } catch (err) {
+          results.push({ date, error: String(err) });  // one bad date must not kill the run
+        } finally {
+          await context.close();
+        }
+      }
+    } finally {
+      await browser.close();
+    }
+  };
+
+  await Promise.all(Array.from({ length: size }, worker));
+  return results;
+}
+```
+
+**Containers need shared memory.** Chrome uses `/dev/shm`, and a container image
+usually gives it far less room than a desktop. Docker exposes `--shm-size`, documented
+as "Size of /dev/shm"
+([docs.docker.com](https://docs.docker.com/reference/cli/docker/container/run/),
+retrieved 2026-09-02); the common alternative is the `--disable-dev-shm-usage` launch
+flag above. Playwright's Docker guide makes a neighbouring point about Chromium in
+containers and `--ipc=host`: "Without it, Chromium can run out of memory and crash"
+([playwright.dev/docs/docker](https://playwright.dev/docs/docker), retrieved
+2026-09-02). The symptom in every one of these cases is a browser that dies with no
+JavaScript error, which is why they are worth knowing before 3am.
+
+Add the rest of the schedule and the shape is obvious: backoff and retries, a per-date
+timeout so one hung navigation cannot stall a worker, a screenshot on every zero-row
+result (empty and broken are the same empty list, as the
+[Python guide](/guides/scrape-google-flights-python) covers), and a store keyed on
+route plus date so a partial run resumes. That is a job system, and it is the code you
+will actually maintain.
+
+## On terms of service
+
+Not legal advice, and I am not your lawyer. Whether you may scrape a site you do not
+own turns on that site's terms, on where you and your infrastructure sit, and
+sometimes on agreements you already signed. Read the terms and decide with counsel,
+not with a blog post.
+
+Quoting Google's Terms of Service so the sentence is on this page rather than in your
+memory: prohibited activities include "using automated means to access content from
+any of our services in violation of the machine-readable instructions on our web pages
+(for example, robots.txt files that disallow crawling, training, or other activities)"
+([policies.google.com/terms](https://policies.google.com/terms), retrieved 2026-09-02).
+
+## When the pool is not worth running
+
+Vendor section. I run a Google Flights API, so read it that way.
+
+The scraper above is real and it works. What it costs is not compute, it is a standing
+claim on an engineer: someone owns the pool size, the retry policy, the accessible
+names and the pager. The scan you built the pool for is one `Promise.all` against an
+HTTP endpoint, where the concurrency limit is a per-minute rate limit published on
+your plan instead of a memory ceiling you found by crashing into it.
+
+There is also something no pool size can reach. Google's own historical price band for
+the route and dates, `price_insights_low` and `price_insights_high`, with its verdict
+on the current fare (`low`, `typical`, `high`), is what turns "$112" into "$112, and
+that is a good price". It is not an element you can select, it is context Google
+computes and presents in prose. The API returns it as a field:
+
+```js
+const res = await fetch("https://google-flights-live-api.p.rapidapi.com/api/google_flights/oneway/v1", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-rapidapi-host": "google-flights-live-api.p.rapidapi.com",
+    "x-rapidapi-key": process.env.RAPIDAPI_KEY,
+  },
+  body: JSON.stringify({
+    from_airport: "JFK",
+    to_airport: "LHR",
+    departure_date: "2026-10-15",
+    currency: "usd",
+  }),
+});
+
+const flights = await res.json();
+console.log(res.headers.get("x-search-status")); // ok | empty | partial | degraded
+for (const f of flights) console.log(f.price, f.price_range_in_relation_to_other_periods, f.buy_link);
+```
+
+That `x-search-status` header is the zero-row problem solved on the server side: an
+empty array and a failed search come back as
+[different answers](/guides/handle-empty-flight-search-results). Every result also
+carries a `buy_link`, the `tfs=` URL you were told not to build, built for you. Quotas
+and per-minute limits live on [/pricing](/pricing), and a key, free tier included,
+comes from <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">the RapidAPI
+listing</a>. For the case against other vendors before you believe mine, see
+[the comparison](/guides/best-flight-data-apis-2026).
+
+## Related
+
+- [How to scrape Google Flights with Python](/guides/scrape-google-flights-python): the Playwright version, plus the selector argument
+- [Google Flights URL parameters, decoded](/guides/google-flights-url-parameters): what is inside `tfs=`
+- [Parallel date scans](/flights-api/parallel-date-scan): the month scan without a browser pool
+- [Price Insights API](/flights-api/price-insights): the band and the verdict
+
+<CtaBand
+  medium="guide"
+  title="One Promise.all, no browser pool"
+  body="Thirty dates in one burst, each fare with Google's price band, a low | typical | high verdict, and a working buy_link. Free tier on RapidAPI, no card to try."
+/>

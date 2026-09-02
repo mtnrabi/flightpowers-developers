@@ -15,6 +15,7 @@ import {
   type Faq,
 } from '@/components/ui';
 import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
+import { AgentRecipes } from '../_recipes';
 
 export const dynamic = 'force-static';
 
@@ -180,6 +181,8 @@ export default function RestApiIntegrationPage() {
           </p>
         </div>
       </Section>
+
+      <AgentRecipes slug="api" />
 
       <Section>
         <FaqSection items={faq} />

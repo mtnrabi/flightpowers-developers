@@ -15,6 +15,7 @@ import {
   type Faq,
 } from '@/components/ui';
 import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
+import { AgentRecipes } from '../_recipes';
 
 export const metadata: Metadata = withOg({
   title: 'Claude Desktop MCP Setup: Live Google Flights & Booking.com Data',
@@ -163,7 +164,7 @@ export default function ClaudeMcpPage() {
         <ol className="mt-10 max-w-3xl space-y-6">
           <li className="flex gap-4 rounded-2xl border rule bg-ink-900/50 p-6">
             <span className="font-mono text-[17px] text-signal-500 tabular-nums">1</span>
-            <div className="flex-1">
+            <div className="flex-1 min-w-0">
               <h3 className="text-[16px] font-semibold text-ink-100">Get your RapidAPI key</h3>
               <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed">
                 Subscribe to{' '}
@@ -181,19 +182,19 @@ export default function ClaudeMcpPage() {
           </li>
           <li className="flex gap-4 rounded-2xl border rule bg-ink-900/50 p-6">
             <span className="font-mono text-[17px] text-signal-500 tabular-nums">2</span>
-            <div className="flex-1">
+            <div className="flex-1 min-w-0">
               <h3 className="text-[16px] font-semibold text-ink-100">Find your MCP config file</h3>
               <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed">
                 <strong className="text-ink-100">For Cursor:</strong> <code className="font-mono text-[13px] text-signal-400">.cursor/mcp.json</code> in your project root.
                 <br />
-                <strong className="text-ink-100">For Claude Desktop:</strong> <code className="font-mono text-[13px] text-signal-400">~/Library/Application Support/Claude/claude_desktop_config.json</code> on Mac,{' '}
-                <code className="font-mono text-[13px] text-signal-400">%APPDATA%/Claude/claude_desktop_config.json</code> on Windows.
+                <strong className="text-ink-100">For Claude Desktop:</strong> <code className="font-mono text-[13px] text-signal-400 break-all">~/Library/Application Support/Claude/claude_desktop_config.json</code> on Mac,{' '}
+                <code className="font-mono text-[13px] text-signal-400 break-all">%APPDATA%/Claude/claude_desktop_config.json</code> on Windows.
               </p>
             </div>
           </li>
           <li className="flex gap-4 rounded-2xl border rule bg-ink-900/50 p-6">
             <span className="font-mono text-[17px] text-signal-500 tabular-nums">3</span>
-            <div className="flex-1">
+            <div className="flex-1 min-w-0">
               <h3 className="text-[16px] font-semibold text-ink-100">Add the MCP server URLs</h3>
               <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed">
                 Open the config file and paste the mcpServers block from the code example above, replacing{' '}
@@ -204,7 +205,7 @@ export default function ClaudeMcpPage() {
           </li>
           <li className="flex gap-4 rounded-2xl border rule bg-ink-900/50 p-6">
             <span className="font-mono text-[17px] text-signal-500 tabular-nums">4</span>
-            <div className="flex-1">
+            <div className="flex-1 min-w-0">
               <h3 className="text-[16px] font-semibold text-ink-100">Restart Claude and test</h3>
               <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed">
                 Close and reopen Claude Desktop, or reload the Cursor window. Ask a travel question: "Find me a nonstop LHR to JFK
@@ -290,6 +291,8 @@ export default function ClaudeMcpPage() {
           </Link>
         </div>
       </Section>
+
+      <AgentRecipes slug="claude-mcp" />
 
       <Section>
         <FaqSection items={faq} />

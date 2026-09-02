@@ -19,7 +19,7 @@ import { TASKS } from '@/lib/matrix';
 import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const metadata: Metadata = withOg({
-  title: 'MCP Servers: Google Flights & Booking.com for Claude, Cursor, ChatGPT | FlightPowers',
+  title: 'MCP Servers: Google Flights & Booking.com for Claude, Cursor, ChatGPT',
   description:
     'Hosted MCP servers for live Google Flights and Booking.com data. Works with Claude, Cursor, ChatGPT, and any MCP client. No install required, bring your own RapidAPI key. Flight date ranges and destination lists in a single call. Free tier: 10 requests/month.',
   alternates: { canonical: '/mcp' },

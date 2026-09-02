@@ -17,6 +17,7 @@ import {
 import { FIXTURES } from '@/lib/fixtures';
 import { AGENTS } from '@/lib/matrix';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
+import { PortabilityBand } from '@/components/Portability';
 
 export const metadata: Metadata = withOg({
   title: 'Travel data for AI agents: MCP, skills, and REST on one key',
@@ -313,7 +314,6 @@ export default function AiAgentsPage() {
         <p className="mt-4 max-w-3xl text-[13px] text-ink-500 leading-relaxed">
           The competitor rows describe categories, not any single vendor. Evaluate the specific tool you are considering against
           them. The FlightPowers rows are checkable on this site: the price_range_in_relation_to_other_periods field on{' '}
-          them. The FlightPowers rows are checkable on this site: the API on{' '}
           <Link href="/flights-api/price-insights" className="text-signal-400 underline underline-offset-4">
             the Price Insights page
           </Link>
@@ -324,6 +324,9 @@ export default function AiAgentsPage() {
           .
         </p>
       </Section>
+
+      {/* ========================== MARKETPLACE QUESTION ========================== */}
+      <PortabilityBand />
 
       {/* ============================== AGENT BAND ============================== */}
       <Section>

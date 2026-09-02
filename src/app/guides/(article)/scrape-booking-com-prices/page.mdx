@@ -1,0 +1,293 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'How to scrape Booking.com prices with Python',
+  description:
+    'The honest DIY route: why requests + BeautifulSoup gets you a page with no prices on it, a working Playwright script that reads rates off property cards, and the four things that actually break (destination ids, room types, availability drift, and result ordering that changes between identical runs).',
+  alternates: { canonical: '/guides/scrape-booking-com-prices' },
+});
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'How to scrape Booking.com prices with Python',
+    description:
+      'A working Playwright approach to reading Booking.com room rates in Python, the parts that break, and when to stop maintaining the scraper.',
+    url: `${SITE.url}/guides/scrape-booking-com-prices`,
+    datePublished: '2026-09-02',
+    dateModified: '2026-09-02',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# How to scrape Booking.com prices with Python
+
+I sell a hotel pricing API, so read the last section as a vendor talking. Everything
+before it is the DIY route written straight, because most people should try it first.
+It is a weekend of work to get results and a long tail of work to keep them.
+
+## Why `requests` + BeautifulSoup does not work here
+
+The first attempt everyone writes is a `GET` on a search URL and a BeautifulSoup pass
+over the HTML. You get a 200. You get a real page. You get no prices. Two reasons, and
+they are different problems.
+
+**The shell renders, the rates arrive later.** The search page ships as a
+server-rendered frame: layout, filters, map. The parts you want (availability for your
+dates, the rate on each card, the room that rate is for) get filled in by later
+requests the page makes on its own. A single `GET` sees the frame before any of that
+lands, so your selector matches an empty container and you conclude the selector is
+wrong. The selector is fine. The data is not there yet.
+
+**Bot detection.** A bare `requests` call has no TLS fingerprint, no cookie jar, no
+prior navigation and no JavaScript. It gets treated as what it is. You may get a
+challenge, a consent interstitial, or a stripped page. All three parse cleanly and
+contain zero rates, which is the worst failure mode available: it looks like an empty
+result instead of an error.
+
+You can fight both by reverse-engineering the internal calls the page makes and
+replaying them. That works until the payload shape changes, and the payload shape is
+not a documented interface, so it changes without notice and without a version.
+
+## The route that works: drive a real browser
+
+Playwright with a real browser context. You pay latency and RAM per search, and in
+exchange the page does its own work: the later requests fire, the cookies exist, the
+rates appear on the cards.
+
+```bash
+pip install playwright && playwright install chromium
+```
+
+```python
+import asyncio
+from urllib.parse import urlencode
+from playwright.async_api import async_playwright
+
+SEARCH = "https://www.booking.com/searchresults.html"
+
+def search_url(**overrides):
+    q = {
+        "ss": "Lisbon",
+        "checkin": "2026-10-05",
+        "checkout": "2026-10-08",
+        "group_adults": 2,
+        "group_children": 0,
+        "no_rooms": 1,
+        "selected_currency": "USD",
+        "lang": "en-us",
+    }
+    q.update(overrides)
+    return f"{SEARCH}?{urlencode(q)}"
+
+async def scrape(url):
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(headless=False)
+        page = await (await browser.new_context(locale="en-US")).new_page()
+        await page.goto(url, wait_until="domcontentloaded")
+
+        # the consent dialog eats your first interactions if you ignore it
+        try:
+            await page.get_by_role("button", name="Accept").first.click(timeout=4000)
+        except Exception:
+            pass
+
+        CARD = "[data-testid='property-card']"
+        await page.wait_for_selector(CARD, timeout=30000)
+
+        rows = []
+        for card in await page.locator(CARD).all():
+            title = card.locator("[data-testid='title']").first
+            price = card.locator("[data-testid='price-and-discounted-price']").first
+            rows.append({
+                "name": (await title.inner_text()).strip(),
+                "price_text": (await price.inner_text()).strip() if await price.count() else None,
+            })
+
+        await browser.close()
+        return rows
+
+for row in asyncio.run(scrape(search_url())):
+    print(row)
+```
+
+Three things about that script, stated plainly.
+
+**The selectors are the fragile part.** `data-testid` attributes are the least bad
+anchor available, better than class names, which are generated and change on every
+build. They are still not an interface anyone promised you. Do not trust the exact
+strings above without opening DevTools and checking them against the live page
+yourself. Prefer accessible names (`get_by_role`) where the element has one, keep every
+selector in one dict at the top of the file, and make the scraper shout when a card
+parses with no price instead of writing a null into your database.
+
+**`price_text` is text, not money.** You get a currency symbol, a separator that
+depends on the locale you set, and sometimes a struck-through original sitting next to
+a discounted rate in the same node. Parse with the locale you requested, and store the
+currency you asked for next to the number.
+
+**That number is the stay total, not a nightly rate.** For a 3-night search it is the
+3-night price. Divide by nights yourself, and store nights, or you will compare a
+2-night total against a 3-night total six weeks from now and not notice.
+
+## What people underestimate
+
+**A city name is not a destination.** The search state lives in the query string:
+destination, check-in, check-out, and the group composition (`group_adults`,
+`group_children`, `no_rooms`). Free text in `ss` gets resolved to an internal
+destination id by the site, and free text is ambiguous in the obvious ways: "Lisbon"
+can mean the city, a region, a district, or the airport area, and the resolution can
+differ between a fresh session and one with history. Two runs that both "searched
+Lisbon" can be searching different polygons. Resolve once and pin it: capture the
+`dest_id` and `dest_type` the site puts in the URL after you search from the
+autocomplete, cache them per destination, and build every later URL from those. A
+scraper that re-resolves free text every run has a moving definition of its own search
+area, and careful price parsing does not repair that.
+
+**"The price of hotel X" is underspecified.** One property has many rooms, and each
+room has rate plans: refundable and not, breakfast and not. The card price is one of
+those, chosen by the site. If the card switches from a non-refundable double to a
+refundable twin, your time series shows a price jump that never happened to anyone
+booking. Store the room string with the price and treat a change in it as a break in
+the series, not a data point. Tracking one specific room means going into the property
+page and matching there, which is a second scraper with its own selectors.
+
+**Availability moves under you.** Rooms sell and get released continuously, so two runs
+ten minutes apart can legitimately differ and a property on page one can be gone. That
+is real change, not a bug, which also means you cannot validate a scraper by running it
+twice and diffing. Every observation is a sample with a timestamp, never a fact about
+"the price."
+
+## The bug everyone hits: result order is not stable
+
+Two identical requests, seconds apart, do not return the properties in the same order.
+Ranking is personalized, partly randomized, and sensitive to availability that is
+itself moving. This produces the most common defect in hotel scrapers:
+
+```python
+# WRONG. row 0 in run A and row 0 in run B are different hotels.
+price_history.append(results[0]["price_text"])
+```
+
+Everything downstream of that line is wrong in a way that looks right. The numbers are
+real prices. The chart moves. It is just not a chart of anything: it is a chart of
+whatever the ranker put first that minute. Review will not catch it, because the code
+reads fine, and the data will not catch it, because hotel prices in one city all sit in
+roughly the same range.
+
+Key on identity, never on position. Match on the property's page URL (most stable), or
+on name plus location if you must. Then a run that does not contain your property is a
+missing observation, which is the honest answer, instead of quietly becoming a
+different hotel's price.
+
+```python
+by_hotel = {r["link"]: r for r in results}   # identity, not index
+obs = by_hotel.get(TRACKED_URL)              # None means "not seen this run"
+```
+
+## Legality, briefly and honestly
+
+Scraping a site you do not own is governed by that site's terms of use and by the law
+where you and your servers sit. Those are different questions, and neither is answered
+by "the data was public." I am not a lawyer and this is not legal advice. Read
+Booking.com's terms yourself, and if the project is commercial have someone qualified
+read them with you. I have not fetched or quoted those terms here, so take no claim
+from this page about what Booking.com does or does not permit. Practical corollary
+either way: keep request rates low and do not treat someone else's servers as free
+capacity.
+
+## When to stop maintaining this
+
+The scraper is not the cost. The cost is that it fails silently in a shape that looks
+like data. A markup change turns prices into nulls. A consent interstitial turns a
+search into an empty list. A ranking shuffle turns a fixed index into a different
+hotel. None of those raise an exception, so none of them page you, and by the time
+somebody notices, your series has a stretch of confident garbage in it that you cannot
+separate from the real observations after the fact.
+
+So ask what the scraper is for. One search, once: keep the script. A number your
+product or your pricing decisions depend on: the recurring engineering attention is the
+real bill, and it lands on whoever is on call, at the worst time, forever.
+
+The same job as one request against our
+<a href={rapidApiPricingUrl('hotels', 'guide')} rel="noopener">Booking.com hotels API</a>:
+
+```bash
+curl -X POST "https://booking-live-api.p.rapidapi.com/search" \
+  -H "Content-Type: application/json" \
+  -H "x-rapidapi-host: booking-live-api.p.rapidapi.com" \
+  -H "x-rapidapi-key: $RAPIDAPI_KEY" \
+  -d '{
+    "destination": "Lisbon",
+    "checkin_date": "2026-10-05",
+    "checkout_date": "2026-10-08",
+    "adults": 2,
+    "currency": "USD"
+  }'
+```
+
+```python
+import os, requests
+
+r = requests.post(
+    "https://booking-live-api.p.rapidapi.com/search",
+    headers={
+        "Content-Type": "application/json",
+        "x-rapidapi-host": "booking-live-api.p.rapidapi.com",
+        "x-rapidapi-key": os.environ["RAPIDAPI_KEY"],
+    },
+    json={"destination": "Lisbon", "checkin_date": "2026-10-05",
+          "checkout_date": "2026-10-08", "adults": 2, "currency": "USD"},
+)
+
+for p in r.json()["properties"]:
+    print(p["price_string"], p["review_score"], p["room_type"], p["name"])
+```
+
+Each property returns `name`, `price` and `price_string`, `review_score` and
+`review_count`, `room_type`, `location`, `image_url`, `link`, and the stay as priced:
+`nights`, `adults`, `children`. Notice what that settles. `room_type` travels with the
+price, so the underspecification above is at least visible. `link` is a stable identity
+to key on instead of a row index. `nights` makes the total divisible into a nightly
+rate without you remembering what you asked for. The same shapes are on our own domain
+at `https://api.flightpowers.com/v1/hotels/search` with an `x-api-key` header, which is
+the front the Zapier and Make integrations use.
+
+To watch one named property instead of a city there is
+[`/hotel_by_name`](/hotels-api/by-name), which takes the name a person would type plus
+an optional `area` and returns that property with an `available` boolean to branch on.
+That is the right endpoint for a watchlist, because it removes the identity problem
+entirely.
+
+One more input parameter worth knowing: every hotels endpoint accepts `proxy_country`,
+a two-letter code that routes the request through a residential proxy in that country,
+so the rates you get back are the rates Booking.com quotes that market. It is a request
+parameter, not a response field. If you go looking for cross-market differences, hold
+one named property fixed, sample each market several times back to back, and treat a
+gap as real only when the per-market ranges do not overlap. Country gaps are real but
+usually modest, and plenty of properties price the same everywhere. Details on
+[/hotels-api/geo-pricing](/hotels-api/geo-pricing).
+
+Plans and quotas are on [/pricing](/pricing). The free tier verifies your key works.
+
+## Related
+
+- [Hotel Search API](/hotels-api/search): the field reference for the response above
+- [Hotel by Name API](/hotels-api/by-name): tracking one property instead of a city
+- [Handling empty search results](/guides/handle-empty-flight-search-results): why an empty list is two different facts
+- [Hotel API in n8n](/guides/hotel-api-in-n8n): the same call as a scheduled workflow
+
+<CtaBand
+  medium="guide"
+  api="hotels"
+  title="Skip the selector maintenance"
+  body="One POST returns the properties, the room type, the stay total and a stable link. No browser to keep alive, no data-testid to chase."
+/>

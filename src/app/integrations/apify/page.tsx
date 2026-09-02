@@ -15,6 +15,7 @@ import {
 } from '@/components/ui';
 import { APIFY } from '@/lib/pricing';
 import { COUNTS, LINKS, SITE } from '@/lib/site';
+import { AgentRecipes } from '../_recipes';
 
 export const dynamic = 'force-static';
 
@@ -145,6 +146,8 @@ export default function ApifyIntegrationPage() {
           </Feature>
         </div>
       </Section>
+
+      <AgentRecipes slug="apify" />
 
       <Section>
         <FaqSection items={faq} />

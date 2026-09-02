@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { CtaBand } from '@/components/bands';
 import { Breadcrumbs, Code, Container, Cta, FaqSection, JsonLd, Section, SectionHead, type Faq } from '@/components/ui';
 import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
+import { AgentRecipes } from '../_recipes';
 
 export const dynamic = 'force-static';
 
@@ -137,6 +138,8 @@ def search_hotels(destination: str, checkin_date: str, checkout_date: str) -> di
           </p>
         </div>
       </Section>
+
+      <AgentRecipes slug="langchain" />
 
       <Section>
         <FaqSection items={faq} />
