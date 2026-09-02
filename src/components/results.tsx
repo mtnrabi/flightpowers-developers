@@ -4,7 +4,7 @@
  * alike, so canned and live output look identical and are labelled apart.
  */
 
-import type { DealHuntRow, GeoRepeatRun, HotelByName, OnewayFlight, RoundtripItinerary, ScanDay, YearMonth } from '@/lib/fixtures';
+import type { DealHuntRow, GeoRepeatRun, HotelByName, HotelProperty, OnewayFlight, RoundtripItinerary, ScanDay, YearMonth } from '@/lib/fixtures';
 import { splitAirline } from '@/lib/format';
 import { PriceBand, VerdictBadge } from './ui';
 
@@ -559,6 +559,66 @@ export function HotelMarketSamplesTable({
           key where you can sample as often as you like.
         </p>
       ) : null}
+    </div>
+  );
+}
+
+/**
+ * The properties one /v1/hotels/search returned, cheapest first.
+ *
+ * Deliberately literal: this is what one live search came back with for those
+ * dates, and the caption says exactly that. It is not an average nightly rate
+ * for the city, and nothing here computes one. `location` and `review_score`
+ * are nullable in the response, so both are optional in the markup.
+ */
+export function HotelPropertyResults({ properties, nights }: { properties: HotelProperty[]; nights: number | null }) {
+  if (properties.length === 0) {
+    return (
+      <p className="text-[14.5px] text-ink-300 leading-relaxed">
+        The search came back with no properties for those dates. That is a real answer, not a failure: it usually means
+        availability, not coverage.
+      </p>
+    );
+  }
+  const sorted = [...properties].sort((a, b) => (a.price ?? Infinity) - (b.price ?? Infinity));
+  const priced = sorted.filter((p) => p.price != null);
+  const cheapest = priced[0]?.price ?? null;
+  const dearest = priced[priced.length - 1]?.price ?? null;
+
+  return (
+    <div>
+      <ul className="divide-y rule">
+        {sorted.map((p, i) => (
+          <li key={`${p.name}-${i}`} className="flex flex-wrap items-baseline gap-x-3 gap-y-1 py-3">
+            <span className="min-w-0 flex-1 basis-full text-[14.5px] text-ink-100 sm:basis-0">
+              {p.link ? (
+                <a href={p.link} target="_blank" rel="nofollow noopener" className="underline decoration-ink-600 underline-offset-4 hover:text-signal-400">
+                  {p.name}
+                </a>
+              ) : (
+                p.name
+              )}
+              {p.room_type ? <span className="block text-[12.5px] text-ink-500">{p.room_type}</span> : null}
+            </span>
+            {p.review_score != null ? (
+              <span className="font-mono text-[12px] text-ink-400">
+                {p.review_score.toFixed(1)}
+                {p.review_count != null ? <span className="text-ink-600"> · {p.review_count.toLocaleString('en-US')} reviews</span> : null}
+              </span>
+            ) : (
+              <span className="font-mono text-[12px] text-ink-600">no score</span>
+            )}
+            <span className="ml-auto font-mono tabular-nums text-[14.5px] text-ink-100">{p.price_string ?? '-'}</span>
+          </li>
+        ))}
+      </ul>
+      <p className="mt-3 text-[13px] text-ink-400 leading-relaxed">
+        {priced.length} of {sorted.length} properties came back with a price, from{' '}
+        <span className="font-mono text-verdict-low">{sorted.find((p) => p.price === cheapest)?.price_string ?? '-'}</span> to{' '}
+        <span className="font-mono text-ink-200">{sorted.find((p) => p.price === dearest)?.price_string ?? '-'}</span>
+        {nights ? <span> for the whole {nights}-night stay</span> : null}. That is the spread inside one live search, not an
+        average for the city, and it moves with the dates you ask for.
+      </p>
     </div>
   );
 }

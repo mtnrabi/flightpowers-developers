@@ -10,7 +10,7 @@
 import 'server-only';
 import { callUpstream } from './upstream';
 import { cacheGet, cacheSet } from './budget';
-import type { HotelByName, OnewayFlight, RoundtripItinerary, ScanDay, YearMonth } from '@/lib/fixtures';
+import type { HotelByName, HotelProperty, OnewayFlight, RoundtripItinerary, ScanDay, YearMonth } from '@/lib/fixtures';
 
 const IATA = /^[A-Za-z]{3}$/;
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
@@ -22,6 +22,8 @@ const DATE = /^\d{4}-\d{2}-\d{2}$/;
  */
 const GEO_COUNTRIES = new Set(['de', 'jp', 'us', 'gb', 'il', 'br']);
 const MAX_RESULTS = 5;
+/** How many properties one hotel search shows. The API returns more. */
+const HOTEL_RESULTS = 12;
 /**
  * How many times the geo demo asks each market the same question. One sample
  * per market is not a comparison: a market's own quote moves between identical
@@ -45,7 +47,8 @@ export type ShapeRequest =
   | { shape: 'roundtrip'; from: string; to: string; date: string; returnDate: string }
   | { shape: 'month-scan'; from: string; to: string; month: string /* YYYY-MM */ }
   | { shape: 'year-scan'; from: string; to: string }
-  | { shape: 'hotel-geo'; hotel: string; area?: string; checkin: string; checkout: string; countries: string[] };
+  | { shape: 'hotel-geo'; hotel: string; area?: string; checkin: string; checkout: string; countries: string[] }
+  | { shape: 'hotel-search'; destination: string; checkin: string; checkout: string };
 
 export type ShapeError = { valid: false; message: string };
 export type ShapeOk = { valid: true; req: ShapeRequest; cost: number; cacheKey: string };
@@ -129,6 +132,18 @@ export function checkShape(input: ShapeRequest): ShapeOk | ShapeError {
       const req: ShapeRequest = { shape: 'year-scan', from, to };
       return { valid: true, req, cost: months.length, cacheKey: JSON.stringify(req) };
     }
+    case 'hotel-search': {
+      const destination = (input.destination ?? '').trim().slice(0, 60);
+      if (destination.length < 2) return { valid: false, message: 'Give a destination the way you would type it into Booking.com.' };
+      const ciErr = validDate(input.checkin, 'Check-in');
+      if (ciErr) return { valid: false, message: ciErr };
+      const coErr = validDate(input.checkout, 'Check-out');
+      if (coErr) return { valid: false, message: coErr };
+      const stay = (Date.parse(input.checkout) - Date.parse(input.checkin)) / 86_400_000;
+      if (stay < 1 || stay > 14) return { valid: false, message: 'Stays between 1 and 14 nights, please.' };
+      const req: ShapeRequest = { shape: 'hotel-search', destination, checkin: input.checkin, checkout: input.checkout };
+      return { valid: true, req, cost: 1, cacheKey: JSON.stringify(req) };
+    }
     case 'hotel-geo': {
       const hotel = (input.hotel ?? '').trim();
       if (hotel.length < 3 || hotel.length > 80) return { valid: false, message: 'Give the hotel name as you would type it into Booking.com.' };
@@ -158,6 +173,7 @@ export type ShapeResult =
   | { kind: 'roundtrip'; itineraries: RoundtripItinerary[]; headers: Record<string, string>; ms: number }
   | { kind: 'month-scan'; days: ScanDay[]; sampledEvery: number; ms: number }
   | { kind: 'year-scan'; months: YearMonth[]; ms: number }
+  | { kind: 'hotel-search'; properties: HotelProperty[]; destination: string; checkin: string; checkout: string; ms: number }
   | {
       kind: 'hotel-geo';
       /** `samples` is every request made for that market; `result` is the first one that answered. */
@@ -272,6 +288,30 @@ export async function runShape(ok: ShapeOk): Promise<{ result: ShapeResult; from
       };
     });
     result = { kind: 'year-scan', months, ms: Date.now() - started };
+  } else if (req.shape === 'hotel-search') {
+    // One search, one call. The page reports what this one search returned and
+    // says so: it is a live sample of availability, not a market average.
+    const r = await callUpstream<{ properties?: HotelProperty[] }>(
+      '/v1/hotels/search',
+      {
+        destination: req.destination,
+        checkin_date: req.checkin,
+        checkout_date: req.checkout,
+        adults: 2,
+        currency: 'USD',
+      },
+      45_000
+    );
+    result = r.ok
+      ? {
+          kind: 'hotel-search',
+          properties: (r.data?.properties ?? []).slice(0, HOTEL_RESULTS),
+          destination: req.destination,
+          checkin: req.checkin,
+          checkout: req.checkout,
+          ms: r.ms,
+        }
+      : { kind: 'error', error: r.error, ms: r.ms };
   } else {
     const started = Date.now();
     // Every market is asked the same question more than once, so the page can
@@ -306,7 +346,12 @@ export async function runShape(ok: ShapeOk): Promise<{ result: ShapeResult; from
   }
 
   if (result.kind !== 'error') {
-    const ttl = req.shape === 'month-scan' || req.shape === 'year-scan' ? TTL.scan : req.shape === 'hotel-geo' ? TTL.hotel : TTL.flight;
+    const ttl =
+      req.shape === 'month-scan' || req.shape === 'year-scan'
+        ? TTL.scan
+        : req.shape === 'hotel-geo' || req.shape === 'hotel-search'
+          ? TTL.hotel
+          : TTL.flight;
     cacheSet(ok.cacheKey, result, ttl);
   }
   return { result, fromCache: false, actualCost };

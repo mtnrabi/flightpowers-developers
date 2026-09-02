@@ -5,11 +5,12 @@ import { Container, Cta, JsonLd, Section, SectionHead } from '@/components/ui';
 import { Mark } from '@/components/IntegrationLogos';
 import { McpFreeConnect } from '@/components/McpFreeConnect';
 import { LINKS, SITE } from '@/lib/site';
+import { CITIES, ROUTES, ROUTE_TOOLS, routeArrow } from '@/lib/grid';
 
 export const metadata: Metadata = withOg({
   title: 'Free travel-data tools',
   description:
-    'Two free flagships on the same live API we sell: a full flight search engine, and an MCP server your assistant can use with no key and no signup. Plus live fare checks, month scans, and per-country hotel pricing.',
+    'Two free flagships on the same live API we sell: a full flight search engine, and an MCP server your assistant can use with no key and no signup. Plus six browser tools, each with a page per route or destination: live fare checks, year and month scans, round trips priced as paired legs, and live Booking.com rates.',
   alternates: { canonical: '/tools' },
 });
 
@@ -42,6 +43,20 @@ const TOOLS: {
     tier: 'live demo, rate-limited',
     body: 'Route + month → sampled departure dates priced as a heat grid, live. The cheapest day jumps out, and the full every-day scan is a parallel burst on your own key.',
     output: 'month heat grid',
+  },
+  {
+    href: '/tools/round-trip-planner',
+    name: 'Round-Trip Planner',
+    tier: 'live demo, rate-limited',
+    body: 'Route + two dates → return itineraries priced as paired legs, with each side’s airline, stops and duration. One real total, not two one-way fares added together.',
+    output: 'paired-leg itineraries',
+  },
+  {
+    href: '/tools/hotel-price-check',
+    name: 'Hotel Price Check',
+    tier: 'live demo, rate-limited',
+    body: 'Destination + two dates → what Booking.com is quoting right now, cheapest first, with the review score next to every price and a link straight to the room.',
+    output: 'live property list',
   },
   {
     href: '/tools/hotel-price-by-country',
@@ -104,6 +119,9 @@ const FREE_TOOLS_LIST = [
     body: 'Availability and price for one named property. Takes the name a person would type; no internal property ID needed.',
   },
 ];
+
+/** Route pages plus city pages. Computed, so the number on the page cannot drift from the number of pages. */
+const GRID_TOTAL = ROUTE_TOOLS.length * ROUTES.length + CITIES.length;
 
 export default function ToolsIndexPage() {
   return (
@@ -288,14 +306,14 @@ export default function ToolsIndexPage() {
         </div>
       </Section>
 
-      {/* ===================== THE THREE BROWSER TOOLS ===================== */}
+      {/* ===================== THE BROWSER TOOLS ===================== */}
       <Section>
         <SectionHead
           eyebrow="Also free"
-          title="Three tools that run in the browser"
+          title={`${TOOLS.length} tools that run in the browser`}
           lede="No connection to set up: open the page and it runs a real search on our key."
         />
-        <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {TOOLS.map((t) => (
             <Link
               key={t.href}
@@ -315,8 +333,59 @@ export default function ToolsIndexPage() {
           ))}
         </div>
         <p className="mt-6 font-mono text-[12px] text-ink-400">
-          These four run real searches on our key, so they&apos;re capped per visitor per day; the pages say exactly how.
+          All {TOOLS.length} run real searches on our key, so they&apos;re capped per visitor per day; the pages say exactly how.
         </p>
+      </Section>
+
+      {/* ===================== THE ROUTE AND CITY GRID ===================== */}
+      <Section id="grid" className="scroll-mt-24">
+        <SectionHead
+          eyebrow="Every route and city page"
+          title={`${GRID_TOTAL} pages, one per question worth asking`}
+          lede="Each of these is one of the tools above, pre-filled and with the facts of that route or destination beside it. The routes are the city pairs in the published tables of the world's busiest air routes; the cities are the top 30 by international visitors. We build a page where there is a real question behind it, and nowhere else."
+        />
+        {ROUTE_TOOLS.map((t) => (
+          <div key={t.slug} className="mt-10">
+            <h3 className="text-[16px] font-semibold text-ink-100">
+              <Link href={`/tools/${t.slug}`} className="hover:text-signal-400">
+                {t.label}
+              </Link>
+              <span className="ml-2 font-mono text-[12px] font-normal text-ink-500">{ROUTES.length} routes</span>
+            </h3>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {ROUTES.map((r) => (
+                <Link
+                  key={r.slug}
+                  href={`/tools/${t.slug}/${r.slug}`}
+                  title={`${r.from.city} to ${r.to.city}`}
+                  className="rounded-lg border rule px-2.5 py-1.5 font-mono text-[12px] text-ink-400 transition-colors hover:border-ink-500 hover:text-ink-100"
+                >
+                  {routeArrow(r)}
+                </Link>
+              ))}
+            </div>
+          </div>
+        ))}
+        <div className="mt-10">
+          <h3 className="text-[16px] font-semibold text-ink-100">
+            <Link href="/tools/hotel-price-check" className="hover:text-signal-400">
+              Hotel Price Check
+            </Link>
+            <span className="ml-2 font-mono text-[12px] font-normal text-ink-500">{CITIES.length} destinations</span>
+          </h3>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {CITIES.map((c) => (
+              <Link
+                key={c.slug}
+                href={`/tools/hotel-price-check/${c.slug}`}
+                title={c.country}
+                className="rounded-lg border rule px-2.5 py-1.5 text-[12.5px] text-ink-400 transition-colors hover:border-ink-500 hover:text-ink-100"
+              >
+                {c.name}
+              </Link>
+            ))}
+          </div>
+        </div>
       </Section>
 
       <Section>

@@ -64,6 +64,23 @@ export type RoundtripItinerary = {
   return_flight_duration: string;
 };
 
+/**
+ * One property from /v1/hotels/search. Field names and nullability come from
+ * `HotelSearchResponse` / `HotelProperty` in public/openapi.json; `location`
+ * really does come back null on some searches, so nothing may assume it.
+ */
+export type HotelProperty = {
+  name: string;
+  price_string: string | null;
+  price: number | null;
+  review_score: number | null;
+  review_count: number | null;
+  room_type: string | null;
+  location: string | null;
+  image_url: string | null;
+  link: string | null;
+};
+
 export type HotelByName = {
   name: string | null;
   available: boolean;

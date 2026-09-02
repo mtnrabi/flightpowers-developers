@@ -5,6 +5,7 @@ import { CheapestTimeTool } from '@/components/tools/CheapestTimeTool';
 import { Container, Cta, FaqSection, JsonLd, Section, SectionHead, type Faq } from '@/components/ui';
 import { FIXTURES } from '@/lib/fixtures';
 import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
+import { ROUTES, routeArrow } from '@/lib/grid';
 
 export const metadata: Metadata = withOg({
   title: 'Cheapest Time to Fly: a year of fares as one chart',
@@ -201,6 +202,34 @@ export default function CheapestTimePage() {
         </div>
       </Section>
 
+
+      <Section id="routes">
+        <SectionHead
+          eyebrow="Routes with their own page"
+          title="Start from a route instead of an empty form"
+          lede="Each of these is this same tool, pre-filled, with the facts of that route beside it. The list is the city pairs in the published tables of the world's busiest air routes."
+        />
+        <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {ROUTES.slice(0, 12).map((r) => (
+            <Link
+              key={r.slug}
+              href={`/tools/cheapest-time-to-fly/${r.slug}`}
+              className="rounded-2xl border rule bg-ink-900/50 p-4 transition-colors hover:border-ink-500"
+            >
+              <p className="font-mono text-[13px] text-signal-500">{routeArrow(r)}</p>
+              <p className="mt-1 text-[13.5px] text-ink-300">
+                {r.from.city} to {r.to.city}
+              </p>
+            </Link>
+          ))}
+        </div>
+        <p className="mt-6 text-[14px]">
+          <Link href="/tools#grid" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+            All {ROUTES.length} routes
+          </Link>
+          <span className="text-ink-400"> are listed on the tools index.</span>
+        </p>
+      </Section>
       <Section>
         <FaqSection items={faq} />
       </Section>
