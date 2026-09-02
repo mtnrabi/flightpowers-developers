@@ -114,7 +114,7 @@ export function parseIntent(text: string, now = new Date()): ParsedIntent {
     return {
       kind: 'unparsed',
       hint:
-        'For hotel geo-pricing, use the Hotel Price by Country tool: pick the hotel, dates, and 2–3 markets and it runs the same proxy_country comparison live.',
+        'For hotel geo-pricing, use the Hotel Price by Country tool: pick the hotel, dates, and two markets and it runs the same proxy_country comparison live, sampling each market three times.',
     };
   }
 

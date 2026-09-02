@@ -145,9 +145,10 @@ is long: space the iterations with a Sleep module rather than firing them all at
 only notify when `price_as_number` is below your budget. The filter logic is a
 numeric comparison.
 
-**Rate parity check.** Add `"proxy_country": "US"` to the request body to see the rate
-a US shopper sees. Run the same search three times with different `proxy_country`
-values (US, DE, IL) and compare the pricing. The full guide is in
+**Rate parity check.** Add `"proxy_country": "DE"` to the request body to see the rate
+a German shopper sees. Run the same search from a second market (say `JP`), a few times
+each, and compare the ranges rather than two single readings: a rate can move between
+identical requests. The full method is in
 [How to monitor hotel rate parity](/guides/monitor-hotel-rate-parity).
 
 **Flights.** The companion Google Flights API follows the same pattern: a scheduled

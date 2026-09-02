@@ -200,11 +200,11 @@ export const TASKS: TaskDef[] = [
     name: 'Rate-parity check',
     api: 'hotels',
     tool: 'find_hotel_by_name',
-    prompt: 'Price the Rixos Sungate in Antalya for Oct 5–10 as seen from the US, Germany, and Israel.',
-    toolCall: { hotel_name: 'Rixos Sungate Antalya', checkin_date: '2026-10-05', checkout_date: '2026-10-10', price_as_seen_from: 'us' },
+    prompt: 'Price the Rixos Sungate in Antalya for Oct 5–10 as seen from Germany and from Japan. Ask each market three times.',
+    toolCall: { hotel_name: 'Rixos Sungate Antalya', checkin_date: '2026-10-05', checkout_date: '2026-10-10', price_as_seen_from: 'de' },
     fields: ['available', 'price_string', 'price', 'room_type'],
     description:
-      'One call per market, identical except price_as_seen_from (the REST field is proxy_country), a two-letter code that prices the stay as a shopper in that country would see it. The agent compares the quotes and reports the spread. In a real capture on 2026-08-26 the US market saw the same room $195 cheaper than Germany and Israel.',
+      'Identical calls except price_as_seen_from (the REST field is proxy_country), a two-letter code that prices the stay as a shopper in that country would see it. Ask each market more than once: in a controlled run on 2026-08-28, Germany and Japan answered with the same number every time while the US market moved between identical requests. The agent compares the ranges and calls a gap real only when one market’s whole range sits below the other’s.',
   },
   {
     slug: 'fare-alert-cron',

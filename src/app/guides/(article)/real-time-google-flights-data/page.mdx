@@ -322,11 +322,12 @@ optionally `area` to disambiguate generic names.
 ### `proxy_country`: the one for business use cases
 
 Booking.com shows different rates depending on where the visitor is browsing from.
-Every hotel endpoint accepts `proxy_country`, a two-letter lowercase code (`us`,
-`de`, `il`) that routes the request through a residential proxy in that country.
-Same room, same dates, several markets: that is a rate-parity check, and it is the
-feature that makes this useful to revenue managers and hotel groups rather than only
-to hobbyists. There is a full worked example, with a real captured spread, in
+Every hotel endpoint accepts `proxy_country`, a two-letter lowercase code (`de`,
+`jp`, `us`) that routes the request through a residential proxy in that country.
+Same room, same dates, a couple of markets, each asked more than once: that is a
+rate-parity check, and it is the feature that makes this useful to revenue managers and
+hotel groups rather than only to hobbyists. There is a full worked example, with a
+repeat-sampled run and the rule for when a gap counts, in
 [How to monitor hotel rate parity](/guides/monitor-hotel-rate-parity), and the
 endpoint documentation is on the [Geo-Pricing page](/hotels-api/geo-pricing).
 

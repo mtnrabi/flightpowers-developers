@@ -28,7 +28,7 @@ const useCases: { slug: string; title: string; sub: string }[] = [
   {
     slug: 'rate-parity-monitoring',
     title: 'Rate-parity monitoring',
-    sub: 'The same room priced from different countries with proxy_country: parity checks from one API.',
+    sub: 'The same room priced from different countries with proxy_country, sampled per market: parity checks from one API.',
   },
   {
     slug: 'fare-calendars',

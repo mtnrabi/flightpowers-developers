@@ -63,7 +63,7 @@ const CHIPS: Record<string, () => unknown> = {
     return {
       mode: 'canned',
       capturedAt: f.captured_at,
-      question: 'Same hotel, priced from the US, Germany and Israel',
+      question: 'Same hotel, one reading from the US, Germany and Israel',
       kind: 'hotel-geo',
       request: f.request,
       markets: (['us', 'de', 'il'] as const).map((c) => ({ country: c, result: f.data[c] })),

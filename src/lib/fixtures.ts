@@ -15,6 +15,7 @@ import novscanLisJfk from './fixtures/novscan-lis-jfk.json';
 import yearscanLisJfk from './fixtures/yearscan-lis-jfk.json';
 import hotelGeoRixos from './fixtures/hotel-geo-rixos.json';
 import hotelGeoKremlin from './fixtures/hotel-geo-kremlin.json';
+import hotelGeoRepeatRome from './fixtures/hotel-geo-repeat-rome.json';
 import hotelSearchLisbon from './fixtures/hotel-search-lisbon.json';
 import dealHuntLgw from './fixtures/deal-hunt-lgw.json';
 import onewayJfkCun from './fixtures/oneway-jfk-cun.json';
@@ -78,6 +79,18 @@ export type HotelByName = {
   children: number | null;
 };
 
+/**
+ * A repeat-sampling run: for each property, every market was asked the same
+ * question several times. The samples are kept as arrays on purpose, because
+ * the movement inside one market is as much of a finding as the difference
+ * between markets.
+ */
+export type GeoRepeatRun = {
+  samples_per_market: number;
+  markets: string[];
+  properties: { name: string; quotes: Record<string, number[]> }[];
+};
+
 export type DealHuntRow = {
   dest: string;
   date: string;
@@ -137,6 +150,7 @@ export const FIXTURES = {
   yearscanLisJfk: yearscanLisJfk as unknown as Fixture<YearMonth[]>,
   hotelGeoRixos: hotelGeoRixos as unknown as Fixture<Record<'us' | 'de' | 'il', HotelByName>>,
   hotelGeoKremlin: hotelGeoKremlin as unknown as Fixture<Record<'us' | 'de' | 'il', HotelByName>>,
+  hotelGeoRepeatRome: hotelGeoRepeatRome as unknown as Fixture<GeoRepeatRun>,
   dealHuntLgw: dealHuntLgw as unknown as Fixture<DealHuntRow[]>,
   onewayJfkCun: onewayJfkCun as unknown as Fixture<OnewayFlight[]>,
   hotelSearchLisbon: hotelSearchLisbon as unknown as Fixture<{

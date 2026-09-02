@@ -140,7 +140,7 @@ export default function SkillsPage() {
             night), returned as a shortlist the user can act on.
           </Feature>
           <Feature title="Rate-parity monitoring">
-            Price the same room from different markets via proxy_country and report the spread: the revenue-manager job that
+            Price the same room from different markets via proxy_country, sample each market, and report the ranges: the revenue-manager job that
             general-purpose scrapers can&apos;t do from one API.
           </Feature>
           <Feature title="…and the source is the spec">

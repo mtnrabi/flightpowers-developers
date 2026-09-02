@@ -104,7 +104,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Can I run the comp set from a specific market?',
-    a: 'Yes. /hotel accepts proxy_country like every endpoint, so the same nightly sweep can price your set from the markets you compete in. The geo-pricing page shows a real captured spread between markets.',
+    a: 'Yes. /hotel accepts proxy_country like every endpoint, so the same nightly sweep can price your set from the markets you compete in. The geo-pricing page shows a repeat-sampled run and how to tell a real gap from ordinary movement.',
   },
   {
     q: 'How do I catch a competitor selling out?',
@@ -281,7 +281,7 @@ export default function CompetitiveSetPage() {
               <Link href="/hotels-api/geo-pricing" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
                 geo-pricing
               </Link>{' '}
-              shows a real captured spread.
+              shows a repeat-sampled run and how to read it.
             </FieldRow>
             <FieldRow name="free_cancellation" type="boolean">
               Restrict to refundable rates.

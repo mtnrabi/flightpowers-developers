@@ -153,16 +153,17 @@ export default function N8nIntegrationPage() {
           <div className="rounded-2xl border rule bg-ink-900/60 p-6 flex flex-col">
             <h3 className="text-[16px] font-semibold text-ink-100">Rate-parity check</h3>
             <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed flex-1">
-              Look up the same hotel several times, identical except{' '}
+              Look up the same hotel several times per market, identical except{' '}
               <code className="font-mono text-[12.5px]">proxy_country</code>: each request is priced from a residential proxy
-              in that market. Merge the results, compute the spread on{' '}
-              <code className="font-mono text-[12.5px]">price</code>, and flag when one market undercuts your contracted rate.
+              in that market. Merge the results into a range of{' '}
+              <code className="font-mono text-[12.5px]">price</code> per market, and flag a market only when its whole range
+              undercuts your contracted rate.
             </p>
             <ol className="mt-4 space-y-1.5 text-[13px] text-ink-400 font-mono">
               <li>1. Schedule trigger (weekly)</li>
-              <li>2. Hotel lookup × per market</li>
-              <li>3. Merge + compute spread</li>
-              <li>4. Alert when spread &gt; threshold</li>
+              <li>2. Hotel lookup × markets × samples</li>
+              <li>3. Merge into a range per market</li>
+              <li>4. Alert when the ranges don&apos;t overlap</li>
             </ol>
             <Link href="/integrations/n8n/rate-parity-check" className="mt-4 text-sm text-signal-400 underline underline-offset-4 hover:text-signal-500">
               Full recipe →

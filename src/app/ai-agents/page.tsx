@@ -29,7 +29,7 @@ export const dynamic = 'force-static';
 
 type Recipe = { title: string; chips: string[]; body: string };
 
-const geo = FIXTURES.hotelGeoRixos;
+const repeat = FIXTURES.hotelGeoRepeatRome;
 
 const RECIPES: Recipe[] = [
   {
@@ -45,7 +45,7 @@ const RECIPES: Recipe[] = [
   {
     title: 'A rate-parity watcher',
     chips: ['find_hotel_by_name', 'price_as_seen_from', 'price'],
-    body: `One call per market, identical except price_as_seen_from (proxy_country over REST), then compare the quotes. In a captured run on ${geo.captured_at}, the US market was quoted ${geo.data.us.price_string} for the same room Germany and Israel saw at ${geo.data.de.price_string}.`,
+    body: `Identical calls except price_as_seen_from (proxy_country over REST), each market asked ${repeat.data.samples_per_market} times, then compare the ranges. In a controlled run on ${repeat.captured_at}, Germany and Japan answered with the same number every time and Japan sat under Germany on all three properties, while the US market moved between identical requests.`,
   },
   {
     title: 'A trip-planning agent that answers with booking links',

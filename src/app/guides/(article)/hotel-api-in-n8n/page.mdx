@@ -32,7 +32,7 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 The workflow this guide builds is a **hotel rate monitor**: every day, check a specific hotel's rate for your dates, and send yourself a message when the price drops below your threshold. Four nodes (schedule trigger → hotel search → IF → notification) and no state to maintain between runs.
 
-The pattern scales to multi-market rate-parity checks (the same hotel priced from the US, Germany, and Israel) or comp-set tracking (your hotel plus three competitors on the same schedule).
+The pattern scales to multi-market rate-parity checks (the same hotel priced from Germany and Japan, each market sampled a few times) or comp-set tracking (your hotel plus three competitors on the same schedule).
 
 ## What you need
 
@@ -47,7 +47,7 @@ Install it the way you install any n8n community node (from the community-nodes 
 
 1. **Schedule Trigger.** Once a day, at an hour you'll actually read the alert.
 2. **FlightPowers node.** Choose the hotel search operation and set the destination and dates you are watching: for example "Rixos Sungate, Antalya" for check-in on October 5, check-out on October 10. Add your credential (the RapidAPI key) once; every later workflow reuses it.
-3. **IF node.** Condition: the first result's `price_as_number` is below your threshold (say, 800 for $800). That single comparison is the entire alerting logic.
+3. **IF node.** Condition: the lowest `price_as_number` in the results is below your threshold (say, 800 for $800). That single comparison is the entire alerting logic. Take the minimum rather than the first row: result ordering churns between identical requests, so "the first result" is not a stable thing to compare.
 4. **Notification node**: whatever you already use (email, Telegram, Slack, a webhook). Include the price (`price_string`), the room type (`room_type`), the review score (`review_score`), and the `booking_link`, which opens that exact property and dates on Booking.com ready to book.
 
 One handling note: when no rooms are available, `available` is `false` and `price_as_number` is `null`. Treat `null` as "no inventory," not as "zero price." If availability matters more than price, alert on `available: true` regardless of price.
@@ -104,7 +104,7 @@ Set the node's timeout generously: this is a live search of Booking.com, not a c
 ## Variations that reuse the same skeleton
 
 - **Watch several properties.** Put the hotels in a list (a Code node or a static data node), loop the search over them, and collect the hits below threshold into one digest message instead of N pings. Mind your plan's per-minute rate limit if the list is long: space the iterations rather than firing them all at once.
-- **Multi-market rate parity.** Same hotel, three requests with different `proxy_country` values (`"proxy_country": "US"`, `"proxy_country": "DE"`, `"proxy_country": "IL"`), and you have the full competitive pricing picture. The pattern is written up in [How to monitor hotel rate parity](/guides/monitor-hotel-rate-parity).
+- **Multi-market rate parity.** Same named hotel, two markets (`"proxy_country": "DE"` and `"proxy_country": "JP"`), each asked several times, then compare the ranges. A gap counts when one market's whole range sits below the other's; overlapping ranges are movement, not a parity break. The pattern is written up in [How to monitor hotel rate parity](/guides/monitor-hotel-rate-parity).
 - **Destination search instead of one property.** Use the `/search` endpoint instead of `/hotel_by_name`: pass `"destination": "London, UK"` and you get a ranked list of properties. Filter by `price_as_number`, `review_score`, or both.
 - **Threshold + availability.** The strictest trigger is an AND: `available` is `true` and `price_as_number` is under your budget. There is inventory, and it is cheap for you.
 - **Flights.** The companion Google Flights API follows the same pattern: the scheduled version of a fare watch is written up in [Using a flight API in n8n](/guides/flight-api-in-n8n).
@@ -114,7 +114,7 @@ Set the node's timeout generously: this is a live search of Booking.com, not a c
 - [n8n integration](/integrations/n8n): the full node installation and setup guide
 - <a href={rapidApiPricingUrl('hotels', 'guide')} rel="noopener">Booking Live API on RapidAPI</a>: the API listing with pricing and documentation
 - [How to get a Booking.com API key](/guides/booking-com-api-key): the full setup walkthrough
-- [How to monitor hotel rate parity](/guides/monitor-hotel-rate-parity): the multi-market pattern, documented and proven
+- [How to monitor hotel rate parity](/guides/monitor-hotel-rate-parity): the multi-market pattern, with the sampling that makes it hold up
 - [Hotel by name endpoint reference](/hotels-api/by-name): the endpoint this guide uses
 
 <CtaBand

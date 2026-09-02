@@ -48,7 +48,7 @@ const tools: ToolLine[] = [
   },
   {
     name: 'Rate-parity monitoring',
-    note: 'Prices the same property from different countries via proxy_country and reports the spread.',
+    note: 'Prices the same property from different countries via proxy_country, sampling each market, and reports the range each one landed in.',
   },
 ];
 

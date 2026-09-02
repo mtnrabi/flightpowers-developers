@@ -50,7 +50,7 @@ const FLIGHT_CHIPS: Chip[] = [
   { id: 'cheapest-day-november', label: 'Cheapest day LIS→JFK in November' },
 ];
 
-const HOTEL_CHIPS: Chip[] = [{ id: 'hotel-three-markets', label: 'Same hotel from the US, Germany and Israel' }];
+const HOTEL_CHIPS: Chip[] = [{ id: 'hotel-three-markets', label: 'Same hotel, one reading from three markets' }];
 
 const DEST_NAMES: Record<string, string> = { LPA: 'Gran Canaria', RAK: 'Marrakech', AGP: 'Málaga' };
 
@@ -145,9 +145,9 @@ function hotelNarrative(markets: { country: string; result: HotelByName | null }
   const min = avail.reduce((a, b) => (a.result!.price! <= b.result!.price! ? a : b));
   const max = avail.reduce((a, b) => (a.result!.price! >= b.result!.price! ? a : b));
   if (min.result!.price === max.result!.price) {
-    return `All markets were quoted the same rate. Rate parity is holding for this property and dates, and when it breaks, this is exactly how you catch it.`;
+    return `Every market was quoted the same rate in this reading. Nothing is drifting for this property and these dates, and when something does, this is exactly how you catch it.`;
   }
-  return `The ${min.country.toUpperCase()} market was quoted ${min.result!.price_string} for the same room the ${max.country.toUpperCase()} market sees at ${max.result!.price_string}. That's a ${money(max.result!.price! - min.result!.price!)} spread on one booking, caught by varying proxy_country.`;
+  return `The ${min.country.toUpperCase()} market was quoted ${min.result!.price_string} for the same room the ${max.country.toUpperCase()} market sees at ${max.result!.price_string}: ${money(max.result!.price! - min.result!.price!)} apart in this reading. One request per market is where a check starts. Rates move between identical requests, so sample each market a few times before you call that a real gap.`;
 }
 
 /** Build a display turn from a captured chip payload (server-provided). */
