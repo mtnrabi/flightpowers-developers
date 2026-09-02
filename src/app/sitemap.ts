@@ -3,6 +3,7 @@ import { SITE } from '@/lib/site';
 import path from 'node:path';
 import { NOINDEX_ROUTES, discoverRoutes, lastModified, priorityFor } from '@/lib/routes';
 import { matrixPairs } from '@/lib/matrix';
+import { gridPaths } from '@/lib/grid';
 
 export const dynamic = 'force-static';
 
@@ -27,7 +28,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...matrixRoutes].sort(
+  // The {tool} x {route|city} grid. Same reason as the matrix above: dynamic
+  // segments are invisible to the file walker, so they are enumerated from the
+  // dataset that generates them and can never drift apart from it.
+  const gridRoutes = gridPaths().map((pathname) => ({
+    url: new URL(pathname, SITE.url).toString(),
+    lastModified: new Date('2026-09-02'),
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }));
+
+  return [...staticRoutes, ...matrixRoutes, ...gridRoutes].sort(
     (a, b) => b.priority - a.priority || a.url.localeCompare(b.url)
   );
 }

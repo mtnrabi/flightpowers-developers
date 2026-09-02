@@ -21,6 +21,22 @@ function monthLabel(month: string): string {
   return new Date(Date.parse(`${month}-01T00:00:00Z`)).toLocaleString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
 }
 
+/**
+ * The months a scan will sample: the 15th of each coming month inside the
+ * demo horizon. Mirrors yearScanDates() on the server, and exists so the code
+ * card is a working request even before anything has been scanned.
+ */
+function comingMonths(): string[] {
+  const now = new Date();
+  const out: string[] = [];
+  for (let offset = 0; offset <= 12 && out.length < 12; offset++) {
+    const d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + offset, 15));
+    const ahead = Math.round((d.getTime() - Date.now()) / 86_400_000);
+    if (ahead >= 1 && ahead <= 320) out.push(`${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}`);
+  }
+  return out;
+}
+
 function cheapestMonth(months: YearMonth[]): YearMonth | null {
   const priced = months.filter((m) => m.price != null);
   if (priced.length === 0) return null;
@@ -35,11 +51,15 @@ function cheapestMonth(months: YearMonth[]): YearMonth | null {
  */
 export function CheapestTimeTool({
   captured,
+  initial,
 }: {
-  captured: { months: YearMonth[]; capturedAt: string; note: string; query: { from: string; to: string } };
+  /** A real captured scan to show on first paint. The route pages have none, by design. */
+  captured?: { months: YearMonth[]; capturedAt: string; note: string; query: { from: string; to: string } };
+  /** Pre-fills the form. Route pages pass their own pair. */
+  initial?: { from: string; to: string };
 }) {
-  const [from, setFrom] = useState('LIS');
-  const [to, setTo] = useState('JFK');
+  const [from, setFrom] = useState(initial?.from ?? captured?.query.from ?? 'LIS');
+  const [to, setTo] = useState(initial?.to ?? captured?.query.to ?? 'JFK');
   const [state, setState] = useState<RunState>({ phase: 'idle' });
 
   const inFlight = useRef(false); // ref, not state: two clicks inside one render can both pass a state check
@@ -75,9 +95,9 @@ export function CheapestTimeTool({
   }
 
   const showing = state.phase === 'done' ? state : null;
-  const months = showing ? showing.months : captured.months;
-  const query = showing ? showing.query : captured.query;
-  const best = cheapestMonth(months);
+  const months = showing ? showing.months : (captured?.months ?? null);
+  const query = showing ? showing.query : (captured?.query ?? { from, to });
+  const best = months ? cheapestMonth(months) : null;
 
   return (
     <div className="space-y-6">
@@ -119,7 +139,7 @@ export function CheapestTimeTool({
 
       {state.phase === 'error' ? <p className="text-[14.5px] text-verdict-typical leading-relaxed">{state.message}</p> : null}
 
-      {/* Result: live if run, captured year scan on first paint */}
+      {/* Result: live if run, captured year scan on first paint where there is one */}
       <div className="rounded-2xl border rule bg-ink-900/60 p-5 sm:p-6">
         <div className="mb-4 flex flex-wrap items-center gap-3">
           <h3 className="text-[16px] font-semibold text-ink-100">
@@ -131,38 +151,52 @@ export function CheapestTimeTool({
             ) : (
               <span className="font-mono text-[11px] text-ink-400">from the demo cache: a recent live run of the same query</span>
             )
-          ) : (
+          ) : captured ? (
             <CapturedBadge date={captured.capturedAt} />
+          ) : (
+            <span className="font-mono text-[11px] text-ink-500">nothing scanned yet</span>
           )}
           <span className="ml-auto hidden font-mono text-[10.5px] text-ink-500 sm:block">flightpowers.com</span>
         </div>
-        <YearScanChart
-          months={months}
-          note={
-            showing
-              ? 'Live demo scan: one real mid-month search per month. Sampling more dates per month tightens the answer, and that is one request per date on your own key.'
-              : captured.note
-          }
-        />
-        {best ? (
-          <p className="mt-3 text-[14px] text-ink-300">
-            Cheapest scanned month: <span className="font-mono text-verdict-low">{monthLabel(best.month)}</span> at{' '}
-            <span className="font-mono font-semibold text-verdict-low">${best.price}</span>
-            <span className="text-ink-400"> · departing {best.date}</span>
-            {best.airline ? <span className="text-ink-400"> · {airlineText(best.airline)}</span> : null}
-            {best.verdict ? (
-              <span className="text-ink-400">
-                {' '}
-                · Google&apos;s verdict: <VerdictBadge verdict={best.verdict} />
-              </span>
+        {months ? (
+          <>
+            <YearScanChart
+              months={months}
+              note={
+                showing
+                  ? 'Live demo scan: one real mid-month search per month. Sampling more dates per month tightens the answer, and that is one request per date on your own key.'
+                  : (captured?.note ?? '')
+              }
+            />
+            {best ? (
+              <p className="mt-3 text-[14px] text-ink-300">
+                Cheapest scanned month: <span className="font-mono text-verdict-low">{monthLabel(best.month)}</span> at{' '}
+                <span className="font-mono font-semibold text-verdict-low">${best.price}</span>
+                <span className="text-ink-400"> · departing {best.date}</span>
+                {best.airline ? <span className="text-ink-400"> · {airlineText(best.airline)}</span> : null}
+                {best.verdict ? (
+                  <span className="text-ink-400">
+                    {' '}
+                    · Google&apos;s verdict: <VerdictBadge verdict={best.verdict} />
+                  </span>
+                ) : null}
+              </p>
             ) : null}
+          </>
+        ) : (
+          <p className="text-[14.5px] text-ink-300 leading-relaxed">
+            No chart yet. We do not keep a stale scan of this route lying around to fill the space: fares from six months ago
+            would tell you nothing about this year. Press <span className="font-semibold text-ink-100">Scan the year</span> and
+            the chart below is built from about ten searches run against live Google Flights while you wait.
           </p>
-        ) : null}
+        )}
       </div>
 
       <ApiUpsellCard
         tool="cheapest-time"
-        snippets={bothHosts((host) => yearScanSnippets({ from: query.from, to: query.to, months: months.map((m) => m.month) }, host))}
+        snippets={bothHosts((host) =>
+          yearScanSnippets({ from: query.from, to: query.to, months: months ? months.map((m) => m.month) : comingMonths() }, host)
+        )}
         pricingHref={rapidApiPricingUrl('flights', 'tool')}
         docsHref="/flights-api/parallel-date-scan"
         headline="Run the full scan from your own code"

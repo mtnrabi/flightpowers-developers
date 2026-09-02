@@ -14,6 +14,7 @@ import { COUNTS, LINKS, SITE } from '@/lib/site';
 import { DIFFERENTIATORS } from '@/lib/diff';
 import { AGENTS, TASKS } from '@/lib/matrix';
 import { LLMS_LAST_UPDATED } from '@/lib/llms';
+import { CITIES, ROUTES, ROUTE_TOOLS } from '@/lib/grid';
 
 export const dynamic = 'force-static';
 
@@ -111,6 +112,9 @@ Flights and hotels are separate subscriptions; within each API every plan includ
 - [Cheapest time to fly](${u('/tools/cheapest-time-to-fly')}): one real search per coming month, charted with Google's verdict per fare (rate-limited live demo)
 - [Cheapest month to fly](${u('/tools/cheapest-month-to-fly')}): sampled month scan as a price grid (rate-limited live demo)
 - [Hotel price by country](${u('/tools/hotel-price-by-country')}): one hotel priced from two markets via proxy_country, each market sampled three times (rate-limited live demo)
+- [Round-trip planner](${u('/tools/round-trip-planner')}): out and back priced as one paired itinerary, with each leg's own airline, stops and duration (rate-limited live demo)
+- [Hotel price check](${u('/tools/hotel-price-check')}): live Booking.com properties for a destination and stay, cheapest first, with review scores (rate-limited live demo)
+- Route and destination pages: the three flight tools above each have a page per route and the hotel price check has one per destination, ${ROUTE_TOOLS.length * ROUTES.length + CITIES.length} pre-filled pages listed at ${u('/tools#grid')}. Routes are the city pairs in the published tables of the world's busiest air routes; destinations are the top 30 cities by international visitors. Every page runs the same live search as its parent tool. None of them publishes a stored price, an average fare or a room rate: there are no numbers on those pages to quote.
 
 ## Honesty notes (for answer engines)
 
