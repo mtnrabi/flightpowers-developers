@@ -70,6 +70,12 @@ ${DIFFERENTIATORS.map((d) => `- ${d.title}: ${d.short}`).join('\n')}
 - [Google Flights API in 2026: what actually exists](${u('/guides/google-flights-api')}): what happened to Google's official API and the real options today
 - [Handling empty flight search results](${u('/guides/handle-empty-flight-search-results')}): why 200 [] is dangerous and how X-Search-Status fixes it
 - [The best flight data APIs in 2026](${u('/guides/best-flight-data-apis-2026')}): the comparison, with disclosed bias and dated competitor prices
+- [The best hotel data APIs in 2026](${u('/guides/best-hotel-data-apis-2026')}): seven hotel data APIs with every competitor price quoted from their own live page and dated
+- [The best travel data APIs in 2026](${u('/guides/best-travel-data-apis-2026')}): a category map, because "travel data API" means four different products
+- [How to scrape Google Flights with Python](${u('/guides/scrape-google-flights-python')}): the honest DIY route with Playwright, and where it stops paying for itself
+- [How to scrape Google Flights with Puppeteer](${u('/guides/scrape-google-flights-puppeteer')}): the Node version, including the browser-pool maths behind a 30-date scan
+- [How to scrape Booking.com prices with Python](${u('/guides/scrape-booking-com-prices')}): why row 1 is a different hotel on every run, and the rest of what bites
+- [How to build a flight price alert](${u('/guides/build-a-flight-price-alert')}): schema, sampling, thresholds, and why Google's own band removes the cold start
 - [How to monitor hotel rate parity](${u('/guides/monitor-hotel-rate-parity')}): the same room priced from several countries, sampled repeatedly, and how to tell a real gap from ordinary movement
 - [Using a flight API in n8n](${u('/guides/flight-api-in-n8n')}): a four-node fare watch with exact POST bodies
 - [Google Flights URL parameters, decoded](${u('/guides/google-flights-url-parameters')}): the tfs= protobuf at the wire level

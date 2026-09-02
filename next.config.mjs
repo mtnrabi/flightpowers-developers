@@ -35,6 +35,20 @@ const OLD_CONSUMER_PATHS = ['/saved'];
 const RETIRED_PAGES = [['/tools/google-flights-url-parser', '/tools']];
 
 /**
+ * One canonical page per comparison.
+ *
+ * /blog/{x}-google-flights-alternative and /compare/{x} were two 1-vs-1
+ * comparisons of the same competitor, competing with each other for the same
+ * query. The /compare pages are the longer and better-sourced half (every
+ * figure on the blog posts appears there, plus more), so the blog URLs fold
+ * into them rather than being kept alive as thin duplicates.
+ */
+const MERGED_COMPARISONS = [
+  ['/blog/serpapi-google-flights-alternative', '/compare/serpapi'],
+  ['/blog/datacrawler-google-flights-alternative', '/compare/datacrawler'],
+];
+
+/**
  * This project is served on four hosts. Only the apex should be indexable;
  * the other three are byte-identical duplicates. Every page already emits a
  * canonical pointing at the apex, but a canonical is a hint and a 308 is not,
@@ -70,6 +84,11 @@ const nextConfig = {
         permanent: true,
       })),
       ...RETIRED_PAGES.map(([source, destination]) => ({
+        source,
+        destination,
+        permanent: true,
+      })),
+      ...MERGED_COMPARISONS.map(([source, destination]) => ({
         source,
         destination,
         permanent: true,

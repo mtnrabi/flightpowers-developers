@@ -189,9 +189,6 @@ export function AgentIntegrationPage({
               {other.name}
             </Link>
           ))}
-          <Link href="/integrations/api" className="chip">
-            Plain REST
-          </Link>
           <Link href="/integrations" className="chip">
             All integrations
           </Link>

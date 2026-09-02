@@ -1,0 +1,268 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'How to scrape Google Flights with Python',
+  description:
+    'A working Playwright scraper for Google Flights in Python: why requests and BeautifulSoup return nothing, why you drive the UI instead of hand-encoding tfs=, how to anchor on ARIA roles instead of hashed class names, how to wait for a result list that streams in, and where the approach stops paying for itself.',
+  alternates: { canonical: '/guides/scrape-google-flights-python' },
+});
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'How to scrape Google Flights with Python',
+    description:
+      'A working Playwright approach to scraping Google Flights fares in Python, the failure modes that bite in production, and an honest account of where a browser fleet stops being worth it.',
+    url: `${SITE.url}/guides/scrape-google-flights-python`,
+    datePublished: '2026-09-02',
+    dateModified: '2026-09-02',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# How to scrape Google Flights with Python
+
+Most of this page is the scraper: what to install, what code works, and the failure
+modes that will find you in week two. The last section is my argument for not
+maintaining it. I sell a flight API, so that part is marked and you can stop before
+it. There is a [Node and Puppeteer version](/guides/scrape-google-flights-puppeteer)
+if that is your stack.
+
+## Why requests and BeautifulSoup get you nothing
+
+Google Flights is a client-rendered application. A plain GET returns an app shell:
+scripts, styling, an empty results region, no fares. Prices arrive afterwards over
+calls the page makes to itself, and land in the DOM through JavaScript that never
+runs in your Python process. So `soup.select(...)` returns an empty list, and returns
+it fast, which is the part that fools people. Nothing errored. There was never
+anything there.
+
+Two ways out: reverse the internal calls the page makes, which are undocumented,
+unversioned and encoded, or run a real browser and read what a user would see. This
+guide takes the second route, because the first breaks without warning and gives you
+no signal that it broke.
+
+## The URL is the hard part, and you should not build it
+
+A Google Flights search URL carries its whole state in a `tfs=` parameter: a
+serialized protocol buffer, base64url encoded. Origin, destination, dates, passengers,
+cabin and filters all sit inside that one blob, undocumented, with no stability owed
+to you.
+
+I wrote up the wire format in
+[Google Flights URL parameters, decoded](/guides/google-flights-url-parameters). The
+practical rule from that page is short: **decode `tfs=` when a user hands you a URL,
+never encode one yourself.** Hand-built blobs are the most common reason a scraper
+that worked on Monday returns the wrong month on Friday. Drive the UI instead, let
+Google write the URL, then read `page.url` and keep it.
+
+## The route that works: Playwright driving a real browser
+
+```bash
+pip install playwright
+playwright install chromium
+```
+
+Playwright over raw Selenium mostly because it waits for you. Its docs describe "a
+range of actionability checks on the elements before making actions to ensure these
+actions behave as expected", naming visible, stable, receives events, enabled and
+editable ([playwright.dev/python/docs/actionability](https://playwright.dev/python/docs/actionability),
+retrieved 2026-09-02). That deletes most of the sleep-and-pray code you would write
+around a search box that mounts late.
+
+```python
+import re, time
+from playwright.sync_api import sync_playwright
+
+FLIGHTS = "https://www.google.com/travel/flights"
+
+def open_search(page, origin, destination, depart):
+    page.goto(FLIGHTS, wait_until="domcontentloaded")
+
+    # a consent interstitial appears in some regions, and not in others
+    accept = page.get_by_role("button", name=re.compile("accept|agree", re.I))
+    if accept.count():
+        accept.first.click()
+
+    for name, value in (("where from", origin), ("where to", destination)):
+        box = page.get_by_role("combobox", name=re.compile(name, re.I))
+        box.click()
+        box.fill(value)
+        page.get_by_role("listbox").get_by_role("option").first.click()
+
+    page.get_by_role("textbox", name=re.compile("departure", re.I)).fill(depart)
+    page.keyboard.press("Enter")
+    page.get_by_role("button", name=re.compile("^search$", re.I)).click()
+```
+
+Note what is absent: no class names, no `div > div > div` chains, no XPath. Every
+handle is a role plus an accessible name, the way a screen reader addresses the page.
+Playwright's locator guide puts `page.get_by_role()` first among its recommended
+locators and says of CSS and XPath that "these selectors can break when the DOM
+structure changes"
+([playwright.dev/python/docs/locators](https://playwright.dev/python/docs/locators),
+retrieved 2026-09-02). On a Google property that is not a style preference. The class
+names are minified build output and they rotate. Accessible names are user-facing
+English, so they move more slowly, because moving them changes the product. They
+still move. Roles buy you time, not permanence.
+
+## Waiting for a list that is still growing
+
+The result list streams. First paint gives you a few itineraries and more arrive
+after. Read on the first `wait_for_selector` and you get a partial set, so your
+"cheapest fare" is wrong in a way no exception will report. Wait for the count to
+stop moving instead:
+
+```python
+def wait_until_settled(page, locator, quiet_ms=1500, timeout_ms=30000):
+    """Return the row count once it has held steady for quiet_ms."""
+    deadline = time.monotonic() + timeout_ms / 1000
+    last, changed_at = -1, time.monotonic()
+    while time.monotonic() < deadline:
+        n = locator.count()
+        if n != last:
+            last, changed_at = n, time.monotonic()
+        elif n > 0 and (time.monotonic() - changed_at) * 1000 >= quiet_ms:
+            return n
+        page.wait_for_timeout(250)
+    return last
+
+PRICE = re.compile(r"[$€£]\s?[\d,]+")
+
+def scrape(origin, destination, depart, headless=True):
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=headless)
+        page = browser.new_page(locale="en-US", timezone_id="America/New_York")
+        open_search(page, origin, destination, depart)
+
+        rows = page.get_by_role("listitem")
+        count = wait_until_settled(page, rows)
+
+        out = []
+        for i in range(count):
+            label = rows.nth(i).get_attribute("aria-label") or rows.nth(i).inner_text()
+            price = PRICE.search(label)
+            if price:
+                out.append({"price": price.group(0), "summary": " ".join(label.split())})
+
+        url = page.url  # keep it: Google built the tfs= blob for you
+        browser.close()
+        return url, out
+```
+
+The `aria-label` on a result row is usually the richest single string on the page:
+carrier, times, stops and price in one sentence, written for assistive technology.
+Parsing English with a regex is uglier than reading fields. It is also the most
+durable handle you have here.
+
+## The four things that actually bite
+
+**Empty and broken look identical.** No service on that date gives you zero rows. A
+consent wall you missed, a challenge page, or a layout change also gives you zero
+rows. Same empty list, opposite meanings. Build the distinction yourself: assert the
+results region exists before you trust its emptiness, and screenshot every zero. Why
+that matters more than it sounds:
+[handling empty flight search results](/guides/handle-empty-flight-search-results).
+
+**Results stream in.** Covered above. Any read not gated on a settled count is a coin
+flip.
+
+**Currency and market follow your IP.** The same search from two data centres can come
+back in different currencies with different carriers surfaced. Pin `locale` and
+`timezone_id` on the context, set `curr=` on the URL where you can, and record which
+egress produced each row. Skip this and you will eventually compare a euro price to a
+dollar price and ship the answer.
+
+**One search, one page load.** There is no multi-date response. A 30 day scan is 30
+navigations, each a fresh context if you want clean state. That is the cost line that
+grows, and the
+[Puppeteer guide's concurrency section](/guides/scrape-google-flights-puppeteer)
+covers the scheduling side, which applies equally in Python.
+
+## On terms of service
+
+I am not a lawyer and this is not legal advice. Scraping a site you do not own is
+governed by that site's terms, by the law where you and your servers sit, and
+sometimes by contracts you signed elsewhere. Read the terms yourself before you point
+anything at production.
+
+For the record, Google's Terms of Service list among prohibited activities "using
+automated means to access content from any of our services in violation of the
+machine-readable instructions on our web pages (for example, robots.txt files that
+disallow crawling, training, or other activities)"
+([policies.google.com/terms](https://policies.google.com/terms), retrieved
+2026-09-02). What that means for your specific use is a question for your counsel.
+
+## When to stop maintaining this
+
+Vendor section. I run a Google Flights API, so weigh it accordingly.
+
+A scraper is cheap to write and expensive to keep. The recurring cost is not servers,
+it is attention. Someone has to notice the day an accessible name changes, the day
+the consent flow adds a step, the day a new egress range starts getting challenged.
+That work arrives unscheduled and lands on whoever is on call.
+
+The argument I actually believe is about a field, though, not a cost. Google's own
+historical band for the route and dates, `price_insights_low` and
+`price_insights_high`, plus its verdict on the current fare (`low`, `typical` or
+`high`), is what lets you tell a user "$112 is a good price" rather than "$112". You
+cannot reliably scrape that. It is not a stable number sitting in a row you can
+select, it is context Google computes and surfaces in prose that changes shape, and
+it is exactly what a fare alert or a "book now or wait" feature is built on. The API
+returns it as a field on every result.
+
+The same job, one POST:
+
+```bash
+curl -X POST https://api.flightpowers.com/v1/flights/oneway \
+  -H "x-api-key: $FLIGHTPOWERS_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"from_airport":"JFK","to_airport":"LHR","departure_date":"2026-10-15","currency":"usd"}'
+```
+
+```python
+import os, requests
+
+r = requests.post(
+    "https://google-flights-live-api.p.rapidapi.com/api/google_flights/oneway/v1",
+    headers={
+        "Content-Type": "application/json",
+        "x-rapidapi-host": "google-flights-live-api.p.rapidapi.com",
+        "x-rapidapi-key": os.environ["RAPIDAPI_KEY"],
+    },
+    json={"from_airport": "JFK", "to_airport": "LHR",
+          "departure_date": "2026-10-15", "currency": "usd"},
+)
+for f in sorted(r.json(), key=lambda x: x["price_as_number"]):
+    print(f["price"], f["price_range_in_relation_to_other_periods"], f["airline"], f["buy_link"])
+```
+
+No browser, no settle loop, no consent handling. Every itinerary also carries a
+`buy_link` into Google Flights, so the `tfs=` blob you were told not to build arrives
+already built. Plan prices live on [/pricing](/pricing), and a key, free tier
+included, comes from
+<a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">the RapidAPI listing</a>.
+If you would rather compare vendors first, that is what
+[the comparison page](/guides/best-flight-data-apis-2026) is for, including the part
+where a competitor is cheaper per request than I am.
+
+## Related
+
+- [How to scrape Google Flights with Puppeteer](/guides/scrape-google-flights-puppeteer): the Node version, plus the concurrency maths
+- [Google Flights URL parameters, decoded](/guides/google-flights-url-parameters): what is inside `tfs=`
+- [Price Insights API](/flights-api/price-insights): the band and the verdict, proven with a captured run
+- [Handling empty flight search results](/guides/handle-empty-flight-search-results): why `[]` is two different answers
+
+<CtaBand
+  medium="guide"
+  title="Keep the scraper. Stop paging for it."
+  body="One POST returns the fares, Google's own price band, a low | typical | high verdict, and a working buy_link. Free tier on RapidAPI, no card to try."
+/>

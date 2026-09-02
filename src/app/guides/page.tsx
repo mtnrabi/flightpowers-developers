@@ -8,7 +8,7 @@ import { SITE } from '@/lib/site';
 export const metadata: Metadata = withOg({
   title: 'Guides: working code for flight & hotel data',
   description:
-    'How-to guides for live flight and hotel pricing: getting real-time Google Flights data, getting API keys, handling empty search results correctly, decoding Google Flights URLs, monitoring hotel rate parity, fare watches and hotel rate monitoring in n8n, and an honest comparison of the 2026 flight-API field.',
+    'How-to guides for live flight and hotel pricing: scraping Google Flights and Booking.com yourself with Playwright or Puppeteer, building a fare alert, getting real-time data and API keys, handling empty search results correctly, decoding Google Flights URLs, fare watches in n8n, and sourced comparisons of the 2026 flight, hotel and travel data API field.',
   alternates: { canonical: '/guides' },
 });
 
@@ -76,6 +76,30 @@ const GUIDES = [
     tag: 'hotels',
   },
   {
+    href: '/guides/scrape-google-flights-python',
+    title: 'How to scrape Google Flights with Python',
+    sub: 'A working Playwright scraper: why requests returns nothing, why you never hand-encode tfs=, anchoring on ARIA roles, waiting on a result list that streams, and where it stops paying for itself.',
+    tag: 'do it yourself',
+  },
+  {
+    href: '/guides/scrape-google-flights-puppeteer',
+    title: 'How to scrape Google Flights with Puppeteer',
+    sub: 'The Node version: puppeteer vs puppeteer-core, headless modes, ARIA selectors, waitForFunction on a settled row count, and the browser-pool maths behind a 30 date scan.',
+    tag: 'do it yourself',
+  },
+  {
+    href: '/guides/scrape-booking-com-prices',
+    title: 'How to scrape Booking.com prices with Python',
+    sub: 'Why requests plus BeautifulSoup returns a page with no prices, a working Playwright script, and the bug everyone hits: result ordering changes between identical runs, so row 1 is a different hotel each time.',
+    tag: 'do it yourself',
+  },
+  {
+    href: '/guides/build-a-flight-price-alert',
+    title: 'How to build a flight price alert',
+    sub: 'Schema, dedupe keys, sampling and thresholds with hysteresis, plus idempotent delivery. Then the cold-start problem, and how Google\u2019s own price band removes it on the first run.',
+    tag: 'do it yourself',
+  },
+  {
     href: '/guides/flight-api-in-n8n',
     title: 'Using a flight API in n8n',
     sub: 'A four-node fare watch that fires when Google\'s verdict says "low", with the community node or a plain HTTP Request node, exact POST body included.',
@@ -139,6 +163,18 @@ const GUIDES = [
     href: '/guides/best-flight-data-apis-2026',
     title: 'The best flight data APIs in 2026',
     sub: 'The listicle, with disclosed bias: it starts with our own API and says so, quotes every competitor price with a retrieval date, and names the competitor that is cheaper per request than we are.',
+    tag: 'comparison',
+  },
+  {
+    href: '/guides/best-hotel-data-apis-2026',
+    title: 'The best hotel data APIs in 2026',
+    sub: 'Seven hotel data APIs with every competitor price quoted from their own live page and dated, including the two whose unit price beats ours.',
+    tag: 'comparison',
+  },
+  {
+    href: '/guides/best-travel-data-apis-2026',
+    title: 'The best travel data APIs in 2026',
+    sub: '\u201cTravel data API\u201d is four different products. A category map that sends you to the right shortlist before you call a vendor.',
     tag: 'comparison',
   },
 ];

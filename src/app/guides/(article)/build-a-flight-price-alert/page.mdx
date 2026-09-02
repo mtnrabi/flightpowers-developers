@@ -1,0 +1,269 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'How to build a flight price alert',
+  description:
+    'The systems-design version: the schema you end up with, why the dedupe key is harder than it looks, the cold-start problem that makes your first weeks of alerts noise, sampling and threshold design with hysteresis, idempotent delivery, and how Google’s own price band removes the history problem entirely.',
+  alternates: { canonical: '/guides/build-a-flight-price-alert' },
+});
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'How to build a flight price alert',
+    description:
+      'Schema, sampling, thresholds, hysteresis and idempotent delivery for a fare alert, and the field that removes the cold-start problem.',
+    url: `${SITE.url}/guides/build-a-flight-price-alert`,
+    datePublished: '2026-09-02',
+    dateModified: '2026-09-02',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# How to build a flight price alert
+
+A price alert sounds like a cron job and a comparison. Poll a fare, store it, compare
+against your own history, send a message when it drops. Every part of that is real, and
+every part of it has a trap in it that only shows up after the thing is running.
+
+I run a flight data API, so the last third of this page is me making a case. The first
+two thirds is the design you end up with either way, and it is worth building once even
+if you never buy anything.
+
+## The schema you end up with
+
+```sql
+create table fare_observation (
+  route        text        not null,   -- 'JFK-LHR'
+  depart_date  date        not null,
+  return_date  date,                   -- null for one-way
+  cabin        text        not null,   -- 'economy'
+  currency     text        not null,
+  price        numeric     not null,
+  carrier      text,
+  stops        int,
+  observed_at  timestamptz not null,
+  observed_on  date        not null    -- the sampling slot, not the clock time
+);
+```
+
+Two columns there do most of the work, and they are the ones people leave out.
+
+`currency` matters because the same fare in two currencies is two different numbers and
+your threshold logic will happily compare them. Pin one currency per rule and store it
+on every row, so a config change six months from now cannot silently rewrite history.
+
+`observed_on` is the sampling slot the observation belongs to, separate from the wall
+clock time it landed. That distinction is what makes the dedupe key possible.
+
+## The dedupe key is harder than it looks
+
+The obvious primary key is `(route, depart_date, cabin, observed_at)`, which dedupes
+nothing: `observed_at` is different on every run, including the retry three seconds
+after a timeout. Now you have two rows for one sample, both real, and your average is
+weighted toward whichever runs failed the first time. That is a bias correlated with
+the API being slow, which is exactly when prices are least reliable.
+
+What you actually want is one row per rule per slot:
+
+```sql
+create unique index on fare_observation (route, depart_date, cabin, observed_on);
+-- and insert with: on conflict do nothing
+```
+
+Then a retry is free and a double-scheduled run is free.
+
+There is a second half to it. "The price" for a route on a date is not a single number:
+one search returns many itineraries at many prices. You have to pick a rule and write it
+down. Cheapest overall is the usual choice and it is fine, as long as you know it drifts
+into basic-economy fares and long connections. Cheapest non-stop is a different series
+with a different shape. Whatever you pick, store `carrier` and `stops` alongside the
+price, because the first time an alert fires you will want to know whether the price
+dropped or the itinerary changed. Those look identical in a column of numbers.
+
+## The cold start
+
+Here is the part nobody plans for. Your alert compares against your own history, and on
+day one you have none. Day thirty, on a daily poll, you have thirty numbers.
+
+A rule like "alert when the fare is 20% below the average" fires on your own sampling
+noise long before it fires on the market. With a handful of samples, one cheap Tuesday
+moves the mean enough that the next ordinary fare looks like a drop, or a run that
+happened to catch a fare-sale hour sets a baseline nothing beats for months. The rule is
+not measuring the market. It is measuring your sample.
+
+The honest options are all unsatisfying. Wait weeks before enabling alerts, which means
+the feature you shipped does nothing and users think it is broken. Poll harder, which
+costs quota and still gives you one route's history, not the market's. Or seed with a
+guess, which is a made-up baseline that then decides when users get told to book.
+
+This is the structural weakness of the build-your-own approach, and it does not go away
+with better code. It goes away with more time or with someone else's history.
+
+## Sampling design
+
+**How often.** For a route months out, once a day is plenty: fares move on a
+carrier's schedule, not a market's tick. Inside the last two or three weeks before
+departure, movement gets faster and more one-directional, so tighten to a few times a
+day for those rules only. Do not poll everything hourly. You buy noise and quota, not
+sensitivity.
+
+**Fixed time beats random.** Run every route at the same time each day. Fares have
+time-of-day structure (inventory reloads, sale windows opening and closing), and a
+random schedule mixes that structure into your series as if it were price movement. A
+fixed slot does not remove the effect, it just holds it constant so a change in your
+numbers is a change in the fare. It also makes `observed_on` meaningful, and it makes a
+missing row obviously a missing row.
+
+**One sample a day is a very small sample.** Thirty days of daily polling is thirty
+numbers. A single missed run is 3% of your history gone. Alerts built on that need to
+be conservative in a way that alerts built on real history do not, and you should be
+explicit about that in your own head before your users find it.
+
+## Thresholds, honestly
+
+**Absolute or relative.** An absolute rule ("under $400") is what users ask for and it
+is easy to reason about, but it needs a number per route that someone has to know.
+Relative ("15% under the trailing median") generalizes across routes and inherits every
+weakness of your history. Most working systems use both: relative to find candidates,
+absolute as a floor so a cheap route cannot produce a stream of technically-true alerts
+nobody cares about.
+
+**Hysteresis.** One threshold produces a stream of alerts as the price wobbles across
+it. Use two: fire when the price crosses below `T_low`, and do not arm the rule again
+until it has gone back above a higher `T_reset`. The gap between them is what turns a
+noisy signal into an event.
+
+```python
+if state == "armed" and price <= T_LOW:
+    fire(price); state = "fired"
+elif state == "fired" and price >= T_RESET:   # T_RESET > T_LOW
+    state = "armed"
+```
+
+**A quiet period.** Even with hysteresis, cap it: at most one alert per rule per N
+hours. A market doing something genuinely strange should not be able to send fifty
+messages, and the failure mode where your poller retries in a loop should cost one
+notification, not fifty.
+
+## Delivery
+
+**Idempotency.** The send is the part that runs at the boundary of your system, so it is
+the part that gets retried after a timeout you cannot tell apart from a success. Derive
+a key from the alert, not from the attempt: `(rule_id, observed_on, price)` hashed is
+enough. Store it before you send, check it before you send, and use your provider's
+idempotency header where one exists. The user-visible cost of getting this wrong is
+duplicate messages, which reads as a broken product faster than a missed alert does.
+
+**A link that reopens the itinerary.** An alert that says "JFK to LHR dropped to $412"
+and stops has handed the user a search to redo by hand, on a fare that may not be there
+in ten minutes. Send them back to the exact itinerary. If your data source gives you a
+booking deep link, put it in the message. If it does not, reconstructing one is its own
+project, and reconstructed links break quietly.
+
+## The turn: you may not need your own history
+
+Everything above assumes the baseline is yours to build. It does not have to be.
+
+Every fare our API returns carries Google's own historical band for that route and those
+dates, `price_insights_low` and `price_insights_high`, plus Google's verdict on the
+current fare in `price_range_in_relation_to_other_periods`, one of `low`, `typical` or
+`high`. Those are Google's values, surfaced as-is. Nothing is modelled on our side.
+
+That deletes the cold start. The alert condition becomes a field comparison, correct on
+the first run, on a route you have never sampled:
+
+```python
+import os, requests
+
+r = requests.post(
+    "https://google-flights-live-api.p.rapidapi.com/api/google_flights/oneway/v1",
+    headers={
+        "Content-Type": "application/json",
+        "x-rapidapi-host": "google-flights-live-api.p.rapidapi.com",
+        "x-rapidapi-key": os.environ["RAPIDAPI_KEY"],
+    },
+    json={"from_airport": "JFK", "to_airport": "LHR",
+          "departure_date": "2026-10-15", "currency": "usd"},
+)
+
+if r.headers.get("X-Search-Status") == "degraded":
+    raise RuntimeError("search did not complete: do not alert, do not store")
+
+fares = r.json()
+if fares:
+    best = min(fares, key=lambda f: f["price_as_number"])
+    if best["price_range_in_relation_to_other_periods"] == "low":
+        notify(
+            price=best["price"],
+            band=(best["price_insights_low"], best["price_insights_high"]),
+            link=best["buy_link"],          # opens that exact itinerary
+        )
+```
+
+The `buy_link` on every result is the deep link the delivery section asked for, so the
+message can carry a working itinerary instead of a search to repeat. The `X-Search-Status`
+check is there because a failed search must never be stored as an observation or
+alerted on; the full taxonomy is in
+[handling empty flight search results](/guides/handle-empty-flight-search-results).
+
+Notice what the schema at the top of this page becomes. You still keep observations,
+because you still want a record of what you told users and when. But no part of the
+alert *decision* depends on how much history you have accumulated, which means route
+number one thousand works exactly as well as route number one on the day you add it.
+
+The same logic runs as a scheduled workflow with no code: a schedule trigger, the
+search, an IF on the verdict, a notification. That is
+[the flight API in n8n](/guides/flight-api-in-n8n) in four nodes, and
+[the same thing in Zapier](/integrations/zapier) with an HTTP Request action.
+
+## What you give up
+
+Being straight about it, because the trade is real.
+
+The band is **Google's**, for that route and those dates. It is not your users'
+behaviour, not your own booking data, and not tuned to your product's definition of a
+good deal. If your differentiator is a proprietary model of fare movement, this replaces
+the input to that model, not the model.
+
+The band and the verdict are **null on some routes**. Thin routes and dates far out are
+the usual cases. A null verdict means the fare is unjudged, and it must not be read as
+"not low." That is the branch where your own history comes back, on the subset of routes
+that need it, which is a much smaller problem than doing it for everything:
+
+```python
+verdict = best["price_range_in_relation_to_other_periods"]
+if verdict == "low":
+    fire()                    # Google's judgement, day one
+elif verdict is None:
+    fall_back_to_local_history(best)   # your own series, for this route only
+```
+
+And you are trusting a third party for the signal your product is built on. That is a
+real dependency. Price it in the same way you price the alternative, which is
+maintaining a fare history nobody else validates.
+
+## Related
+
+- [Price Insights API](/flights-api/price-insights): the band and verdict fields, with a captured run
+- [Handling empty flight search results](/guides/handle-empty-flight-search-results): storing a failed search as an observation is the worst bug in this design
+- [Flight API in n8n](/guides/flight-api-in-n8n): the same alert as a four-node workflow
+- [The best flight data APIs in 2026](/guides/best-flight-data-apis-2026): if you are still picking a source
+
+Plans and rate limits are on [/pricing](/pricing); a key comes from
+<a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">the RapidAPI listing</a>,
+free tier included.
+
+<CtaBand
+  medium="guide"
+  title="Alert on day one, not in week six"
+  body="Every fare comes back with Google's historical band and a low | typical | high verdict, so the alert condition is a field comparison instead of a database you have to fill first."
+/>

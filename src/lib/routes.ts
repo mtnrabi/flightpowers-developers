@@ -97,11 +97,30 @@ export function lastModified(file: string): Date {
 }
 
 /**
- * Crawl priority derived from depth, not hand-tuned per URL: the home page is 1.0,
- * a top-level hub 0.8, a child page 0.6.
+ * Pages that exist because they have to, not because we want them ranked.
+ * Depth alone put these at 0.8 while /compare/serpapi and
+ * /tools/cheapest-month-to-fly sat at 0.6, i.e. the legal boilerplate
+ * outranked the money pages. This is the inversion.
+ */
+const OBLIGATION_PAGES = new Set(['/terms', '/privacy', '/contact', '/changelog']);
+
+/**
+ * Families whose CHILDREN are the pages a buyer lands on. A child of one of
+ * these is worth more than a generic depth-2 page, and more than a legal page
+ * at any depth.
+ */
+const BUYER_FAMILIES = ['/compare', '/tools', '/flights-api', '/hotels-api', '/use-cases', '/guides'];
+
+/**
+ * Crawl priority, derived from what the page is for rather than from depth
+ * alone: the home page 1.0, a top-level hub 0.8, a child of a buyer-facing
+ * family 0.7, any other child 0.6, and the obligation pages 0.3.
  */
 export function priorityFor(pathname: string): number {
   if (pathname === '/') return 1;
+  if (OBLIGATION_PAGES.has(pathname)) return 0.3;
   const depth = pathname.split('/').filter(Boolean).length;
-  return depth <= 1 ? 0.8 : 0.6;
+  if (depth <= 1) return 0.8;
+  if (BUYER_FAMILIES.some((family) => pathname.startsWith(`${family}/`))) return 0.7;
+  return 0.6;
 }

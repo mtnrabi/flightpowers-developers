@@ -1,0 +1,225 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'The best travel data APIs in 2026: a category map',
+  description:
+    '"Travel data API" is four different products: price intelligence, booking and ticketing, reference data, and general-purpose scraping platforms. This map sorts them, with live-quoted prices and retrieval dates, so you shortlist inside the right category.',
+  alternates: { canonical: '/guides/best-travel-data-apis-2026' },
+});
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { FLIGHT_PLANS, HOTEL_PLANS, READ_ON, perThousand } from '@/lib/pricing';
+import { SITE } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'The best travel data APIs in 2026: a category map',
+    description:
+      'Price intelligence, booking and ticketing, reference data and scraping platforms, sorted by the question each one answers, with quoted and dated prices.',
+    url: `${SITE.url}/guides/best-travel-data-apis-2026`,
+    datePublished: '2026-09-02',
+    dateModified: '2026-09-02',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# The best travel data APIs in 2026: a category map
+
+Most shortlists for "travel data API" go wrong before the first vendor call, because
+the phrase covers four products that do not substitute for each other. A price
+scraper cannot issue a ticket. A booking platform is a poor way to fill a chart. An
+airport database will never tell you what a seat costs today.
+
+So this page is a map, not a ranking. Four categories, the question each one answers,
+the question it will not answer, and named options I checked live on **2026-09-02**
+with the URL next to the number. Where a page publishes no price, that is what I say.
+
+Disclosure up front: **I sell in category one.** I run FlightPowers, which is a price
+intelligence API for flights and hotels. I do not sell in the other three, and the
+booking-side section below says plainly that we cannot do what those vendors do.
+
+## The four categories
+
+| Category | The question it answers | Where the detail lives |
+|---|---|---|
+| 1. Price intelligence | What does this cost right now, and is that good? | [Flights](/guides/best-flight-data-apis-2026) · [Hotels](/guides/best-hotel-data-apis-2026) |
+| 2. Booking and ticketing | Can I sell this seat or hold this room? | [/compare/duffel](/compare/duffel) · [/compare/amadeus](/compare/amadeus) |
+| 3. Reference and static data | What is this airport, airline, route or schedule? | Section 3 below |
+| 4. Scraping platforms | Can I read a travel site alongside twenty others? | [/compare/serpapi](/compare/serpapi) |
+
+## 1. Price intelligence, also called shopping
+
+**Answers:** what a fare or a room costs right now, across dates and routes, and
+whether the number is high or low against its own history.
+
+**Will not answer:** whether that price is still there in ten minutes, whether the
+seat is held for you, or what the passenger name record says. Nothing in this
+category creates an order.
+
+I am not going to rank vendors here, because that is what the two dedicated pages are
+for. **For flights in depth, read
+[the best flight data APIs in 2026](/guides/best-flight-data-apis-2026).** **For
+hotels in depth, read
+[the best hotel data APIs in 2026](/guides/best-hotel-data-apis-2026).** Both open by
+disclosing that I sell one of the entries, quote every competitor from their own live
+page, and name where a competitor beats me.
+
+The two named options, so this section is not empty:
+
+- **FlightPowers, mine.** From the live listings on {READ_ON}: flights from{' '}
+  ${FLIGHT_PLANS[1].priceMonthly} a month for{' '}
+  {FLIGHT_PLANS[1].quota.toLocaleString('en-US')} requests
+  ({perThousand(FLIGHT_PLANS[1])} per 1,000) up to{' '}
+  ${FLIGHT_PLANS[3].priceMonthly} for{' '}
+  {FLIGHT_PLANS[3].quota.toLocaleString('en-US')}; hotels from{' '}
+  ${HOTEL_PLANS[1].priceMonthly} for{' '}
+  {HOTEL_PLANS[1].quota.toLocaleString('en-US')} up to{' '}
+  ${HOTEL_PLANS[3].priceMonthly} for{' '}
+  {HOTEL_PLANS[3].quota.toLocaleString('en-US')}. Vendor speaking.
+- **Makcorps**, for the cross-OTA version of the hotel question. From makcorps.com,
+  read 2026-09-02: "200+ OTAs tracked", a demo of "30 Free API calls", and plans at
+  "$350 Per Month" for 10k requests and "$500 Per Month" for 50k.
+
+**You are in the wrong category if** your sentence contains the word "book", "issue",
+"confirm" or "refund". Go to category two.
+
+## 2. Booking and ticketing
+
+**Answers:** can I create an order, hold inventory, take the payment and issue the
+ticket or the reservation inside my own product.
+
+**Will not answer:** anything cheap at scale about prices you never intend to sell.
+These platforms are priced around the transaction, so a research or monitoring
+workload is the wrong shape for them.
+
+**We do not do this. Not on flights, not on hotels.** No FlightPowers endpoint books
+anything, and if the transaction happens inside your product, no amount of price data
+substitutes for the vendors below.
+
+**Duffel.** From duffel.com/pricing, read 2026-09-02: "$3.00 per order" charged
+monthly on every confirmed order, with a "1500:1 search to book ratio" allowance and
+"$0.005 per excess search" beyond it. Their Stays product is described as a profit
+share on every completed stay, with the rate set by contacting their sales team, so
+there is no public per-unit number for stays on that page. For a seller that
+converts, the search allowance means search is close to free. For a workload with no
+orders the allowance is zero and every search is $0.005. Full comparison at
+[/compare/duffel](/compare/duffel).
+
+**Booking.com Demand API.** From developers.booking.com/demand, read 2026-09-02: the
+page asks "Are you a Managed Affiliate Partner? If so, this is for you!" and lists
+stays, car rentals and attractions, with flights and airport taxis described as
+coming soon. The overview page describes onboarding as obtaining an authentication
+token. **No price appears on either page I read**, and I did not find published
+sign-up terms on them, which is a claim about those two pages and not about the
+partner programme.
+
+**Amadeus, observed state on 2026-09-02.** The Self-Service category and pricing URLs
+both 301-redirect to `developers.amadeus.com/`, the sandbox host
+`test.api.amadeus.com` did not resolve in DNS, and the developer homepage returned a
+JavaScript shell with no readable product text to the fetcher I used. That is what I
+checked and what it returned. It is not a claim that Amadeus has no hotel or flight
+product; Enterprise access generally runs through an account manager and
+accreditation. If you are migrating off Self-Service, the mapping is at
+[/compare/amadeus](/compare/amadeus).
+
+**You are in the wrong category if** you never take money for the trip. A fare alert,
+a rate-parity dashboard and a chatbot that suggests trips are all category one, and
+paying per order for them makes no sense.
+
+## 3. Reference and static data
+
+**Answers:** what is this airport code, which airline is this, what routes exist,
+what is the published schedule, what aircraft is it, where is the plane now.
+
+**Will not answer:** what any of it costs. Reference data is about the world, not
+the market. This is the category people land in by accident when they search for
+"flight API" and end up with a schedule feed when they wanted a fare.
+
+**aviationstack.** From aviationstack.com/product, read 2026-09-02: real-time flights
+with delays described as "as little as 30-60 seconds", historical flights covering
+the last 3 months, flight schedules, future flights, airline routes and autocomplete.
+Coverage stated as "10,000+ Airports", "19,000+ Airplanes", "300+ Airplane Types",
+"13,000+ Airlines", "9,000+ Cities", "250+ Countries" and "500+ Aviation Taxes".
+Plans on that page: Free at $0 for 100 requests a month, Basic $49.99 for 10,000,
+Professional $149.99 for 50,000, Business $499.99 for 250,000, Enterprise custom.
+
+**FlightAware AeroAPI.** From flightaware.com/commercial/aeroapi, read 2026-09-02:
+a Personal tier of up to $5 free per month at 10 result sets per minute, Standard at
+"$100/month" minimum plus per-query fees at 5 result sets per second, and Premium at
+"$1,000/month" minimum plus per-query fees at 100 result sets per second. Billing is
+usage-based per result set, which their page defines as 15 records. Standard adds
+historical data, flight alerting, airport information and routes.
+
+Note what neither of them sells: a price. Schedules and positions are a different
+product from fares, and mixing them up is the most common shortlist error I see.
+
+**You are in the wrong category if** your feature has a currency symbol in the
+mockup.
+
+## 4. General-purpose scraping platforms
+
+**Answers:** can I read travel sites as one of many sources, on shared infrastructure
+and one bill, without running proxies myself.
+
+**Will not answer:** anything travel-specific that the underlying site does not
+already show. These platforms are horizontal, so travel is one engine among dozens
+and the travel-shaped conveniences are yours to build.
+
+**SerpApi.** A Google scraping platform where flights and hotels are two engines
+among several dozen on one credit pool. Their pricing page, read 2026-09-02, states
+"Only successful searches are counted toward your monthly searches. Cached, errored,
+and failed searches are not", and their Production tier and above carries what they
+describe as up to $2 million in coverage for scraping and parsing search engine data.
+The per-engine detail and the quoted head to head is at
+[/compare/serpapi](/compare/serpapi), and the vendor-by-vendor pricing sits in the
+two category-one guides rather than here.
+
+**Bright Data.** From brightdata.com/products/web-scraper/booking, read 2026-09-02:
+a free tier of "5K records per month", pay as you go at "$1.5/1K record", a Scale
+plan at "$499/month" including 384,000 records with more at "$1.3/1K", and custom
+enterprise pricing. Output as "JSON, NDJSON, JSON lines, CSV, and .gz files
+(compressed)" delivered to Amazon S3, Google Cloud Storage, Google PubSub, Microsoft
+Azure Storage, Snowflake or SFTP. The unit here is a record, not a request, which is
+the thing to hold on to when you compare it against anything in category one.
+
+**You are in the wrong category if** you need one travel answer inside a user
+request and you are about to build a job runner, a proxy pool and a parser to get it.
+
+## The decision, in one line
+
+Read your requirement out loud. The verb picks the category.
+
+- "**Show** a price." "**Compare** rates." "**Alert** when it drops." Category one.
+- "**Sell** a seat." "**Hold** a room." "**Issue** a ticket." "**Refund** an order."
+  Category two.
+- "**Look up** the airport." "**List** the routes." "**Track** the aircraft."
+  Category three.
+- "**Collect** pages from many sites into a warehouse." Category four.
+
+If two verbs appear in the same sentence, you have two vendors, and pretending
+otherwise is how a six-week integration turns into six months. The most common real
+pairing is category one for the shopping experience and category two for the
+transaction, because the vendor who sells you the booking rail is rarely the cheapest
+way to answer "is this a good price".
+
+## Related
+
+- [The best flight data APIs in 2026](/guides/best-flight-data-apis-2026)
+- [The best hotel data APIs in 2026](/guides/best-hotel-data-apis-2026)
+- [FlightPowers vs Duffel](/compare/duffel): data API against booking platform
+- [FlightPowers vs SerpApi](/compare/serpapi): the full quoted side by side
+- [Amadeus Self-Service alternatives](/guides/amadeus-self-service-alternatives)
+- [Build an AI travel agent](/guides/ai-travel-agent): what category one is for
+
+<CtaBand
+  medium="guide"
+  showBoth
+  title="If you landed in category one, start here"
+  body="Live Google Flights fares and Booking.com rates as JSON, with the context to judge them. Free tier on RapidAPI, no card to try."
+/>

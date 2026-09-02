@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { SITE } from '@/lib/site';
+import path from 'node:path';
 import { discoverRoutes, lastModified, priorityFor } from '@/lib/routes';
 import { matrixPairs } from '@/lib/matrix';
 
@@ -13,10 +14,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: priorityFor(pathname),
   }));
 
-  // Dynamic segments are enumerated explicitly from their datasets.
+  // Dynamic segments are enumerated explicitly from their datasets. These
+  // pages have no file of their own, so their lastmod is the dataset's own
+  // last commit date rather than a date typed in by hand.
+  const matrixLastModified = lastModified(path.join(process.cwd(), 'src', 'lib', 'matrix.ts'));
   const matrixRoutes = matrixPairs().map(({ agent, task }) => ({
     url: new URL(`/integrations/${agent.slug}/${task.slug}`, SITE.url).toString(),
-    lastModified: new Date('2026-08-26'),
+    lastModified: matrixLastModified,
     changeFrequency: 'monthly' as const,
     priority: 0.6,
   }));

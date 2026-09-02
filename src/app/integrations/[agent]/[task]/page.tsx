@@ -17,7 +17,7 @@ import {
 } from '@/components/ui';
 import { AGENTS, TASKS, connectSnippetFor, matrixPairs, type AgentDef, type TaskDef } from '@/lib/matrix';
 import { FLIGHT_PLANS, HOTEL_PLANS } from '@/lib/pricing';
-import { SITE, rapidApiPricingUrl } from '@/lib/site';
+import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 /**
  * The {agent} × {task} recipe matrix: ~42 statically generated pages, all
@@ -149,11 +149,61 @@ function callFraming(agent: AgentDef): { heading: string; lede: string; codeLabe
       codeLabel: 'the call the skill makes',
     };
   }
+  if (agent.connectKind === 'http-step') {
+    return {
+      heading: 'What goes in the request body',
+      lede: 'Paste this as the raw JSON body. Field names are the ones in the OpenAPI spec, so nothing here needs translating.',
+      codeLabel: 'request body',
+    };
+  }
+  if (agent.connectKind === 'rest') {
+    return {
+      heading: 'The request',
+      lede: 'One POST, flat JSON in, flat JSON out. Field names are the ones in the OpenAPI spec.',
+      codeLabel: 'request',
+    };
+  }
+  if (agent.connectKind === 'apify-actor') {
+    return {
+      heading: 'The actor input',
+      lede: 'Paste this into the actor\u2019s Input tab, or send it as the JSON body of a run. Field names come from the actor\u2019s own published input schema.',
+      codeLabel: 'actor input',
+    };
+  }
   return {
     heading: 'What the agent calls',
     lede: 'No glue code: the agent reads the tool schema, picks the tool, and fills these parameters from your prompt.',
     codeLabel: 'tool call',
   };
+}
+
+/** The call block: an MCP tool call, an HTTP request, or an Apify actor input. */
+function callCodeFor(agent: AgentDef, task: TaskDef): string {
+  if (agent.connectKind === 'apify-actor') {
+    const actor = task.apify.actor === 'flights' ? 'mtnrabi~google-flights-real-time-api' : 'mtnrabi~booking-real-time-api';
+    return `// actor: ${actor}\n${JSON.stringify(task.apify.input, null, 2)}`;
+  }
+  if (agent.connectKind === 'rest' || agent.connectKind === 'http-step') {
+    const host = agent.slug === 'rapidapi' ? rapidApiHostFor(task) : 'api.flightpowers.com';
+    const path = agent.slug === 'rapidapi' ? rapidApiPathFor(task) : task.rest.path;
+    return `POST https://${host}${path}\n\n${JSON.stringify(task.rest.body, null, 2)}`;
+  }
+  return `// ${task.tool}\n${JSON.stringify(task.toolCall, null, 2)}`;
+}
+
+/** The marketplace host and path, for the RapidAPI page only. */
+function rapidApiHostFor(task: TaskDef): string {
+  return task.api === 'flights' ? 'google-flights-live-api.p.rapidapi.com' : 'booking-live-api.p.rapidapi.com';
+}
+
+function rapidApiPathFor(task: TaskDef): string {
+  const map: Record<string, string> = {
+    '/v1/flights/oneway': '/api/google_flights/oneway/v1',
+    '/v1/flights/roundtrip': '/api/google_flights/roundtrip/v1',
+    '/v1/hotels/search': '/search',
+    '/v1/hotels/by-name': '/hotel_by_name',
+  };
+  return map[task.rest.path] ?? task.rest.path;
 }
 
 function faqFor(agent: AgentDef, task: TaskDef): Faq[] {
@@ -162,26 +212,49 @@ function faqFor(agent: AgentDef, task: TaskDef): Faq[] {
   const pro = plans.find((p) => p.name === 'PRO')!;
   const listing = task.api === 'flights' ? 'Google Flights Live API' : 'Booking.com Live API';
 
-  const billing =
-    agent.connectKind === 'n8n-node'
-      ? 'Yes. Your RapidAPI key lives in an n8n credential, the node sends it on every request, and usage meters against your own subscription on RapidAPI. There is no FlightPowers account and no second bill.'
-      : agent.connectKind === 'skill'
-        ? 'Yes. The skill uses your own RapidAPI key, so every call meters against your own subscription on RapidAPI. There is no FlightPowers account and no second bill.'
-        : `Yes. The MCP server is bring-your-own-key: ${agent.name} sends your RapidAPI key with each call and usage meters against your own subscription on RapidAPI. There is no FlightPowers account and no second bill.`;
-
-  const server =
-    agent.connectKind === 'n8n-node'
-      ? 'Only your n8n instance, cloud or self-hosted. The node calls the API directly from wherever n8n runs; there is nothing of ours to deploy.'
-      : agent.connectKind === 'skill'
-        ? `No. The skill runs inside ${agent.name} and calls the hosted API over the network. Nothing to deploy, nothing to keep warm.`
-        : `No. The MCP servers are hosted at flights.flightpowers.com and hotels.flightpowers.com: you add a URL to ${agent.name}, not a deployment.`;
-
-  let cost = `The ${listing}'s free tier is ${free.quota} requests/month with a hard cap: enough to verify your key works, not to evaluate. The PRO plan is $${pro.priceMonthly}/month for ${pro.quota.toLocaleString('en-US')} requests, and every plan includes every endpoint.`;
-  if (task.slug === 'fare-alert-cron') {
-    cost += ' A single daily check is about 30 requests a month: past the free tier’s 10, comfortably inside PRO.';
+  let billing: string;
+  let server: string;
+  switch (agent.connectKind) {
+    case 'n8n-node':
+      billing =
+        'Yes. Your RapidAPI key lives in an n8n credential, the node sends it on every request, and usage meters against your own subscription on RapidAPI. There is no FlightPowers account and no second bill.';
+      server = 'Only your n8n instance, cloud or self-hosted. The node calls the API directly from wherever n8n runs; there is nothing of ours to deploy.';
+      break;
+    case 'skill':
+      billing =
+        'Yes. The skill uses your own RapidAPI key, so every call meters against your own subscription on RapidAPI. There is no FlightPowers account and no second bill.';
+      server = `No. The skill runs inside ${agent.name} and calls the hosted API over the network. Nothing to deploy, nothing to keep warm.`;
+      break;
+    case 'http-step':
+      billing = `Yes. The key you put in the ${agent.name} step is your own RapidAPI key, and every run meters against your own subscription. ${agent.name} bills you separately for its own runs; the two bills never mix.`;
+      server = `No. ${agent.name} calls api.flightpowers.com over plain HTTPS. There is nothing to host, and no callback for us to reach.`;
+      break;
+    case 'rest':
+      billing =
+        'Yes. The key is the one RapidAPI issued you, and usage meters against that subscription whichever host you call. There is no FlightPowers account and no second bill.';
+      server = 'No. It is one HTTPS request from whatever already runs your code. The OpenAPI spec is at flightpowers.com/openapi.json if you want to generate a client.';
+      break;
+    case 'apify-actor':
+      billing =
+        'Not to RapidAPI. This path bills pay-per-event through your own Apify account, so an idle month costs nothing. The RapidAPI subscription and the Apify actor are two separate doors to the same data; you need one, not both.';
+      server = 'No. The actor runs on Apify\u2019s infrastructure, and runs, retries and result storage live in your Apify console alongside your other actors.';
+      break;
+    default:
+      billing = `Yes. The MCP server is bring-your-own-key: ${agent.name} sends your RapidAPI key with each call and usage meters against your own subscription on RapidAPI. There is no FlightPowers account and no second bill.`;
+      server = `No. The MCP servers are hosted at flights.flightpowers.com and hotels.flightpowers.com: you add a URL to ${agent.name}, not a deployment.`;
   }
-  if (task.slug === 'cheapest-date-scan') {
-    cost += ' Budget one request per date scanned: a 30-day sweep meters as 30 requests.';
+
+  let cost =
+    agent.connectKind === 'apify-actor'
+      ? 'On this path, whatever the actor\u2019s own event table charges for the events a run fires. There is no monthly plan and no minimum. The current rates are on the actor listing, which is the only place they are authoritative. If you would rather have a fixed monthly bill and synchronous HTTP, the RapidAPI plans are the other door: see /pricing.'
+      : `The ${listing}'s free tier is ${free.quota} requests/month with a hard cap: enough to verify your key works, not to evaluate. The PRO plan is $${pro.priceMonthly}/month for ${pro.quota.toLocaleString('en-US')} requests, and every plan includes every endpoint.`;
+  if (agent.connectKind !== 'apify-actor') {
+    if (task.slug === 'fare-alert-cron') {
+      cost += ' A single daily check is about 30 requests a month: past the free tier’s 10, comfortably inside PRO.';
+    }
+    if (task.slug === 'cheapest-date-scan') {
+      cost += ' Budget one request per date scanned: a 30-day sweep meters as 30 requests.';
+    }
   }
 
   return [
@@ -197,15 +270,31 @@ export default async function MatrixPage({ params }: { params: Promise<Params> }
   const { agent, task } = pair;
 
   const framing = callFraming(agent);
-  const callCode = `// ${task.tool}\n${JSON.stringify(task.toolCall, null, 2)}`;
+  const callCode = callCodeFor(agent, task);
+  const isHttpish = agent.connectKind === 'rest' || agent.connectKind === 'http-step';
+  const callNote = agent.connectKind === 'apify-actor' ? task.apify.note : isHttpish ? task.rest.note : undefined;
+  const heroCta =
+    agent.connectKind === 'apify-actor'
+      ? {
+          href: task.apify.actor === 'flights' ? LINKS.apifyFlightsConsole : LINKS.apifyHotelsConsole,
+          label: 'Try the actor on Apify →',
+          footnote: 'Pay-per-event on your own Apify account. No monthly plan.',
+        }
+      : {
+          href: rapidApiPricingUrl(task.api, 'integration'),
+          label: 'Get a key on RapidAPI →',
+          footnote: 'Free tier on RapidAPI. No card to try.',
+        };
   const otherAgents = AGENTS.filter((a) => a.slug !== agent.slug);
   const siblingTasks = TASKS.filter((t) => t.slug !== task.slug);
   const pageUrl = `${SITE.url}/integrations/${agent.slug}/${task.slug}`;
 
-  const promptLede =
-    agent.connectKind === 'n8n-node'
-      ? 'The job in plain words. In n8n you express it as the node configuration below instead of a prompt.'
-      : 'Verbatim: paste it, or anything shaped like it. The agent maps it to the call below.';
+  const speaksPrompts = agent.connectKind === 'mcp-config' || agent.connectKind === 'mcp-connector' || agent.connectKind === 'skill';
+  const promptLede = speaksPrompts
+    ? 'Verbatim: paste it, or anything shaped like it. The agent maps it to the call below.'
+    : `The job in plain words. In ${agent.name} you express it as the configuration below instead of a prompt.`;
+  const promptTitle = speaksPrompts ? 'The prompt' : 'The job';
+  const promptEyebrow = speaksPrompts ? 'Step 2 · Ask it' : 'Step 2 · The job';
 
   return (
     <>
@@ -240,14 +329,14 @@ export default async function MatrixPage({ params }: { params: Promise<Params> }
           </h1>
           <p className="lede mt-5 max-w-2xl">{task.description}</p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Cta href={rapidApiPricingUrl(task.api, 'integration')} external variant="primary">
-              Get a key on RapidAPI →
+            <Cta href={heroCta.href} external variant="primary">
+              {heroCta.label}
             </Cta>
             <Cta href={`/integrations/${agent.slug}`} variant="ghost">
               All {agent.name} recipes
             </Cta>
           </div>
-          <p className="mt-4 font-mono text-[12px] text-ink-500">Free tier on RapidAPI. No card to try.</p>
+          <p className="mt-4 font-mono text-[12px] text-ink-500">{heroCta.footnote}</p>
         </Container>
       </div>
 
@@ -264,19 +353,25 @@ export default async function MatrixPage({ params }: { params: Promise<Params> }
                 ? 'community node package name'
                 : agent.connectKind === 'skill'
                   ? 'install'
-                  : `connect · ${task.api} server`
+                  : agent.connectKind === 'apify-actor'
+                    ? `run the ${task.apify.actor} actor`
+                    : agent.connectKind === 'rest' || agent.connectKind === 'http-step'
+                      ? `connect · ${agent.name}`
+                      : `connect · ${task.api} server`
             }
           >
             {connectSnippetFor(agent, task.api)}
           </Code>
           <p className="mt-3 font-mono text-[12px] text-ink-500">
-            Bring your own RapidAPI key: every request is billed to your own subscription, never ours.
+            {agent.connectKind === 'apify-actor'
+              ? 'Billed per event on your own Apify account. No RapidAPI subscription needed for this path.'
+              : 'Bring your own RapidAPI key: every request is billed to your own subscription, never ours.'}
           </p>
         </div>
       </Section>
 
       <Section>
-        <SectionHead eyebrow="Step 2 · Ask it" title="The prompt" lede={promptLede} />
+        <SectionHead eyebrow={promptEyebrow} title={promptTitle} lede={promptLede} />
         <blockquote className="mt-8 max-w-3xl rounded-2xl border rule bg-ink-900/60 p-6 text-[16px] leading-relaxed text-ink-200">
           &ldquo;{task.prompt}&rdquo;
         </blockquote>
@@ -286,6 +381,7 @@ export default async function MatrixPage({ params }: { params: Promise<Params> }
         <SectionHead eyebrow="Step 3 · Under the hood" title={framing.heading} lede={framing.lede} />
         <div className="mt-8 max-w-3xl">
           <Code label={framing.codeLabel}>{callCode}</Code>
+          {callNote ? <p className="mt-4 text-[14px] text-ink-400 leading-relaxed">{callNote}</p> : null}
         </div>
       </Section>
 

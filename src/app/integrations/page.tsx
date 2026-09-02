@@ -5,6 +5,7 @@ import { CtaBand } from '@/components/bands';
 import { IntegrationGrid } from '@/components/IntegrationLogos';
 import { Container, Cta, FaqSection, JsonLd, Section, SectionHead, type Faq } from '@/components/ui';
 import { INTEGRATIONS } from '@/lib/integrations';
+import { RecipeMatrix } from './_recipes';
 import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const dynamic = 'force-static';
@@ -96,6 +97,8 @@ export default function IntegrationsPage() {
           </div>
         </div>
       </Section>
+
+      <RecipeMatrix />
 
       <Section>
         <FaqSection items={faq} />

@@ -9,7 +9,7 @@ import { APIFY, FLIGHT_PLANS, HOTEL_PLANS, READ_ON } from '@/lib/pricing';
 import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const metadata: Metadata = withOg({
-  title: 'Pricing: Google Flights & Booking.com API Plans - From $0 to $50/month | FlightPowers',
+  title: 'Pricing: Google Flights & Booking.com API Plans · From $0 to $50/month',
   description:
     'Transparent API pricing. Flights: $0, $10, $25, $50/month for 10 to 50,000 requests. Hotels: $0, $10, $20, $50/month for 10 to 25,000 requests. Free tier available with no credit card. Billed on RapidAPI. Compare $ per 1,000 requests. No feature gates.',
   alternates: { canonical: '/pricing' },

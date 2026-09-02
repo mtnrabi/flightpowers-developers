@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { CtaBand } from '@/components/bands';
 import { Breadcrumbs, Code, Container, Cta, FaqSection, JsonLd, Section, SectionHead, type Faq } from '@/components/ui';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
+import { AgentRecipes } from '../_recipes';
 
 export const dynamic = 'force-static';
 
@@ -134,6 +135,8 @@ Headers  x-api-key: YOUR_RAPIDAPI_KEY
           .
         </p>
       </Section>
+
+      <AgentRecipes slug="zapier" />
 
       <Section>
         <FaqSection items={faq} />

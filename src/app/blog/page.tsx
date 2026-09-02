@@ -30,20 +30,6 @@ const posts = [
       'How to scan a month of flight dates as a price grid using the Google Flights API: one request per date, fired in parallel, with rate limits sized for bursts. Free demo tool and full code included.',
   },
   {
-    slug: 'datacrawler-google-flights-alternative',
-    title: 'DataCrawler Google Flights API alternative: free tier vs unit price',
-    date: 'September 2026',
-    excerpt:
-      'Honest comparison of DataCrawler and FlightPowers Google Flights APIs on RapidAPI: which has the better free tier, which is cheaper per search at volume, and when to pick each one.',
-  },
-  {
-    slug: 'serpapi-google-flights-alternative',
-    title: 'SerpApi Google Flights alternative: specialist vs platform pricing',
-    date: 'September 2026',
-    excerpt:
-      'An honest comparison of SerpApi and FlightPowers for Google Flights data: when to pick the platform, when to pick the specialist, and what each does better.',
-  },
-  {
     slug: 'rebuilding-flightpowers-com',
     title: 'Rebuilding flightpowers.com',
     date: 'September 2026',

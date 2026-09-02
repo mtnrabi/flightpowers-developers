@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { CtaBand } from '@/components/bands';
 import { Breadcrumbs, Code, Container, Cta, FaqSection, JsonLd, Section, SectionHead, type Faq } from '@/components/ui';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
+import { AgentRecipes } from '../_recipes';
 
 export const dynamic = 'force-static';
 
@@ -131,6 +132,8 @@ Parse response  Yes`}</Code>
           <code className="font-mono text-[13px] text-signal-400">proxy_country</code> to watch its rate from another market.
         </p>
       </Section>
+
+      <AgentRecipes slug="make" />
 
       <Section>
         <FaqSection items={faq} />
