@@ -53,10 +53,17 @@ prompt into a multi-day scan.
 
 ## Setting up the MCP servers
 
-Open the Cline MCP settings file. In VS Code, click the Cline sidebar panel, then click
-the MCP Servers icon (stacked server icon in the top toolbar). Open the Configure tab
-and click Configure MCP Servers. This opens the `cline_mcp_settings.json` file in a new
-editor tab.
+### Option 1: Edit the config file directly
+
+Open the Cline MCP settings file at:
+
+- **macOS**: `~/Library/Application Support/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json`
+- **Windows**: `%APPDATA%\Code\User\globalStorage\saoudrizwan.claude-dev\settings\cline_mcp_settings.json`
+- **Linux**: `~/.config/Code/User/globalStorage/saoudrizwan.claude-dev/settings/cline_mcp_settings.json`
+
+Or open it from the Cline panel: click the MCP Servers icon (stacked server icon in the
+top toolbar), open the Configure tab, and click Configure MCP Servers. This opens the
+`cline_mcp_settings.json` file in a new editor tab.
 
 Add this block:
 
@@ -66,23 +73,44 @@ Add this block:
     "flights": {
       "type": "streamableHttp",
       "url": "https://flights.flightpowers.com/mcp",
-      "headers": { "x-rapidapi-key": "YOUR_RAPIDAPI_KEY" }
+      "headers": {
+        "x-rapidapi-key": "YOUR_RAPIDAPI_KEY"
+      },
+      "disabled": false,
+      "autoApprove": []
     },
     "hotels": {
       "type": "streamableHttp",
       "url": "https://hotels.flightpowers.com/mcp",
-      "headers": { "x-rapidapi-key": "YOUR_RAPIDAPI_KEY" }
+      "headers": {
+        "x-rapidapi-key": "YOUR_RAPIDAPI_KEY"
+      },
+      "disabled": false,
+      "autoApprove": []
     }
   }
 }
 ```
 
 Replace `YOUR_RAPIDAPI_KEY` with your actual key. Both servers share the same key once
-you subscribe to each listing on RapidAPI. The `type: "streamableHttp"` field tells
-Cline this is a remote HTTP server.
+you subscribe to each listing on RapidAPI. The `type: "streamableHttp"` field is
+required (omitting it defaults to legacy SSE transport).
 
-Save the file. Cline reloads the config automatically. The tools appear in the agent
-toolbox.
+Save the file, then reload the VS Code or Cursor window (Command Palette → Developer:
+Reload Window) or toggle the servers off and on in the Cline MCP Servers panel.
+
+### Option 2: Use the Remote Servers tab
+
+In the Cline panel, click the MCP Servers icon, then open the Remote Servers tab. Add
+each server:
+
+- **Server Name**: `flights`
+- **Server URL**: `https://flights.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY`
+- **Transport Type**: Streamable HTTP
+
+Repeat for the hotels server with `https://hotels.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY`.
+
+The tools appear in the agent toolbox once the servers are connected.
 
 ## The four tools
 
