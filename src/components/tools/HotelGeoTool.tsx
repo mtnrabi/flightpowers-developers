@@ -2,10 +2,11 @@
 
 import { useRef, useState } from 'react';
 import { ApiUpsellCard } from '@/components/ApiUpsellCard';
+import { EmailCapture } from '@/components/EmailCapture';
 import { HotelMarketSamplesTable, HotelRepeatSamplesTable } from '@/components/results';
 import { CapturedBadge } from '@/components/ui';
 import type { GeoRepeatRun, HotelByName } from '@/lib/fixtures';
-import { hotelGeoSnippets } from '@/lib/snippets';
+import { bothHosts, hotelGeoSnippets } from '@/lib/snippets';
 import { rapidApiPricingUrl } from '@/lib/site';
 import { track } from '@/lib/track';
 
@@ -217,19 +218,26 @@ export function HotelGeoTool({
 
       <ApiUpsellCard
         tool="hotel-geo"
-        snippets={hotelGeoSnippets({
-          hotel: query.hotel,
-          area: query.area,
-          checkin: query.checkin,
-          checkout: query.checkout,
-          countries: query.countries,
-          samples: SAMPLES_PER_MARKET,
-        })}
+        snippets={bothHosts((host) =>
+          hotelGeoSnippets(
+            {
+              hotel: query.hotel,
+              area: query.area,
+              checkin: query.checkin,
+              checkout: query.checkout,
+              countries: query.countries,
+              samples: SAMPLES_PER_MARKET,
+            },
+            host
+          )
+        )}
         pricingHref={rapidApiPricingUrl('hotels', 'tool')}
         docsHref="/hotels-api/geo-pricing"
         headline="Run this check from your own code"
         body="The same method as JSON: hold the property fixed, sample each market a few times, and compare the ranges. Schedule it and rate-parity monitoring is a cron job."
       />
+
+      <EmailCapture tool="hotel-geo" source="tool:hotel-geo" />
     </div>
   );
 }

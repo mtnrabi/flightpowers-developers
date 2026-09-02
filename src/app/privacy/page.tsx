@@ -6,7 +6,7 @@ import { Container } from '@/components/ui';
 export const metadata: Metadata = withOg({
   title: 'Privacy',
   description:
-    'Plain-language privacy notes for flightpowers.com: no cookies, no third-party trackers, no ad pixels. A first-party anonymous event beacon, transient demo processing, and API keys that are forwarded once and never stored.',
+    'Plain-language privacy notes for flightpowers.com: no cookies, no third-party trackers, no ad pixels. A first-party anonymous event beacon, transient demo processing, API keys that are forwarded once and never stored, and one opt-in email list you can leave in one click.',
   alternates: { canonical: '/privacy' },
 });
 
@@ -48,6 +48,25 @@ export default function PrivacyPage() {
         <p>
           The key checker on <Link href="/pricing">the pricing page</Link> forwards the key you paste once, to the live API,
           to see whether it authenticates. It is not stored, not logged, and not sent anywhere else.
+        </p>
+
+        <h2>The one thing we ask for: an email address</h2>
+        <p>
+          There is a single form on this site that asks for anything, and it asks for one field. If you give it an
+          address, that address is stored so we can send you an email when something ships that changes what you can
+          build: a new endpoint, a changed field, a deprecation, a price move. That is the whole purpose. It is not
+          shared, not sold, not passed to the marketplaces, and not used to build a profile of you.
+        </p>
+        <p>
+          Stored with it: where you signed up from (which tool or page), and when. No name, no company, no tracking
+          pixel in the mail. Every email carries an unsubscribe link, and{' '}
+          <Link href="/unsubscribe">the unsubscribe page</Link> works without one, straight from the address. Opting out
+          takes effect immediately and needs no reason.
+        </p>
+        <p>
+          Nothing on the site is withheld behind that form. The{' '}
+          <Link href="/docs/quickstart">quickstart</Link>, the docs and the free tools are open to everyone, with or
+          without an address.
         </p>
 
         <h2>Server logs</h2>

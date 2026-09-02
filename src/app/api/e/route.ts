@@ -8,6 +8,13 @@
  *   { e: "api_upsell_click", tool, action: copy_curl|copy_python|copy_node|get_key|docs, path }
  *   { e: "demo_run", tool, mode: live|cached|canned|capped, path }
  *   { e: "outbound", target, medium, path }
+ *   { e: "upsell_view", tool, path }                       -- card scrolled into view, once per mount
+ *   { e: "email_submit", tool, action: ok|created|error, path }
+
+ * Together those four are the whole capture funnel, in order:
+ *   demo_run -> upsell_view -> api_upsell_click -> email_submit.
+ * Nothing here identifies a person: no cookie, no id, and the address
+ * itself never reaches this endpoint.
  */
 
 import { NextResponse } from 'next/server';
@@ -15,7 +22,7 @@ import { NextResponse } from 'next/server';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-const ALLOWED = new Set(['api_upsell_click', 'demo_run', 'outbound', 'verify_key']);
+const ALLOWED = new Set(['api_upsell_click', 'upsell_view', 'demo_run', 'outbound', 'verify_key', 'email_submit']);
 
 export async function POST(req: Request) {
   try {

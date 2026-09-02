@@ -2,10 +2,11 @@
 
 import { useRef, useState } from 'react';
 import { ApiUpsellCard } from '@/components/ApiUpsellCard';
+import { EmailCapture } from '@/components/EmailCapture';
 import { FlightResults, SearchHeaderChips } from '@/components/results';
 import { CapturedBadge } from '@/components/ui';
 import type { OnewayFlight } from '@/lib/fixtures';
-import { onewaySnippets } from '@/lib/snippets';
+import { bothHosts, onewaySnippets } from '@/lib/snippets';
 import { rapidApiPricingUrl } from '@/lib/site';
 import { track } from '@/lib/track';
 
@@ -148,10 +149,12 @@ export function PriceCheckerTool({ captured }: { captured: { flights: OnewayFlig
 
       <ApiUpsellCard
         tool="price-checker"
-        snippets={onewaySnippets(showing ? showing.query : captured.query)}
+        snippets={bothHosts((host) => onewaySnippets(showing ? showing.query : captured.query, host))}
         pricingHref={rapidApiPricingUrl('flights', 'tool')}
         docsHref="/flights-api/price-insights"
       />
+
+      <EmailCapture tool="price-checker" source="tool:price-checker" />
     </div>
   );
 }

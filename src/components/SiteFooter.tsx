@@ -26,6 +26,7 @@ const columns: { heading: string; links: FooterLink[] }[] = [
     heading: 'APIs',
     links: [
       { href: '/docs', label: 'Docs hub' },
+      { href: '/docs/quickstart', label: 'Quickstart' },
       { href: '/flights-api', label: 'Flights API' },
       { href: '/flights-api/one-way', label: 'One-way search' },
       { href: '/flights-api/round-trip', label: 'Round-trip search' },
