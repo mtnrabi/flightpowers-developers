@@ -1,4 +1,5 @@
 import { withOg } from '@/lib/meta';
+import { ogImagePath } from '@/app/og/card';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
@@ -27,7 +28,7 @@ export default function CheapestMonthApiPost() {
           dateModified: '2026-09-01',
           author: { '@type': 'Person', name: 'Matan Rabi', url: `${SITE.url}/about` },
           publisher: { '@id': `${SITE.url}/#organization` },
-          image: `${SITE.url}/og?title=${encodeURIComponent('Cheapest month to fly API')}`,
+          image: `${SITE.url}${ogImagePath('Cheapest month to fly API')}`,
           url: `${SITE.url}/blog/cheapest-month-to-fly-api`,
           description:
             'How to scan a month of flight dates in parallel with the Google Flights API and turn it into a price grid.',
