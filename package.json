@@ -9,6 +9,7 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "check-pricing": "node scripts/check-pricing.mjs",
+    "check-capture": "node scripts/check-capture-guards.mjs",
     "predeploy": "npm run check-pricing && npm run build"
   },
   "dependencies": {

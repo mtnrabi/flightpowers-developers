@@ -45,6 +45,48 @@ export function sameOrigin(req: Request): boolean {
   return true;
 }
 
+/**
+ * The strict version, for routes that WRITE.
+ *
+ * `sameOrigin` above passes anything that omits `Sec-Fetch-Site`, on the
+ * reasoning that an older browser should still get the demo. For a write that
+ * is the wrong trade: curl, a scanner and a spam bot all omit that header too,
+ * so the permissive fallback is an open door. Verified against production on
+ * 2026-09-03 — `curl -X POST -d '{"email":"a@b.com"}' /api/subscribe` with no
+ * headers at all answered `{"ok":true,"created":true}` and inserted a row.
+ *
+ * Two signals, either of which is enough:
+ *  - `Sec-Fetch-Site: same-origin` (Chrome 76+, Firefox 90+, Safari 16.4+)
+ *  - an `Origin` whose host matches the host the request arrived on. Per the
+ *    Fetch spec a browser sends `Origin` on every POST, same-origin included,
+ *    so this covers the browsers that predate Sec-Fetch-Site.
+ *
+ * A real visitor sends both. A bare POST sends neither.
+ */
+export function fromOwnPages(req: Request): boolean {
+  const site = req.headers.get('sec-fetch-site');
+  if (site) return site === 'same-origin';
+
+  const origin = req.headers.get('origin');
+  if (!origin) return false;
+  try {
+    const originHost = new URL(origin).host;
+    const host = req.headers.get('host') ?? new URL(req.url).host;
+    return originHost === host;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Reject an oversized body before it is read. `req.json()` buffers whatever
+ * arrives; a junk POST should cost a header check, not a parse.
+ */
+export function oversized(req: Request, maxBytes: number): boolean {
+  const len = Number(req.headers.get('content-length') ?? '0');
+  return Number.isFinite(len) && len > maxBytes;
+}
+
 export type BudgetDecision =
   | { ok: true; charge: (actualCost?: number) => void }
   | { ok: false; status: 429 | 403; body: { error: string; message: string } };

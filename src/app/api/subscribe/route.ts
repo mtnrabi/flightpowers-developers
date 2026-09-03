@@ -5,7 +5,9 @@
  *  - return ok when nothing was saved. If storage is unavailable the caller
  *    gets a 503 and the form says so. We never claim a capture we did not make.
  *  - accept anything but an address, a source label and a path. No name, no
- *    company, no hidden fields, no cookies, no identifiers.
+ *    company, no cookies, no identifiers. There is exactly one hidden field,
+ *    the `company` honeypot, and it is never stored: a non-empty value is a
+ *    400 and the request ends there.
  *
  * The address is stored so we can send the API changelog described on the
  * form. Every row gets its unsubscribe token at insert, so the opt-out path
@@ -13,7 +15,7 @@
  */
 
 import { NextResponse } from 'next/server';
-import { clientIp, sameOrigin } from '@/lib/demo/budget';
+import { clientIp, fromOwnPages, oversized } from '@/lib/demo/budget';
 import { isConfigured, normalizeEmail, saveSubscriber } from '@/lib/subscribers';
 
 export const runtime = 'nodejs';
@@ -23,9 +25,19 @@ export const dynamic = 'force-dynamic';
 const attempts = new Map<string, { day: string; n: number }>();
 const PER_IP_DAILY = 8;
 
+/** An address, a source label, a path and four campaign tokens. Nothing here
+ *  is long, so anything bigger than this is not a sign-up. */
+const MAX_BODY_BYTES = 4096;
+
 export async function POST(req: Request) {
-  if (!sameOrigin(req)) {
+  // Cheapest checks first, in order of cost: two header reads, then the
+  // in-memory counter, then a parse, and only then the database. A junk POST
+  // should never reach Postgres.
+  if (!fromOwnPages(req)) {
     return NextResponse.json({ error: 'cross_origin' }, { status: 403 });
+  }
+  if (oversized(req, MAX_BODY_BYTES)) {
+    return NextResponse.json({ error: 'too_large' }, { status: 413 });
   }
 
   const day = new Date().toISOString().slice(0, 10);
@@ -50,6 +62,13 @@ export async function POST(req: Request) {
   try {
     body = (await req.json()) as Record<string, unknown>;
   } catch {
+    return NextResponse.json({ error: 'bad_request' }, { status: 400 });
+  }
+
+  // Honeypot. `company` is a hidden, off-screen, tab-skipped field that the
+  // real form always submits empty (see EmailCapture.tsx). A form-filling bot
+  // fills every input it finds; a person cannot reach this one.
+  if (String(body.company ?? '').length > 0) {
     return NextResponse.json({ error: 'bad_request' }, { status: 400 });
   }
 

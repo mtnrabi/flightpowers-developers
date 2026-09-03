@@ -9,13 +9,24 @@
  */
 
 import { NextResponse } from 'next/server';
+import { oversized } from '@/lib/demo/budget';
 import { isConfigured, normalizeEmail, unsubscribeByEmail, unsubscribeByToken } from '@/lib/subscribers';
 
 export const runtime = 'nodejs';
 export const maxDuration = 15;
 export const dynamic = 'force-dynamic';
 
+/** A token or an address. Same reasoning as the subscribe route. */
+const MAX_BODY_BYTES = 4096;
+
 export async function POST(req: Request) {
+  // No origin check here, deliberately: RFC 8058 one-click unsubscribe posts
+  // straight from a mail client and carries no Origin at all. The size guard
+  // costs one header read and is safe for that caller.
+  if (oversized(req, MAX_BODY_BYTES)) {
+    return NextResponse.json({ error: 'too_large' }, { status: 413 });
+  }
+
   let token = '';
   let email: string | null = null;
   try {
