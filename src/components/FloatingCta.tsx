@@ -45,6 +45,9 @@ export function FloatingCta() {
           href={href}
           rel="noopener"
           className="btn btn-primary mt-4 w-full text-sm"
+          // Already sends its own `outbound` beacon — opt out of
+          // OutboundTracker's delegated handler to avoid double-counting.
+          data-fp-skip-auto
           onClick={() => track({ e: 'outbound', target: 'rapidapi', medium: 'blog-floating' })}
         >
           Get a free key →
@@ -59,6 +62,9 @@ export function FloatingCta() {
           href={href}
           rel="noopener"
           className="btn btn-accent !px-4 !py-1.5 text-[13px] shrink-0"
+          // Already sends its own `outbound` beacon — opt out of
+          // OutboundTracker's delegated handler to avoid double-counting.
+          data-fp-skip-auto
           onClick={() => track({ e: 'outbound', target: 'rapidapi', medium: 'blog-floating' })}
         >
           Get a key

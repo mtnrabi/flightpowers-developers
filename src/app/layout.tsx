@@ -4,6 +4,7 @@ import { SITE } from '@/lib/site';
 import { SiteHeader } from '@/components/SiteHeader';
 import { SiteFooter } from '@/components/SiteFooter';
 import { SessionBeacon } from '@/components/SessionBeacon';
+import { OutboundTracker } from '@/components/OutboundTracker';
 import { JsonLd } from '@/components/ui';
 import './globals.css';
 
@@ -91,6 +92,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* One beacon per tab, carrying the campaign labels from the URL. It
             is the denominator for every funnel rate we report. */}
         <SessionBeacon />
+        {/* One delegated click/auxclick listener for every outbound link to
+            a marketplace/listing destination (RapidAPI, Apify, Smithery,
+            npm, our GitHub, our MCP hosts) — no per-page wiring needed. */}
+        <OutboundTracker />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-3 focus:left-3 focus:bg-signal-500 focus:text-ink-950 focus:px-3 focus:py-2 focus:rounded"
