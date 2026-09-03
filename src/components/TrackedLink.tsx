@@ -18,7 +18,16 @@ export function TrackedLink({
   children: ReactNode;
 }) {
   return (
-    <a href={href} rel="noopener" className={className} onClick={() => track({ e: 'outbound', target, medium })}>
+    <a
+      href={href}
+      rel="noopener"
+      className={className}
+      // Already sends its own `outbound` beacon (with a real `medium`, not
+      // `auto`) — opt out of OutboundTracker's delegated handler so the
+      // click is not recorded twice.
+      data-fp-skip-auto
+      onClick={() => track({ e: 'outbound', target, medium })}
+    >
       {children}
     </a>
   );
