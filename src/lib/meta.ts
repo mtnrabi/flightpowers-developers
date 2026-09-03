@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { ogImagePath } from '@/app/og/card';
 
 /**
  * Per-route share cards. Every page wraps its metadata in withOg() so the
@@ -15,7 +16,7 @@ export function withOg<T extends Metadata>(meta: T): T {
   const description = typeof meta.description === 'string' ? meta.description : undefined;
   const canonical =
     typeof meta.alternates?.canonical === 'string' ? meta.alternates.canonical : undefined;
-  const image = `/og?title=${encodeURIComponent(title)}`;
+  const image = ogImagePath(title);
   return {
     ...meta,
     openGraph: {

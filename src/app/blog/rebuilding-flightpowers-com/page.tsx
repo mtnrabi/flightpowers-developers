@@ -1,4 +1,5 @@
 import { withOg } from '@/lib/meta';
+import { ogImagePath } from '@/app/og/card';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
@@ -29,7 +30,7 @@ export default function RebuildingPost() {
           dateModified: '2026-08-27',
           author: { '@type': 'Person', name: 'Matan Rabi', url: `${SITE.url}/about` },
           publisher: { '@id': `${SITE.url}/#organization` },
-          image: `${SITE.url}/og?title=${encodeURIComponent('Rebuilding flightpowers.com')}`,
+          image: `${SITE.url}${ogImagePath('Rebuilding flightpowers.com')}`,
           url: `${SITE.url}/blog/rebuilding-flightpowers-com`,
           description:
             'Why the old FlightPowers site failed, what the new one does differently, and the honesty rules it commits to.',

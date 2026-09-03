@@ -35,7 +35,6 @@
  */
 
 import { NextResponse } from 'next/server';
-import { isConfigured, saveEvent } from '@/lib/events';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -81,8 +80,19 @@ export async function POST(req: Request) {
     console.log(`[fp-event] ${JSON.stringify(line)}`);
     // The durable copy. Awaited, because a serverless function can be frozen
     // the instant it responds and a detached promise would simply be lost.
-    // `saveEvent` never rejects and returns immediately when unconfigured.
-    if (isConfigured()) await saveEvent(line);
+    // `saveEvent` never rejects.
+    //
+    // The import is deferred on purpose. This is the highest-invocation route
+    // on the site — every tab fires a `session_start` — and it is the one route
+    // where cold-start CPU is the whole cost, since the work itself is a log
+    // line and one insert. `@/lib/events` pulls in `pg`, which is the biggest
+    // thing in this function's module graph, so a beacon that is dropped (an
+    // event outside the vocabulary, a malformed body) or a deployment with no
+    // DATABASE_URL now loads none of it.
+    if (process.env.DATABASE_URL) {
+      const { saveEvent } = await import('@/lib/events');
+      await saveEvent(line);
+    }
   } catch {
     // A beacon never errors loudly.
   }
