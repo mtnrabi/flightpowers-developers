@@ -33,6 +33,8 @@ export function EmailCapture({
   const [email, setEmail] = useState('');
   const [state, setState] = useState<'idle' | 'sending' | 'done' | 'error'>('idle');
   const [message, setMessage] = useState('');
+  /** Honeypot value. Stays empty unless something that is not a person fills it. */
+  const [hp, setHp] = useState('');
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -46,7 +48,14 @@ export function EmailCapture({
         // The campaign labels ride along so a signup can be traced back to
         // the post that produced it. Same first-touch values every event
         // carries; see src/lib/attribution.ts.
-        body: JSON.stringify({ email, source, path: window.location.pathname, ...getAttribution() }),
+        body: JSON.stringify({
+          email,
+          source,
+          path: window.location.pathname,
+          // Honeypot: always empty from a real form. See api/subscribe/route.ts.
+          company: hp,
+          ...getAttribution(),
+        }),
       });
       const data = (await res.json().catch(() => ({}))) as { message?: string };
       if (!res.ok) {
@@ -103,6 +112,19 @@ export function EmailCapture({
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@yourcompany.com"
           className="min-w-0 flex-1 rounded-xl border rule bg-ink-950 px-3.5 py-2.5 text-[15px] text-ink-100 placeholder:text-ink-600 focus:border-signal-600 focus:outline-none"
+        />
+        {/* Honeypot. Off-screen rather than display:none — a bot that skips
+            hidden inputs still fills this one. Never shown, never focusable,
+            never announced. */}
+        <input
+          type="text"
+          name="company"
+          value={hp}
+          onChange={(e) => setHp(e.target.value)}
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="absolute left-[-9999px] h-px w-px opacity-0"
         />
         <button type="submit" className="btn btn-accent shrink-0" disabled={state === 'sending'}>
           {state === 'sending' ? 'Adding…' : 'Add me'}
