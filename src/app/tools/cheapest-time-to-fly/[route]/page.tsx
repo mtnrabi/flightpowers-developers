@@ -5,7 +5,7 @@ import { CheapestTimeTool } from '@/components/tools/CheapestTimeTool';
 import { RouteCrossLinks, RouteFacts } from '@/components/tools/GridSections';
 import { Breadcrumbs, Container, Cta, FaqSection, JsonLd, Section, SectionHead, type Faq } from '@/components/ui';
 import { withOg } from '@/lib/meta';
-import { ROUTES, findRoute, isDomestic, routeArrow, type GridRoute } from '@/lib/grid';
+import { cheapestTimeToFlyTitle, findRoute, isDomestic, routeArrow, ROUTES, type GridRoute } from '@/lib/grid';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const dynamic = 'force-static';
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const r = findRoute(route);
   if (!r) return {};
   return withOg({
-    title: `Cheapest Month to Fly ${r.from.city} to ${r.to.city} (${routeArrow(r)})`,
+    title: cheapestTimeToFlyTitle(r),
     description: `Scan a year of ${r.from.iata} to ${r.to.iata} fares in one go: one real Google Flights search per coming month, charted side by side, each with Google's own low, typical or high verdict. Free, no signup, live rather than cached.`,
     alternates: { canonical: `/tools/cheapest-time-to-fly/${r.slug}` },
   });

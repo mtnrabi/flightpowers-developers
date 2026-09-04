@@ -15,7 +15,16 @@ import {
   SectionHead,
   type Faq,
 } from '@/components/ui';
-import { AGENTS, TASKS, connectSnippetFor, matrixPairs, type AgentDef, type TaskDef } from '@/lib/matrix';
+import {
+  AGENTS,
+  TASKS,
+  apiName,
+  connectSnippetFor,
+  matrixPairs,
+  matrixTitle,
+  type AgentDef,
+  type TaskDef,
+} from '@/lib/matrix';
 import { FLIGHT_PLANS, HOTEL_PLANS } from '@/lib/pricing';
 import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
@@ -41,16 +50,12 @@ function lookup(params: Params): { agent: AgentDef; task: TaskDef } | null {
   return { agent, task };
 }
 
-function apiName(task: TaskDef): string {
-  return task.api === 'flights' ? 'Google Flights' : 'Booking.com hotel';
-}
-
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const pair = lookup(await params);
   if (!pair) return {};
   const { agent, task } = pair;
   return withOg({
-    title: `${task.name} with ${agent.name}: live ${apiName(task)} data`,
+    title: matrixTitle(agent, task),
     description: `Connect ${agent.name} to live ${apiName(task)} data and run a ${task.name.toLowerCase()}: the exact config, the prompt, the call it makes, and the response fields your logic reads.`,
     alternates: { canonical: `/integrations/${agent.slug}/${task.slug}` },
   });

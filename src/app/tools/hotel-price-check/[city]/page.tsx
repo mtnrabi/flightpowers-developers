@@ -5,7 +5,7 @@ import { HotelSearchTool } from '@/components/tools/HotelSearchTool';
 import { CityCrossLinks, CityFacts } from '@/components/tools/GridSections';
 import { Breadcrumbs, Container, Cta, FaqSection, JsonLd, Section, SectionHead, type Faq } from '@/components/ui';
 import { withOg } from '@/lib/meta';
-import { CITIES, findCity, type GridCity } from '@/lib/grid';
+import { CITIES, findCity, hotelPriceCheckTitle, type GridCity } from '@/lib/grid';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const dynamic = 'force-static';
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const c = findCity(city);
   if (!c) return {};
   return withOg({
-    title: `Hotel Prices in ${c.name}, Live from Booking.com`,
+    title: hotelPriceCheckTitle(c),
     description: `See what hotels in ${c.name} are quoting right now for your dates: property names, the total for the stay, review scores and a link that opens the same room. One real search, free, no signup.`,
     alternates: { canonical: `/tools/hotel-price-check/${c.slug}` },
   });

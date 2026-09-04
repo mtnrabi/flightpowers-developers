@@ -1,4 +1,5 @@
 import { ImageResponse } from 'next/og';
+import { OG_CACHE_CONTROL } from './card-url';
 import { OG_ROBOT } from './og-robot';
 
 /**
@@ -27,31 +28,22 @@ import { OG_ROBOT } from './og-robot';
  *
  * The title is base64url so the segment is safe: real titles contain `/`
  * ("24/7"), `&`, `:` and non-ASCII punctuation, none of which survives a path
- * segment intact. Nobody reads these URLs; a crawler does.
+ * segment intact. Nobody reads these URLs; a crawler does. The naming half of
+ * that lives in ./card-url, which imports nothing, so the edge redirect and
+ * the build-time card list can use it without pulling `next/og` in.
+ *
+ * Steady state is now zero renders even on a fresh deployment: the route's
+ * `generateStaticParams` (./titles) enumerates every title the site links and
+ * renders all of them during the build.
  */
 
-export const DEFAULT_TITLE = 'Scan deals 24/7 with real-time flight and hotel data';
-
-/** The og:image path for a page title. The inverse of `titleFromCard`. */
-export function ogImagePath(title: string): string {
-  return `/og/${Buffer.from(title, 'utf8').toString('base64url')}.png`;
-}
-
-/** Read a title back out of a card segment. Returns null if it is not one. */
-export function titleFromCard(card: string): string | null {
-  const encoded = card.endsWith('.png') ? card.slice(0, -4) : card;
-  if (!/^[A-Za-z0-9_-]+$/.test(encoded)) return null;
-  try {
-    const title = Buffer.from(encoded, 'base64url').toString('utf8');
-    return title.length > 0 && !title.includes('�') ? title : null;
-  } catch {
-    return null;
-  }
-}
-
-/** One year, and the response never changes for a given path. */
-export const OG_CACHE_CONTROL =
-  'public, max-age=31536000, s-maxage=31536000, stale-while-revalidate=604800, immutable';
+export {
+  DEFAULT_TITLE,
+  OG_CACHE_CONTROL,
+  ogCard,
+  ogImagePath,
+  titleFromCard,
+} from './card-url';
 
 export function renderCard(raw: string): ImageResponse {
   // Strip "FlightPowers - " prefix if present (og:site_name already carries it)
