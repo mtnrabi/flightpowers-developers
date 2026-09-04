@@ -321,3 +321,41 @@ export function gridPaths(): string[] {
   const cityPaths = CITIES.map((c) => `/tools/hotel-price-check/${c.slug}`);
   return [...routePaths, ...cityPaths];
 }
+
+/**
+ * The page titles of the four grid families.
+ *
+ * They live here, next to the datasets they read, because two places need the
+ * same string: the page's own `generateMetadata`, and `/og/[card]`'s
+ * `generateStaticParams`, which prerenders one share card per title at build
+ * time. A title typed out twice would drift, and a drifted title is a card
+ * that renders on a visitor's request instead of during the build — which is
+ * the entire cost this indirection exists to avoid.
+ */
+export function cheapestTimeToFlyTitle(r: GridRoute): string {
+  return `Cheapest Month to Fly ${r.from.city} to ${r.to.city} (${routeArrow(r)})`;
+}
+
+export function flightPriceCheckerTitle(r: GridRoute): string {
+  return `${r.from.city} to ${r.to.city} Flight Price Check (${routeArrow(r)})`;
+}
+
+export function roundTripPlannerTitle(r: GridRoute): string {
+  return `Round-Trip ${r.from.city} to ${r.to.city} Prices (${routeArrow(r)})`;
+}
+
+export function hotelPriceCheckTitle(c: GridCity): string {
+  return `Hotel Prices in ${c.name}, Live from Booking.com`;
+}
+
+/** Every title the grid puts on a page, for the share-card prerender. */
+export function gridTitles(): string[] {
+  return [
+    ...ROUTES.flatMap((r) => [
+      cheapestTimeToFlyTitle(r),
+      flightPriceCheckerTitle(r),
+      roundTripPlannerTitle(r),
+    ]),
+    ...CITIES.map(hotelPriceCheckTitle),
+  ];
+}

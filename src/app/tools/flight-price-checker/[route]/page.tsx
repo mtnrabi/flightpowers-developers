@@ -5,7 +5,7 @@ import { PriceCheckerTool } from '@/components/tools/PriceCheckerTool';
 import { RouteCrossLinks, RouteFacts } from '@/components/tools/GridSections';
 import { Breadcrumbs, Container, Cta, FaqSection, JsonLd, Section, SectionHead, type Faq } from '@/components/ui';
 import { withOg } from '@/lib/meta';
-import { ROUTES, findRoute, routeArrow, type GridRoute } from '@/lib/grid';
+import { findRoute, flightPriceCheckerTitle, routeArrow, ROUTES, type GridRoute } from '@/lib/grid';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const dynamic = 'force-static';
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const r = findRoute(route);
   if (!r) return {};
   return withOg({
-    title: `${r.from.city} to ${r.to.city} Flight Price Check (${routeArrow(r)})`,
+    title: flightPriceCheckerTitle(r),
     description: `Check a live ${r.from.iata} to ${r.to.iata} fare for any date, with Google's own price band and its low, typical or high verdict on what you are looking at. One real search, free, no signup.`,
     alternates: { canonical: `/tools/flight-price-checker/${r.slug}` },
   });

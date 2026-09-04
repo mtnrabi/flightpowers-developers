@@ -82,13 +82,12 @@ export async function POST(req: Request) {
     // the instant it responds and a detached promise would simply be lost.
     // `saveEvent` never rejects.
     //
-    // The import is deferred on purpose. This is the highest-invocation route
-    // on the site — every tab fires a `session_start` — and it is the one route
-    // where cold-start CPU is the whole cost, since the work itself is a log
-    // line and one insert. `@/lib/events` pulls in `pg`, which is the biggest
-    // thing in this function's module graph, so a beacon that is dropped (an
-    // event outside the vocabulary, a malformed body) or a deployment with no
-    // DATABASE_URL now loads none of it.
+    // The import stays deferred so a dropped beacon (an event outside the
+    // vocabulary, a malformed body) loads no sink at all. It buys less than it
+    // used to: `DATABASE_URL` is set on production, so every VALID beacon
+    // loads the sink anyway — which is why the sink itself moved off `pg` and
+    // onto Neon's HTTP driver, one `fetch` with no pool and a much smaller
+    // module graph. See src/lib/events.ts.
     if (process.env.DATABASE_URL) {
       const { saveEvent } = await import('@/lib/events');
       await saveEvent(line);

@@ -1,5 +1,5 @@
 import 'server-only';
-import { Pool } from 'pg';
+import { neon } from '@neondatabase/serverless';
 
 /**
  * A durable sink for the `/api/e` beacon.
@@ -27,12 +27,32 @@ import { Pool } from 'pg';
  * function here swallows its errors and the route does not wait on the write
  * to answer. The `console.log` line is kept as well: it is free, and it is the
  * only thing that still works if `DATABASE_URL` is unset.
+ *
+ * WHY THE HTTP DRIVER AND NOT `pg`. This is the highest-invocation route on
+ * the site and, at about ten invocations an hour, essentially every one of
+ * them is a cold start — so the bill is module graph and connection setup, not
+ * the insert. `pg` is the biggest thing in this function's graph and opens a
+ * TCP connection and a TLS handshake to reach Neon; `@neondatabase/serverless`
+ * sends the same SQL as one `fetch` over Neon's HTTPS endpoint, with no pool
+ * to open, keep warm or leak. Measured on 2026-09-04, the first valid beacon
+ * on a container cost ~0.87 s of which the insert itself was a rounding error.
+ * The SQL below is byte-for-byte what `pg` sent.
+ *
+ * `subscribe`/`unsubscribe` still use `pg` (src/lib/subscribers.ts): they are
+ * human-rate routes where a cold start is invisible, and they are not worth
+ * touching to prove a point.
  */
 
 export const EVENTS_TABLE = 'fp_events';
 
-const SCHEMA = `
-create table if not exists ${EVENTS_TABLE} (
+/**
+ * The same DDL `pg` ran, one statement per array entry: Neon's HTTP endpoint
+ * takes a single statement per request, so a four-statement string that was
+ * legal over the wire protocol is not legal here. Also in db/0003_fp_events.sql;
+ * this is the belt to that migration's braces.
+ */
+const SCHEMA = [
+  `create table if not exists ${EVENTS_TABLE} (
   id      bigserial   primary key,
   t       timestamptz not null default now(),
   e       text        not null,
@@ -46,42 +66,42 @@ create table if not exists ${EVENTS_TABLE} (
   um      text,
   uc      text,
   ref     text
-);
-create index if not exists ${EVENTS_TABLE}_t_idx  on ${EVENTS_TABLE} (t);
-create index if not exists ${EVENTS_TABLE}_us_idx on ${EVENTS_TABLE} (us, t);
-create index if not exists ${EVENTS_TABLE}_e_idx  on ${EVENTS_TABLE} (e, t);
-`;
+)`,
+  `create index if not exists ${EVENTS_TABLE}_t_idx  on ${EVENTS_TABLE} (t)`,
+  `create index if not exists ${EVENTS_TABLE}_us_idx on ${EVENTS_TABLE} (us, t)`,
+  `create index if not exists ${EVENTS_TABLE}_e_idx  on ${EVENTS_TABLE} (e, t)`,
+];
 
-let pool: Pool | null = null;
+type Sql = ReturnType<typeof neon>;
+
+let client: Sql | null = null;
 let ensured: Promise<void> | null = null;
 
 export function isConfigured(): boolean {
   return Boolean(process.env.DATABASE_URL);
 }
 
-function getPool(): Pool {
+function getClient(): Sql {
   const url = process.env.DATABASE_URL;
   if (!url) throw new Error('DATABASE_URL is not set');
-  if (!pool) {
-    pool = new Pool({
-      connectionString: url,
-      max: 1,
-      idleTimeoutMillis: 10_000,
-      connectionTimeoutMillis: 4_000,
-    });
-  }
-  return pool;
+  if (!client) client = neon(url);
+  return client;
 }
 
+/**
+ * Once per cold start, never per request: the promise is held at module scope,
+ * so the second and later beacons on a warm container await an already
+ * resolved value and send one HTTP request instead of five.
+ */
 async function ensureTable(): Promise<void> {
   if (!ensured) {
-    ensured = getPool()
-      .query(SCHEMA)
-      .then(() => undefined)
-      .catch((err) => {
-        ensured = null; // let the next request retry
-        throw err;
-      });
+    const sql = getClient();
+    ensured = (async () => {
+      for (const statement of SCHEMA) await sql.query(statement);
+    })().catch((err) => {
+      ensured = null; // let the next request retry
+      throw err;
+    });
   }
   return ensured;
 }
@@ -111,7 +131,7 @@ export async function saveEvent(row: EventRow): Promise<void> {
   if (!isConfigured()) return;
   try {
     await ensureTable();
-    await getPool().query(
+    await getClient().query(
       `insert into ${EVENTS_TABLE} (e, tool, action, target, medium, mode, path, us, um, uc, ref)
        values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)`,
       [

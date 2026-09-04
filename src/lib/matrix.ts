@@ -485,3 +485,22 @@ export function matrixPairs(): { agent: AgentDef; task: TaskDef }[] {
   for (const agent of AGENTS) for (const task of TASKS) out.push({ agent, task });
   return out;
 }
+
+/** How a task's API is named in prose. */
+export function apiName(task: TaskDef): string {
+  return task.api === 'flights' ? 'Google Flights' : 'Booking.com hotel';
+}
+
+/**
+ * The page title for one {agent} × {task} pair. Shared with `/og/[card]`'s
+ * `generateStaticParams` for the same reason as the grid titles: the build
+ * prerenders one card per title, so the title must have exactly one author.
+ */
+export function matrixTitle(agent: AgentDef, task: TaskDef): string {
+  return `${task.name} with ${agent.name}: live ${apiName(task)} data`;
+}
+
+/** Every title the matrix puts on a page, for the share-card prerender. */
+export function matrixTitles(): string[] {
+  return matrixPairs().map(({ agent, task }) => matrixTitle(agent, task));
+}
