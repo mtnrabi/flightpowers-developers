@@ -342,7 +342,7 @@ export default function ToolsIndexPage() {
         <SectionHead
           eyebrow="Every route and city page"
           title={`${GRID_TOTAL} pages, one per question worth asking`}
-          lede="Each of these is one of the tools above, pre-filled and with the facts of that route or destination beside it. The routes are the city pairs in the published tables of the world's busiest air routes; the cities are the top 30 by international visitors. We build a page where there is a real question behind it, and nowhere else."
+          lede="Each of these is one of the tools above, pre-filled and with the facts of that route or destination beside it. The routes are the city pairs in the published tables of the world's busiest air routes, plus three New York to Europe routes we scan for fares ourselves; the cities are the top 30 by international visitors. We build a page where there is a real question behind it, and nowhere else."
         />
         {ROUTE_TOOLS.map((t) => (
           <div key={t.slug} className="mt-10">

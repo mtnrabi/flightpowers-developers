@@ -180,7 +180,7 @@ export default function FlightPriceCheckerPage() {
         <SectionHead
           eyebrow="Routes with their own page"
           title="Start from a route instead of an empty form"
-          lede="Each of these is this same tool, pre-filled, with the facts of that route beside it. The list is the city pairs in the published tables of the world's busiest air routes."
+          lede="Each of these is this same tool, pre-filled, with the facts of that route beside it. The list is the city pairs in the published tables of the world's busiest air routes, plus three New York to Europe routes we scan for fares ourselves."
         />
         <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {ROUTES.slice(0, 12).map((r) => (

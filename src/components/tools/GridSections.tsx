@@ -27,6 +27,7 @@ import {
 const SOURCE_LABEL: Record<GridRoute['source'], string> = {
   international: 'busiest international routes, 2025',
   seats: 'busiest routes by available seats, 2025',
+  'deal-scan': 'a route we scan for fares ourselves',
 };
 
 function Fact({ label, children }: { label: string; children: React.ReactNode }) {
@@ -82,7 +83,9 @@ export function RouteFacts({ route }: { route: GridRoute }) {
         <Fact label="Why this page exists">
           {SOURCE_LABEL[route.source]}
           <span className="block text-[13.5px] text-ink-400">
-            Rank {route.rank} in that published table. We build a page for a route people actually fly, and only for those.
+            {route.rank
+              ? `Rank ${route.rank} in that published table. We build a page for a route people actually fly, and only for those.`
+              : 'Not from a published ranking, and we are not claiming one. We already run this search ourselves, so the tool on this page answers.'}
           </span>
         </Fact>
       </div>
@@ -137,7 +140,7 @@ export function RouteCrossLinks({ route, currentTool }: { route: GridRoute; curr
           <SectionHead
             eyebrow="Routes next door"
             title={`Other pages through ${route.from.iata} and ${route.to.iata}`}
-            lede="Every one of these is in the same published ranking, and every one runs the same live search."
+            lede="Same live search, same API call, a different pair of airports."
           />
           <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {related.map((r) => (
