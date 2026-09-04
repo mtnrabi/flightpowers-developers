@@ -244,6 +244,15 @@ export default function RoundTripPage() {
               The same pair of windows for the return leg.
             </FieldRow>
           </div>
+          <p className="mt-4 text-[13.5px] text-ink-500">
+            There is no <code className="field">max_stops</code> field here: on the RapidAPI endpoints use{' '}
+            <code className="field">max_departure_stops</code> / <code className="field">max_return_stops</code>. (Calling
+            through{' '}
+            <Link href="/integrations/api" className="text-signal-400 underline underline-offset-4">
+              api.flightpowers.com
+            </Link>{' '}
+            instead, <code className="field">max_stops</code> is accepted there as a convenience alias for both.)
+          </p>
 
           <p className="mt-10 font-mono text-[11px] uppercase tracking-wider text-signal-500">Optional · shared</p>
           <div className="mt-2">

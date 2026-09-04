@@ -36,6 +36,17 @@ const CURL_HOTELS = `curl -X POST "https://api.flightpowers.com/v1/hotels/search
   -H "Content-Type: application/json" \\
   -d '{"destination":"Lisbon","checkin_date":"2026-10-09","checkout_date":"2026-10-12"}'`;
 
+/** Zapier's and Make's round-trip actions expose a single "Max Stops" input,
+ * not the two per-leg fields, so this alias exists to keep no-code callers
+ * working -- see api_proxy/src/aliases.py. */
+const CURL_MAX_STOPS = `curl -X POST "https://api.flightpowers.com/v1/flights/roundtrip" \\
+  -H "x-api-key: $RAPIDAPI_KEY" \\
+  -H "Content-Type: application/json" \\
+  -d '{"from_airport":"LAX","to_airport":"ORD","departure_date":"2026-11-10",
+       "return_date":"2026-11-15","max_stops":0}'
+# -> forwarded upstream as max_departure_stops: 0, max_return_stops: 0
+# -> response header: X-Field-Aliased: max_stops -> max_departure_stops, max_return_stops`;
+
 /** Verbatim 401 body from a keyless POST, captured 2026-08-26. */
 const MISSING_KEY_401 = `{
   "error": {
@@ -163,6 +174,25 @@ export default function RestApiIntegrationPage() {
           <a href={LINKS.openapi} rel="noopener" className="chip">
             openapi.json
           </a>
+        </div>
+      </Section>
+
+      <Section>
+        <SectionHead
+          eyebrow="Field aliases"
+          title="max_stops on a round trip"
+          lede="This host is the only place max_stops works on POST /v1/flights/roundtrip. It exists because Zapier's and Make's round-trip actions expose a single Max Stops input, not the two per-leg fields the search actually takes."
+        />
+        <div className="mt-8 max-w-3xl">
+          <FieldRow name="max_stops" type="int, both flight endpoints">
+            Convenience alias: sets <code className="field">max_departure_stops</code> and{' '}
+            <code className="field">max_return_stops</code> (round trip) or the outbound limit (one way). Explicit
+            per-leg fields always take precedence over the alias, and every rewrite is reported back in the{' '}
+            <code className="field">X-Field-Aliased</code> response header, including on an error response.
+          </FieldRow>
+          <div className="mt-6">
+            <Code label="round-trip · max_stops aliased to both legs">{CURL_MAX_STOPS}</Code>
+          </div>
         </div>
       </Section>
 
