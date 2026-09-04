@@ -53,8 +53,8 @@ const GUIDES = [
   },
   {
     href: '/guides/amadeus-self-service-alternatives',
-    title: 'Amadeus Self-Service Alternatives',
-    sub: 'Amadeus for Developers Self-Service is deprecated. For shopping: FlightPowers returns live Google Flights pricing with verdict. For booking: Duffel or Amadeus Enterprise. Honest comparison with migration path.',
+    title: 'Amadeus Self-Service alternatives, and the gate on each one',
+    sub: 'Both Amadeus Self-Service API hostnames have no DNS record, checked here on 2026-09-04. Every alternative a small team shortlists, with the access gate each one puts in front of you, quoted and dated, plus a real migration request and response.',
     tag: 'migration guide',
   },
   {

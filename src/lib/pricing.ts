@@ -1,5 +1,7 @@
 /**
- * Plan data parsed from the live RapidAPI listing payloads on 2026-08-26
+ * Plan data parsed from the live RapidAPI listing payloads. Re-verified
+ * against the live listings on 2026-09-04 by `npm run check-pricing`: no
+ * drift, so no figure below changed. Originally parsed 2026-08-26
  * (the `billingplan_` objects in the anonymous page HTML, filtered to
  * visibility === "PUBLIC" — the payload also contains private plans which
  * must NEVER render).
@@ -9,7 +11,7 @@
  * scripts/check-pricing.mjs re-parses the live listings and fails the build
  * loudly on drift or on any non-public plan reaching this file.
  */
-export const READ_ON = '2026-08-26';
+export const READ_ON = '2026-09-04';
 
 export type Plan = {
   name: string;

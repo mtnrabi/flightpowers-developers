@@ -5,6 +5,7 @@ import type { ReactNode } from 'react';
 import { CtaBand } from '@/components/bands';
 import {
   Breadcrumbs,
+  CapturedBadge,
   Code,
   Container,
   FaqSection,
@@ -26,6 +27,15 @@ export const dynamic = 'force-static';
 
 /** Observed Amadeus state below was retrieved 2026-08-24. Do not edit without re-verifying. */
 const RETRIEVED = '2026-08-24';
+/**
+ * Re-checked 2026-09-04 from our own machine. Both API hostnames have no A
+ * record at all, which is a stronger observation than the portal redirect.
+ * Do not edit without re-running the commands shown on the page.
+ */
+const RECHECKED = '2026-09-04';
+/** The live run pasted below. Re-capture and update BOTH if you touch it. */
+const CAPTURED = '2026-09-04';
+const CAPTURED_AT = '12:18 UTC on 2026-09-04';
 
 const faq: Faq[] = [
   {
@@ -125,7 +135,7 @@ export default function CompareAmadeusPage() {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 hero-glow" aria-hidden="true" />
         <Container className="relative pt-8 sm:pt-12 pb-14">
-          <p className="eyebrow">Comparison · observed state retrieved {RETRIEVED}</p>
+          <p className="eyebrow">Comparison · observed {RETRIEVED}, re-checked {RECHECKED}</p>
           <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold max-w-4xl">
             <span className="text-signal-500">Amadeus Self-Service</span> vs FlightPowers, and when to migrate
           </h1>
@@ -141,7 +151,7 @@ export default function CompareAmadeusPage() {
         <SectionHead
           eyebrow="The observable state"
           title="Check it yourself, don’t take our word"
-          lede={`We are not going to assert a shutdown date, because we could not find one on an Amadeus page. Here is what was observable on ${RETRIEVED}, with the commands.`}
+          lede={`We are not going to assert a shutdown date, because we could not find one on an Amadeus page. Here is what was observable on ${RETRIEVED} and still true when we re-ran every command on ${RECHECKED}.`}
         />
         <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <div>
@@ -161,10 +171,21 @@ curl -sS -o /dev/null -w "%{http_code} -> %{redirect_url}\\n" \\
 # 200`}</Code>
           </div>
           <div>
-            <p className="text-[14.5px] text-ink-300 mb-2 font-semibold">The Self-Service sandbox host no longer resolves.</p>
-            <Code label="curl">{`curl -sS -m 15 \\
+            <p className="text-[14.5px] text-ink-300 mb-2 font-semibold">
+              Neither API hostname has a DNS record. Re-checked {RECHECKED}.
+            </p>
+            <Code label="dns">{`getent hosts test.api.amadeus.com
+# (no output, no record)
+getent hosts api.amadeus.com
+# (no output, no record)
+
+curl -sS -m 15 \\
   https://test.api.amadeus.com/v1/security/oauth2/token
 # curl: (6) Could not resolve host: test.api.amadeus.com`}</Code>
+            <p className="mt-3 text-[13.5px] text-ink-400 leading-relaxed">
+              This is the part we trust most, because it is our own observation rather than a report. A missing A record is
+              not a paused account or an expired key. There is nothing at the address to authenticate against.
+            </p>
           </div>
           <div>
             <p className="text-[14.5px] text-ink-300 mb-2 font-semibold">Every Amadeus developer SDK repository is archived.</p>
@@ -286,6 +307,61 @@ adults=2&includedAirlineCodes=TG&max=3" \\
     "limit": 3
   }'`}</Code>
         </div>
+        <div className="mt-10">
+          <div className="flex flex-wrap items-baseline gap-3">
+            <h3 className="text-[16px] font-semibold text-ink-100">And this is what comes back</h3>
+            <CapturedBadge date={CAPTURED} />
+          </div>
+          <p className="mt-2 max-w-3xl text-[14.5px] text-ink-400 leading-relaxed">
+            A real one-way run, JFK to LHR on 2026-11-12, executed against {code('api.flightpowers.com')} at{' '}
+            {CAPTURED_AT} and pasted unedited. It took 8.4 seconds and returned five itineraries. Prices were live at
+            capture time and will have moved since, which is the point of the API.
+          </p>
+          <div className="mt-5 grid grid-cols-1 gap-6 lg:grid-cols-2">
+            <Code label="request">{`curl -X POST https://api.flightpowers.com/v1/flights/oneway \\
+  -H "x-api-key: $FLIGHTPOWERS_API_KEY" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "from_airport": "JFK",
+    "to_airport": "LHR",
+    "departure_date": "2026-11-12"
+  }'`}</Code>
+            <Code label="response · first of five results, plus the headers">{`x-search-status: ok
+x-search-results: 5
+x-search-attempts: 1
+x-search-combinations: 1
+
+{
+  "price_range_in_relation_to_other_periods": "high",
+  "price_insights_low": 170,
+  "price_insights_high": 285,
+  "from_airport": "New York (JFK)",
+  "to_airport": "London (LHR)",
+  "departure_date": "2026-11-12",
+  "price": "$295",
+  "price_as_number": 295,
+  "duration": "7 hr 10 min",
+  "duration_seconds": 25800,
+  "airline": "Virgin Atlantic | Air France, Delta, KLM",
+  "stops": 0,
+  "stops_info": [],
+  "departure_description": "8:00 AM on Thu, Nov 12",
+  "arrival_description": "8:10 PM on Thu, Nov 12",
+  "buy_link": "https://www.google.com/travel/flights?tfs=..."
+}`}</Code>
+          </div>
+          <p className="mt-4 max-w-3xl text-[14.5px] text-ink-400 leading-relaxed">
+            Read the first three fields together and you have something Amadeus never returned: $295 against a historical
+            band of $170 to $285, so Google calls it <strong className="text-ink-100">high</strong>. A fare-watch rule can
+            be written on that on day one, with no price history of your own. The band is {code('null')} when Google shows
+            none, so handle that case.{' '}
+            <Link href="/tools/flight-price-checker" className="text-signal-400 underline underline-offset-4">
+              Run the same query in the browser
+            </Link>{' '}
+            before you write any code.
+          </p>
+        </div>
+
         <div className="mt-10">
           <h3 className="text-[16px] font-semibold text-ink-100 mb-3">Parameter mapping</h3>
           <MapTable
@@ -436,10 +512,12 @@ hotelIds=MCLONGHM&adults=2&checkInDate=2026-09-10\\
         <SectionHead eyebrow="Keep going" title="Related pages" />
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            { href: '/guides/real-time-google-flights-data', label: 'The full API walkthrough', sub: 'Endpoints, fields, parallel scans' },
+            { href: '/guides/amadeus-self-service-alternatives', label: 'Every alternative, and its gate', sub: 'Kiwi, Skyscanner, Travelpayouts, Duffel, SerpApi' },
+            { href: '/tools/flight-price-checker', label: 'Flight Price Checker', sub: 'Run a live query with no key at all' },
+            { href: '/tools/cheapest-month-to-fly', label: 'Cheapest Month to Fly', sub: 'What a date scan looks like' },
             { href: '/compare/duffel', label: 'vs Duffel', sub: 'If you need to actually sell tickets' },
             { href: '/compare/serpapi', label: 'vs SerpApi', sub: 'Platform vs specialist' },
-            { href: '/guides/best-flight-data-apis-2026', label: 'Best flight data APIs 2026', sub: 'The full field, disclosed bias' },
+            { href: '/guides/real-time-google-flights-data', label: 'The full API walkthrough', sub: 'Endpoints, fields, parallel scans' },
           ].map((l) => (
             <Link key={l.href} href={l.href} className="rounded-2xl border rule bg-ink-900/50 p-5 hover:border-ink-500 transition-colors">
               <p className="text-[15px] font-semibold text-ink-100">{l.label}</p>
