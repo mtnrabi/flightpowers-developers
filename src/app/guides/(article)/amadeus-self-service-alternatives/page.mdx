@@ -49,7 +49,7 @@ import { SITE } from '@/lib/site';
         name: 'Which Amadeus alternatives can I sign up for today with no approval?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'FlightPowers and SerpApi are self-serve: you subscribe and the key is immediately usable, with no application form. Duffel gives you a sandbox key immediately but gates production access behind a verification step. Kiwi Tequila, Skyscanner Partners and Travelpayouts each require a person to approve you first, by invitation, audience review, or a monthly-visitor minimum.',
+          text: 'FlightPowers, SerpApi, SearchApi.io, Scrapingdog and Ignav are self-serve: you sign up and the key is immediately usable, with no application form. Duffel gives you a sandbox key immediately but gates production access behind a verification step. Kiwi Tequila, Skyscanner Partners and Travelpayouts each require a person to approve you first, by invitation, audience review, or a monthly-visitor minimum.',
         },
       },
       {
@@ -155,10 +155,12 @@ list underneath, with the URL.
 | **SearchApi.io** `google_flights` | Google Flights, one-way, round-trip and multi-city | **None.** "Sign up for 100 free requests. No credit card required." |
 | **Scrapingdog** Google Flights API | One-way, round-trip and multi-city, priced in credits | **None.** "Every account starts with 200 free credits and full access to all APIs, no credit card required." |
 | **FlightAPI.io** | Price tracking only, and they say so themselves | **None.** "Yes, you can just sign up and start testing it for free." 20 free calls |
-| **Duffel** | Real bookable flights and stays, with ticketing | **Sandbox is instant; live mode is not.** Email verification plus a Know Your Customer check before live tokens turn on. Separately, searching above 1,500 searches per order costs extra, which matters if you are monitoring rather than selling |
+| **Ignav** | Flight fares and booking links, one-way, round-trip and flexible search | **None.** "1,000 free requests. No credit card required", then usage billing at `$2 per 1,000 successful requests`, "No monthly minimums. No rate limits" |
+| **Duffel** | Real bookable flights and stays, with ticketing | **Sandbox is instant; live mode is not.** Email verification plus a Know Your Customer check before live tokens turn on. Separately, searching above 1,500 searches per order costs `$0.005` per excess search, which matters if you are monitoring rather than selling |
 | **Skyscanner Travel API** | Skyscanner's own flight content | **Application, reviewed case by case, two weeks.** Commercial use only, and their refusal list names "Businesses with low-traffic websites (minimum of 100K monthly active users)" |
 | **Travelpayouts** Aviasales Flight Search API | Live flight search | **50,000 confirmed monthly active users**, evidenced by screenshots, "and we do not make exceptions" |
 | **Kiwi.com Tequila** | Kiwi's flight search | **No registration route at all.** Every path lands on a magic-link login for existing accounts, with an email address for affiliate enquiries |
+| **Tripgic** | Aggregated flight, hotel, car and activity APIs across GDS, NDC and LCC | **A one-time activation fee before any key exists.** The cheapest plan that includes the Flight API is `$1,499`, the entry plan is `$500`, and the charge is "non-refundable once API credentials are provisioned" |
 | **Amadeus Enterprise** | The full GDS suite, booking and ticketing included | **Accreditation and a sales conversation.** IATA or ARC, or a consolidator |
 | **Amadeus Self-Service** | Nothing now | **Gone.** No DNS record on either API hostname, checked above |
 
@@ -189,9 +191,22 @@ IP and need a real browser to reproduce, which is noted where it applies.
   information for Know Your Customer (KYC) purposes", and "Once you've activated your
   account, live tokens will be enabled" (`duffel.com/guides/getting-started`). The search
   ratio is on `duffel.com/pricing`: "Excess Search is a fee that ensures you maintain a
-  healthy search-to-book ratio of no more than 1500 searches to one order." Both HTTP 200.
+  healthy search-to-book ratio of no more than 1500 searches to one order", with the
+  fee itself listed as "$0.005 per excess search." Both HTTP 200.
   To be fair to them, Duffel Stays is **not** sales-gated: `duffel.com/stays` says "Get
   instant access" and "Available from your first booking with no negotiation needed."
+- **Ignav**: `ignav.com/pricing` reads "1,000 requests free, then $2 per 1,000
+  successful requests. No monthly minimums. No rate limits", and "A request is a
+  one-way, round-trip, or flexible fare search, a booking link lookup, or an airport
+  search." The home page adds "1,000 free requests. No credit card required." HTTP 200.
+  They are the closest thing on this page to what I sell, they are self-serve the same
+  way, and they publish their own Amadeus migration guide, so leaving them out would
+  have made this table less useful.
+- **Tripgic**: `tripgic.com/pricing` reads "One-Time API Activation", "Pay once to
+  provision your API credentials, sandbox environment, and supplier connections", and
+  "The activation charge is non-refundable once API credentials are provisioned." The
+  $500 entry plan lists Car Rental and Activities; the Flight API starts at the $1,499
+  plan. HTTP 200.
 - **SerpApi**: plan cards on `serpapi.com/pricing` read "Free / $0 / month / 250 searches
   per month" and "Starter / $25 / month / 1,000 searches per month". HTTP 200. They
   publish monthly buckets, not a per-search price, so this page does not print one.
