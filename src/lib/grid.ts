@@ -10,6 +10,12 @@
  *    international routes (2025). Direction is the direction printed in the
  *    source table. Four rows of the international table are deliberately not
  *    generated (see REFUSED below).
+ *    Plus a third, smaller set with source `deal-scan`: New York to Europe
+ *    pairs that our own fare scans already cover, added 2026-09-04. These are
+ *    NOT in any published ranking and they carry no rank; the page says so in
+ *    those words. They exist because we run the search on them ourselves, and
+ *    a page whose tool we already point at a route is a page we can stand
+ *    behind. Nothing about their traffic is claimed anywhere.
  *  - CITIES: ranks 1 to 30, in order and with no exclusions, of the Euromonitor
  *    column on https://en.wikipedia.org/wiki/List_of_cities_by_international_visitors
  *    (retrieved 2026-09-02).
@@ -52,6 +58,7 @@ export const AIRPORTS: Record<string, Airport> = {
   BOM: { iata: 'BOM', name: "Chhatrapati Shivaji International Airport", city: "Mumbai", country: 'IN', countryName: "India", lat: 19.0887, lon: 72.8679, tz: 'Asia/Kolkata' },
   CAI: { iata: 'CAI', name: "Cairo International Airport", city: "Cairo", country: 'EG', countryName: "Egypt", lat: 30.1219, lon: 31.4056, tz: 'Africa/Cairo' },
   CAN: { iata: 'CAN', name: "Guangzhou Baiyun International Airport", city: "Guangzhou", country: 'CN', countryName: "China", lat: 23.3924, lon: 113.2990, tz: 'Asia/Shanghai' },
+  CDG: { iata: 'CDG', name: "Charles de Gaulle International Airport", city: "Paris", country: 'FR', countryName: "France", lat: 49.0128, lon: 2.5500, tz: 'Europe/Paris' },
   CGK: { iata: 'CGK', name: "Soekarno-Hatta International Airport", city: "Jakarta", country: 'ID', countryName: "Indonesia", lat: -6.1256, lon: 106.6560, tz: 'Asia/Jakarta' },
   CJU: { iata: 'CJU', name: "Jeju International Airport", city: "Jeju", country: 'KR', countryName: "South Korea", lat: 33.5113, lon: 126.4930, tz: 'Asia/Seoul' },
   CPT: { iata: 'CPT', name: "Cape Town International Airport", city: "Cape Town", country: 'ZA', countryName: "South Africa", lat: -33.9648, lon: 18.6017, tz: 'Africa/Johannesburg' },
@@ -62,6 +69,7 @@ export const AIRPORTS: Record<string, Airport> = {
   DFW: { iata: 'DFW', name: "Dallas Fort Worth International Airport", city: "Dallas Fort Worth", country: 'US', countryName: "United States", lat: 32.8968, lon: -97.0380, tz: 'America/Chicago' },
   DPS: { iata: 'DPS', name: "Ngurah Rai (Bali) International Airport", city: "Denpasar", country: 'ID', countryName: "Indonesia", lat: -8.7482, lon: 115.1670, tz: 'Asia/Makassar' },
   DXB: { iata: 'DXB', name: "Dubai International Airport", city: "Dubai", country: 'AE', countryName: "United Arab Emirates", lat: 25.2528, lon: 55.3644, tz: 'Asia/Dubai' },
+  FCO: { iata: 'FCO', name: "Leonardo da Vinci (Fiumicino) International Airport", city: "Rome", country: 'IT', countryName: "Italy", lat: 41.8045, lon: 12.2508, tz: 'Europe/Rome' },
   FUK: { iata: 'FUK', name: "Fukuoka Airport", city: "Fukuoka", country: 'JP', countryName: "Japan", lat: 33.5859, lon: 130.4510, tz: 'Asia/Tokyo' },
   GMP: { iata: 'GMP', name: "Gimpo International Airport", city: "Seoul", country: 'KR', countryName: "South Korea", lat: 37.5583, lon: 126.7910, tz: 'Asia/Seoul' },
   HAN: { iata: 'HAN', name: "Noi Bai International Airport", city: "Hanoi", country: 'VN', countryName: "Vietnam", lat: 21.2212, lon: 105.8070, tz: 'Asia/Bangkok' },
@@ -78,6 +86,7 @@ export const AIRPORTS: Record<string, Airport> = {
   KNO: { iata: 'KNO', name: "Polonia International Airport", city: "Medan", country: 'ID', countryName: "Indonesia", lat: 3.6378, lon: 98.8706, tz: 'Asia/Jakarta' },
   KUL: { iata: 'KUL', name: "Kuala Lumpur International Airport", city: "Kuala Lumpur", country: 'MY', countryName: "Malaysia", lat: 2.7456, lon: 101.7100, tz: 'Asia/Kuala_Lumpur' },
   LHR: { iata: 'LHR', name: "London Heathrow Airport", city: "London", country: 'GB', countryName: "United Kingdom", lat: 51.4706, lon: -0.4619, tz: 'Europe/London' },
+  LIS: { iata: 'LIS', name: "Lisbon Portela Airport", city: "Lisbon", country: 'PT', countryName: "Portugal", lat: 38.7813, lon: -9.1359, tz: 'Europe/Lisbon' },
   MCO: { iata: 'MCO', name: "Orlando International Airport", city: "Orlando", country: 'US', countryName: "United States", lat: 28.4294, lon: -81.3090, tz: 'America/New_York' },
   MDE: { iata: 'MDE', name: "Jose Maria Cordova International Airport", city: "Medellin", country: 'CO', countryName: "Colombia", lat: 6.1645, lon: -75.4231, tz: 'America/Bogota' },
   MEL: { iata: 'MEL', name: "Melbourne International Airport", city: "Melbourne", country: 'AU', countryName: "Australia", lat: -37.6733, lon: 144.8430, tz: 'Australia/Melbourne' },
@@ -100,8 +109,14 @@ export const AIRPORTS: Record<string, Airport> = {
   UPG: { iata: 'UPG', name: "Hasanuddin International Airport", city: "Makassar", country: 'ID', countryName: "Indonesia", lat: -5.0616, lon: 119.5540, tz: 'Asia/Makassar' },
 };
 
-/** Which published table a route came from. Printed on the page. */
-export type RouteSource = 'international' | 'seats';
+/**
+ * Where a route came from. Printed on the page.
+ *
+ * `international` and `seats` are the two published tables. `deal-scan` is our
+ * own list: routes we scan for fares ourselves, with no published ranking
+ * behind them and therefore no rank.
+ */
+export type RouteSource = 'international' | 'seats' | 'deal-scan';
 
 export type GridRoute = {
   /** URL segment, e.g. `lhr-jfk`. */
@@ -109,12 +124,13 @@ export type GridRoute = {
   from: Airport;
   to: Airport;
   source: RouteSource;
-  rank: number;
+  /** Rank in the published table. Absent for `deal-scan` routes, which have none. */
+  rank?: number;
   /** Great-circle distance in km, computed from the two coordinate pairs. */
   km: number;
 };
 
-const RAW_ROUTES: [string, string, RouteSource, number][] = [
+const RAW_ROUTES: [string, string, RouteSource, number?][] = [
   ['HKG', 'TPE', 'international', 1],
   ['CAI', 'JED', 'international', 2],
   ['KUL', 'SIN', 'international', 3],
@@ -162,6 +178,11 @@ const RAW_ROUTES: [string, string, RouteSource, number][] = [
   ['CTU', 'PEK', 'seats', 21],
   ['CJU', 'PUS', 'seats', 22],
   ['CGK', 'KNO', 'seats', 23],
+  // New York to Europe, from our own deal scans (2026-09-04). No published
+  // rank; see the header note and SOURCE_LABEL in GridSections.
+  ['JFK', 'FCO', 'deal-scan'],
+  ['JFK', 'CDG', 'deal-scan'],
+  ['JFK', 'LIS', 'deal-scan'],
 ];
 
 const EARTH_KM = 6371.0088;
