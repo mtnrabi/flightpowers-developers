@@ -49,7 +49,9 @@ you already have the verdict sitting next to it.
 
 ## The one call
 
-One POST. No extra endpoint, no second request, no flag to turn it on.
+One POST. No extra endpoint, no second request, no flag to turn it on. You'll need a key
+to run it: <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">get one on the
+RapidAPI listing</a>, free tier included.
 
 ```bash
 curl -X POST "https://google-flights-live-api.p.rapidapi.com/api/google_flights/oneway/v1" \
@@ -229,13 +231,6 @@ And you're depending on a third party for the signal your product leans on. That
 dependency, and it's worth pricing against the alternative, which is maintaining a fare
 history nobody else checks.
 
-## Related
-
-- [Price Insights API](/flights-api/price-insights): the same three fields as a product page, with a captured run and the band drawn
-- [How to build a flight price alert](/guides/build-a-flight-price-alert): schema, dedupe, thresholds and the cold-start problem in full
-- [Handling empty flight search results](/guides/handle-empty-flight-search-results): why you must not judge a fare from a failed search
-- [Flight Price Checker](/tools/flight-price-checker): the same call in the browser, on our key, no signup
-
 Plans and rate limits are on [/pricing](/pricing); a key comes from
 <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">the RapidAPI listing</a>,
 free tier included.
@@ -245,3 +240,10 @@ free tier included.
   title="Judge a fare on the first call, not in week six"
   body="Every one-way and round-trip search comes back with Google's own price band and a low | typical | high verdict, on every plan. No price history to build first."
 />
+
+## Related
+
+- [Price Insights API](/flights-api/price-insights): the same three fields as a product page, with a captured run and the band drawn
+- [How to build a flight price alert](/guides/build-a-flight-price-alert): schema, dedupe, thresholds and the cold-start problem in full
+- [Handling empty flight search results](/guides/handle-empty-flight-search-results): why you must not judge a fare from a failed search
+- [Flight Price Checker](/tools/flight-price-checker): the same call in the browser, on our key, no signup

@@ -38,7 +38,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Is there a free tier?',
-    a: 'Yes. BASIC is $0 on RapidAPI, no card, 10 requests per month with a hard cap. Enough to verify your key and see the response shape. Evaluate with the live demo above instead; it runs real requests on our key. If you want your own assistant to try it, the free ad-supported MCP server needs no key and no signup at all.',
+    a: 'Yes. BASIC is $0 on RapidAPI, no card, 10 requests per month with a hard cap. Enough to verify your key and see the response shape. The live demo above runs real requests on our key if you want a quick look first. If you want your own assistant to try it, the free ad-supported MCP server needs no key and no signup at all.',
   },
   {
     q: 'Do flights and hotels share one plan?',
@@ -75,7 +75,7 @@ function PlanMiniRows({ plans }: { plans: Plan[] }) {
 }
 
 export default function HomePage() {
-  const oneway = FIXTURES.onewayJfkCun;
+  const oneway = FIXTURES.onewayLaxSfoLow;
   const geo = FIXTURES.hotelGeoRixos;
 
   // First paint for the playground: captured runs, labelled as such.
@@ -318,7 +318,7 @@ export default function HomePage() {
                 Google Flights Live API: <strong className="text-ink-100">9.9/10 popularity</strong>, 100% service level, ~1.1s avg response · 
                 Booking Live API: <strong className="text-ink-100">9.6/10 popularity</strong>, 98% service level
               </p>
-              <p className="mt-1.5 font-mono text-[10px] text-ink-500">Live metrics from RapidAPI marketplace · Retrieved 2026-09-01</p>
+              <p className="mt-1.5 font-mono text-[10px] text-ink-500">RapidAPI marketplace metrics, captured 2026-09-01</p>
             </div>
           </div>
         </div>

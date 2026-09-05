@@ -19,6 +19,7 @@ import hotelGeoRepeatRome from './fixtures/hotel-geo-repeat-rome.json';
 import hotelSearchLisbon from './fixtures/hotel-search-lisbon.json';
 import dealHuntLgw from './fixtures/deal-hunt-lgw.json';
 import onewayJfkCun from './fixtures/oneway-jfk-cun.json';
+import onewayLaxSfoLow from './fixtures/oneway-lax-sfo-low.json';
 
 export type OnewayFlight = {
   price_range_in_relation_to_other_periods: 'low' | 'typical' | 'high' | null;
@@ -170,6 +171,7 @@ export const FIXTURES = {
   hotelGeoRepeatRome: hotelGeoRepeatRome as unknown as Fixture<GeoRepeatRun>,
   dealHuntLgw: dealHuntLgw as unknown as Fixture<DealHuntRow[]>,
   onewayJfkCun: onewayJfkCun as unknown as Fixture<OnewayFlight[]>,
+  onewayLaxSfoLow: onewayLaxSfoLow as unknown as Fixture<OnewayFlight[]>,
   hotelSearchLisbon: hotelSearchLisbon as unknown as Fixture<{
     destination: string;
     checkin_date: string;
