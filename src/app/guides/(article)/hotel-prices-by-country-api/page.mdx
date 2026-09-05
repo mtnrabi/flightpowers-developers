@@ -1,0 +1,116 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'Do hotel prices change by country? Checking it with proxy_country',
+  description:
+    'Booking.com can quote differently depending on where the visitor appears to be. A controlled run over three Rome properties and three markets, what the numbers actually showed, and why one call per country is not a measurement.',
+  alternates: { canonical: '/guides/hotel-prices-by-country-api' },
+});
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'Do hotel prices change by country? Checking it with proxy_country',
+    description:
+      'A repeat-sampled run across three markets and three properties, the method that makes the answer trustworthy, and the trap of measuring from a single call.',
+    url: `${SITE.url}/guides/hotel-prices-by-country-api`,
+    datePublished: '2026-09-05',
+    dateModified: '2026-09-05',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# Do hotel prices change by country?
+
+Sometimes. Less than the internet says, and not reliably enough to measure with one call.
+
+Booking.com can quote a different rate depending on where the visitor appears to be
+browsing from. Every endpoint here takes `proxy_country`, a two-letter lowercase code that
+routes the request through a residential proxy in that country, so you can price the same
+room as a resident of another market. Leave it out and the request goes through the global
+pool.
+
+## The request
+
+Same call as any other search, one extra field.
+
+```bash
+curl -X POST "https://booking-live-api.p.rapidapi.com/hotel_by_name" \
+  -H "Content-Type: application/json" \
+  -H "x-rapidapi-host: booking-live-api.p.rapidapi.com" \
+  -H "x-rapidapi-key: $RAPIDAPI_KEY" \
+  -d '{
+    "hotel_name": "Duplo Charme Boutique Hotel",
+    "checkin_date": "2026-11-18",
+    "checkout_date": "2026-11-21",
+    "adults": 2,
+    "currency": "EUR",
+    "proxy_country": "de"
+  }'
+```
+
+A key with `proxy_country` included on the free plan comes from
+<a href={rapidApiPricingUrl('hotels', 'guide')} rel="noopener">the RapidAPI listing</a>.
+Nothing is held back for the paid tiers.
+
+## What a controlled run showed
+
+Three Rome properties, three markets, three identical requests per market. Only
+`proxy_country` changed. Captured **2026-08-28**, totals for the stay in the same currency.
+
+| Property | `de` | `jp` | `us` |
+|---|---|---|---|
+| Favola Romana Guest House | 243, 243, 243 | 234, 234, 234 | 242, 258, 258 |
+| Suite della Pigna | 486, 486, 486 | 467, 467, 467 | 486, 523, 482 |
+| Suites 51 | 477, 477, 477 | 460, 460, 460 | 477, 512, 473 |
+
+Read the rows before the columns.
+
+Japan came back about 4% under Germany on all three properties, and it held across three
+repeat runs. That is a real gap, and it is modest.
+
+Now look at `us`. Three identical requests, seconds apart, returned 486, 523 and 482 on one
+property. That spread inside one market is larger than the gap between markets. If you had
+sampled `us` once and compared it to a single `de` call, you would have "found" a 7.6%
+difference that is mostly noise.
+
+## How to measure it honestly
+
+**Repeat every market.** One call per country is not a measurement, it is a draw from a
+distribution you have not looked at. Sample each market several times and record the spread
+next to the median.
+
+**Hold the property fixed.** Compare one named property to itself across markets. Comparing
+"the first result" between markets compares different hotels, because result ordering is not
+stable between identical runs.
+
+**Do not anchor on `us`.** It was the least stable market in this run. Pick a market that
+repeats cleanly as your baseline.
+
+**Say what you measured.** "Japan ran about 4% under Germany on these three properties, on
+this date, over three samples" is a claim you can defend. "Prices vary by up to 8% across
+countries" is not.
+
+`price_as_seen_from` is an input parameter on the keyed hotels MCP server, not a field in the
+REST response. Do not go looking for it in the JSON.
+
+<CtaBand
+  medium="guide"
+  title="Price the same room from another market"
+  body="proxy_country on every hotel endpoint, included on the free plan. One API instead of a residential proxy fleet you maintain."
+/>
+
+## Related
+
+- [Geo-Pricing API](/hotels-api/geo-pricing): the product page, with the captured runs
+- [How to monitor hotel rate parity](/guides/monitor-hotel-rate-parity): the scheduled version, for brand and channel monitoring
+- [Hotel prices by hotel name](/guides/hotel-prices-by-hotel-name-api): the lookup this builds on
+- [Hotel Price by Country](/tools/hotel-price-by-country): the three-market check in the browser, on our key

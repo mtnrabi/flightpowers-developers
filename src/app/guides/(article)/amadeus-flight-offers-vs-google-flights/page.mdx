@@ -1,0 +1,107 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'Amadeus flight offers or live Google Flights fares: which one for a price tracker',
+  description:
+    'A price tracker needs the number a traveller will actually pay, and something to judge it against. What Amadeus Flight Offers Search gives you, what the deprecated Self-Service tier means in practice as of 2026-09-05, and what an extraction API returns instead.',
+  alternates: { canonical: '/guides/amadeus-flight-offers-vs-google-flights' },
+});
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'Amadeus flight offers or live Google Flights fares: which one for a price tracker',
+    description:
+      'Which source fits a fare tracker, with the observed state of Amadeus Self-Service on 2026-09-05 and a captured extraction-API response.',
+    url: `${SITE.url}/guides/amadeus-flight-offers-vs-google-flights`,
+    datePublished: '2026-09-05',
+    dateModified: '2026-09-05',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# Amadeus flight offers, or live Google Flights fares?
+
+A price tracker has two jobs. Get the number a traveller would actually pay today, and
+decide whether that number is worth waking someone up for. Pick your source on those two
+jobs, not on which company is older.
+
+## The state of Amadeus Self-Service
+
+Anyone answering this question in 2024 would have said "start on the Amadeus Self-Service
+free tier". That advice has expired, and the check takes four commands.
+
+Re-run on **2026-09-05**: `test.api.amadeus.com` returns no DNS record, and neither does
+`api.amadeus.com`. `developers.amadeus.com/self-service` answers `301` to the portal root.
+The `amadeus4dev` GitHub org shows 20 of 20 repositories archived, and the developer-guides
+README still opens with "[DEPRECATED] ... The Amadeus for Developers Self-Service offer has
+been deprecated". Those are observations of the public internet on that date, and they are
+reproducible from a terminal in under a minute.
+
+The enterprise Amadeus relationship is a real thing and is not what this page is about.
+If you can sign that contract, Flight Offers Search gives you bookable, fare-ruled content
+with a path to issuing a ticket, and nothing here replaces that.
+
+## What a tracker actually needs
+
+**A price a person could pay.** Both kinds of source give you this, in different shapes.
+A GDS offer is a priced, ticketable itinerary. An extraction API returns what the traveller
+sees on the shopping page, which is what your user will compare your alert against when
+they click through.
+
+**Context for that price.** This is the part people build themselves and shouldn't. Google
+computes a usual range for a route and dates for its own UI and it ships in the response:
+
+```json
+{
+  "price_range_in_relation_to_other_periods": "typical",
+  "price_insights_low": 50,
+  "price_insights_high": 110,
+  "price": "$63",
+  "price_as_number": 63,
+  "airline": "Vueling | Iberia, British Airways",
+  "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTEtMTgiIAoDTEhSEgoyMDI2LTExLTE4GgNCQ04qAlZZMgQ3NjQzagUSA0xIUnIFEgNCQ05CAQFIAZgBAg&curr=usd"
+}
+```
+
+That is trimmed from a real LHR to BCN response run on 2026-09-04. The tracker knows on its
+first ever call that $63 is normal here, so it stays quiet. No history table, no cold start.
+
+**A link that survives the alert.** A cheap fare the user has to re-find by hand is usually
+gone by the time they find it. `buy_link` reopens that exact itinerary.
+
+## The honest trade
+
+You give up booking. An extraction API reads a shopping page, so it cannot issue a ticket,
+hold a PNR, or tell you a fare rule. If your product ends in a purchase you own, you need a
+booking platform underneath regardless of where the tracking prices come from.
+
+You also give up owning the signal. The band is Google's opinion about that route, not your
+users' behaviour and not your own booking data. If a proprietary fare model is your
+differentiator, this feeds the model rather than replacing it. And the band is not on every
+route, so you still need the null branch.
+
+There is no application form on this side, which is the practical difference for a small
+team. A key comes from <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">the
+RapidAPI listing</a> with a free plan, and it works on the next request.
+
+<CtaBand
+  medium="guide"
+  title="A tracker that has context on call one"
+  body="Live fares with Google's own price range and a low, typical or high verdict on every result. Free tier on RapidAPI, no application form."
+/>
+
+## Related
+
+- [FlightPowers vs Amadeus Self-Service](/compare/amadeus): the four commands, the parameter mapping, and what we do not replace
+- [Amadeus Self-Service alternatives](/guides/amadeus-self-service-alternatives): every alternative with the access gate it puts in front of you
+- [How to build a flight price alert](/guides/build-a-flight-price-alert): schema, dedupe, thresholds, and the cold-start problem
+- [Is this flight price good?](/guides/fare-verdict-in-one-call): the band and the verdict in detail

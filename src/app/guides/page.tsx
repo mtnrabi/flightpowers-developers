@@ -8,7 +8,7 @@ import { SITE } from '@/lib/site';
 export const metadata: Metadata = withOg({
   title: 'Guides: working code for flight & hotel data',
   description:
-    'How-to guides for live flight and hotel pricing: scraping Google Flights and Booking.com yourself with Playwright or Puppeteer, building a fare alert, getting real-time data and API keys, handling empty search results correctly, decoding Google Flights URLs, fare watches in n8n, and sourced comparisons of the 2026 flight, hotel and travel data API field.',
+    'How-to guides for live flight and hotel pricing: scraping Google Flights and Booking.com yourself with Playwright or Puppeteer, building a fare alert, getting real-time data and API keys, handling empty search results correctly, decoding Google Flights URLs, fare watches in n8n, hotel rates by name and by market, and sourced comparisons of the 2026 flight, hotel and travel data API field.',
   alternates: { canonical: '/guides' },
 });
 
@@ -164,6 +164,54 @@ const GUIDES = [
     title: 'Using the Google Flights MCP in Cline',
     sub: 'Connect live flight and hotel data to Cline with one block in cline_mcp_settings.json. Real-time flight & hotel prices from Google Flights & Booking.com while the agent codes.',
     tag: 'AI agents',
+  },
+  {
+    href: '/guides/google-flights-prices-python',
+    title: 'How to get Google Flights prices with Python',
+    sub: 'Twelve lines of requests, a real captured response, and the three price-insight fields that arrive with every fare. No browser pool, no tfs= encoding, and the limits stated up front.',
+    tag: 'start here',
+  },
+  {
+    href: '/guides/roundtrip-flight-prices-one-request',
+    title: 'How to get round-trip flight prices in one request',
+    sub: 'Two one-way searches do not add up to a round-trip fare. A paired-leg request, a captured BER to CDG itinerary, the field names that differ from one-way results, and how to read an empty response.',
+    tag: 'do it yourself',
+  },
+  {
+    href: '/guides/hotel-prices-by-hotel-name-api',
+    title: 'How to get hotel prices by hotel name',
+    sub: 'No property ID and no catalogue sync. POST the name a person would type plus two dates, and read matched_name to check what it resolved to before you trust the number.',
+    tag: 'hotels',
+  },
+  {
+    href: '/guides/hotel-room-rates-by-property',
+    title: 'How to get every room rate for one hotel',
+    sub: 'Resolve the name to a Booking.com ID once, cache it, then pull the full room list on every check. Two captured payloads and the caching rule that saves you a plan tier.',
+    tag: 'hotels',
+  },
+  {
+    href: '/guides/hotel-prices-by-country-api',
+    title: 'Do hotel prices change by country?',
+    sub: 'Sometimes, and less than you would think. A repeat-sampled run over three Rome properties and three markets, and why one call per country is not a measurement.',
+    tag: 'hotels',
+  },
+  {
+    href: '/guides/serpapi-google-flights-alternative',
+    title: 'A SerpApi google_flights alternative',
+    sub: 'What actually changes if you move a flight workload: the request shape, the paired round-trip, the price band. SerpApi plan figures quoted and dated, plus the cases where you should stay put.',
+    tag: 'comparison',
+  },
+  {
+    href: '/guides/amadeus-flight-offers-vs-google-flights',
+    title: 'Amadeus flight offers or live Google Flights fares?',
+    sub: 'Pick a source for a price tracker on two jobs: get the number a traveller would pay, and judge it. The observed state of Amadeus Self-Service, checked again on 2026-09-05.',
+    tag: 'comparison',
+  },
+  {
+    href: '/guides/skyscanner-api-alternatives',
+    title: 'Skyscanner API alternatives for indie developers',
+    sub: 'Their published refusal list names a 100K monthly active user minimum and a two-week review. What that rules out, and the alternatives with the access gate on each, quoted and dated.',
+    tag: 'comparison',
   },
   {
     href: '/guides/best-flight-data-apis-2026',

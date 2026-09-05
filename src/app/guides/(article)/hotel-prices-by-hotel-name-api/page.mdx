@@ -1,0 +1,129 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'How to get hotel prices by hotel name with an API',
+  description:
+    'No property ID, no catalogue sync. POST the name a human would type plus two dates and get a live Booking.com rate back, with matched_name so you can check what it resolved to. A real captured response, and the failure modes worth handling.',
+  alternates: { canonical: '/guides/hotel-prices-by-hotel-name-api' },
+});
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'How to get hotel prices by hotel name with an API',
+    description:
+      'A name-first hotel rate lookup with a real captured response, the matched_name check, and the failure modes.',
+    url: `${SITE.url}/guides/hotel-prices-by-hotel-name-api`,
+    datePublished: '2026-09-05',
+    dateModified: '2026-09-05',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# How to get hotel prices by hotel name
+
+Most hotel APIs want an ID. So the first thing you build is not the feature, it is a
+mapping layer: a property catalogue, a sync job to keep it fresh, and a fuzzy matcher for
+the day someone types "the Hilton by the airport". That is a week of work standing between
+you and one price.
+
+You can skip it. The lookup takes the name.
+
+## The request
+
+```bash
+curl -X POST "https://booking-live-api.p.rapidapi.com/hotel_by_name" \
+  -H "Content-Type: application/json" \
+  -H "x-rapidapi-host: booking-live-api.p.rapidapi.com" \
+  -H "x-rapidapi-key: $RAPIDAPI_KEY" \
+  -d '{
+    "hotel_name": "Duplo Charme Boutique Hotel",
+    "checkin_date": "2026-11-18",
+    "checkout_date": "2026-11-21",
+    "adults": 2,
+    "currency": "EUR"
+  }'
+```
+
+Required: `hotel_name`, `checkin_date`, `checkout_date`. Optional: `adults`, `children`,
+`currency`, `proxy_country`, `free_cancellation`, and `area` when the name is generic. With
+`area` set, the search runs as "name, area" while the name matching still uses only the
+name you gave.
+
+Two things that bite on the first attempt. The endpoint is POST only, so a GET returns 405.
+And on the destination search the field is `destination`, not `location`, which 400s with a
+message that says exactly that.
+
+A key comes from <a href={rapidApiPricingUrl('hotels', 'guide')} rel="noopener">the RapidAPI
+listing</a>, free plan included, and it covers every endpoint on this page.
+
+## What comes back
+
+A real answer to the request above, run on **2026-09-04**. Rates move, so yours will differ.
+
+```json
+{
+  "name": "Duplo Charme Boutique Hotel",
+  "matched_name": "Duplo Charme Boutique Hotel",
+  "available": true,
+  "price_string": "€ 206",
+  "price": 206,
+  "review_score": 8.3,
+  "review_count": 3930,
+  "room_type": "Standard Double Room",
+  "link": "https://www.booking.com/hotel/pt/duplo-charme-boutique.html",
+  "nights": 3,
+  "adults": 2,
+  "children": null
+}
+```
+
+`matched_name` is the whole point of the design. It is the property the text actually
+resolved to, so you can compare it to what you asked for before you trust the number. If a
+user types a name that resolves to a different hotel two streets away, you find out in the
+response instead of in a support ticket.
+
+`price` is the total for the stay in the currency you asked for, not a nightly rate.
+`nights` is there so you can divide. `price_string` is the same number formatted the way
+Booking.com shows it, for display only.
+
+## The parts to handle
+
+**`available` can be false.** Sold out and priced are both normal answers. A false value
+is not an error and should not go down your error path, but it also must not be stored as
+a price of zero.
+
+**Names are ambiguous and the API says so rather than guessing quietly.** Pass `area` for
+anything generic. Read `matched_name` every time. If your product lets users type free
+text, show them the matched name in the UI.
+
+**Rates are live, so they are perishable.** Every call hits Booking.com at request time,
+which is why the number is real. It is also why caching it for a day turns a real price
+into a wrong one.
+
+**One stay per call.** This endpoint takes one property and one date pair. There is no
+date-range expansion here, so pricing a week of check-in dates is a request per date.
+
+If you need every room type in one property rather than the headline rate, that is a
+different call: see [every room rate for one hotel](/guides/hotel-room-rates-by-property).
+
+<CtaBand
+  medium="guide"
+  title="Type the name, get the rate"
+  body="Live Booking.com rates with no property ID and no catalogue to sync, plus matched_name so you can verify the match. Free tier, no card."
+/>
+
+## Related
+
+- [Hotel by Name API](/hotels-api/by-name): the product page with field reference
+- [Every room rate for one hotel](/guides/hotel-room-rates-by-property): resolve once, then list all rooms
+- [Do hotel prices change by country?](/guides/hotel-prices-by-country-api): the proxy_country check, with a repeat-sampled run
+- [The best hotel data APIs in 2026](/guides/best-hotel-data-apis-2026): the wider field, prices quoted and dated
