@@ -9,7 +9,7 @@ export const metadata = withOg({
 
 export const dynamic = 'force-static';
 
-import { JsonLd } from '@/components/ui';
+import { GuideDates, JsonLd } from '@/components/ui';
 import { CtaBand } from '@/components/bands';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
@@ -29,6 +29,8 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 />
 
 # How to build a flight price alert
+
+<GuideDates published="2026-09-02" updated="2026-09-02" />
 
 A price alert sounds like a cron job and a comparison. Poll a fare, store it, compare
 against your own history, send a message when it drops. Every part of that is real, and

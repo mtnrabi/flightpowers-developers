@@ -9,7 +9,7 @@ export const metadata = withOg({
 
 export const dynamic = 'force-static';
 
-import { JsonLd } from '@/components/ui';
+import { GuideDates, JsonLd } from '@/components/ui';
 import { CtaBand } from '@/components/bands';
 import { rapidApiPricingUrl } from '@/lib/site';
 
@@ -29,6 +29,8 @@ import { rapidApiPricingUrl } from '@/lib/site';
 />
 
 # Using the Booking.com hotel API in Zapier
+
+<GuideDates published="2026-09-01" updated="2026-09-01" />
 
 Zapier does not have a native Booking.com app in its directory yet, but the
 **HTTP Request** action (available in the **Webhooks by Zapier** app) calls the API

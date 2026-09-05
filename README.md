@@ -77,6 +77,21 @@ shaped for it.
 - No uptime/latency/customer-count claims anywhere. No testimonials (we have none we can
   attribute). `llms.txt` is generated from the same config as the pages.
 
+### Updating `llms.txt` (`src/app/llms.txt/route.ts`)
+
+The pricing, counts, and link tables render from `src/lib/`, so they can never drift. The
+**Guides** and **Comparisons** sections are a hand-maintained list of `- [title](url): description`
+lines, not a scan of `src/app/guides/(article)/*` or `src/app/compare/*` — a new guide or
+comparison page does not appear here on its own. When you ship one:
+
+1. Add one line to the matching section in `route.ts`, same one-line-description style as its
+   neighbours.
+2. Bump `LLMS_LAST_UPDATED` in `src/lib/llms.ts` to today's date.
+3. `curl -s <deployed-url>/llms.txt` after deploy and check the new page is listed.
+
+`llms-full.txt` needs no update for a new guide — it renders only the OpenAPI reference, not
+the guides/compare index.
+
 ## Commands
 
 ```

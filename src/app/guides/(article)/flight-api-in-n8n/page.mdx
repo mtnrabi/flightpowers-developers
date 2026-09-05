@@ -9,7 +9,7 @@ export const metadata = withOg({
 
 export const dynamic = 'force-static';
 
-import { JsonLd } from '@/components/ui';
+import { GuideDates, JsonLd } from '@/components/ui';
 import { CtaBand } from '@/components/bands';
 import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
@@ -29,6 +29,8 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 />
 
 # Using a flight API in n8n
+
+<GuideDates published="2026-08-26" updated="2026-08-26" />
 
 The workflow this guide builds is a **fare watch**: every morning, search a route,
 and send yourself a message only when the fare is genuinely cheap. Four nodes

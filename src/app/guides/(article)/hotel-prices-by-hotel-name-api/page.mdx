@@ -9,7 +9,7 @@ export const metadata = withOg({
 
 export const dynamic = 'force-static';
 
-import { JsonLd } from '@/components/ui';
+import { GuideDates, JsonLd } from '@/components/ui';
 import { CtaBand } from '@/components/bands';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
@@ -29,6 +29,8 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 />
 
 # How to get hotel prices by hotel name
+
+<GuideDates published="2026-09-05" updated="2026-09-05" />
 
 Most hotel APIs want an ID. So the first thing you build is not the feature, it is a
 mapping layer: a property catalogue, a sync job to keep it fresh, and a fuzzy matcher for

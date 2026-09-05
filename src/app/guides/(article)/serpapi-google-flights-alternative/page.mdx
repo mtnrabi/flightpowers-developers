@@ -9,7 +9,7 @@ export const metadata = withOg({
 
 export const dynamic = 'force-static';
 
-import { JsonLd } from '@/components/ui';
+import { GuideDates, JsonLd } from '@/components/ui';
 import { CtaBand } from '@/components/bands';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
@@ -29,6 +29,8 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 />
 
 # A SerpApi google_flights alternative
+
+<GuideDates published="2026-09-05" updated="2026-09-05" />
 
 People land on this question from one of two places. Either the search quota is the
 problem, or the flight engine is one small part of a platform they are paying for and
@@ -52,8 +54,8 @@ Their searches are a shared pool across engines, so a `google_flights` call and 
 `google_hotels` call draw on the same balance. Their hotels engine was still shipped and
 still had no separate price on that date.
 
-Our own plans render live on [/pricing](/pricing) and are never restated in a guide,
-because guides go stale and pricing pages do not.
+Our own plans render live on [the pricing page](/pricing) and are never restated in a
+guide, because guides go stale and pricing pages do not.
 
 ## What the request looks like here
 
