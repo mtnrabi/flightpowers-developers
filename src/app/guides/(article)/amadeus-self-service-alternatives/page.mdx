@@ -25,7 +25,7 @@ import { SITE } from '@/lib/site';
       'Every Amadeus Self-Service alternative a small team shortlists, with the access gate each one puts in front of you, quoted and dated, plus a real migration request and response.',
     url: `${SITE.url}/guides/amadeus-self-service-alternatives`,
     datePublished: '2026-09-01',
-    dateModified: '2026-09-04',
+    dateModified: '2026-09-05',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -145,7 +145,7 @@ argues otherwise. This page is for everyone Enterprise was never designed to ser
 
 ## The alternatives, and the gate on each one
 
-Every row was read on **2026-09-04**. The quote behind each gate is in the sources
+Every row was read on **2026-09-05**. The quote behind each gate is in the sources
 list underneath, with the URL.
 
 | API | What it gives you | The gate |
@@ -156,6 +156,8 @@ list underneath, with the URL.
 | **Scrapingdog** Google Flights API | One-way, round-trip and multi-city, priced in credits | **None.** "Every account starts with 200 free credits and full access to all APIs, no credit card required." |
 | **FlightAPI.io** | Price tracking only, and they say so themselves | **None.** "Yes, you can just sign up and start testing it for free." 20 free calls |
 | **Ignav** | Flight fares and booking links, one-way, round-trip and flexible search | **None.** "1,000 free requests. No credit card required", then usage billing at `$2 per 1,000 successful requests`, "No monthly minimums. No rate limits" |
+| **HasData** Google Flights API + MCP | Fares, legs, carbon and price history as JSON, plus a hosted MCP endpoint | **None.** Free plan renews `1,000 credits every month, which is 66 flight searches with every field included`, no credit card. Paid entry is Startup at `$59/mo` for `200,000 credits` (≈13,300 searches, about `$4.43` per 1,000 at that tier) |
+| **flight-mcp.com** | Cache-aware flight offers over REST and MCP; a repeated search you already paid for does not bill again | **None.** "No card to start." Free plan is "300 monthly cache misses"; cache hits "never consume your monthly plan calls". Paid tiers are Lite `$19` for `10,000` cache misses and Pro `$49` for `30,000` |
 | **Duffel** | Real bookable flights and stays, with ticketing | **Sandbox is instant; live mode is not.** Email verification plus a Know Your Customer check before live tokens turn on. Separately, searching above 1,500 searches per order costs `$0.005` per excess search, which matters if you are monitoring rather than selling |
 | **Skyscanner Travel API** | Skyscanner's own flight content | **Application, reviewed case by case, two weeks.** Commercial use only, and their refusal list names "Businesses with low-traffic websites (minimum of 100K monthly active users)" |
 | **Travelpayouts** Aviasales Flight Search API | Live flight search | **50,000 confirmed monthly active users**, evidenced by screenshots, "and we do not make exceptions" |
@@ -166,7 +168,7 @@ list underneath, with the URL.
 
 ### Sources for every gate above
 
-All read 2026-09-04. Two of these hosts answer 403 to plain `curl` from a datacenter
+All read 2026-09-05. Two of these hosts answer 403 to plain `curl` from a datacenter
 IP and need a real browser to reproduce, which is noted where it applies.
 
 - **Skyscanner**, under the heading "We cannot give access to:" lists "Students and other
@@ -202,6 +204,18 @@ IP and need a real browser to reproduce, which is noted where it applies.
   They are the closest thing on this page to what I sell, they are self-serve the same
   way, and they publish their own Amadeus migration guide, so leaving them out would
   have made this table less useful.
+- **HasData**: `hasdata.com/apis/google-flights-api` reads "The free plan renews 1,000
+  credits every month, which is 66 flight searches with every field included. No credit
+  card required." The pricing block's own plan data lists the Startup plan at `$59/mo`
+  for `200,000 credits`, and the page states its own unit as 15 credits per flight
+  search, which works out to `$4.43` per 1,000 searches on that tier. Basic is
+  `$119/mo` for 1,000,000 credits, Growth is `$249/mo` for 3,000,000. They also run a
+  hosted MCP server, linked from the same site. HTTP 200.
+- **flight-mcp.com**: the homepage reads "No card to start" and "Free includes 300
+  monthly cache misses. Lite includes 10,000 for $19, and Pro includes 30,000 for $49.
+  Cached responses are free," plus, separately, "cache hits never consume your monthly
+  plan calls." It exposes both a REST endpoint and an MCP `flight_search` tool.
+  `flight-mcp.com`, HTTP 200.
 - **Tripgic**: `tripgic.com/pricing` reads "One-Time API Activation", "Pay once to
   provision your API credentials, sandbox environment, and supplier connections", and
   "The activation charge is non-refundable once API credentials are provisioned." The
