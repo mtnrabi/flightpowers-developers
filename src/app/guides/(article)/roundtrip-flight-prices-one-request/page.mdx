@@ -1,0 +1,134 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'How to get round-trip flight prices in one API request',
+  description:
+    'Two one-way searches do not add up to a round-trip fare. A paired-leg request, a real captured BER to CDG itinerary, the field names that differ from one-way results, and how to read an empty round-trip response.',
+  alternates: { canonical: '/guides/roundtrip-flight-prices-one-request' },
+});
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'How to get round-trip flight prices in one API request',
+    description:
+      'The paired-leg round-trip model with a captured response, the field-name trap, and empty-result semantics.',
+    url: `${SITE.url}/guides/roundtrip-flight-prices-one-request`,
+    datePublished: '2026-09-05',
+    dateModified: '2026-09-05',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# How to get round-trip flight prices in one request
+
+The obvious approach is two one-way searches, one per direction, added together. It is
+wrong in a way that does not show up until someone clicks through and sees a different
+number.
+
+Airlines price a return as one product. The sum of the cheapest outbound and the cheapest
+return is not the price of any ticket you can buy, and on some routes it is not even close.
+Two searches also cost you two requests per date pair, which matters the moment you start
+scanning a range.
+
+## One request, both dates
+
+```bash
+curl -X POST "https://api.flightpowers.com/v1/flights/roundtrip" \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: $FLIGHTPOWERS_API_KEY" \
+  -d '{
+    "from_airport": "BER",
+    "to_airport": "CDG",
+    "departure_date": "2026-10-06",
+    "return_date": "2026-10-13",
+    "limit": 5,
+    "currency": "usd"
+  }'
+```
+
+The same call works on the RapidAPI host with `x-rapidapi-key` and `x-rapidapi-host`
+instead. A key comes from <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">the
+listing</a>, free plan included.
+
+## What comes back
+
+The first itinerary from that exact request, captured **2026-08-26**. Prices were live at
+capture time and will not match yours.
+
+```json
+{
+  "price_range_in_relation_to_other_periods": "low",
+  "price_insights_low": 120,
+  "price_insights_high": 220,
+  "from_airport": "Berlin (BER)",
+  "to_airport": "Paris (CDG)",
+  "departure_date": "2026-10-06",
+  "return_date": "2026-10-13",
+  "total_price": "$112",
+  "total_price_as_number": 112,
+  "total_duration_seconds": 12900,
+  "total_stops": 0,
+  "departure_flight_departure_description": "5:05 PM on Tue, Oct 6",
+  "departure_flight_arrival_description": "6:55 PM on Tue, Oct 6",
+  "departure_flight_airline": "easy | Jet",
+  "departure_flight_stops": 0,
+  "departure_flight_duration": "1 hr 50 min",
+  "return_flight_departure_description": "8:50 AM on Tue, Oct 13",
+  "return_flight_arrival_description": "10:35 AM on Tue, Oct 13",
+  "return_flight_airline": "easy | Jet",
+  "return_flight_stops": 0,
+  "return_flight_duration": "1 hr 45 min"
+}
+```
+
+One flat object per itinerary. Both legs are already matched, the price is the price of the
+pair, and `buy_link` (trimmed above for width) reopens that exact paired itinerary on Google.
+
+## The trap that costs an afternoon
+
+A round-trip result carries `total_price` and `total_price_as_number`. A one-way result
+carries `price` and `price_as_number`. The two shapes are otherwise similar enough that code
+written for one-ways runs happily against round-trips and reads `undefined` for the price.
+
+The insight fields keep their names across both, so the verdict still looks correct while
+the price is missing. That combination is how the bug survives review. Write the two paths
+separately.
+
+Per-leg filters are real: `max_departure_stops` and `max_return_stops`, separate airline
+lists per leg, separate time windows. Nonstop out and a morning return, one request.
+
+## Reading an empty response
+
+A paired search prices a return leg for every outbound candidate, and any of those inner
+fetches can fail on its own. So an empty array means one of two very different things, and
+the header tells you which. `x-search-status: ok` with no rows means Google really had
+nothing. `degraded` or `partial` means the fan-out was blocked or truncated, which is not
+the same as "this route has no flights" and must never be stored as one.
+
+The capture above is a good example: `x-search-status` was `ok` and `x-search-results` was
+`5`, but `x-search-unreadable-pages` was `3` and `x-search-candidate-recovered` was `3`.
+Three pages failed and were retried successfully. A response can be complete and still have
+had a rough time getting there. The full taxonomy is in
+[handling empty flight search results](/guides/handle-empty-flight-search-results).
+
+<CtaBand
+  medium="guide"
+  title="One request per date pair, not two"
+  body="Paired outbound and return with a combined total, per-leg filters, and Google's price band on the pairing. Free tier on RapidAPI."
+/>
+
+## Related
+
+- [Round-Trip API](/flights-api/round-trip): the product page, with a live captured run
+- [FlightPowers vs Crawlio](/compare/crawlio): a two-stage round-trip flow compared to a paired one
+- [Handling empty flight search results](/guides/handle-empty-flight-search-results): what an empty array really means
+- [Parallel date scans](/flights-api/parallel-date-scan): scanning a whole month of date pairs

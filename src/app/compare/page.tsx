@@ -6,9 +6,9 @@ import { Breadcrumbs, Container, JsonLd, Section, SectionHead } from '@/componen
 import { SITE } from '@/lib/site';
 
 export const metadata: Metadata = withOg({
-  title: 'Compare FlightPowers vs SerpApi, Duffel, Amadeus, DataCrawler, Crawlio, ScrapeBadger',
+  title: 'Compare FlightPowers vs SerpApi, Duffel, Amadeus, HasData, DataCrawler and more',
   description:
-    'Honest comparisons of FlightPowers Google Flights & Booking.com APIs against alternatives: SerpApi, Duffel, Amadeus Self-Service, DataCrawler, Crawlio, ScrapeBadger. Competitor facts quoted from live pages with retrieval dates. Cost per search, round-trip flows, and feature comparison.',
+    'Honest comparisons of FlightPowers Google Flights & Booking.com APIs against alternatives: SerpApi, Duffel, Amadeus Self-Service, HasData, flight-mcp.com, DataCrawler, Crawlio, ScrapeBadger. Competitor facts quoted from live pages with retrieval dates. Cost per search, round-trip flows, and feature comparison.',
   alternates: { canonical: '/compare' },
 });
 
@@ -50,6 +50,18 @@ const PAGES = [
     title: 'vs ScrapeBadger',
     sub: 'Pay-per-use credits that never expire (across 20+ Google APIs) against fixed monthly subscriptions. When occasional batch jobs beat subscriptions, and when steady volume makes PAYG expensive.',
     stamp: 'competitor data retrieved 2026-09-01',
+  },
+  {
+    href: '/compare/hasdata',
+    title: 'vs HasData',
+    sub: 'A Google Flights API from an established scraping vendor, with a hosted MCP endpoint and a free tier several times the size of ours. Their numbers, including the row they win, and the entry tier where the unit price flips.',
+    stamp: 'competitor data retrieved 2026-09-05',
+  },
+  {
+    href: '/compare/flight-mcp',
+    title: 'vs flight-mcp.com',
+    sub: 'They bill cache misses, not calls, and cached responses are free. Whether that saves you money is decided entirely by how much your queries repeat, which is a number only you have.',
+    stamp: 'competitor data retrieved 2026-09-05',
   },
   {
     href: '/guides/best-flight-data-apis-2026',

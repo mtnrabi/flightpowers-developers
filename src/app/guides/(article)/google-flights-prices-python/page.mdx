@@ -1,0 +1,144 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'How to get Google Flights prices with Python',
+  description:
+    'Twelve lines of requests, a real captured response, and the three price-insight fields that come back with every fare. No Playwright, no browser pool, no tfs= encoding. Includes the limits worth knowing before you build on it.',
+  alternates: { canonical: '/guides/google-flights-prices-python' },
+});
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'How to get Google Flights prices with Python',
+    description:
+      'A working Python request for live Google Flights fares, a real captured response, the price-insight fields, and the honest limits.',
+    url: `${SITE.url}/guides/google-flights-prices-python`,
+    datePublished: '2026-09-05',
+    dateModified: '2026-09-05',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# How to get Google Flights prices with Python
+
+There are two ways to do this and people usually try the hard one first. The hard one
+is driving a real browser: Playwright, a headless Chrome, ARIA selectors, and a result
+list that streams in after the page says it's loaded. It works. We wrote
+[the whole scraper](/guides/scrape-google-flights-python) so you can see what it costs
+to keep alive.
+
+The other way is one POST and a JSON body.
+
+## The request
+
+```python
+import os, requests
+
+r = requests.post(
+    "https://google-flights-live-api.p.rapidapi.com/api/google_flights/oneway/v1",
+    headers={
+        "Content-Type": "application/json",
+        "x-rapidapi-host": "google-flights-live-api.p.rapidapi.com",
+        "x-rapidapi-key": os.environ["RAPIDAPI_KEY"],
+    },
+    json={
+        "from_airport": "LHR",
+        "to_airport": "BCN",
+        "departure_date": "2026-11-18",
+        "limit": 2,
+    },
+)
+r.raise_for_status()
+
+for f in r.json():
+    print(f["price"], f["airline"], f["duration"], f["price_range_in_relation_to_other_periods"])
+```
+
+Airport codes, a date, an optional cap on rows. No session to warm up, no cookie jar, and
+nothing to encode by hand. If you have ever tried to build a `tfs=` parameter yourself,
+[here is why you shouldn't](/guides/google-flights-url-parameters).
+
+You need a key to run it. Grab one from
+<a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">the RapidAPI listing</a>,
+free plan included, and it works on the next request.
+
+## What comes back
+
+The response is a plain list of fares. This is a real answer to the exact request above,
+run on **2026-09-04**. Fares move by the minute, so yours will not match.
+
+```json
+[
+  {
+    "price_range_in_relation_to_other_periods": "typical",
+    "price_insights_low": 50,
+    "price_insights_high": 110,
+    "from_airport": "London (LHR)",
+    "to_airport": "Barcelona (BCN)",
+    "departure_date": "2026-11-18",
+    "price": "$63",
+    "price_as_number": 63,
+    "duration": "2 hr 15 min",
+    "duration_seconds": 8100,
+    "airline": "Vueling | Iberia, British Airways",
+    "stops": 0,
+    "stops_info": [],
+    "departure_description": "8:50 PM on Wed, Nov 18",
+    "arrival_description": "12:05 AM on Thu, Nov 19",
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTEtMTgiIAoDTEhSEgoyMDI2LTExLTE4GgNCQ04qAlZZMgQ3NjQzagUSA0xIUnIFEgNCQ05CAQFIAZgBAg&curr=usd"
+  }
+]
+```
+
+Two things in there are easy to skim past.
+
+`price_as_number` is the fare as an integer, which is the field you sort and compare on.
+`price` is the formatted string for display. Use the wrong one and your sort is
+alphabetical, which puts `$1,004` under `$99`.
+
+And the first three fields are Google's own price context: the usual range for this route
+and date, plus a `low`, `typical` or `high` verdict on the fare in front of you. That is
+the part you would otherwise build by polling a route for six weeks. There is a longer
+write-up in [is this flight price good](/guides/fare-verdict-in-one-call).
+
+## The limits, before you find them
+
+**The band is not always there.** On thin routes and dates far out, Google has no range,
+so `price_insights_low` and `price_insights_high` come back null. The verdict can arrive
+as an empty string on that path rather than null, so compare it against the three strings
+you want instead of testing for absence.
+
+**Two settings remove the band silently.** Sending `sort_type: "Price"` and sending
+`max_price` both select Google's price-sorted page, which carries no insights block. You
+get a normal 200 with normal fares and a null band. Sort and filter in Python instead.
+
+**An empty list is ambiguous unless you read the headers.** `[]` can mean no flights or
+a failed fetch, and they need different handling. Check `x-search-status` before you store
+or alert on anything. The taxonomy is in
+[handling empty flight search results](/guides/handle-empty-flight-search-results).
+
+**It cannot book.** This returns shoppable fares and a `buy_link` that reopens the exact
+itinerary on Google. Issuing a ticket needs a GDS or a booking platform, and that is a
+different product.
+
+<CtaBand
+  medium="guide"
+  title="Twelve lines instead of a browser pool"
+  body="Live Google Flights fares as JSON, with Google's own price band on every result. Free tier on RapidAPI, no card to try it."
+/>
+
+## Related
+
+- [How to scrape Google Flights with Python](/guides/scrape-google-flights-python): the browser version, and where it stops paying for itself
+- [Is this flight price good?](/guides/fare-verdict-in-one-call): the price band and the verdict in full
+- [FlightPowers vs HasData](/compare/hasdata): the other Google Flights API with a hosted MCP endpoint, prices quoted and dated
+- [Flight Price Checker](/tools/flight-price-checker): the same call in the browser, on our key, no signup

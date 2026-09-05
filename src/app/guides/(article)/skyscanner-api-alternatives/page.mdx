@@ -1,0 +1,98 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'Skyscanner API alternatives for indie developers',
+  description:
+    'Skyscanner reviews every travel API application and its published refusal list names a 100K monthly active user minimum. What that rules out, and the alternatives with the access gate each one puts in front of you, quoted from their own pages on 2026-09-05.',
+  alternates: { canonical: '/guides/skyscanner-api-alternatives' },
+});
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'Skyscanner API alternatives for indie developers',
+    description:
+      'The Skyscanner partner gate quoted from their own page, and the alternatives with the gate on each, dated 2026-09-05.',
+    url: `${SITE.url}/guides/skyscanner-api-alternatives`,
+    datePublished: '2026-09-05',
+    dateModified: '2026-09-05',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# Skyscanner API alternatives for indie developers
+
+The Skyscanner travel API is not sold, it is granted. Their partner pages say so plainly,
+and the plain version is worth reading before you spend a week on an application.
+
+Quoted from partners.skyscanner.net on **2026-09-05**: "Our team reviews each application
+and will get back to you within two weeks." Their published list of who gets refused
+includes "Businesses with low-traffic websites (minimum of 100K monthly active users)".
+
+If you are one person with a side project, that is your answer, and it arrives two weeks
+after you ask. Nothing about that is unreasonable from their side. It just means the
+shortlist you actually need is a different one.
+
+## The alternatives, and the gate on each
+
+Every figure below was read from the vendor's own live page on **2026-09-05**. If their page
+disagrees with this one today, believe their page.
+
+**Duffel.** A real booking platform, so it can issue a ticket, which no data API can. Their
+pricing page publishes a `1500:1` search to book ratio with `$0.005 per excess search`
+beyond it, and Stays says "Get instant access" and "Available from your first booking with
+no negotiation needed". The gate is not an application, it is the search-to-book ratio: a
+price tracker that never books is exactly the workload that ratio charges for. The
+[full comparison](/compare/duffel) walks through when you should use them anyway.
+
+**Amadeus Self-Service.** Gone rather than gated. Checked on 2026-09-05: neither
+`test.api.amadeus.com` nor `api.amadeus.com` resolves, `/self-service` 301s to the portal
+root, and the `amadeus4dev` org shows 20 of 20 repositories archived with a README that
+opens "[DEPRECATED]". The [alternatives guide](/guides/amadeus-self-service-alternatives)
+has the commands.
+
+**Tripgic.** Self-serve tiers exist, but their Essential plan at $500 explicitly excludes
+the Flight API; Starter at $1,499 is the cheapest plan that includes it, and their page
+notes "The activation charge is non-refundable once API credentials are provisioned".
+
+**Marketplace extraction APIs.** Subscribe, copy the key, call it. No application, no
+audience minimum, no sales call. That includes ours, and it includes several competitors we
+list by name with their prices in
+[the best flight data APIs in 2026](/guides/best-flight-data-apis-2026), one of which is
+cheaper per request than we are.
+
+## What you give up by not being a Skyscanner partner
+
+Booking. Every option in the last section except Duffel returns shoppable prices and a deep
+link, not a ticket. If your product ends in a purchase you own, you need a booking platform
+underneath no matter where the shopping prices come from.
+
+You also give up an affiliate revenue share, which for some side projects was the actual
+business model. A data API charges you rather than paying you.
+
+What you get is that you can start this afternoon. Our free plan is 10 requests a month,
+which is enough to check a route you know well and a date far enough out that the price band
+comes back null. A key is on
+<a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">the RapidAPI listing</a>
+and works on the next request.
+
+<CtaBand
+  medium="guide"
+  title="No application form, no audience minimum"
+  body="Live Google Flights fares with Google's own price band on every result. Subscribe and the key works on the next request."
+/>
+
+## Related
+
+- [Amadeus Self-Service alternatives](/guides/amadeus-self-service-alternatives): every alternative with its access gate, quoted and dated
+- [FlightPowers vs Duffel](/compare/duffel): a booking platform against a data API
+- [The best flight data APIs in 2026](/guides/best-flight-data-apis-2026): the field, with disclosed bias
+- [What is a Google Flights API?](/guides/what-is-a-google-flights-api): the category explainer

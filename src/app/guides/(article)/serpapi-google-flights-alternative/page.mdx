@@ -1,0 +1,116 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'A SerpApi google_flights alternative, with the price band included',
+  description:
+    'What actually changes if you move a flight workload off SerpApi google_flights: the request shape, the paired round-trip, and the price-insight fields. SerpApi plan figures quoted from serpapi.com/pricing, retrieved 2026-09-05, and the cases where you should stay.',
+  alternates: { canonical: '/guides/serpapi-google-flights-alternative' },
+});
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'A SerpApi google_flights alternative, with the price band included',
+    description:
+      'The request shape, the round-trip model, and the price-insight fields, with SerpApi plan figures quoted from their own pricing page on 2026-09-05.',
+    url: `${SITE.url}/guides/serpapi-google-flights-alternative`,
+    datePublished: '2026-09-05',
+    dateModified: '2026-09-05',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# A SerpApi google_flights alternative
+
+People land on this question from one of two places. Either the search quota is the
+problem, or the flight engine is one small part of a platform they are paying for and
+they want the flight part cheaper. Those are different problems and only one of them is
+solved by switching.
+
+## What SerpApi charges
+
+Read from serpapi.com/pricing on **2026-09-05**, quoted rather than paraphrased. Believe
+their page over this one if the two ever disagree.
+
+| Plan | Price | Searches per month |
+|---|---|---|
+| Free | $0 | 250 |
+| Starter | $25 | 1,000 |
+| Developer | $75 | 5,000 |
+| Production | $150 | 15,000 |
+| Big Data | $275 | 30,000 |
+
+Their searches are a shared pool across engines, so a `google_flights` call and a
+`google_hotels` call draw on the same balance. Their hotels engine was still shipped and
+still had no separate price on that date.
+
+Our own plans render live on [/pricing](/pricing) and are never restated in a guide,
+because guides go stale and pricing pages do not.
+
+## What the request looks like here
+
+One POST, JSON in and JSON out.
+
+```bash
+curl -X POST "https://google-flights-live-api.p.rapidapi.com/api/google_flights/oneway/v1" \
+  -H "Content-Type: application/json" \
+  -H "x-rapidapi-host: google-flights-live-api.p.rapidapi.com" \
+  -H "x-rapidapi-key: $RAPIDAPI_KEY" \
+  -d '{"from_airport":"LHR","to_airport":"BCN","departure_date":"2026-11-18","limit":2}'
+```
+
+Two differences are structural rather than cosmetic, and they are the ones that change
+your code.
+
+**Round trips are one request.** `POST /v1/flights/roundtrip` takes both dates and returns
+itineraries with the outbound and the return already paired, a combined `total_price` and
+one `buy_link` for the pair. The fan-out that prices a return leg for each outbound
+candidate happens inside the call and bills as a single request. Details and a captured
+run are in [round-trip prices in one request](/guides/roundtrip-flight-prices-one-request).
+
+**The price band rides on every result.** `price_insights_low`, `price_insights_high` and
+a `low` / `typical` / `high` verdict come back with the fares, so a tracker has context on
+its first call instead of after six weeks of polling. That is the whole argument in
+[is this flight price good](/guides/fare-verdict-in-one-call).
+
+## When you should not switch
+
+Being straight about this, because half the people reading are in this half.
+
+SerpApi is a general-purpose Google scraping platform and we are a flights and hotels
+specialist. If `google_flights` is one engine among several you call, moving flights out
+means running two vendors, two keys and two failure modes to save on one line item. That
+is often a bad trade.
+
+The row-by-row version, including the things SerpApi does that we do not, is on
+[the full comparison](/compare/serpapi). We keep the losing rows on that page on purpose.
+A comparison you cannot trust downward is not worth trusting upward either.
+
+## If you do switch
+
+Move one workload, not all of them. Point your flight search at the free plan, run your
+real queries through it for a week, and diff the fares against what you were getting.
+Ten requests is enough to check a route you know well, a route you know badly, and a
+date far enough out that the price band comes back null, which is the case most people
+forget to handle.
+
+<CtaBand
+  medium="guide"
+  title="Try it on the workload you already have"
+  body="Live Google Flights fares with Google's own price band on every result, and paired round-trips in one call. Free tier on RapidAPI, no card."
+/>
+
+## Related
+
+- [FlightPowers vs SerpApi](/compare/serpapi): the full row-by-row, competitor facts dated
+- [Round-trip prices in one request](/guides/roundtrip-flight-prices-one-request): the paired-leg model with a real capture
+- [The best flight data APIs in 2026](/guides/best-flight-data-apis-2026): the wider field, with disclosed bias
+- [Get a Google Flights API key](/guides/google-flights-api-key): two minutes, free tier included

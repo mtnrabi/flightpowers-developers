@@ -1,0 +1,126 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'How to get every room rate for one hotel with an API',
+  description:
+    'The headline rate is one room. To list every room type and its price for a property, resolve the name to a Booking.com ID once, cache it, then call the rooms endpoint on every check. Two real captured payloads and the caching rule.',
+  alternates: { canonical: '/guides/hotel-room-rates-by-property' },
+});
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'How to get every room rate for one hotel with an API',
+    description:
+      'Resolve a hotel name to a Booking.com ID, cache it, and pull every room type with its price on each check.',
+    url: `${SITE.url}/guides/hotel-room-rates-by-property`,
+    datePublished: '2026-09-05',
+    dateModified: '2026-09-05',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# How to get every room rate for one hotel
+
+A name lookup gives you the property's headline rate, which is one room out of however many
+it sells. That is the right answer for "what does this hotel cost". It is the wrong answer
+for a comp-set tracker, a rate-parity check, or anything where the interesting movement is a
+suite going on sale while the standard double sits still.
+
+For that you want the room list, and it is a two-step the first time and a one-step after.
+
+## Step one, once per property: resolve the name
+
+```bash
+curl -X POST "https://booking-live-api.p.rapidapi.com/resolve" \
+  -H "Content-Type: application/json" \
+  -H "x-rapidapi-host: booking-live-api.p.rapidapi.com" \
+  -H "x-rapidapi-key: $RAPIDAPI_KEY" \
+  -d '{"hotel_name": "boffenigo boutique italy"}'
+```
+
+```json
+{
+  "hotel_name": "boffenigo boutique italy",
+  "hotel_booking_id": "it/boffenigoboutiquegarda",
+  "matched_name": "Boffenigo Boutique Hotel & Spa"
+}
+```
+
+Note what went in: three vague words, not a catalogue entry. `matched_name` tells you what
+it resolved to, so you can eyeball the match once and then stop worrying about it.
+
+## Step two, on every check: the rooms
+
+`hotel_booking_id` is the Booking.com path ID and it is stable. Cache it and call the rooms
+endpoint directly from then on. Required with it: `checkin_date` and `checkout_date`.
+Optional: `adults`, `children`, `currency`, `proxy_country`, `free_cancellation`.
+
+A real response, trimmed to one room for width:
+
+```json
+{
+  "hotel_booking_id": "it/boffenigoboutiquegarda",
+  "checkin_date": "2026-05-01",
+  "checkout_date": "2026-05-10",
+  "booking_url": "https://www.booking.com/hotel/it/boffenigoboutiquegarda.html",
+  "rooms": [
+    {
+      "room_type": "Classic Double Room",
+      "room_economy": "Exceptional breakfast included",
+      "guests": 2,
+      "price_as_number": 2511,
+      "price": "€ 2,511"
+    }
+  ]
+}
+```
+
+`price_as_number` is the total for the whole stay, nine nights in this capture, not a
+nightly rate. Divide by your own night count rather than trusting a per-night field that
+does not exist. `room_economy` is the free-text line Booking.com shows next to the room,
+which is where breakfast and cancellation terms usually live, so treat it as a label rather
+than a structured field.
+
+## The rule that saves you a plan tier
+
+Resolve once, cache the ID, then never resolve again. A tracker watching 50 properties daily
+that resolves each name every run is doing 50 avoidable requests a day. Resolution is the
+step that can change, and it changes about as often as a hotel renames itself.
+
+## Limits worth knowing
+
+**One property, one date pair, one call.** No date-range expansion and no property list here.
+Pricing a range means a request per date.
+
+**Room availability moves faster than property availability.** A property can be bookable
+while the specific room you are tracking is not, so key your history on the room type and
+expect gaps rather than treating a missing row as a price drop.
+
+**Rates are live and perishable.** Every call hits Booking.com at request time. Caching the
+price for a day turns a real number into a wrong one. Cache the ID, not the rate.
+
+A key with every endpoint on it comes from
+<a href={rapidApiPricingUrl('hotels', 'guide')} rel="noopener">the RapidAPI listing</a>, free
+plan included. Ten requests is enough to resolve a property and pull its rooms twice.
+
+<CtaBand
+  medium="guide"
+  title="Resolve once, then price the rooms"
+  body="Live Booking.com room lists by property, with proxy_country on every endpoint. Free tier, no card, nothing held back for paid plans."
+/>
+
+## Related
+
+- [Hotel prices by hotel name](/guides/hotel-prices-by-hotel-name-api): the one-call headline rate
+- [Do hotel prices change by country?](/guides/hotel-prices-by-country-api): proxy_country, with a repeat-sampled run
+- [How to monitor hotel rate parity](/guides/monitor-hotel-rate-parity): the scheduled version
+- [Hotel comp-set tracking](/use-cases/hotel-comp-set-tracking): what this is usually built for
