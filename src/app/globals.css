@@ -286,6 +286,10 @@
 
   /* Long-form MDX / prose. Deliberately hand-rolled; no typography plugin. */
   .prose-fp { color: var(--color-ink-300); line-height: 1.72; font-size: 1rem; }
+  /* Matches the font-semibold text-3xl/text-4xl titles on the non-MDX pages
+     (about, terms, blog). MDX guides had no h1 rule at all, so titles were
+     rendering at the 1rem/400 body size. */
+  .prose-fp h1 { font-size: 2rem; font-weight: 600; margin-top: 0; margin-bottom: 1.25rem; line-height: 1.2; }
   .prose-fp h2 { font-size: 1.625rem; margin-top: 3rem; margin-bottom: 1rem; }
   .prose-fp h3 { font-size: 1.1875rem; margin-top: 2.125rem; margin-bottom: 0.5rem; }
   .prose-fp p { margin-bottom: 1.125rem; text-wrap: pretty; }
