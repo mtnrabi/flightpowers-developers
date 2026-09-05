@@ -9,7 +9,7 @@ export const metadata = withOg({
 
 export const dynamic = 'force-static';
 
-import { JsonLd } from '@/components/ui';
+import { GuideDates, JsonLd } from '@/components/ui';
 import { CtaBand } from '@/components/bands';
 import { SITE } from '@/lib/site';
 
@@ -29,6 +29,8 @@ import { SITE } from '@/lib/site';
 />
 
 # Handling empty flight search results
+
+<GuideDates published="2026-08-26" updated="2026-08-26" />
 
 *I run a Google Flights API. This essay exists because the worst bug in it was not a
 crash: it was a `200 []` that meant two different things, and for a long time I could

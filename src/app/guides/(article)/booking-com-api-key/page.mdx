@@ -9,7 +9,7 @@ export const metadata = withOg({
 
 export const dynamic = 'force-static';
 
-import { JsonLd } from '@/components/ui';
+import { GuideDates, JsonLd } from '@/components/ui';
 import { CtaBand } from '@/components/bands';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
@@ -101,6 +101,8 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 />
 
 # How to get a Booking.com API Key in 2026
+
+<GuideDates published="2026-09-01" updated="2026-09-01" />
 
 Booking.com's official **Partner API** (formerly Booking Basic and Content API) requires an existing OTA business and an application process. For developers who need live Booking.com hotel data without partnership requirements, the **Booking Live API** on RapidAPI provides instant access with a feature the official API never shipped: **`proxy_country`**, which lets you price any hotel from any market in one request.
 

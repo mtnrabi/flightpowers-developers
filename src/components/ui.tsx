@@ -191,6 +191,31 @@ export function JsonLd({ data }: { data: Record<string, unknown> }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
 }
 
+function formatGuideDate(iso: string): string {
+  const [year, month, day] = iso.split('-').map(Number);
+  return new Date(Date.UTC(year, month - 1, day)).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'UTC',
+  });
+}
+
+/**
+ * The dates the JsonLd TechArticle block already carries (datePublished /
+ * dateModified), rendered as a small visible byline. Every guide passes the
+ * same two ISO dates here, so this is the one place that decides how a
+ * published/updated date looks across the whole guide template.
+ */
+export function GuideDates({ published, updated }: { published: string; updated: string }) {
+  return (
+    <p className="mt-2 text-[13px] text-ink-500">
+      Published {formatGuideDate(published)}
+      {updated !== published ? <> · Updated {formatGuideDate(updated)}</> : null}
+    </p>
+  );
+}
+
 export function VerdictBadge({ verdict }: { verdict: 'low' | 'typical' | 'high' | null | undefined }) {
   if (!verdict) return <span className="font-mono text-[11px] text-ink-600">no band</span>;
   return <span className={`verdict verdict-${verdict}`}>{verdict}</span>;

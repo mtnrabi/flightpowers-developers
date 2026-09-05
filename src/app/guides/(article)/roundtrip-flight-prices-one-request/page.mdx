@@ -9,7 +9,7 @@ export const metadata = withOg({
 
 export const dynamic = 'force-static';
 
-import { JsonLd } from '@/components/ui';
+import { GuideDates, JsonLd } from '@/components/ui';
 import { CtaBand } from '@/components/bands';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
@@ -29,6 +29,8 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 />
 
 # How to get round-trip flight prices in one request
+
+<GuideDates published="2026-09-05" updated="2026-09-05" />
 
 The obvious approach is two one-way searches, one per direction, added together. It is
 wrong in a way that does not show up until someone clicks through and sees a different

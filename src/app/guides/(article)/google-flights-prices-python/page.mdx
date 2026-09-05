@@ -9,7 +9,7 @@ export const metadata = withOg({
 
 export const dynamic = 'force-static';
 
-import { JsonLd } from '@/components/ui';
+import { GuideDates, JsonLd } from '@/components/ui';
 import { CtaBand } from '@/components/bands';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
@@ -29,6 +29,10 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 />
 
 # How to get Google Flights prices with Python
+
+<GuideDates published="2026-09-05" updated="2026-09-05" />
+
+One POST to a JSON endpoint. Twelve lines, no browser.
 
 There are two ways to do this and people usually try the hard one first. The hard one
 is driving a real browser: Playwright, a headless Chrome, ARIA selectors, and a result

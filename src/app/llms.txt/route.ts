@@ -80,12 +80,22 @@ ${DIFFERENTIATORS.map((d) => `- ${d.title}: ${d.short}`).join('\n')}
 - [How to monitor hotel rate parity](${u('/guides/monitor-hotel-rate-parity')}): the same room priced from several countries, sampled repeatedly, and how to tell a real gap from ordinary movement
 - [Using a flight API in n8n](${u('/guides/flight-api-in-n8n')}): a four-node fare watch with exact POST bodies
 - [Google Flights URL parameters, decoded](${u('/guides/google-flights-url-parameters')}): the tfs= protobuf at the wire level
+- [How to get Google Flights prices with Python](${u('/guides/google-flights-prices-python')}): twelve lines with requests, no browser, a real captured response
+- [How to get round-trip flight prices in one API request](${u('/guides/roundtrip-flight-prices-one-request')}): the paired-leg model, a real BER-CDG capture, and why two one-ways don't add up
+- [How to get hotel prices by hotel name with an API](${u('/guides/hotel-prices-by-hotel-name-api')}): POST the name a human would type, no property ID or catalogue sync
+- [How to get every room rate for one hotel with an API](${u('/guides/hotel-room-rates-by-property')}): resolve the name to an ID once, cache it, then call the rooms endpoint
+- [Do hotel prices change by country?](${u('/guides/hotel-prices-by-country-api')}): a repeat-sampled proxy_country run across three markets, and why one call per country is not a measurement
+- [A SerpApi google_flights alternative](${u('/guides/serpapi-google-flights-alternative')}): request shape, round-trip model, and price-insight fields compared, SerpApi's own prices quoted and dated
+- [Amadeus flight offers or live Google Flights fares](${u('/guides/amadeus-flight-offers-vs-google-flights')}): which one a price tracker actually needs, and what the deprecated Self-Service tier means in practice
+- [Skyscanner API alternatives for indie developers](${u('/guides/skyscanner-api-alternatives')}): Skyscanner's own 100K MAU minimum, and the access gate each alternative puts in front of you
 
 ## Comparisons
 
 - [FlightPowers vs SerpApi](${u('/compare/serpapi')}): platform vs specialist, prices side by side
 - [FlightPowers vs Duffel](${u('/compare/duffel')}): booking rails vs price data
 - [FlightPowers vs Amadeus](${u('/compare/amadeus')}): GDS data vs live Google Flights results
+- [FlightPowers vs HasData](${u('/compare/hasdata')}): HasData's bigger free tier vs our lower entry price per search, both quoted and dated
+- [FlightPowers vs flight-mcp.com](${u('/compare/flight-mcp')}): cache-miss billing and bring-your-own-key vs a flat per-search price
 
 ## Integrations
 

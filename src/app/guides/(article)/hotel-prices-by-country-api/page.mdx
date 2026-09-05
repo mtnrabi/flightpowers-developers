@@ -1,15 +1,15 @@
 import { withOg } from '@/lib/meta';
 
 export const metadata = withOg({
-  title: 'Do hotel prices change by country? Checking it with proxy_country',
+  title: 'Hotel prices by country: testing the proxy_country API',
   description:
-    'Booking.com can quote differently depending on where the visitor appears to be. A controlled run over three Rome properties and three markets, what the numbers actually showed, and why one call per country is not a measurement.',
+    'Testing whether hotel prices change by country with the proxy_country API: three markets, what the numbers showed, and why one call is not a measurement.',
   alternates: { canonical: '/guides/hotel-prices-by-country-api' },
 });
 
 export const dynamic = 'force-static';
 
-import { JsonLd } from '@/components/ui';
+import { GuideDates, JsonLd } from '@/components/ui';
 import { CtaBand } from '@/components/bands';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
@@ -17,7 +17,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
   data={{
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
-    headline: 'Do hotel prices change by country? Checking it with proxy_country',
+    headline: 'Hotel prices by country: testing the proxy_country API',
     description:
       'A repeat-sampled run across three markets and three properties, the method that makes the answer trustworthy, and the trap of measuring from a single call.',
     url: `${SITE.url}/guides/hotel-prices-by-country-api`,
@@ -29,6 +29,8 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 />
 
 # Do hotel prices change by country?
+
+<GuideDates published="2026-09-05" updated="2026-09-05" />
 
 Sometimes. Less than the internet says, and not reliably enough to measure with one call.
 

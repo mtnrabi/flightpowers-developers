@@ -9,7 +9,7 @@ export const metadata = withOg({
 
 export const dynamic = 'force-static';
 
-import { CapturedBadge, JsonLd } from '@/components/ui';
+import { CapturedBadge, GuideDates, JsonLd } from '@/components/ui';
 import { HotelRepeatSamplesTable } from '@/components/results';
 import { CtaBand } from '@/components/bands';
 import { FIXTURES } from '@/lib/fixtures';
@@ -31,6 +31,8 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 />
 
 # How to monitor hotel rate parity
+
+<GuideDates published="2026-08-26" updated="2026-08-28" />
 
 Rate parity is the principle (and usually the contractual expectation) that the
 same room, on the same dates, should cost the same wherever and however it is sold.

@@ -9,7 +9,7 @@ export const metadata = withOg({
 
 export const dynamic = 'force-static';
 
-import { JsonLd } from '@/components/ui';
+import { GuideDates, JsonLd } from '@/components/ui';
 import { CtaBand } from '@/components/bands';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
@@ -78,6 +78,8 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 />
 
 # What is a Google Flights API?
+
+<GuideDates published="2026-09-01" updated="2026-09-01" />
 
 A **Google Flights API** returns shoppable live fares from the public Google Flights website as structured JSON. It queries the site on your behalf, parses the HTML into data, and hands you back an array of itineraries with prices, airlines, stops, durations, and booking links. The best ones also return **Google's own verdict** on every fare: whether the price is low, typical, or high compared to the historical band Google publishes for that route.
 
