@@ -1,0 +1,247 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'Is this flight price good? One API call answers it',
+  description:
+    'Judging a fare normally means storing months of your own price history first. Google already publishes the answer: price_insights_low, price_insights_high and a low | typical | high verdict on every search. Three live captures, the exact fields, the two settings that silently remove them, and a ten-line snippet.',
+  alternates: { canonical: '/guides/fare-verdict-in-one-call' },
+});
+
+export const dynamic = 'force-static';
+
+import { JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'Is this flight price good? One API call answers it',
+    description:
+      'The price-insights band and the low/typical/high verdict, with three live captures, the two request settings that remove them, and what each verdict should say in your product.',
+    url: `${SITE.url}/guides/fare-verdict-in-one-call`,
+    datePublished: '2026-09-05',
+    dateModified: '2026-09-05',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# Is this flight price good?
+
+Your app has a fare. $199, Chicago to Miami, five weeks out. Now answer the only
+question the user actually has: is that a good price or not?
+
+Nothing in the fare tells you. $199 is cheap for one route and awful for another, and
+the same route is a different number in March than it is in October. A price on its own
+is not information, it's a number waiting for context.
+
+So people build the context themselves. I keep running into the same project: a poller,
+a table of observations, a percentile or a rolling median, a "deal score" on top. It's a
+reasonable design and it works eventually. The part nobody enjoys is that it does
+nothing at all until it has run for weeks, and it only knows the routes you thought to
+poll.
+
+There's a shortcut, and it's not clever, it's just under-used. Google computes that
+context for its own UI, and it ships in the search response. If you're reading the fare,
+you already have the verdict sitting next to it.
+
+## The one call
+
+One POST. No extra endpoint, no second request, no flag to turn it on.
+
+```bash
+curl -X POST "https://google-flights-live-api.p.rapidapi.com/api/google_flights/oneway/v1" \
+  -H "Content-Type: application/json" \
+  -H "x-rapidapi-host: google-flights-live-api.p.rapidapi.com" \
+  -H "x-rapidapi-key: $RAPIDAPI_KEY" \
+  -d '{"from_airport":"LAX","to_airport":"SFO","departure_date":"2026-10-21"}'
+```
+
+The same call against our own domain, which is the front that carries the OpenAPI spec
+and works in Zapier and Make. Same key, different header name:
+
+```bash
+curl -X POST "https://api.flightpowers.com/v1/flights/oneway" \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: $FLIGHTPOWERS_API_KEY" \
+  -d '{"from_airport":"LAX","to_airport":"SFO","departure_date":"2026-10-21"}'
+```
+
+## What comes back
+
+Here's the first of five results from that LAX to SFO call, run on **2026-09-05** and
+pasted unedited. Example response: prices change by the minute, so yours will not match.
+
+```json
+{
+  "price_range_in_relation_to_other_periods": "low",
+  "price_insights_low": 25,
+  "price_insights_high": 85,
+  "from_airport": "Los Angeles (LAX)",
+  "to_airport": "San Francisco (SFO)",
+  "departure_date": "2026-10-21",
+  "price": "$19",
+  "price_as_number": 19,
+  "duration": "1 hr 35 min",
+  "duration_seconds": 5700,
+  "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTAtMjEiIAoDTEFYEgoyMDI2LTEwLTIxGgNTRk8qAkY5MgQ0NTkzagUSA0xBWHIFEgNTRk9CAQFIAZgBAg&curr=usd",
+  "airline": "Frontier",
+  "stops": 0,
+  "stops_info": [],
+  "departure_description": "7:03 PM on Wed, Oct 21",
+  "arrival_description": "8:38 PM on Wed, Oct 21"
+}
+```
+
+Response headers on that run:
+
+```
+x-search-status: ok
+x-search-results: 5
+x-search-attempts: 1
+x-search-combinations: 1
+```
+
+Three fields do the work.
+
+| Field | Type | What it is |
+|---|---|---|
+| `price_insights_low` | `number \| null` | Bottom of Google's usual range for this route and these dates. `25` above. |
+| `price_insights_high` | `number \| null` | Top of that range. `85` above. |
+| `price_range_in_relation_to_other_periods` | `"low"` \| `"typical"` \| `"high"` \| null | Google's call on the current fare against that range. `"low"` above. |
+
+Read the capture back: the band says LAX to SFO on that date normally runs $25 to $85,
+the fare on offer is $19, and Google says `low`. You didn't store anything to know that.
+It was in the first response you ever made on that route.
+
+These are Google's numbers, passed through as they arrive. Nothing is modelled on our
+side, and there's no scoring layer of ours in between. That also means the band is
+Google's opinion, not yours, which matters in the "what you give up" section below.
+
+## The three verdicts, and what to say
+
+Three captures, all made on 2026-09-05, one per verdict. Same call shape, three routes.
+
+| Route, date | Band | Fare | Verdict |
+|---|---|---|---|
+| LAX → SFO, 2026-10-21 | $25 - $85 | $19 | `low` |
+| LGW → BCN, 2026-11-10 | $25 - $60 | $25 | `typical` |
+| ORD → MIA, 2026-10-28 | $50 - $130 | $199 | `high` |
+
+The verdict is a string you branch on, and the branch is mostly a copy decision.
+
+**`low`.** The fare is under the usual range. This is the one worth interrupting someone
+for: a push, an email, a badge. Say why, with the band, because "cheap" without a number
+reads like marketing. "Usually $25 to $85, right now $19" is a sentence a user trusts
+immediately. Send them to `buy_link`, which opens that exact itinerary, because a low
+fare you make someone re-find by hand is often gone by the time they find it.
+
+**`typical`.** Normal price. Do not alert. This is the verdict that keeps your
+notification channel worth reading, so treat it as a reason to stay quiet rather than a
+weak version of `low`. In a results list it's still useful inline: "about what this route
+usually costs" tells a hesitating user they aren't missing a better deal by booking now.
+
+**`high`.** Above the usual range. Worth showing, and it's the one people leave out. An
+app that only ever says "good price" has no credibility; one that says "this is running
+high, the usual range is $50 to $130" gets believed the next time it says low. If you
+have a date-flexible search, this is where you offer it.
+
+**`null`, and the empty string.** When Google has no band for a route and date, which
+happens on thin routes and dates far out, the numbers come back null. Watch the verdict
+field on that path: it can arrive as an empty string rather than null, so a check written
+as `if verdict is None` will read `""` as a real value and fall through. Compare against
+the three strings you want instead of testing for absence. And treat unjudged as
+unjudged, never as "not low."
+
+## Two things that silently remove the band
+
+Both of these return a normal 200 with normal fares and a null band, so it looks like the
+feature is broken rather than like you turned it off.
+
+**1. Price insights only exist on the default sort.** Send `sort_type: "Price"` and the
+band comes back null. It isn't our parser: Google doesn't put the insights block on its
+price-sorted page at all, so there is nothing in the response to read. `"Duration"` keeps
+it. The default keeps it. If you want cheapest-first, leave `sort_type` off and sort the
+handful of rows you got back on your side. That costs nothing.
+
+**2. `max_price` implies the price sort.** This is the one that catches people, because
+you never asked for a sort. Passing `max_price` selects the price-sorted page internally,
+and the band disappears with it. If you need both a cap and the verdict, leave `max_price`
+off and filter on `price_as_number` in your own code.
+
+## Round trips are paired, and the fields are named differently
+
+`POST /v1/flights/roundtrip` is a real round-trip search, not two one-ways stapled
+together: it prices an outbound and a return as one itinerary, the way an airline sells
+them. The band comes back on that pairing.
+
+The trap is the field names. A round-trip result carries `total_price` and
+`total_price_as_number` where a one-way carries `price` and `price_as_number`, plus
+`departure_flight_*` and `return_flight_*` for the two legs. The three insight fields
+keep their names. So code written against one-way results reads `undefined` for the price
+and judges nothing, while the verdict field still looks fine. Write the two paths
+separately.
+
+The request takes `departure_date` and `return_date`. Both dates, one call.
+
+## Ten lines
+
+Python. The whole decision is the last three lines.
+
+```python
+import os, requests
+
+r = requests.post(
+    "https://google-flights-live-api.p.rapidapi.com/api/google_flights/oneway/v1",
+    headers={"Content-Type": "application/json",
+             "x-rapidapi-host": "google-flights-live-api.p.rapidapi.com",
+             "x-rapidapi-key": os.environ["RAPIDAPI_KEY"]},
+    json={"from_airport": "LAX", "to_airport": "SFO", "departure_date": "2026-10-21"},
+)
+best = min(r.json(), key=lambda f: f["price_as_number"])
+if best["price_range_in_relation_to_other_periods"] == "low":
+    notify(f"{best['price']}, usually "
+           f"${best['price_insights_low']}-${best['price_insights_high']}", best["buy_link"])
+```
+
+One thing to add before this runs in production: check `x-search-status` and refuse to
+judge anything when it isn't `ok`. An empty or partial result set is not a cheap route,
+and storing it or alerting on it is the worst bug in this design. The full taxonomy is in
+[handling empty flight search results](/guides/handle-empty-flight-search-results).
+
+## What you give up
+
+Being straight about the trade, because there is one.
+
+The band is Google's, for that route and those dates. It isn't your users' behaviour, it
+isn't your own booking data, and it isn't tuned to what your product means by a good
+deal. If a proprietary model of fare movement is your differentiator, this replaces the
+input to that model, not the model.
+
+It isn't on every route. Null bands are real and you need the branch. The honest version
+of this design is Google's verdict everywhere it exists and your own history only on the
+routes where it doesn't, which is a much smaller table than the one you were about to
+build.
+
+And you're depending on a third party for the signal your product leans on. That's a real
+dependency, and it's worth pricing against the alternative, which is maintaining a fare
+history nobody else checks.
+
+## Related
+
+- [Price Insights API](/flights-api/price-insights): the same three fields as a product page, with a captured run and the band drawn
+- [How to build a flight price alert](/guides/build-a-flight-price-alert): schema, dedupe, thresholds and the cold-start problem in full
+- [Handling empty flight search results](/guides/handle-empty-flight-search-results): why you must not judge a fare from a failed search
+- [Flight Price Checker](/tools/flight-price-checker): the same call in the browser, on our key, no signup
+
+Plans and rate limits are on [/pricing](/pricing); a key comes from
+<a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">the RapidAPI listing</a>,
+free tier included.
+
+<CtaBand
+  medium="guide"
+  title="Judge a fare on the first call, not in week six"
+  body="Every one-way and round-trip search comes back with Google's own price band and a low | typical | high verdict, on every plan. No price history to build first."
+/>

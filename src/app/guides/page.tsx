@@ -94,6 +94,12 @@ const GUIDES = [
     tag: 'do it yourself',
   },
   {
+    href: '/guides/fare-verdict-in-one-call',
+    title: 'Is this flight price good? One API call answers it',
+    sub: 'Google’s price band and its low | typical | high verdict ride on every search, so you can judge a fare on the first call instead of polling a route for weeks. Three live captures, one per verdict, and the two request settings that silently remove the band.',
+    tag: 'start here',
+  },
+  {
     href: '/guides/build-a-flight-price-alert',
     title: 'How to build a flight price alert',
     sub: 'Schema, dedupe keys, sampling and thresholds with hysteresis, plus idempotent delivery. Then the cold-start problem, and how Google\u2019s own price band removes it on the first run.',
