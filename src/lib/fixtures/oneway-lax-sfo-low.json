@@ -1,0 +1,39 @@
+{
+ "captured_at": "2026-09-05",
+ "captured_from": "api.flightpowers.com",
+ "note": "Real response captured from a live request. Prices were live at capture time. Same capture as the /guides/fare-verdict-in-one-call guide.",
+ "request": {
+  "endpoint": "/v1/flights/oneway",
+  "body": {
+   "from_airport": "LAX",
+   "to_airport": "SFO",
+   "departure_date": "2026-10-21"
+  }
+ },
+ "headers": {
+  "x-search-attempts": "1",
+  "x-search-combinations": "1",
+  "x-search-results": "5",
+  "x-search-status": "ok"
+ },
+ "data": [
+  {
+   "price_range_in_relation_to_other_periods": "low",
+   "price_insights_low": 25,
+   "price_insights_high": 85,
+   "from_airport": "Los Angeles (LAX)",
+   "to_airport": "San Francisco (SFO)",
+   "departure_date": "2026-10-21",
+   "price": "$19",
+   "price_as_number": 19,
+   "duration": "1 hr 35 min",
+   "duration_seconds": 5700,
+   "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTAtMjEiIAoDTEFYEgoyMDI2LTEwLTIxGgNTRk8qAkY5MgQ0NTkzagUSA0xBWHIFEgNTRk9CAQFIAZgBAg&curr=usd",
+   "airline": "Frontier",
+   "stops": 0,
+   "stops_info": [],
+   "departure_description": "7:03 PM on Wed, Oct 21",
+   "arrival_description": "8:38 PM on Wed, Oct 21"
+  }
+ ]
+}
