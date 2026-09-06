@@ -104,11 +104,13 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-09-01" updated="2026-09-01" />
 
+**Short answer:** Since Google shut down QPX Express in 2018, every Google Flights API key comes from a third-party service that extracts data from the public Google Flights site. Subscribe on RapidAPI, get your key, and you're pulling live fares with Google's own price context on every result.
+
 Google shut down **QPX Express**, its public flight-search API, in **April 2018** and offers no public flights API today. Every "Google Flights API key" you can get in 2026 comes from a third-party service that extracts data from the public Google Flights website. This guide walks you through getting a key for the **Google Flights Live API** on RapidAPI, the extraction API that returns Google's own price context with every fare.
 
 The process takes under 2 minutes. You'll have a working API key, a free tier to test with, and paste-ready code examples.
 
-## What you're actually getting
+## What are you actually getting?
 
 When you "get a Google Flights API key" today, you're subscribing to a hosted service that:
 
@@ -187,7 +189,7 @@ Replace `YOUR_RAPIDAPI_KEY` with your actual key. Success looks like a JSON arra
 
 That `price_range_in_relation_to_other_periods` field is Google's own verdict. Every result includes it when Google publishes a price band for that route.
 
-## What the API returns that others don't
+## What does this API return that others don't?
 
 Three fields set this API apart from competitors:
 
