@@ -82,6 +82,7 @@ ${DIFFERENTIATORS.map((d) => `- ${d.title}: ${d.short}`).join('\n')}
 - [Google Flights URL parameters, decoded](${u('/guides/google-flights-url-parameters')}): the tfs= protobuf at the wire level
 - [How to get Google Flights prices with Python](${u('/guides/google-flights-prices-python')}): twelve lines with requests, no browser, a real captured response
 - [How to get round-trip flight prices in one API request](${u('/guides/roundtrip-flight-prices-one-request')}): the paired-leg model, a real BER-CDG capture, and why two one-ways don't add up
+- [Cheapest destinations from one airport this month](${u('/guides/cheapest-destinations-from-one-airport')}): a destination list and a date range in one call, a captured 15-combination run, and the limit that drops a destination
 - [How to get hotel prices by hotel name with an API](${u('/guides/hotel-prices-by-hotel-name-api')}): POST the name a human would type, no property ID or catalogue sync
 - [How to get every room rate for one hotel with an API](${u('/guides/hotel-room-rates-by-property')}): resolve the name to an ID once, cache it, then call the rooms endpoint
 - [Do hotel prices change by country?](${u('/guides/hotel-prices-by-country-api')}): a repeat-sampled proxy_country run across three markets, and why one call per country is not a measurement
