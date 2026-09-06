@@ -36,11 +36,13 @@ const RECHECKED = '2026-09-04';
 /** The live run pasted below. Re-capture and update BOTH if you touch it. */
 const CAPTURED = '2026-09-04';
 const CAPTURED_AT = '12:18 UTC on 2026-09-04';
+/** Amadeus's own decommission notice, checked on its live portal. Do not edit without re-checking the source. */
+const SOURCE_CHECKED = '2026-09-06';
 
 const faq: Faq[] = [
   {
     q: 'Did Amadeus Self-Service shut down?',
-    a: 'We are not going to assert a shutdown date, because we could not find one on an Amadeus page. What is observable as of 2026-08-24: the Self-Service portal and pricing pages 301-redirect to the Amadeus homepage, the test sandbox host no longer resolves, all 20 repositories in the amadeus4dev GitHub organisation are archived, and their developer-guides README opens with “The Amadeus for Developers Self-Service offer has been deprecated.” The commands to check each of these yourself are on this page.',
+    a: 'Yes, on July 17, 2026. Amadeus posted the date itself on developers.amadeus.com, which reads “has been decommissioned on July 17th, this website is for Amadeus Enterprise API Portal only” (an archived copy from three days before the cutover gives the year: “will be decommissioned on July 17th, 2026”). What we can additionally verify ourselves, as of 2026-08-24: the Self-Service portal and pricing pages 301-redirect to the Amadeus homepage, the test sandbox host no longer resolves, all 20 repositories in the amadeus4dev GitHub organisation are archived, and their developer-guides README opens with “The Amadeus for Developers Self-Service offer has been deprecated.” The commands to check each of these yourself are on this page.',
   },
   {
     q: 'Should I move to Amadeus Enterprise instead?',
@@ -151,8 +153,28 @@ export default function CompareAmadeusPage() {
         <SectionHead
           eyebrow="The observable state"
           title="Check it yourself, don’t take our word"
-          lede={`We are not going to assert a shutdown date, because we could not find one on an Amadeus page. Here is what was observable on ${RETRIEVED} and still true when we re-ran every command on ${RECHECKED}.`}
+          lede={`Amadeus for Developers Self-Service was decommissioned on July 17, 2026, per the notice Amadeus posted on its own portal (source below). Here is what was independently observable on ${RETRIEVED} and still true when we re-ran every command on ${RECHECKED}.`}
         />
+        <p className="mt-8 max-w-3xl text-[15px] text-ink-300 leading-relaxed">
+          Amadeus itself says so, on its own portal. <code className="font-mono text-[13px]">developers.amadeus.com</code> currently
+          shows an announcement banner: “Amadeus for Developers self-service portal has been decommissioned on July 17th, this
+          website is for Amadeus Enterprise API Portal only.” An archived copy of the same page from three days before the cutover
+          states the year: “Amadeus for Developers self-service portal will be decommissioned on July 17th, 2026.”{' '}
+          <em>
+            Source:{' '}
+            <a href="https://developers.amadeus.com/" className="underline">
+              developers.amadeus.com
+            </a>{' '}
+            (checked {SOURCE_CHECKED}); pre-announcement archived at{' '}
+            <a
+              href="https://web.archive.org/web/20260715114814/https://developers.amadeus.com/"
+              className="underline"
+            >
+              web.archive.org, 2026-07-15
+            </a>
+            .
+          </em>
+        </p>
         <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <div>
             <p className="text-[14.5px] text-ink-300 mb-2 font-semibold">The Self-Service portal and pricing pages redirect to the homepage.</p>
