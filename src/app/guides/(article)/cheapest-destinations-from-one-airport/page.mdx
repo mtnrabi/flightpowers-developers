@@ -1,0 +1,330 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'Cheapest destinations from one airport this month',
+  description:
+    'Pass a list of destination airports and a departure date range in one call and get every fare back with Google\'s price band on each row. A real BER run over 5 cities and 3 October dates, the limit that silently drops a destination, the REST fan-out that does the same job, and how this differs from SerpApi\'s deals engine.',
+  alternates: { canonical: '/guides/cheapest-destinations-from-one-airport' },
+});
+
+export const dynamic = 'force-static';
+
+import { GuideDates, JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'Cheapest destinations from one airport this month with the Google Flights API',
+    description:
+      'One call with a destination list and a date range, a captured 15-combination BER run, the limit that drops a destination from the response, and the REST fan-out equivalent.',
+    url: `${SITE.url}/guides/cheapest-destinations-from-one-airport`,
+    datePublished: '2026-09-06',
+    dateModified: '2026-09-06',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# Cheapest destinations from one airport this month
+
+<GuideDates published="2026-09-06" updated="2026-09-06" />
+
+**Short answer:** FlightPowers' `search_oneway_flights` tool on the free MCP server at
+`https://google-flights-lulu.flightpowers.com/mcp` takes a **list** of destination airports
+in `to_airport` and a **date range** in `departure_date_from` / `departure_date_to`, expands
+every date and destination combination server side, and returns the merged fares in one
+response with Google's `price_insights_low` / `price_insights_high` band and a
+`low | typical | high` verdict on every row. Sorting them into a cheapest-destination ranking
+is one line of client code. The free server searches at most 15 combinations per call and no
+API key is needed to try it.
+
+"Where can I go cheaply next month" is a different question from "how much is Berlin to Paris
+on the 6th", and most flight APIs only answer the second one. You end up writing a fan-out:
+one request per destination, times one request per date, then merging the results and hoping
+you got the concurrency right.
+
+The one-way tool already does the fan-out for you. You hand it the axes, it expands them.
+
+## How do you search several destinations and several dates in one call?
+
+Put an array in `to_airport` and a range in the two date fields. This is a plain HTTP POST of
+MCP JSON-RPC, no SDK and no key:
+
+```bash
+curl -X POST "https://google-flights-lulu.flightpowers.com/mcp" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json, text/event-stream" \
+  -d '{
+    "jsonrpc": "2.0",
+    "id": 3,
+    "method": "tools/call",
+    "params": {
+      "name": "search_oneway_flights",
+      "arguments": {
+        "from_airport": "BER",
+        "to_airport": ["BCN", "LIS", "ATH", "IST", "CDG"],
+        "departure_date_from": "2026-10-06",
+        "departure_date_to": "2026-10-08",
+        "max_stops": 1,
+        "sort_by": "price",
+        "limit": 50,
+        "currency": "usd"
+      }
+    }
+  }'
+```
+
+Five destinations times three dates is fifteen combinations, which is exactly the free
+server's ceiling for one call. The response is a `text/event-stream` frame carrying one JSON
+object, so pipe it through `sed -e 's/^data: //'` before parsing.
+
+## What comes back?
+
+Everything below is from that exact request, run **2026-09-06 at 21:16 UTC**. Fares move
+within minutes, so yours will differ. `search_status` was `ok` and the coverage block said
+all 15 combinations were searched with `truncated: false`.
+
+Cheapest fare found per destination, sorted by price:
+
+| Destination | Cheapest | On | Airline | Stops | Duration | Google's band | Verdict |
+|---|---:|---|---|---:|---|---|---|
+| Paris (CDG) | $43 | 2026-10-06 | easyJet | 0 | 1 hr 50 min | $50 to $145 | low |
+| Barcelona (BCN) | $70 | 2026-10-06 | Vueling / Iberia | 0 | 2 hr 45 min | $55 to $165 | typical |
+| Athens (ATH) | $86 | 2026-10-07 | Ryanair, operated by Malta Air | 0 | 2 hr 50 min | $90 to $170 | low |
+| Istanbul (IST) | $105 | 2026-10-06 | Air Serbia | 1 | 5 hr 40 min | $100 to $205 | typical |
+
+Four rows, not five. Lisbon was searched and is missing, and the reason is the whole point of
+the section below.
+
+One row of the raw array, verbatim apart from a shortened `buy_link`:
+
+```json
+{
+  "price_range_in_relation_to_other_periods": "low",
+  "price_insights_low": 50,
+  "price_insights_high": 145,
+  "from_airport": "Berlin (BER)",
+  "to_airport": "Paris (CDG)",
+  "departure_date": "2026-10-06",
+  "price": "$43",
+  "price_as_number": 43,
+  "duration": "1 hr 50 min",
+  "duration_seconds": 6600,
+  "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTAtMDYiIAoDQkVS...&curr=usd",
+  "airline": "easy | Jet",
+  "stops": 0,
+  "stops_info": [],
+  "departure_description": "5:05 PM on Tue, Oct 6",
+  "arrival_description": "6:55 PM on Tue, Oct 6",
+  "book_label": "Book →"
+}
+```
+
+Flat rows, one per flight. `to_airport` and `departure_date` are echoed back on each one, so
+the merged array carries its own grouping keys and you never have to track which sub-search a
+row came from. `airline` comes through as Google renders it, separators and all, which is why
+`"easy | Jet"` looks the way it does.
+
+Alongside the rows the response has a `search_coverage` object:
+
+```json
+{
+  "requested_combinations": 15,
+  "searched_combinations": 15,
+  "truncated": false,
+  "max_searches_per_request": 15,
+  "departure_dates_searched": ["2026-10-06", "2026-10-07", "2026-10-08"],
+  "destinations_searched": ["ATH", "BCN", "CDG", "IST", "LIS"]
+}
+```
+
+Read it before you read the fares. A wider request is not rejected, it is sampled evenly and
+comes back with `truncated: true` and the exact dates it actually looked at. A date that is
+missing from `departure_dates_searched` was never searched, which is not the same fact as
+"there were no flights that day" and must never be stored as one.
+
+## How do you turn that into a ranking?
+
+Group on `to_airport`, take the minimum `price_as_number` in each group, sort the groups.
+Nine lines:
+
+```python
+import collections, json, requests
+
+body = {"jsonrpc": "2.0", "id": 3, "method": "tools/call", "params": {
+    "name": "search_oneway_flights",
+    "arguments": {"from_airport": "BER", "to_airport": ["BCN", "LIS", "ATH", "IST", "CDG"],
+                  "departure_date_from": "2026-10-06", "departure_date_to": "2026-10-08",
+                  "max_stops": 1, "sort_by": "price", "limit": 150}}}
+r = requests.post("https://google-flights-lulu.flightpowers.com/mcp", json=body,
+                  headers={"Accept": "application/json, text/event-stream"})
+payload = json.loads(next(l[6:] for l in r.text.splitlines() if l.startswith("data: ")))
+rows = payload["result"]["structuredContent"]["results"]
+
+best = {}
+for f in rows:
+    dest = f["to_airport"]
+    if dest not in best or f["price_as_number"] < best[dest]["price_as_number"]:
+        best[dest] = f
+for f in sorted(best.values(), key=lambda f: f["price_as_number"]):
+    print(f"{f['to_airport']:<18} {f['price']:>6}  {f['departure_date']}  "
+          f"{f['price_range_in_relation_to_other_periods']}")
+```
+
+The same grouping with `departure_date` as the second key gives you a destination by date
+grid, which is the shape a "cheapest week to go" view wants.
+
+## The trap: `limit` is applied after the merge, and it can drop a destination
+
+`limit` is not per destination and not per date. Every combination is searched, all the rows
+are merged into one pool, sorted, then cut to `limit`. With `sort_by: "price"` that cut takes
+the most expensive rows off the end, and the most expensive rows can be an entire destination.
+
+That is exactly what happened above. The 50 rows returned were 19 Paris, 24 Barcelona, 5
+Athens and 2 Istanbul. Lisbon was searched, it is right there in `destinations_searched`, and
+not one Lisbon fare survived the cut because every one of them was dearer than the 50th
+cheapest row in the pool. Nothing errored. The response looked complete.
+
+Two habits fix it:
+
+1. **Size `limit` for the fan-out, not for the screen.** Ten rows per combination is
+   `10 x dates x destinations`. For the 15-combination search above that is 150, not 50. The
+   snippet in the previous section uses 150 for this reason.
+2. **Diff the two lists.** `set(search_coverage["destinations_searched"])` minus the set of
+   `to_airport` values you actually got back should be empty. If it is not, you are one
+   `limit` bump away from a complete answer, and shipping the ranking as-is would quietly
+   claim Lisbon does not exist.
+
+Same shape of bug as reading an empty result as "no flights". The response is telling you
+what it did, in a field next to the one you were reading.
+
+## Does sorting by price cost you the price band?
+
+Not on this path, and the distinction matters because it does on the REST API.
+
+Every one of the 50 rows in the capture came back with `price_insights_low`,
+`price_insights_high` and a verdict populated, while `sort_by: "price"` was set. Sixteen rows
+said `low` and 34 said `typical`.
+
+On the REST endpoint, `sort_type: "Price"` returns a null band, because Google does not put
+the insights block on its price-sorted page at all, and `max_price` selects that same page
+internally. So on the REST fan-out below, leave both off and sort in your own code. The full
+version of that trap is in
+[is this flight price good](/guides/fare-verdict-in-one-call).
+
+## The same search on the RapidAPI listing
+
+The REST endpoint takes one origin, one destination and one date. There is no bulk calendar
+call and no destination array: every date and destination is its own live page read, and the
+listing is priced that way. The fan-out that the MCP tool does server side is yours to run.
+
+One combination looks like this:
+
+```bash
+curl -X POST "https://google-flights-live-api.p.rapidapi.com/api/google_flights/oneway/v1" \
+  -H "Content-Type: application/json" \
+  -H "x-rapidapi-host: google-flights-live-api.p.rapidapi.com" \
+  -H "x-rapidapi-key: $RAPIDAPI_KEY" \
+  -d '{
+    "from_airport": "BER",
+    "to_airport": "CDG",
+    "departure_date": "2026-10-06",
+    "max_stops": 1,
+    "limit": 10,
+    "currency": "usd"
+  }'
+```
+
+Fifteen of those, in parallel, is the whole job:
+
+```python
+import itertools, os
+from concurrent.futures import ThreadPoolExecutor
+import requests
+
+DESTS = ["BCN", "LIS", "ATH", "IST", "CDG"]
+DATES = ["2026-10-06", "2026-10-07", "2026-10-08"]
+HEADERS = {"Content-Type": "application/json",
+           "x-rapidapi-host": "google-flights-live-api.p.rapidapi.com",
+           "x-rapidapi-key": os.environ["RAPIDAPI_KEY"]}
+
+def leg(pair):
+    dest, date = pair
+    r = requests.post(
+        "https://google-flights-live-api.p.rapidapi.com/api/google_flights/oneway/v1",
+        headers=HEADERS,
+        json={"from_airport": "BER", "to_airport": dest, "departure_date": date,
+              "max_stops": 1, "limit": 10, "currency": "usd"},
+    )
+    if r.headers.get("x-search-status") != "ok":
+        return []                      # do not merge a failed search into a ranking
+    return r.json()
+
+with ThreadPoolExecutor(max_workers=15) as pool:
+    rows = [f for batch in pool.map(leg, itertools.product(DESTS, DATES)) for f in batch]
+```
+
+Two things to keep straight. The `x-search-status` check is load bearing: a degraded search
+returns `200` with fewer rows or none, and merging that into a cheapest-destinations table
+turns a failed page read into a claim that a city is expensive. And keep in-flight requests
+under your plan's per-minute rate limit, which is what
+[parallel date scans](/flights-api/parallel-date-scan) is about; 15 requests fits inside a
+single burst on every paid plan. A key, free tier included, comes from
+<a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">the listing</a>.
+
+## How is this different from SerpApi's deals engine?
+
+SerpApi shipped a `google_flights_deals` engine, documented at
+`serpapi.com/google-flights-deals-api`, which in their words "allows you to scrape flight
+deals from Google Flight Deals" (read 2026-09-06). It is a genuinely different product and
+worth knowing about.
+
+It reads Google's own Deals surface. Its documented input is `departure_id`, an origin or
+several comma-separated origins, plus date and trip-length filters. **There is no destination
+parameter.** Google picks the destinations, and each deal comes back as `destination_id`,
+`name`, `country`, `price`, `average_price` and a `discount_percentage`.
+
+So the two answer different questions:
+
+- **"Surprise me, where is cheap from here?"** That is the deals engine. You cannot ask it
+  about a specific city, and you get Google's editorial selection with a discount percentage
+  against its own average.
+- **"Of these five cities I would actually go to, which is cheapest, on which day, and is
+  that price good?"** That is the one-way tool with a list and a range. You choose the
+  shortlist, you get every fare on every date rather than one headline deal per destination,
+  and each row carries Google's band and verdict plus a `buy_link` to that exact itinerary.
+
+If your product is a discovery feed with no user shortlist, the deals engine is doing
+something we do not do, and you should use it. If your users already have destinations in
+mind, or you need the per-date grid, or you need to say whether the fare is good rather than
+how it compares to an average, that is the search above. The row by row vendor comparison,
+losing rows included, is on [FlightPowers vs SerpApi](/compare/serpapi).
+
+## Notes on the free server
+
+Everything on this page ran without an API key. That is a real free server, not a sandbox:
+the fares are live, and results carry a sponsored card, which is how it stays free. Fair use
+is 150 backend searches per client per day and 2,000 per calendar month, and one wide call
+spends one backend search per combination, so the 15-combination search above cost 15. Past
+the cap the tools answer with `search_status: "rate_limited"` and no results.
+
+The paid MCP server at `https://flights.flightpowers.com/mcp` runs the same tools with your
+own RapidAPI key, no ads, no shared budget and no 15-combination ceiling.
+
+<CtaBand
+  medium="guide"
+  title="One call, a shortlist of cities, a whole date range"
+  body="A list of destinations and a departure window in, every live fare out, each row carrying Google's own price band and a buy link. Free tier on RapidAPI, no card."
+/>
+
+## Related
+
+- [Cheapest Month to Fly](/tools/cheapest-month-to-fly): the same date-expansion idea in the browser, on our key, no signup
+- [Parallel date scans](/flights-api/parallel-date-scan): the rate-limit maths behind the REST fan-out
+- [Is this flight price good?](/guides/fare-verdict-in-one-call): the price band, and the two settings that null it
+- [Handling empty flight search results](/guides/handle-empty-flight-search-results): why a merged ranking must check search status first
+- [Round-trip prices in one request](/guides/roundtrip-flight-prices-one-request): the paired-leg model, and why two one-way fares do not add up
+- [A SerpApi google_flights alternative](/guides/serpapi-google-flights-alternative): request shape and pricing compared, quoted and dated

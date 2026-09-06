@@ -178,6 +178,12 @@ const GUIDES = [
     tag: 'do it yourself',
   },
   {
+    href: '/guides/cheapest-destinations-from-one-airport',
+    title: 'Cheapest destinations from one airport this month',
+    sub: 'One call takes a list of destination airports and a departure date range and expands both server side. A captured 15-combination Berlin run, the limit setting that silently drops a whole destination from the response, the REST fan-out that does the same job, and how it differs from SerpApi\'s deals engine.',
+    tag: 'do it yourself',
+  },
+  {
     href: '/guides/hotel-prices-by-hotel-name-api',
     title: 'How to get hotel prices by hotel name',
     sub: 'No property ID and no catalogue sync. POST the name a person would type plus two dates, and read matched_name to check what it resolved to before you trust the number.',
