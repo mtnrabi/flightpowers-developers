@@ -32,6 +32,12 @@ import { rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-09-02" updated="2026-09-02" />
 
+**Short answer:** One block in `cline_mcp_settings.json` pointing at the FlightPowers
+flights and hotels MCP servers unlocks four tools for Cline's agent: live Google Flights
+pricing, Booking.com hotel search, plus date-range and destination-list expansion that
+turn a single prompt into a multi-day scan. No REST code, just the config block and your
+RapidAPI key.
+
 Cline's agent can write and test your travel features against real flight and hotel
 data when you connect the FlightPowers MCP servers. One block in
 `cline_mcp_settings.json` unlocks four tools: live Google Flights pricing, Booking.com
@@ -53,7 +59,7 @@ prompt into a multi-day scan.
   requests/month) verifies your config works; the $10 PRO plan (2,500 requests/month) is
   the realistic floor for a development workflow.
 
-## Setting up the MCP servers
+## How do you set up the MCP servers?
 
 ### Option 1: Edit the config file directly
 

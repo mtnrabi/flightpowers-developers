@@ -34,6 +34,12 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-08-26" updated="2026-08-28" />
 
+**Short answer:** Monitoring hotel rate parity means running identical API requests with
+only `proxy_country` varied, repeated several times per market, and comparing spreads
+rather than single readings. FlightPowers' Booking.com endpoints take `proxy_country` as
+a two-letter code; a controlled repeat-sampled run found real but modest,
+property-dependent gaps, not a single fixed percentage.
+
 Rate parity is the principle (and usually the contractual expectation) that the
 same room, on the same dates, should cost the same wherever and however it is sold.
 Hotels promise it to distribution partners; OTAs enforce it in their agreements; and
@@ -49,7 +55,7 @@ endpoints in three countries and eyeballing the numbers: nobody sustains that da
 This guide shows the programmatic version: identical API requests with one parameter
 varied, repeated enough times that the answer means something.
 
-## The mechanism: `proxy_country`
+## How does `proxy_country` work?
 
 Booking.com shows different rates depending on where the visitor is browsing from.
 Every endpoint on the
@@ -182,7 +188,7 @@ parity monitor that runs daily and stays silent for weeks is working, not broken
 is the morning it isn't silent, with enough samples behind the number that the conversation
 is about the rate rather than about your method.
 
-## Scheduling it
+## How do you schedule it?
 
 A parity check is a naturally periodic job. Two common shapes:
 

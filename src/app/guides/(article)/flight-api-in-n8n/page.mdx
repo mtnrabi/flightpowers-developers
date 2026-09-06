@@ -32,6 +32,12 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-08-26" updated="2026-08-26" />
 
+**Short answer:** A fare-watch workflow in n8n needs four nodes: schedule trigger, flight
+search, IF, notification. Build it with the `n8n-nodes-flightpowers` community node or a
+plain HTTP Request node calling `google-flights-live-api.p.rapidapi.com`. The IF condition
+checks Google's own `price_range_in_relation_to_other_periods` field for `low`, so there
+is no price-history database to build first.
+
 The workflow this guide builds is a **fare watch**: every morning, search a route,
 and send yourself a message only when the fare is genuinely cheap. Four nodes
 (schedule trigger → flight search → IF → notification) and no state to maintain

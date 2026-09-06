@@ -32,6 +32,12 @@ import { rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-09-01" updated="2026-09-01" />
 
+**Short answer:** Zapier has no native Google Flights app, but the **HTTP Request**
+action in **Webhooks by Zapier** calls FlightPowers' Google Flights Live API
+(`google-flights-live-api.p.rapidapi.com`) directly with a `POST` and a raw JSON body.
+That unlocks live flight data for any Zapier workflow: scheduled fare watches, price
+feeds into Airtable or Sheets, or Slack alerts on a threshold.
+
 Zapier does not have a native Google Flights app in its directory yet, but the
 **HTTP Request** action (available in the **Webhooks by Zapier** app) calls the API
 directly. This unlocks the same live flight data for any Zapier workflow: fare
@@ -52,7 +58,7 @@ sent to Slack when a route drops below a threshold.
   . The free tier verifies your key works; a scheduled fare watch fits comfortably in
   the cheapest paid plan.
 
-## Setting up the HTTP Request
+## How do you set up the HTTP Request?
 
 Add the **Webhooks by Zapier** app to your Zap and choose the **Custom Request**
 action. Configure it as a `POST` request to:
@@ -81,7 +87,7 @@ And set the body to **raw JSON**:
 }
 ```
 
-## Reading the response
+## What does the response contain?
 
 The API returns an array of itineraries. Each object includes:
 
@@ -105,7 +111,7 @@ search per route) → Airtable (log each result with timestamp).
 `/api/google_flights/oneway/v1`, drop `return_date`, and the price fields are
 `price` and `price_as_number` instead of the `total_` variants.
 
-## Timeout and rate limits
+## What are the timeout and rate limits?
 
 Set the HTTP Request timeout to 90 seconds. This is a live scan of Google Flights,
 not a cache read, and response time tracks route complexity.

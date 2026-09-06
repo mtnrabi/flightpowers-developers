@@ -32,6 +32,12 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-08-26" updated="2026-08-26" />
 
+**Short answer:** Google Flights' `tfs=` parameter is a base64url-encoded protocol-buffer
+message packing origin, destination, dates, cabin, and stops into an undocumented blob
+you can decode with `protoc --decode_raw` but should never try to build yourself. Every
+result from FlightPowers' Google Flights Live API already carries a working `buy_link`
+with the blob pre-encoded, so you never need to write a `tfs=` encoder.
+
 Copy a URL out of Google Flights after setting up a search and you get something like:
 
 ```
@@ -43,7 +49,7 @@ there. It is just not in there in a form meant for you to read. This guide cover
 what each parameter does, how far you can get decoding the big one, and where the
 honest limits are.
 
-## The three parameters that matter
+## What are the three parameters that matter?
 
 **`tfs=`** is the search itself. It is a **protocol-buffer message, serialized and
 base64url-encoded**. One opaque blob encodes the full flight query: the legs (origin,
@@ -61,7 +67,7 @@ precision: you cannot pin dates, filters, or a specific itinerary with it the wa
 `tfs=` rather than inside it, which is occasionally useful: you can take an existing
 deep link and re-point the currency without touching the blob.
 
-## Decoding tfs= at the wire level
+## How do you decode tfs= at the wire level?
 
 You do not need Google's schema to *inspect* a `tfs=` blob, because protobuf's wire
 format is self-describing down to field numbers and wire types (though not field

@@ -33,6 +33,12 @@ import { SITE } from '@/lib/site';
 
 <GuideDates published="2026-09-02" updated="2026-09-02" />
 
+**Short answer:** "Travel data API" actually means four different, non-substitutable
+products: price intelligence (what FlightPowers sells), booking and ticketing, reference
+and static data, and general-purpose scraping platforms. This guide sorts named vendors
+into the right category, with prices checked live on 2026-09-02 and quoted from each
+vendor's own page.
+
 Most shortlists for "travel data API" go wrong before the first vendor call, because
 the phrase covers four products that do not substitute for each other. A price
 scraper cannot issue a ticket. A booking platform is a poor way to fill a chart. An
@@ -46,7 +52,7 @@ Disclosure up front: **I sell in category one.** I run FlightPowers, which is a 
 intelligence API for flights and hotels. I do not sell in the other three, and the
 booking-side section below says plainly that we cannot do what those vendors do.
 
-## The four categories
+## What are the four categories?
 
 | Category | The question it answers | Where the detail lives |
 |---|---|---|
@@ -193,7 +199,7 @@ the thing to hold on to when you compare it against anything in category one.
 **You are in the wrong category if** you need one travel answer inside a user
 request and you are about to build a job runner, a proxy pool and a parser to get it.
 
-## The decision, in one line
+## What's the one-line decision rule?
 
 Read your requirement out loud. The verb picks the category.
 

@@ -32,11 +32,18 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-09-05" updated="2026-09-05" />
 
+**Short answer:** Amadeus for Developers Self-Service is deprecated as of 2026-09-05
+(`test.api.amadeus.com` has no DNS record, the `amadeus4dev` GitHub org is fully archived),
+so a price tracker needs a live extraction API instead. FlightPowers' Google Flights API
+returns the fare a traveler would pay plus `price_insights_low`/`price_insights_high` and a
+low/typical/high verdict in the same response, at the cost of not being able to issue a
+ticket.
+
 A price tracker has two jobs. Get the number a traveller would actually pay today, and
 decide whether that number is worth waking someone up for. Pick your source on those two
 jobs, not on which company is older.
 
-## The state of Amadeus Self-Service
+## Is Amadeus Self-Service still available?
 
 Anyone answering this question in 2024 would have said "start on the Amadeus Self-Service
 free tier". That advice has expired, and the check takes four commands.
@@ -80,7 +87,7 @@ first ever call that $63 is normal here, so it stays quiet. No history table, no
 **A link that survives the alert.** A cheap fare the user has to re-find by hand is usually
 gone by the time they find it. `buy_link` reopens that exact itinerary.
 
-## The honest trade
+## What do you give up?
 
 You give up booking. An extraction API reads a shopping page, so it cannot issue a ticket,
 hold a PNR, or tell you a fare rule. If your product ends in a purchase you own, you need a

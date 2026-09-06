@@ -32,6 +32,12 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-09-01" updated="2026-09-01" />
 
+**Short answer:** A scheduled Make.com fare-watch scenario needs three modules: a
+schedule trigger, an HTTP module calling FlightPowers' Google Flights Live API
+(`google-flights-live-api.p.rapidapi.com`), and a router that filters on the
+`price_range_in_relation_to_other_periods` field. When that field is `low`, send the
+message. No price-history database to build first.
+
 This guide shows you how to build a scheduled scenario: every morning, search a route
 and send yourself a message only when the price is low. Three modules
 (schedule trigger, flight search, router) and no database to maintain between runs.
@@ -51,7 +57,7 @@ means logging prices for months first. Here it is a filter condition on day one.
   The free tier verifies your key works; a daily check on a handful of routes fits
   comfortably in the cheapest paid plan (current numbers on [/pricing](/pricing)).
 
-## The three-module scenario
+## How do you build the three-module scenario?
 
 A native Make app is in review, not listed yet. Everything below works today with
 Make's built-in **HTTP → Make a request** module.

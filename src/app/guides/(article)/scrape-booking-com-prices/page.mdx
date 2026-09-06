@@ -32,6 +32,12 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-09-02" updated="2026-09-02" />
 
+**Short answer:** A plain `requests` + BeautifulSoup `GET` fails on Booking.com because
+the search page ships as a server-rendered shell and the actual rates arrive later
+through JavaScript calls, and a bare HTTP client trips bot detection anyway. The route
+that works is Playwright driving a real browser, which is a weekend to get working and
+a long tail to keep working as selectors and result ordering shift.
+
 I sell a hotel pricing API, so read the last section as a vendor talking. Everything
 before it is the DIY route written straight, because most people should try it first.
 It is a weekend of work to get results and a long tail of work to keep them.

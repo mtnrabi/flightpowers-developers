@@ -32,6 +32,13 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-09-02" updated="2026-09-02" />
 
+**Short answer:** Building your own flight price alert means a schema for observations, a
+dedupe key that survives retries, a cold-start period before you have enough history to
+judge a fare, and hysteresis on the alert threshold. Or skip the cold start: every
+FlightPowers fare already carries Google's own `price_insights_low`,
+`price_insights_high`, and a low/typical/high verdict, so the alert condition becomes a
+field comparison correct on the first call.
+
 A price alert sounds like a cron job and a comparison. Poll a fare, store it, compare
 against your own history, send a message when it drops. Every part of that is real, and
 every part of it has a trap in it that only shows up after the thing is running.
@@ -40,7 +47,7 @@ I run a flight data API, so the last third of this page is me making a case. The
 two thirds is the design you end up with either way, and it is worth building once even
 if you never buy anything.
 
-## The schema you end up with
+## What schema do you end up with?
 
 ```sql
 create table fare_observation (
@@ -91,7 +98,7 @@ with a different shape. Whatever you pick, store `carrier` and `stops` alongside
 price, because the first time an alert fires you will want to know whether the price
 dropped or the itinerary changed. Those look identical in a column of numbers.
 
-## The cold start
+## What is the cold-start problem?
 
 Here is the part nobody plans for. Your alert compares against your own history, and on
 day one you have none. Day thirty, on a daily poll, you have thirty numbers.
@@ -110,7 +117,7 @@ guess, which is a made-up baseline that then decides when users get told to book
 This is the structural weakness of the build-your-own approach, and it does not go away
 with better code. It goes away with more time or with someone else's history.
 
-## Sampling design
+## How should you design sampling?
 
 **How often.** For a route months out, once a day is plenty: fares move on a
 carrier's schedule, not a market's tick. Inside the last two or three weeks before
@@ -130,7 +137,7 @@ numbers. A single missed run is 3% of your history gone. Alerts built on that ne
 be conservative in a way that alerts built on real history do not, and you should be
 explicit about that in your own head before your users find it.
 
-## Thresholds, honestly
+## How should you set thresholds?
 
 **Absolute or relative.** An absolute rule ("under $400") is what users ask for and it
 is easy to reason about, but it needs a number per route that someone has to know.
@@ -156,7 +163,7 @@ hours. A market doing something genuinely strange should not be able to send fif
 messages, and the failure mode where your poller retries in a loop should cost one
 notification, not fifty.
 
-## Delivery
+## How should you handle delivery?
 
 **Idempotency.** The send is the part that runs at the boundary of your system, so it is
 the part that gets retried after a timeout you cannot tell apart from a success. Derive

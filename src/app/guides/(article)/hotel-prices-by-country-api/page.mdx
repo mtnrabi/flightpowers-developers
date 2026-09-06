@@ -32,6 +32,13 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-09-05" updated="2026-09-05" />
 
+**Short answer:** Yes, sometimes, but the gap is real, modest, and property-dependent, not
+a fixed percentage. FlightPowers' Booking.com endpoints take a `proxy_country` field (a
+two-letter code) that routes the request through a residential proxy in that market. A
+controlled 2026-08-28 run found Japan about 4% under Germany on three Rome properties
+across repeat samples, while `us` itself varied by more than that between identical calls
+seconds apart.
+
 Sometimes. Less than the internet says, and not reliably enough to measure with one call.
 
 Booking.com can quote a different rate depending on where the visitor appears to be
@@ -40,7 +47,7 @@ routes the request through a residential proxy in that country, so you can price
 room as a resident of another market. Leave it out and the request goes through the global
 pool.
 
-## The request
+## How do you make the request?
 
 Same call as any other search, one extra field.
 
@@ -63,7 +70,7 @@ A key with `proxy_country` included on the free plan comes from
 <a href={rapidApiPricingUrl('hotels', 'guide')} rel="noopener">the RapidAPI listing</a>.
 Nothing is held back for the paid tiers.
 
-## What a controlled run showed
+## What did a controlled run show?
 
 Three Rome properties, three markets, three identical requests per market. Only
 `proxy_country` changed. Captured **2026-08-28**, totals for the stay in the same currency.

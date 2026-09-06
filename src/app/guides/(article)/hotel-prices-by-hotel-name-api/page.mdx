@@ -32,6 +32,11 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-09-05" updated="2026-09-05" />
 
+**Short answer:** `POST hotel_by_name` on `booking-live-api.p.rapidapi.com` takes the plain
+property name plus `checkin_date` and `checkout_date`, no property ID and no catalogue
+sync. It returns a live Booking.com rate and a `matched_name` field so you can confirm
+what the name actually resolved to before you trust the price.
+
 Most hotel APIs want an ID. So the first thing you build is not the feature, it is a
 mapping layer: a property catalogue, a sync job to keep it fresh, and a fuzzy matcher for
 the day someone types "the Hilton by the airport". That is a week of work standing between
@@ -39,7 +44,7 @@ you and one price.
 
 You can skip it. The lookup takes the name.
 
-## The request
+## How do you make the request?
 
 ```bash
 curl -X POST "https://booking-live-api.p.rapidapi.com/hotel_by_name" \
@@ -67,7 +72,7 @@ message that says exactly that.
 A key comes from <a href={rapidApiPricingUrl('hotels', 'guide')} rel="noopener">the RapidAPI
 listing</a>, free plan included, and it covers every endpoint on this page.
 
-## What comes back
+## What does the response contain?
 
 A real answer to the request above, run on **2026-09-04**. Rates move, so yours will differ.
 
@@ -97,7 +102,7 @@ response instead of in a support ticket.
 `nights` is there so you can divide. `price_string` is the same number formatted the way
 Booking.com shows it, for display only.
 
-## The parts to handle
+## What should you handle?
 
 **`available` can be false.** Sold out and priced are both normal answers. A false value
 is not an error and should not go down your error path, but it also must not be stored as

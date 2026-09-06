@@ -32,6 +32,13 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-09-02" updated="2026-09-02" />
 
+**Short answer:** `requests` and BeautifulSoup return an empty results region because
+Google Flights is client-rendered and prices arrive later through JavaScript your
+Python process never runs. The route that works is Playwright driving a real browser
+and reading the DOM the way a user's browser would, since reverse-engineering the
+internal calls means chasing an undocumented, unversioned payload that can change
+without warning.
+
 Most of this page is the scraper: what to install, what code works, and the failure
 modes that will find you in week two. The last section is my argument for not
 maintaining it. I sell a flight API, so that part is marked and you can stop before

@@ -32,6 +32,11 @@ import { rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-09-01" updated="2026-09-01" />
 
+**Short answer:** Add the FlightPowers flights and hotels MCP server URLs as developer-mode
+connectors in ChatGPT and it gains four tools: live Google Flights pricing, Booking.com
+hotel search, plus date-range and destination-list expansion, so one question can become a
+multi-day scan. No REST code, just the two connector URLs and your RapidAPI key.
+
 ChatGPT can search live flight and hotel data mid-conversation when you connect the
 FlightPowers MCP servers through developer-mode connectors. Two URLs (flights and
 hotels) unlock four tools: live Google Flights pricing, Booking.com hotel searches, and
@@ -55,7 +60,7 @@ multi-day scan.
   requests/month) verifies your config works; the $10 PRO plan (2,500 requests/month) is
   the realistic floor for a conversational assistant you actually use.
 
-## Setting up the MCP connectors
+## How do you set up the MCP connectors?
 
 Open ChatGPT Settings, go to Connectors, and enable developer mode. Add each server URL
 as a connector:

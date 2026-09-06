@@ -32,6 +32,12 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-09-01" updated="2026-09-01" />
 
+**Short answer:** A hotel rate monitor in n8n needs four nodes: schedule trigger, hotel
+search, IF, notification. Build it with a community node or a plain HTTP Request node
+calling FlightPowers' Booking Live API (`booking-live-api.p.rapidapi.com`), and fire the
+IF when `price_as_number` drops below your threshold. The same pattern scales to
+multi-market rate-parity checks with `proxy_country`.
+
 The workflow this guide builds is a **hotel rate monitor**: every day, check a specific hotel's rate for your dates, and send yourself a message when the price drops below your threshold. Four nodes (schedule trigger → hotel search → IF → notification) and no state to maintain between runs.
 
 The pattern scales to multi-market rate-parity checks (the same hotel priced from Germany and Japan, each market sampled a few times) or comp-set tracking (your hotel plus three competitors on the same schedule).
