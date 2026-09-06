@@ -189,15 +189,17 @@ Replace `YOUR_RAPIDAPI_KEY` with your actual key. Success looks like a JSON arra
 
 That `price_range_in_relation_to_other_periods` field is Google's own verdict. Every result includes it when Google publishes a price band for that route.
 
-## What does this API return that others don't?
+## What does this API return beyond the fare?
 
-Three fields set this API apart from competitors:
+Three fields do the work a raw fare feed leaves to you:
 
 1. **`price_range_in_relation_to_other_periods`**: `"low"`, `"typical"`, or `"high"` — Google's judgment of the current fare against historical data
 2. **`price_insights_low` / `price_insights_high`**: The dollar band Google uses to compute the verdict
 3. **`X-Search-Status` response header**: `ok`, `empty`, `partial`, or `degraded` — so an empty result array is not ambiguous
 
 These fields turn a raw price feed into actionable "is this a good deal?" logic on day one, without building your own price history database.
+
+Be precise about who else has them. SerpApi and HasData both document a comparable price-insights object, and HasData also returns a price history array we do not (both pages read 2026-09-06). Where the fields are absent is the RapidAPI shelf: none of the four Google Flights listings ranked above ours documents a price-insights band, a low / typical / high field, or a search-status header, checked the same day. The difference that holds against everyone is the round trip. On SerpApi you get the outbound, then spend a second search with a `departure_token` to see the return, and HasData does the same with a `departureToken`. Here both legs are priced together and come back as one total with one booking link, so a round trip costs one call, not two.
 
 ## Next steps
 

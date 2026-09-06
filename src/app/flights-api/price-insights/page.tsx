@@ -51,7 +51,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Do competing flight APIs return this?',
-    a: 'Check their docs for a price-insights or price-band field. Most Google Flights wrappers return fares only, which leaves “is this a good price?” unanswerable without your own history. It is the main reason this API exists as a separate product. Our comparison pages quote competitors’ own documentation, dated.',
+    a: 'Some do. SerpApi documents a price_insights object, and HasData documents a priceInsights object with lowestPrice, typicalPriceRange and priceLevel plus a priceHistory array we do not return. Both read on 2026-09-06. Where the field is missing is the RapidAPI shelf: none of the four Google Flights listings ranked above ours documents a price-insights band, a low / typical / high field, or a search-status header, all four pulled on 2026-09-06. So check the docs of whatever you are comparing, and if a listing does not name the field, assume the fare arrives without context. Our comparison pages quote competitors’ own documentation, dated.',
   },
   {
     q: 'Does it cost extra?',

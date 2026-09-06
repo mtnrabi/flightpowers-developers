@@ -212,8 +212,10 @@ export default function QuickstartPage() {
                 this fare: <code className="field">low</code>, <code className="field">typical</code> or{' '}
                 <code className="field">high</code>. And{' '}
                 <code className="field">price_insights_low</code>/<code className="field">high</code> are the band it
-                judged against. That is the field most competitors do not return, and it is what lets you say &ldquo;book
-                now&rdquo; instead of just showing a number.
+                judged against. None of the four Google Flights listings ranked above ours on RapidAPI documents that field
+                (all four listing pages pulled on 2026-09-06), and it is what lets you say &ldquo;book now&rdquo;
+                instead of just showing a number. SerpApi and HasData do return a comparable object, so this is a
+                difference on the RapidAPI shelf, not against every provider.
               </p>
               <p>
                 Check the <code className="field">x-search-status</code> response header too. It is one of{' '}
