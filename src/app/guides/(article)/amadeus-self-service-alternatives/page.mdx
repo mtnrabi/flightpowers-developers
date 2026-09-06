@@ -25,7 +25,7 @@ import { SITE } from '@/lib/site';
       'Every Amadeus Self-Service alternative a small team shortlists, with the access gate each one puts in front of you, quoted and dated, plus a real migration request and response.',
     url: `${SITE.url}/guides/amadeus-self-service-alternatives`,
     datePublished: '2026-09-01',
-    dateModified: '2026-09-05',
+    dateModified: '2026-09-06',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -41,7 +41,7 @@ import { SITE } from '@/lib/site';
         name: 'Is Amadeus Self-Service shut down?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'We do not assert a shutdown date, because we could not find one on an Amadeus page. What is verifiable from our own machine on 2026-09-04: test.api.amadeus.com and api.amadeus.com have no DNS record at all, developers.amadeus.com/self-service returns a 301 to the Amadeus homepage, and all 20 repositories in the amadeus4dev GitHub organisation are archived, with the developer-guides README opening "The Amadeus for Developers Self-Service offer has been deprecated." The commands to reproduce each check are published on the page.',
+          text: 'Yes. Amadeus posted its own decommission notice on developers.amadeus.com stating the self-service portal "will be decommissioned on July 17th, 2026" (archived 2026-07-15), and the live portal now reads "has been decommissioned on July 17th, this website is for Amadeus Enterprise API Portal only" (checked 2026-09-06). What we can additionally verify from our own machine on 2026-09-04: test.api.amadeus.com and api.amadeus.com have no DNS record at all, developers.amadeus.com/self-service returns a 301 to the Amadeus homepage, and all 20 repositories in the amadeus4dev GitHub organisation are archived, with the developer-guides README opening "The Amadeus for Developers Self-Service offer has been deprecated." The commands to reproduce each check are published on the page.',
         },
       },
       {
@@ -98,10 +98,11 @@ import { SITE } from '@/lib/site';
 
 # Amadeus Self-Service alternatives: which ones you can actually get access to
 
-<GuideDates published="2026-09-01" updated="2026-09-05" />
+<GuideDates published="2026-09-01" updated="2026-09-06" />
 
-**Short answer:** Amadeus for Developers Self-Service is effectively gone:
-`test.api.amadeus.com` and `api.amadeus.com` have no DNS record, `/self-service`
+**Short answer:** Amadeus for Developers Self-Service was decommissioned on July 17, 2026,
+per the notice Amadeus itself posted on `developers.amadeus.com` (source below). It is now
+fully gone: `test.api.amadeus.com` and `api.amadeus.com` have no DNS record, `/self-service`
 redirects to the homepage, and the `amadeus4dev` GitHub org is fully archived (checked
 2026-09-04). The real alternatives are gated differently, from Duffel's instant
 self-serve booking access to RapidAPI marketplace extraction APIs like FlightPowers
@@ -121,8 +122,15 @@ row as a vendor describing his own product, and check the rest yourself.
 
 ## Is Amadeus Self-Service still available?
 
-I am not going to assert a shutdown date, because I could not find one on an Amadeus
-page. Here is what I can observe from my own machine, re-run on **2026-09-04**:
+No. Amadeus posted its own decommission notice on `developers.amadeus.com`. The live
+portal now reads: "Amadeus for Developers self-service portal has been decommissioned
+on July 17th, this website is for Amadeus Enterprise API Portal only." An archived copy
+of the same page from three days earlier states the year: "Amadeus for Developers
+self-service portal will be decommissioned on July 17th, 2026." *Source:
+[developers.amadeus.com](https://developers.amadeus.com/) (checked 2026-09-06);
+pre-announcement archived at [web.archive.org, 2026-07-15](https://web.archive.org/web/20260715114814/https://developers.amadeus.com/).*
+
+Here is what I can additionally observe from my own machine, re-run on **2026-09-04**:
 
 ```bash
 getent hosts test.api.amadeus.com
@@ -173,7 +181,7 @@ list underneath, with the URL.
 | **Kiwi.com Tequila** | Kiwi's flight search | **No registration route at all.** Every path lands on a magic-link login for existing accounts, with an email address for affiliate enquiries |
 | **Tripgic** | Aggregated flight, hotel, car and activity APIs across GDS, NDC and LCC | **A one-time activation fee before any key exists.** The cheapest plan that includes the Flight API is `$1,499`, the entry plan is `$500`, and the charge is "non-refundable once API credentials are provisioned" |
 | **Amadeus Enterprise** | The full GDS suite, booking and ticketing included | **Accreditation and a sales conversation.** IATA or ARC, or a consolidator |
-| **Amadeus Self-Service** | Nothing now | **Gone.** No DNS record on either API hostname, checked above |
+| **Amadeus Self-Service** | Nothing now | **Gone.** Decommissioned July 17, 2026 per Amadeus's own portal notice; no DNS record on either API hostname, checked above |
 
 ### Sources for every gate above
 
@@ -243,12 +251,16 @@ IP and need a real browser to reproduce, which is noted where it applies.
   up and start testing it for free", and, from the same FAQ, "Can I book flights using
   this API? NO. You cannot book flights using our API. This API only tracks prices."
   `flightapi.io`, HTTP 200. Their pricing lives at `/#pricing`; `/pricing` is a 404.
-- **Amadeus**: `developers.amadeus.com/self-service` and `/register` both return 301 to
+- **Amadeus**: the live `developers.amadeus.com` portal carries its own announcement
+  banner: "Amadeus for Developers self-service portal has been decommissioned on July
+  17th, this website is for Amadeus Enterprise API Portal only" (checked 2026-09-06). An
+  archived copy from 2026-07-15, three days before the cutover, states the year outright:
+  "Amadeus for Developers self-service portal will be decommissioned on July 17th, 2026."
+  `web.archive.org/web/20260715114814/https://developers.amadeus.com/`. Separately,
+  `developers.amadeus.com/self-service` and `/register` both return 301 to
   `developers.amadeus.com/`. The deprecation line is in
   `raw.githubusercontent.com/amadeus4dev/developer-guides/master/README.md`, HTTP 200.
-  The branch is `master`; the `main` path 404s. Amadeus links a press release from that
-  README, and the page returns 200, but it rendered as navigation with no article body
-  for us, so we quote the README rather than the statement.
+  The branch is `master`; the `main` path 404s.
 
 One I could not check: **Zyla API Hub** answers 403 from our IP, so there is no row for
 it rather than a row sourced from somebody else's summary.
@@ -455,11 +467,14 @@ source is a price I will not print.
 ## Questions
 
 **Is Amadeus Self-Service shut down?**
-I will not assert a date, because there is no Amadeus page stating one that I could
-find. What I can verify myself, on 2026-09-04: `test.api.amadeus.com` and
-`api.amadeus.com` have no DNS record, `/self-service` 301s to the homepage, and all 20
-`amadeus4dev` repositories are archived with a deprecation notice in the README. The
-commands are at the top of this page.
+Yes, on July 17, 2026. Amadeus posted the date itself on `developers.amadeus.com`,
+which reads "has been decommissioned on July 17th, this website is for Amadeus
+Enterprise API Portal only" (an archived copy from three days before the cutover gives
+the year: "will be decommissioned on July 17th, 2026"). What I can additionally verify
+myself, on 2026-09-04: `test.api.amadeus.com` and `api.amadeus.com` have no DNS record,
+`/self-service` 301s to the homepage, and all 20 `amadeus4dev` repositories are
+archived with a deprecation notice in the README. The commands are at the top of this
+page.
 
 **Which alternatives can I actually sign up for today, with no approval?**
 From the table above: FlightPowers and SerpApi are self-serve. Duffel gives you a

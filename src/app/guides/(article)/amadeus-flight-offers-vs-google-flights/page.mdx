@@ -22,7 +22,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
       'Which source fits a fare tracker, with the observed state of Amadeus Self-Service on 2026-09-05 and a captured extraction-API response.',
     url: `${SITE.url}/guides/amadeus-flight-offers-vs-google-flights`,
     datePublished: '2026-09-05',
-    dateModified: '2026-09-05',
+    dateModified: '2026-09-06',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -30,14 +30,15 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 # Amadeus flight offers, or live Google Flights fares?
 
-<GuideDates published="2026-09-05" updated="2026-09-05" />
+<GuideDates published="2026-09-05" updated="2026-09-06" />
 
-**Short answer:** Amadeus for Developers Self-Service's portal pages returned archived or
-301 responses when we checked them on 2026-09-05 (`test.api.amadeus.com` has no DNS record,
-the `amadeus4dev` GitHub org is fully archived), so a price tracker needs a live extraction
-API instead. FlightPowers' Google Flights API returns the fare a traveler would pay plus
-`price_insights_low`/`price_insights_high` and a low/typical/high verdict in the same
-response, without being able to issue a ticket.
+**Short answer:** Amadeus for Developers Self-Service was decommissioned on July 17, 2026,
+per the notice Amadeus posted on its own portal (source below). Re-checked on 2026-09-05,
+its portal pages returned archived or 301 responses (`test.api.amadeus.com` has no DNS
+record, the `amadeus4dev` GitHub org is fully archived), so a price tracker needs a live
+extraction API instead. FlightPowers' Google Flights API returns the fare a traveler would
+pay plus `price_insights_low`/`price_insights_high` and a low/typical/high verdict in the
+same response, without being able to issue a ticket.
 
 A price tracker has two jobs. Get the number a traveller would actually pay today, and
 decide whether that number is worth waking someone up for. Pick your source on those two
@@ -47,6 +48,14 @@ jobs, not on which company is older.
 
 Anyone answering this question in 2024 would have said "start on the Amadeus Self-Service
 free tier". That advice has expired, and the check takes four commands.
+
+Amadeus itself says so, on its own portal. `developers.amadeus.com` currently shows an
+announcement banner: "Amadeus for Developers self-service portal has been decommissioned on
+July 17th, this website is for Amadeus Enterprise API Portal only." An archived copy of the
+same page from three days before the cutover states the year: "Amadeus for Developers
+self-service portal will be decommissioned on July 17th, 2026." *Source:
+[developers.amadeus.com](https://developers.amadeus.com/) (checked 2026-09-06); pre-announcement
+archived at [web.archive.org, 2026-07-15](https://web.archive.org/web/20260715114814/https://developers.amadeus.com/).*
 
 Re-run on **2026-09-05**: `test.api.amadeus.com` returns no DNS record, and neither does
 `api.amadeus.com`. `developers.amadeus.com/self-service` answers `301` to the portal root.
