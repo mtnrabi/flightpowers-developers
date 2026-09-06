@@ -28,9 +28,14 @@ export const dynamic = 'force-static';
 /**
  * Competitor figures below are sourced from hasdata.com/apis/google-flights-api and
  * hasdata.com pricing, plus the official MCP registry entry for mcp.hasdata.com,
- * retrieved 2026-09-05. Do not edit any HasData figure without re-reading those pages.
+ * re-read 2026-09-06. Do not edit any HasData figure without re-reading those pages.
+ *
+ * 2026-09-06 correction: their Google Flights page documents a priceInsights object
+ * with lowestPrice, typicalPriceRange, priceLevel ("low | typical | high right now")
+ * and priceHistory. An earlier version of this page framed their price context as a
+ * history series against our verdict. That was wrong: they publish both.
  */
-const RETRIEVED = '2026-09-05';
+const RETRIEVED = '2026-09-06';
 
 const faq: Faq[] = [
   {
@@ -47,7 +52,7 @@ const faq: Faq[] = [
   },
   {
     q: 'What does HasData return that is listed on their page and not on ours?',
-    a: 'Their Google Flights API page advertises price history and carbon data alongside fares and legs. We return Google’s own price band and a low, typical or high verdict on every result, which is a different shape of the same idea: their history is a series, ours is Google’s conclusion. Neither replaces the other exactly. Read both pages before deciding which one your product needs.',
+    a: 'Carbon estimates, and a price history series. Their page documents a priceInsights object carrying lowestPrice, typicalPriceRange, priceLevel ("low | typical | high right now") and priceHistory, and their own FAQ reads "priceInsights returns the lowest fare, the typical price range for the route, whether prices are low or high right now, and a price history over time." So the band and the verdict are a tie, not a difference, and the history series is theirs. We do not return a history array. Read on 2026-09-06.',
   },
 ];
 
@@ -197,9 +202,9 @@ export default function CompareHasDataPage() {
               ],
               [
                 'Price context',
-                'Their Google Flights API page advertises price history alongside fares, legs and carbon data.',
+                'A priceInsights object with lowestPrice, typicalPriceRange, priceLevel ("low | typical | high right now") and a priceHistory array of timestamped points. Band, verdict and history. This row is theirs on the history column and a tie on the rest.',
                 <>
-                  Google&apos;s own band plus a low, typical or high verdict on every result, no history to build first.{' '}
+                  Google&apos;s own band plus a low, typical or high verdict on every result. No history array, so if you want a series you accumulate it.{' '}
                   <Link href="/flights-api/price-insights" className="text-signal-400 underline underline-offset-4">Price Insights →</Link>
                 </>,
               ],
@@ -213,7 +218,7 @@ export default function CompareHasDataPage() {
               ],
               [
                 'Round trips',
-                'Not separately documented on the page read on the stamped date, so no claim is made here either way.',
+                'Documented. Their FAQ reads "Both. Set departureId, arrivalId, and outboundDate for one-way, and add returnDate for a round trip", and their type parameter adds "For round trips, retrieve return flight details with a separate request using departureToken." So the return leg is a second call.',
                 <>
                   One paired-leg request with a combined total and one booking link.{' '}
                   <Link href="/flights-api/round-trip" className="text-signal-400 underline underline-offset-4">Round-Trip API →</Link>
@@ -231,7 +236,7 @@ export default function CompareHasDataPage() {
             <h3 className="text-[16px] font-semibold text-ink-100">Choose HasData when</h3>
             <ul className="mt-3 space-y-2 text-[14.5px] text-ink-400 leading-relaxed list-disc pl-5">
               <li>You want a proper unpaid evaluation before committing. Sixty-six searches is one, ten is not.</li>
-              <li>You need a price history series rather than a verdict on today&apos;s fare.</li>
+              <li>You need a price history series. They return one, we do not.</li>
               <li>Carbon data is on your requirements list.</li>
               <li>Your volume is high enough to reach their larger plans, where the unit price drops.</li>
             </ul>
@@ -240,7 +245,7 @@ export default function CompareHasDataPage() {
             <h3 className="text-[16px] font-semibold text-ink-100">Choose FlightPowers when</h3>
             <ul className="mt-3 space-y-2 text-[14.5px] text-ink-400 leading-relaxed list-disc pl-5">
               <li>You are pricing an entry-tier production workload and the per-search cost decides it.</li>
-              <li>You want a fare judged on the first call, without building a history table.</li>
+              <li>You want the return leg in the same response rather than a second call with a token.</li>
               <li>Round trips are a real share of your searches and you want them priced as one itinerary.</li>
               <li>You want flights and hotels from one vendor on one key.</li>
             </ul>
