@@ -73,6 +73,8 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-08-27" updated="2026-08-27" />
 
+**Short answer:** Connect Claude or ChatGPT to live Google Flights data through one URL, then schedule a daily task that scans your routes and tells you only when Google's own verdict says a fare is low. No code, no server, no price-history database. Takes about 15 minutes to set up.
+
 This is how to build an AI travel agent without writing any code. By the end of
 this page you will have two things. An assistant, Claude or ChatGPT, that searches
 live Google Flights fares and Booking.com hotel rates mid-conversation, in plain
@@ -120,7 +122,7 @@ That is a real capture (London to Barcelona round trip, October 9 to 12, fetched
 alerting brain of your agent is one instruction: *tell me only when the verdict says
 low*. Google's standard, not a threshold you guessed.
 
-## What you need
+## What do you need?
 
 The prerequisites, in full:
 
@@ -306,7 +308,7 @@ discontinued in OpenAI's own help pages in favour of ChatGPT Work, which is
 documented to support scheduled and triggered runs. That surface is mid-rollout
 and aimed at workspaces, so this guide does not build on it.
 
-## The whole setup, copyable
+## What's the whole setup?
 
 Everything above in one block: the connector URLs and the scheduled-task prompt.
 Add the URLs as custom connectors (Claude: Customize &gt; Connectors; ChatGPT:
@@ -336,7 +338,7 @@ returned results and treat the missing ones as unknown, not as
 empty.
 ```
 
-## What a run actually looks like
+## What does a run actually look like?
 
 The exact scan from the task prompt above, run live through the server on
 2026-08-27 (departing Friday 2026-10-09, three nights):
@@ -359,7 +361,7 @@ on each result opens that exact itinerary on Google Flights, ready to book. Pric
 move; if you run the same scan today the fares will differ, which is rather the
 point of scanning daily.
 
-## What this costs, honestly
+## What does this cost?
 
 The API bills per search: **each date/destination combination inside a call is one
 billed request** against your RapidAPI plan. One call scanning three destinations
@@ -384,7 +386,7 @@ plan; on ChatGPT, the Pro plan or a Business workspace for the connector itself
 (the schedule feature exists on every plan). The conversational agent alone works
 on Claude's free plan (one connector).
 
-## Limits, and what the agent cannot do
+## What are the limits?
 
 - **It cannot book flights.** It finds, judges, and hands you the `buy_link`.
   You click it. That is the correct division of labour anyway.

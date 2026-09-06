@@ -32,6 +32,8 @@ import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-08-26" updated="2026-08-26" />
 
+**Short answer:** Use a Google Flights extraction API that returns live prices from the public site as JSON. Every result includes the price, airline, duration, booking link, and Google's own historical price band with a low/typical/high verdict. No scraper maintenance, and the data you get is what travelers actually see when they search.
+
 Google Flights has the best fare coverage on the consumer web, and no public API.
 Google's own Travel Partner APIs are for airlines and OTAs under contract, not for
 developers who want to query a route and get a price back. So every team that needs
@@ -58,7 +60,7 @@ That returns live Google Flights results for the route, each with a price, an
 airline, a duration, a deep link that opens the exact itinerary on Google Flights,
 and, critically, Google's own historical price band for that route and date.
 
-## Getting a key
+## How do you get a key?
 
 The API is distributed through RapidAPI. Subscribe to
 <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">Google Flights Live API</a>
@@ -109,7 +111,7 @@ Airports are IATA codes (`JFK`, `LHR`, `CDG`). Dates are `YYYY-MM-DD`.
 | `strict` | boolean | `false` | Opt-in: HTTP 503 instead of an empty array when the search did not complete (see below) |
 | `use_ext_proxy` | boolean | `true` | Residential proxy routing; set `false` for lower latency on easy routes |
 
-### What comes back
+### What does the response contain?
 
 ```json
 {
@@ -211,7 +213,7 @@ time-window pairs (`departure_departure_time_min`/`_max`,
 "Leave after 6pm Friday, come back before noon Sunday, no red-eyes on the return" is
 a single request. More on the endpoint: [Round-Trip API](/flights-api/round-trip).
 
-## When the array comes back empty
+## What happens when the array comes back empty?
 
 Every flight scraper sometimes gets handed a page it cannot read: a consent wall, a
 bot check, a truncated response. Most APIs return `[]` for that, which is
@@ -231,7 +233,7 @@ The full story (why this matters more than it sounds) is in
 and the field-by-field reference is on the
 [Search Status page](/flights-api/search-status).
 
-## Scanning a whole month in parallel
+## How do you scan a whole month in parallel?
 
 This is where a live API either works for you or does not. "Cheapest week in May"
 means 31 searches. Serially, at a few seconds each, that is a spinner your user will
@@ -336,7 +338,7 @@ endpoint documentation is on the [Geo-Pricing page](/hotels-api/geo-pricing).
 Hotel rate limits are much lower than flight rate limits (see [/pricing](/pricing)).
 Plan sweeps accordingly: a wide multi-market sweep is a queue, not a burst.
 
-## Calling it from an AI agent (MCP)
+## How do you call it from an AI agent?
 
 If what you are building is an LLM agent rather than an app, you do not need to write
 an HTTP client at all. There are first-party hosted **MCP servers**: flights at{' '}
@@ -356,7 +358,7 @@ actually covered, so an agent never silently gets only the first two weeks.
 
 Config blocks for Claude, Cursor and other hosts are on the [MCP page](/mcp).
 
-## Operational details worth knowing
+## What operational details are worth knowing?
 
 These are the things you find out in week three, so here they are in minute one.
 
@@ -378,7 +380,7 @@ can exhaust your limit.
 rate-limit responses do not, because every retry would be another billed request
 against a quota you have already spent. Back off and try later.
 
-## Things to get right
+## What things should you get right?
 
 - **Prices are scanned live, not served from a cache.** Response time tracks route
   complexity: dense routes with many connections and small regional airports take

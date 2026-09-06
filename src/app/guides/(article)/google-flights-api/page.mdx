@@ -72,6 +72,8 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-08-27" updated="2026-08-27" />
 
+**Short answer:** No. Google shut down QPX Express in 2018 and offers no public flights API today. Every "Google Flights API" you'll find is a third party that extracts data from the public site. Three real options exist: hosted extraction APIs, GDS/booking APIs that use different data sources, or running an open-source scraper yourself.
+
 No. Google Flights has no public API. Google shut down **QPX Express**, the last
 public flight-search API it offered, in **April 2018**, and its remaining **Travel
 Partner API** is for airlines and OTAs under contract, not for developers who want
@@ -87,7 +89,7 @@ and switched it off in April 2018. Nothing public replaced it. The demand did no
 go anywhere, which is why the search results for "Google Flights API" are now a
 wall of third-party services with similar names.
 
-## The three real options
+## What are the three real options?
 
 **1. A hosted extraction API.** A vendor runs live searches against the public
 Google Flights site and returns the results as JSON. You trade a per-request fee
@@ -113,7 +115,7 @@ consent walls, page redesigns, and the fact that a broken parser returns an empt
 array that looks exactly like "no flights". That last failure mode is the reason
 [this API reports search status explicitly](/guides/handle-empty-flight-search-results).
 
-## The 60-second version of option 1
+## How do you get started in 60 seconds?
 
 ```bash
 curl -X POST https://api.flightpowers.com/v1/flights/oneway \
