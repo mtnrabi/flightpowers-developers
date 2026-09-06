@@ -100,6 +100,13 @@ import { SITE } from '@/lib/site';
 
 <GuideDates published="2026-09-01" updated="2026-09-05" />
 
+**Short answer:** Amadeus for Developers Self-Service is effectively gone:
+`test.api.amadeus.com` and `api.amadeus.com` have no DNS record, `/self-service`
+redirects to the homepage, and the `amadeus4dev` GitHub org is fully archived (checked
+2026-09-04). The real alternatives are gated differently, from Duffel's instant
+self-serve booking access to RapidAPI marketplace extraction APIs like FlightPowers
+with no application at all, each quoted and dated from its own provider page.
+
 Most "Amadeus alternatives" lists compare features. That is not the problem you have.
 If you built on Amadeus Self-Service, you were a solo developer or a small team, and
 what you need to know about each replacement is one thing: **can you get a key today,
@@ -112,7 +119,7 @@ the page from my machine, I say so instead of filling the cell.
 Disclosure up front: I run FlightPowers, which is the last row in the table. Read that
 row as a vendor describing his own product, and check the rest yourself.
 
-## First, the state of Amadeus Self-Service
+## Is Amadeus Self-Service still available?
 
 I am not going to assert a shutdown date, because I could not find one on an Amadeus
 page. Here is what I can observe from my own machine, re-run on **2026-09-04**:
@@ -145,7 +152,7 @@ Amadeus Enterprise is untouched and still a serious platform. If you hold IATA o
 accreditation, or work through a consolidator, that is your path and nothing here
 argues otherwise. This page is for everyone Enterprise was never designed to serve.
 
-## The alternatives, and the gate on each one
+## What alternatives exist, and what's the gate on each?
 
 Every row was read on **2026-09-05**. The quote behind each gate is in the sources
 list underneath, with the URL.

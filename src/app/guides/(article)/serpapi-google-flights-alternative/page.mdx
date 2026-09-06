@@ -32,6 +32,12 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-09-05" updated="2026-09-05" />
 
+**Short answer:** FlightPowers' `google-flights-live-api.p.rapidapi.com` returns the same
+live Google Flights data as SerpApi's `google_flights` engine, plus Google's own price band
+(`price_insights_low`, `price_insights_high`, a `low`/`typical`/`high` verdict) on every
+result and a paired `POST /v1/flights/roundtrip` endpoint. Switching pays off when flights
+are the workload, not one engine among several you already call through SerpApi.
+
 People land on this question from one of two places. Either the search quota is the
 problem, or the flight engine is one small part of a platform they are paying for and
 they want the flight part cheaper. Those are different problems and only one of them is

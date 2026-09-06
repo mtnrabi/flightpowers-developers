@@ -32,6 +32,12 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-09-05" updated="2026-09-05" />
 
+**Short answer:** FlightPowers' Google Flights API answers this with one POST to
+`google-flights-live-api.p.rapidapi.com/api/google_flights/oneway/v1` using Python's
+`requests` library, about twelve lines total, no Playwright or browser pool. Every fare
+in the JSON list already carries `price_insights_low`, `price_insights_high`, and a low,
+typical, or high verdict, so you get price context on the first call.
+
 One POST to a JSON endpoint. Twelve lines, no browser.
 
 There are two ways to do this and people usually try the hard one first. The hard one
@@ -42,7 +48,7 @@ to keep alive.
 
 The other way is one POST and a JSON body.
 
-## The request
+## How do you make the request?
 
 ```python
 import os, requests
@@ -75,7 +81,7 @@ You need a key to run it. Grab one from
 <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">the RapidAPI listing</a>,
 free plan included, and it works on the next request.
 
-## What comes back
+## What does the response contain?
 
 The response is a plain list of fares. This is a real answer to the exact request above,
 run on **2026-09-04**. Fares move by the minute, so yours will not match.
@@ -114,7 +120,7 @@ and date, plus a `low`, `typical` or `high` verdict on the fare in front of you.
 the part you would otherwise build by polling a route for six weeks. There is a longer
 write-up in [is this flight price good](/guides/fare-verdict-in-one-call).
 
-## The limits, before you find them
+## What are the limits?
 
 **The band is not always there.** On thin routes and dates far out, Google has no range,
 so `price_insights_low` and `price_insights_high` come back null. The verdict can arrive

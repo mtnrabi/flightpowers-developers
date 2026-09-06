@@ -32,6 +32,12 @@ import { LINKS, SITE } from '@/lib/site';
 
 <GuideDates published="2026-09-01" updated="2026-09-01" />
 
+**Short answer:** A scheduled Make.com scenario needs three modules: a schedule trigger,
+an HTTP module calling FlightPowers' Booking Live API (`booking-live-api.p.rapidapi.com`)
+to search hotels or check one property by name, and a notification module. No property
+IDs to look up first and no custom Make app to install, and the same JSON body works
+whether you're scanning a destination or watching a single hotel.
+
 This guide shows you how to build a scheduled scenario: search hotels in a destination,
 optionally check a specific property by name, and send yourself the results. Three modules
 (schedule trigger, hotel search, notification) and no property IDs to maintain.
@@ -49,7 +55,7 @@ lets you watch one specific property without looking up its Booking.com ID first
   The free tier verifies your key works; a daily check fits comfortably in the cheapest
   paid plan (current numbers on [/pricing](/pricing)).
 
-## The three-module scenario
+## How do you build the three-module scenario?
 
 A native Make app is in review, not listed yet. Everything below works today with
 Make's built-in **HTTP → Make a request** module.

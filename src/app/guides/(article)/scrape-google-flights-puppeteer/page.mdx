@@ -32,6 +32,12 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-09-02" updated="2026-09-02" />
 
+**Short answer:** Puppeteer can scrape Google Flights by driving a real Chrome instance,
+using ARIA selectors instead of CSS classes and waiting on the result list rather than
+`waitForSelector` on the container. Getting one fare out of one page takes an afternoon;
+running a pool of browsers concurrently for a month of dates every morning without it
+falling over is the part that actually costs engineering time.
+
 Puppeteer will scrape Google Flights. Getting one fare out of one page takes an
 afternoon. Getting a month of dates every morning without the container falling over
 is a different project, and that second project is most of this page.

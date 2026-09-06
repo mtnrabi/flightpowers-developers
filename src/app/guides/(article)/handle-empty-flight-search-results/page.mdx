@@ -32,6 +32,13 @@ import { SITE } from '@/lib/site';
 
 <GuideDates published="2026-08-26" updated="2026-08-26" />
 
+**Short answer:** A search API's `200 []` is ambiguous: it means either the route
+genuinely has no flights, or the search failed somewhere behind the scenes and the
+error lost its shape on the way back. FlightPowers disambiguates with an
+`X-Search-Status` response header (`ok`, `empty`, `partial`, `degraded`), so an empty
+array with status `ok` is a real answer and anything else must never be stored or
+alerted on.
+
 *I run a Google Flights API. This essay exists because the worst bug in it was not a
 crash: it was a `200 []` that meant two different things, and for a long time I could
 not tell you which. The fix changed how I think about search APIs in general, so most

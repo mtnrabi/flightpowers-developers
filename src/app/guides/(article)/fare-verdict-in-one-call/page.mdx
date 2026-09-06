@@ -32,6 +32,11 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-09-05" updated="2026-09-05" />
 
+**Short answer:** A FlightPowers request to `google-flights-live-api.p.rapidapi.com` already
+returns Google's own price band, `price_insights_low` and `price_insights_high`, plus a
+`low | typical | high` verdict, in the same `POST /v1/flights/oneway` response. No price
+history of your own to build, no second endpoint, no flag to turn it on.
+
 Your app has a fare. $199, Chicago to Miami, five weeks out. Now answer the only
 question the user actually has: is that a good price or not?
 
@@ -49,7 +54,7 @@ There's a shortcut, and it's not clever, it's just under-used. Google computes t
 context for its own UI, and it ships in the search response. If you're reading the fare,
 you already have the verdict sitting next to it.
 
-## The one call
+## How do you get the price band in one call?
 
 One POST. No extra endpoint, no second request, no flag to turn it on. You'll need a key
 to run it: <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">get one on the
@@ -73,7 +78,7 @@ curl -X POST "https://api.flightpowers.com/v1/flights/oneway" \
   -d '{"from_airport":"LAX","to_airport":"SFO","departure_date":"2026-10-21"}'
 ```
 
-## What comes back
+## What does a fare response contain?
 
 Here's the first of five results from that LAX to SFO call, run on **2026-09-05** and
 pasted unedited. Example response: prices change by the minute, so yours will not match.
@@ -124,7 +129,7 @@ These are Google's numbers, passed through as they arrive. Nothing is modelled o
 side, and there's no scoring layer of ours in between. That also means the band is
 Google's opinion, not yours, which matters in the "what you give up" section below.
 
-## The three verdicts, and what to say
+## What do the low, typical, and high verdicts mean?
 
 Three captures, all made on 2026-09-05, one per verdict. Same call shape, three routes.
 
@@ -190,7 +195,7 @@ separately.
 
 The request takes `departure_date` and `return_date`. Both dates, one call.
 
-## Ten lines
+## What does a minimal implementation look like?
 
 Python. The whole decision is the last three lines.
 

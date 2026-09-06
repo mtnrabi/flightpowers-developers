@@ -32,6 +32,12 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-09-05" updated="2026-09-05" />
 
+**Short answer:** Resolve the property name once with `POST resolve` on
+`booking-live-api.p.rapidapi.com` to get a stable `hotel_booking_id`, then call the rooms
+endpoint with that ID plus `checkin_date` and `checkout_date` on every check. The rooms
+response lists every room type with its own `price_as_number` for the whole stay, not the
+single headline rate a name lookup returns.
+
 A name lookup gives you the property's headline rate, which is one room out of however many
 it sells. That is the right answer for "what does this hotel cost". It is the wrong answer
 for a comp-set tracker, a rate-parity check, or anything where the interesting movement is a
@@ -98,7 +104,7 @@ Resolve once, cache the ID, then never resolve again. A tracker watching 50 prop
 that resolves each name every run is doing 50 avoidable requests a day. Resolution is the
 step that can change, and it changes about as often as a hotel renames itself.
 
-## Limits worth knowing
+## What are the limits?
 
 **One property, one date pair, one call.** No date-range expansion and no property list here.
 Pricing a range means a request per date.

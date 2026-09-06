@@ -32,6 +32,12 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-09-05" updated="2026-09-05" />
 
+**Short answer:** FlightPowers' `POST /v1/flights/roundtrip` on `api.flightpowers.com` prices
+an outbound and return as one paired itinerary in a single call, so you never add two
+one-way fares together. The response carries `total_price` and `total_price_as_number`
+(not `price`), plus Google's own `price_insights_low`/`price_insights_high` band and
+verdict on the pair.
+
 The obvious approach is two one-way searches, one per direction, added together. It is
 wrong in a way that does not show up until someone clicks through and sees a different
 number.
@@ -41,7 +47,7 @@ return is not the price of any ticket you can buy, and on some routes it is not 
 Two searches also cost you two requests per date pair, which matters the moment you start
 scanning a range.
 
-## One request, both dates
+## How do you make one request for both dates?
 
 ```bash
 curl -X POST "https://api.flightpowers.com/v1/flights/roundtrip" \
@@ -61,7 +67,7 @@ The same call works on the RapidAPI host with `x-rapidapi-key` and `x-rapidapi-h
 instead. A key comes from <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">the
 listing</a>, free plan included.
 
-## What comes back
+## What does a round-trip response contain?
 
 The first itinerary from that exact request, captured **2026-08-26**. Prices were live at
 capture time and will not match yours.
@@ -108,7 +114,7 @@ separately.
 Per-leg filters are real: `max_departure_stops` and `max_return_stops`, separate airline
 lists per leg, separate time windows. Nonstop out and a morning return, one request.
 
-## Reading an empty response
+## What does an empty response mean?
 
 A paired search prices a return leg for every outbound candidate, and any of those inner
 fetches can fail on its own. So an empty array means one of two very different things, and
