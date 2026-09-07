@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { CodeTabs } from '@/components/CodeTabs';
+import { Mono, ResponseChunk } from '@/components/ResponseChunk';
 import { PricingTable } from '@/components/PricingTable';
 import { HeatGrid } from '@/components/results';
 import {
@@ -15,6 +16,7 @@ import {
   JsonLd,
   Section,
   SectionHead,
+  VerdictBadge,
   type Faq,
 } from '@/components/ui';
 import { FIXTURES } from '@/lib/fixtures';
@@ -79,6 +81,29 @@ const faq: Faq[] = [
   },
 ];
 
+/**
+ * Two rows of the captured 30-request November scan: the first date and the
+ * cheapest one. Each row is the cheapest itinerary of that date's own
+ * response, merged client-side. Built from the fixture so it cannot drift.
+ */
+const SCAN_EXCERPT = (() => {
+  const days = FIXTURES.novscanLisJfk.data.filter((d) => d.price != null);
+  const first = days[0]!;
+  const cheapest = days.reduce((a, b) => (a.price! <= b.price! ? a : b));
+  const row = (d: typeof first) => ({
+    date: d.date,
+    status: d.status,
+    price: d.price,
+    verdict: d.verdict,
+    low: d.low,
+    high: d.high,
+    airline: d.airline,
+    stops: d.stops,
+    duration: d.duration,
+  });
+  return JSON.stringify([row(first), row(cheapest)], null, 2);
+})();
+
 export default function ParallelDateScanPage() {
   const scan = FIXTURES.novscanLisJfk;
   const priced = scan.data.filter((d) => d.price != null);
@@ -107,6 +132,7 @@ export default function ParallelDateScanPage() {
           operatingSystem: 'Any',
           offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Free tier: 10 requests/month on RapidAPI' },
           url: `${SITE.url}/flights-api/parallel-date-scan`,
+          dateModified: '2026-09-07',
         }}
       />
 
@@ -168,6 +194,78 @@ export default function ParallelDateScanPage() {
           </div>
         </Container>
       </div>
+
+      <ResponseChunk
+        title="What a parallel date scan actually is"
+        answer={
+          <>
+            There is no bulk calendar endpoint. A date scan is N calls to <Mono>/v1/flights/oneway</Mono> on{' '}
+            <Mono>api.flightpowers.com</Mono> (or <Mono>google-flights-live-api.p.rapidapi.com</Mono> with a RapidAPI
+            key), one per <code className="field">departure_date</code>, fired in parallel and merged on{' '}
+            <code className="field">price_as_number</code>. The per-minute limits ({COUNTS.flightsRateLimits} on{' '}
+            {PAID_PLANS.map((pl) => pl.name[0] + pl.name.slice(1).toLowerCase()).join(' / ')}) are sized so a{' '}
+            {SCAN_DAYS}-date month fits in a single burst. Every date is one billed request.
+          </>
+        }
+        excerptLabel={`LIS → JFK, all of November · 2 of ${FIXTURES.novscanLisJfk.data.length} merged dates · captured ${FIXTURES.novscanLisJfk.captured_at}`}
+        excerpt={SCAN_EXCERPT}
+        valueHeading="Cheapest date"
+        fields={[
+          {
+            name: 'departure_date',
+            type: 'string (request)',
+            meaning: 'The only field that changes between the requests in a scan. YYYY-MM-DD, one per call.',
+            value: cheapest.date,
+          },
+          {
+            name: 'price_as_number',
+            type: 'number',
+            meaning: 'The fare of each response, unformatted. Merging a scan is one min() over this field per date.',
+            value: `$${cheapest.price}`,
+          },
+          {
+            name: 'price_range_in_relation_to_other_periods',
+            type: '"low" | "typical" | "high" | null',
+            meaning: "Google's verdict on that date's fare. It is what makes a scan readable: the cheapest date and the best-value date are not always the same one.",
+            value: <VerdictBadge verdict={cheapest.verdict} />,
+          },
+          {
+            name: 'price_insights_low / price_insights_high',
+            type: 'number | null',
+            meaning: 'The band the verdict is measured against, so a scan can be plotted against what the route usually costs.',
+            value: `${cheapest.low} – ${cheapest.high}`,
+          },
+          {
+            name: 'X-Search-Status',
+            type: '"ok" | "empty" | "partial" | "degraded"',
+            meaning: (
+              <>
+                Per response, not per scan. A{' '}
+                <Link href="/flights-api/search-status" className="text-signal-400 hover:text-signal-300">
+                  degraded
+                </Link>{' '}
+                date should be re-fired, not dropped as &quot;no flights&quot;.
+              </>
+            ),
+            value: cheapest.status,
+          },
+        ]}
+        notes={[
+          <>
+            All {FIXTURES.novscanLisJfk.data.length} requests in this capture came back{' '}
+            <code className="field">ok</code>. In a scan that is the thing to check first: without the status header a
+            single blocked page becomes a phantom cheap day, or a hole, in your calendar.
+          </>,
+          <>
+            No bulk endpoint is a deliberate choice, not a gap. Every date is a live scan of its own Google Flights page
+            at request time, so a month is {SCAN_DAYS} real searches. The{' '}
+            <Link href="/tools/cheapest-month-to-fly" className="text-signal-400 hover:text-signal-300">
+              free cheapest-month tool
+            </Link>{' '}
+            on this site runs exactly this pattern.
+          </>,
+        ]}
+      />
 
       <Section>
         <SectionHead

@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { CodeTabs } from '@/components/CodeTabs';
+import { Mono, ResponseChunk } from '@/components/ResponseChunk';
 import { PricingTable } from '@/components/PricingTable';
 import { HotelMarketsTable, HotelRepeatSamplesTable } from '@/components/results';
 import {
@@ -65,6 +66,22 @@ const faq: Faq[] = [
   },
 ];
 
+/**
+ * The captured Rixos Sungate run: three requests, identical except
+ * proxy_country, each trimmed to the fields the table below documents.
+ * Built from the fixture so it cannot drift from the capture.
+ */
+const GEO_EXCERPT = (() => {
+  const d = FIXTURES.hotelGeoRixos.data;
+  const row = (h: typeof d.us) => ({
+    room_type: h.room_type,
+    price_string: h.price_string,
+    price: h.price,
+    nights: h.nights,
+  });
+  return JSON.stringify({ us: row(d.us), de: row(d.de), il: row(d.il) }, null, 2);
+})();
+
 export default function GeoPricingPage() {
   const rx = FIXTURES.hotelGeoRixos;
   const kx = FIXTURES.hotelGeoKremlin;
@@ -100,6 +117,7 @@ export default function GeoPricingPage() {
           operatingSystem: 'Any',
           offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Free tier: 10 requests/month on RapidAPI' },
           url: `${SITE.url}/hotels-api/geo-pricing`,
+          dateModified: '2026-09-07',
         }}
       />
 
@@ -164,6 +182,83 @@ export default function GeoPricingPage() {
           </div>
         </Container>
       </div>
+
+      <ResponseChunk
+        title="What proxy_country does to a hotel response"
+        answer={
+          <>
+            Every hotels endpoint on <Mono>api.flightpowers.com</Mono> and on{' '}
+            <Mono>booking-live-api.p.rapidapi.com</Mono> takes <code className="field">proxy_country</code>, a two-letter
+            code that routes that single request through a residential proxy in that market. The response shape does not
+            change; the rate does, when the property prices differently for that market. Vary only that field, hold the
+            property, dates and currency fixed, and you have rate-parity and geo-pricing monitoring from one API.
+          </>
+        }
+        excerptLabel={`“Rixos Sungate”, Antalya · 3 requests, identical except proxy_country · captured ${rx.captured_at}`}
+        excerpt={GEO_EXCERPT}
+        valueHeading="Captured run"
+        fields={[
+          {
+            name: 'proxy_country',
+            type: 'string (request)',
+            meaning: (
+              <>
+                Two-letter country code. Accepted by <code className="field">/search</code>,{' '}
+                <code className="field">/hotel_by_name</code>, <code className="field">/hotel</code> and{' '}
+                <code className="field">/resolve</code>. Leave it out and the request uses the global residential pool.
+              </>
+            ),
+            value: 'us · de · il',
+          },
+          {
+            name: 'price / price_string',
+            type: 'number · string',
+            meaning: 'The same room, as each market was quoted it, total for the stay. This is the only field a parity check is really watching.',
+            value: `${rx.data.us.price} · ${rx.data.de.price} · ${rx.data.il.price}`,
+          },
+          {
+            name: 'room_type',
+            type: 'string | null',
+            meaning: 'Must be identical across the markets you compare. If it moves, the markets were quoted different products and the price gap means nothing.',
+            value: rx.data.us.room_type ?? 'null',
+          },
+          {
+            name: 'currency',
+            type: 'string (request)',
+            meaning: 'Hold it fixed across the markets or you are measuring exchange rates instead of pricing.',
+            value: String(rx.request.body.currency),
+          },
+          {
+            name: 'nights',
+            type: 'number | null',
+            meaning: 'The stay each quote covers, echoed back. Same dates in, same nights out, on every market.',
+            value: String(rx.data.us.nights),
+          },
+          {
+            name: 'available',
+            type: 'boolean',
+            meaning: 'A market that cannot book the room at all returns false rather than a price. Check it before comparing anything.',
+            value: String(rx.data.us.available),
+          },
+        ]}
+        notes={[
+          <>
+            One request per country is not a measurement. In the repeat-sampled run above,{' '}
+            {rep.data.samples_per_market} identical requests went to each of {rep.data.markets.length} markets for each
+            of {rep.data.properties.length} properties, and the US market moved between identical requests by more than
+            the gap between the other two. Sample each market several times against a fixed property, and treat a gap as
+            real only when one market&apos;s whole range sits below the other&apos;s.
+          </>,
+          <>
+            Parity holding is a result too. The{' '}
+            <Link href="/hotels-api/by-name" className="text-signal-400 hover:text-signal-300">
+              Kremlin Palace capture
+            </Link>{' '}
+            priced within a dollar across the same three markets on the same dates. Most days a monitor confirms
+            nothing moved; its value is the day something does.
+          </>,
+        ]}
+      />
 
       <Section>
         <SectionHead

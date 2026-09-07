@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { ExecuteWidget } from '@/components/ExecuteWidget';
+import { Mono, ResponseChunk } from '@/components/ResponseChunk';
 import { PricingTable } from '@/components/PricingTable';
 import { FlightResults } from '@/components/results';
 import {
@@ -17,6 +18,7 @@ import {
   JsonLd,
   Section,
   SectionHead,
+  VerdictBadge,
   type Faq,
 } from '@/components/ui';
 import { FIXTURES } from '@/lib/fixtures';
@@ -63,6 +65,27 @@ const faq: Faq[] = [
   },
 ];
 
+/**
+ * Two rows of the captured JFK→CUN response, trimmed to the fields the table
+ * below documents. Built from the fixture, so it cannot drift from the capture.
+ */
+const ONEWAY_EXCERPT = JSON.stringify(
+  FIXTURES.onewayJfkCun.data.slice(0, 2).map((f) => ({
+    from_airport: f.from_airport,
+    to_airport: f.to_airport,
+    departure_date: f.departure_date,
+    airline: f.airline,
+    price: f.price,
+    price_as_number: f.price_as_number,
+    duration: f.duration,
+    stops: f.stops,
+    departure_description: f.departure_description,
+    price_range_in_relation_to_other_periods: f.price_range_in_relation_to_other_periods,
+  })),
+  null,
+  2
+);
+
 export default function OneWayPage() {
   const fx = FIXTURES.onewayJfkCun;
   const rec = fx.data[0]!;
@@ -89,6 +112,7 @@ export default function OneWayPage() {
           operatingSystem: 'Any',
           offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Free tier: 10 requests/month on RapidAPI' },
           url: `${SITE.url}/flights-api/one-way`,
+          dateModified: '2026-09-07',
         }}
       />
 
@@ -146,6 +170,95 @@ export default function OneWayPage() {
           </div>
         </Container>
       </div>
+
+      <ResponseChunk
+        title="What a one-way flight search returns"
+        answer={
+          <>
+            <Mono>POST /v1/flights/oneway</Mono> on <Mono>api.flightpowers.com</Mono> (the same endpoint is{' '}
+            <Mono>/api/google_flights/oneway/v1</Mono> on <Mono>google-flights-live-api.p.rapidapi.com</Mono> with a
+            RapidAPI key) takes <code className="field">from_airport</code>, <code className="field">to_airport</code>{' '}
+            and <code className="field">departure_date</code>, and returns a JSON array: one flat object per live Google
+            Flights itinerary, with the fare, the airline, the duration, the stops, plain-text local times, a{' '}
+            <code className="field">buy_link</code> back into Google Flights, and Google&apos;s own price band and
+            verdict.
+          </>
+        }
+        excerptLabel={`JFK → CUN, ${String(FIXTURES.onewayJfkCun.request.body.departure_date)} · first 2 of ${FIXTURES.onewayJfkCun.data.length} results, trimmed · captured ${FIXTURES.onewayJfkCun.captured_at}`}
+        excerpt={ONEWAY_EXCERPT}
+        valueHeading="First row"
+        fields={[
+          {
+            name: 'price_as_number',
+            type: 'number',
+            meaning: (
+              <>
+                The fare as a number, so you can sort and compare. <code className="field">price</code> is the same value
+                as a display string.
+              </>
+            ),
+            value: String(FIXTURES.onewayJfkCun.data[0]!.price_as_number),
+          },
+          {
+            name: 'airline',
+            type: 'string',
+            meaning: 'The operating carrier as Google displays it. Several carriers on one itinerary arrive separated by a pipe.',
+            value: FIXTURES.onewayJfkCun.data[0]!.airline,
+          },
+          {
+            name: 'duration_seconds',
+            type: 'number',
+            meaning: (
+              <>
+                Total flying time in seconds. <code className="field">duration</code> carries the same value as text.
+              </>
+            ),
+            value: String(FIXTURES.onewayJfkCun.data[0]!.duration_seconds),
+          },
+          {
+            name: 'stops',
+            type: 'int',
+            meaning: (
+              <>
+                Stop count. <code className="field">stops_info</code> lists each layover airport and its duration in
+                seconds.
+              </>
+            ),
+            value: String(FIXTURES.onewayJfkCun.data[0]!.stops),
+          },
+          {
+            name: 'buy_link',
+            type: 'string',
+            meaning: 'Reopens that exact itinerary on Google Flights, in the currency you asked for.',
+            value: 'google.com/travel/flights?tfs=…',
+          },
+          {
+            name: 'price_range_in_relation_to_other_periods',
+            type: '"low" | "typical" | "high" | null',
+            meaning: (
+              <>
+                Google&apos;s verdict on this fare against its <code className="field">price_insights_low</code> /{' '}
+                <code className="field">price_insights_high</code> band for the route and date.
+              </>
+            ),
+            value: <VerdictBadge verdict={FIXTURES.onewayJfkCun.data[0]!.price_range_in_relation_to_other_periods} />,
+          },
+        ]}
+        notes={[
+          <>
+            Airports come back as display strings in the form <code className="field">&quot;City (IATA)&quot;</code>, not
+            bare codes, so parse accordingly if you store them. Dates in and out are{' '}
+            <code className="field">YYYY-MM-DD</code>.
+          </>,
+          <>
+            An empty array is not automatically &quot;no flights&quot;. Every response also carries an{' '}
+            <Link href="/flights-api/search-status" className="text-signal-400 hover:text-signal-300">
+              <code className="font-mono text-[13px]">X-Search-Status</code>
+            </Link>{' '}
+            header that separates a real empty result from a search that did not complete.
+          </>,
+        ]}
+      />
 
       <Section>
         <SectionHead

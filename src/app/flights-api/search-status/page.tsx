@@ -2,6 +2,7 @@ import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
+import { Mono, ResponseChunk } from '@/components/ResponseChunk';
 import { PricingTable } from '@/components/PricingTable';
 import {
   Breadcrumbs,
@@ -126,6 +127,7 @@ export default function SearchStatusPage() {
           operatingSystem: 'Any',
           offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Free tier: 10 requests/month on RapidAPI' },
           url: `${SITE.url}/flights-api/search-status`,
+          dateModified: '2026-09-07',
         }}
       />
 
@@ -186,6 +188,76 @@ export default function SearchStatusPage() {
           </div>
         </Container>
       </div>
+
+      <ResponseChunk
+        title="What the search-status headers say"
+        answer={
+          <>
+            Every response from <Mono>/v1/flights/oneway</Mono> and <Mono>/v1/flights/roundtrip</Mono> on{' '}
+            <Mono>api.flightpowers.com</Mono> (and from the same endpoints on{' '}
+            <Mono>google-flights-live-api.p.rapidapi.com</Mono>) carries an <Mono>X-Search-Status</Mono> header:{' '}
+            <code className="field">ok</code>, <code className="field">empty</code>,{' '}
+            <code className="field">partial</code> or <code className="field">degraded</code>. That is how you tell a
+            real &quot;no flights&quot; from a search that never completed, because both otherwise arrive as HTTP 200
+            with an array. Send <code className="field">strict: true</code> and a degraded search returns HTTP 503
+            instead.
+          </>
+        }
+        excerptLabel={`JFK → LHR round trip · a search a retry rescued · captured ${rescued.captured_at}`}
+        excerpt={rescuedText}
+        valueHeading="Above"
+        fields={[
+          {
+            name: 'X-Search-Status',
+            type: '"ok" | "empty" | "partial" | "degraded"',
+            meaning: 'The only header to branch on. Retry degraded; believe empty; treat partial as real but knowingly short.',
+            value: rescued.headers!['x-search-status']!,
+          },
+          {
+            name: 'X-Search-Reason',
+            type: 'string',
+            meaning: 'The first failure the search hit, for diagnostics. It rides along even on an ok response a retry already rescued, as above.',
+            value: rescued.headers!['x-search-reason']!,
+          },
+          {
+            name: 'X-Search-Retries / X-Search-Attempts',
+            type: 'int · int',
+            meaning: 'How many times an unreadable page was retried, and how many page fetches the whole search took.',
+            value: `${rescued.headers!['x-search-retries']} · ${rescued.headers!['x-search-attempts']}`,
+          },
+          {
+            name: 'X-Search-Unreadable-Pages',
+            type: 'int',
+            meaning: 'Pages that came back unparseable: a consent wall, a bot check, a truncated response.',
+            value: rescued.headers!['x-search-unreadable-pages']!,
+          },
+          {
+            name: 'X-Search-Fallback',
+            type: '"used" | "exhausted"',
+            meaning: 'Whether the fallback transport was reached for, and whether it got there. "exhausted" with 0 results is the degraded case.',
+            value: rescued.headers!['x-search-fallback']!,
+          },
+          {
+            name: 'X-Search-Results',
+            type: 'int',
+            meaning: 'How many itineraries the array actually holds, without you counting it.',
+            value: rescued.headers!['x-search-results']!,
+          },
+        ]}
+        notes={[
+          <>
+            The capture above is the interesting case: <code className="field">x-search-reason: blocked_page</code> is
+            set, and the status is still <code className="field">ok</code>, because the retry worked. Nothing to act on.
+            Branch on the status, read the reason when you are debugging.
+          </>,
+          <>
+            Seconds earlier the identical request returned <code className="field">x-search-status: degraded</code> with{' '}
+            <code className="field">x-search-results: 0</code> and an empty array, the block at the top of this page.
+            That array says nothing about availability. It is the response most APIs would have handed you as
+            &quot;no flights found&quot;.
+          </>,
+        ]}
+      />
 
       <Section>
         <SectionHead
