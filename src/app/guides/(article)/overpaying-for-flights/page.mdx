@@ -1,0 +1,323 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'How to check if your company is overpaying for flights',
+  description:
+    'Your finance export has what every trip cost. It does not have what the trip should have cost. One request per leg to api.flightpowers.com returns Google\'s usual price band for that route and date plus a low | typical | high verdict, so you can grade every upcoming booking against the market. The script, a captured run, the cabin trap, and the trips this cannot judge.',
+  alternates: { canonical: '/guides/overpaying-for-flights' },
+});
+
+export const dynamic = 'force-static';
+
+import { CapturedBadge, GuideDates, JsonLd } from '@/components/ui';
+import { FlightResults } from '@/components/results';
+import { CtaBand } from '@/components/bands';
+import { FIXTURES } from '@/lib/fixtures';
+import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'How to check if your company is overpaying for flights',
+    description:
+      'Grading booked travel against Google\'s own price band: the request, a CSV script, a captured run, the cabin and search-status traps, and the trips the check cannot judge.',
+    url: `${SITE.url}/guides/overpaying-for-flights`,
+    datePublished: '2026-09-07',
+    dateModified: '2026-09-07',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'How can you tell if a company is overpaying for flights?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Compare what was paid for each leg against what that route and date usually cost. A POST to /v1/flights/oneway on api.flightpowers.com returns price_insights_low and price_insights_high, Google\'s historical price band for that exact route and date, plus a low | typical | high verdict on the fare showing right now. A ticket priced above price_insights_high sits above the range the route normally trades in.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can you check flights that have already been flown?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. The band is the current market for a route and a future date, so it can only be read for trips that have not departed yet. Once a flight is in the past there is nothing left to search and nothing to compare. Run the check on the forward book, not on last year\'s expenses.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Does the cabin matter when comparing a booked fare to the band?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, and getting it wrong makes every result meaningless. Send seat_type 1 for economy and 3 for business on the request so the band you compare against is for the same cabin the trip was booked in. A business-class ticket held next to an economy band will always look like an overpayment.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Do you need a corporate travel contract to run this check?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. It is a public REST endpoint with a free tier on RapidAPI. One request per leg, the price band comes back on every plan including the free one, and nothing has to be integrated with your booking tool to read it.',
+        },
+      },
+    ],
+  }}
+/>
+
+# How to check if your company is overpaying for flights
+
+<GuideDates published="2026-09-07" updated="2026-09-07" />
+
+**Short answer:** Re-price every upcoming trip against the live market and read the verdict
+that comes back with it. One `POST /v1/flights/oneway` to `api.flightpowers.com` returns
+FlightPowers' `price_insights_low`, `price_insights_high` and Google's own
+`low | typical | high` call on the fare, so a booked leg gets graded in a single request.
+No travel-management contract, no year of your own fare history.
+
+You probably were not shopping for a flight API. You have a finance export, or a folder of
+booking confirmations, or a Slack channel where people post what they spent. What you do
+not have is the other half of the sentence. The export says the Lisbon trip cost $612. It
+says nothing about whether $612 was a fine number or a bad one.
+
+That gap is where travel budgets quietly leak. Nobody signs off on overpaying. People book
+the flight in front of them, in a hurry, on a Tuesday, and the price they saw becomes the
+price in the report. The only way anyone finds out it was high is if someone happens to
+look at the same route later and feels annoyed.
+
+The check you want is boring and it fits in a script: for every trip that has not flown
+yet, ask what that route and date normally cost, and compare. The reason people do not run
+it is that "what it normally costs" sounds like a data problem, a fare history you have to
+build and maintain before the first answer arrives. It is not. Google already computes that
+range for its own interface, and it ships in the search response.
+
+## What do you actually need to run this?
+
+Three things, and two of them you already have.
+
+- The list of upcoming legs: origin, destination, departure date, what was paid, and which
+  cabin. Any export with those columns works.
+- An API key. <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">Get one on the
+  RapidAPI listing</a>; the free tier is enough to try the whole thing on a handful of rows.
+- Somewhere to run a Python file. That is the entire stack.
+
+No connection to your booking tool, no procurement, no contract. It is a public REST
+endpoint and you are reading it from the outside.
+
+## How do you grade one trip?
+
+One POST. The route, the date, and the cabin, and everything you need comes back in the
+response.
+
+```bash
+curl -X POST "https://api.flightpowers.com/v1/flights/oneway" \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: $FLIGHTPOWERS_API_KEY" \
+  -d '{"from_airport":"LAX","to_airport":"SFO","departure_date":"2026-10-21","seat_type":1}'
+```
+
+The body is a plain JSON array of itineraries, and each one carries three fields that are
+the whole point of this exercise:
+
+- `price_insights_low` and `price_insights_high`: the bottom and top of Google's usual price
+  range for that route and those dates.
+- `price_range_in_relation_to_other_periods`: `"low"`, `"typical"` or `"high"`, Google's own
+  read on the fare showing right now against that range.
+
+Two numbers matter and they answer different questions. The band answers *was the booking a
+bad price for this route*. The verdict answers *is the market soft right now*, which is what
+tells you whether a change is worth the change fee.
+
+One request setting to avoid: leave `sort_type` out. Sending `"sort_type": "Price"` on a
+one-way search comes back with the band nulled, which is exactly the field you came for.
+
+## What does the script look like?
+
+```python
+import os
+import requests
+
+URL = "https://api.flightpowers.com/v1/flights/oneway"
+HEADERS = {"x-api-key": os.environ["FLIGHTPOWERS_API_KEY"]}
+
+
+def grade(leg):
+    body = {
+        "from_airport": leg["from_airport"],
+        "to_airport": leg["to_airport"],
+        "departure_date": leg["departure_date"],
+        "seat_type": leg.get("seat_type", 1),  # 1 = economy, 3 = business
+        "limit": 5,
+    }
+    r = requests.post(URL, headers=HEADERS, json=body, timeout=120)
+    r.raise_for_status()
+
+    status = r.headers.get("x-search-status")
+    fares = r.json()
+
+    # Anything other than "ok" means the search did not complete. An empty or
+    # partial result set is not evidence about a price, so refuse to grade it.
+    if status != "ok" or not fares:
+        return {"status": status, "verdict": None}
+
+    cheapest = min(fares, key=lambda f: f["price_as_number"])
+    band_high = cheapest["price_insights_high"]
+
+    return {
+        "status": status,
+        "paid": leg["paid"],
+        "market_now": cheapest["price_as_number"],
+        "band_low": cheapest["price_insights_low"],
+        "band_high": band_high,
+        "verdict": cheapest["price_range_in_relation_to_other_periods"],
+        "over_band": band_high is not None and leg["paid"] > band_high,
+        "rebook": cheapest["buy_link"],
+    }
+```
+
+## How do you run it over a whole spreadsheet?
+
+Feed it the export. Two rows so the columns are unambiguous, in a file called `trips.csv`:
+
+```text
+from_airport,to_airport,departure_date,paid,seat_type
+LAX,SFO,2026-10-21,142,1
+JFK,CUN,2027-01-01,410,1
+```
+
+```python
+import csv
+import sys
+import time
+
+with open(sys.argv[1]) as fh:
+    rows = list(csv.DictReader(fh))
+
+for row in rows:
+    leg = {
+        "from_airport": row["from_airport"],
+        "to_airport": row["to_airport"],
+        "departure_date": row["departure_date"],
+        "paid": float(row["paid"]),
+        "seat_type": int(row["seat_type"]),
+    }
+    out = grade(leg)
+    route = f"{leg['from_airport']}->{leg['to_airport']} {leg['departure_date']}"
+
+    if out["verdict"] is None:
+        print(f"{route}: skipped, search status {out['status']}")
+    elif out["band_low"] is None:
+        print(f"{route}: no band published for this route, market now ${out['market_now']}")
+    else:
+        flag = "ABOVE THE USUAL RANGE" if out["over_band"] else "inside the usual range"
+        print(
+            f"{route}: paid ${out['paid']:.0f}, usually "
+            f"${out['band_low']}-${out['band_high']}, market now "
+            f"${out['market_now']} ({out['verdict']}) -> {flag}"
+        )
+
+    time.sleep(0.5)
+```
+
+The rate limit is high enough that you do not need the sleep for a small file, but a
+half-second gap keeps a thousand-row export polite and costs you eight minutes.
+
+## What does a real response look like?
+
+Here is a captured run of exactly the request above, LAX to SFO, taken on
+{FIXTURES.onewayLaxSfoLow.captured_at}.
+
+<FlightResults flights={FIXTURES.onewayLaxSfoLow.data} />
+
+<CapturedBadge date={FIXTURES.onewayLaxSfoLow.captured_at} />
+
+Google's usual range for that hop and that date was {`$${FIXTURES.onewayLaxSfoLow.data[0].price_insights_low}`} to
+{`$${FIXTURES.onewayLaxSfoLow.data[0].price_insights_high}`}, and the cheapest fare on the day was
+{FIXTURES.onewayLaxSfoLow.data[0].price}, which is why
+`price_range_in_relation_to_other_periods` came back
+{FIXTURES.onewayLaxSfoLow.data[0].price_range_in_relation_to_other_periods}. So for that
+leg the script's threshold is set for you: a ticket above
+{`$${FIXTURES.onewayLaxSfoLow.data[0].price_insights_high}`} sits above what the route normally
+trades at, and the market being soft that day means a rebook was worth pricing rather than
+shrugging at.
+
+Notice what you did not have to do. There is no observations table, no percentile, no
+warm-up period before the first useful answer. The first row you run is as good as the
+thousandth.
+
+## Which trips can this actually judge?
+
+This is the part to be straight about, because the check has real edges.
+
+**Only trips that have not flown.** The band is the current market for a route and a future
+date. Once the flight is in the past there is nothing to search, so grading last year's
+expenses is not something this can do. Point it at the forward book.
+
+**The cabin has to match.** `seat_type` is `1` for economy and `3` for business. Hold a
+business-class ticket next to an economy band and every row screams overpayment. Get this
+wrong and the whole report is noise.
+
+**The band is not on every route.** Google publishes it where it has enough history, which
+is most well-travelled routes and not all of them. When it is missing the fields come back
+`null`, and the honest handling is to print the current market price and no verdict rather
+than to guess.
+
+**A failed search is not a cheap route.** Read `x-search-status` before you read the body.
+`ok` means the search completed; anything else means it did not, and an empty array from a
+degraded search says nothing at all about availability. The full taxonomy is in
+[handling empty flight search results](/guides/handle-empty-flight-search-results).
+
+**It is a market comparison, not an audit.** Corporate fares carry change rights, baggage,
+loyalty status and negotiated terms that a public search does not price. A row above the
+band is a question worth asking, not a finding. Treat the output as a shortlist for a human.
+
+## What do you do with the result?
+
+The output is a list, and the list is only useful if it lands somewhere. Three shapes that
+work, in rising order of effort:
+
+1. **A weekly digest.** Run it on the forward book every Monday, post the rows above the
+   band into the channel where travel gets discussed. That alone changes behaviour, because
+   the number stops being invisible.
+2. **A pre-book gate.** Same call, run before the booking instead of after. Someone is about
+   to book a $612 fare; the check says the route usually runs $300 to $420. That is a five
+   second conversation that saves $200.
+3. **A rebook watch.** For refundable or changeable tickets, re-run the legs on a schedule
+   and flag the ones where the verdict flips to `low`. The `buy_link` on the cheapest result
+   is the deep link to that exact itinerary, so the person deciding has one click to check
+   you.
+
+None of that is a travel management platform, and it is not trying to be. It is one request
+per leg and a comparison, which is the amount of engineering the problem deserves.
+
+## What does it cost to run?
+
+One request per leg per check. A hundred upcoming trips graded once a week is a few hundred
+requests a month, which the entry plans cover. The price band is not a paid add-on: it rides
+on every one-way and round-trip search on every plan, including the free tier. Plans and
+rate limits are on [/pricing](/pricing).
+
+Round trips are one request, not two: the
+[round-trip endpoint](/flights-api/round-trip) prices the paired itinerary and the same three
+fields ride on the pair, so a return trip gets one verdict instead of two legs you add
+together yourself.
+
+<CtaBand
+  medium="guide"
+  title="Grade the forward book this week"
+  body="One request per leg returns Google's own price band and a low | typical | high verdict. Free tier on RapidAPI, no card to try."
+/>
+
+## Related
+
+- [Price Insights API](/flights-api/price-insights): the three fields as a product page, with a captured response and the band drawn
+- [Is this flight price good?](/guides/fare-verdict-in-one-call): the verdict field in depth, and the two settings that silently remove it
+- [How to get round-trip flight prices in one request](/guides/roundtrip-flight-prices-one-request): the paired-leg model, for trips that are not one-way
+- [Handling empty flight search results](/guides/handle-empty-flight-search-results): why you must never grade a fare from a search that did not complete
+- [Using a flight API in n8n](/guides/flight-api-in-n8n): the same check as a scheduled workflow, if you would rather not host the script
