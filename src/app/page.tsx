@@ -315,10 +315,10 @@ export default function HomePage() {
             <div>
               <p className="text-[14px] font-semibold text-ink-100">Production-ready performance</p>
               <p className="mt-1 text-[13px] text-ink-300 leading-relaxed">
-                Google Flights Live API: <strong className="text-ink-100">9.9/10 popularity</strong>, 100% service level, ~1.1s avg response · 
-                Booking Live API: <strong className="text-ink-100">9.6/10 popularity</strong>, 98% service level
+                Google Flights Live API: <strong className="text-ink-100">9.9/10 popularity</strong>, 99% service level, ~1.1s avg response · 
+                Booking Live API: <strong className="text-ink-100">9.7/10 popularity</strong>, 94% service level
               </p>
-              <p className="mt-1.5 font-mono text-[10px] text-ink-500">RapidAPI marketplace metrics, captured 2026-09-01</p>
+              <p className="mt-1.5 font-mono text-[10px] text-ink-500">RapidAPI marketplace metrics, captured 2026-09-07</p>
             </div>
           </div>
         </div>
