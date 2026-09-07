@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { ExecuteWidget } from '@/components/ExecuteWidget';
+import { Mono, ResponseChunk } from '@/components/ResponseChunk';
 import { PricingTable } from '@/components/PricingTable';
 import {
   Breadcrumbs,
@@ -14,6 +15,7 @@ import {
   JsonLd,
   Section,
   SectionHead,
+  VerdictBadge,
   type Faq,
 } from '@/components/ui';
 import { FIXTURES } from '@/lib/fixtures';
@@ -136,6 +138,28 @@ const faq: Faq[] = [
   },
 ];
 
+/**
+ * Two rows of the captured JFK→CUN one-way response, trimmed to the fields
+ * every flight result carries. Built from the fixture so it cannot drift.
+ */
+const FLIGHTS_EXCERPT = JSON.stringify(
+  FIXTURES.onewayJfkCun.data.slice(0, 2).map((f) => ({
+    from_airport: f.from_airport,
+    to_airport: f.to_airport,
+    departure_date: f.departure_date,
+    airline: f.airline,
+    price: f.price,
+    price_as_number: f.price_as_number,
+    duration: f.duration,
+    stops: f.stops,
+    price_insights_low: f.price_insights_low,
+    price_insights_high: f.price_insights_high,
+    price_range_in_relation_to_other_periods: f.price_range_in_relation_to_other_periods,
+  })),
+  null,
+  2
+);
+
 export default function FlightsApiHubPage() {
   const fx = FIXTURES.onewayJfkCun;
 
@@ -166,6 +190,7 @@ export default function FlightsApiHubPage() {
           url: `${SITE.url}/flights-api`,
           description:
             'Live Google Flights fares as flat JSON: one-way and round-trip search with price insights, honest search-status headers, and parallel date scans.',
+          dateModified: '2026-09-07',
           hasPart: ENDPOINT_PAGES.map((p) => ({
             '@type': 'WebPage',
             name: p.label,
@@ -242,6 +267,80 @@ export default function FlightsApiHubPage() {
           </div>
         </Container>
       </div>
+
+      <ResponseChunk
+        title="What the FlightPowers Google Flights API returns"
+        answer={
+          <>
+            Two endpoints, <Mono>POST /v1/flights/oneway</Mono> and <Mono>POST /v1/flights/roundtrip</Mono>, on{' '}
+            <Mono>api.flightpowers.com</Mono>, or the same two as{' '}
+            <Mono>/api/google_flights/oneway/v1</Mono> and <Mono>/api/google_flights/roundtrip/v1</Mono> on{' '}
+            <Mono>google-flights-live-api.p.rapidapi.com</Mono> with a RapidAPI key. Both take IATA codes and{' '}
+            <code className="field">YYYY-MM-DD</code> dates and return flat JSON: live Google Flights fares with a
+            booking link, Google&apos;s own price band, and a low | typical | high verdict on every result.
+          </>
+        }
+        excerptLabel={`JFK → CUN one-way · first 2 of ${FIXTURES.onewayJfkCun.data.length} results, trimmed · captured ${FIXTURES.onewayJfkCun.captured_at}`}
+        excerpt={FLIGHTS_EXCERPT}
+        valueHeading="First row"
+        fields={[
+          {
+            name: 'price / price_as_number',
+            type: 'string · number',
+            meaning: 'The fare as a display string and as a sortable number. On a round trip the same pair is total_price / total_price_as_number, for the whole paired itinerary.',
+            value: `${FIXTURES.onewayJfkCun.data[0]!.price} · ${FIXTURES.onewayJfkCun.data[0]!.price_as_number}`,
+          },
+          {
+            name: 'price_insights_low / price_insights_high',
+            type: 'number | null',
+            meaning: "Google's own usual price range for this route and these dates. Null when Google publishes no band.",
+            value: `${FIXTURES.onewayJfkCun.data[0]!.price_insights_low} – ${FIXTURES.onewayJfkCun.data[0]!.price_insights_high}`,
+          },
+          {
+            name: 'price_range_in_relation_to_other_periods',
+            type: '"low" | "typical" | "high" | null',
+            meaning: "Google's verdict on this fare against that band. It rides on the round-trip pair too, so one request judges a whole trip.",
+            value: <VerdictBadge verdict={FIXTURES.onewayJfkCun.data[0]!.price_range_in_relation_to_other_periods} />,
+          },
+          {
+            name: 'airline · duration · stops',
+            type: 'string · string · int',
+            meaning: (
+              <>
+                Carrier, flying time (also as <code className="field">duration_seconds</code>) and stop count, with{' '}
+                <code className="field">stops_info</code> per layover.
+              </>
+            ),
+            value: `${FIXTURES.onewayJfkCun.data[0]!.airline} · ${FIXTURES.onewayJfkCun.data[0]!.duration} · ${FIXTURES.onewayJfkCun.data[0]!.stops}`,
+          },
+          {
+            name: 'buy_link',
+            type: 'string',
+            meaning: 'Reopens that exact itinerary on Google Flights, in the currency you requested.',
+            value: 'google.com/travel/flights?tfs=…',
+          },
+          {
+            name: 'X-Search-Status',
+            type: '"ok" | "empty" | "partial" | "degraded"',
+            meaning: 'A response header, not a body field: it separates a real empty result from a search that did not complete.',
+            value: FIXTURES.onewayJfkCun.headers!['x-search-status']!,
+          },
+        ]}
+        notes={[
+          <>
+            Airports come back as <code className="field">&quot;City (IATA)&quot;</code> display strings. A round trip is
+            one request, not two: the return-leg fan-out happens inside the API and bills as a single call.
+          </>,
+          <>
+            Rate limits are {COUNTS.flightsRateLimits} requests/minute on the paid plans, which is what makes a
+            month-long{' '}
+            <Link href="/flights-api/parallel-date-scan" className="text-signal-400 hover:text-signal-300">
+              parallel date scan
+            </Link>{' '}
+            finish in one burst.
+          </>,
+        ]}
+      />
 
       <Section>
         <SectionHead

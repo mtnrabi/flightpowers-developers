@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { ExecuteWidget } from '@/components/ExecuteWidget';
+import { Mono, ResponseChunk } from '@/components/ResponseChunk';
 import { PricingTable } from '@/components/PricingTable';
 import {
   Breadcrumbs,
@@ -68,6 +69,30 @@ const faq: Faq[] = [
   },
 ];
 
+/**
+ * The captured "Kremlin Palace" response (the US-market request of the three),
+ * trimmed to the fields the table below documents. Built from the fixture.
+ */
+const BY_NAME_EXCERPT = (() => {
+  const h = FIXTURES.hotelGeoKremlin.data.us;
+  return JSON.stringify(
+    {
+      name: h.name,
+      available: h.available,
+      price_string: h.price_string,
+      price: h.price,
+      nights: h.nights,
+      room_type: h.room_type,
+      review_score: h.review_score,
+      review_count: h.review_count,
+      adults: h.adults,
+      children: h.children,
+    },
+    null,
+    2
+  );
+})();
+
 export default function HotelByNamePage() {
   const fx = FIXTURES.hotelGeoKremlin;
   const us = fx.data.us;
@@ -95,6 +120,7 @@ export default function HotelByNamePage() {
           operatingSystem: 'Any',
           offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Free tier: 10 requests/month on RapidAPI' },
           url: `${SITE.url}/hotels-api/by-name`,
+          dateModified: '2026-09-07',
         }}
       />
 
@@ -161,6 +187,82 @@ export default function HotelByNamePage() {
           </div>
         </Container>
       </div>
+
+      <ResponseChunk
+        title="What a hotel-by-name lookup returns"
+        answer={
+          <>
+            <Mono>POST /v1/hotels/by-name</Mono> on <Mono>api.flightpowers.com</Mono> (the same endpoint is{' '}
+            <Mono>/hotel_by_name</Mono> on <Mono>booking-live-api.p.rapidapi.com</Mono> with a RapidAPI key) takes{' '}
+            <code className="field">hotel_name</code> as free text plus <code className="field">checkin_date</code> and{' '}
+            <code className="field">checkout_date</code>, with an optional <code className="field">area</code> to
+            disambiguate. It resolves the name itself, so there is no property-ID step, and returns one flat object with
+            availability, the live rate for the stay and a booking link. It is POST only; a GET returns 405.
+          </>
+        }
+        excerptLabel={`“Kremlin Palace”, Antalya, ${String(FIXTURES.hotelGeoKremlin.request.body.checkin_date)} → ${String(FIXTURES.hotelGeoKremlin.request.body.checkout_date)} · trimmed · captured ${FIXTURES.hotelGeoKremlin.captured_at}`}
+        excerpt={BY_NAME_EXCERPT}
+        valueHeading="Above"
+        fields={[
+          {
+            name: 'available',
+            type: 'boolean',
+            meaning: 'Sold out and not found both return this object with available: false, so your parsing never has to branch on which happened.',
+            value: String(us.available),
+          },
+          {
+            name: 'name',
+            type: 'string | null',
+            meaning: 'The property the name resolved to, as Booking.com spells it. Check it before trusting a match on a generic name.',
+            value: us.name ?? 'null',
+          },
+          {
+            name: 'price / price_string',
+            type: 'number · string',
+            meaning: (
+              <>
+                The total for the stay, not per night, as a number and as a display string. Divide by{' '}
+                <code className="field">nights</code> for a nightly rate.
+              </>
+            ),
+            value: `${us.price} · ${us.price_string}`,
+          },
+          {
+            name: 'nights',
+            type: 'number | null',
+            meaning: 'The stay the price covers, derived from your two dates and echoed back.',
+            value: String(us.nights),
+          },
+          {
+            name: 'room_type',
+            type: 'string | null',
+            meaning: 'The exact room the rate belongs to. It is the field that makes two quotes comparable at all.',
+            value: us.room_type ?? 'null',
+          },
+          {
+            name: 'review_score / review_count',
+            type: 'number | null · number | null',
+            meaning: "Booking.com's score out of 10 and how many reviews back it. Either can be null on a property with too few.",
+            value: `${us.review_score} · ${us.review_count}`,
+          },
+        ]}
+        notes={[
+          <>
+            <code className="field">area</code> only widens the search query to{' '}
+            <code className="field">&quot;&lt;hotel_name&gt;, &lt;area&gt;&quot;</code>; the name matching still runs on{' '}
+            <code className="field">hotel_name</code> alone, which is why a generic name plus a city resolves the way a
+            person would expect.
+          </>,
+          <>
+            The capture above was one of three requests that differed only in{' '}
+            <code className="field">proxy_country</code>, which every hotels endpoint accepts. That is the basis of{' '}
+            <Link href="/hotels-api/geo-pricing" className="text-signal-400 hover:text-signal-300">
+              rate-parity and geo-pricing monitoring
+            </Link>
+            . This property priced within a dollar across all three markets, which is also an answer.
+          </>,
+        ]}
+      />
 
       <Section>
         <SectionHead

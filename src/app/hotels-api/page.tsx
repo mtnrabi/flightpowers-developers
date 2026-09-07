@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { ExecuteWidget } from '@/components/ExecuteWidget';
+import { Mono, ResponseChunk } from '@/components/ResponseChunk';
 import { PricingTable } from '@/components/PricingTable';
 import {
   Breadcrumbs,
@@ -126,6 +127,33 @@ const faq: Faq[] = [
   },
 ];
 
+/**
+ * The captured Lisbon /search response, trimmed to two properties and to the
+ * fields the table below documents. Built from the fixture so it cannot drift.
+ */
+const HOTELS_EXCERPT = (() => {
+  const d = FIXTURES.hotelSearchLisbon.data;
+  return JSON.stringify(
+    {
+      destination: d.destination,
+      checkin_date: d.checkin_date,
+      checkout_date: d.checkout_date,
+      applied_filters: d.applied_filters,
+      properties: d.properties.slice(0, 2).map((h) => ({
+        name: h.name,
+        price_string: h.price_string,
+        price: h.price,
+        review_score: h.review_score,
+        review_count: h.review_count,
+        room_type: h.room_type,
+        nights: h.nights,
+      })),
+    },
+    null,
+    2
+  );
+})();
+
 export default function HotelsApiHubPage() {
   const fx = FIXTURES.hotelSearchLisbon;
   const preview = { ...fx.data, properties: fx.data.properties.slice(0, 2) };
@@ -167,6 +195,7 @@ export default function HotelsApiHubPage() {
           description:
             'Live Booking.com hotel prices over REST: destination search, name-based lookup, room-level pricing, and per-market pricing via proxy_country.',
           url: `${SITE.url}/hotels-api`,
+          dateModified: '2026-09-07',
           hasPart: ENDPOINTS.map((e) => ({
             '@type': 'WebPage',
             name: e.label,
@@ -229,6 +258,87 @@ export default function HotelsApiHubPage() {
           </div>
         </Container>
       </div>
+
+      <ResponseChunk
+        title="What the FlightPowers Booking.com Hotels API returns"
+        answer={
+          <>
+            <Mono>POST /v1/hotels/search</Mono> takes a free-text destination and dates;{' '}
+            <Mono>POST /v1/hotels/by-name</Mono> takes the name a person would type and resolves it for you. Both live
+            on <Mono>api.flightpowers.com</Mono>, and are <Mono>/search</Mono> and <Mono>/hotel_by_name</Mono> on{' '}
+            <Mono>booking-live-api.p.rapidapi.com</Mono> with a RapidAPI key. Every response carries live Booking.com
+            rates for the whole stay, review score and count, room type and a booking link. Every endpoint also takes{' '}
+            <code className="field">proxy_country</code>.
+          </>
+        }
+        excerptLabel={`POST /search · Lisbon, ${FIXTURES.hotelSearchLisbon.data.checkin_date} → ${FIXTURES.hotelSearchLisbon.data.checkout_date} · 2 of ${FIXTURES.hotelSearchLisbon.data.properties.length} properties, trimmed · captured ${FIXTURES.hotelSearchLisbon.captured_at}`}
+        excerpt={HOTELS_EXCERPT}
+        valueHeading="First property"
+        fields={[
+          {
+            name: 'destination',
+            type: 'string (request)',
+            meaning: (
+              <>
+                Free text: a city, a district, or a hotel name. The field is{' '}
+                <code className="field">destination</code>; <code className="field">location</code> is rejected with a
+                400.
+              </>
+            ),
+            value: FIXTURES.hotelSearchLisbon.data.destination,
+          },
+          {
+            name: 'price / price_string',
+            type: 'number · string',
+            meaning: (
+              <>
+                The total for the stay, not per night, in the currency you asked for. Divide by{' '}
+                <code className="field">nights</code> for a nightly rate.
+              </>
+            ),
+            value: `${fx.data.properties[0]!.price} · ${fx.data.properties[0]!.price_string}`,
+          },
+          {
+            name: 'nights',
+            type: 'number',
+            meaning: 'Length of the stay the price covers, echoed back on every property.',
+            value: String(fx.data.properties[0]!.nights),
+          },
+          {
+            name: 'review_score / review_count',
+            type: 'number · number',
+            meaning: "Booking.com's score out of 10 and how many reviews it rests on. Either can be null on a property with too few.",
+            value: `${fx.data.properties[0]!.review_score} · ${fx.data.properties[0]!.review_count}`,
+          },
+          {
+            name: 'room_type',
+            type: 'string',
+            meaning: 'The exact room the price belongs to. It is what makes two quotes comparable at all, across properties or across markets.',
+            value: fx.data.properties[0]!.room_type,
+          },
+          {
+            name: 'proxy_country',
+            type: 'string (request)',
+            meaning: 'Two-letter code that routes that one request through a residential proxy in that market, so you see the rate that market is quoted.',
+            value: 'optional',
+          },
+        ]}
+        notes={[
+          <>
+            Nothing is cached. Every search runs against Booking.com at request time, which is also why response time
+            tracks how much work the query is. <code className="field">filters</code> takes any of the{' '}
+            {COUNTS.hotelFilters} documented values and comes back as <code className="field">applied_filters</code>.
+          </>,
+          <>
+            <code className="field">proxy_country</code> is the one to look at if you price rooms for a living: same
+            property, same dates, one field changed, and you can see what each market is quoted. That is{' '}
+            <Link href="/hotels-api/geo-pricing" className="text-signal-400 hover:text-signal-300">
+              rate-parity and geo-pricing monitoring
+            </Link>
+            , and it needs repeat sampling per market before a gap counts as real.
+          </>,
+        ]}
+      />
 
       <Section>
         <SectionHead

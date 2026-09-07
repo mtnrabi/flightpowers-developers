@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { ExecuteWidget } from '@/components/ExecuteWidget';
+import { Mono, ResponseChunk } from '@/components/ResponseChunk';
 import { PricingTable } from '@/components/PricingTable';
 import { RoundtripResults } from '@/components/results';
 import {
@@ -63,6 +64,37 @@ const faq: Faq[] = [
   },
 ];
 
+/**
+ * One itinerary from the captured BER→CDG round trip, trimmed to the fields
+ * the table below documents. Built from the fixture so it cannot drift.
+ */
+const ROUNDTRIP_EXCERPT = (() => {
+  const r = FIXTURES.roundtripBerCdg.data[0]!;
+  return JSON.stringify(
+    [
+      {
+        from_airport: r.from_airport,
+        to_airport: r.to_airport,
+        departure_date: r.departure_date,
+        return_date: r.return_date,
+        total_price: r.total_price,
+        total_price_as_number: r.total_price_as_number,
+        total_duration_seconds: r.total_duration_seconds,
+        total_stops: r.total_stops,
+        departure_flight_airline: r.departure_flight_airline,
+        departure_flight_duration: r.departure_flight_duration,
+        return_flight_airline: r.return_flight_airline,
+        return_flight_duration: r.return_flight_duration,
+        price_insights_low: r.price_insights_low,
+        price_insights_high: r.price_insights_high,
+        price_range_in_relation_to_other_periods: r.price_range_in_relation_to_other_periods,
+      },
+    ],
+    null,
+    2
+  );
+})();
+
 export default function RoundTripPage() {
   const fx = FIXTURES.roundtripBerCdg;
   const rec = fx.data[0]!;
@@ -89,6 +121,7 @@ export default function RoundTripPage() {
           operatingSystem: 'Any',
           offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Free tier: 10 requests/month on RapidAPI' },
           url: `${SITE.url}/flights-api/round-trip`,
+          dateModified: '2026-09-07',
         }}
       />
 
@@ -148,6 +181,88 @@ export default function RoundTripPage() {
           </div>
         </Container>
       </div>
+
+      <ResponseChunk
+        title="What a round-trip search returns"
+        answer={
+          <>
+            <Mono>POST /v1/flights/roundtrip</Mono> on <Mono>api.flightpowers.com</Mono> (the same endpoint is{' '}
+            <Mono>/api/google_flights/roundtrip/v1</Mono> on <Mono>google-flights-live-api.p.rapidapi.com</Mono> with a
+            RapidAPI key) takes a route plus <code className="field">departure_date</code> and{' '}
+            <code className="field">return_date</code>, and returns one flat object per paired itinerary: outbound and
+            return already matched, with a combined price, a combined duration, a combined stop count, one booking link,
+            and Google&apos;s price band on the pair rather than on either leg.
+          </>
+        }
+        excerptLabel={`BER → CDG, ${String(FIXTURES.roundtripBerCdg.request.body.departure_date)} → ${String(FIXTURES.roundtripBerCdg.request.body.return_date)} · 1 of ${FIXTURES.roundtripBerCdg.data.length} itineraries, trimmed · captured ${FIXTURES.roundtripBerCdg.captured_at}`}
+        excerpt={ROUNDTRIP_EXCERPT}
+        valueHeading="Above"
+        fields={[
+          {
+            name: 'total_price / total_price_as_number',
+            type: 'string · number',
+            meaning: 'The fare for the whole paired trip, as a display string and as a sortable number. Not the sum of two separately priced one-ways.',
+            value: `${FIXTURES.roundtripBerCdg.data[0]!.total_price} · ${FIXTURES.roundtripBerCdg.data[0]!.total_price_as_number}`,
+          },
+          {
+            name: 'total_duration_seconds',
+            type: 'number',
+            meaning: 'Flying time of both legs combined, in seconds.',
+            value: String(FIXTURES.roundtripBerCdg.data[0]!.total_duration_seconds),
+          },
+          {
+            name: 'total_stops',
+            type: 'int',
+            meaning: 'Stops across both legs together. 0 means nonstop in each direction.',
+            value: String(FIXTURES.roundtripBerCdg.data[0]!.total_stops),
+          },
+          {
+            name: 'departure_flight_* / return_flight_*',
+            type: 'fields',
+            meaning: (
+              <>
+                Each leg in full: <code className="field">_airline</code>, <code className="field">_duration</code>,{' '}
+                <code className="field">_stops</code>, plain-text departure and arrival descriptions, and{' '}
+                <code className="field">departure_stops_info</code> / <code className="field">return_stops_info</code> per
+                layover.
+              </>
+            ),
+            value: `${FIXTURES.roundtripBerCdg.data[0]!.departure_flight_duration} out, ${FIXTURES.roundtripBerCdg.data[0]!.return_flight_duration} back`,
+          },
+          {
+            name: 'buy_link',
+            type: 'string',
+            meaning: 'One Google Flights deep link for the whole paired itinerary, both legs, in the requested currency.',
+            value: 'google.com/travel/flights?tfs=…',
+          },
+          {
+            name: 'price_range_in_relation_to_other_periods',
+            type: '"low" | "typical" | "high" | null',
+            meaning: (
+              <>
+                Google&apos;s verdict on the trip total against its{' '}
+                <code className="field">price_insights_low</code> / <code className="field">price_insights_high</code> band
+                for these dates.
+              </>
+            ),
+            value: <VerdictBadge verdict={FIXTURES.roundtripBerCdg.data[0]!.price_range_in_relation_to_other_periods} />,
+          },
+        ]}
+        notes={[
+          <>
+            The return-leg fan-out happens inside the API, so a paired search bills as a single request however many
+            outbound candidates it prices.
+          </>,
+          <>
+            The band rides on the pair, which is what makes it useful here: one call answers whether the whole trip is
+            cheap, instead of two one-ways you have to add up and then judge yourself. Same three fields as on{' '}
+            <Link href="/flights-api/price-insights" className="text-signal-400 hover:text-signal-300">
+              price insights
+            </Link>
+            .
+          </>,
+        ]}
+      />
 
       <Section>
         <SectionHead

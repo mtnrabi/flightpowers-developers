@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { ExecuteWidget } from '@/components/ExecuteWidget';
+import { Mono, ResponseChunk } from '@/components/ResponseChunk';
 import { PricingTable } from '@/components/PricingTable';
 import {
   Breadcrumbs,
@@ -58,6 +59,40 @@ const faq: Faq[] = [
     a: 'No. The fields ride on every one-way and round-trip search on every plan, including the free tier.',
   },
 ];
+
+/**
+ * A real response from the free MCP server, run 2026-09-07 (BER→CDG,
+ * 2026-10-06), trimmed to the pricing fields. Raw call and full body:
+ * state/gtm/content/PRICE-INSIGHTS-CHUNK-2026-09-07.md.
+ */
+const PRICE_INSIGHTS_EXCERPT = `{
+  "results": [
+    {
+      "from_airport": "Berlin (BER)",
+      "to_airport": "Paris (CDG)",
+      "departure_date": "2026-10-06",
+      "airline": "easyJet",
+      "price": "$43",
+      "price_as_number": 43,
+      "price_insights_low": 50,
+      "price_insights_high": 140,
+      "price_range_in_relation_to_other_periods": "low"
+    },
+    {
+      "from_airport": "Berlin (BER)",
+      "to_airport": "Paris (CDG)",
+      "departure_date": "2026-10-06",
+      "airline": "easyJet",
+      "price": "$45",
+      "price_as_number": 45,
+      "price_insights_low": 50,
+      "price_insights_high": 140,
+      "price_range_in_relation_to_other_periods": "low"
+    }
+  ],
+  "result_count": 2,
+  "search_status": "ok"
+}`;
 
 export default function PriceInsightsPage() {
   const fx = FIXTURES.onewayJfkCun;
@@ -143,113 +178,70 @@ export default function PriceInsightsPage() {
         </Container>
       </div>
 
-      <Section>
-        <SectionHead
-          eyebrow="Short answer"
-          title="What a price insights response looks like"
-        />
-        <p className="mt-5 max-w-3xl text-[16px] text-ink-300 leading-relaxed">
-          Every fare FlightPowers returns carries Google&apos;s own price band. One POST to{' '}
-          <code className="font-mono text-[13px] text-signal-400">/v1/flights/oneway</code> on{' '}
-          <code className="font-mono text-[13px] text-signal-400">api.flightpowers.com</code> (or to{' '}
-          <code className="font-mono text-[13px] text-signal-400">google-flights-live-api.p.rapidapi.com</code>{' '}
-          with a RapidAPI key) returns <code className="font-mono text-[13px] text-signal-400">price_insights_low</code>,{' '}
-          <code className="font-mono text-[13px] text-signal-400">price_insights_high</code> and{' '}
-          <code className="font-mono text-[13px] text-signal-400">price_range_in_relation_to_other_periods</code>{' '}
-          on every result, so you get a <VerdictBadge verdict="low" /> <VerdictBadge verdict="typical" />{' '}
-          <VerdictBadge verdict="high" /> call on the fare without keeping any price history of your own.
-        </p>
-
-        <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start">
-          <Code label="BER → CDG, 2026-10-06 · trimmed to the pricing fields · run 2026-09-07">{`{
-  "results": [
-    {
-      "from_airport": "Berlin (BER)",
-      "to_airport": "Paris (CDG)",
-      "departure_date": "2026-10-06",
-      "airline": "easyJet",
-      "price": "$43",
-      "price_as_number": 43,
-      "price_insights_low": 50,
-      "price_insights_high": 140,
-      "price_range_in_relation_to_other_periods": "low"
-    },
-    {
-      "from_airport": "Berlin (BER)",
-      "to_airport": "Paris (CDG)",
-      "departure_date": "2026-10-06",
-      "airline": "easyJet",
-      "price": "$45",
-      "price_as_number": 45,
-      "price_insights_low": 50,
-      "price_insights_high": 140,
-      "price_range_in_relation_to_other_periods": "low"
-    }
-  ],
-  "result_count": 2,
-  "search_status": "ok"
-}`}</Code>
-
-          <div>
-            <div className="scroll-x rounded-2xl border rule">
-              <div className="overflow-x-auto rounded-2xl">
-                <table className="w-full text-[14px]">
-                  <thead>
-                    <tr className="text-left font-mono text-[11px] uppercase tracking-wider text-ink-500 bg-ink-900/80">
-                      <th className="px-4 py-3 font-normal">Field</th>
-                      <th className="px-4 py-3 font-normal">Type</th>
-                      <th className="px-4 py-3 font-normal">Meaning</th>
-                      <th className="px-4 py-3 font-normal">Above</th>
-                    </tr>
-                  </thead>
-                  <tbody className="align-top">
-                    <tr className="border-t rule">
-                      <td className="px-4 py-3.5"><code className="field">price_insights_low</code></td>
-                      <td className="px-4 py-3.5 font-mono text-[12px] text-ink-500">number | null</td>
-                      <td className="px-4 py-3.5 text-ink-300">Bottom of Google&apos;s usual price range for this route and date.</td>
-                      <td className="px-4 py-3.5 font-mono tabular-nums text-ink-100">50</td>
-                    </tr>
-                    <tr className="border-t rule">
-                      <td className="px-4 py-3.5"><code className="field">price_insights_high</code></td>
-                      <td className="px-4 py-3.5 font-mono text-[12px] text-ink-500">number | null</td>
-                      <td className="px-4 py-3.5 text-ink-300">Top of that range.</td>
-                      <td className="px-4 py-3.5 font-mono tabular-nums text-ink-100">140</td>
-                    </tr>
-                    <tr className="border-t rule">
-                      <td className="px-4 py-3.5"><code className="field">price_range_in_relation_to_other_periods</code></td>
-                      <td className="px-4 py-3.5 font-mono text-[12px] text-ink-500">&quot;low&quot; | &quot;typical&quot; | &quot;high&quot; | null</td>
-                      <td className="px-4 py-3.5 text-ink-300">Google&apos;s verdict on this fare against that range. Branch on it directly.</td>
-                      <td className="px-4 py-3.5"><VerdictBadge verdict="low" /></td>
-                    </tr>
-                    <tr className="border-t rule">
-                      <td className="px-4 py-3.5"><code className="field">price_as_number</code></td>
-                      <td className="px-4 py-3.5 font-mono text-[12px] text-ink-500">number</td>
-                      <td className="px-4 py-3.5 text-ink-300">The fare itself, unformatted, so you can compare it to the band. <code className="field">price</code> is the same value as a display string.</td>
-                      <td className="px-4 py-3.5 font-mono tabular-nums text-ink-100">43</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <p className="mt-6 text-[15px] text-ink-400 leading-relaxed">
-              The verdict is Google&apos;s, not ours. Google Flights publishes a usual price range for that route
-              and those dates, and the API passes the range and Google&apos;s call on the current fare through
-              untouched. Nothing is modelled on our side, and the fields are <code className="field">null</code>{' '}
-              when Google shows no band.
-            </p>
-            <p className="mt-4 text-[15px] text-ink-400 leading-relaxed">
-              Scoping the claim honestly: SerpApi and HasData document a band of their own, so a band is not
-              unique to us (their docs, read 2026-09-06). What is ours is the round-trip. The same three fields
-              ride on the paired itinerary from{' '}
-              <Link href="/flights-api/round-trip" className="text-signal-400 hover:text-signal-300">
-                <code className="font-mono text-[13px]">/v1/flights/roundtrip</code>
-              </Link>
-              , so one request gives you a verdict on the whole trip instead of two one-ways you have to add up.
-            </p>
-          </div>
-        </div>
-      </Section>
+      <ResponseChunk
+        title="What a price insights response looks like"
+        answer={
+          <>
+            Every fare FlightPowers returns carries Google&apos;s own price band. One POST to{' '}
+            <Mono>/v1/flights/oneway</Mono> on <Mono>api.flightpowers.com</Mono> (or to{' '}
+            <Mono>google-flights-live-api.p.rapidapi.com</Mono> with a RapidAPI key) returns{' '}
+            <Mono>price_insights_low</Mono>, <Mono>price_insights_high</Mono> and{' '}
+            <Mono>price_range_in_relation_to_other_periods</Mono> on every result, so you get a{' '}
+            <VerdictBadge verdict="low" /> <VerdictBadge verdict="typical" /> <VerdictBadge verdict="high" /> call on
+            the fare without keeping any price history of your own.
+          </>
+        }
+        excerptLabel="BER → CDG, 2026-10-06 · trimmed to the pricing fields · run 2026-09-07"
+        excerpt={PRICE_INSIGHTS_EXCERPT}
+        fields={[
+          {
+            name: 'price_insights_low',
+            type: 'number | null',
+            meaning: "Bottom of Google's usual price range for this route and date.",
+            value: '50',
+          },
+          {
+            name: 'price_insights_high',
+            type: 'number | null',
+            meaning: 'Top of that range.',
+            value: '140',
+          },
+          {
+            name: 'price_range_in_relation_to_other_periods',
+            type: '"low" | "typical" | "high" | null',
+            meaning: "Google's verdict on this fare against that range. Branch on it directly.",
+            value: <VerdictBadge verdict="low" />,
+          },
+          {
+            name: 'price_as_number',
+            type: 'number',
+            meaning: (
+              <>
+                The fare itself, unformatted, so you can compare it to the band. <code className="field">price</code> is
+                the same value as a display string.
+              </>
+            ),
+            value: '43',
+          },
+        ]}
+        notes={[
+          <>
+            The verdict is Google&apos;s, not ours. Google Flights publishes a usual price range for that route and
+            those dates, and the API passes the range and Google&apos;s call on the current fare through untouched.
+            Nothing is modelled on our side, and the fields are <code className="field">null</code> when Google shows no
+            band.
+          </>,
+          <>
+            Scoping the claim honestly: SerpApi and HasData document a band of their own, so a band is not unique to us
+            (their docs, read 2026-09-06). What is ours is the round-trip. The same three fields ride on the paired
+            itinerary from{' '}
+            <Link href="/flights-api/round-trip" className="text-signal-400 hover:text-signal-300">
+              <code className="font-mono text-[13px]">/v1/flights/roundtrip</code>
+            </Link>
+            , so one request gives you a verdict on the whole trip instead of two one-ways you have to add up.
+          </>,
+        ]}
+      />
 
       <Section>
         <SectionHead

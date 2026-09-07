@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { CodeTabs } from '@/components/CodeTabs';
+import { Mono, ResponseChunk } from '@/components/ResponseChunk';
 import { PricingTable } from '@/components/PricingTable';
 import {
   Breadcrumbs,
@@ -75,6 +76,34 @@ const faq: Faq[] = [
   },
 ];
 
+/**
+ * The captured Lisbon response, trimmed to two properties and to the fields
+ * the table below documents. Built from the fixture so it cannot drift.
+ */
+const HOTEL_SEARCH_EXCERPT = (() => {
+  const d = FIXTURES.hotelSearchLisbon.data;
+  return JSON.stringify(
+    {
+      destination: d.destination,
+      checkin_date: d.checkin_date,
+      checkout_date: d.checkout_date,
+      applied_filters: d.applied_filters,
+      properties: d.properties.slice(0, 2).map((h) => ({
+        name: h.name,
+        price_string: h.price_string,
+        price: h.price,
+        review_score: h.review_score,
+        review_count: h.review_count,
+        room_type: h.room_type,
+        location: h.location,
+        nights: h.nights,
+      })),
+    },
+    null,
+    2
+  );
+})();
+
 export default function HotelSearchPage() {
   const fx = FIXTURES.hotelSearchLisbon;
   const p0 = fx.data.properties[0]!;
@@ -102,6 +131,7 @@ export default function HotelSearchPage() {
           operatingSystem: 'Any',
           offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Free tier: 10 requests/month on RapidAPI' },
           url: `${SITE.url}/hotels-api/search`,
+          dateModified: '2026-09-07',
         }}
       />
 
@@ -163,6 +193,82 @@ export default function HotelSearchPage() {
           </div>
         </Container>
       </div>
+
+      <ResponseChunk
+        title="What a hotel destination search returns"
+        answer={
+          <>
+            <Mono>POST /v1/hotels/search</Mono> on <Mono>api.flightpowers.com</Mono> (the same endpoint is{' '}
+            <Mono>/search</Mono> on <Mono>booking-live-api.p.rapidapi.com</Mono> with a RapidAPI key) takes a free-text{' '}
+            <code className="field">destination</code> plus <code className="field">checkin_date</code> and{' '}
+            <code className="field">checkout_date</code>, and returns live Booking.com properties: name, the total price
+            for the stay, review score and count, room type, an image and a booking link. Nothing is cached; every
+            search runs against Booking.com at request time.
+          </>
+        }
+        excerptLabel={`Lisbon, ${FIXTURES.hotelSearchLisbon.data.checkin_date} → ${FIXTURES.hotelSearchLisbon.data.checkout_date} · 2 of ${FIXTURES.hotelSearchLisbon.data.properties.length} properties, trimmed · captured ${FIXTURES.hotelSearchLisbon.captured_at}`}
+        excerpt={HOTEL_SEARCH_EXCERPT}
+        valueHeading="First property"
+        fields={[
+          {
+            name: 'price / price_string',
+            type: 'number · string',
+            meaning: (
+              <>
+                The total for the whole stay, not per night, as a number and as a display string in the currency you
+                asked for. Divide by <code className="field">nights</code> for a nightly rate.
+              </>
+            ),
+            value: `${p0.price} · ${p0.price_string}`,
+          },
+          {
+            name: 'nights',
+            type: 'number',
+            meaning: 'Length of the stay the price covers, echoed back so no date arithmetic is needed on your side.',
+            value: String(p0.nights),
+          },
+          {
+            name: 'review_score / review_count',
+            type: 'number · number',
+            meaning: "Booking.com's own score out of 10 and how many reviews it rests on. A high score on 12 reviews is not the same product as a high score on thousands.",
+            value: `${p0.review_score} · ${p0.review_count}`,
+          },
+          {
+            name: 'room_type',
+            type: 'string',
+            meaning: 'The exact room the price is for. Two properties are only comparable when this is.',
+            value: p0.room_type,
+          },
+          {
+            name: 'location',
+            type: 'string | null',
+            meaning: 'Neighbourhood or district when Booking.com shows one. It really does come back null on some searches, so nothing may assume it.',
+            value: p0.location === null ? 'null' : p0.location,
+          },
+          {
+            name: 'link',
+            type: 'string',
+            meaning: 'A working Booking.com deep link to that property with your dates and party already applied.',
+            value: 'booking.com/hotel/…',
+          },
+        ]}
+        notes={[
+          <>
+            The request field is <code className="field">destination</code>. Sending{' '}
+            <code className="field">location</code> is a 400 with a message saying so. It takes free text, so
+            &quot;Paris&quot;, &quot;Tokyo Shibuya&quot; or a hotel name all work.
+          </>,
+          <>
+            <code className="field">filters</code> takes any of the {COUNTS.hotelFilters} documented values and comes
+            back as <code className="field">applied_filters</code>; <code className="field">budget_per_night</code> is
+            per night, unlike the price. <code className="field">proxy_country</code> works here too, which is what makes{' '}
+            <Link href="/hotels-api/geo-pricing" className="text-signal-400 hover:text-signal-300">
+              rate-parity monitoring
+            </Link>{' '}
+            possible from the same endpoint.
+          </>,
+        ]}
+      />
 
       <Section>
         <div className="flex flex-wrap items-center justify-between gap-3">
