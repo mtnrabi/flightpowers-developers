@@ -361,8 +361,8 @@ export default function PricingPage() {
         </div>
         <div className="mt-8 max-w-4xl rounded-xl border rule bg-ink-900/40 px-5 py-3.5">
           <p className="text-[13px] text-ink-300 leading-relaxed">
-            <strong className="text-ink-100">Live on RapidAPI:</strong> Google Flights Live API, 9.9 popularity, 100%
-            service level, ~1144ms latency. Booking Live API, 9.6 popularity, 98% service level, ~12475ms latency.
+            <strong className="text-ink-100">Live on RapidAPI:</strong> Google Flights Live API, 9.9 popularity, 99%
+            service level, ~1112ms latency. Booking Live API, 9.7 popularity, 94% service level, ~8567ms latency.
           </p>
           <p className="mt-1 font-mono text-[10px] text-ink-500">Metrics retrieved from rapidapi.com/mtnrabi listings on 2026-09-01</p>
         </div>
