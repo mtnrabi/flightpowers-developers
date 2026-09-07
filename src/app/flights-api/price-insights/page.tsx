@@ -61,38 +61,21 @@ const faq: Faq[] = [
 ];
 
 /**
- * A real response from the free MCP server, run 2026-09-07 (BER→CDG,
- * 2026-10-06), trimmed to the pricing fields. Raw call and full body:
- * state/gtm/content/PRICE-INSIGHTS-CHUNK-2026-09-07.md.
+ * The quotable chunk is built from a captured fixture, not typed by hand, and
+ * it shows the itinerary with every field it really has. Two earlier versions
+ * of this block were wrong in ways worth naming: one was trimmed down to the
+ * pricing fields, so the record's actual shape was missing, and it used the
+ * MCP server's `{ results: [...] }` envelope next to prose about the REST
+ * endpoint, which returns a bare array. A passage that gets retrieved alone
+ * has to be right alone.
  */
-const PRICE_INSIGHTS_EXCERPT = `{
-  "results": [
-    {
-      "from_airport": "Berlin (BER)",
-      "to_airport": "Paris (CDG)",
-      "departure_date": "2026-10-06",
-      "airline": "easyJet",
-      "price": "$43",
-      "price_as_number": 43,
-      "price_insights_low": 50,
-      "price_insights_high": 140,
-      "price_range_in_relation_to_other_periods": "low"
-    },
-    {
-      "from_airport": "Berlin (BER)",
-      "to_airport": "Paris (CDG)",
-      "departure_date": "2026-10-06",
-      "airline": "easyJet",
-      "price": "$45",
-      "price_as_number": 45,
-      "price_insights_low": 50,
-      "price_insights_high": 140,
-      "price_range_in_relation_to_other_periods": "low"
-    }
-  ],
-  "result_count": 2,
-  "search_status": "ok"
-}`;
+const CHUNK_FIXTURE = FIXTURES.onewayLaxSfoLow;
+const CHUNK_FLIGHT = CHUNK_FIXTURE.data[0]!;
+const PRICE_INSIGHTS_EXCERPT = JSON.stringify(CHUNK_FIXTURE.data, null, 2);
+const PRICE_INSIGHTS_REQUEST = `curl -X POST "https://api.flightpowers.com/v1/flights/oneway" \\
+  -H "Content-Type: application/json" \\
+  -H "x-api-key: $FLIGHTPOWERS_API_KEY" \\
+  -d '${JSON.stringify(CHUNK_FIXTURE.request.body)}'`;
 
 export default function PriceInsightsPage() {
   const fx = FIXTURES.onewayJfkCun;
@@ -188,29 +171,34 @@ export default function PriceInsightsPage() {
             <Mono>price_insights_low</Mono>, <Mono>price_insights_high</Mono> and{' '}
             <Mono>price_range_in_relation_to_other_periods</Mono> on every result, so you get a{' '}
             <VerdictBadge verdict="low" /> <VerdictBadge verdict="typical" /> <VerdictBadge verdict="high" /> call on
-            the fare without keeping any price history of your own.
+            the fare without keeping any price history of your own. The body is a plain JSON array of itineraries with
+            no envelope to unwrap, and how the search went is in the <Mono>X-Search-Status</Mono> response header.
           </>
         }
-        excerptLabel="BER → CDG, 2026-10-06 · trimmed to the pricing fields · run 2026-09-07"
+        request={{
+          label: 'the call that produced it · no sort_type, which would null the band',
+          text: PRICE_INSIGHTS_REQUEST,
+        }}
+        excerptLabel={`200 OK · X-Search-Status: ${CHUNK_FIXTURE.headers?.['x-search-status']} · LAX → SFO, ${CHUNK_FLIGHT.departure_date} · captured ${CHUNK_FIXTURE.captured_at} · the cheapest itinerary, every field it returns`}
         excerpt={PRICE_INSIGHTS_EXCERPT}
         fields={[
           {
             name: 'price_insights_low',
             type: 'number | null',
             meaning: "Bottom of Google's usual price range for this route and date.",
-            value: '50',
+            value: String(CHUNK_FLIGHT.price_insights_low),
           },
           {
             name: 'price_insights_high',
             type: 'number | null',
             meaning: 'Top of that range.',
-            value: '140',
+            value: String(CHUNK_FLIGHT.price_insights_high),
           },
           {
             name: 'price_range_in_relation_to_other_periods',
             type: '"low" | "typical" | "high" | null',
             meaning: "Google's verdict on this fare against that range. Branch on it directly.",
-            value: <VerdictBadge verdict="low" />,
+            value: <VerdictBadge verdict={CHUNK_FLIGHT.price_range_in_relation_to_other_periods} />,
           },
           {
             name: 'price_as_number',
@@ -221,10 +209,19 @@ export default function PriceInsightsPage() {
                 the same value as a display string.
               </>
             ),
-            value: '43',
+            value: String(CHUNK_FLIGHT.price_as_number),
           },
         ]}
         notes={[
+          <>
+            What the three words mean, in plain terms. <VerdictBadge verdict="low" /> means the fare in front of you sits
+            under the range that route and those dates usually cost, so it is cheap against its own history and not
+            just cheap-looking: the buy signal. <VerdictBadge verdict="typical" /> means it sits inside the range, which is the ordinary
+            case and not a reason to wait. <VerdictBadge verdict="high" /> means it sits above the range, so the same
+            trip has recently been cheaper and probably will be again. In the capture above, ${CHUNK_FLIGHT.price_as_number}{' '}
+            against a ${CHUNK_FLIGHT.price_insights_low} to ${CHUNK_FLIGHT.price_insights_high} band reads{' '}
+            <VerdictBadge verdict="low" />.
+          </>,
           <>
             The verdict is Google&apos;s, not ours. Google Flights publishes a usual price range for that route and
             those dates, and the API passes the range and Google&apos;s call on the current fare through untouched.

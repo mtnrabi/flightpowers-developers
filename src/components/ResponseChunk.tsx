@@ -38,6 +38,7 @@ export function ResponseChunk({
   answer,
   excerptLabel,
   excerpt,
+  request,
   fields,
   valueHeading = 'Above',
   notes,
@@ -49,6 +50,12 @@ export function ResponseChunk({
   excerptLabel: string;
   /** A trimmed real response: at most two rows, or about twelve lines. */
   excerpt: string;
+  /**
+   * Optional: the call that produced the excerpt, so the passage can be run
+   * as it stands instead of sending the reader to another section for the
+   * request shape.
+   */
+  request?: { label: string; text: string };
   fields: ChunkField[];
   /** Header of the last column: what the value is taken from. */
   valueHeading?: string;
@@ -60,7 +67,14 @@ export function ResponseChunk({
       <div className="mt-5 max-w-3xl text-[16px] text-ink-300 leading-relaxed">{answer}</div>
 
       <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start">
-        <Code label={excerptLabel}>{excerpt}</Code>
+        <div>
+          {request ? (
+            <div className="mb-4">
+              <Code label={request.label}>{request.text}</Code>
+            </div>
+          ) : null}
+          <Code label={excerptLabel}>{excerpt}</Code>
+        </div>
 
         <div>
           <div className="scroll-x rounded-2xl border rule">

@@ -178,6 +178,12 @@ const GUIDES = [
     tag: 'do it yourself',
   },
   {
+    href: '/guides/overpaying-for-flights',
+    title: 'How to check if your company is overpaying for flights',
+    sub: 'Your finance export says what a trip cost, not what it should have cost. One request per leg returns Google\'s usual price band for that route and date, so the forward book can be graded against the market. The script, a captured run, the cabin trap, and the trips this cannot judge.',
+    tag: 'do it yourself',
+  },
+  {
     href: '/guides/cheapest-destinations-from-one-airport',
     title: 'Cheapest destinations from one airport this month',
     sub: 'One call takes a list of destination airports and a departure date range and expands both server side. A captured 15-combination Berlin run, the limit setting that silently drops a whole destination from the response, the REST fan-out that does the same job, and how it differs from SerpApi\'s deals engine.',
