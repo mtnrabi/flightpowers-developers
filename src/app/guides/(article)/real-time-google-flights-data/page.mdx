@@ -22,7 +22,7 @@ import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
       'Endpoints, paste-and-run code, price-insight fields, round-trip handling, and parallel date scans against a live Google Flights API.',
     url: `${SITE.url}/guides/real-time-google-flights-data`,
     datePublished: '2026-08-26',
-    dateModified: '2026-08-26',
+    dateModified: '2026-09-07',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -30,7 +30,7 @@ import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 # How to get real-time Google Flights data
 
-<GuideDates published="2026-08-26" updated="2026-08-26" />
+<GuideDates published="2026-08-26" updated="2026-09-07" />
 
 **Short answer:** Use a Google Flights extraction API that returns live prices from the public site as JSON. Every result includes the price, airline, duration, booking link, and Google's own historical price band with a low/typical/high verdict. No scraper maintenance, and the data you get is what travelers actually see when they search.
 
@@ -40,8 +40,9 @@ developers who want to query a route and get a price back. So every team that ne
 live Google Flights data ends up choosing between building a scraper and buying one.
 
 This guide covers the buying path: which endpoints exist, what the response actually
-contains, and code you can paste and run today. Everything below was verified against
-the live API on **2026-08-24**.
+contains, and code you can paste and run today. Every response below is a real run
+against the live API on **2026-09-07**, pasted unedited apart from dropping the
+sponsored slot that the free tier attaches.
 
 ## The short version
 
@@ -52,7 +53,7 @@ curl -X POST https://api.flightpowers.com/v1/flights/oneway \
   -d '{
     "from_airport": "JFK",
     "to_airport": "LHR",
-    "departure_date": "2026-10-15"
+    "departure_date": "2026-11-12"
   }'
 ```
 
@@ -113,24 +114,27 @@ Airports are IATA codes (`JFK`, `LHR`, `CDG`). Dates are `YYYY-MM-DD`.
 
 ### What does the response contain?
 
+One result object from a real BER to CDG run on 2026-10-19, captured 02:22 UTC on
+2026-09-07:
+
 ```json
 {
-  "price_range_in_relation_to_other_periods": "low",
-  "price_insights_low": 65,
-  "price_insights_high": 135,
+  "price_range_in_relation_to_other_periods": "typical",
+  "price_insights_low": 50,
+  "price_insights_high": 145,
   "from_airport": "Berlin (BER)",
   "to_airport": "Paris (CDG)",
-  "departure_date": "2026-06-15",
-  "price": "$56",
-  "price_as_number": 56,
+  "departure_date": "2026-10-19",
+  "price": "$125",
+  "price_as_number": 125,
   "duration": "1 hr 50 min",
   "duration_seconds": 6600,
   "buy_link": "https://www.google.com/travel/flights?tfs=...&curr=usd",
-  "airline": "easyJet",
+  "airline": "Air France | Operated by HOP!",
   "stops": 0,
   "stops_info": [],
-  "departure_description": "10:15 AM on Mon, Jun 15",
-  "arrival_description": "12:05 PM on Mon, Jun 15"
+  "departure_description": "7:55 PM on Mon, Oct 19",
+  "arrival_description": "9:45 PM on Mon, Oct 19"
 }
 ```
 
@@ -142,11 +146,18 @@ Three fields here are the reason to use this API rather than a generic fare feed
   `low`, `typical`, or `high`.
 - **`buy_link`**: a working deep link into Google Flights for that exact itinerary.
 
-Most flight APIs hand you a number with no context. $412 is meaningless on its own.
-$412, against a historical band of $380–$700, flagged `low`, is a decision. If you are
-building a price alert, that verdict field *is* your trigger condition: you do not
-have to build and maintain your own price history to know a fare is good. There is a
+A price with no context is hard to act on. $125 on its own says nothing; $125 against
+a historical band of $50–$145, flagged `typical`, is a decision. If you are building a
+price alert, that verdict field *is* your trigger condition: you do not have to build
+and maintain your own price history to know a fare is good. There is a
 [whole page on these fields](/flights-api/price-insights), with a captured run.
+
+Scope on that, because "nobody else has this" would be a claim I cannot support: what
+I checked is the Google Flights listings people shortlist next to mine on RapidAPI,
+where I did not find a documented band-and-verdict pair, plus SerpApi, which
+**does** return price context and goes further with a `price_history` series
+([the comparison](/compare/serpapi)). It is a differentiator against the RapidAPI
+neighbours, not against the whole market.
 
 `price_range_in_relation_to_other_periods` can be `null` when Google shows no price
 band for a route. Handle that case rather than assuming a verdict is always present.
@@ -171,36 +182,42 @@ two one-way searches together you get an itinerary that is frequently not bookab
 the price you computed. Here, one result object carries **both legs and the combined
 total**:
 
+From the same 2026-09-07 capture, BER to CDG out on 2026-10-19 and back on
+2026-10-23:
+
 ```json
 {
-  "price_range_in_relation_to_other_periods": "low",
-  "price_insights_low": 135,
-  "price_insights_high": 205,
+  "price_range_in_relation_to_other_periods": "typical",
+  "price_insights_low": 115,
+  "price_insights_high": 240,
   "from_airport": "Berlin (BER)",
   "to_airport": "Paris (CDG)",
-  "departure_date": "2026-06-01",
-  "return_date": "2026-06-05",
-  "total_price": "$119",
-  "total_price_as_number": 119,
+  "departure_date": "2026-10-19",
+  "return_date": "2026-10-23",
+  "total_price": "$233",
+  "total_price_as_number": 233,
   "total_duration_seconds": 12900,
   "total_stops": 0,
   "buy_link": "https://www.google.com/travel/flights?tfs=...&curr=usd",
 
-  "departure_flight_departure_description": "7:00 AM on Mon, Jun 1",
-  "departure_flight_arrival_description": "8:50 AM on Mon, Jun 1",
-  "departure_flight_airline": "easyJet",
+  "departure_flight_departure_description": "6:25 PM on Mon, Oct 19",
+  "departure_flight_arrival_description": "8:15 PM on Mon, Oct 19",
+  "departure_flight_airline": "Air France",
   "departure_flight_stops": 0,
   "departure_flight_duration": "1 hr 50 min",
   "departure_stops_info": [],
 
-  "return_flight_departure_description": "8:20 PM on Fri, Jun 5",
-  "return_flight_arrival_description": "10:05 PM on Fri, Jun 5",
-  "return_flight_airline": "easyJet",
+  "return_flight_departure_description": "7:10 AM on Fri, Oct 23",
+  "return_flight_arrival_description": "8:55 AM on Fri, Oct 23",
+  "return_flight_airline": "Air France",
   "return_flight_stops": 0,
   "return_flight_duration": "1 hr 45 min",
   "return_stops_info": []
 }
 ```
+
+The band on that pair (`$115`–`$240`) is the round trip's own band, not the two
+one-way bands added together. That is the whole reason the endpoint exists.
 
 Round-trip also takes **per-leg filters**, so you can constrain the outbound and the
 return independently: `max_departure_stops` / `max_return_stops`,
@@ -216,8 +233,10 @@ a single request. More on the endpoint: [Round-Trip API](/flights-api/round-trip
 ## What happens when the array comes back empty?
 
 Every flight scraper sometimes gets handed a page it cannot read: a consent wall, a
-bot check, a truncated response. Most APIs return `[]` for that, which is
-indistinguishable from "there are no flights." This API separates the two: failed
+bot check, a truncated response. The usual answer is a bare `[]`, which is
+indistinguishable from "there are no flights" (that is what mine did before the status
+header existed, and it is what the RapidAPI neighbours I read return, though I have
+not audited every vendor on the market). This API separates the two: failed
 reads are retried automatically, and every response reports what actually happened in
 an `X-Search-Status` header: `ok`, `empty`, `partial`, or `degraded`. `empty` means
 Google genuinely has no itineraries for that route and date; `degraded` means the
@@ -235,14 +254,14 @@ and the field-by-field reference is on the
 
 ## How do you scan a whole month in parallel?
 
-This is where a live API either works for you or does not. "Cheapest week in May"
-means 31 searches. Serially, at a few seconds each, that is a spinner your user will
+This is where a live API either works for you or does not. "Cheapest week in November"
+means 30 searches. Serially, at a few seconds each, that is a spinner your user will
 abandon. Fired in parallel, it is one wait.
 
 Per-minute rate limits are published per plan: {COUNTS.flightsRateLimits} requests
 per minute on the flights paid tiers. Current plan prices and quotas live on
 [/pricing](/pricing) (rendered from the live listings, not copied into posts like
-this one, where they would go stale). Even on the cheapest paid plan, a 31-date scan
+this one, where they would go stale). Even on the cheapest paid plan, a full-month scan
 is a single burst.
 
 ```python
@@ -282,7 +301,7 @@ async def cheapest_month(year, month, days):
               f'band {f["price_insights_low"]}-{f["price_insights_high"]}')
     return priced
 
-asyncio.run(cheapest_month(2026, 5, 31))
+asyncio.run(cheapest_month(2026, 11, 30))
 ```
 
 Two things worth copying from that snippet:
@@ -305,8 +324,8 @@ curl -X POST https://api.flightpowers.com/v1/hotels/search \
   -H "Content-Type: application/json" \
   -d '{
     "destination": "Lisbon",
-    "checkin_date": "2026-09-10",
-    "checkout_date": "2026-09-14",
+    "checkin_date": "2026-10-19",
+    "checkout_date": "2026-10-23",
     "adults": 2,
     "currency": "EUR"
   }'

@@ -21,14 +21,21 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 export const metadata: Metadata = withOg({
   title: 'FlightPowers vs SerpApi for Google Flights data',
   description:
-    'An honest, sourced comparison of SerpApi’s Google Flights API and FlightPowers: pricing per search, how each handles round-trips, and what SerpApi does better. Competitor figures quoted from SerpApi’s own pages, retrieved 2026-08-24.',
+    'An honest, sourced comparison of SerpApi’s Google Flights API and FlightPowers: pricing per search, how each handles round-trips, and what SerpApi does better. Competitor figures quoted from SerpApi’s own pages, re-read 2026-09-07.',
   alternates: { canonical: '/compare/serpapi' },
 });
 
 export const dynamic = 'force-static';
 
-/** Competitor figures below are QUOTES from serpapi.com, retrieved 2026-08-24. Do not edit without re-verifying. */
-const RETRIEVED = '2026-08-24';
+/**
+ * Competitor figures below are QUOTES from serpapi.com. First retrieved
+ * 2026-08-24; re-read in full on 2026-09-07 (serpapi.com/pricing and
+ * serpapi.com/google-flights-api) with every plan price, quota, throughput
+ * and quoted sentence identical. Do not edit without re-verifying.
+ */
+const RETRIEVED = '2026-09-07';
+/** The live FlightPowers run pasted below. Re-capture and update if you touch it. */
+const CAPTURED_AT = '02:22 UTC on 2026-09-07';
 
 const ULTRA = FLIGHT_PLANS.find((p) => p.name === 'ULTRA')!;
 const ULTRA_PER_SEARCH = `$${(ULTRA.priceMonthly / ULTRA.quota).toFixed(4)}`;
@@ -36,7 +43,7 @@ const ULTRA_PER_SEARCH = `$${(ULTRA.priceMonthly / ULTRA.quota).toFixed(4)}`;
 const faq: Faq[] = [
   {
     q: 'Is FlightPowers cheaper than SerpApi?',
-    a: `On published list prices, per flight search, yes at every tier: ${ULTRA_PER_SEARCH} per search on our $${ULTRA.priceMonthly} plan against $0.015 on SerpApi’s $75 plan (their figures retrieved 2026-08-24). Two honest caveats in SerpApi’s favour: their credits are fungible across all their Google engines, so a flights-only comparison understates what the credit buys, and they only count successful searches toward quota.`,
+    a: `On published list prices, per flight search, yes at every tier: ${ULTRA_PER_SEARCH} per search on our $${ULTRA.priceMonthly} plan against $0.015 on SerpApi’s $75 plan (their figures re-read 2026-09-07). Two honest caveats in SerpApi’s favour: their credits are fungible across all their Google engines, so a flights-only comparison understates what the credit buys, and they only count successful searches toward quota.`,
   },
   {
     q: 'Does FlightPowers return price history like SerpApi?',
@@ -52,7 +59,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Where do the SerpApi numbers on this page come from?',
-    a: 'From serpapi.com/pricing and serpapi.com/google-flights-api, read on 2026-08-24 and quoted rather than paraphrased. If a number here disagrees with their site today, believe their site.',
+    a: 'From serpapi.com/pricing and serpapi.com/google-flights-api, re-read on 2026-09-07 and quoted rather than paraphrased. If a number here disagrees with their site today, believe their site.',
   },
 ];
 
@@ -231,24 +238,43 @@ export default function CompareSerpApiPage() {
             <footer className="mt-2 font-mono text-[11px] text-ink-500">serpapi.com/google-flights-api · retrieved {RETRIEVED}</footer>
           </blockquote>
           <p className="mt-6 text-[15px] text-ink-300 leading-relaxed">
-            So a round-trip search on SerpApi is a <strong className="text-ink-100">two-request flow</strong>: search the outbound,
-            take a <code className="font-mono text-[13px]">departure_token</code> off a chosen result, search again for the matching
-            returns. Two requests, two credits, two round-trips of latency, and state to carry in between. On FlightPowers,{' '}
-            <code className="font-mono text-[13px]">POST /v1/flights/roundtrip</code> is a single call that returns paired legs and a
-            combined total in one object:
+            So a round-trip <em>search</em> on SerpApi is a <strong className="text-ink-100">two-request flow</strong>: search the
+            outbound, take a <code className="font-mono text-[13px]">departure_token</code> off a chosen result, search again for
+            the matching returns. Two requests, two credits, two round-trips of latency, and state to carry in between. On
+            FlightPowers, <code className="font-mono text-[13px]">POST /v1/flights/roundtrip</code> is a single call that returns
+            paired legs and a combined total in one object:
+          </p>
+          <p className="mt-4 text-[15px] text-ink-300 leading-relaxed">
+            One correction we owe them, new since we first wrote this page. SerpApi now documents{' '}
+            <code className="font-mono text-[13px]">selected_flights_json</code>, which “pins the itinerary to specific flights,
+            segment by segment,” takes an <code className="font-mono text-[13px]">outbound</code> and a{' '}
+            <code className="font-mono text-[13px]">return</code> array of flight numbers, and prices a round trip in{' '}
+            <strong className="text-ink-100">one</strong> request (their docs, {RETRIEVED}). It does not close the gap for
+            shopping, because you have to already know the flight numbers for both legs, which is the thing a search is for, and
+            their own parameter reference still says a Round Trip needs “another request using a{' '}
+            <code className="font-mono text-[13px]">departure_token</code>.” But if your job is <em>repricing a known
+            itinerary</em> rather than finding one, SerpApi does it in a single call and the two-credit arithmetic below does not
+            apply to you.
           </p>
         </div>
         <div className="mt-6 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-start">
-          <Code label="one result object, both legs: documented response shape">{`{
-  "total_price": "$119",
-  "total_price_as_number": 119,
+          <Code label={`one result object, both legs: a live BER→CDG run captured ${CAPTURED_AT}`}>{`{
+  "price_range_in_relation_to_other_periods": "typical",
+  "price_insights_low": 115,
+  "price_insights_high": 240,
+  "departure_date": "2026-10-19",
+  "return_date": "2026-10-23",
+  "total_price": "$233",
+  "total_price_as_number": 233,
   "total_duration_seconds": 12900,
   "total_stops": 0,
   "buy_link": "https://www.google.com/travel/flights?tfs=...",
-  "departure_flight_airline": "easyJet",
+  "departure_flight_airline": "Air France",
   "departure_flight_duration": "1 hr 50 min",
-  "return_flight_airline": "easyJet",
-  "return_flight_duration": "1 hr 45 min"
+  "departure_flight_stops": 0,
+  "return_flight_airline": "Air France",
+  "return_flight_duration": "1 hr 45 min",
+  "return_flight_stops": 0
 }`}</Code>
           <div>
             <CompareTable
