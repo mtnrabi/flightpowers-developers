@@ -21,14 +21,19 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 export const metadata: Metadata = withOg({
   title: 'FlightPowers vs Duffel: flight data API vs booking API',
   description:
-    'Duffel sells flights; FlightPowers prices them. An honest, sourced comparison of Duffel’s per-order pricing and search allowance against a pure flight-data API. Duffel figures quoted from duffel.com/pricing, retrieved 2026-08-24.',
+    'Duffel sells flights; FlightPowers prices them. An honest, sourced comparison of Duffel’s per-order pricing and search allowance against a pure flight-data API. Duffel figures quoted from duffel.com/pricing, re-read 2026-09-07.',
   alternates: { canonical: '/compare/duffel' },
 });
 
 export const dynamic = 'force-static';
 
-/** Competitor figures below are QUOTES from duffel.com/pricing, retrieved 2026-08-24. Do not edit without re-verifying. */
-const RETRIEVED = '2026-08-26';
+/**
+ * Competitor figures below are QUOTES from duffel.com/pricing. First retrieved
+ * 2026-08-26; re-read in full on 2026-09-07 with every fee, the 1500:1 ratio,
+ * the worked example and the accreditation FAQ answer identical. Do not edit
+ * without re-verifying.
+ */
+const RETRIEVED = '2026-09-07';
 
 const faq: Faq[] = [
   {
@@ -37,7 +42,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Is Duffel more expensive than FlightPowers?',
-    a: 'For a travel seller, often not: Duffel’s search allowance (1500 free searches per confirmed order, per their pricing page retrieved 2026-08-24) means a well-converting seller pays little for search. For a non-booking workload the allowance is zero, every search is $0.005, and that is 2x our $25 tier and 5x our $50 tier on published list prices.',
+    a: 'For a travel seller, often not: Duffel’s search allowance (1500 free searches per confirmed order, per their pricing page re-read 2026-09-07) means a well-converting seller pays little for search. For a non-booking workload the allowance is zero, every search is $0.005, and that is 2x our $25 tier and 5x our $50 tier on published list prices.',
   },
   {
     q: 'Do the two APIs return the same kind of data?',
@@ -49,7 +54,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Where do the Duffel numbers on this page come from?',
-    a: 'From duffel.com/pricing, read on 2026-08-24 and quoted rather than paraphrased. If a number here disagrees with their site today, believe their site.',
+    a: 'From duffel.com/pricing, re-read on 2026-09-07 and quoted rather than paraphrased. If a number here disagrees with their site today, believe their site.',
   },
 ];
 
@@ -183,6 +188,7 @@ export default function CompareDuffelPage() {
             rows={[
               ['Orders', '“This fee is charged monthly for every confirmed order. $3.00 per order”'],
               ['Managed Content', '“This fee is charged monthly for every confirmed order. 1% total order value”'],
+              ['Ancillaries', '“This fee is charged monthly per paid ancillary. $2.00 per paid ancillary”'],
               ['Excess search', '“$0.005 per excess search”, above “a search to book ratio of 1500:1”'],
               ['FX', '“We will charge 2% on the exchange rate.”'],
               ['Stays', '“Profit share on every completed stay.” (contact sales)'],
@@ -269,7 +275,9 @@ export default function CompareDuffelPage() {
                 <>
                   Returns the market: every result carries Google’s historical band (
                   <code className="font-mono text-[12px]">price_insights_low/high</code>) and a price context, so a
-                  fare-alert product knows whether $412 is a good price without accumulating its own history.{' '}
+                  fare-alert product knows whether a $291 JFK–LHR fare is a good price (it is not: that run came back{' '}
+                  <code className="font-mono text-[12px]">high</code> against a $170–$285 band on {RETRIEVED}) without
+                  accumulating its own history.{' '}
                   <Link href="/flights-api/price-insights" className="text-signal-400 underline underline-offset-4">Price insights →</Link>
                 </>,
               ],

@@ -113,7 +113,7 @@ ${FLIGHT_PLANS.map(planLine).join('\n')}
 Hotels (${LINKS.rapidapiHotels}/pricing):
 ${HOTEL_PLANS.map(planLine).join('\n')}
 
-Flights and hotels are separate subscriptions; within each API every plan includes every endpoint, differing only on volume and rate limit. Billing is on RapidAPI. Apify actors are pay-per-event (hotels ≈ $4 per 1,000 searches, per the actor's own event table).
+Flights and hotels are separate subscriptions; within each API every plan includes every endpoint, differing only on volume and rate limit. Billing is on RapidAPI. Apify actors are pay-per-event, per each actor's own event table read 2026-09-07: flights $1.85 per 1,000 lookups, hotels $3.70 per 1,000 lookups.
 
 ## Free tools (no signup)
 

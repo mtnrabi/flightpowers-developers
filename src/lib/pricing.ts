@@ -1,6 +1,6 @@
 /**
  * Plan data parsed from the live RapidAPI listing payloads. Re-verified
- * against the live listings on 2026-09-04 by `npm run check-pricing`: no
+ * against the live listings on 2026-09-07 by `npm run check-pricing`: no
  * drift, so no figure below changed. Originally parsed 2026-08-26
  * (the `billingplan_` objects in the anonymous page HTML, filtered to
  * visibility === "PUBLIC" — the payload also contains private plans which
@@ -11,7 +11,7 @@
  * scripts/check-pricing.mjs re-parses the live listings and fails the build
  * loudly on drift or on any non-public plan reaching this file.
  */
-export const READ_ON = '2026-09-04';
+export const READ_ON = '2026-09-07';
 
 export type Plan = {
   name: string;
@@ -59,16 +59,25 @@ export function fmtRate(plan: Plan): string {
 }
 
 /**
- * Apify actors — pay-per-event pricing.
- * The hotels figure is quoted from the actor's own README event table
- * (~$4 per 1,000 searches). The flights actor's per-event table is NOT
- * publicly verified — no flights-Apify price appears anywhere until it is.
- * Apify's auto-computed "$0.01/1,000 results" badge badly understates real
- * cost and must never be quoted.
+ * Apify actors — pay-per-event pricing. Both figures parsed from the actors'
+ * own live listing payloads on 2026-09-07: hotels `hotel_search` is
+ * $0.0037 per lookup ($3.70 per 1,000) and flights `flight_search` is
+ * $0.00185 per lookup ($1.85 per 1,000). Apify's auto-computed
+ * "$0.01/1,000 results" badge badly understates real cost and must never be
+ * quoted.
+ *
+ * Known future change, from the same payload: the flights actor has a
+ * `futurePricing` entry raising `flight_search` to $0.003 per lookup
+ * ($3.00 per 1,000) from 2026-09-19. Re-read before quoting after that date.
  */
 export const APIFY = {
-  hotelsPer1kSearches: '~$4 per 1,000 searches',
-  hotelsSearchEvent: '$0.0037 per search',
+  read_on: '2026-09-07',
+  hotelsPer1kSearches: '$3.70 per 1,000 hotel lookups',
+  hotelsSearchEvent: '$0.0037 per lookup',
   hotelsResultEvent: '$0.00001 per result',
   hotelsStartEvent: '$0.00005 per run',
+  flightsPer1kSearches: '$1.85 per 1,000 flight lookups',
+  flightsSearchEvent: '$0.00185 per lookup',
+  flightsResultEvent: '$0.00001 per result',
+  flightsStartEvent: '$0.00005 per run',
 } as const;

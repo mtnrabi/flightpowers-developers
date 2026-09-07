@@ -23,7 +23,7 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
       'Google Flights Live API, Air Scraper, SerpApi and Duffel compared with quoted, dated prices and disclosed bias.',
     url: `${SITE.url}/guides/best-flight-data-apis-2026`,
     datePublished: '2026-08-26',
-    dateModified: '2026-08-26',
+    dateModified: '2026-09-07',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -31,7 +31,7 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 # The best flight data APIs in 2026, compared
 
-<GuideDates published="2026-08-26" updated="2026-08-26" />
+<GuideDates published="2026-08-26" updated="2026-09-07" />
 
 **Short answer:** FlightPowers (`google-flights-live-api.p.rapidapi.com`), Air Scraper,
 SerpApi, and Duffel are the flight data APIs people actually shortlist in 2026, and they
@@ -46,9 +46,11 @@ ones people actually shortlist.
 
 I'll be honest: **I'm starting with my own API.** I run FlightPowers, so read the
 first entry as a vendor describing his product. Everything I say about the others is
-quoted from their own live pages, read on **2026-08-24**, with the caveats stated
-inline, including the finding that is not flattering to me: on raw requests per
-dollar, one competitor is cheaper than I am at every tier.
+quoted from their own live pages, re-read on **2026-09-07**, with the caveats
+stated inline, including the finding that is not flattering to me: on raw requests
+per dollar, one competitor is cheaper than I am at every tier. Nothing any of them
+charges changed between 2026-08-24 and this re-read; the one thing that did change
+is a SerpApi parameter, noted in its section.
 
 ## 1. Google Flights Live API (FlightPowers): mine
 
@@ -79,10 +81,11 @@ account.
 **Source: Skyscanner. Best for: raw request volume, and scope beyond flights.**
 
 The headline finding, stated up front because it is true: **Air Scraper is cheaper
-per request than my API.** Prices read off its live RapidAPI listing on 2026-08-26:
-free tier 20 requests/month, then $9.99/month for 10,600 requests, $49 for 55,000, $120
-for 140,000, which works out to roughly $0.00086–$0.00094 per request at every paid
-tier, against {`$${(FLIGHT_PLANS[3].priceMonthly / FLIGHT_PLANS[3].quota).toFixed(4)}`}–{`$${(FLIGHT_PLANS[1].priceMonthly / FLIGHT_PLANS[1].quota).toFixed(4)}`}
+per request than my API.** Prices read off its live RapidAPI listing on 2026-09-07 (identical to the
+2026-08-26 read): free tier 20 requests/month with a hard cap, then $9.99/month for
+10,600 requests, $49 for 55,000, $120 for 140,000, with published per-request overage
+of $0.002, $0.0015 and $0.001 respectively. That works out to roughly
+$0.00086–$0.00094 per request at every paid tier, against {`$${(FLIGHT_PLANS[3].priceMonthly / FLIGHT_PLANS[3].quota).toFixed(4)}`}–{`$${(FLIGHT_PLANS[1].priceMonthly / FLIGHT_PLANS[1].quota).toFixed(4)}`}
 per request on mine. Its own listing describes it as an API that *"helps to query
 prices for real-time flights, hotels, rental cars, etc… to create a travel website
 like the skyscanner.com or booking.com."*
@@ -106,8 +109,9 @@ Genuinely fair pros: cheapest per request at every published tier; flights, hote
 *and* rental cars on one key; a price-calendar endpoint and an "everywhere" search
 as first-class endpoints (on mine you build those by scanning in parallel);
 multi-stop search, which I do not have at all; and a 140,000-request top tier
-against my 50,000. Against: rate limits are not published on its listing, and the
-data is Skyscanner's, which is not interchangeable with Google Flights coverage.
+against my 50,000. Against: rate limits are not published on its listing (its plan
+payloads carry no rate-limit value at all, checked 2026-09-07), and the data is
+Skyscanner's, which is not interchangeable with Google Flights coverage.
 
 **Consider Air Scraper if** you need cars, multi-city, or volume past 50,000
 requests a month. That list decides it, and this page should not talk you out of it.
@@ -119,11 +123,19 @@ flights.**
 
 SerpApi is a general-purpose Google scraping platform where Google Flights is one of
 several dozen engines on one subscription and one credit pool. From its own pages
-(retrieved 2026-08-24): plans run $25/month for 1,000 searches up to $275/month for
-30,000 (roughly $0.0092–$0.025 per search), and round-trip is a two-request flow
-(their docs: to get returning flights *"you need to make another request using a
+(re-read 2026-09-07): plans run $25/month for 1,000 searches up to $275/month for
+30,000 (roughly $0.0092–$0.025 per search), and round-trip *shopping* is a two-request
+flow (their docs: to get returning flights *"you need to make another request using a
 `departure_token`"*). Credits are fungible across all engines, and only successful
 searches count toward quota, a genuinely customer-friendly billing policy.
+
+One update since I first wrote this. SerpApi now documents a
+`selected_flights_json` parameter that pins an itinerary segment by segment and takes
+both an `outbound` and a `return` array, so **repricing a round trip you already know
+the flight numbers for is one request, not two**. It does not change the shopping
+case, which is what the two-credit arithmetic on [/compare/serpapi](/compare/serpapi)
+is about, but it is a real capability that was not there in August and it belongs in
+their column.
 
 Where it beats me, plainly: its `price_insights` object includes a `price_history`
 array where we return a band; it returns per-itinerary carbon emissions; it supports
@@ -143,7 +155,7 @@ purchase happens inside your product.**
 Duffel is not a data API and comparing it as one is a category error. It is a
 booking platform: order creation, ancillaries, and access to their IATA
 accreditation so you do not need your own. Its pricing (from duffel.com/pricing,
-retrieved 2026-08-24) charges $3.00 per confirmed order and lets search ride along
+re-read 2026-09-07) charges $3.00 per confirmed order, $2.00 per paid ancillary and lets search ride along
 free at a 1500:1 search-to-book ratio, with excess searches at $0.005. For a seller
 that converts, that model is excellent. For a non-booking workload (no orders means
 no free searches), every search costs $0.005, and its sign-up flow assumes you are
@@ -157,12 +169,12 @@ mine included, can issue a ticket.
 
 Several other listings turn up in the same RapidAPI search: `flights-sky`,
 `google-flights2`, `booking-com15`, `sky-scanner3` among them. Their pages did not
-expose pricing in a form I could read reliably on 2026-08-24, and I am not going to
-publish a price I did not verify.
+expose pricing in a form I could read reliably on 2026-08-24 or on the 2026-09-07
+re-read, and I am not going to publish a price I did not verify.
 
 **Amadeus Self-Service** used to be on every shortlist and is no longer a live
-option. As of 2026-08-24, its portal and pricing pages 301-redirect to the Amadeus
-homepage, the test sandbox host no longer resolves, all 20 `amadeus4dev` GitHub
+option. Checked on 2026-08-24 and re-run on 2026-09-07 with identical results: its
+portal and pricing pages 301-redirect to the Amadeus homepage, the test sandbox host no longer resolves, all 20 `amadeus4dev` GitHub
 repositories are archived, and Amadeus's own developer-guides repository states:
 *"The Amadeus for Developers Self-Service offer has been deprecated."* Only the
 Enterprise portal remains, which generally requires IATA/ARC accreditation. If you
@@ -188,7 +200,7 @@ curl -X POST https://api.flightpowers.com/v1/flights/oneway \
   -d '{
     "from_airport": "JFK",
     "to_airport": "LHR",
-    "departure_date": "2026-10-15"
+    "departure_date": "2026-11-12"
   }'
 ```
 

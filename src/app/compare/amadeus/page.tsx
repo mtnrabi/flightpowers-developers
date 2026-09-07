@@ -19,7 +19,7 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 export const metadata: Metadata = withOg({
   title: 'Amadeus Self-Service vs FlightPowers, and when to migrate',
   description:
-    'The Amadeus for Developers Self-Service portal and sandbox are no longer reachable, verifiable with four commands, all shown here. What FlightPowers replaces for Self-Service users, the parameter mapping, and (honestly) what it does not replace. Observed state retrieved 2026-08-24.',
+    'The Amadeus for Developers Self-Service portal and sandbox are no longer reachable, verifiable with four commands, all shown here. What FlightPowers replaces for Self-Service users, the parameter mapping, and (honestly) what it does not replace. Observed state first retrieved 2026-08-24, every command re-run 2026-09-07.',
   alternates: { canonical: '/compare/amadeus' },
 });
 
@@ -28,21 +28,24 @@ export const dynamic = 'force-static';
 /** Observed Amadeus state below was retrieved 2026-08-24. Do not edit without re-verifying. */
 const RETRIEVED = '2026-08-24';
 /**
- * Re-checked 2026-09-04 from our own machine. Both API hostnames have no A
- * record at all, which is a stronger observation than the portal redirect.
+ * Re-checked 2026-09-07 from our own machine: every command on this page was
+ * re-run and every result was identical. Both API hostnames have no A record
+ * at all, which is a stronger observation than the portal redirect.
  * Do not edit without re-running the commands shown on the page.
  */
-const RECHECKED = '2026-09-04';
+/** When this page itself was last edited. Feeds JSON-LD dateModified. */
+const UPDATED = '2026-09-07';
+const RECHECKED = '2026-09-07';
 /** The live run pasted below. Re-capture and update BOTH if you touch it. */
-const CAPTURED = '2026-09-04';
-const CAPTURED_AT = '12:18 UTC on 2026-09-04';
+const CAPTURED = '2026-09-07';
+const CAPTURED_AT = '02:22 UTC on 2026-09-07';
 /** Amadeus's own decommission notice, checked on its live portal. Do not edit without re-checking the source. */
 const SOURCE_CHECKED = '2026-09-06';
 
 const faq: Faq[] = [
   {
     q: 'Did Amadeus Self-Service shut down?',
-    a: 'Yes, on July 17, 2026. Amadeus posted the date itself on developers.amadeus.com, which reads “has been decommissioned on July 17th, this website is for Amadeus Enterprise API Portal only” (an archived copy from three days before the cutover gives the year: “will be decommissioned on July 17th, 2026”). What we can additionally verify ourselves, as of 2026-08-24: the Self-Service portal and pricing pages 301-redirect to the Amadeus homepage, the test sandbox host no longer resolves, all 20 repositories in the amadeus4dev GitHub organisation are archived, and their developer-guides README opens with “The Amadeus for Developers Self-Service offer has been deprecated.” The commands to check each of these yourself are on this page.',
+    a: 'Yes, on July 17, 2026. Amadeus posted the date itself on developers.amadeus.com, which reads “has been decommissioned on July 17th, this website is for Amadeus Enterprise API Portal only” (an archived copy from three days before the cutover gives the year: “will be decommissioned on July 17th, 2026”). What we can additionally verify ourselves, first on 2026-08-24 and again on 2026-09-07 with identical results: the Self-Service portal and pricing pages 301-redirect to the Amadeus homepage, the test sandbox host no longer resolves, all 20 repositories in the amadeus4dev GitHub organisation are archived, and their developer-guides README opens with “The Amadeus for Developers Self-Service offer has been deprecated.” The commands to check each of these yourself are on this page.',
   },
   {
     q: 'Should I move to Amadeus Enterprise instead?',
@@ -115,7 +118,7 @@ export default function CompareAmadeusPage() {
           '@type': 'WebPage',
           name: 'Amadeus Self-Service vs FlightPowers, and when to migrate',
           url: `${SITE.url}/compare/amadeus`,
-          dateModified: RETRIEVED,
+          dateModified: UPDATED,
         }}
       />
       <JsonLd
@@ -156,7 +159,7 @@ export default function CompareAmadeusPage() {
           lede={`Amadeus for Developers Self-Service was decommissioned on July 17, 2026, per the notice Amadeus posted on its own portal (source below). Here is what was independently observable on ${RETRIEVED} and still true when we re-ran every command on ${RECHECKED}.`}
         />
         <p className="mt-8 max-w-3xl text-[15px] text-ink-300 leading-relaxed">
-          Amadeus itself says so, on its own portal. <code className="font-mono text-[13px]">developers.amadeus.com</code> currently
+          Amadeus itself says so, on its own portal. <code className="font-mono text-[13px]">developers.amadeus.com</code>
           shows an announcement banner: “Amadeus for Developers self-service portal has been decommissioned on July 17th, this
           website is for Amadeus Enterprise API Portal only.” An archived copy of the same page from three days before the cutover
           states the year: “Amadeus for Developers self-service portal will be decommissioned on July 17th, 2026.”{' '}
@@ -165,7 +168,7 @@ export default function CompareAmadeusPage() {
             <a href="https://developers.amadeus.com/" className="underline">
               developers.amadeus.com
             </a>{' '}
-            (checked {SOURCE_CHECKED}); pre-announcement archived at{' '}
+            (read in a browser {SOURCE_CHECKED}); pre-announcement archived at{' '}
             <a
               href="https://web.archive.org/web/20260715114814/https://developers.amadeus.com/"
               className="underline"
@@ -173,7 +176,32 @@ export default function CompareAmadeusPage() {
               web.archive.org, 2026-07-15
             </a>
             .
-          </em>
+          </em>{' '}
+          One caveat on that quote, so you do not think we made it up when your own check comes back empty: that portal is an
+          Angular app and the banner is rendered client-side, so a plain <code className="font-mono text-[13px]">curl</code> of{' '}
+          <code className="font-mono text-[13px]">developers.amadeus.com</code> returns the shell and none of the text (confirmed{' '}
+          {RECHECKED}). The commands below avoid that problem entirely: every one of them answers from DNS, an HTTP status line or
+          the GitHub API.
+        </p>
+        <p className="mt-5 max-w-3xl text-[15px] text-ink-300 leading-relaxed">
+          Amadeus also published a corporate statement about the portal, and that one <em>is</em> plain HTML you can read yourself:{' '}
+          <em>
+            “Amadeus wants to clarify that its Enterprise Portal and Enterprise APIs remain fully available and will continue to
+            serve and support our large and important community of developers and partners worldwide.”
+          </em>{' '}
+          It is linked from the deprecation notice in their own{' '}
+          <code className="font-mono text-[13px]">developer-guides</code> README.{' '}
+          <em>
+            Source:{' '}
+            <a
+              href="https://amadeus.com/en/industry-messaging/statement-regarding-amadeus-for-developers-portal"
+              className="underline"
+            >
+              amadeus.com, statement regarding Amadeus for Developers portal
+            </a>{' '}
+            (retrieved {RECHECKED}).
+          </em>{' '}
+          Read it together with the observations below: Enterprise stays, Self-Service is gone.
         </p>
         <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <div>
@@ -224,7 +252,7 @@ curl -sS -m 15 \\
         <blockquote className="mt-4 max-w-3xl border-l-2 border-signal-600 pl-4 text-[15px] text-ink-300 leading-relaxed">
           “# [DEPRECATED] Developer Guides”. <strong className="text-ink-100">“The Amadeus for Developers Self-Service offer has been
           deprecated.”</strong>
-          <footer className="mt-2 font-mono text-[11px] text-ink-500">github.com/amadeus4dev · retrieved {RETRIEVED}</footer>
+          <footer className="mt-2 font-mono text-[11px] text-ink-500">github.com/amadeus4dev · retrieved {RETRIEVED}, re-read {RECHECKED}</footer>
         </blockquote>
       </Section>
 
@@ -322,8 +350,8 @@ adults=2&includedAirlineCodes=TG&max=3" \\
   -d '{
     "from_airport": "SYD",
     "to_airport": "BKK",
-    "departure_date": "2026-08-01",
-    "return_date": "2026-08-05",
+    "departure_date": "2026-10-19",
+    "return_date": "2026-10-23",
     "passengers": [1, 1],
     "departure_airline_codes": ["TG"],
     "limit": 3
@@ -335,9 +363,12 @@ adults=2&includedAirlineCodes=TG&max=3" \\
             <CapturedBadge date={CAPTURED} />
           </div>
           <p className="mt-2 max-w-3xl text-[14.5px] text-ink-400 leading-relaxed">
-            A real one-way run, JFK to LHR on 2026-11-12, executed against {code('api.flightpowers.com')} at{' '}
-            {CAPTURED_AT} and pasted unedited. It took 8.4 seconds and returned five itineraries. Prices were live at
-            capture time and will have moved since, which is the point of the API.
+            A real one-way run, JFK to LHR on 2026-11-12, executed at {CAPTURED_AT} and pasted unedited. It took 7.9 seconds
+            and returned three itineraries because the call asked for three. Prices were live at capture time and will have
+            moved since, which is the point of the API. The run went through our hosted flights MCP server, which is a thin
+            wrapper over the same backend, so the per-result object below is the shape {code('POST /v1/flights/oneway')}{' '}
+            returns; MCP reports completion as a {code('search_status')} field where REST reports it as the{' '}
+            {code('X-Search-Status')} header.
           </p>
           <div className="mt-5 grid grid-cols-1 gap-6 lg:grid-cols-2">
             <Code label="request">{`curl -X POST https://api.flightpowers.com/v1/flights/oneway \\
@@ -348,10 +379,10 @@ adults=2&includedAirlineCodes=TG&max=3" \\
     "to_airport": "LHR",
     "departure_date": "2026-11-12"
   }'`}</Code>
-            <Code label="response · first of five results, plus the headers">{`x-search-status: ok
-x-search-results: 5
-x-search-attempts: 1
-x-search-combinations: 1
+            <Code label="response · first of three results, plus the run's own status">{`"search_status": "ok"
+"search_coverage": { "requested_combinations": 1,
+                     "searched_combinations": 1,
+                     "truncated": false }
 
 {
   "price_range_in_relation_to_other_periods": "high",
@@ -360,20 +391,22 @@ x-search-combinations: 1
   "from_airport": "New York (JFK)",
   "to_airport": "London (LHR)",
   "departure_date": "2026-11-12",
-  "price": "$295",
-  "price_as_number": 295,
-  "duration": "7 hr 10 min",
-  "duration_seconds": 25800,
-  "airline": "Virgin Atlantic | Air France, Delta, KLM",
-  "stops": 0,
-  "stops_info": [],
-  "departure_description": "8:00 AM on Thu, Nov 12",
-  "arrival_description": "8:10 PM on Thu, Nov 12",
+  "price": "$291",
+  "price_as_number": 291,
+  "duration": "10 hr 25 min",
+  "duration_seconds": 37500,
+  "airline": "Icelandair",
+  "stops": 1,
+  "stops_info": [
+    { "stop_airport": "KEF", "stop_duration_seconds": 5100 }
+  ],
+  "departure_description": "7:25 PM on Thu, Nov 12",
+  "arrival_description": "10:50 AM on Fri, Nov 13",
   "buy_link": "https://www.google.com/travel/flights?tfs=..."
 }`}</Code>
           </div>
           <p className="mt-4 max-w-3xl text-[14.5px] text-ink-400 leading-relaxed">
-            Read the first three fields together and you have something Amadeus never returned: $295 against a historical
+            Read the first three fields together and you have something Amadeus never returned: $291 against a historical
             band of $170 to $285, so Google calls it <strong className="text-ink-100">high</strong>. A fare-watch rule can
             be written on that on day one, with no price history of your own. The band is {code('null')} when Google shows
             none, so handle that case.{' '}
@@ -432,16 +465,16 @@ locations/hotels/by-city?cityCode=PAR" \\
 
 # 2. price those specific hotels
 curl -X GET "https://test.api.amadeus.com/v3/shopping/hotel-offers?\\
-hotelIds=MCLONGHM&adults=2&checkInDate=2026-09-10\\
-&checkOutDate=2026-09-14" \\
+hotelIds=MCLONGHM&adults=2&checkInDate=2026-10-19\\
+&checkOutDate=2026-10-23" \\
   -H "Authorization: Bearer $ACCESS_TOKEN"`}</Code>
           <Code label="after · free-text destination, one call, no ID resolution">{`curl -X POST https://api.flightpowers.com/v1/hotels/search \\
   -H "x-api-key: $FLIGHTPOWERS_API_KEY" \\
   -H "Content-Type: application/json" \\
   -d '{
     "destination": "Paris",
-    "checkin_date": "2026-09-10",
-    "checkout_date": "2026-09-14",
+    "checkin_date": "2026-10-19",
+    "checkout_date": "2026-10-23",
     "adults": 2,
     "currency": "EUR"
   }'`}</Code>
