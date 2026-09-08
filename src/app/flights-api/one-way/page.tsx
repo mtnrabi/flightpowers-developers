@@ -26,9 +26,9 @@ import { FLIGHT_PLANS } from '@/lib/pricing';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const metadata: Metadata = withOg({
-  title: 'One-Way Flight Search API: live Google Flights fares as flat JSON',
+  title: 'One-way flight search API: live Google fares',
   description:
-    'POST /oneway: a route and a date in, every live Google Flights fare out. Stops, airline, time-window, cabin, and price filters; price_insights band and verdict; a buy_link that reopens the exact itinerary.',
+    'POST /oneway: a route and a date in, every live Google Flights fare out. Stops, airline, cabin and price filters, price_insights band, and a buy_link.',
   alternates: { canonical: '/flights-api/one-way' },
 });
 

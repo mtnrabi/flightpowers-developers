@@ -22,9 +22,9 @@ import { HOTEL_PLANS } from '@/lib/pricing';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const metadata: Metadata = withOg({
-  title: 'Booking.com Hotels API: live rates, priced from any market',
+  title: 'Booking.com hotel API: live rates and pricing',
   description:
-    'A REST API for live Booking.com hotel prices. Search a destination or look up a hotel by name; every endpoint accepts proxy_country, so the same room can be priced from any market, the basis for rate-parity and geo-pricing monitoring.',
+    'A REST API for live Booking.com hotel prices. Search a destination or a hotel by name; every endpoint takes proxy_country to price from any market.',
   alternates: { canonical: '/hotels-api' },
 });
 

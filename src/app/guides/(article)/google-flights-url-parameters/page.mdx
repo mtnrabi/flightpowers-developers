@@ -1,9 +1,9 @@
 import { withOg } from '@/lib/meta';
 
 export const metadata = withOg({
-  title: 'Google Flights URL parameters, decoded: tfs=, q=, and curr=',
+  title: 'Google Flights search URL format: parameters',
   description:
-    'What is actually inside a Google Flights URL: the base64url-encoded tfs= protobuf that encodes the whole search, the q= natural-language form, and the curr= currency override. How to decode tfs at the wire level, and the honest caveats about relying on an undocumented format.',
+    'The tfs= parameter is a base64url protobuf holding origin, destination, dates, cabin and stops. Decode it with protoc --decode_raw. Plus q= and curr=.',
   alternates: { canonical: '/guides/google-flights-url-parameters' },
 });
 
