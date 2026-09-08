@@ -22,7 +22,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
       'Step-by-step: connect live Google Flights and Booking.com data to Claude or ChatGPT, then schedule a daily fare scan triggered by Google’s own low | typical | high price verdict.',
     url: `${SITE.url}/guides/ai-travel-agent`,
     datePublished: '2026-08-27',
-    dateModified: '2026-08-27',
+    dateModified: '2026-09-08',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -71,7 +71,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 # Create your 24/7 AI travel agent
 
-<GuideDates published="2026-08-27" updated="2026-08-27" />
+<GuideDates published="2026-08-27" updated="2026-09-08" />
 
 **Short answer:** Connect Claude or ChatGPT to live Google Flights data through one URL, then schedule a daily task that scans your routes and tells you only when Google's own verdict says a fare is low. No code, no server, no price-history database.
 
@@ -171,13 +171,26 @@ settings, never in a chat.
 https://flights.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY
 ```
 
-4. Click **Add**. Ignore the OAuth fields under Advanced settings; this server
-   authenticates with the key on the URL and nothing else.
+4. Click **Add**. Leave the OAuth fields under Advanced settings alone; on this URL
+   the key you pasted is the whole handshake.
 5. Repeat for hotels if you subscribed to the Booking listing:
 
 ```
 https://hotels.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY
 ```
+
+**Or sign in instead of pasting a key.** The same two servers now answer on a second
+URL that runs a normal sign-in:
+
+```
+https://flights.flightpowers.com/mcp/oauth
+https://hotels.flightpowers.com/mcp/oauth
+```
+
+Add either one with no key and no query string on it. Claude offers a **Connect**
+button, you sign in with Google once, and your RapidAPI key gets saved on our side that
+one time rather than riding on a URL you paste around. The key-on-the-URL setup above is
+unchanged and keeps working, so there is nothing to migrate if you already have it.
 
 Three things worth knowing before you move on. Connectors cannot be edited, only
 removed and re-added, so if you ever rotate your key, that is the move. The free
@@ -269,7 +282,8 @@ read-only searches.
    admin has to allow it first under Connected Data permissions.
 2. From the Apps/Connectors section, create a new connector. Name it, paste the
    flights server URL with your key on it (same URL as Path A), and set
-   authentication to none: the key on the URL is the whole handshake.
+   authentication to none: on that URL the key is the whole handshake. If you prefer the
+   `/mcp/oauth` URL, set authentication to OAuth and let it sign you in.
 3. Add the hotels URL as a second connector the same way if you want both.
 
 ### B2. Say hello
