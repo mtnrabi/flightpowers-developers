@@ -8,7 +8,7 @@ import { SITE } from '@/lib/site';
 export const metadata: Metadata = withOg({
   title: 'Guides: working code for flight & hotel data',
   description:
-    'How-to guides for live flight and hotel pricing: scraping Google Flights and Booking.com yourself with Playwright or Puppeteer, building a fare alert, getting real-time data and API keys, handling empty search results correctly, decoding Google Flights URLs, fare watches in n8n, hotel rates by name and by market, and sourced comparisons of the 2026 flight, hotel and travel data API field.',
+    'Guides for live flight and hotel pricing: Google Flights API keys, fare alerts, scraping with Playwright or Puppeteer, and sourced 2026 API comparisons.',
   alternates: { canonical: '/guides' },
 });
 

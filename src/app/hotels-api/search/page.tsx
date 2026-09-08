@@ -25,9 +25,9 @@ import { hotelSearchSnippets } from '@/lib/snippets';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const metadata: Metadata = withOg({
-  title: 'Hotel Search API: free-text destination, live Booking.com rates',
+  title: 'Hotel search API: live Booking.com rates',
   description:
-    'POST /search takes a free-text destination and dates and returns ranked properties with live Booking.com prices, review scores, room types and booking links. 24 filters matching the Booking.com UI. The required field is destination, not location.',
+    'POST /search takes a free-text destination and dates and returns ranked properties with live Booking.com prices, review scores and 24 filters.',
   alternates: { canonical: '/hotels-api/search' },
 });
 

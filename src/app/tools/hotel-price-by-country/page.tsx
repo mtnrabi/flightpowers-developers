@@ -9,9 +9,9 @@ import { FIXTURES } from '@/lib/fixtures';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const metadata: Metadata = withOg({
-  title: 'Hotel Price by Country: the same room, priced from two markets',
+  title: 'Hotel price by market: one room, 2 countries',
   description:
-    'Pick a hotel and dates and see what Booking.com quotes visitors from two countries for the same stay, via per-country residential proxies. Each market is asked three times, because rates move between identical requests. The free demo behind rate-parity and geo-pricing monitoring.',
+    'See what Booking.com quotes visitors from two countries for the same room, via per-country residential proxies. Each market is asked three times. Free.',
   alternates: { canonical: '/tools/hotel-price-by-country' },
 });
 

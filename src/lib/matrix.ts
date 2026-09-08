@@ -497,7 +497,11 @@ export function apiName(task: TaskDef): string {
  * prerenders one card per title, so the title must have exactly one author.
  */
 export function matrixTitle(agent: AgentDef, task: TaskDef): string {
-  return `${task.name} with ${agent.name}: live ${apiName(task)} data`;
+  // Agent name first, task second: that is the order people type it
+  // ("claude fare"), and it keeps the rendered <title> inside Google's window
+  // once the " · FlightPowers" suffix is appended by the root template.
+  const source = task.api === 'flights' ? 'Google Flights' : 'Booking.com';
+  return `${agent.name} ${task.name.toLowerCase()}: live ${source}`;
 }
 
 /** Every title the matrix puts on a page, for the share-card prerender. */

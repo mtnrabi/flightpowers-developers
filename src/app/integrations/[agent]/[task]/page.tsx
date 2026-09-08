@@ -56,7 +56,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const { agent, task } = pair;
   return withOg({
     title: matrixTitle(agent, task),
-    description: `Connect ${agent.name} to live ${apiName(task)} data and run a ${task.name.toLowerCase()}: the exact config, the prompt, the call it makes, and the response fields your logic reads.`,
+    description: `Connect ${agent.name} to live ${apiName(task)} data and run a ${task.name.toLowerCase()}: the config, the prompt, the call, and the fields your logic reads.`,
     alternates: { canonical: `/integrations/${agent.slug}/${task.slug}` },
   });
 }

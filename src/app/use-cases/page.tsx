@@ -6,9 +6,9 @@ import { Container, JsonLd, Section, SectionHead } from '@/components/ui';
 import { SITE } from '@/lib/site';
 
 export const metadata: Metadata = withOg({
-  title: 'Use Cases: what people build on live flight & hotel data',
+  title: 'Use cases: 8 things built on live travel data',
   description:
-    'Flight price alerts, AI travel agents, rate-parity monitoring, price calendars, metasearch, market analysis, comp-set tracking, and trip-planning bots, each mapped to the exact API capabilities that make it work.',
+    'Fare alerts, AI travel agents, rate-parity monitoring, price calendars, metasearch, market analysis, comp-set tracking and trip-planning bots.',
   alternates: { canonical: '/use-cases' },
 });
 

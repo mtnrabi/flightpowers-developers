@@ -6,9 +6,9 @@ import { Container, JsonLd, Section } from '@/components/ui';
 import { LINKS, SITE } from '@/lib/site';
 
 export const metadata: Metadata = withOg({
-  title: 'Blog: build-in-public notes from the developer',
+  title: 'Blog: notes from building a travel-data API',
   description:
-    'The FlightPowers developer blog: build-in-public notes, teardowns, and changelog stories from the person who runs the APIs. Written when there is something to say, not on a schedule.',
+    'Build-in-public notes, teardowns and changelog stories from the person who runs the FlightPowers APIs. Written when there is something to say.',
   alternates: { canonical: '/blog' },
 });
 

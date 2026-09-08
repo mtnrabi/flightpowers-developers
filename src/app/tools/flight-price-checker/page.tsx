@@ -9,9 +9,9 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 import { ROUTES, routeArrow } from '@/lib/grid';
 
 export const metadata: Metadata = withOg({
-  title: 'Free Flight Price Checker: is your fare low, typical, or high?',
+  title: 'Flight fare checker: low, typical, or high?',
   description:
-    'Enter a route and date and get the live fare with Google’s own price band and a low | typical | high verdict, the context a bare price is missing. Free, no signup; live checks are rate-limited.',
+    'Enter a route and date and get the live fare with Google’s own price band and a low | typical | high verdict. Free, no signup, rate-limited.',
   alternates: { canonical: '/tools/flight-price-checker' },
 });
 
