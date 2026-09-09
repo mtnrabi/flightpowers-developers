@@ -66,15 +66,18 @@ export default function ChatGptFlightApiPost() {
 
           <h2>The two connector URLs</h2>
           <p>Flights and hotels are separate MCP servers. Add both in your connector settings:</p>
-          <Code label="add these URLs in developer-mode connectors">{`Flights: ${LINKS.mcpFlightsSignIn}
-Hotels:  ${LINKS.mcpHotelsSignIn}`}</Code>
+          <Code label="add these URLs in developer-mode connectors">{`Flights: ${LINKS.mcpFlights}
+Hotels:  ${LINKS.mcpHotels}`}</Code>
           <p>
             Set authentication to OAuth and leave the client id and secret empty: the server registers ChatGPT for you. Click
             Sign in, sign in with Google, and paste your RapidAPI key once on the page that opens. Nothing gets pasted into
             ChatGPT.
           </p>
-          <h3>Second option: the key on the URL</h3>
-          <p>For scripts, CI and clients without a sign-in button, set authentication to none and put the key on the URL:</p>
+          <h3>Second option: the key on the same URL</h3>
+          <p>
+            For scripts, CI and clients without a sign-in button, set authentication to none and put the key on the same
+            address. There is no second endpoint to switch to:
+          </p>
           <Code label="second option, no sign-in">{`Flights: ${LINKS.mcpFlights}?rapidapi_key=YOUR_RAPIDAPI_KEY
 Hotels:  ${LINKS.mcpHotels}?rapidapi_key=YOUR_RAPIDAPI_KEY`}</Code>
           <p>

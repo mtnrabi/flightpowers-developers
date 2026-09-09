@@ -30,7 +30,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
       {
         '@type': 'HowToStep',
         name: 'Add the connector',
-        text: 'Paste https://flights.flightpowers.com/mcp/oauth into your assistant as a custom connector or MCP server.',
+        text: 'Paste https://flights.flightpowers.com/mcp into your assistant as a custom connector or MCP server.',
       },
       {
         '@type': 'HowToStep',
@@ -56,7 +56,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
         name: 'Do I need an API key to try this?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'No. The free server at google-flights-lulu.flightpowers.com/mcp takes no key at all. It carries one labelled sponsored card on every result and allows 150 backend searches per client per day and 2,000 a month, shared with everyone else on it. For a 30-destination scan you want the keyed server.',
+          text: 'No RapidAPI key. The free server at google-flights-lulu.flightpowers.com/mcp asks you to sign in with Google instead, and that is the whole setup. It carries one labelled sponsored card on every result and allows 150 searches a day and 2,000 a calendar month under your own account. For a 30-destination scan you want the keyed server.',
         },
       },
       {
@@ -105,17 +105,18 @@ prices for a season before your first useful alert. The band ships with the fare
 
 Two servers, and the choice takes ten seconds.
 
-**Free**, `https://google-flights-lulu.flightpowers.com/mcp`. No key, no account, nothing to
-sign into. Every successful result carries one labelled sponsored card, that is how it pays
-for itself, and it allows 150 backend searches per client per day and 2,000 a calendar month.
-One call is one backend search per date and destination combination, so a wide scan spends
-more than one. It also samples any single call down to 15 combinations and tells you which
-ones it actually ran in `search_coverage`. Great for feeling the whole loop before you commit
-to anything. Not the thing to point a 30-destination daily scan at.
+**Free**, `https://google-flights-lulu.flightpowers.com/mcp`. No RapidAPI key and nothing to
+subscribe to: you sign in with Google and that is it. Every successful result carries one
+labelled sponsored card, that is how it pays for itself, and it allows 150 searches a day and
+2,000 a calendar month under your own account. One call is one search per date and destination
+combination, so a wide scan spends more than one. It also samples any single call down to 15
+combinations and tells you which ones it actually ran in `search_coverage`. Great for feeling
+the whole loop before you commit to anything. Not the thing to point a 30-destination daily
+scan at.
 
-**Keyed**, `https://flights.flightpowers.com/mcp/oauth`. You sign in with Google, paste a
-RapidAPI key once on the page it opens, and after that your client just works. No ads, no
-shared ceiling, and the only limit is your own plan. Subscribe on the
+**Keyed**, `https://flights.flightpowers.com/mcp`. Same shape: you sign in with Google, paste
+a RapidAPI key once on the page it opens, and after that your client just works. No ads, no
+daily ceiling, and the only limit is your own plan. Subscribe on the
 <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">Google Flights Live API</a>
 listing: BASIC is free with 10 requests a month, PRO is $10 a month with 2,500. Hotels are a
 separate listing, the
@@ -123,13 +124,13 @@ separate listing, the
 same key. The honest read: BASIC proves your key works and nothing more, a daily scan of 30
 destinations is roughly 900 requests a month, so the agent you actually keep runs on PRO.
 
-Everything below uses the keyed sign-in URL. Swap in the free URL if you just want to poke at
-it, and skip the sign-in step entirely.
+Everything below uses the keyed URL. Swap in the free URL if you just want to poke at it: the
+steps are identical, you just have no key to paste at the end.
 
 ## Step 2: add it to your client
 
-Pick your one. The flights URL is `https://flights.flightpowers.com/mcp/oauth` and the hotels
-URL is `https://hotels.flightpowers.com/mcp/oauth`. Same sign-in covers both.
+Pick your one. The flights URL is `https://flights.flightpowers.com/mcp` and the hotels
+URL is `https://hotels.flightpowers.com/mcp`. Same sign-in covers both.
 
 ### Claude (claude.ai and the desktop app)
 
@@ -141,7 +142,7 @@ Connectors live on your account, so adding one in the browser puts it in the des
 2. Name it `FlightPowers flights` and paste the URL:
 
 ```
-https://flights.flightpowers.com/mcp/oauth
+https://flights.flightpowers.com/mcp
 ```
 
 3. Leave **Authentication** on what Claude detects. This server answers an unauthenticated
@@ -160,16 +161,16 @@ https://flights.flightpowers.com/mcp/oauth
 One line, and you can run it right now:
 
 ```bash
-claude mcp add --transport http flights https://flights.flightpowers.com/mcp/oauth
+claude mcp add --transport http flights https://flights.flightpowers.com/mcp
 ```
 
 Then open `/mcp` in a session and sign in. `claude mcp list` prints `✔ Connected` when it
 worked and `! Needs authentication` when the sign-in has not happened yet. Add hotels the same
-way with `https://hotels.flightpowers.com/mcp/oauth`.
+way with `https://hotels.flightpowers.com/mcp`.
 
-If you would rather not sign in at all, use the plain endpoint with your key in a header. This
-is the form to use for anything non-interactive, because a headless run cannot open a browser
-to complete a sign-in:
+If you would rather not sign in at all, send your key in a header on the same URL. This is the
+form to use for anything non-interactive, because a headless run cannot open a browser to
+complete a sign-in:
 
 ```bash
 claude mcp add --transport http flights https://flights.flightpowers.com/mcp \
@@ -183,15 +184,14 @@ Add a block to `~/.cursor/mcp.json` for every project, or `.cursor/mcp.json` for
 ```json
 {
   "mcpServers": {
-    "flights": { "url": "https://flights.flightpowers.com/mcp/oauth" },
-    "hotels": { "url": "https://hotels.flightpowers.com/mcp/oauth" }
+    "flights": { "url": "https://flights.flightpowers.com/mcp" },
+    "hotels": { "url": "https://hotels.flightpowers.com/mcp" }
   }
 }
 ```
 
 Restart Cursor. It hits the `401`, registers itself, and offers you the sign-in. The
-key-in-a-header form works here too, same shape as the Claude Code example, on the `/mcp` URL
-instead of `/mcp/oauth`:
+key-in-a-header form works here too, same shape as the Claude Code example, on the same URL:
 
 ```json
 {
@@ -209,7 +209,7 @@ instead of `/mcp/oauth`:
 Custom connectors in ChatGPT need **developer mode**, which OpenAI puts on the Pro plan and on
 Business, Enterprise and Edu workspaces, and it is web only. On Free and Plus the option is
 genuinely not there. Turn it on under **Settings > Apps > Advanced settings**, create a
-connector, paste the same `https://flights.flightpowers.com/mcp/oauth` URL, set authentication
+connector, paste the same `https://flights.flightpowers.com/mcp` URL, set authentication
 to OAuth, and leave the client id and secret empty: the server registers ChatGPT for you.
 
 Being straight about the state of this one: we have no paid ChatGPT account, so we have not

@@ -202,6 +202,8 @@ const data = await response.json();
 }
 ```
 
+Or drop the `headers` block: the same URL answers a credential-less client with a sign-in, and you paste your key once on the page that opens instead of into the file.
+
 Same authentication, same data source, same price per request. The only difference is who writes the call: you (REST) or the agent (MCP).
 
 If you're building an AI travel agent, use MCP. If you're building a traditional product with a UI, use REST. If you're not sure, the [AI travel agent guide](/guides/ai-travel-agent) shows both in context.

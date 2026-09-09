@@ -79,13 +79,13 @@ Add this block:
   "mcpServers": {
     "flights": {
       "type": "streamableHttp",
-      "url": "https://flights.flightpowers.com/mcp/oauth",
+      "url": "https://flights.flightpowers.com/mcp",
       "disabled": false,
       "autoApprove": []
     },
     "hotels": {
       "type": "streamableHttp",
-      "url": "https://hotels.flightpowers.com/mcp/oauth",
+      "url": "https://hotels.flightpowers.com/mcp",
       "disabled": false,
       "autoApprove": []
     }
@@ -106,7 +106,7 @@ at all.
 
 ### Option 2: the key, for scripts, CI and clients without a sign-in button
 
-Same block, pointed at the plain `/mcp` endpoint with the key in a header:
+Same block, same URLs, with the key in a header instead of a sign-in:
 
 ```json
 {
@@ -142,10 +142,10 @@ In the Cline panel, click the MCP Servers icon, then open the Remote Servers tab
 each server:
 
 - **Server Name**: `flights`
-- **Server URL**: `https://flights.flightpowers.com/mcp/oauth`
+- **Server URL**: `https://flights.flightpowers.com/mcp`
 - **Transport Type**: Streamable HTTP
 
-Repeat for the hotels server with `https://hotels.flightpowers.com/mcp/oauth`. If that
+Repeat for the hotels server with `https://hotels.flightpowers.com/mcp`. If that
 tab gives you nowhere to sign in, use the key on the URL instead:
 `https://flights.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY`.
 
@@ -193,8 +193,8 @@ reading per market is not a comparison.)
 
 ## How it works
 
-The servers are hosted at `https://flights.flightpowers.com/mcp/oauth` and
-`https://hotels.flightpowers.com/mcp/oauth`. Nothing runs on your machine. On the sign-in
+The servers are hosted at `https://flights.flightpowers.com/mcp` and
+`https://hotels.flightpowers.com/mcp`. Nothing runs on your machine. On the sign-in
 path your RapidAPI key is stored on our side, encrypted, and used on each call; on the
 key path Cline sends it in the `x-rapidapi-key` header. Either way usage meters
 against your own subscription, and Disconnect on the connect page deletes a stored key. The free BASIC tier (10 requests/month, hard cap, no card)

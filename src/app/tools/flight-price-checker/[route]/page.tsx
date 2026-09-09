@@ -182,7 +182,7 @@ export default async function Page({ params }: Props) {
           {[
             { href: '/tools/flight-price-checker', label: 'Any other route', sub: 'The same checker, empty form' },
             { href: `/tools/cheapest-time-to-fly/${r.slug}`, label: 'Which month is cheapest', sub: `A year of ${routeArrow(r)} in one chart` },
-            { href: '/tools#free-mcp', label: 'Free MCP server', sub: 'Ask your assistant instead. No key, ad-supported' },
+            { href: '/tools#free-mcp', label: 'Free MCP server', sub: 'Ask your assistant instead. Sign in with Google, no key' },
             { href: '/flights-api/search-status', label: 'Search status docs', sub: 'Why empty and degraded are different' },
           ].map((l) => (
             <Link key={l.href} href={l.href} className="rounded-2xl border rule bg-ink-900/50 p-5 transition-colors hover:border-ink-500">

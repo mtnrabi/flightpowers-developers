@@ -32,14 +32,14 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-09-06" updated="2026-09-06" />
 
-**Short answer:** FlightPowers' `search_oneway_flights` tool on the free MCP server at
-`https://google-flights-lulu.flightpowers.com/mcp` takes a **list** of destination airports
-in `to_airport` and a **date range** in `departure_date_from` / `departure_date_to`, expands
-every date and destination combination server side, and returns the merged fares in one
-response with Google's `price_insights_low` / `price_insights_high` band and a
+**Short answer:** FlightPowers' `search_oneway_flights` tool takes a **list** of destination
+airports in `to_airport` and a **date range** in `departure_date_from` / `departure_date_to`,
+expands every date and destination combination server side, and returns the merged fares in
+one response with Google's `price_insights_low` / `price_insights_high` band and a
 `low | typical | high` verdict on every row. Sorting them into a cheapest-destination ranking
-is one line of client code. The free server searches at most 15 combinations per call and no
-API key is needed to try it.
+is one line of client code. The free server at
+`https://google-flights-lulu.flightpowers.com/mcp` runs the same tool after a Google sign-in,
+with no API key, and searches at most 15 combinations per call.
 
 "Where can I go cheaply next month" is a different question from "how much is Berlin to Paris
 on the 6th", and most flight APIs only answer the second one. You end up writing a fan-out:
@@ -51,10 +51,11 @@ The one-way tool already does the fan-out for you. You hand it the axes, it expa
 ## How do you search several destinations and several dates in one call?
 
 Put an array in `to_airport` and a range in the two date fields. This is a plain HTTP POST of
-MCP JSON-RPC, no SDK and no key:
+MCP JSON-RPC, no SDK. From a shell, put your RapidAPI key on the URL; from an MCP client, add
+the same URL and sign in with Google instead:
 
 ```bash
-curl -X POST "https://google-flights-lulu.flightpowers.com/mcp" \
+curl -X POST "https://flights.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY" \
   -H "Content-Type: application/json" \
   -H "Accept: application/json, text/event-stream" \
   -d '{
@@ -78,12 +79,14 @@ curl -X POST "https://google-flights-lulu.flightpowers.com/mcp" \
 ```
 
 Five destinations times three dates is fifteen combinations, which is exactly the free
-server's ceiling for one call. The response is a `text/event-stream` frame carrying one JSON
-object, so pipe it through `sed -e 's/^data: //'` before parsing.
+server's ceiling for one call and half the keyed server's. The response is a
+`text/event-stream` frame carrying one JSON object, so pipe it through
+`sed -e 's/^data: //'` before parsing.
 
 ## What comes back?
 
-Everything below is from that exact request, run **2026-09-06 at 21:16 UTC**. Fares move
+Everything below is from that exact request, run on the free server **2026-09-06 at 21:16
+UTC**. Fares move
 within minutes, so yours will differ. `search_status` was `ok` and the coverage block said
 all 15 combinations were searched with `truncated: false`.
 
@@ -159,7 +162,8 @@ body = {"jsonrpc": "2.0", "id": 3, "method": "tools/call", "params": {
     "arguments": {"from_airport": "BER", "to_airport": ["BCN", "LIS", "ATH", "IST", "CDG"],
                   "departure_date_from": "2026-10-06", "departure_date_to": "2026-10-08",
                   "max_stops": 1, "sort_by": "price", "limit": 150}}}
-r = requests.post("https://google-flights-lulu.flightpowers.com/mcp", json=body,
+r = requests.post("https://flights.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY",
+                  json=body,
                   headers={"Accept": "application/json, text/event-stream"})
 payload = json.loads(next(l[6:] for l in r.text.splitlines() if l.startswith("data: ")))
 rows = payload["result"]["structuredContent"]["results"]
@@ -305,14 +309,19 @@ losing rows included, is on [FlightPowers vs SerpApi](/compare/serpapi).
 
 ## Notes on the free server
 
-Everything on this page ran without an API key. That is a real free server, not a sandbox:
-the fares are live, and results carry a sponsored card, which is how it stays free. Fair use
-is 150 backend searches per client per day and 2,000 per calendar month, and one wide call
-spends one backend search per combination, so the 15-combination search above cost 15. Past
-the cap the tools answer with `search_status: "rate_limited"` and no results.
+The numbers above came off the free server. That is a real free server, not a sandbox: the
+fares are live, and results carry a sponsored card, which is how it stays free. There is
+still no API key and nothing to subscribe to. Since 2026-09-09 it asks you to sign in with
+Google first, so you connect it from an MCP client (Claude, Claude Code, Cursor, ChatGPT)
+rather than curling it anonymously.
 
-The paid MCP server at `https://flights.flightpowers.com/mcp` runs the same tools with your
-own RapidAPI key, no ads, no shared budget and no 15-combination ceiling.
+Fair use is 150 searches a day and 2,000 per calendar month, counted against the Google
+account you signed in with, and one wide call spends one search per combination, so the
+15-combination search above cost 15. Past the cap the tools answer with
+`search_status: "rate_limited"` and no results.
+
+The paid MCP server at `https://flights.flightpowers.com/mcp` runs the same tools on your own
+RapidAPI key, no ads, no daily cap of ours and no 15-combination ceiling.
 
 <CtaBand
   medium="guide"

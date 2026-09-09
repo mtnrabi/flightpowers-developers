@@ -231,7 +231,7 @@ export default async function Page({ params }: Props) {
           {[
             { href: '/tools/cheapest-time-to-fly', label: 'Any other route', sub: 'The same scanner, empty form' },
             { href: '/tools/cheapest-month-to-fly', label: 'Cheapest Month to Fly', sub: 'Day-by-day grid inside one month' },
-            { href: '/tools#free-mcp', label: 'Free MCP server', sub: 'Ask your assistant instead. No key, ad-supported' },
+            { href: '/tools#free-mcp', label: 'Free MCP server', sub: 'Ask your assistant instead. Sign in with Google, no key' },
             { href: '/flights-api/parallel-date-scan', label: 'Parallel Date Scan', sub: 'The every-day version on your own key' },
           ].map((l) => (
             <Link key={l.href} href={l.href} className="rounded-2xl border rule bg-ink-900/50 p-5 transition-colors hover:border-ink-500">

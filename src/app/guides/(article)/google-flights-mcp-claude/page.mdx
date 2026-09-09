@@ -67,8 +67,8 @@ Windows, open `%APPDATA%/Claude/claude_desktop_config.json`. Add this block:
 ```json
 {
   "mcpServers": {
-    "flights": { "url": "https://flights.flightpowers.com/mcp/oauth" },
-    "hotels": { "url": "https://hotels.flightpowers.com/mcp/oauth" }
+    "flights": { "url": "https://flights.flightpowers.com/mcp" },
+    "hotels": { "url": "https://hotels.flightpowers.com/mcp" }
   }
 }
 ```
@@ -84,8 +84,8 @@ listing on RapidAPI.
 One line, from any directory:
 
 ```bash
-claude mcp add --transport http flights https://flights.flightpowers.com/mcp/oauth
-claude mcp add --transport http hotels https://hotels.flightpowers.com/mcp/oauth
+claude mcp add --transport http flights https://flights.flightpowers.com/mcp
+claude mcp add --transport http hotels https://hotels.flightpowers.com/mcp
 ```
 
 Then open `/mcp` in a session and sign in. `claude mcp list` prints `✔ Connected` when
@@ -97,8 +97,8 @@ it):
 ```json
 {
   "mcpServers": {
-    "flights": { "type": "http", "url": "https://flights.flightpowers.com/mcp/oauth" },
-    "hotels": { "type": "http", "url": "https://hotels.flightpowers.com/mcp/oauth" }
+    "flights": { "type": "http", "url": "https://flights.flightpowers.com/mcp" },
+    "hotels": { "type": "http", "url": "https://hotels.flightpowers.com/mcp" }
   }
 }
 ```
@@ -109,7 +109,8 @@ on Mac/Linux or `%USERPROFILE%\.claude.json` on Windows.
 ### Second option: the key, for scripts, CI and clients without a sign-in button
 
 A headless run cannot open a browser, so `claude -p` in a cron job, a CI step, or any
-client with no sign-in button uses the plain `/mcp` endpoint with the key in a header:
+client with no sign-in button sends the key in a header. Same two URLs as above, no
+sign-in step:
 
 ```json
 {
@@ -129,7 +130,8 @@ client with no sign-in button uses the plain `/mcp` endpoint with the key in a h
 ```
 
 Replace `YOUR_RAPIDAPI_KEY` with your actual key, and treat the file as a credential
-file. Nothing about this path changed, so an existing setup keeps working.
+file. There is one address per server and it serves both paths, so an existing keyed
+setup keeps working untouched.
 
 ## The four tools
 
@@ -173,8 +175,8 @@ from the US, Germany, and Israel."
 
 ## How it works
 
-The servers are hosted at `https://flights.flightpowers.com/mcp/oauth` and
-`https://hotels.flightpowers.com/mcp/oauth`. Nothing runs on your machine. On the sign-in
+The servers are hosted at `https://flights.flightpowers.com/mcp` and
+`https://hotels.flightpowers.com/mcp`. Nothing runs on your machine. On the sign-in
 path your RapidAPI key is stored on our side, encrypted, and used on each call; on the
 key path Claude sends it in the `x-rapidapi-key` header. Either way usage meters against
 your own subscription. Disconnect on the connect page deletes a stored key and cuts off

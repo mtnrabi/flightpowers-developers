@@ -161,13 +161,13 @@ An empty array is never ambiguous here. Read the X-Search-Status response header
 
 ## MCP servers (hosted, streamable HTTP)
 
-- Flights, sign in with Google (default): ${LINKS.mcpFlightsSignIn}
-- Hotels, sign in with Google (default): ${LINKS.mcpHotelsSignIn}
-  The client shows a Sign in button, you sign in with Google, and you paste your RapidAPI key once on the connect page. It is stored encrypted and Disconnect deletes it.
-- Same servers with the key instead of a sign-in, for scripts, CI and clients without a sign-in button: ${LINKS.mcpFlights} and ${LINKS.mcpHotels}, key in an x-rapidapi-key header or as ?rapidapi_key= on the URL
+- Flights: ${LINKS.mcpFlights}
+- Hotels: ${LINKS.mcpHotels}
+  One URL per server, for everyone. Add it and the client shows a Sign in button: you sign in with Google and paste your RapidAPI key once on the connect page. It is stored encrypted and Disconnect deletes it.
+- The same URL is the key path too: scripts, CI and clients without a sign-in button send the key in an x-rapidapi-key header or as ?rapidapi_key= on that URL and are served without signing in. There is no second endpoint.
 - Tools: search_oneway_flights, search_roundtrip_flights, search_hotels, find_hotel_by_name. Flight tools accept date RANGES and destination LISTS and expand them internally: express a flexible search as ONE call with a range, never many single-date calls.
 - Official MCP registry names: com.flightpowers/google-flights, com.flightpowers/booking. Setup for Claude, ChatGPT, Cursor and any MCP client: ${SITE.url}/mcp
-- Free, ad-supported, no key and no signup: ${LINKS.mcpFree}. Serves all four tools (flights and hotels). Every successful result carries one labelled sponsored card; the two servers above are ad-free. One call searches at most 15 date × destination combinations (the paid servers do 30, with a max_searches argument to cap spend); a wider request is sampled evenly and comes back with truncated: true plus the exact dates searched in search_coverage.departure_dates_searched. No per-user quota; capacity is shared by all callers. The keyed servers additionally expose price_as_seen_from (per-country hotel pricing) and the documented Booking.com filters, which the free server does not. Because it carries ads it is not in any MCP directory or registry. Connect it: ${SITE.url}/tools#free-mcp
+- Free, ad-supported, no RapidAPI key: ${LINKS.mcpFree}. Sign in with Google once and it serves all four tools (flights and hotels). Every successful result carries one labelled sponsored card; the two servers above are ad-free. Caps are per signed-in person: 150 searches a day and 2,000 a calendar month, spending one search per date × destination combination; past the cap the tools answer search_status "rate_limited" with no results and retrying does not help. One call searches at most 15 date × destination combinations (the paid servers do 30, with a max_searches argument to cap spend); a wider request is sampled evenly and comes back with truncated: true plus the exact dates searched in search_coverage.departure_dates_searched. The keyed servers additionally expose price_as_seen_from (per-country hotel pricing) and the documented Booking.com filters, which the free server does not. Because it carries ads it is not in any MCP directory or registry. Connect it: ${SITE.url}/tools#free-mcp
 
 ## Other surfaces
 

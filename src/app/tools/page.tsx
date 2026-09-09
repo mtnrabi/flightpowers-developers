@@ -10,7 +10,7 @@ import { CITIES, ROUTES, ROUTE_TOOLS, routeArrow } from '@/lib/grid';
 export const metadata: Metadata = withOg({
   title: 'Free travel-data tools',
   description:
-    'Two free flagships on the same live API we sell: a full flight search engine, and an MCP server your assistant can use with no key and no signup. Plus six browser tools, each with a page per route or destination: live fare checks, year and month scans, round trips priced as paired legs, and live Booking.com rates.',
+    'Two free flagships on the same live API we sell: a full flight search engine, and an MCP server your assistant can use with no API key: sign in with Google and go. Plus six browser tools, each with a page per route or destination: live fare checks, year and month scans, round trips priced as paired legs, and live Booking.com rates.',
   alternates: { canonical: '/tools' },
 });
 
@@ -85,9 +85,9 @@ const FLAGSHIPS = [
     href: '#free-mcp',
     external: false,
     name: 'Free MCP Server',
-    tier: 'flagship · no key, no signup',
+    tier: 'flagship · no API key',
     tagline: 'Live fares inside your own assistant',
-    body: 'Paste one URL into Claude or ChatGPT and it can search live Google Flights fares and Booking.com room rates for you, in the chat you are already in. Free because it is ad-supported.',
+    body: 'Paste one URL into Claude or ChatGPT, sign in with Google, and it can search live Google Flights fares and Booking.com room rates for you, in the chat you are already in. Free because it is ad-supported.',
     foot: 'four tools, no API key',
     cta: 'connect it below ↓',
   },
@@ -156,7 +156,7 @@ export default function ToolsIndexPage() {
         </h1>
         <p className="lede mt-5 max-w-2xl">
           Real results before we ask you for anything. Two of these we give away whole: the search engine, and an MCP server your
-          assistant can use with no key at all.
+          assistant can use with no API key at all.
         </p>
       </Container>
 
@@ -217,9 +217,9 @@ export default function ToolsIndexPage() {
       {/* ===================== CONNECT THE FREE SERVER ===================== */}
       <Section id="free-mcp" className="scroll-mt-24">
         <SectionHead
-          eyebrow="No key, no signup"
-          title="Connect the free MCP server in one step"
-          lede="It takes no API key, so there is nothing to configure except the address. Paste it once and your assistant gets four live travel tools."
+          eyebrow="No API key"
+          title="Connect the free MCP server in two steps"
+          lede="Paste the address, sign in with Google, and your assistant has four live travel tools. There is no API key to find and nothing to configure."
         />
         <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-start">
           <McpFreeConnect url={LINKS.mcpFree} />
@@ -284,12 +284,14 @@ export default function ToolsIndexPage() {
               </dd>
             </div>
             <div>
-              <dt className="text-[15px] font-semibold text-ink-100">Shared capacity, with nothing reserved for you</dt>
+              <dt className="text-[15px] font-semibold text-ink-100">150 searches a day, 2,000 a month, per person</dt>
               <dd className="mt-1.5 text-[14.5px] text-ink-400 leading-relaxed">
-                There is no per-user quota on the free server. Everyone connected to it draws on the same pool, and when that
-                pool runs low the server narrows its search rather than failing, and can stop serving hotel searches entirely.
-                Nothing is held back for you and a busy day is not your day, which is why this is for trying it and for personal
-                use rather than for anything you ship.
+                The caps run against the Google account you signed in with, and one call spends one search per date ×
+                destination combination, so a wide search costs more than one. Past the cap the tools answer with{' '}
+                <code className="field">search_status: &quot;rate_limited&quot;</code> and no results, and retrying does not
+                help. On top of that, everyone shares one daily backend budget, and when it runs low the server narrows its
+                search rather than failing. That is why this is for trying it and for personal use rather than for anything you
+                ship.
               </dd>
             </div>
             <div>

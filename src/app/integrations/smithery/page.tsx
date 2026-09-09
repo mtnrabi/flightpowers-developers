@@ -28,15 +28,15 @@ export const metadata: Metadata = withOg({
 const faq: Faq[] = [
   {
     q: 'How does my key reach the server through Smithery?',
-    a: 'Smithery’s gateway proxies the MCP connection and passes your credentials through its server-config mechanism: you set your RapidAPI key in the server’s configuration on Smithery, and the gateway forwards it with each call. Usage still meters against your own RapidAPI subscription.',
+    a: 'Smithery’s gateway proxies the MCP connection to the same servers this site documents, so you connect on Smithery, sign in with Google, and paste your RapidAPI key once on the page that opens. Usage still meters against your own RapidAPI subscription.',
   },
   {
     q: 'Should I connect via Smithery or directly?',
-    a: 'Both work. Direct (flights.flightpowers.com/mcp and hotels.flightpowers.com/mcp, key in a header) is one hop shorter and what the rest of this site documents. Smithery is convenient if your client already installs servers from its registry.',
+    a: 'Both work. Direct (flights.flightpowers.com/mcp and hotels.flightpowers.com/mcp) is one hop shorter and what the rest of this site documents. Smithery is convenient if your client already installs servers from its registry.',
   },
   {
     q: 'What is the freemium listing?',
-    a: 'A separate, free, ad-supported server that covers both flights and hotels. Answers can carry a sponsored line. The paid servers are ad-free and bring-your-own-key. They are different products; the paid ones are what this site documents.',
+    a: 'A separate, free, ad-supported server that covers both flights and hotels. You sign in with Google and use it with no RapidAPI key; answers carry a sponsored card. The paid servers are ad-free and bring-your-own-key. They are different products; the paid ones are what this site documents.',
   },
   {
     q: 'Are the qualified names above the real ones?',
@@ -93,8 +93,8 @@ export default function SmitheryIntegrationPage() {
             </a>
           </FieldRow>
           <FieldRow name="mrabi/freemium-google-flights-and-booking-mcp" type="free · ad-supported">
-            A separate server: free to use, flights and hotels together, ad-supported. Answers can carry a sponsored line.
-            Kept deliberately apart from the paid, ad-free servers above.{' '}
+            A separate server: free to use, flights and hotels together, ad-supported. Sign in with Google, no RapidAPI key,
+            and every result carries a sponsored card. Kept deliberately apart from the paid, ad-free servers above.{' '}
             <a href={LINKS.smitheryFree} rel="noopener" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
               View on Smithery
             </a>
@@ -105,19 +105,19 @@ export default function SmitheryIntegrationPage() {
       <Section>
         <SectionHead
           eyebrow="Key mechanics"
-          title="Your key rides in the server config"
-          lede="Smithery’s gateway proxies the connection; your RapidAPI key goes into the server’s configuration on Smithery and is forwarded per call. Usage meters on your own subscription either way."
+          title="One sign-in, through the gateway or not"
+          lede="Smithery’s gateway proxies the connection to the same servers: you connect, sign in with Google, and paste your RapidAPI key once. Usage meters on your own subscription either way."
         />
         <div className="mt-8 max-w-3xl">
           <p className="text-[15px] text-ink-300 leading-relaxed">
-            Prefer to skip the gateway? The canonical self-hosted servers are unchanged: connect any MCP client to them
-            directly with the key as a header:
+            Prefer to skip the gateway? Add the canonical hosts to your client yourself. One URL per server, then the same
+            Google sign-in; a script with no browser sends the key on that same URL instead:
           </p>
           <div className="mt-5">
             <Code label="canonical hosts: direct connection">{`${LINKS.mcpFlights}
 ${LINKS.mcpHotels}
 
-headers: { "x-rapidapi-key": "YOUR_RAPIDAPI_KEY" }`}</Code>
+no sign-in button? headers: { "x-rapidapi-key": "YOUR_RAPIDAPI_KEY" }`}</Code>
           </div>
           <p className="mt-4 text-[14px] text-ink-400 leading-relaxed">
             Full direct-connection setup, tool inventory, and example prompts are on the{' '}

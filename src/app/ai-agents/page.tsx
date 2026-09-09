@@ -105,7 +105,7 @@ const DECISION_ROWS: TableRow[] = [
 const faq: Faq[] = [
   {
     q: 'What is the fastest way to connect an agent?',
-    a: 'The MCP URL. Paste https://flights.flightpowers.com/mcp/oauth into Claude, Cursor, or ChatGPT, sign in with Google, and the four tools appear. No SDK, no install. For scripts, CI and clients without a sign-in button, the plain /mcp URL with your key still works. The /mcp page has the exact block to copy.',
+    a: 'The MCP URL. Paste https://flights.flightpowers.com/mcp into Claude, Cursor, or ChatGPT, sign in with Google, and the four tools appear. No SDK, no install. It is one URL either way: a script or a client without a sign-in button sends the key on that same address. The /mcp page has the exact block to copy.',
   },
   {
     q: 'Does one key really cover MCP, the skills, and REST?',
@@ -121,7 +121,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Is there a way to demo without a key?',
-    a: 'The free ad-supported MCP server runs the flight and hotel tools with no key: every result carries one labelled sponsored card, one call searches at most 15 date × destination combinations instead of 30, and capacity is shared with every other caller, so it is for trying, not production. The free tools on this site also run live requests on our own key.',
+    a: 'The free ad-supported MCP server runs the flight and hotel tools with no RapidAPI key: sign in with Google and you get 150 searches a day and 2,000 a month. Every result carries one labelled sponsored card and one call searches at most 15 date × destination combinations instead of 30, so it is for trying, not production. The free tools on this site also run live requests on our own key.',
   },
 ];
 

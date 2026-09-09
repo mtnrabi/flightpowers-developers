@@ -45,7 +45,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Can I use this with the free Lulu MCP server?',
-    a: 'Yes, but the Lulu server (google-flights-lulu.flightpowers.com/mcp) is for trying the tools before getting a key. It includes one sponsored result per response and shares capacity with all users. Point production work at the keyed servers documented here.',
+    a: 'Yes, but the Lulu server (google-flights-lulu.flightpowers.com/mcp) is for trying the tools before getting a key. You sign in with Google instead of using a RapidAPI key, and you get 150 searches a day and 2,000 a month. Every response carries one sponsored card. Point production work at the keyed servers documented here.',
   },
   {
     q: 'Why are flights and hotels separate servers?',
@@ -76,7 +76,7 @@ export default function ClaudeMcpPage() {
             {
               '@type': 'HowToStep',
               name: 'Add the MCP server URLs',
-              text: 'Paste the flights and hotels sign-in URLs into the mcpServers section. No key goes in the file.',
+              text: 'Paste https://flights.flightpowers.com/mcp and https://hotels.flightpowers.com/mcp into the mcpServers section. No key goes in the file.',
             },
             {
               '@type': 'HowToStep',
@@ -133,8 +133,8 @@ export default function ClaudeMcpPage() {
               <Code label=".cursor/mcp.json or claude_desktop_config.json">
 {`{
   "mcpServers": {
-    "flights": { "url": "${LINKS.mcpFlightsSignIn}" },
-    "hotels": { "url": "${LINKS.mcpHotelsSignIn}" }
+    "flights": { "url": "${LINKS.mcpFlights}" },
+    "hotels": { "url": "${LINKS.mcpHotels}" }
   }
 }`}
               </Code>
@@ -142,7 +142,7 @@ export default function ClaudeMcpPage() {
                 Restart Claude, sign in with Google, and paste your RapidAPI key once on the page that opens. Then ask for a fare.
               </p>
               <div className="mt-5">
-                <Code label="second option · scripts, CI, clients without a sign-in button">
+                <Code label="same URLs, key in a header · scripts, CI, clients without a sign-in button">
 {`{
   "mcpServers": {
     "flights": {
@@ -162,7 +162,7 @@ export default function ClaudeMcpPage() {
                 </Code>
                 <p className="mt-2 text-[13px] text-ink-500">
                   A headless run cannot open a browser to sign in, so cron jobs, CI and <code className="field">claude -p</code>{' '}
-                  use this form. Treat the file as a credential file.
+                  send the key instead. Same two addresses, no sign-in step. Treat the file as a credential file.
                 </p>
               </div>
             </div>
@@ -298,10 +298,10 @@ export default function ClaudeMcpPage() {
           <p className="eyebrow">Alternative</p>
           <h2 className="mt-3 text-2xl font-semibold">Try before you get a key: the free Lulu MCP server</h2>
           <p className="mt-4 text-[15px] text-ink-400 leading-relaxed">
-            <code className="field">{LINKS.mcpFree.replace('https://', '')}</code> serves all four tools with no key required. The
-            trade: every result carries one labelled sponsored card, one call searches at most 15 date × destination combinations
-            instead of 30, and capacity is shared with everyone else on it. Use it to try the tools before getting a key; point
-            production work at the keyed servers above.
+            <code className="field">{LINKS.mcpFree.replace('https://', '')}</code> serves all four tools with no RapidAPI key.
+            Add the URL, sign in with Google, and you get 150 searches a day and 2,000 a month under your own name. The trade:
+            every result carries one labelled sponsored card, and one call searches at most 15 date × destination combinations
+            instead of 30. Use it to try the tools before getting a key; point production work at the keyed servers above.
           </p>
           <Link href="/tools#free-mcp" className="mt-4 inline-block text-sm text-signal-400 underline underline-offset-4 hover:text-signal-500">
             Connect it, and read the full list of what it does not do →

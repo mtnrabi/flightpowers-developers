@@ -23,7 +23,7 @@ const steps: ConnectStep[] = [
   },
   {
     title: 'Restart Cursor and sign in',
-    body: 'Cursor registers itself and offers the sign-in: sign in with Google, paste your RapidAPI key once, and the tools appear in the Agent toolbox. The same shape works in any mcp.json-style client. For CI and headless runs, point the entry at the plain /mcp URL with an x-rapidapi-key header instead.',
+    body: 'Cursor registers itself and offers the sign-in: sign in with Google, paste your RapidAPI key once, and the tools appear in the Agent toolbox. The same shape works in any mcp.json-style client. For CI and headless runs, keep the same URL and add an x-rapidapi-key header instead.',
   },
 ];
 

@@ -23,7 +23,7 @@ const steps: ConnectStep[] = [
   },
   {
     title: 'Sign in, then use it in a chat',
-    body: 'Sign in with Google and paste your RapidAPI key once on the page that opens, and the flight and hotel tools become available in conversations. We have no paid ChatGPT account, so we have not run this end to end ourselves; if your connector refuses to attach, the fallback is the plain /mcp URL with ?rapidapi_key= on it and authentication set to none.',
+    body: 'Sign in with Google and paste your RapidAPI key once on the page that opens, and the flight and hotel tools become available in conversations. We have no paid ChatGPT account, so we have not run this end to end ourselves; if your connector refuses to attach, the fallback is the same URL with ?rapidapi_key= on it and authentication set to none.',
   },
 ];
 
