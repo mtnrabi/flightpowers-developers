@@ -8,22 +8,22 @@ export const dynamic = 'force-static';
 export const metadata: Metadata = withOg({
   title: 'Live flight & hotel data in Claude: MCP connector setup',
   description:
-    'Connect Claude to live Google Flights and Booking.com data with two custom-connector URLs, one per API. Bring your own RapidAPI key; every fare returns with Google’s price band and a low/typical/high verdict.',
+    'Connect Claude to live Google Flights and Booking.com data with two custom-connector URLs, one per API. Sign in with Google once; every fare returns with Google’s price band and a low/typical/high verdict.',
   alternates: { canonical: '/integrations/claude' },
 });
 
 const steps: ConnectStep[] = [
   {
     title: 'Get a RapidAPI key',
-    body: 'Subscribe on the listing’s pricing tab. The free tier needs no card. The key is the only credential this integration uses.',
+    body: 'Subscribe on the listing’s pricing tab: Google Flights Live API for flights, Booking Live API for hotels. The free tier needs no card. One key covers both once you subscribe to each listing.',
   },
   {
     title: 'Add both connectors',
-    body: 'Settings → Connectors → Add custom connector, once per URL above: first flights, then hotels, each with your key in place of YOUR_RAPIDAPI_KEY. They are separate servers, and one RapidAPI key works for both once you subscribe to each listing.',
+    body: 'Settings → Connectors → Add custom connector, once per URL above: first flights, then hotels. Leave Authentication on what Claude detects. They are separate servers and both sit behind the same sign-in.',
   },
   {
-    title: 'Ask',
-    body: 'The tools appear in Claude automatically. If your client supports custom headers, prefer sending the key as x-rapidapi-key instead of in the URL.',
+    title: 'Sign in, then ask',
+    body: 'Press Connect, sign in with Google, and paste your RapidAPI key once on the page that opens. Then toggle the connector on in a chat (+ → Connectors) and ask for a fare. For scripts, CI and clients without a sign-in button, use the plain /mcp URL with an x-rapidapi-key header instead.',
   },
 ];
 
@@ -53,7 +53,7 @@ const tools: ToolLine[] = [
 const faq: Faq[] = [
   {
     q: 'Does my key end up in the conversation?',
-    a: 'No. The key lives in the connector configuration (on the URL, or as an x-rapidapi-key header where your client supports custom headers), not in the chat itself. Treat the connector URL as a secret either way, and prefer the header form when you can.',
+    a: 'No. On the sign-in path it goes into the form at flights.flightpowers.com/connect once and never reaches your client. On the key path it lives in the connector configuration, as a header or on the URL, not in the chat. A URL with a key on it is a secret: anyone holding it can spend your quota.',
   },
   {
     q: 'Is my key billed to me?',

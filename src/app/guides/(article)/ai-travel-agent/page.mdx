@@ -166,44 +166,48 @@ Point your actual agent, and anything scheduled, at the keyed servers.
 ### A1. Add the connectors
 
 Claude talks to the API through two hosted MCP servers, one for flights and one for
-hotels. Your RapidAPI key rides on the connector URL, so the key lives in your
-settings, never in a chat.
+hotels. You add a URL, sign in with Google, and paste your RapidAPI key once on the page
+that opens. Nothing secret goes into your client.
 
 1. On claude.ai in a browser, open **Customize** &gt; **Connectors**. (On Team or
    Enterprise plans an Owner adds it under Organization settings &gt; Connectors.)
 2. Click **+**, then **Add custom connector**.
-3. Name it `FlightPowers flights` and paste the server URL with your key in place
-   of the placeholder:
-
-```
-https://flights.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY
-```
-
-4. Click **Add**. Leave the OAuth fields under Advanced settings alone; on this URL
-   the key you pasted is the whole handshake.
-5. Repeat for hotels if you subscribed to the Booking listing:
-
-```
-https://hotels.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY
-```
-
-**Or sign in instead of pasting a key.** The same two servers now answer on a second
-URL that runs a normal sign-in:
+3. Name it `FlightPowers flights` and paste the sign-in URL, with no key and no query
+   string on it:
 
 ```
 https://flights.flightpowers.com/mcp/oauth
+```
+
+4. Click **Add**, then **Connect**. Leave Authentication on what Claude detects: the
+   server answers an unauthenticated request with a `401` and a `WWW-Authenticate`
+   header, which is the handshake Claude looks for, so it fills the auth settings in by
+   itself. Google asks for your account id and email, nothing else.
+5. Paste your RapidAPI key once on the page that opens. It is encrypted before it is
+   stored, only the last four characters are ever shown again, and Disconnect on the same
+   page deletes it.
+6. Repeat for hotels if you subscribed to the Booking listing:
+
+```
 https://hotels.flightpowers.com/mcp/oauth
 ```
 
-Add either one with no key and no query string on it. Claude offers a **Connect**
-button, you sign in with Google once, and your RapidAPI key gets saved on our side that
-one time rather than riding on a URL you paste around. The key-on-the-URL setup above is
-unchanged and keeps working, so there is nothing to migrate if you already have it.
+**Second option: the key on the URL.** For scripts, CI and clients without a sign-in
+button, the same two servers still answer on their plain endpoints with the key on the
+URL:
 
-Three things worth knowing before you move on. Connectors cannot be edited, only
-removed and re-added, so if you ever rotate your key, that is the move. The free
-Claude plan allows exactly one custom connector; if that is you, add flights.
-And treat the URL itself as a secret: anyone who has it can spend your quota.
+```
+https://flights.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY
+https://hotels.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY
+```
+
+Set authentication to none on those; the key is the whole handshake. Nothing about that
+path changed, so there is nothing to migrate if you already have it. Treat the URL itself
+as a secret: anyone who has it can spend your quota.
+
+Two more things worth knowing before you move on. Connectors cannot be edited, only
+removed and re-added, so if you ever rotate a key on the URL path, that is the move. And
+the free Claude plan allows exactly one custom connector; if that is you, add flights.
 
 ### A2. Say hello
 
@@ -288,10 +292,12 @@ read-only searches.
    **Settings** &gt; **Apps** &gt; **Advanced settings** and enable **Developer
    mode**. On Business this is per-user under User settings; on Enterprise an
    admin has to allow it first under Connected Data permissions.
-2. From the Apps/Connectors section, create a new connector. Name it, paste the
-   flights server URL with your key on it (same URL as Path A), and set
-   authentication to none: on that URL the key is the whole handshake. If you prefer the
-   `/mcp/oauth` URL, set authentication to OAuth and let it sign you in.
+2. From the Apps/Connectors section, create a new connector. Name it, paste
+   `https://flights.flightpowers.com/mcp/oauth`, set authentication to OAuth, and leave
+   the client id and secret empty: the server registers ChatGPT for you. Sign in with
+   Google and paste your RapidAPI key once on the page that opens. If your connector
+   refuses to attach, the fallback is the key-on-the-URL form from Path A with
+   authentication set to none.
 3. Add the hotels URL as a second connector the same way if you want both.
 
 ### B2. Say hello
@@ -334,14 +340,22 @@ and aimed at workspaces, so this guide does not build on it.
 
 Everything above in one block: the connector URLs and the scheduled-task prompt.
 Add the URLs as custom connectors (Claude: Customize &gt; Connectors; ChatGPT:
-developer mode under Settings &gt; Apps), then paste the prompt into a daily
-scheduled task and swap in your own airports.
+developer mode under Settings &gt; Apps), sign in with Google, then paste the prompt into
+a daily scheduled task and swap in your own airports.
 
 ```text
 Flights connector URL:
-https://flights.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY
+https://flights.flightpowers.com/mcp/oauth
 
 Hotels connector URL (optional, separate subscription):
+https://hotels.flightpowers.com/mcp/oauth
+
+Add the URL, click Sign in, sign in with Google, and paste your
+RapidAPI key once on the page that opens.
+
+For scripts, CI and clients without a sign-in button, use the plain
+endpoint with the key on it instead:
+https://flights.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY
 https://hotels.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY
 
 Daily scheduled-task prompt:
@@ -436,10 +450,11 @@ on Claude's free plan (one connector).
 not enabled in this chat. Click **+** &gt; **Connectors** and toggle it on. On the
 free plan also confirm you have not hit the one-custom-connector limit.
 
-**`missing_api_key` error in the tool result.** The key did not make it onto the
-URL: a typo in `rapidapi_key=`, or the placeholder was left in. Remove the
-connector and re-add it with the corrected URL (connectors cannot be edited in
-place).
+**`missing_api_key` error in the tool result.** On the sign-in path it means no key is
+stored for your account yet, or you pressed Disconnect: the message names the page to go
+paste one on. On the key path the key did not make it onto the URL, usually a typo in
+`rapidapi_key=` or the placeholder left in. Remove the connector and re-add it with the
+corrected URL, since connectors cannot be edited in place.
 
 **403 or "not subscribed".** The key is valid but not subscribed to the listing
 that tool belongs to. Flights and hotels are separate subscriptions; subscribe on
@@ -506,6 +521,7 @@ an open app, with the connector caveat above.
 
 <CtaBand
   medium="guide"
+  showBoth
   title="The alerting brain is one string comparison"
   body="Google's price band and verdict ship in every response, so your agent knows cheap when it sees it. Free tier on RapidAPI verifies your key; the $10 plan runs the daily scan."
 />

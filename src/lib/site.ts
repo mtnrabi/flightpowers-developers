@@ -79,8 +79,18 @@ export const LINKS = {
   apifyHotelsConsole:
     'https://console.apify.com/actors/9f5eaHO7dNKuV4G2p?addFromActorId=9f5eaHO7dNKuV4G2p',
   /** Canonical MCP hosts (google-flights-mcp.flightpowers.com is an alias — never use it in copy). */
+  /**
+   * The sign-in endpoints are the DEFAULT way to connect: the client shows a
+   * Sign in button, you sign in with Google, and you paste your RapidAPI key
+   * once on /connect. Live since 2026-09-08.
+   */
+  mcpFlightsSignIn: 'https://flights.flightpowers.com/mcp/oauth',
+  mcpHotelsSignIn: 'https://hotels.flightpowers.com/mcp/oauth',
+  /** The keyed endpoints. Second option: scripts, CI, and clients with no sign-in button. */
   mcpFlights: 'https://flights.flightpowers.com/mcp',
   mcpHotels: 'https://hotels.flightpowers.com/mcp',
+  mcpConnectFlights: 'https://flights.flightpowers.com/connect',
+  mcpConnectHotels: 'https://hotels.flightpowers.com/connect',
   mcpFree: 'https://google-flights-lulu.flightpowers.com/mcp',
   smitheryFlights: 'https://smithery.ai/server/mrabi/google-flights',
   smitheryHotels: 'https://smithery.ai/server/mrabi/booking',

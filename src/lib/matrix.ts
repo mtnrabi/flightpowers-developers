@@ -60,7 +60,27 @@ export type TaskDef = {
   apify: { actor: 'flights' | 'hotels'; input: Record<string, unknown>; note?: string };
 };
 
+/**
+ * Sign-in first. The /mcp/oauth endpoint answers an unauthenticated request
+ * with a 401 and a WWW-Authenticate header, which is what makes a client show
+ * a Sign in button. Live on both servers since 2026-09-08.
+ */
 const MCP_JSON = (server: 'flights' | 'hotels') => `{
+  "mcpServers": {
+    "${server}": { "url": "https://${server}.flightpowers.com/mcp/oauth" }
+  }
+}`;
+
+/** Both hosted servers in one mcpServers block: flights AND hotels. */
+const MCP_JSON_BOTH = `{
+  "mcpServers": {
+    "flights": { "url": "https://flights.flightpowers.com/mcp/oauth" },
+    "hotels": { "url": "https://hotels.flightpowers.com/mcp/oauth" }
+  }
+}`;
+
+/** Second option: the key form, for scripts, CI and clients with no sign-in button. */
+const MCP_JSON_KEYED = (server: 'flights' | 'hotels') => `{
   "mcpServers": {
     "${server}": {
       "url": "https://${server}.flightpowers.com/mcp",
@@ -69,25 +89,18 @@ const MCP_JSON = (server: 'flights' | 'hotels') => `{
   }
 }`;
 
-/** Both hosted servers in one mcpServers block: flights AND hotels. */
-const MCP_JSON_BOTH = `{
-  "mcpServers": {
-    "flights": {
-      "url": "https://flights.flightpowers.com/mcp",
-      "headers": { "x-rapidapi-key": "YOUR_RAPIDAPI_KEY" }
-    },
-    "hotels": {
-      "url": "https://hotels.flightpowers.com/mcp",
-      "headers": { "x-rapidapi-key": "YOUR_RAPIDAPI_KEY" }
-    }
-  }
-}`;
-
 const CONNECTOR_URL = (server: 'flights' | 'hotels') =>
-  `https://${server}.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY`;
+  `https://${server}.flightpowers.com/mcp/oauth`;
 
 const CONNECTOR_URLS_BOTH = `${CONNECTOR_URL('flights')}
 ${CONNECTOR_URL('hotels')}`;
+
+/** The key-on-the-URL form, kept for clients that cannot open a browser. */
+const CONNECTOR_URL_KEYED = (server: 'flights' | 'hotels') =>
+  `https://${server}.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY`;
+
+const SIGN_IN_STEP =
+  'Add the URL, click Sign in, sign in with Google, and paste your RapidAPI key once on the page that opens.';
 
 export const AGENTS: AgentDef[] = [
   {
@@ -98,7 +111,7 @@ export const AGENTS: AgentDef[] = [
     connectSnippet: CONNECTOR_URLS_BOTH,
     connectSnippets: { flights: CONNECTOR_URL('flights'), hotels: CONNECTOR_URL('hotels') },
     connectNote:
-      'Settings → Connectors → Add custom connector, one connector per URL: flights and hotels are separate servers, and one RapidAPI key covers both once you subscribe to each listing. If your client supports custom headers, prefer sending the key as x-rapidapi-key instead of in the URL.',
+      `Settings → Connectors → Add custom connector, one connector per URL. ${SIGN_IN_STEP} Flights and hotels are separate servers and one key covers both once you subscribe to each listing. For scripts, CI and clients without a sign-in button, use the plain endpoint with the key on it: ${CONNECTOR_URL_KEYED('flights')}`,
   },
   {
     slug: 'chatgpt',
@@ -108,7 +121,7 @@ export const AGENTS: AgentDef[] = [
     connectSnippet: CONNECTOR_URLS_BOTH,
     connectSnippets: { flights: CONNECTOR_URL('flights'), hotels: CONNECTOR_URL('hotels') },
     connectNote:
-      'Settings → Connectors (developer mode) → add each server URL: flights and hotels are separate servers, and one RapidAPI key covers both once you subscribe to each listing. The key rides on the server URL; ChatGPT never sees it in chat.',
+      `Settings → Connectors (developer mode) → add each server URL, authentication OAuth, client id and secret left empty. ${SIGN_IN_STEP} Flights and hotels are separate servers and one key covers both once you subscribe to each listing. For scripts, CI and clients without a sign-in button, use the plain endpoint with the key on it: ${CONNECTOR_URL_KEYED('flights')}`,
   },
   {
     slug: 'cursor',
@@ -117,7 +130,7 @@ export const AGENTS: AgentDef[] = [
     connectLabel: 'Add to .cursor/mcp.json',
     connectSnippet: MCP_JSON_BOTH,
     connectSnippets: { flights: MCP_JSON('flights'), hotels: MCP_JSON('hotels') },
-    connectNote: 'Restart Cursor and the tools appear in the Agent toolbox. Same shape works in any mcp.json-style client.',
+    connectNote: `Restart Cursor. It hits the 401, registers itself, and offers you the sign-in: ${SIGN_IN_STEP} The same shape works in any mcp.json-style client. For scripts, CI and clients without a sign-in button, point the entry at the plain /mcp endpoint and add a header instead: ${MCP_JSON_KEYED('flights').replace(/\s+/g, ' ')}`,
   },
   {
     slug: 'claude-code',
@@ -158,7 +171,7 @@ clawhub install mtnrabi/booking-hotel-search`,
     connectSnippet: MCP_JSON_BOTH,
     connectSnippets: { flights: MCP_JSON('flights'), hotels: MCP_JSON('hotels') },
     connectNote:
-      'Settings → Developer → Edit Config, paste the block under mcpServers, restart Claude Desktop. On a Mac the file is ~/Library/Application Support/Claude/claude_desktop_config.json. The key lives in that file, never in the conversation.',
+      `Settings → Developer → Edit Config, paste the block under mcpServers, restart Claude Desktop. On a Mac the file is ~/Library/Application Support/Claude/claude_desktop_config.json. ${SIGN_IN_STEP} For scripts, CI and clients without a sign-in button, point the entry at the plain /mcp endpoint and add a header instead: ${MCP_JSON_KEYED('flights').replace(/\s+/g, ' ')}`,
   },
   {
     slug: 'smithery',
@@ -214,7 +227,7 @@ client = MultiServerMCPClient({
 tools = await client.get_tools()`,
     },
     connectNote:
-      'get_tools() returns ordinary LangChain tools, so they pass to create_agent or any LangGraph graph unchanged. There is no first-party package to install from us. If you would rather not run MCP at all, the REST endpoints wrap into a @tool in a few lines: see /integrations/langchain.',
+      'get_tools() returns ordinary LangChain tools, so they pass to create_agent or any LangGraph graph unchanged. The key form is the right one here: a Python process has no browser to complete a sign-in, so this path stays on the plain /mcp endpoint. There is no first-party package to install from us. If you would rather not run MCP at all, the REST endpoints wrap into a @tool in a few lines: see /integrations/langchain.',
   },
   {
     slug: 'zapier',

@@ -92,15 +92,19 @@ export function AgentIntegrationPage({
               <div className="mt-7">
                 <CheckBullets
                   items={[
-                    <>Google&apos;s price band + a low | typical | high verdict on every fare</>,
-                    <>Bring your own key: usage bills to your own RapidAPI plan, never ours</>,
-                    <>Live Booking.com rates too, with per-market pricing for rate-parity checks</>,
+                    <>Live Google Flights fares and Booking.com rates, asked for in plain English</>,
+                    <>Google&apos;s own price band and a low | typical | high verdict on every fare</>,
+                    <>A date range and a list of destinations in one call, and a round trip priced as one request</>,
+                    <>Hotel rates as a shopper in any country sees them, for rate-parity checks. Searches bill to your own RapidAPI plan</>,
                   ]}
                 />
               </div>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Cta href={rapidApiPricingUrl('flights', 'integration')} external variant="primary">
-                  Get a free key on RapidAPI →
+                  Flights key →
+                </Cta>
+                <Cta href={rapidApiPricingUrl('hotels', 'integration')} external variant="primary">
+                  Hotels key →
                 </Cta>
                 <Cta href="/mcp" variant="ghost">
                   All MCP options
@@ -196,7 +200,7 @@ export function AgentIntegrationPage({
       </Section>
 
       <Section bordered={false} className="!pt-4">
-        <CtaBand medium="integration" />
+        <CtaBand medium="integration" showBoth />
       </Section>
     </>
   );

@@ -20,7 +20,7 @@ import { AgentRecipes } from '../_recipes';
 export const metadata: Metadata = withOg({
   title: 'Claude Desktop MCP Setup: Live Google Flights & Booking.com Data',
   description:
-    'Connect Claude Desktop and Claude Code to live flight and hotel data via hosted MCP servers. Bring your own RapidAPI key, paste two URLs into mcp.json, and your AI agent gets real-time pricing with Google\'s verdict. 60-second setup.',
+    'Connect Claude Desktop and Claude Code to live flight and hotel data via hosted MCP servers. Paste two URLs into mcp.json, sign in with Google once, and your AI agent gets real-time pricing with Google\'s verdict. 60-second setup.',
   alternates: { canonical: '/integrations/claude-mcp' },
 });
 
@@ -32,8 +32,8 @@ const faq: Faq[] = [
     a: 'Yes. Both use the same MCP configuration file (.cursor/mcp.json for Cursor, ~/Library/Application Support/Claude/claude_desktop_config.json for Claude Desktop on Mac). The setup is identical.',
   },
   {
-    q: 'Is my API key secure in the config file?',
-    a: 'The key lives in your local config file, not in the chat. Treat the file as you would any credential file (SSH keys, .env files). The hosted MCP server forwards your key to RapidAPI; we never store it.',
+    q: 'Where does my API key live?',
+    a: 'On the sign-in path it never touches your config file: you paste it once at flights.flightpowers.com/connect and it is encrypted before it is stored, with only the last four characters shown again. Disconnect on the same page deletes it. On the key path it lives in your local config file, which you should treat like any credential file (SSH keys, .env files).',
   },
   {
     q: 'What does "hosted MCP" mean?',
@@ -76,12 +76,12 @@ export default function ClaudeMcpPage() {
             {
               '@type': 'HowToStep',
               name: 'Add the MCP server URLs',
-              text: 'Paste the flights and hotels server URLs with your RapidAPI key into the mcpServers section.',
+              text: 'Paste the flights and hotels sign-in URLs into the mcpServers section. No key goes in the file.',
             },
             {
               '@type': 'HowToStep',
-              name: 'Restart Claude',
-              text: 'Close and reopen Claude Desktop or reload Cursor. Ask a travel question to verify the tools appear.',
+              name: 'Restart Claude and sign in',
+              text: 'Close and reopen Claude Desktop or reload Cursor, sign in with Google, and paste your RapidAPI key once on the page that opens. Then ask a travel question to verify the tools appear.',
             },
           ],
         }}
@@ -98,25 +98,27 @@ export default function ClaudeMcpPage() {
                 Live flight & hotel data in <span className="text-signal-500">Claude Desktop</span>
               </h1>
               <p className="lede mt-5">
-                Connect Claude Desktop and Claude Code to live Google Flights and Booking.com data in 60 seconds. Paste two URLs
-                into your MCP config, bring your own RapidAPI key, and your AI agent gets real-time pricing with Google\'s verdict.
+                Ask Claude what a flight costs and get today\'s real fare, with Google\'s own price band next to it. Two URLs in
+                your MCP config, one sign-in, and Claude Desktop or Claude Code can search live flights and hotels for you.
               </p>
               <div className="mt-7">
                 <CheckBullets
                   items={[
-                    <>Hosted MCP servers: no install, no processes to manage, always available</>,
-                    <>
-                      Bring your own RapidAPI key: you control the subscription, we never see your card
-                    </>,
+                    <>Live Google Flights fares and Booking.com rates, asked for in plain English</>,
                     <>
                       Google\'s price verdict on every fare: <code className="font-mono text-[13px] text-signal-400">low | typical | high</code>
                     </>,
+                    <>A date range and a list of destinations in one call, and a round trip priced as one request</>,
+                    <>Hosted, so nothing runs on your machine. Searches bill to your own RapidAPI plan</>,
                   ]}
                 />
               </div>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Cta href={rapidApiPricingUrl('flights', 'mcp')} external variant="primary">
-                  Get free API key →
+                  Flights key →
+                </Cta>
+                <Cta href={rapidApiPricingUrl('hotels', 'mcp')} external variant="primary">
+                  Hotels key →
                 </Cta>
                 <Cta href="#setup" variant="ghost">
                   See setup ↓
@@ -129,6 +131,18 @@ export default function ClaudeMcpPage() {
 
             <div>
               <Code label=".cursor/mcp.json or claude_desktop_config.json">
+{`{
+  "mcpServers": {
+    "flights": { "url": "${LINKS.mcpFlightsSignIn}" },
+    "hotels": { "url": "${LINKS.mcpHotelsSignIn}" }
+  }
+}`}
+              </Code>
+              <p className="mt-3 text-[15px] text-ink-300">
+                Restart Claude, sign in with Google, and paste your RapidAPI key once on the page that opens. Then ask for a fare.
+              </p>
+              <div className="mt-5">
+                <Code label="second option · scripts, CI, clients without a sign-in button">
 {`{
   "mcpServers": {
     "flights": {
@@ -145,10 +159,12 @@ export default function ClaudeMcpPage() {
     }
   }
 }`}
-              </Code>
-              <p className="mt-3 text-[15px] text-ink-300">
-                Restart Claude. Ask for a fare. Done.
-              </p>
+                </Code>
+                <p className="mt-2 text-[13px] text-ink-500">
+                  A headless run cannot open a browser to sign in, so cron jobs, CI and <code className="field">claude -p</code>{' '}
+                  use this form. Treat the file as a credential file.
+                </p>
+              </div>
             </div>
           </div>
         </Container>
@@ -197,18 +213,19 @@ export default function ClaudeMcpPage() {
             <div className="flex-1 min-w-0">
               <h3 className="text-[16px] font-semibold text-ink-100">Add the MCP server URLs</h3>
               <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed">
-                Open the config file and paste the mcpServers block from the code example above, replacing{' '}
-                <code className="font-mono text-[13px] text-signal-400">YOUR_RAPIDAPI_KEY</code> with your actual key. If the file already
-                has an mcpServers section, add flights and hotels inside it.
+                Open the config file and paste the first mcpServers block from the code example above. If the file already has an
+                mcpServers section, add flights and hotels inside it. Nothing secret goes in the file on this path: the key gets
+                pasted once on our connect page after you sign in.
               </p>
             </div>
           </li>
           <li className="flex gap-4 rounded-2xl border rule bg-ink-900/50 p-6">
             <span className="font-mono text-[17px] text-signal-500 tabular-nums">4</span>
             <div className="flex-1 min-w-0">
-              <h3 className="text-[16px] font-semibold text-ink-100">Restart Claude and test</h3>
+              <h3 className="text-[16px] font-semibold text-ink-100">Restart Claude, sign in, and test</h3>
               <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed">
-                Close and reopen Claude Desktop, or reload the Cursor window. Ask a travel question: "Find me a nonstop LHR to JFK
+                Close and reopen Claude Desktop, or reload the Cursor window, then sign in with Google and paste your RapidAPI key
+                once. Ask a travel question: "Find me a nonstop LHR to JFK
                 flight on October 13 and tell me if the price is any good." Success looks like Claude calling{' '}
                 <code className="font-mono text-[13px] text-signal-400">search_oneway_flights</code> and quoting a fare with Google\'s
                 verdict.
@@ -319,8 +336,9 @@ export default function ClaudeMcpPage() {
       <Section bordered={false} className="!pt-4">
         <CtaBand
           medium="mcp"
+          showBoth
           title="60 seconds from config file to working travel agent"
-          body="Paste two URLs, add your key, restart Claude. The free tier verifies the connection; the $10 PRO plan runs a daily agent."
+          body="Paste two URLs, restart Claude, sign in with Google. The free tier verifies the connection; the $10 PRO plan runs a daily agent."
         />
       </Section>
     </>
