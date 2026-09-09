@@ -1,7 +1,7 @@
 import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { CheckBullets, Cta, Container, FaqSection, JsonLd, Section, SectionHead, type Faq } from '@/components/ui';
+import { Cta, Container, FaqSection, JsonLd, Section, SectionHead, type Faq } from '@/components/ui';
 import { CtaBand } from '@/components/bands';
 import { Playground, type PlaygroundInitial } from '@/components/Playground';
 import { IntegrationGrid } from '@/components/IntegrationLogos';
@@ -74,6 +74,50 @@ function PlanMiniRows({ plans }: { plans: Plan[] }) {
   );
 }
 
+/**
+ * The three plays, in Matan's words (2026-09-09). One line each, each pointing at the
+ * page that already documents it. Nothing here asserts a number that is not on that page
+ * or in lib/pricing.ts.
+ */
+const PLAYS: { href: string; label: string; line: string }[] = [
+  {
+    href: '/guides/cheapest-destinations-from-one-airport',
+    label: 'Scan for deals',
+    line: 'One call takes a date range and a list of airports and comes back with every fare, each one carrying Google\u2019s own low, typical or high verdict.',
+  },
+  {
+    href: '/docs',
+    label: 'Put live search in your app',
+    line: 'REST endpoints on api.flightpowers.com, flat JSON, and a working booking link on every result you hand back to a user.',
+  },
+  {
+    href: '/guides/ai-travel-agent',
+    label: 'Run a 24/7 AI travel agent',
+    line: 'Sign in with Google, connect the server to Claude or ChatGPT, and it scans your routes every morning on the $10 plan.',
+  },
+];
+
+function PlayList() {
+  return (
+    <ol className="space-y-2.5">
+      {PLAYS.map((p, i) => (
+        <li key={p.href}>
+          <Link
+            href={p.href}
+            className="group flex items-start gap-3 rounded-xl border rule bg-ink-900/40 px-4 py-3 hover:border-signal-600/50 transition-colors"
+          >
+            <span className="mt-0.5 shrink-0 font-mono text-[12px] text-signal-400 tabular-nums">{i + 1}</span>
+            <span className="min-w-0">
+              <span className="text-[15px] font-semibold text-ink-100 group-hover:text-signal-400">{p.label}</span>
+              <span className="ml-1.5 text-[14px] text-ink-400 leading-relaxed">{p.line}</span>
+            </span>
+          </Link>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
 export default function HomePage() {
   const oneway = FIXTURES.onewayLaxSfoLow;
   const geo = FIXTURES.hotelGeoRixos;
@@ -119,26 +163,23 @@ export default function HomePage() {
         <Container className="relative pt-12 sm:pt-20 pb-14 sm:pb-24">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-start">
             <div className="pt-2">
-              <p className="eyebrow">Live flight &amp; hotel pricing APIs</p>
+              <p className="eyebrow">Live flight &amp; hotel prices for developers and agents</p>
               <h1 className="mt-4 text-hero font-semibold">
                 Your own travel agent, scan deals <span className="text-signal-500">24/7</span>
               </h1>
               <p className="lede mt-5">
-                The APIs to build it: real-time Google Flights and Booking.com data as clean JSON.
+                Real-time Google Flights and Booking.com prices, wired into your code or your LLM. Three things people do
+                with them:
               </p>
-              <div className="mt-6 hidden sm:block">
-                <CheckBullets
-                  items={[
-                    <>
-                      Real-time flight &amp; hotel prices from Google Flights &amp; Booking.com
-                    </>,
-                    <>
-                      <code className="font-mono text-[13px] text-signal-400">proxy_country</code>: any hotel, priced from any
-                      market
-                    </>,
-                  ]}
-                />
+              <div className="mt-6">
+                <PlayList />
               </div>
+              <p className="mt-4 text-[13.5px] text-ink-400">
+                Hotels also take{' '}
+                <Link href="/hotels-api/geo-pricing" className="text-signal-400 hover:text-signal-500 underline underline-offset-2">
+                  <code className="font-mono text-[13px]">proxy_country</code>
+                </Link>{', so you can price the same room from any market.'}
+              </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Cta href={rapidApiPricingUrl('flights', 'hero')} external variant="primary">
                   Flights key (free tier) →
