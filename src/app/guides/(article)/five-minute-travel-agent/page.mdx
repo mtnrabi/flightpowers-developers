@@ -1,0 +1,333 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'Set up your own 24/7 travel deal agent in 5 minutes',
+  description:
+    'Paste one URL into Claude, Claude Code, Cursor or ChatGPT, sign in with Google, and your assistant prices 30 destinations from your airport and tells you which fares came in under Google’s own low end. No API key to hand-copy, no code.',
+  alternates: { canonical: '/guides/five-minute-travel-agent' },
+});
+
+export const dynamic = 'force-static';
+
+import { GuideDates, JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'Set up your own 24/7 travel deal agent in 5 minutes',
+    description:
+      'Connect Claude, Claude Code, Cursor or ChatGPT to live Google Flights and Booking.com prices with one connector URL and a Google sign-in, then paste one prompt that scans 30 destinations and reports the fares under Google’s own low end.',
+    url: `${SITE.url}/guides/five-minute-travel-agent`,
+    datePublished: '2026-09-09',
+    dateModified: '2026-09-09',
+    totalTime: 'PT5M',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+    step: [
+      {
+        '@type': 'HowToStep',
+        name: 'Add the connector',
+        text: 'Paste https://flights.flightpowers.com/mcp/oauth into your assistant as a custom connector or MCP server.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Sign in with Google',
+        text: 'Click Connect, sign in with Google, and paste your RapidAPI key once on the page it opens. The key stays on our side.',
+      },
+      {
+        '@type': 'HowToStep',
+        name: 'Paste the scan prompt',
+        text: 'Ask for one search_roundtrip_flights call across 30 destinations and report only the fares below their own price_insights_low.',
+      },
+    ],
+  }}
+/>
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Do I need an API key to try this?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. The free server at google-flights-lulu.flightpowers.com/mcp takes no key at all. It carries one labelled sponsored card on every result and allows 150 backend searches per client per day and 2,000 a month, shared with everyone else on it. For a 30-destination scan you want the keyed server.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Where does my RapidAPI key go?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'On the sign-in path it goes into a form at flights.flightpowers.com/connect, once. It is encrypted before it is written down, only its last four characters are ever shown again, and Disconnect on the same page deletes it. Nothing gets pasted into your MCP client.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What does the agent cost to run every day?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Each destination and date combination is one billed request. A 30-destination scan on one departure date is 30 requests, so a daily run is about 900 a month, which fits inside the $10 PRO plan (2,500 requests a month on flights). The free BASIC tier is 10 requests a month and exists to prove your key works.',
+        },
+      },
+    ],
+  }}
+/>
+
+# Set up your own 24/7 travel deal agent in 5 minutes
+
+<GuideDates published="2026-09-09" updated="2026-09-09" />
+
+It scans flight deals for you around the clock, on the routes you actually care about, and
+tells you when a fare is cheap by Google's own standard rather than by a number you guessed.
+It costs less than any human travel agent, and the setup below is one URL and one sign-in.
+
+You do not need an API key you have hand-copied anywhere, and you do not need to write code.
+If you already use Claude, Claude Code, Cursor or ChatGPT, you have everything else.
+
+## What you are actually connecting
+
+One MCP server, four tools: `search_oneway_flights`, `search_roundtrip_flights`,
+`search_hotels`, `find_hotel_by_name`. Every flight result comes back with the fare, a
+`buy_link` that opens that exact itinerary on Google Flights, and Google's own price history
+for that route and date as `price_insights_low`, `price_insights_high` and a
+`price_range_in_relation_to_other_periods` verdict of `low`, `typical` or `high`.
+
+That last part is why this takes five minutes instead of five months. You do not have to log
+prices for a season before your first useful alert. The band ships with the fare.
+
+## Step 1: pick free or keyed
+
+Two servers, and the choice takes ten seconds.
+
+**Free**, `https://google-flights-lulu.flightpowers.com/mcp`. No key, no account, nothing to
+sign into. Every successful result carries one labelled sponsored card, that is how it pays
+for itself, and it allows 150 backend searches per client per day and 2,000 a calendar month.
+One call is one backend search per date and destination combination, so a wide scan spends
+more than one. It also samples any single call down to 15 combinations and tells you which
+ones it actually ran in `search_coverage`. Great for feeling the whole loop before you commit
+to anything. Not the thing to point a 30-destination daily scan at.
+
+**Keyed**, `https://flights.flightpowers.com/mcp/oauth`. You sign in with Google, paste a
+RapidAPI key once on the page it opens, and after that your client just works. No ads, no
+shared ceiling, and the only limit is your own plan. Subscribe on the
+<a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">Google Flights Live API</a>
+listing: BASIC is free with 10 requests a month, PRO is $10 a month with 2,500. Hotels are a
+separate listing, the
+<a href={rapidApiPricingUrl('hotels', 'guide')} rel="noopener">Booking Live API</a>, on the
+same key. The honest read: BASIC proves your key works and nothing more, a daily scan of 30
+destinations is roughly 900 requests a month, so the agent you actually keep runs on PRO.
+
+Everything below uses the keyed sign-in URL. Swap in the free URL if you just want to poke at
+it, and skip the sign-in step entirely.
+
+## Step 2: add it to your client
+
+Pick your one. The flights URL is `https://flights.flightpowers.com/mcp/oauth` and the hotels
+URL is `https://hotels.flightpowers.com/mcp/oauth`. Same sign-in covers both.
+
+### Claude (claude.ai and the desktop app)
+
+Connectors live on your account, so adding one in the browser puts it in the desktop app too.
+
+1. Open **Customize > Connectors**, then click **Add custom connector**. On Team and
+   Enterprise an owner adds it under **Organization settings > Connectors** first, and
+   everyone else then presses Connect on it.
+2. Name it `FlightPowers flights` and paste the URL:
+
+```
+https://flights.flightpowers.com/mcp/oauth
+```
+
+3. Leave **Authentication** on what Claude detects. This server answers an unauthenticated
+   request with a `401` and a `WWW-Authenticate` header pointing at its own metadata, which is
+   exactly the handshake Claude looks for, so it fills the auth settings in by itself.
+4. For **OAuth client**, either hosted client metadata or "register one automatically" works.
+   The server supports both, so there is nothing for you to paste in and no client secret to
+   find.
+5. Click **Add**, then **Connect**. Google asks for your account id and email, nothing else.
+6. In a chat, click **+ > Connectors** and toggle it on. If Claude answers a fare question
+   instantly without showing a tool call, that toggle is off. It is the most common miss by a
+   distance.
+
+### Claude Code
+
+One line, and you can run it right now:
+
+```bash
+claude mcp add --transport http flights https://flights.flightpowers.com/mcp/oauth
+```
+
+Then open `/mcp` in a session and sign in. `claude mcp list` prints `✔ Connected` when it
+worked and `! Needs authentication` when the sign-in has not happened yet. Add hotels the same
+way with `https://hotels.flightpowers.com/mcp/oauth`.
+
+If you would rather not sign in at all, use the plain endpoint with your key in a header. This
+is the form to use for anything non-interactive, because a headless run cannot open a browser
+to complete a sign-in:
+
+```bash
+claude mcp add --transport http flights https://flights.flightpowers.com/mcp \
+  -H "x-rapidapi-key: YOUR_RAPIDAPI_KEY"
+```
+
+### Cursor
+
+Add a block to `~/.cursor/mcp.json` for every project, or `.cursor/mcp.json` for one:
+
+```json
+{
+  "mcpServers": {
+    "flights": { "url": "https://flights.flightpowers.com/mcp/oauth" },
+    "hotels": { "url": "https://hotels.flightpowers.com/mcp/oauth" }
+  }
+}
+```
+
+Restart Cursor. It hits the `401`, registers itself, and offers you the sign-in. The
+key-in-a-header form works here too, same shape as the Claude Code example, on the `/mcp` URL
+instead of `/mcp/oauth`:
+
+```json
+{
+  "mcpServers": {
+    "flights": {
+      "url": "https://flights.flightpowers.com/mcp",
+      "headers": { "x-rapidapi-key": "YOUR_RAPIDAPI_KEY" }
+    }
+  }
+}
+```
+
+### ChatGPT
+
+Custom connectors in ChatGPT need **developer mode**, which OpenAI puts on the Pro plan and on
+Business, Enterprise and Edu workspaces, and it is web only. On Free and Plus the option is
+genuinely not there. Turn it on under **Settings > Apps > Advanced settings**, create a
+connector, paste the same `https://flights.flightpowers.com/mcp/oauth` URL, set authentication
+to OAuth, and leave the client id and secret empty: the server registers ChatGPT for you.
+
+Being straight about the state of this one: we have no paid ChatGPT account, so we have not
+run this end to end ourselves. The server side is the same code that Claude, Claude Code and
+Cursor sign into, and it is standards-plain, but if your connector refuses to attach, that is
+the half we cannot debug for you. The key-on-the-URL form,
+`https://flights.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY` with authentication set
+to none, is the fallback that needs no OAuth at all. More detail on that path in the
+[ChatGPT MCP guide](/guides/google-flights-mcp-chatgpt).
+
+## Step 3: the prompt
+
+This is the whole agent. Swap `TLV` for your airport and the dates for yours, and paste it in.
+
+```text
+Use search_roundtrip_flights ONCE, not once per city.
+
+from_airport: TLV
+to_airport: FCO,ATH,CDG,BCN,MAD,LIS,AMS,BRU,BER,MUC,FRA,VIE,ZRH,PRG,BUD,
+WAW,OTP,SOF,IST,LCA,MXP,VCE,NAP,CTA,TBS,EVN,GYD,DXB,LHR,SKG
+departure_date: 2026-10-17
+nights: 4
+currency: usd
+sort_by: price
+limit: 5
+max_searches: 30
+
+Do not set max_price. It removes the price band, and the band is the
+whole point.
+
+Then read by_destination, which has one entry per city I asked for,
+empty ones included. For each city take the cheapest fare and compare
+it to that city's own price_insights_low.
+
+Report only the cities whose cheapest fare is BELOW their own
+price_insights_low, cheapest first, each with the fare, the
+low-to-high band, the verdict, and the buy_link.
+
+If none is below its low end, say so in one line and give me the single
+cheapest fare anyway.
+
+Check search_status first. A city that came back empty is unknown, not
+"no flights there" - say which ones those were.
+```
+
+Thirty destinations on one departure date is thirty billed requests, and `max_searches: 30`
+is the ceiling you are agreeing to. **Want a date range instead of one date?** Drop
+`departure_date` and use `departure_date_from` and `departure_date_to`, and raise
+`max_searches` deliberately, because every extra date multiplies the count: 30 cities across
+3 days is 90 requests, not 30. Ask for more than `max_searches` allows and the request is not
+refused, it is sampled evenly, and `search_coverage` lists exactly which dates and cities it
+looked at. Read that before you conclude anything about a city.
+
+`nights` also takes a list, so `nights: [3, 4, 5]` compares trip lengths in the same call, at
+the same multiplier.
+
+### What a run looks like
+
+The same scan, run through the REST endpoint on 2026-09-09 at 13:18 UTC out of Tel Aviv,
+departing Saturday 17 October and back on the 21st:
+
+| | |
+| --- | --- |
+| Cheapest | Larnaca, $66 nonstop on Wizz Air, band $80 to $160, verdict **low** |
+| Dearest | Dubai, $701 nonstop, band $355 to $610 |
+| Under Google's own low end | 4 of 30: Larnaca $66, Naples $163, Tbilisi $198, Venice $229 |
+| Verdicts | 26 typical, 4 low, 0 high |
+
+Every figure there is from that one run. Fares move within minutes, so yours will not match,
+which is the entire reason for running it daily rather than reading a screenshot.
+
+One thing not to over-read: three fares in that run came back *above* the high end of their own
+band and Google still labelled them `typical`. So the verdict is not simply arithmetic on the
+band. Alert on the comparison you can do yourself, fare against `price_insights_low`, and treat
+the verdict as a second opinion.
+
+## Step 4: make it daily
+
+The scan above is the agent. Running it on a schedule is what makes it 24/7.
+
+- **Claude scheduled tasks.** Any paid Claude plan, they run on Anthropic's servers with your
+  laptop shut, and they can use your connectors. Full click path, the cadence settings, and a
+  worked example are in [Create your 24/7 AI travel agent](/guides/ai-travel-agent#a3-schedule-the-morning-scan-the-flight-price-alert).
+- **Claude Code Desktop routines.** The Code tab has a **Routines** page: New routine, Local
+  for a task that runs on your machine, or a cloud routine that runs without it. Local tasks
+  only fire while the app is open and the machine is awake, which is the trade.
+- **A plain cron line**, if you would rather own it. `claude -p "<the prompt above>"` in a
+  crontab entry is the whole thing. One catch worth knowing before you write it: a
+  non-interactive run cannot walk you through an OAuth sign-in, so either sign in once from an
+  interactive session first, or configure that server with the key-in-a-header form from
+  Step 2 and skip sign-in entirely. The header form is the one I would use for cron.
+
+If none of those fit your setup, run it each morning by hand. It is one paste, and it still
+beats checking six tabs.
+
+## What it will not do
+
+- **It cannot book.** It finds the fare, judges it, and hands you the `buy_link`. You click.
+- **The verdict can be `null`** on thin routes where Google publishes no band. That means no
+  signal, not "not cheap". On those, fall back to a plain price threshold.
+- **A scan can come back partial.** `search_status` says `ok` or `partial` and
+  `search_coverage` lists what actually ran. The prompt above makes the agent surface it,
+  which is why that paragraph is in there.
+- **Searches take seconds, not milliseconds.** It is a live read of Google Flights, not a
+  cache.
+- **Flights and hotels are separate subscriptions.** One key, two listings. A 403 on the hotel
+  tools almost always means the key is subscribed to flights only.
+
+## Related
+
+- [Create your 24/7 AI travel agent](/guides/ai-travel-agent): the long version, with the scheduling paths and the cost math in full
+- [Cheapest destinations from one airport](/guides/cheapest-destinations-from-one-airport): the same expansion from your own code, and the `limit` setting that silently drops a city
+- [Is this flight price good?](/guides/fare-verdict-in-one-call): the band and the verdict documented, with three live captures
+- [Free tools](/tools#free-mcp): what the free server does and does not do
+- [Using the MCP in Claude](/guides/google-flights-mcp-claude) · [in Cursor](/guides/google-flights-mcp-cursor) · [in ChatGPT](/guides/google-flights-mcp-chatgpt)
+
+<CtaBand
+  medium="guide"
+  title="Five minutes, then it runs without you"
+  body="Sign in with Google, paste your RapidAPI key once, and your assistant prices thirty destinations against Google's own price band. Free tier proves the key works, $10 runs it daily."
+/>
