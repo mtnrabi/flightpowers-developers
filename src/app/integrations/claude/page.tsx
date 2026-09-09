@@ -23,7 +23,7 @@ const steps: ConnectStep[] = [
   },
   {
     title: 'Sign in, then ask',
-    body: 'Press Connect, sign in with Google, and paste your RapidAPI key once on the page that opens. Then toggle the connector on in a chat (+ → Connectors) and ask for a fare. For scripts, CI and clients without a sign-in button, use the plain /mcp URL with an x-rapidapi-key header instead.',
+    body: 'Press Connect, sign in with Google, and paste your RapidAPI key once on the page that opens. Then toggle the connector on in a chat (+ → Connectors) and ask for a fare. For scripts, CI and clients without a sign-in button, send the same URL with an x-rapidapi-key header instead.',
   },
 ];
 

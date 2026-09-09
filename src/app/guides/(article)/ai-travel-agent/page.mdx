@@ -154,10 +154,11 @@ infrastructure instead of the assistant's, that version of this build is the
 ## Try it with zero setup first (optional)
 
 A free, ad-supported MCP server exists at `google-flights-lulu.flightpowers.com/mcp`
-that needs no key at all. Add it as a connector (same steps as below, nothing to
-paste into the URL) and you can feel the whole loop before creating any account.
-Two trades, stated plainly: every successful result carries one labelled sponsored
-card, and there is no per-user quota, so you share capacity with everyone else on it.
+that needs no RapidAPI key. Add it as a connector, sign in with Google, and you can
+feel the whole loop before subscribing to anything. Same steps as below, you just
+have no key to paste at the end. Two trades, stated plainly: every successful result
+carries one labelled sponsored card, and you get 150 searches a day and 2,000 a
+calendar month under your own account.
 [The full list of what it does not do](/tools#free-mcp) is on the free tools page.
 Point your actual agent, and anything scheduled, at the keyed servers.
 
@@ -172,11 +173,11 @@ that opens. Nothing secret goes into your client.
 1. On claude.ai in a browser, open **Customize** &gt; **Connectors**. (On Team or
    Enterprise plans an Owner adds it under Organization settings &gt; Connectors.)
 2. Click **+**, then **Add custom connector**.
-3. Name it `FlightPowers flights` and paste the sign-in URL, with no key and no query
+3. Name it `FlightPowers flights` and paste the server URL, with no key and no query
    string on it:
 
 ```
-https://flights.flightpowers.com/mcp/oauth
+https://flights.flightpowers.com/mcp
 ```
 
 4. Click **Add**, then **Connect**. Leave Authentication on what Claude detects: the
@@ -189,12 +190,12 @@ https://flights.flightpowers.com/mcp/oauth
 6. Repeat for hotels if you subscribed to the Booking listing:
 
 ```
-https://hotels.flightpowers.com/mcp/oauth
+https://hotels.flightpowers.com/mcp
 ```
 
 **Second option: the key on the URL.** For scripts, CI and clients without a sign-in
-button, the same two servers still answer on their plain endpoints with the key on the
-URL:
+button, the same two addresses also answer with the key on them. There is no separate
+endpoint to switch to:
 
 ```
 https://flights.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY
@@ -293,7 +294,7 @@ read-only searches.
    mode**. On Business this is per-user under User settings; on Enterprise an
    admin has to allow it first under Connected Data permissions.
 2. From the Apps/Connectors section, create a new connector. Name it, paste
-   `https://flights.flightpowers.com/mcp/oauth`, set authentication to OAuth, and leave
+   `https://flights.flightpowers.com/mcp`, set authentication to OAuth, and leave
    the client id and secret empty: the server registers ChatGPT for you. Sign in with
    Google and paste your RapidAPI key once on the page that opens. If your connector
    refuses to attach, the fallback is the key-on-the-URL form from Path A with
@@ -345,16 +346,16 @@ a daily scheduled task and swap in your own airports.
 
 ```text
 Flights connector URL:
-https://flights.flightpowers.com/mcp/oauth
+https://flights.flightpowers.com/mcp
 
 Hotels connector URL (optional, separate subscription):
-https://hotels.flightpowers.com/mcp/oauth
+https://hotels.flightpowers.com/mcp
 
 Add the URL, click Sign in, sign in with Google, and paste your
 RapidAPI key once on the page that opens.
 
-For scripts, CI and clients without a sign-in button, use the plain
-endpoint with the key on it instead:
+For scripts, CI and clients without a sign-in button, put the key
+on the same URL instead:
 https://flights.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY
 https://hotels.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY
 

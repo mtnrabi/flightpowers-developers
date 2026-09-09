@@ -17,7 +17,7 @@ export const dynamic = 'force-static';
 const faq: Faq[] = [
   {
     q: 'Does my agent need HTTP code to use this?',
-    a: 'No. Three hosted MCP servers (flights, hotels, and a free ad-supported one) connect any MCP client (Claude, Cursor, and others) with a URL and your RapidAPI key in a header. There are also 8 open-source skills for Claude Code and OpenClaw, and an n8n community node. The REST API is there when you do want to write the call yourself.',
+    a: 'No. Three hosted MCP servers (flights, hotels, and a free ad-supported one) connect any MCP client (Claude, Cursor, and others) with one URL each: add it, sign in with Google, paste your RapidAPI key once. A script with no browser sends the key on the same URL. There are also 8 open-source skills for Claude Code and OpenClaw, and an n8n community node. The REST API is there when you do want to write the call yourself.',
   },
   {
     q: 'How does the agent know whether a fare is worth booking?',
@@ -57,8 +57,8 @@ export default function AiTravelAgentsPage() {
         <SectionHead eyebrow="How FlightPowers helps" title="Built for tool calls from the start" />
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
           <Feature title="Hosted MCP servers: a URL, not an install">
-            {COUNTS.mcpServers} first-party MCP servers expose flights and hotels search to any MCP client. Your key goes in a
-            header; usage bills to your own RapidAPI plan. No SDK, no glue service to run.
+            {COUNTS.mcpServers} first-party MCP servers expose flights and hotels search to any MCP client. Add the URL, sign in
+            with Google, paste your key once; usage bills to your own RapidAPI plan. No SDK, no glue service to run.
           </Feature>
           <Feature title="Price context the agent can quote">
             Price context from Google Flights rides on every flight. The agent&apos;s &ldquo;book it
@@ -77,7 +77,7 @@ export default function AiTravelAgentsPage() {
           <CheckBullets
             items={[
               <>
-                <strong className="text-ink-100">Connect once.</strong> Add the MCP server URL with your key, or install the
+                <strong className="text-ink-100">Connect once.</strong> Add the MCP server URL and sign in, or install the
                 skills: the agent discovers the flight and hotel tools on its own.
               </>,
               <>

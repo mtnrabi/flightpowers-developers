@@ -69,13 +69,13 @@ empty: the server registers ChatGPT for you.
 **Flights connector:**
 
 ```
-https://flights.flightpowers.com/mcp/oauth
+https://flights.flightpowers.com/mcp
 ```
 
 **Hotels connector:**
 
 ```
-https://hotels.flightpowers.com/mcp/oauth
+https://hotels.flightpowers.com/mcp
 ```
 
 Click **Sign in**, sign in with Google, and paste your RapidAPI key once on the page that
@@ -89,8 +89,8 @@ attach, that is the half we cannot debug for you.
 
 ### Second option: the key on the URL, for clients without a sign-in button
 
-Set authentication to none and put the key on the URL. The key is the whole handshake
-there:
+Set authentication to none and put the key on the same URL. There is no separate endpoint
+to switch to, and the key is the whole handshake:
 
 ```
 https://flights.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY
@@ -143,8 +143,8 @@ costs when booked from Germany versus the US."
 
 ## How it works
 
-The servers are hosted at `https://flights.flightpowers.com/mcp/oauth` and
-`https://hotels.flightpowers.com/mcp/oauth`. Nothing runs on your machine. On the sign-in
+The servers are hosted at `https://flights.flightpowers.com/mcp` and
+`https://hotels.flightpowers.com/mcp`. Nothing runs on your machine. On the sign-in
 path your RapidAPI key is stored on our side, encrypted, and used on each call; on the
 key path ChatGPT sends it via the connector URL. Either way usage meters against your own
 subscription, and Disconnect on the connect page deletes a stored key. The free BASIC tier (10 requests/month, hard cap, no card) verifies the

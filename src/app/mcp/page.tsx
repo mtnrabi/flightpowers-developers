@@ -21,24 +21,24 @@ import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 export const metadata: Metadata = withOg({
   title: 'MCP Servers: Google Flights & Booking.com for Claude, Cursor, ChatGPT',
   description:
-    'Hosted MCP servers for live Google Flights and Booking.com data. Works with Claude, Cursor, ChatGPT, and any MCP client. Add one URL and sign in with Google, no key to paste into your client. Flight date ranges and destination lists in a single call. Free tier: 10 requests/month.',
+    'Hosted MCP servers for live Google Flights and Booking.com data. Works with Claude, Cursor, ChatGPT, and any MCP client. One URL per server: add it, sign in with Google, paste your RapidAPI key once. Flight date ranges and destination lists in a single call. Free tier: 10 requests/month.',
   alternates: { canonical: '/mcp' },
 });
 
 export const dynamic = 'force-static';
 
-/** Sign-in first: this is the URL that makes a client show a Sign in button. */
-const SIGN_IN_URLS = `${LINKS.mcpFlightsSignIn}
-${LINKS.mcpHotelsSignIn}`;
+/** One URL per server. A client with a sign-in button gets a 401 and offers Google. */
+const SIGN_IN_URLS = `${LINKS.mcpFlights}
+${LINKS.mcpHotels}`;
 
 const SIGN_IN_CONFIG = `{
   "mcpServers": {
-    "flights": { "url": "${LINKS.mcpFlightsSignIn}" },
-    "hotels": { "url": "${LINKS.mcpHotelsSignIn}" }
+    "flights": { "url": "${LINKS.mcpFlights}" },
+    "hotels": { "url": "${LINKS.mcpHotels}" }
   }
 }`;
 
-/** Second option: the key form, for scripts, CI and clients without a sign-in button. */
+/** Same URLs, key in a header: scripts, CI and clients without a sign-in button. */
 const KEY_CONFIG = `{
   "mcpServers": {
     "flights": {
@@ -65,6 +65,10 @@ const faq: Faq[] = [
     a: 'Your client opens a Google sign-in, you approve it, and you land on our /connect page. Paste your RapidAPI key there once and it is encrypted before it is stored: only the last four characters are ever shown again. After that the client just works, and Disconnect on the same page deletes the key and cuts off every client that was using it. We keep your Google account id and email, nothing else.',
   },
   {
+    q: 'Is there one URL or two?',
+    a: 'One per server, and it is the same URL either way you connect. flights.flightpowers.com/mcp and hotels.flightpowers.com/mcp. A client with a sign-in button hits it, gets a 401 back with the sign-in details, and shows you the button. A script that already has a key sends it on that same URL and is served straight away. Nothing to pick between.',
+  },
+  {
     q: 'Do I need to install or run anything?',
     a: 'No. Both servers are hosted and speak streamable HTTP: you add a URL, sign in with Google, and the tools appear. Nothing runs on your machine and there is nothing to update.',
   },
@@ -74,7 +78,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Which clients does this work with?',
-    a: 'Any MCP client that supports remote servers: Claude (Settings → Connectors), Claude Code, Cursor (.cursor/mcp.json), ChatGPT (developer-mode connectors), and anything else that takes an mcpServers-style config. Give it the /mcp/oauth URL and it shows a Sign in button. A client with no sign-in button, and anything headless, uses the plain /mcp URL with an x-rapidapi-key header, or ?rapidapi_key= on the URL where headers are not supported.'
+    a: 'Any MCP client that supports remote servers: Claude (Settings → Connectors), Claude Code, Cursor (.cursor/mcp.json), ChatGPT (developer-mode connectors), and anything else that takes an mcpServers-style config. Give it the /mcp URL and it shows a Sign in button. A client with no sign-in button, and anything headless, sends that same URL with an x-rapidapi-key header, or ?rapidapi_key= on the URL where headers are not supported.'
   },
   {
     q: 'Where does my key end up?',
@@ -90,7 +94,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Is there a way to try it without a key?',
-    a: 'Yes: a separate free, ad-supported server, with no key and no signup. Every result carries one labelled sponsored card, one call searches at most 15 date × destination combinations instead of 30, and capacity is shared with every other caller. Connect it from the free tools page. It is for trying the tools before you get a key, not for production.',
+    a: 'Yes: a separate free, ad-supported server. Sign in with Google and you get the same four tools with no RapidAPI key at all, 150 searches a day and 2,000 a month under your own name. Every result carries one labelled sponsored card and one call searches at most 15 date × destination combinations instead of 30. Connect it from the free tools page. It is for trying the tools before you get a key, not for production.',
   },
 ];
 
@@ -165,7 +169,7 @@ Ask your assistant what a flight costs and get today's real fare, with Google's 
                   <svg className="w-3.5 h-3.5 text-signal-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span className="text-ink-300">Setup: <strong className="text-ink-100">one URL</strong>, then sign in with Google</span>
+                  <span className="text-ink-300">Setup: <strong className="text-ink-100">one URL per server</strong>, then sign in with Google</span>
                 </div>
               </div>
             </div>
@@ -174,17 +178,18 @@ Ask your assistant what a flight costs and get today's real fare, with Google's 
               <Code label="add this URL · flights and hotels">{SIGN_IN_URLS}</Code>
               <p className="mt-3 text-[15px] text-ink-300">
                 Add the URL, click <strong className="text-ink-100">Sign in</strong>, sign in with Google, and paste your
-                RapidAPI key once on the page that opens. Nothing else goes into your client.
+                RapidAPI key once on the page that opens. Nothing else goes into your client. One URL per server, whichever
+                way you connect.
               </p>
               <div className="mt-5">
                 <Code label="same thing in an mcp.json client">{SIGN_IN_CONFIG}</Code>
               </div>
               <div className="mt-5">
-                <Code label="second option · scripts, CI, clients without a sign-in button">{KEY_CONFIG}</Code>
+                <Code label="same URL, key in a header · scripts, CI, clients without a sign-in button">{KEY_CONFIG}</Code>
                 <p className="mt-2 text-[13px] text-ink-500">
                   A headless run cannot open a browser to sign in, so cron jobs, CI and{' '}
-                  <code className="field">claude -p</code> use the key form. Clients that take only a URL and no headers can put
-                  the key on the URL instead:
+                  <code className="field">claude -p</code> send the key instead. Same address, no sign-in step. Clients that take
+                  only a URL and no headers can put the key on the URL:
                 </p>
                 <div className="mt-3">
                   <Code label="key on the URL">{KEY_URLS}</Code>
@@ -308,9 +313,10 @@ Ask your assistant what a flight costs and get today's real fare, with Google's 
           <h2 className="mt-3 text-2xl font-semibold">A free, ad-supported server also exists</h2>
           <p className="mt-4 text-[15px] text-ink-400 leading-relaxed">
             <code className="field">{LINKS.mcpFree.replace('https://', '')}</code> serves all four tools, flights and hotels,
-            with no key at all. The trade: every result carries one labelled sponsored card, one call searches at most 15 date ×
-            destination combinations instead of 30, and there is no per-user quota, so you share capacity with everyone else on
-            it. Use it to try the tools before getting a key; point production and anything you ship at the keyed servers above.
+            with no RapidAPI key at all. Add the URL, sign in with Google, and you are searching: 150 searches a day and 2,000 a
+            month under your own name. The trade: every result carries one labelled sponsored card, and one call searches at most
+            15 date × destination combinations instead of 30. Use it to try the tools before getting a key; point production and
+            anything you ship at the keyed servers above.
           </p>
           <Link
             href="/tools#free-mcp"

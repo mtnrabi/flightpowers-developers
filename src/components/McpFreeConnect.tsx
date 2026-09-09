@@ -7,9 +7,11 @@ import { track } from '@/lib/track';
  * Connect-the-free-server widget: one tab per client, each with the exact
  * thing you paste and a copy button.
  *
- * The free server takes no key, so for the two clients most people use
- * (Claude and ChatGPT) the whole configuration IS the URL. That is the point
- * of the component: show that, rather than a JSON block that implies setup.
+ * The free server takes no API key, so for the two clients most people use
+ * (Claude and ChatGPT) the whole configuration IS the URL: you add it, the
+ * client shows a Sign in button, and you sign in with Google. That is the
+ * point of the component: show that, rather than a JSON block that implies
+ * setup.
  */
 
 type Client = {
@@ -28,7 +30,7 @@ export function McpFreeConnect({ url }: { url: string }) {
     {
       id: 'claude',
       label: 'Claude',
-      where: 'Settings → Connectors → Add custom connector. Paste the URL, save, and the four tools appear in a new chat. Leave OAuth and every auth field blank.',
+      where: 'Settings → Connectors → Add custom connector. Paste the URL and save, then click Sign in and sign in with Google. The four tools appear in a new chat. No key anywhere.',
       payloadLabel: 'server url · the whole configuration',
       payload: url,
       wrap: true,
@@ -36,7 +38,7 @@ export function McpFreeConnect({ url }: { url: string }) {
     {
       id: 'chatgpt',
       label: 'ChatGPT',
-      where: 'Settings → Connectors → Advanced → Developer mode, then Create. Paste the URL and pick "No authentication".',
+      where: 'Settings → Connectors → Advanced → Developer mode, then Create. Paste the URL, set authentication to OAuth and leave client id and secret empty, then sign in with Google.',
       payloadLabel: 'server url · the whole configuration',
       payload: url,
       wrap: true,
@@ -44,14 +46,14 @@ export function McpFreeConnect({ url }: { url: string }) {
     {
       id: 'claude-code',
       label: 'Claude Code',
-      where: 'One command in your terminal. Run /mcp afterwards to confirm the server is connected.',
+      where: 'One command in your terminal, then run /mcp and pick Authenticate to sign in with Google.',
       payloadLabel: 'terminal',
       payload: `claude mcp add --transport http flightpowers-free ${url}`,
     },
     {
       id: 'json',
       label: 'Cursor & others',
-      where: 'Anything that takes an mcpServers-style config file (Cursor uses .cursor/mcp.json). No headers, no key, no env block.',
+      where: 'Anything that takes an mcpServers-style config file (Cursor uses .cursor/mcp.json). No headers, no key, no env block. Restart the client and it offers you the Google sign-in.',
       payloadLabel: 'mcp.json',
       payload: `{
   "mcpServers": {

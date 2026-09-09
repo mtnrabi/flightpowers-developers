@@ -66,8 +66,8 @@ not exist yet):
 ```json
 {
   "mcpServers": {
-    "flights": { "url": "https://flights.flightpowers.com/mcp/oauth" },
-    "hotels": { "url": "https://hotels.flightpowers.com/mcp/oauth" }
+    "flights": { "url": "https://flights.flightpowers.com/mcp" },
+    "hotels": { "url": "https://hotels.flightpowers.com/mcp" }
   }
 }
 ```
@@ -80,9 +80,8 @@ you can commit it.
 
 ### Second option: the key, for scripts, CI and clients without a sign-in button
 
-Point the entry at the plain `/mcp` endpoint and put the key in a header instead. This is
-the form to use for anything headless, because a CI runner has no browser to complete a
-sign-in:
+Keep the same URL and put the key in a header instead. This is the form to use for
+anything headless, because a CI runner has no browser to complete a sign-in:
 
 ```json
 {
@@ -144,8 +143,8 @@ reading per market is not a comparison.)
 
 ## How it works
 
-The servers are hosted at `https://flights.flightpowers.com/mcp/oauth` and
-`https://hotels.flightpowers.com/mcp/oauth`. Nothing runs on your machine. On the sign-in
+The servers are hosted at `https://flights.flightpowers.com/mcp` and
+`https://hotels.flightpowers.com/mcp`. Nothing runs on your machine. On the sign-in
 path your RapidAPI key is stored on our side, encrypted, and used on each call; on the
 key path Cursor sends it in the `x-rapidapi-key` header. Either way usage meters
 against your own subscription, and Disconnect on the connect page deletes a stored key. The free BASIC tier (10 requests/month, hard cap, no card)
