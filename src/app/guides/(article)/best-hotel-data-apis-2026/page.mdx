@@ -3,7 +3,7 @@ import { withOg } from '@/lib/meta';
 export const metadata = withOg({
   title: 'The best hotel data APIs in 2026, compared honestly',
   description:
-    'A sourced comparison of the hotel data APIs people actually shortlist: Booking.com Live API, SerpApi Google Hotels, Makcorps, Bright Data, Apify scrapers, the Booking.com Demand API and Amadeus. Every competitor price quoted from their own live page with the date it was read.',
+    'A sourced comparison of the hotel data APIs people actually shortlist: Booking.com Live API, SerpApi Google Hotels, Makcorps, Bright Data, Apify scrapers, StayAPI, HasData, SearchApi, the Booking.com Demand API and Amadeus. Every competitor price quoted from their own live page with the date it was read.',
   alternates: { canonical: '/guides/best-hotel-data-apis-2026' },
 });
 
@@ -20,10 +20,10 @@ import { COUNTS, LINKS, SITE } from '@/lib/site';
     '@type': 'TechArticle',
     headline: 'The best hotel data APIs in 2026, compared honestly',
     description:
-      'Booking.com Live API, SerpApi Google Hotels, Makcorps, Bright Data, Apify and the Booking.com Demand API compared with quoted, dated prices and disclosed bias.',
+      'Booking.com Live API, SerpApi Google Hotels, Makcorps, Bright Data, Apify, StayAPI, HasData, SearchApi and the Booking.com Demand API compared with quoted, dated prices and disclosed bias.',
     url: `${SITE.url}/guides/best-hotel-data-apis-2026`,
     datePublished: '2026-09-02',
-    dateModified: '2026-09-02',
+    dateModified: '2026-09-09',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -31,44 +31,51 @@ import { COUNTS, LINKS, SITE } from '@/lib/site';
 
 # The best hotel data APIs in 2026, compared
 
-<GuideDates published="2026-09-02" updated="2026-09-02" />
+<GuideDates published="2026-09-02" updated="2026-09-09" />
 
 **Short answer:** FlightPowers' Booking.com Live API, SerpApi Google Hotels, Makcorps,
-Bright Data, Apify scrapers, the Booking.com Demand API, and Amadeus Hotel Search are the
-hotel data APIs people actually shortlist in 2026. Rate scrapers, OTA aggregators, and
-partner booking platforms are different products that don't substitute for each other,
-and every price here is quoted live from each vendor's own page, including two options
-priced lower per unit than ours.
+Bright Data, Apify scrapers, StayAPI, HasData, SearchApi, the Booking.com Demand API, and
+Amadeus Hotel Search are the hotel data APIs people actually shortlist in 2026. Rate
+scrapers, OTA aggregators, per-listing enrichment APIs, and partner booking platforms are
+different products that don't substitute for each other, and every price here is quoted
+live from each vendor's own page, including four priced lower per unit than my
+${HOTEL_PLANS[1].priceMonthly} tier.
 
-"Hotel data API" covers at least three different products. Rate scrapers that read
-a public site. Aggregators that read many OTAs at once. And partner platforms that
-can actually hold a room. They get shortlisted against each other constantly, and
-they are not substitutes.
+"Hotel data API" covers at least four different products. Rate scrapers that read
+a public site. Aggregators that read many OTAs at once. Enrichment APIs that answer
+questions about a listing you already know. And partner platforms that can actually
+hold a room. They get shortlisted against each other constantly, and they are not
+substitutes.
 
 I should say this in the first paragraph: **the first entry is mine.** I run
 FlightPowers and sell the Booking.com Live API, so read that section as a vendor
 describing his own product. Everything about everyone else is quoted from their own
-live page, read on **2026-09-02**, with the URL in the table. Where a page does not
-publish a price, that is what I write, because guessing one would be worse than
-leaving it blank. And two options here carry a lower list price per unit than mine.
-They are in the table too.
+live page, read on **2026-09-02** and re-read on **2026-09-09**, with the URL in the
+table. StayAPI, HasData and SearchApi were added on 2026-09-09 and read that day.
+Where a page does not publish a price, that is what I write, because guessing one
+would be worse than leaving it blank. And four options here carry a lower list price
+per unit than my ${HOTEL_PLANS[1].priceMonthly} tier. They are in the table too.
 
 ## The prices, with their sources
 
 | API | Sits on | Published price | Read from |
 |---|---|---|---|
 | Booking.com Live API (mine) | Booking.com | ${HOTEL_PLANS[1].priceMonthly} / mo for {HOTEL_PLANS[1].quota.toLocaleString('en-US')} requests, up to ${HOTEL_PLANS[3].priceMonthly} / mo for {HOTEL_PLANS[3].quota.toLocaleString('en-US')} | RapidAPI listing, {READ_ON} |
-| SerpApi Google Hotels | Google Hotels | $25 / mo for 1,000 searches, up to $2,750 / mo for 500,000 | serpapi.com/pricing, 2026-09-02 |
-| Makcorps | 200+ OTAs | $350 / mo for 10k requests; $500 / mo for 50k; $4,000 / mo enterprise | makcorps.com, 2026-09-02 |
-| Bright Data Booking scraper | Booking.com | $1.5 per 1,000 records pay as you go; $499 / mo Scale | brightdata.com, 2026-09-02 |
-| Apify `voyager/booking-scraper` | Booking.com | from $2.00 per 1,000 scraped place results | apify.com, 2026-09-02 |
-| Apify actor (mine) | Booking.com | from $3.70 per 1,000 hotel lookups | apify.com, 2026-09-02 |
+| SerpApi Google Hotels | Google Hotels | $25 / mo for 1,000 searches, up to $2,750 / mo for 500,000 | serpapi.com/pricing, 2026-09-09 |
+| Makcorps | 200+ OTAs | $350 / mo for 10k requests; $500 / mo for 50k; $4,000 / mo enterprise | makcorps.com, 2026-09-09 |
+| Bright Data Booking scraper | Booking.com | $1.5 per 1,000 records pay as you go; $499 / mo Scale | brightdata.com, 2026-09-09 |
+| Apify `voyager/booking-scraper` | Booking.com | from $2.00 per 1,000 scraped place results | apify.com, 2026-09-09 |
+| Apify actor (mine) | Booking.com | from $3.70 per 1,000 hotel lookups | apify.com, 2026-09-09 |
+| StayAPI | Booking.com and Airbnb, one listing at a time | 50 free requests once, then $49 / mo for 1,500; $149 / mo for 10,000; $450 / mo for 100,000 | stayapi.com, 2026-09-09 |
+| HasData | Google Hotels, Booking.com, Airbnb | free plan, then $59 / $119 / $249 a month; the Airbnb line prints $1.23 per 1,000 requests at $59 | hasdata.com/prices, 2026-09-09 |
+| SearchApi | Booking.com, Airbnb, Google Hotels | 100 free requests, then $40 / mo for 10,000 searches ($4 per 1,000), down to $1 per 1,000 at 5M | searchapi.io, 2026-09-09 |
 | Booking.com Demand API | Booking.com inventory | no price on the pages I read | developers.booking.com, 2026-09-02 |
 | Amadeus Hotel Search | Amadeus | Self-Service URLs redirect, see below | developers.amadeus.com, 2026-09-02 |
 
 Units differ and the table cannot fix that. A "request" on mine returns a page of
-properties. A "record" on Bright Data is one property. Compare on your own workload,
-not on this table.
+properties. A "record" on Bright Data is one property. A StayAPI request answers one
+question about one listing you already have. A SearchApi "search" is one search on
+one of their engines. Compare on your own workload, not on this table.
 
 ## 1. Booking.com Live API (FlightPowers): mine
 
@@ -103,6 +110,19 @@ a month as a hard cap, then ${HOTEL_PLANS[1].priceMonthly} for{' '}
 1,000). Rate limits are {HOTEL_PLANS[1].ratePerMinute} requests a minute on the two
 middle tiers and {HOTEL_PLANS[3].ratePerMinute} on the top one.
 
+Where I actually compete on price is the entry, not the unit.{' '}
+${HOTEL_PLANS[1].priceMonthly} a month, and the free tier comes back every month rather
+than once. Of the entries here that
+charge a monthly subscription, the others start at $25, $40, $49, $59 and $350. Two
+of them, Bright Data and the Apify actors, bill per use with no monthly floor at all,
+so "lowest entry" means nothing against those, and at least one rival is cheaper than
+me per search: SearchApi's Booking.com engine lists at $0.0040 against{' '}
+{`$${(HOTEL_PLANS[1].priceMonthly / HOTEL_PLANS[1].quota).toFixed(4)}`} on my{' '}
+${HOTEL_PLANS[1].priceMonthly} tier. The other thing worth knowing is that flights and
+hotels are two listings on the same account, so one RapidAPI key reaches both once you
+subscribe to each. The [flights side](/guides/best-flight-data-apis-2026) is written up
+the same way.
+
 The cons, because everyone else on this page gets to state theirs. One source, so
 what Booking.com does not list, I do not have. The free tier is ten requests, which
 verifies a key and nothing else. The rate limit is the lowest number on this page,
@@ -126,7 +146,8 @@ Two of those beat mine outright, and I would rather say so than have you find ou
 later: amenities and coordinates come back in the response, and vacation rentals are
 documented. I have no documented vacation-rental endpoint in my reference.
 
-Pricing from serpapi.com/pricing, read 2026-09-02: free 250 searches, then $25 for
+Pricing from serpapi.com/pricing, read 2026-09-02 and re-read 2026-09-09: free 250
+searches, then $25 for
 1,000, $75 for 5,000, $275 for 30,000, and on up to $2,750 for 500,000. Their page
 states that "Only successful searches are
 counted toward your monthly searches. Cached, errored, and failed searches are not."
@@ -146,7 +167,7 @@ if your legal team wants the indemnity.
 
 **Sits on: many OTAs. Best for: cross-OTA price comparison in one call.**
 
-From makcorps.com, read 2026-09-02: "200+ OTAs tracked", a demo of "30 Free API
+From makcorps.com, read 2026-09-02 and re-read 2026-09-09: "200+ OTAs tracked", a demo of "30 Free API
 calls" with no credit card, and the API returns "hotel prices from top cheapest OTAs
 in JSON form" with "rates and availability in real time". Published plans on that
 page: Basic "$350 Per Month" for 10k requests, Advance "$500 Per Month" for 50k and
@@ -165,7 +186,8 @@ $350 floor is inside your budget.
 
 **Sits on: Booking.com. Best for: bulk extraction into a warehouse.**
 
-From brightdata.com/products/web-scraper/booking, read 2026-09-02: a free tier of
+From brightdata.com/products/web-scraper/booking, read 2026-09-02 and re-read
+2026-09-09: a free tier of
 "5K records per month" with no card, pay as you go at "$1.5/1K record", a Scale plan
 at "$499/month" including 384,000 records with additional records at "$1.3/1K", and
 custom enterprise pricing. Output as "JSON, NDJSON, JSON lines, CSV, and .gz files
@@ -187,14 +209,15 @@ a live product.
 
 **Sits on: Booking.com. Best for: a run you can schedule from a console.**
 
-`voyager/booking-scraper` on apify.com, read 2026-09-02: "from $2.00 / 1,000 scraped
+`voyager/booking-scraper` on apify.com, read 2026-09-02 and re-read 2026-09-09: "from
+$2.00 / 1,000 scraped
 place results", pay per event. Its own page states "The Booking.com website will only
 display a maximum of 1,000 results, so that's how much the scraper can get at once",
 with a toggle to go past it. It extracts names, addresses, room availability,
 pricing, features, review counts, ratings, stars and image URLs.
 
 Disclosure: <a href={LINKS.apifyHotels} rel="noopener">my own actor</a> is also on
-Apify, priced on its page at "from $3.70 / 1,000 hotel lookups", read 2026-09-02.
+Apify, priced on its page at "from $3.70 / 1,000 hotel lookups", re-read 2026-09-09.
 It is the same backend as the REST API above, with `endpoint` selecting `/search`,
 `/hotel_by_name`, `/hotel` or `/resolve`. On the list price per unit shown on the two
 pages, `voyager/booking-scraper` is the cheaper one.
@@ -203,7 +226,103 @@ pages, `voyager/booking-scraper` is the cheaper one.
 without building a job runner. Consider a REST API instead if the call happens inside
 a user request and you need it to answer now.
 
-## 6. Booking.com Demand API
+## 6. StayAPI
+
+**Sits on: Booking.com and Airbnb, one listing at a time. Best for: enriching
+listings you already know.**
+
+From stayapi.com/apis/booking and stayapi.com/apis/airbnb, read 2026-09-09: 50 free
+requests once rather than monthly, then Basic at "$49" for 1,500 requests, Startup at
+"$149" for 10,000, Scale at "$450" for 100,000 (their page shows $900 struck through)
+and a Custom tier from 1M. Their billing note is "1 request = 1 credit. No
+per-endpoint multipliers". That works out to $32.67 per 1,000 at Basic, $14.90 at
+Startup and $4.50 at Scale.
+
+The thing to know before you shortlist them: **their Airbnb API has no destination
+search.** The documented endpoints on that page are `calendar`,
+`cancellation-policy`, `cancellation-policy-from-url`, `details`, `details-from-url`,
+`extract-id`, `overview`, `payment-methods`, `payment-methods-from-url`, `photos`,
+`pricing`, `pricing-from-url`, `reviews` and `reviews-from-url`. Every one of them
+starts from a listing id or a listing URL, so you have to already know the listing.
+Their own FAQ says why: "Airbnb runs partner and connectivity programs for software
+vendors, but there is no open public API for pulling listing reviews, nightly prices,
+availability, or competitor data." Per-listing enrichment is their answer to that. It
+is a real product. It is not a search product, and mine starts from a city and a pair
+of dates.
+
+Their pricing nav also lists a free agent skill install, report templates, and a set
+of free tools: a Booking.com destination lookup, Airbnb reviews and listing details,
+Agoda reviews, OpenTable and TripAdvisor.
+
+**Consider StayAPI if** you have a set of listings and want reviews, photos,
+calendars and cancellation terms for each one. Consider something with a destination
+search if your question starts with a city and dates.
+
+## 7. HasData
+
+**Sits on: Google Hotels, Booking.com and Airbnb. Best for: several lodging sources
+on one credit balance.**
+
+From hasdata.com/prices, read 2026-09-09: a free plan, then $59, $119 and $249 a
+month, with annual-equivalent figures of $590, $1,190 and $2,490 and credit packs at
+$415, $830 and $1,660 for 5M, 10M and 20M credits. One warning if you read that page
+quickly: the number printed on the card is the annual-equivalent, and the monthly
+price is the one in the page's structured data. The free plan renews 1,000 credits
+every month.
+
+They publish a per-API rate rather than one flat search price, and the rates differ
+between their APIs. The line I read in full is the Airbnb Scraper API: 200 free
+requests a month, then $1.23 per 1,000 requests at the $59 plan (40,000 requests),
+falling to $0.50 and then $0.35 per 1,000 at 600,000 requests. Their own table prices
+that line below their Booking.com and Google Hotels lines, so do not read $1.23 as
+their hotel rate. I did not read a per-1,000 figure for the Google Hotels line, so
+there isn't one printed here.
+
+Their Google Flights engine, including the `priceInsights` object it returns, is
+covered in the
+[Amadeus Self-Service alternatives guide](/guides/amadeus-self-service-alternatives).
+
+**Consider HasData if** you want Google Hotels, Booking.com and Airbnb behind one key
+and one credit balance, and $59 is inside your budget.
+
+## 8. SearchApi
+
+**Sits on: Booking.com, Airbnb and Google Hotels. Best for: one flat search rate
+across many engines.**
+
+Read 2026-09-09. They sell a Booking.com Search API and an Airbnb Search API next to
+Google Hotels and Google Flights. searchapi.io/booking-api describes itself as
+"Scrape Booking.com property search, destination autocomplete and full property
+details: prices, reviews, filters, rooms and nearby places, in JSON", and
+searchapi.io/airbnb-api as "Search and retrieve listings, availability, and pricing
+information in JSON format using the Airbnb Search API". Both take a destination and
+dates: their examples are `engine="booking"` with `q="Dubrovnik"` and `adults="2"`,
+and `engine="airbnb"` with `q="Barcelona"` plus `check_in_date` and
+`check_out_date`. Both pages state "Only pay for successful searches", "Get 100 Free
+Requests" and "No credit card required".
+
+Pricing from searchapi.io/pricing, read 2026-09-09: Developer at $40 a month for
+10,000 searches, which the page itself prints as "$4 per 1,000 searches", then
+Production at $100 ($3 per 1,000), BigData at $250 ($2.50), Scale at $500 ($2) and on
+down to $1 per 1,000 at their 5M plan. There is no per-engine multiplier on that
+ladder, so a Booking.com search costs the same as a Google Flights search.
+
+Stated plainly, because it is the sharpest comparison on this page: **per search at
+their entry tier they are cheaper than me.** $0.0040 against{' '}
+{`$${(HOTEL_PLANS[1].priceMonthly / HOTEL_PLANS[1].quota).toFixed(4)}`} on my{' '}
+${HOTEL_PLANS[1].priceMonthly} tier. What differs is the entry: $40 a month against{' '}
+${HOTEL_PLANS[1].priceMonthly}, and 100 free requests once against a free tier that
+renews. And nothing on their Booking page mentions pricing a property from a specific
+country of residence, which is the whole point of
+[`proxy_country`](/hotels-api/geo-pricing).
+
+I could not date these engines. Their changelog and sitemap both 404 for me, so "new
+to my record" is all I can honestly say about when they appeared.
+
+**Consider SearchApi if** you want Booking.com, Airbnb, Google Hotels and Google
+Flights on one key at one flat search rate, and the $40 entry is fine.
+
+## 9. Booking.com Demand API
 
 **Sits on: Booking.com inventory, directly. Best for: approved partners.**
 
@@ -222,7 +341,7 @@ pages I read and not about what the partner programme actually costs or requires
 **Consider the Demand API if** you are already a Managed Affiliate Partner, or can
 become one. Nothing on this page beats first-party inventory access if you can get it.
 
-## 7. Amadeus Hotel Search
+## 10. Amadeus Hotel Search
 
 **Observed state, 2026-09-02.** The Self-Service hotel category URL
 (`developers.amadeus.com/self-service/category/hotels`) and the Self-Service pricing
@@ -242,7 +361,12 @@ Self-Service is at [/compare/amadeus](/compare/amadeus).
 Straightforwardly:
 
 - **You need more than Booking.com.** One source is one source. Makcorps for many
-  OTAs, SerpApi for Google Hotels.
+  OTAs, SerpApi or HasData for Google Hotels, SearchApi for Booking.com and Airbnb on
+  one key.
+- **You need Airbnb.** I do not have it. SearchApi searches Airbnb by destination and
+  dates, HasData scrapes it per request, StayAPI enriches a listing you already have.
+- **Your question starts from a listing you already know.** Reviews, photos,
+  calendars and cancellation terms per listing are StayAPI's shape, not mine.
 - **You are filling a warehouse, not a request.** Bright Data delivers to S3 and
   Snowflake. I return JSON to a caller.
 - **You need amenities, coordinates or vacation rentals in the response.** Not in my
@@ -285,6 +409,8 @@ Then price your own job, in your own units, on both.
   category map, including booking-side options
 - [Flight data APIs](/guides/best-flight-data-apis-2026): the same treatment, the
   other half of the trip
+- [Amadeus Self-Service alternatives](/guides/amadeus-self-service-alternatives): the
+  same quoted-price treatment on the flights side, including HasData and SearchApi
 
 <CtaBand
   api="hotels"
