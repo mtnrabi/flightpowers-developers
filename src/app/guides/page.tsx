@@ -16,6 +16,12 @@ export const dynamic = 'force-static';
 
 const GUIDES = [
   {
+    href: '/guides/five-minute-travel-agent',
+    title: 'Set up your own 24/7 travel deal agent in 5 minutes',
+    sub: 'One connector URL, a Google sign-in, and one prompt that prices 30 destinations from your airport and reports only the fares that came in under Google\u2019s own low end. Claude, Claude Code, Cursor and ChatGPT, with the free no-key server as the trial run.',
+    tag: 'start here',
+  },
+  {
     href: '/guides/ai-travel-agent',
     title: 'Create your 24/7 AI travel agent',
     sub: 'Connect live flight and hotel data to Claude or ChatGPT in about 15 minutes, then schedule a daily scan of your routes that only pings you when Google\'s own verdict says the fare is low. Real captured runs, honest cost math.',

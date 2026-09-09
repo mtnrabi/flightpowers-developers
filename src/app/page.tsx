@@ -91,7 +91,7 @@ const PLAYS: { href: string; label: string; line: string }[] = [
     line: 'REST endpoints on api.flightpowers.com, flat JSON, and a working booking link on every result you hand back to a user.',
   },
   {
-    href: '/guides/ai-travel-agent',
+    href: '/guides/five-minute-travel-agent',
     label: 'Run a 24/7 AI travel agent',
     line: 'Sign in with Google, connect the server to Claude or ChatGPT, and it scans your routes every morning on the $10 plan.',
   },

@@ -22,7 +22,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
       'Step-by-step: connect live Google Flights and Booking.com data to Claude or ChatGPT, then schedule a daily fare scan triggered by Google’s own low | typical | high price verdict.',
     url: `${SITE.url}/guides/ai-travel-agent`,
     datePublished: '2026-08-27',
-    dateModified: '2026-09-08',
+    dateModified: '2026-09-09',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -71,7 +71,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 # Create your 24/7 AI travel agent
 
-<GuideDates published="2026-08-27" updated="2026-09-08" />
+<GuideDates published="2026-08-27" updated="2026-09-09" />
 
 **Short answer:** Connect Claude or ChatGPT to live Google Flights data through one URL, then schedule a daily task that scans your routes and tells you only when Google's own verdict says a fare is low. No code, no server, no price-history database.
 
@@ -93,6 +93,10 @@ ones: a flight price alert with judgment attached.
 This is one of three ways people use the same data. The other two are
 [scanning a date range and a list of destinations in one call](/guides/cheapest-destinations-from-one-airport)
 and [calling the REST endpoints from your own app](/docs). This page is the one where an LLM does the work.
+
+**In a hurry?** [The five-minute version](/guides/five-minute-travel-agent) is the same build
+with the sign-in path instead of a pasted key, one prompt to copy, and Claude Code and Cursor
+covered as well. Come back here for the scheduling detail and the cost math.
 
 The conversational part takes about ten minutes. The schedule takes five more.
 Every step below was run against the live products before it was written down; the
@@ -493,6 +497,7 @@ an open app, with the connector caveat above.
 
 ## Related
 
+- [The five-minute setup](/guides/five-minute-travel-agent): the short version, plus Claude Code and Cursor
 - [Claude integration page](/integrations/claude): connector reference, all four tools, FAQ
 - [ChatGPT integration page](/integrations/chatgpt): connector reference for ChatGPT
 - [Price Insights API](/flights-api/price-insights): the verdict field, documented and proven
