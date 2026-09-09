@@ -105,7 +105,7 @@ const DECISION_ROWS: TableRow[] = [
 const faq: Faq[] = [
   {
     q: 'What is the fastest way to connect an agent?',
-    a: 'The MCP URL. Paste the mcpServers config (or the connector URL with your key) into Claude, Cursor, or ChatGPT, restart, and the four tools appear. No SDK, no install. The /mcp page has the exact block to copy.',
+    a: 'The MCP URL. Paste https://flights.flightpowers.com/mcp/oauth into Claude, Cursor, or ChatGPT, sign in with Google, and the four tools appear. No SDK, no install. For scripts, CI and clients without a sign-in button, the plain /mcp URL with your key still works. The /mcp page has the exact block to copy.',
   },
   {
     q: 'Does one key really cover MCP, the skills, and REST?',
@@ -161,19 +161,23 @@ export default function AiAgentsPage() {
               <div className="mt-7">
                 <CheckBullets
                   items={[
+                    <>Live Google Flights fares and Booking.com rates, in whatever your agent already speaks</>,
+                    <>Every flight carries Google&apos;s price band, a low | typical | high verdict, and a working buy_link</>,
+                    <>A date range and a list of destinations in one call, and a round trip priced as one request</>,
+                    <>Hotels price per market (price_as_seen_from over MCP, proxy_country over REST): rate-parity checks from a single API</>,
                     <>
                       {COUNTS.mcpServers} hosted MCP servers, {COUNTS.skills} open-source skills, an n8n node, and plain REST: one
                       key authenticates all of it
                     </>,
-                    <>Every flight carries Google&apos;s price band, a price context, and a working buy_link</>,
-                    <>Real-time pricing with booking links</>,
-                    <>Hotels price per market (price_as_seen_from over MCP, proxy_country over REST): rate-parity checks from a single API</>,
                   ]}
                 />
               </div>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Cta href={rapidApiPricingUrl('flights', 'mcp')} external variant="primary">
-                  Get a key on RapidAPI →
+                  Flights key →
+                </Cta>
+                <Cta href={rapidApiPricingUrl('hotels', 'mcp')} external variant="primary">
+                  Hotels key →
                 </Cta>
                 <Cta href="/mcp" variant="ghost">
                   The MCP config

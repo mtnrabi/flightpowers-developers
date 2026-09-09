@@ -8,22 +8,22 @@ export const dynamic = 'force-static';
 export const metadata: Metadata = withOg({
   title: 'Live flight & hotel data in Cursor: mcp.json setup',
   description:
-    'Give Cursor’s agent live Google Flights and Booking.com data with one block in .cursor/mcp.json. Build and test travel features against real fares, billed to your own RapidAPI key.',
+    'Give Cursor’s agent live Google Flights and Booking.com data with one block in .cursor/mcp.json and a Google sign-in. Build and test travel features against real fares, billed to your own RapidAPI plan.',
   alternates: { canonical: '/integrations/cursor' },
 });
 
 const steps: ConnectStep[] = [
   {
     title: 'Get a RapidAPI key',
-    body: 'Subscribe on the listing’s pricing tab. The free tier needs no card. The key is the only credential this integration uses.',
+    body: 'Subscribe on the listing’s pricing tab: Google Flights Live API for flights, Booking Live API for hotels. The free tier needs no card. One key covers both once you subscribe to each listing.',
   },
   {
     title: 'Add the block to .cursor/mcp.json',
-    body: 'Project-level or global: paste the config above with your key. It registers both servers, flights and hotels; one RapidAPI key covers both once you subscribe to each listing, and dropping either entry is fine if you only need one.',
+    body: 'Project-level or global: paste the config above. It registers both servers, flights and hotels, and dropping either entry is fine if you only need one. Nothing secret goes in the file on this path.',
   },
   {
-    title: 'Restart Cursor',
-    body: 'The tools appear in the Agent toolbox. The same config shape works in any mcp.json-style client, so the block travels with your dotfiles.',
+    title: 'Restart Cursor and sign in',
+    body: 'Cursor registers itself and offers the sign-in: sign in with Google, paste your RapidAPI key once, and the tools appear in the Agent toolbox. The same shape works in any mcp.json-style client. For CI and headless runs, point the entry at the plain /mcp URL with an x-rapidapi-key header instead.',
   },
 ];
 

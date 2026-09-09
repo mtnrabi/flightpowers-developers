@@ -8,22 +8,22 @@ export const dynamic = 'force-static';
 export const metadata: Metadata = withOg({
   title: 'Live flight & hotel data in ChatGPT: MCP connector setup',
   description:
-    'Connect ChatGPT to live Google Flights and Booking.com data through developer-mode MCP connectors: one URL per API, your own RapidAPI key, and Google’s low/typical/high price verdict on every fare.',
+    'Connect ChatGPT to live Google Flights and Booking.com data through developer-mode MCP connectors: one URL per API, a Google sign-in, and Google’s low/typical/high price verdict on every fare.',
   alternates: { canonical: '/integrations/chatgpt' },
 });
 
 const steps: ConnectStep[] = [
   {
     title: 'Get a RapidAPI key',
-    body: 'Subscribe on the listing’s pricing tab. The free tier needs no card. The key is the only credential this integration uses.',
+    body: 'Subscribe on the listing’s pricing tab: Google Flights Live API for flights, Booking Live API for hotels. The free tier needs no card. One key covers both once you subscribe to each listing.',
   },
   {
     title: 'Add both connectors in developer mode',
-    body: 'Settings → Connectors, enable developer mode, and add each server URL above (flights, then hotels) with your key in place of YOUR_RAPIDAPI_KEY. Developer mode is what gates custom connectors, and OpenAI ships it on the Pro and Business plans (per its own help pages, checked 2026-08-27). They are separate servers; one RapidAPI key covers both once you subscribe to each listing.',
+    body: 'Settings → Connectors, enable developer mode, and add each server URL above (flights, then hotels). Set authentication to OAuth and leave the client id and secret empty: the server registers ChatGPT for you. Developer mode is what gates custom connectors, and OpenAI ships it on the Pro and Business plans (per its own help pages, checked 2026-08-27).',
   },
   {
-    title: 'Use it in a chat',
-    body: 'The flight and hotel tools become available in conversations. The key rides on the server URL in your settings. ChatGPT never sees it in the chat itself.',
+    title: 'Sign in, then use it in a chat',
+    body: 'Sign in with Google and paste your RapidAPI key once on the page that opens, and the flight and hotel tools become available in conversations. We have no paid ChatGPT account, so we have not run this end to end ourselves; if your connector refuses to attach, the fallback is the plain /mcp URL with ?rapidapi_key= on it and authentication set to none.',
   },
 ];
 

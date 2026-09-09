@@ -32,11 +32,10 @@ import { rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-09-01" updated="2026-09-01" />
 
-**Short answer:** One block in `.cursor/mcp.json` pointing at the FlightPowers flights and
-hotels MCP servers unlocks four tools for Cursor's agent: live Google Flights pricing,
-Booking.com hotel search, plus date-range and destination-list expansion that turn a
-single prompt into a multi-day scan. No REST code, just the config block and your
-RapidAPI key.
+**Short answer:** One block in `.cursor/mcp.json` and a Google sign-in gives Cursor's
+agent four tools: live Google Flights pricing, Booking.com hotel search, plus date-range
+and destination-list expansion that turn a single prompt into a multi-day scan. No REST
+code, and no key in the file.
 
 Cursor's agent can write and test your travel features against real flight and hotel
 data when you connect the FlightPowers MCP servers. One block in `.cursor/mcp.json`
@@ -67,6 +66,27 @@ not exist yet):
 ```json
 {
   "mcpServers": {
+    "flights": { "url": "https://flights.flightpowers.com/mcp/oauth" },
+    "hotels": { "url": "https://hotels.flightpowers.com/mcp/oauth" }
+  }
+}
+```
+
+Restart Cursor. It hits the `401`, registers itself, and offers you the sign-in: sign in
+with Google and paste your RapidAPI key once on the page that opens. Then the tools
+appear in the agent toolbox. Both servers sit behind the same sign-in, and one key covers
+both once you subscribe to each listing on RapidAPI. Nothing secret goes in the file, so
+you can commit it.
+
+### Second option: the key, for scripts, CI and clients without a sign-in button
+
+Point the entry at the plain `/mcp` endpoint and put the key in a header instead. This is
+the form to use for anything headless, because a CI runner has no browser to complete a
+sign-in:
+
+```json
+{
+  "mcpServers": {
     "flights": {
       "url": "https://flights.flightpowers.com/mcp",
       "headers": { "x-rapidapi-key": "YOUR_RAPIDAPI_KEY" }
@@ -79,10 +99,8 @@ not exist yet):
 }
 ```
 
-Replace `YOUR_RAPIDAPI_KEY` with your actual key. Both servers share the same key once
-you subscribe to each listing on RapidAPI.
-
-Restart Cursor. The tools appear in the agent toolbox.
+Replace `YOUR_RAPIDAPI_KEY` with your actual key and keep that copy of the file out of a
+shared repository.
 
 ## The four tools
 
@@ -126,10 +144,11 @@ reading per market is not a comparison.)
 
 ## How it works
 
-The servers are hosted at `https://flights.flightpowers.com/mcp` and
-`https://hotels.flightpowers.com/mcp`. Nothing runs on your machine. Cursor sends your
-RapidAPI key with each call (in the `x-rapidapi-key` header), so usage meters against
-your own subscription. The free BASIC tier (10 requests/month, hard cap, no card)
+The servers are hosted at `https://flights.flightpowers.com/mcp/oauth` and
+`https://hotels.flightpowers.com/mcp/oauth`. Nothing runs on your machine. On the sign-in
+path your RapidAPI key is stored on our side, encrypted, and used on each call; on the
+key path Cursor sends it in the `x-rapidapi-key` header. Either way usage meters
+against your own subscription, and Disconnect on the connect page deletes a stored key. The free BASIC tier (10 requests/month, hard cap, no card)
 verifies the config works. A scheduled agent that scans routes daily fits the cheapest
 paid plan.
 
@@ -155,6 +174,7 @@ production will see. Use the <a href="https://rapidapi.com/mtnrabi/api/google-fl
 
 <CtaBand
   medium="guide"
+  showBoth
   title="Test it on your own routes"
-  body="Ask the agent to fetch a live price. The free tier verifies your key works; the paid tiers are sized for daily development."
+  body="Add the URL, sign in with Google, and ask the agent to fetch a live price. The free tier verifies your key works; the paid tiers are sized for daily development."
 />

@@ -21,13 +21,25 @@ import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 export const metadata: Metadata = withOg({
   title: 'MCP Servers: Google Flights & Booking.com for Claude, Cursor, ChatGPT',
   description:
-    'Hosted MCP servers for live Google Flights and Booking.com data. Works with Claude, Cursor, ChatGPT, and any MCP client. No install required, bring your own RapidAPI key. Flight date ranges and destination lists in a single call. Free tier: 10 requests/month.',
+    'Hosted MCP servers for live Google Flights and Booking.com data. Works with Claude, Cursor, ChatGPT, and any MCP client. Add one URL and sign in with Google, no key to paste into your client. Flight date ranges and destination lists in a single call. Free tier: 10 requests/month.',
   alternates: { canonical: '/mcp' },
 });
 
 export const dynamic = 'force-static';
 
-const MCP_CONFIG = `{
+/** Sign-in first: this is the URL that makes a client show a Sign in button. */
+const SIGN_IN_URLS = `${LINKS.mcpFlightsSignIn}
+${LINKS.mcpHotelsSignIn}`;
+
+const SIGN_IN_CONFIG = `{
+  "mcpServers": {
+    "flights": { "url": "${LINKS.mcpFlightsSignIn}" },
+    "hotels": { "url": "${LINKS.mcpHotelsSignIn}" }
+  }
+}`;
+
+/** Second option: the key form, for scripts, CI and clients without a sign-in button. */
+const KEY_CONFIG = `{
   "mcpServers": {
     "flights": {
       "url": "${LINKS.mcpFlights}",
@@ -40,7 +52,7 @@ const MCP_CONFIG = `{
   }
 }`;
 
-const URL_PARAM_ALT = `${LINKS.mcpFlights}?rapidapi_key=YOUR_RAPIDAPI_KEY
+const KEY_URLS = `${LINKS.mcpFlights}?rapidapi_key=YOUR_RAPIDAPI_KEY
 ${LINKS.mcpHotels}?rapidapi_key=YOUR_RAPIDAPI_KEY`;
 
 /** The five ask-it prompts, pulled from the verified recipe dataset. */
@@ -49,8 +61,12 @@ const ASKS = ASK_SLUGS.map((slug) => TASKS.find((t) => t.slug === slug)!);
 
 const faq: Faq[] = [
   {
+    q: 'What happens when I sign in?',
+    a: 'Your client opens a Google sign-in, you approve it, and you land on our /connect page. Paste your RapidAPI key there once and it is encrypted before it is stored: only the last four characters are ever shown again. After that the client just works, and Disconnect on the same page deletes the key and cuts off every client that was using it. We keep your Google account id and email, nothing else.',
+  },
+  {
     q: 'Do I need to install or run anything?',
-    a: 'No. Both servers are hosted and speak streamable HTTP: you paste a URL and a key into your client’s MCP config and the tools appear. Nothing runs on your machine and there is nothing to update.',
+    a: 'No. Both servers are hosted and speak streamable HTTP: you add a URL, sign in with Google, and the tools appear. Nothing runs on your machine and there is nothing to update.',
   },
   {
     q: 'Whose API key does the server use, and who gets billed?',
@@ -58,11 +74,11 @@ const faq: Faq[] = [
   },
   {
     q: 'Which clients does this work with?',
-    a: 'Any MCP client that supports remote servers: Claude (Settings → Connectors), Claude Code, Cursor (.cursor/mcp.json), ChatGPT (developer-mode connectors), and anything else that takes an mcpServers-style config. Prefer sending the key as an x-rapidapi-key header; clients without header support can put it on the URL as ?rapidapi_key=.',
+    a: 'Any MCP client that supports remote servers: Claude (Settings → Connectors), Claude Code, Cursor (.cursor/mcp.json), ChatGPT (developer-mode connectors), and anything else that takes an mcpServers-style config. Give it the /mcp/oauth URL and it shows a Sign in button. A client with no sign-in button, and anything headless, uses the plain /mcp URL with an x-rapidapi-key header, or ?rapidapi_key= on the URL where headers are not supported.'
   },
   {
-    q: 'If I use the ?rapidapi_key= URL, does the model see my key?',
-    a: 'The key rides on the server URL stored in your client’s connector settings; it does not appear in the chat. If your client supports custom headers, the header form is still the cleaner option.',
+    q: 'Where does my key end up?',
+    a: 'On the sign-in path it goes into the form at flights.flightpowers.com/connect, once, and never into your client. On the key path it rides in a header, or on the server URL stored in your connector settings. Either way it does not appear in the chat, and a URL with a key on it should be treated as a secret.',
   },
   {
     q: 'How is this different from calling the REST API directly?',
@@ -104,23 +120,35 @@ export default function McpPage() {
                 Connect Google Flights &amp; Booking.com to <span className="text-signal-500">any MCP client</span>
               </h1>
               <p className="lede mt-5">
-                Hosted MCP servers for Claude, Cursor, ChatGPT, and any MCP client. No installation required - just paste a URL and your RapidAPI key. Your AI agent gets live flight and hotel pricing in seconds.
+Ask your assistant what a flight costs and get today's real fare, with Google's own price band next to it. Add one URL, sign in with Google, and Claude, Cursor or ChatGPT can search live flights and hotels for you. Nothing to install.
               </p>
               <div className="mt-7">
                 <CheckBullets
                   items={[
-                    <>Nothing to install: hosted servers, bring your own RapidAPI key, usage billed to your own plan</>,
+                    <>Live Google Flights fares and Booking.com rates inside the assistant you already use</>,
                     <>
-                      Flight tools accept date <strong className="text-ink-100">ranges</strong> and destination{' '}
-                      <strong className="text-ink-100">lists</strong>: one call, not N
+                      Every fare comes back with Google&apos;s own price band and a{' '}
+                      <strong className="text-ink-100">low | typical | high</strong> verdict, so your agent knows cheap when it
+                      sees it
                     </>,
-                    <>The same live Google Flights and Booking.com data as the REST API</>,
+                    <>
+                      A date <strong className="text-ink-100">range</strong> and a{' '}
+                      <strong className="text-ink-100">list</strong> of destinations in one call, and a round trip priced as one
+                      request with one booking link
+                    </>,
+                    <>
+                      Hotel rates as a shopper in any country sees them, which is what a rate-parity check needs. No ads on
+                      these servers, and searches bill to your own RapidAPI plan
+                    </>,
                   ]}
                 />
               </div>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Cta href={rapidApiPricingUrl('flights', 'mcp')} external variant="primary">
-                  Get free API key →
+                  Flights key →
+                </Cta>
+                <Cta href={rapidApiPricingUrl('hotels', 'mcp')} external variant="primary">
+                  Hotels key →
                 </Cta>
                 <Cta href="/ai-agents" variant="ghost">
                   Agent use cases
@@ -137,22 +165,30 @@ export default function McpPage() {
                   <svg className="w-3.5 h-3.5 text-signal-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span className="text-ink-300">Setup time: <strong className="text-ink-100">~30 seconds</strong> (paste config, restart client)</span>
+                  <span className="text-ink-300">Setup: <strong className="text-ink-100">one URL</strong>, then sign in with Google</span>
                 </div>
               </div>
             </div>
 
             <div>
-              <Code label="mcp.json · both servers">{MCP_CONFIG}</Code>
+              <Code label="add this URL · flights and hotels">{SIGN_IN_URLS}</Code>
               <p className="mt-3 text-[15px] text-ink-300">
-                Restart your client. Ask it for a price. Done.
+                Add the URL, click <strong className="text-ink-100">Sign in</strong>, sign in with Google, and paste your
+                RapidAPI key once on the page that opens. Nothing else goes into your client.
               </p>
               <div className="mt-5">
-                <Code label="no header support? put the key on the URL">{URL_PARAM_ALT}</Code>
+                <Code label="same thing in an mcp.json client">{SIGN_IN_CONFIG}</Code>
+              </div>
+              <div className="mt-5">
+                <Code label="second option · scripts, CI, clients without a sign-in button">{KEY_CONFIG}</Code>
                 <p className="mt-2 text-[13px] text-ink-500">
-                  For clients that only take a server URL (Claude and ChatGPT connectors). The key rides on the URL in your
-                  connector settings, not in the chat.
+                  A headless run cannot open a browser to sign in, so cron jobs, CI and{' '}
+                  <code className="field">claude -p</code> use the key form. Clients that take only a URL and no headers can put
+                  the key on the URL instead:
                 </p>
+                <div className="mt-3">
+                  <Code label="key on the URL">{KEY_URLS}</Code>
+                </div>
               </div>
             </div>
           </div>
@@ -318,8 +354,9 @@ export default function McpPage() {
         </div>
         <CtaBand
           medium="mcp"
+          showBoth
           title="Hook your agent up in 30 seconds"
-          body="Paste the config, restart your client, ask it for flight prices. The free tier verifies the connection; the paid tiers are sized for daily agents and scans."
+          body="Add the URL, sign in with Google, then ask your assistant for a fare and read Google's verdict on it. Flights and hotels are separate listings; the free tier proves your key works and the paid tiers are sized for daily scans."
         />
       </Section>
     </>

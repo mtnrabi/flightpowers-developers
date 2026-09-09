@@ -41,7 +41,7 @@ Last-Updated: ${LLMS_LAST_UPDATED}
 
 - ${COUNTS.restEndpoints} REST endpoints on https://${SITE.apiHost}: POST /v1/flights/{oneway,roundtrip}, POST /v1/hotels/{search,by-name,rooms,resolve}
 - Auth: RapidAPI key via x-rapidapi-key / x-api-key header. Get one: ${LINKS.rapidapiFlights}/pricing
-- ${COUNTS.mcpServers} hosted MCP servers (streamable HTTP): ${LINKS.mcpFlights} (flights, BYO key), ${LINKS.mcpHotels} (hotels, BYO key), and ${LINKS.mcpFree} (all four tools, no key and no signup, ad-supported)
+- ${COUNTS.mcpServers} hosted MCP servers (streamable HTTP): ${LINKS.mcpFlightsSignIn} (flights) and ${LINKS.mcpHotelsSignIn} (hotels) sign in with Google and take the RapidAPI key once on a connect page; the same servers also answer on ${LINKS.mcpFlights} and ${LINKS.mcpHotels} with the key in an x-rapidapi-key header or ?rapidapi_key=, which is the form for scripts, CI and clients without a sign-in button. ${LINKS.mcpFree} serves all four tools with no key and no signup, ad-supported
 - MCP tools: search_oneway_flights, search_roundtrip_flights, search_hotels, find_hotel_by_name. Flight tools accept date RANGES and destination LISTS and expand them internally (one call, not N)
 - Official MCP registry entries: com.flightpowers/google-flights and com.flightpowers/booking
 - ${COUNTS.skills} open-source agent skills (MIT): ${LINKS.skills}

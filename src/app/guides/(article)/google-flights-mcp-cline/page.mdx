@@ -32,11 +32,10 @@ import { rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-09-02" updated="2026-09-02" />
 
-**Short answer:** One block in `cline_mcp_settings.json` pointing at the FlightPowers
-flights and hotels MCP servers unlocks four tools for Cline's agent: live Google Flights
-pricing, Booking.com hotel search, plus date-range and destination-list expansion that
-turn a single prompt into a multi-day scan. No REST code, just the config block and your
-RapidAPI key.
+**Short answer:** One block in `cline_mcp_settings.json` unlocks four tools for Cline's
+agent: live Google Flights pricing, Booking.com hotel search, plus date-range and
+destination-list expansion that turn a single prompt into a multi-day scan. No REST code,
+just the config block and either a Google sign-in or your RapidAPI key.
 
 Cline's agent can write and test your travel features against real flight and hotel
 data when you connect the FlightPowers MCP servers. One block in
@@ -80,6 +79,40 @@ Add this block:
   "mcpServers": {
     "flights": {
       "type": "streamableHttp",
+      "url": "https://flights.flightpowers.com/mcp/oauth",
+      "disabled": false,
+      "autoApprove": []
+    },
+    "hotels": {
+      "type": "streamableHttp",
+      "url": "https://hotels.flightpowers.com/mcp/oauth",
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}
+```
+
+Save the file, then reload the VS Code or Cursor window (Command Palette → Developer:
+Reload Window) or toggle the servers off and on in the Cline MCP Servers panel. The
+server answers an unauthenticated request with a `401`, so a client that handles MCP
+authorization offers you a sign-in: sign in with Google and paste your RapidAPI key once
+on the page that opens. The `type: "streamableHttp"` field is required (omitting it
+defaults to legacy SSE transport).
+
+We have not run the sign-in in Cline ourselves, only in Claude, Claude Code and Cursor.
+If your Cline version does not offer one, use the key block below, which needs no sign-in
+at all.
+
+### Option 2: the key, for scripts, CI and clients without a sign-in button
+
+Same block, pointed at the plain `/mcp` endpoint with the key in a header:
+
+```json
+{
+  "mcpServers": {
+    "flights": {
+      "type": "streamableHttp",
       "url": "https://flights.flightpowers.com/mcp",
       "headers": {
         "x-rapidapi-key": "YOUR_RAPIDAPI_KEY"
@@ -101,22 +134,20 @@ Add this block:
 ```
 
 Replace `YOUR_RAPIDAPI_KEY` with your actual key. Both servers share the same key once
-you subscribe to each listing on RapidAPI. The `type: "streamableHttp"` field is
-required (omitting it defaults to legacy SSE transport).
+you subscribe to each listing on RapidAPI.
 
-Save the file, then reload the VS Code or Cursor window (Command Palette → Developer:
-Reload Window) or toggle the servers off and on in the Cline MCP Servers panel.
-
-### Option 2: Use the Remote Servers tab
+### Option 3: Use the Remote Servers tab
 
 In the Cline panel, click the MCP Servers icon, then open the Remote Servers tab. Add
 each server:
 
 - **Server Name**: `flights`
-- **Server URL**: `https://flights.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY`
+- **Server URL**: `https://flights.flightpowers.com/mcp/oauth`
 - **Transport Type**: Streamable HTTP
 
-Repeat for the hotels server with `https://hotels.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY`.
+Repeat for the hotels server with `https://hotels.flightpowers.com/mcp/oauth`. If that
+tab gives you nowhere to sign in, use the key on the URL instead:
+`https://flights.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY`.
 
 The tools appear in the agent toolbox once the servers are connected.
 
@@ -162,10 +193,11 @@ reading per market is not a comparison.)
 
 ## How it works
 
-The servers are hosted at `https://flights.flightpowers.com/mcp` and
-`https://hotels.flightpowers.com/mcp`. Nothing runs on your machine. Cline sends your
-RapidAPI key with each call (in the `x-rapidapi-key` header), so usage meters against
-your own subscription. The free BASIC tier (10 requests/month, hard cap, no card)
+The servers are hosted at `https://flights.flightpowers.com/mcp/oauth` and
+`https://hotels.flightpowers.com/mcp/oauth`. Nothing runs on your machine. On the sign-in
+path your RapidAPI key is stored on our side, encrypted, and used on each call; on the
+key path Cline sends it in the `x-rapidapi-key` header. Either way usage meters
+against your own subscription, and Disconnect on the connect page deletes a stored key. The free BASIC tier (10 requests/month, hard cap, no card)
 verifies the config works. A scheduled agent that scans routes daily fits the cheapest
 paid plan.
 
@@ -193,6 +225,7 @@ production will see. Use the <a href="https://rapidapi.com/mtnrabi/api/google-fl
 
 <CtaBand
   medium="guide"
+  showBoth
   title="Test it on your own routes"
-  body="Ask the agent to fetch a live price. The free tier verifies your key works; the paid tiers are sized for daily development."
+  body="Add the URL, connect, and ask the agent to fetch a live price. The free tier verifies your key works; the paid tiers are sized for daily development."
 />
