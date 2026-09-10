@@ -3,7 +3,7 @@ import { withOg } from '@/lib/meta';
 export const metadata = withOg({
   title: 'The best hotel data APIs in 2026, compared honestly',
   description:
-    'A sourced comparison of the hotel data APIs people actually shortlist: Booking.com Live API, SerpApi Google Hotels, Makcorps, Bright Data, Apify scrapers, StayAPI, HasData, SearchApi, the Booking.com Demand API and Amadeus. Every competitor price quoted from their own live page with the date it was read.',
+    'A sourced comparison of the hotel data APIs people actually shortlist: Booking.com Live API, SerpApi Google Hotels, Makcorps, Bright Data, Apify scrapers, StayAPI, HasData, SearchApi, StayingAPI, Blue Pillow, the Booking.com Demand API and Amadeus. Every competitor price quoted from their own live page with the date it was read.',
   alternates: { canonical: '/guides/best-hotel-data-apis-2026' },
 });
 
@@ -20,10 +20,10 @@ import { COUNTS, LINKS, SITE } from '@/lib/site';
     '@type': 'TechArticle',
     headline: 'The best hotel data APIs in 2026, compared honestly',
     description:
-      'Booking.com Live API, SerpApi Google Hotels, Makcorps, Bright Data, Apify, StayAPI, HasData, SearchApi and the Booking.com Demand API compared with quoted, dated prices and disclosed bias.',
+      'Booking.com Live API, SerpApi Google Hotels, Makcorps, Bright Data, Apify, StayAPI, HasData, SearchApi, StayingAPI, Blue Pillow and the Booking.com Demand API compared with quoted, dated prices and disclosed bias.',
     url: `${SITE.url}/guides/best-hotel-data-apis-2026`,
     datePublished: '2026-09-02',
-    dateModified: '2026-09-09',
+    dateModified: '2026-09-10',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -31,20 +31,22 @@ import { COUNTS, LINKS, SITE } from '@/lib/site';
 
 # The best hotel data APIs in 2026, compared
 
-<GuideDates published="2026-09-02" updated="2026-09-09" />
+<GuideDates published="2026-09-02" updated="2026-09-10" />
 
 **Short answer:** FlightPowers' Booking.com Live API, SerpApi Google Hotels, Makcorps,
-Bright Data, Apify scrapers, StayAPI, HasData, SearchApi, the Booking.com Demand API, and
-Amadeus Hotel Search are the hotel data APIs people actually shortlist in 2026. Rate
-scrapers, OTA aggregators, per-listing enrichment APIs, and partner booking platforms are
+Bright Data, Apify scrapers, StayAPI, HasData, SearchApi, StayingAPI, Blue Pillow, the
+Booking.com Demand API, and Amadeus Hotel Search are the hotel data APIs people actually
+shortlist in 2026. Rate scrapers, OTA aggregators, cross-OTA comparators, per-listing
+enrichment APIs, and partner booking platforms are
 different products that don't substitute for each other, and every price here is quoted
 live from each vendor's own page, including four priced lower per unit than my
 ${HOTEL_PLANS[1].priceMonthly} tier.
 
-"Hotel data API" covers at least four different products. Rate scrapers that read
-a public site. Aggregators that read many OTAs at once. Enrichment APIs that answer
-questions about a listing you already know. And partner platforms that can actually
-hold a room. They get shortlisted against each other constantly, and they are not
+"Hotel data API" covers at least five different products. Rate scrapers that read
+a public site. Aggregators that read many OTAs at once. Comparators that put the same
+property's price from several OTAs side by side in one answer. Enrichment APIs that
+answer questions about a listing you already know. And partner platforms that can
+actually hold a room. They get shortlisted against each other constantly, and they are not
 substitutes.
 
 I should say this in the first paragraph: **the first entry is mine.** I run
@@ -52,6 +54,7 @@ FlightPowers and sell the Booking.com Live API, so read that section as a vendor
 describing his own product. Everything about everyone else is quoted from their own
 live page, read on **2026-09-02** and re-read on **2026-09-09**, with the URL in the
 table. StayAPI, HasData and SearchApi were added on 2026-09-09 and read that day.
+StayingAPI and Blue Pillow were added on **2026-09-10** and read that day.
 Where a page does not publish a price, that is what I write, because guessing one
 would be worse than leaving it blank. And four options here carry a lower list price
 per unit than my ${HOTEL_PLANS[1].priceMonthly} tier. They are in the table too.
@@ -69,6 +72,8 @@ per unit than my ${HOTEL_PLANS[1].priceMonthly} tier. They are in the table too.
 | StayAPI | Booking.com and Airbnb, one listing at a time | 50 free requests once, then $49 / mo for 1,500; $149 / mo for 10,000; $450 / mo for 100,000 | stayapi.com, 2026-09-09 |
 | HasData | Google Hotels, Booking.com, Airbnb | free plan, then $59 / $119 / $249 a month; the Airbnb line prints $1.23 per 1,000 requests at $59 | hasdata.com/prices, 2026-09-09 |
 | SearchApi | Booking.com, Airbnb, Google Hotels | 100 free requests, then $40 / mo for 10,000 searches ($4 per 1,000), down to $1 per 1,000 at 5M | searchapi.io, 2026-09-09 |
+| StayingAPI | Airbnb, Booking.com, Vrbo and Google Hotels in one schema | 300 free credits valid 90 days, then $19 / mo for 1,900 credits; $99 / mo for 9,900; $499 / mo for 49,900. Their own note: "1 credit ≈ $0.01 nominal". A cross-OTA `/v1/price-compare` call is 30 credits | stayingapi.com/pricing, 2026-09-10 |
+| Blue Pillow (B2A) | "16+ booking operators" | No price published on the pages I read. A `b2a_get_key` tool issues a free anonymous key, and their listing reads "No signup, no OAuth, no card" | b2a.bluepillow.com, registry.smithery.ai, 2026-09-10 |
 | Booking.com Demand API | Booking.com inventory | no price on the pages I read | developers.booking.com, 2026-09-02 |
 | Amadeus Hotel Search | Amadeus | Self-Service URLs redirect, see below | developers.amadeus.com, 2026-09-02 |
 
@@ -113,7 +118,7 @@ middle tiers and {HOTEL_PLANS[3].ratePerMinute} on the top one.
 Where I actually compete on price is the entry, not the unit.{' '}
 ${HOTEL_PLANS[1].priceMonthly} a month, and the free tier comes back every month rather
 than once. Of the entries here that
-charge a monthly subscription, the others start at $25, $40, $49, $59 and $350. Two
+charge a monthly subscription, the others start at $19, $25, $40, $49, $59 and $350. Two
 of them, Bright Data and the Apify actors, bill per use with no monthly floor at all,
 so "lowest entry" means nothing against those, and at least one rival is cheaper than
 me per search: SearchApi's Booking.com engine lists at $0.0040 against{' '}
@@ -356,6 +361,53 @@ is a different purchase from anything else on this page. What I checked and what
 returned is written above. The migration mapping for people arriving from
 Self-Service is at [/compare/amadeus](/compare/amadeus).
 
+## 11. StayingAPI
+
+**Read 2026-09-10.** A cross-OTA comparator rather than a single-source rate API. Their
+own headline is "Availability, search & price — one call, every platform," and the
+platforms they name are Airbnb, Booking.com, Vrbo and Google Hotels, returned in one
+normalized schema. The endpoint they call the flagship is `/v1/price-compare`: you pass a
+property name and dates and get back one `offers` array with a `totalPrice` per OTA plus a
+`min` and a `median`. There is a REST API and a native MCP server, and their MCP page says
+the MCP does OAuth 2.1 / PKCE.
+
+Pricing is credit-based and published: Free/Sandbox gives 300 credits valid 90 days with no
+card, Starter is $19 a month for 1,900 credits, Pro $99 for 9,900, Scale $499 for 49,900,
+Enterprise custom. Their own note under the credit table reads "1 credit ≈ $0.01 nominal,"
+and top-ups sell at a flat $0.0100 per credit. What a credit buys, from their own table:
+`/v1/price-compare` 30 credits per call, `/v1/search` 2 credits per Airbnb result and 1 per
+result elsewhere with a minimum of 5 per platform, `/v1/availability` and `/v1/reviews` 5,
+`/v1/listing/{id}` and `/v1/price` 3, async job polling 0. They also state that failed and
+empty calls are never charged.
+
+Read the units before the sticker. At their own nominal rate a single cross-OTA compare is
+about $0.30 and a ten-result search on one platform about $0.10 to $0.20, against
+{`$${(HOTEL_PLANS[1].priceMonthly / HOTEL_PLANS[1].quota).toFixed(4)}`} for a request on my
+${HOTEL_PLANS[1].priceMonthly} tier — but my request answers a Booking.com-only question and
+theirs answers a four-platform one. Those are different jobs, which is the whole point of
+this page. If what you need is Booking.com against Airbnb against Vrbo in one call, I do not
+sell that and they do.
+
+## 12. Blue Pillow (B2A)
+
+**Read 2026-09-10.** An agent-facing accommodation comparator. Their MCP listing describes
+"Neutral hotel & stay price comparison for AI agents: live prices from 16+ booking
+operators," and the six tools they document are `b2a_get_key`, `resolve_destination`,
+`discover_destinations_near`, `search_stays`, `get_property_details` and
+`check_property_availability`. `check_property_availability` is the interesting one: live
+per-operator quotes and booking links for one property over one stay window.
+
+They publish no price on the pages I read. Access is anonymous: their own text is "No
+signup, no OAuth, no card," and the `b2a_get_key` tool hands out a permanent anonymous key
+in-band. Their listing also scopes itself explicitly — accommodation search and booking
+handoff, "not flights, attractions or restaurants."
+
+I cannot tell you what this costs at volume, because they do not say, and I am not going to
+guess. What it is worth knowing for a shortlist: a free, no-signup, multi-operator
+comparator exists, it is in the public MCP registry as `com.bluepillow/hotels`, and if your
+requirement is "show me who sells this room and for how much" rather than "give me
+Booking.com's number," it belongs on your list.
+
 ## Who should not use mine
 
 Straightforwardly:
@@ -363,6 +415,10 @@ Straightforwardly:
 - **You need more than Booking.com.** One source is one source. Makcorps for many
   OTAs, SerpApi or HasData for Google Hotels, SearchApi for Booking.com and Airbnb on
   one key.
+- **You need one property's price from several OTAs in one answer.** That is a
+  comparator, and I am not one. StayingAPI sells a `price-compare` endpoint across
+  Airbnb, Booking.com, Vrbo and Google Hotels; Blue Pillow returns per-operator quotes
+  across what it calls 16+ booking operators. Sections 11 and 12.
 - **You need Airbnb.** I do not have it. SearchApi searches Airbnb by destination and
   dates, HasData scrapes it per request, StayAPI enriches a listing you already have.
 - **Your question starts from a listing you already know.** Reviews, photos,
