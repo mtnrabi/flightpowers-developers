@@ -110,6 +110,7 @@ export default function QuickstartPage() {
             { '@type': 'HowToStep', name: 'Run your first search', url: `${SITE.url}/docs/quickstart#first-call` },
             { '@type': 'HowToStep', name: 'Read the answer', url: `${SITE.url}/docs/quickstart#read` },
             { '@type': 'HowToStep', name: 'Search hotels', url: `${SITE.url}/docs/quickstart#hotels` },
+            { '@type': 'HowToStep', name: 'Fix a 422', url: `${SITE.url}/docs/quickstart#errors` },
           ],
         }}
       />
@@ -240,6 +241,60 @@ export default function QuickstartPage() {
                 <code className="field">proxy_country</code> routes the request through a residential proxy in that
                 country. Booking.com quotes different markets differently; this is how you observe that, and it is the
                 basis of rate-parity and geo-pricing monitoring. Omit it and you get the global pool.
+              </p>
+            </Step>
+          </div>
+
+          <div id="errors" className="scroll-mt-24">
+            <Step n={6} title="If a flight call comes back 422, it is one of four things">
+              <p>
+                A 422 means the request never reached a search: the body was rejected at the door. The response says
+                which field and why, in <code className="field">detail</code>, with a one-line{' '}
+                <code className="field">hint</code> and a <code className="field">help</code> link back to this
+                section. These are the four things it can be.
+              </p>
+              <p>
+                <strong className="text-ink-100">1. A field name this endpoint does not have.</strong> Unknown keys are
+                rejected, not ignored, so a typo costs you a call instead of quietly answering a different question. The
+                three that catch people: <code className="field">to_airports</code> (plural) &mdash; the field is{' '}
+                <code className="field">to_airport</code>, one IATA code;{' '}
+                <code className="field">min_departure_date</code> or <code className="field">max_departure_date</code>{' '}
+                &mdash; the field is <code className="field">departure_date</code>; and{' '}
+                <code className="field">max_stops</code> on a round trip, which has{' '}
+                <code className="field">max_departure_stops</code> and <code className="field">max_return_stops</code>{' '}
+                instead. Sending the plural gives you two errors at once, an unknown key and a missing one. Fix the
+                name, not the missing field.
+              </p>
+              <p>
+                <strong className="text-ink-100">2. A required field missing, or the wrong type.</strong> One-way needs{' '}
+                <code className="field">from_airport</code>, <code className="field">to_airport</code> and{' '}
+                <code className="field">departure_date</code>; round trip adds{' '}
+                <code className="field">return_date</code>. Numbers are numbers:{' '}
+                <code className="field">max_stops</code>, <code className="field">max_price</code>,{' '}
+                <code className="field">limit</code>, <code className="field">seat_type</code> and the four time
+                filters are whole numbers, and a string like <code className="field">&quot;2&quot;</code> is a 422.
+              </p>
+              <p>
+                <strong className="text-ink-100">3. A date that is not YYYY-MM-DD, or a return before the departure.</strong>{' '}
+                <code className="field">departure_date</code> and <code className="field">return_date</code> are plain{' '}
+                <code className="field">YYYY-MM-DD</code> strings, so <code className="field">05/11/2026</code> is
+                rejected. On <code className="field">/v1/flights/roundtrip</code>,{' '}
+                <code className="field">return_date</code> has to be a later calendar day than{' '}
+                <code className="field">departure_date</code>; same-day round trips are not supported.
+              </p>
+              <p>
+                <strong className="text-ink-100">4. A value the search itself refuses.</strong> A date in the past
+                &mdash; the boundary is today in UTC, so it moves at UTC midnight, not in your timezone. A time filter
+                (<code className="field">departure_time_min</code>/<code className="field">max</code>,{' '}
+                <code className="field">arrival_time_min</code>/<code className="field">max</code>, and their{' '}
+                <code className="field">departure_</code>/<code className="field">return_</code> prefixed round-trip
+                twins) outside 0&ndash;24. A negative <code className="field">max_stops</code> or{' '}
+                <code className="field">max_price</code>. This is the class that fails intermittently: the same client
+                code that worked yesterday starts 422ing overnight because the date it is asking for has passed.
+              </p>
+              <p>
+                Hotels have their own version of the first one, above: the field is{' '}
+                <code className="field">destination</code>, and <code className="field">location</code> is a 400.
               </p>
             </Step>
           </div>
