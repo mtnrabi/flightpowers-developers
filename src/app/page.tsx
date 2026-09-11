@@ -93,7 +93,7 @@ const PLAYS: { href: string; label: string; line: string }[] = [
   {
     href: '/guides/five-minute-travel-agent',
     label: 'Run a 24/7 AI travel agent',
-    line: 'Sign in with Google, connect the server to Claude or ChatGPT, and it scans your routes every morning on the $10 plan.',
+    line: 'It scans your routes every morning on the $10 plan. Sign in with Google, connect the server to Claude or ChatGPT.',
   },
 ];
 
@@ -174,12 +174,26 @@ export default function HomePage() {
               <div className="mt-6">
                 <PlayList />
               </div>
-              <p className="mt-4 text-[13.5px] text-ink-400">
-                Hotels also take{' '}
-                <Link href="/hotels-api/geo-pricing" className="text-signal-400 hover:text-signal-500 underline underline-offset-2">
-                  <code className="font-mono text-[13px]">proxy_country</code>
-                </Link>{', so you can price the same room from any market.'}
-              </p>
+              {/* Rate parity and geo-pricing: of every hotel and flight data vendor read in
+                  competitor passes 1-8, none sells a country-of-residence price. It sat in a
+                  13.5px grey tail under the plays; promoted here to the weight of a play.
+                  gtmskills pass 10. */}
+              <Link
+                href="/hotels-api/geo-pricing"
+                className="mt-4 group flex items-start gap-3 rounded-xl border rule bg-ink-900/40 px-4 py-3 hover:border-signal-600/50 transition-colors"
+              >
+                <span className="mt-0.5 shrink-0 font-mono text-[12px] text-signal-400">+</span>
+                <span className="min-w-0">
+                  <span className="text-[15px] font-semibold text-ink-100 group-hover:text-signal-400">
+                    Watch rate parity
+                  </span>
+                  <span className="ml-1.5 text-[14px] text-ink-400 leading-relaxed">
+                    <code className="font-mono text-[13px] text-signal-400">proxy_country</code> prices the same hotel
+                    room as a guest booking from another market, so you can sample one property across countries on a
+                    schedule.
+                  </span>
+                </span>
+              </Link>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Cta href={rapidApiPricingUrl('flights', 'hero')} external variant="primary">
                   Flights key (free tier) →
