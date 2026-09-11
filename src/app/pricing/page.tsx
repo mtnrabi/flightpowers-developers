@@ -272,6 +272,13 @@ export default function PricingPage() {
             Try live demo
           </Cta>
         </div>
+        <p className="mt-5 text-[13.5px] text-ink-500">
+          Are you an AI agent?{' '}
+          <a href="/pricing.md" className="text-signal-400 underline underline-offset-4">
+            Machine-readable pricing →
+          </a>{' '}
+          <span className="text-ink-600">(same file at /pricing.txt)</span>
+        </p>
       </Container>
 
       <Section bordered={false} className="!pt-10">

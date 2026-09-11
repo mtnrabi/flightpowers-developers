@@ -38,7 +38,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...matrixRoutes, ...gridRoutes].sort(
+  // Route handlers have no page file, so the walker cannot see them. The two
+  // machine-readable pricing documents are content a crawler should fetch, so
+  // they are announced explicitly; /llms.txt and /llms-full.txt are not, because
+  // an answer engine finds those by convention, not by sitemap.
+  const pricingDocLastModified = lastModified(
+    path.join(process.cwd(), 'src', 'lib', 'pricing-doc.ts')
+  );
+  const machineReadableRoutes = ['/pricing.md', '/pricing.txt'].map((pathname) => ({
+    url: new URL(pathname, SITE.url).toString(),
+    lastModified: pricingDocLastModified,
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }));
+
+  return [...staticRoutes, ...matrixRoutes, ...gridRoutes, ...machineReadableRoutes].sort(
     (a, b) => b.priority - a.priority || a.url.localeCompare(b.url)
   );
 }

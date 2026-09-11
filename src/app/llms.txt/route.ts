@@ -35,6 +35,7 @@ Last-Updated: ${LLMS_LAST_UPDATED}
 ## Machine-readable surfaces
 
 - [llms-full.txt](${u('/llms-full.txt')}): the complete API reference in one plain-text file (endpoints, every field, response headers, pricing)
+- [pricing.md](${u('/pricing.md')}): every plan, the per-1,000 unit price, overage, rate limits and how a request is counted, in plain markdown (same file at /pricing.txt)
 - [OpenAPI 3.1 spec](${u('/openapi.json')}): full spec with request/response schemas and auth for all ${COUNTS.restEndpoints} REST endpoints on https://${SITE.apiHost}
 
 ## Quick facts
