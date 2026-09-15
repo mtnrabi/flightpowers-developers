@@ -284,7 +284,7 @@ export default function ToolsIndexPage() {
               </dd>
             </div>
             <div>
-              <dt className="text-[15px] font-semibold text-ink-100">150 searches a day, 2,000 a month, per person</dt>
+              <dt className="text-[15px] font-semibold text-ink-100">50 searches a day, 250 a month, per person</dt>
               <dd className="mt-1.5 text-[14.5px] text-ink-400 leading-relaxed">
                 The caps run against the Google account you signed in with, and one call spends one search per date ×
                 destination combination, so a wide search costs more than one. Past the cap the tools answer with{' '}

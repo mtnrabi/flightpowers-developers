@@ -121,7 +121,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Is there a way to demo without a key?',
-    a: 'The free ad-supported MCP server runs the flight and hotel tools with no RapidAPI key: sign in with Google and you get 150 searches a day and 2,000 a month. Every result carries one labelled sponsored card and one call searches at most 15 date × destination combinations instead of 30, so it is for trying, not production. The free tools on this site also run live requests on our own key.',
+    a: 'The free ad-supported MCP server runs the flight and hotel tools with no RapidAPI key: sign in with Google and you get 50 searches a day and 250 a month. Every result carries one labelled sponsored card and one call searches at most 15 date × destination combinations instead of 30, so it is for trying, not production. The free tools on this site also run live requests on our own key.',
   },
 ];
 
