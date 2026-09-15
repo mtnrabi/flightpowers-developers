@@ -94,7 +94,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Is there a way to try it without a key?',
-    a: 'Yes: a separate free, ad-supported server. Sign in with Google and you get the same four tools with no RapidAPI key at all, 150 searches a day and 2,000 a month under your own name. Every result carries one labelled sponsored card and one call searches at most 15 date × destination combinations instead of 30. Connect it from the free tools page. It is for trying the tools before you get a key, not for production.',
+    a: 'Yes: a separate free, ad-supported server. Sign in with Google and you get the same four tools with no RapidAPI key at all, 50 searches a day and 250 a month under your own name. Every result carries one labelled sponsored card and one call searches at most 15 date × destination combinations instead of 30. Connect it from the free tools page. It is for trying the tools before you get a key, not for production.',
   },
 ];
 
@@ -313,7 +313,7 @@ Ask your assistant what a flight costs and get today's real fare, with Google's 
           <h2 className="mt-3 text-2xl font-semibold">A free, ad-supported server also exists</h2>
           <p className="mt-4 text-[15px] text-ink-400 leading-relaxed">
             <code className="field">{LINKS.mcpFree.replace('https://', '')}</code> serves all four tools, flights and hotels,
-            with no RapidAPI key at all. Add the URL, sign in with Google, and you are searching: 150 searches a day and 2,000 a
+            with no RapidAPI key at all. Add the URL, sign in with Google, and you are searching: 50 searches a day and 250 a
             month under your own name. The trade: every result carries one labelled sponsored card, and one call searches at most
             15 date × destination combinations instead of 30. Use it to try the tools before getting a key; point production and
             anything you ship at the keyed servers above.

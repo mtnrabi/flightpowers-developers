@@ -39,7 +39,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Can my AI assistant run this scan for me?',
-    a: 'Yes. The same flight search is exposed on a free MCP server at ' + LINKS.mcpFree.replace('https://', '') + ', with no API key, so you can paste the address into Claude, Cursor or any MCP client, sign in with Google, and just ask which month is cheapest. It is ad-supported: every result carries one labelled sponsored card, and you get 150 searches a day and 2,000 a month. Connect it from the free tools page. For an ad-free server on your own key, see the MCP page.',
+    a: 'Yes. The same flight search is exposed on a free MCP server at ' + LINKS.mcpFree.replace('https://', '') + ', with no API key, so you can paste the address into Claude, Cursor or any MCP client, sign in with Google, and just ask which month is cheapest. It is ad-supported: every result carries one labelled sponsored card, and you get 50 searches a day and 250 a month. Connect it from the free tools page. For an ad-free server on your own key, see the MCP page.',
   },
   {
     q: 'How would I run this scan from my own code?',
@@ -180,8 +180,8 @@ export default function CheapestTimePage() {
               The same flight search is on a free MCP server at{' '}
               <code className="font-mono text-[13px] text-ink-200">{LINKS.mcpFree.replace('https://', '')}</code>. No API key:
               paste the address into Claude, Cursor or any MCP client, sign in with Google, and ask it which month is cheapest
-              for your route. It is ad-supported, so every result carries one labelled sponsored card, and you get 150 searches
-              a day and 2,000 a month.{' '}
+              for your route. It is ad-supported, so every result carries one labelled sponsored card, and you get 50 searches
+              a day and 250 a month.{' '}
               <Link href="/tools#free-mcp" className="underline underline-offset-4 hover:text-signal-400">
                 Connect it here
               </Link>

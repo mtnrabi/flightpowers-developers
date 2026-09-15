@@ -105,8 +105,8 @@ This is the part most cost estimates get wrong.
 
 - RapidAPI BASIC on each listing: $0, ${FLIGHT_PLANS[0].quota} requests a month, hard cap, no card, no approval step.
 - The free MCP server, ${LINKS.mcpFree}, is $0, needs a Google
-  sign-in, carries a sponsored card in results, and allows 150 backend searches per user per
-  day and 2,000 per calendar month. The paid servers carry no ads.
+  sign-in, carries a sponsored card in results, and allows 50 backend searches per user per
+  day and 250 per calendar month. The paid servers carry no ads.
 
 ## Pay per use instead
 

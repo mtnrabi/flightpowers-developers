@@ -45,7 +45,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Can I use this with the free Lulu MCP server?',
-    a: 'Yes, but the Lulu server (google-flights-lulu.flightpowers.com/mcp) is for trying the tools before getting a key. You sign in with Google instead of using a RapidAPI key, and you get 150 searches a day and 2,000 a month. Every response carries one sponsored card. Point production work at the keyed servers documented here.',
+    a: 'Yes, but the Lulu server (google-flights-lulu.flightpowers.com/mcp) is for trying the tools before getting a key. You sign in with Google instead of using a RapidAPI key, and you get 50 searches a day and 250 a month. Every response carries one sponsored card. Point production work at the keyed servers documented here.',
   },
   {
     q: 'Why are flights and hotels separate servers?',
@@ -299,7 +299,7 @@ export default function ClaudeMcpPage() {
           <h2 className="mt-3 text-2xl font-semibold">Try before you get a key: the free Lulu MCP server</h2>
           <p className="mt-4 text-[15px] text-ink-400 leading-relaxed">
             <code className="field">{LINKS.mcpFree.replace('https://', '')}</code> serves all four tools with no RapidAPI key.
-            Add the URL, sign in with Google, and you get 150 searches a day and 2,000 a month under your own name. The trade:
+            Add the URL, sign in with Google, and you get 50 searches a day and 250 a month under your own name. The trade:
             every result carries one labelled sponsored card, and one call searches at most 15 date × destination combinations
             instead of 30. Use it to try the tools before getting a key; point production work at the keyed servers above.
           </p>

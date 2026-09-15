@@ -56,7 +56,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
         name: 'Do I need an API key to try this?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'No RapidAPI key. The free server at google-flights-lulu.flightpowers.com/mcp asks you to sign in with Google instead, and that is the whole setup. It carries one labelled sponsored card on every result and allows 150 searches a day and 2,000 a calendar month under your own account. For a 30-destination scan you want the keyed server.',
+          text: 'No RapidAPI key. The free server at google-flights-lulu.flightpowers.com/mcp asks you to sign in with Google instead, and that is the whole setup. It carries one labelled sponsored card on every result and allows 50 searches a day and 250 a calendar month under your own account. For a 30-destination scan you want the keyed server.',
         },
       },
       {
@@ -107,7 +107,7 @@ Two servers, and the choice takes ten seconds.
 
 **Free**, `https://google-flights-lulu.flightpowers.com/mcp`. No RapidAPI key and nothing to
 subscribe to: you sign in with Google and that is it. Every successful result carries one
-labelled sponsored card, that is how it pays for itself, and it allows 150 searches a day and
+labelled sponsored card, that is how it pays for itself, and it allows 50 searches a day and
 2,000 a calendar month under your own account. One call is one search per date and destination
 combination, so a wide scan spends more than one. It also samples any single call down to 15
 combinations and tells you which ones it actually ran in `search_coverage`. Great for feeling
