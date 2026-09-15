@@ -45,7 +45,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Can I use this with the free Lulu MCP server?',
-    a: 'Yes, but the Lulu server (google-flights-lulu.flightpowers.com/mcp) is for trying the tools before getting a key. You sign in with Google instead of using a RapidAPI key, and you get 50 searches a day and 250 a month. Every response carries one sponsored card. Point production work at the keyed servers documented here.',
+    a: 'Yes, but the Lulu server (free-trial.flightpowers.com/mcp) is for trying the tools before getting a key. You sign in with Google instead of using a RapidAPI key, and you get 50 searches a day and 250 a month. Every response carries one sponsored card. Point production work at the keyed servers documented here.',
   },
   {
     q: 'Why are flights and hotels separate servers?',

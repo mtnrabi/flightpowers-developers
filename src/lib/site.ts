@@ -93,7 +93,7 @@ export const LINKS = {
   mcpConnectFlights: 'https://flights.flightpowers.com/connect',
   mcpConnectHotels: 'https://hotels.flightpowers.com/connect',
   /** Free server: sign in with Google, no key, ad-supported. Same four tools. */
-  mcpFree: 'https://google-flights-lulu.flightpowers.com/mcp',
+  mcpFree: 'https://free-trial.flightpowers.com/mcp',
   smitheryFlights: 'https://smithery.ai/server/mrabi/google-flights',
   smitheryHotels: 'https://smithery.ai/server/mrabi/booking',
   smitheryFree: 'https://smithery.ai/server/mrabi/freemium-google-flights-and-booking-mcp',
