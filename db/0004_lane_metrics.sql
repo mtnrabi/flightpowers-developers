@@ -70,7 +70,12 @@
 --     2000 -> hist[5]      89999 -> hist[15]    90000 -> hist[16]
 --     900000 -> hist[16]
 --
--- ARRAY LENGTH is always 16. A shorter array is a bug, not a compact encoding.
+-- ARRAY LENGTH is always 16. A shorter array is a bug, not a compact encoding,
+-- and both tables enforce it with
+-- `CHECK (cardinality(hist) = 16)`; the column defaults to
+-- `array_fill(0::bigint, ARRAY[16])` so a row written without a histogram
+-- reads as sixteen zeros rather than as an empty array that every percentile
+-- query silently reports as "no samples".
 --
 -- SUMMING is element-wise: hist[i] of a range is the sum of hist[i] over the
 -- rows in it. That is the only reason percentiles work over arbitrary ranges --
@@ -143,7 +148,24 @@ CREATE TABLE IF NOT EXISTS lane_metrics_10m (
   -- Fixed-edge histogram of elapsed_total_ms. See THE HISTOGRAM CONTRACT at
   -- the top of this file -- any writer of this column must implement it
   -- exactly, or rows from two writers cannot be summed.
-  hist            bigint[]    NOT NULL DEFAULT ARRAY[]::bigint[],
+  --
+  -- The default USED TO BE `ARRAY[]::bigint[]`, and that was a quiet trap: a
+  -- row inserted by anything other than the rollup -- a hand-written backfill,
+  -- a migration, a fixture -- got an EMPTY array, which is not an error
+  -- anywhere. `unnest` of it yields no rows, the percentile walk sees a total
+  -- of zero, and every reader returns "no samples" for a bucket that has
+  -- thousands of calls in its `calls` column. Nothing raises; the number is
+  -- just wrong. So the default is sixteen zeros, which is what "no samples
+  -- yet" actually looks like, and the CHECK makes a wrong-length array a
+  -- write-time failure instead of a silent null six weeks later.
+  --
+  -- `cardinality`, NOT `array_length(hist, 1)`. Measured on Postgres 16:
+  -- `array_length('{}'::bigint[], 1)` is NULL, not 0, and a CHECK constraint
+  -- PASSES when its expression is NULL -- so `array_length(hist, 1) = 16`
+  -- accepts an explicitly-inserted empty array, which is the exact value this
+  -- constraint exists to reject. `cardinality('{}')` is 0 and the check fails
+  -- as intended.
+  hist bigint[] NOT NULL DEFAULT array_fill(0::bigint, ARRAY[16]) CHECK (cardinality(hist) = 16),
 
   updated_at      timestamptz NOT NULL DEFAULT now(),
 
@@ -221,8 +243,10 @@ CREATE TABLE IF NOT EXISTS hotel_metrics_10m (
 
   calls       bigint      NOT NULL DEFAULT 0,
   sum_ms      bigint      NOT NULL DEFAULT 0,
-  -- Same 16 fixed edges as lane_metrics_10m.hist.
-  hist        bigint[]    NOT NULL DEFAULT ARRAY[]::bigint[],
+  -- Same 16 fixed edges as lane_metrics_10m.hist, and the same default and
+  -- CHECK for the same reason: an empty array reads as "no samples" in every
+  -- percentile query without ever raising.
+  hist bigint[] NOT NULL DEFAULT array_fill(0::bigint, ARRAY[16]) CHECK (cardinality(hist) = 16),
 
   updated_at  timestamptz NOT NULL DEFAULT now(),
 
