@@ -13,12 +13,14 @@ import { NextResponse } from 'next/server';
 import {
   GOOGLE_TOKEN_ENDPOINT,
   consumeState,
+  consumeVerifier,
   isAllowed,
   readConfig,
   readIdTokenClaims,
   redirectUriFor,
   setSessionCookie,
   stateMatches,
+  verifyIdTokenClaims,
 } from '@/lib/admin/auth';
 
 export const runtime = 'nodejs';
@@ -40,10 +42,14 @@ export async function GET(req: Request) {
     return back(req, 'cancelled');
   }
 
+  // Both one-shot cookies are consumed before anything can return early, so a
+  // failed attempt cannot leave a reusable state or verifier behind.
   const cookieState = await consumeState();
+  const verifier = await consumeVerifier();
   if (!stateMatches(incoming.searchParams.get('state'), cookieState)) {
     return back(req, 'bad_state');
   }
+  if (!verifier) return back(req, 'bad_state');
 
   const code = incoming.searchParams.get('code');
   if (!code) return back(req, 'no_code');
@@ -62,6 +68,7 @@ export async function GET(req: Request) {
         client_secret: config.clientSecret,
         redirect_uri: redirectUri,
         grant_type: 'authorization_code',
+        code_verifier: verifier,
       }),
       cache: 'no-store',
       signal: AbortSignal.timeout(15_000),
@@ -73,9 +80,15 @@ export async function GET(req: Request) {
     return back(req, 'token_exchange_failed');
   }
 
-  const claims = idToken ? readIdTokenClaims(idToken) : null;
-  const email = (claims?.email ?? '').trim().toLowerCase();
-  if (!email || claims?.email_verified !== true) return back(req, 'no_verified_email');
+  // aud / iss / exp / email_verified, in that order. Skipping the signature is
+  // defensible because the token came straight from Google over TLS; skipping
+  // these would additionally accept a genuine Google token minted for somebody
+  // else's project entirely.
+  const email = verifyIdTokenClaims(
+    idToken ? readIdTokenClaims(idToken) : null,
+    config.clientId
+  );
+  if (!email) return back(req, 'no_verified_email');
 
   // The allowlist is the whole access-control model. One address.
   if (!isAllowed(email, config.allowedEmails)) return back(req, 'not_allowed');

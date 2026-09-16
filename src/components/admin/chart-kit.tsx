@@ -70,6 +70,18 @@ export function fmtMs(ms: number | null | undefined): string {
   return ms >= 1000 ? `${(ms / 1000).toFixed(ms >= 10000 ? 1 : 2)} s` : `${Math.round(ms)} ms`;
 }
 
+/**
+ * A percentile, which may have landed in the unbounded `>= 90 s` bucket.
+ *
+ * `null` + overflow is "slower than the top edge, we cannot say by how much",
+ * and it must not render as the same em dash as "no samples" — those two look
+ * identical on screen and mean opposite things.
+ */
+export function fmtPercentile(ms: number | null | undefined, overflow = false): string {
+  if (overflow) return '> 90 s';
+  return fmtMs(ms);
+}
+
 export function fmtPct(fraction: number | null | undefined): string {
   return fraction === null || fraction === undefined ? '—' : `${(fraction * 100).toFixed(1)}%`;
 }

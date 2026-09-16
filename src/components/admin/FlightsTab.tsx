@@ -15,6 +15,7 @@ import {
   fmtInt,
   fmtMs,
   fmtPct,
+  fmtPercentile,
   fmtUsd,
 } from './chart-kit';
 import type { ChartPoint, Series } from './chart-kit';
@@ -155,7 +156,13 @@ function LaneSection({
         <Stat label="Calls" value={fmtInt(lane.calls)} />
         <Stat label="Direct blocked" value={fmtInt(lane.directBlocked)} />
         <Stat label="Avg (wall clock)" value={fmtMs(lane.avgMs)} />
-        <Stat label="p50 / p90" value={`${fmtMs(lane.p50Ms)} / ${fmtMs(lane.p90Ms)}`} />
+        <Stat
+          label="p50 / p90"
+          value={`${fmtPercentile(lane.p50Ms, lane.p50Overflow)} / ${fmtPercentile(
+            lane.p90Ms,
+            lane.p90Overflow
+          )}`}
+        />
       </div>
 
       <TransportTable lane={lane} />
@@ -249,8 +256,12 @@ function TransportTable({ lane }: { lane: LaneSummary }) {
                 {fmtPct(lane.calls > 0 ? slice.calls / lane.calls : null)}
               </td>
               <td className="py-2 pr-4 text-right text-ink-200">{fmtMs(slice.avgMs)}</td>
-              <td className="py-2 pr-4 text-right text-ink-200">{fmtMs(slice.p50Ms)}</td>
-              <td className="py-2 text-right text-ink-200">{fmtMs(slice.p90Ms)}</td>
+              <td className="py-2 pr-4 text-right text-ink-200">
+                {fmtPercentile(slice.p50Ms, slice.p50Overflow)}
+              </td>
+              <td className="py-2 text-right text-ink-200">
+                {fmtPercentile(slice.p90Ms, slice.p90Overflow)}
+              </td>
             </tr>
           ))}
         </tbody>

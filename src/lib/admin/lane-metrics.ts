@@ -83,6 +83,9 @@ export type TransportSummary = {
   avgMs: number | null;
   p50Ms: number | null;
   p90Ms: number | null;
+  /** p50/p90 landed in the unbounded `>= 90 s` bucket, so they read `> 90 s` */
+  p50Overflow: boolean;
+  p90Overflow: boolean;
 };
 
 export type LaneSummary = {
@@ -97,6 +100,8 @@ export type LaneSummary = {
   avgMs: number | null;
   p50Ms: number | null;
   p90Ms: number | null;
+  p50Overflow: boolean;
+  p90Overflow: boolean;
   /** from sum_direct_ms / n_direct_ms — includes the direct leg of a fallback */
   avgDirectLegMs: number | null;
   avgProxiedLegMs: number | null;
@@ -166,12 +171,20 @@ function bucketExpression(resolution: Resolution): string {
 }
 
 /**
- * Percentile from a summed histogram.
+ * Percentile from a summed histogram. The reader half of THE HISTOGRAM
+ * CONTRACT in db/0004_lane_metrics.sql — half-open, lower-inclusive buckets,
+ * and the last slot unbounded.
  *
  * Returns the UPPER EDGE of the bucket the percentile falls in, not an
  * interpolation. With 250 ms as the finest edge, interpolating would be
  * inventing precision the storage does not have, and the whole reason the
  * histogram exists is that we refuse to invent the median.
+ *
+ * `null` means THE PERCENTILE CANNOT BE STATED, which happens two ways: an
+ * empty histogram, and a percentile landing in the unbounded `>= 90 s` bucket.
+ * The second used to return 90000 — turning "at least 90 seconds" into
+ * "exactly 90 seconds", which is the sort of number a latency argument gets
+ * built on. `percentileIsOverflow` tells the two cases apart.
  */
 export function percentileFromHistogram(hist: number[], fraction: number): number | null {
   const total = hist.reduce((sum, n) => sum + n, 0);
@@ -181,12 +194,24 @@ export function percentileFromHistogram(hist: number[], fraction: number): numbe
   for (let i = 0; i < hist.length; i += 1) {
     seen += hist[i];
     if (seen >= target) {
-      return i >= HISTOGRAM_EDGES_MS.length
-        ? HISTOGRAM_EDGES_MS[HISTOGRAM_EDGES_MS.length - 1]
-        : HISTOGRAM_EDGES_MS[i];
+      // The last slot is the unbounded overflow bucket: no upper edge to give.
+      return i >= HISTOGRAM_EDGES_MS.length ? null : HISTOGRAM_EDGES_MS[i];
     }
   }
-  return HISTOGRAM_EDGES_MS[HISTOGRAM_EDGES_MS.length - 1];
+  return null;
+}
+
+/** True when the percentile lands in the unbounded `>= 90 s` bucket. */
+export function percentileIsOverflow(hist: number[], fraction: number): boolean {
+  const total = hist.reduce((sum, n) => sum + n, 0);
+  if (total <= 0) return false;
+  const target = total * fraction;
+  let seen = 0;
+  for (let i = 0; i < hist.length; i += 1) {
+    seen += hist[i];
+    if (seen >= target) return i >= HISTOGRAM_EDGES_MS.length;
+  }
+  return false;
 }
 
 function ratio(numerator: number, denominator: number): number | null {
@@ -352,6 +377,8 @@ export async function fetchLaneMetrics(fromMs: number, toMs: number): Promise<La
             avgMs: average(slice?.sumMs ?? 0, sliceSamples),
             p50Ms: percentileFromHistogram(sliceHist, 0.5),
             p90Ms: percentileFromHistogram(sliceHist, 0.9),
+            p50Overflow: percentileIsOverflow(sliceHist, 0.5),
+            p90Overflow: percentileIsOverflow(sliceHist, 0.9),
           };
         })
         .filter((slice) => slice.calls > 0);
@@ -370,6 +397,8 @@ export async function fetchLaneMetrics(fromMs: number, toMs: number): Promise<La
         avgMs: average(totals.sumMs, samples),
         p50Ms: percentileFromHistogram(hist, 0.5),
         p90Ms: percentileFromHistogram(hist, 0.9),
+        p50Overflow: percentileIsOverflow(hist, 0.5),
+        p90Overflow: percentileIsOverflow(hist, 0.9),
         avgDirectLegMs: average(totals.sumDirectMs, totals.nDirectMs),
         avgProxiedLegMs: average(totals.sumProxiedMs, totals.nProxiedMs),
         byTransport,

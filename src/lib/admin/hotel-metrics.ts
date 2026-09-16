@@ -1,6 +1,11 @@
 import 'server-only';
 import { neon } from '@neondatabase/serverless';
-import { HISTOGRAM_EDGES_MS, percentileFromHistogram, resolutionFor } from './lane-metrics';
+import {
+  HISTOGRAM_EDGES_MS,
+  percentileFromHistogram,
+  percentileIsOverflow,
+  resolutionFor,
+} from './lane-metrics';
 import type { Resolution } from './lane-metrics';
 
 /**
@@ -38,6 +43,9 @@ export type HotelToolSummary = {
   avgMs: number | null;
   p50Ms: number | null;
   p90Ms: number | null;
+  /** the percentile landed in the unbounded `>= 90 s` bucket */
+  p50Overflow: boolean;
+  p90Overflow: boolean;
 };
 
 export type HotelSourceSummary = {
@@ -88,6 +96,8 @@ export type HotelMetrics = {
     avgMs: number | null;
     p50Ms: number | null;
     p90Ms: number | null;
+    p50Overflow: boolean;
+    p90Overflow: boolean;
     /** callers seen in hotel_top_users_daily over the range, `-` excluded */
     namedCallers: number;
     /** calls whose caller could not be attributed */
@@ -158,6 +168,8 @@ export async function fetchHotelMetrics(fromMs: number, toMs: number): Promise<H
       avgMs: null,
       p50Ms: null,
       p90Ms: null,
+      p50Overflow: false,
+      p90Overflow: false,
       namedCallers: 0,
       unattributedCalls: 0,
     },
@@ -341,6 +353,8 @@ export async function fetchHotelMetrics(fromMs: number, toMs: number): Promise<H
         avgMs: average(acc.sumMs, acc.samples),
         p50Ms: percentileFromHistogram(hist, 0.5),
         p90Ms: percentileFromHistogram(hist, 0.9),
+        p50Overflow: percentileIsOverflow(hist, 0.5),
+        p90Overflow: percentileIsOverflow(hist, 0.9),
       };
     });
 
@@ -394,6 +408,8 @@ export async function fetchHotelMetrics(fromMs: number, toMs: number): Promise<H
       avgMs: average(sumMs, samples),
       p50Ms: percentileFromHistogram(overallHist, 0.5),
       p90Ms: percentileFromHistogram(overallHist, 0.9),
+      p50Overflow: percentileIsOverflow(overallHist, 0.5),
+      p90Overflow: percentileIsOverflow(overallHist, 0.9),
       namedCallers: userAcc.size,
       unattributedCalls,
     },

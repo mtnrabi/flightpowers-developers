@@ -15,6 +15,7 @@ import {
   fmtInt,
   fmtMs,
   fmtPct,
+  fmtPercentile,
 } from './chart-kit';
 import type { ChartPoint, Series } from './chart-kit';
 
@@ -164,7 +165,10 @@ export function BookingTab({ data }: { data: HotelMetrics }) {
         />
         <Stat
           label="Avg · p50 · p90"
-          value={`${fmtMs(totals.avgMs)} · ${fmtMs(totals.p50Ms)} · ${fmtMs(totals.p90Ms)}`}
+          value={`${fmtMs(totals.avgMs)} · ${fmtPercentile(
+            totals.p50Ms,
+            totals.p50Overflow
+          )} · ${fmtPercentile(totals.p90Ms, totals.p90Overflow)}`}
         />
       </div>
 
@@ -358,8 +362,12 @@ function ToolTable({ data, tools }: { data: HotelMetrics; tools: Series[] }) {
               <td className="py-2 pr-4 text-right text-ink-300">{fmtInt(tool.error4xx)}</td>
               <td className="py-2 pr-4 text-right text-ink-300">{fmtInt(tool.error5xx)}</td>
               <td className="py-2 pr-4 text-right text-ink-200">{fmtMs(tool.avgMs)}</td>
-              <td className="py-2 pr-4 text-right text-ink-200">{fmtMs(tool.p50Ms)}</td>
-              <td className="py-2 text-right text-ink-200">{fmtMs(tool.p90Ms)}</td>
+              <td className="py-2 pr-4 text-right text-ink-200">
+                {fmtPercentile(tool.p50Ms, tool.p50Overflow)}
+              </td>
+              <td className="py-2 text-right text-ink-200">
+                {fmtPercentile(tool.p90Ms, tool.p90Overflow)}
+              </td>
             </tr>
           ))}
         </tbody>

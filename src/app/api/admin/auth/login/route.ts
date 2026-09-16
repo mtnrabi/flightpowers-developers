@@ -9,7 +9,9 @@
 import { NextResponse } from 'next/server';
 import {
   GOOGLE_AUTH_ENDPOINT,
+  challengeFor,
   issueState,
+  issueVerifier,
   readConfig,
   redirectUriFor,
 } from '@/lib/admin/auth';
@@ -31,12 +33,17 @@ export async function GET(req: Request) {
   }
 
   const state = await issueState();
+  const verifier = await issueVerifier();
   const auth = new URL(GOOGLE_AUTH_ENDPOINT);
   auth.searchParams.set('client_id', config.clientId);
   auth.searchParams.set('redirect_uri', redirectUri);
   auth.searchParams.set('response_type', 'code');
   auth.searchParams.set('scope', 'openid email');
   auth.searchParams.set('state', state);
+  // PKCE. `state` proves the callback came back to this browser; this proves
+  // the code is redeemed by whoever started the flow.
+  auth.searchParams.set('code_challenge', challengeFor(verifier));
+  auth.searchParams.set('code_challenge_method', 'S256');
   auth.searchParams.set('prompt', 'select_account');
   // No refresh token is wanted: nothing here calls a Google API after sign-in.
   auth.searchParams.set('access_type', 'online');

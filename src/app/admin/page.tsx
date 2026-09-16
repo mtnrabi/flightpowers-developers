@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Container } from '@/components/ui';
 import { AdminDashboard } from '@/components/admin/AdminDashboard';
-import { getAdminEmail, readConfig } from '@/lib/admin/auth';
+import { getAdminSession, readConfig } from '@/lib/admin/auth';
 
 /**
  * The internal metrics dashboard: two tabs, Flights and Booking.
@@ -32,6 +32,7 @@ const SIGN_IN_ERRORS: Record<string, string> = {
   no_verified_email: 'That Google account has no verified email address.',
   token_exchange_failed: 'Google rejected the sign-in. Check the client id, secret and redirect URI.',
   not_configured: 'Sign-in is not configured on this deployment.',
+  bad_csrf: 'That sign-out form was stale. Try again.',
   unexpected_host: 'This hostname is not one the sign-in accepts.',
 };
 
@@ -40,12 +41,12 @@ export default async function AdminPage({
 }: {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  const email = await getAdminEmail();
+  const session = await getAdminSession();
   const params = await searchParams;
   const rawError = params.error;
   const error = typeof rawError === 'string' ? SIGN_IN_ERRORS[rawError] ?? 'Sign-in failed.' : null;
 
-  if (!email) {
+  if (!session) {
     const config = readConfig();
     const problem = typeof config === 'string' ? config : null;
 
@@ -89,7 +90,8 @@ export default async function AdminPage({
           <h1 className="mt-2 text-2xl sm:text-3xl font-semibold text-ink-100">Metrics</h1>
         </div>
         <form action="/api/admin/auth/logout" method="post" className="text-[13px] text-ink-400">
-          <span className="font-mono">{email}</span>
+          <input type="hidden" name="csrf" value={session.csrf} />
+          <span className="font-mono">{session.email}</span>
           <button type="submit" className="ml-3 underline underline-offset-4 hover:text-ink-200">
             Sign out
           </button>
