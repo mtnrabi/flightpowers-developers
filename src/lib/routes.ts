@@ -42,7 +42,7 @@ function isRouteGroup(name: string): boolean {
  * page reached from an email link; indexing it would put an opt-out form in
  * search results for the brand name.
  */
-export const NOINDEX_ROUTES = new Set(['/unsubscribe']);
+export const NOINDEX_ROUTES = new Set(['/unsubscribe', '/admin']);
 
 export type DiscoveredRoute = { pathname: string; file: string };
 

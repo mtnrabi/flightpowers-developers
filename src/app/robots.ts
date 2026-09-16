@@ -10,8 +10,10 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: '*',
         allow: '/',
         // Route handlers are machinery, not content. Nothing to index and every
-        // crawl of them would spend real upstream quota.
-        disallow: ['/api/'],
+        // crawl of them would spend real upstream quota. /admin is the internal
+        // lane-metrics dashboard -- Google sign-in is what protects it, this
+        // line only keeps it out of a search result for the brand.
+        disallow: ['/api/', '/admin'],
       },
     ],
     sitemap: new URL('/sitemap.xml', SITE.url).toString(),
