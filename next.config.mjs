@@ -112,7 +112,13 @@ const nextConfig = {
             value:
               "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; " +
               "img-src 'self' data:; font-src 'self'; connect-src 'self'; " +
-              "frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'",
+              // accounts.google.com is in form-action for one reason: the
+              // /admin sign-in POSTs to our own handler, which 302s to
+              // Google's consent screen, and Chrome applies form-action to
+              // the redirect chain. It permits a navigation to Google and
+              // nothing else -- no script, style, image or connection.
+              "frame-ancestors 'none'; object-src 'none'; base-uri 'self'; " +
+              "form-action 'self' https://accounts.google.com",
           },
           { key: 'X-Frame-Options', value: 'DENY' },
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
