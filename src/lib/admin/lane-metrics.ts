@@ -1,5 +1,6 @@
 import 'server-only';
 import { neon } from '@neondatabase/serverless';
+import { percentileFrom } from './histogram';
 
 /**
  * Reads `lane_metrics_10m` — the table the flight_rabbi rollup writes.
@@ -207,33 +208,18 @@ function bucketExpression(resolution: Resolution): string {
  * The second used to return 90000 — turning "at least 90 seconds" into
  * "exactly 90 seconds", which is the sort of number a latency argument gets
  * built on. `percentileIsOverflow` tells the two cases apart.
+ *
+ * The walk itself lives in ./histogram — no `server-only`, so it runs under
+ * plain node in `npm test`, and the Lambda panel's MB histogram shares it
+ * rather than keeping a second copy of the same `>=`.
  */
 export function percentileFromHistogram(hist: number[], fraction: number): number | null {
-  const total = hist.reduce((sum, n) => sum + n, 0);
-  if (total <= 0) return null;
-  const target = total * fraction;
-  let seen = 0;
-  for (let i = 0; i < hist.length; i += 1) {
-    seen += hist[i];
-    if (seen >= target) {
-      // The last slot is the unbounded overflow bucket: no upper edge to give.
-      return i >= HISTOGRAM_EDGES_MS.length ? null : HISTOGRAM_EDGES_MS[i];
-    }
-  }
-  return null;
+  return percentileFrom(hist, fraction, HISTOGRAM_EDGES_MS).value;
 }
 
 /** True when the percentile lands in the unbounded `>= 90 s` bucket. */
 export function percentileIsOverflow(hist: number[], fraction: number): boolean {
-  const total = hist.reduce((sum, n) => sum + n, 0);
-  if (total <= 0) return false;
-  const target = total * fraction;
-  let seen = 0;
-  for (let i = 0; i < hist.length; i += 1) {
-    seen += hist[i];
-    if (seen >= target) return i >= HISTOGRAM_EDGES_MS.length;
-  }
-  return false;
+  return percentileFrom(hist, fraction, HISTOGRAM_EDGES_MS).overflow;
 }
 
 function ratio(numerator: number, denominator: number): number | null {

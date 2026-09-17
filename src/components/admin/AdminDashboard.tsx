@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { LaneMetrics } from '@/lib/admin/lane-metrics';
 import type { HotelMetrics } from '@/lib/admin/hotel-metrics';
+import type { LambdaReport } from '@/lib/admin/lambda-report';
 import { FlightsTab } from './FlightsTab';
 import { BookingTab } from './BookingTab';
 
@@ -47,7 +48,15 @@ export function AdminDashboard() {
 
   const flights = useMetrics<LaneMetrics>('/api/admin/lane-metrics', query, tab === 'flights');
   const booking = useMetrics<HotelMetrics>('/api/admin/hotel-metrics', query, tab === 'booking');
+  // One request for all three Lambdas, enabled on both tabs: the endpoint
+  // returns every function and each tab picks its own out, so switching tabs
+  // costs no second round trip and the two tabs cannot end up showing
+  // different windows of the same table.
+  const lambda = useMetrics<LambdaReport>('/api/admin/lambda-report', query, true);
 
+  // Deliberately NOT folded into `active`: the Lambda panel has its own
+  // endpoint and renders its own failure inside itself. A REPORT-line query
+  // that fails must not blank the lane charts above it.
   const active = tab === 'flights' ? flights : booking;
 
   return (
@@ -60,6 +69,7 @@ export function AdminDashboard() {
         onRefresh={() => {
           flights.reload();
           booking.reload();
+          lambda.reload();
         }}
         loading={active.loading}
       />
@@ -93,8 +103,12 @@ export function AdminDashboard() {
         </p>
       ) : null}
 
-      {tab === 'flights' && flights.data ? <FlightsTab data={flights.data} /> : null}
-      {tab === 'booking' && booking.data ? <BookingTab data={booking.data} /> : null}
+      {tab === 'flights' && flights.data ? (
+        <FlightsTab data={flights.data} lambda={lambda.data} lambdaError={lambda.error} />
+      ) : null}
+      {tab === 'booking' && booking.data ? (
+        <BookingTab data={booking.data} lambda={lambda.data} lambdaError={lambda.error} />
+      ) : null}
 
       {active.loading && !active.data ? (
         <p className="mt-8 text-[14px] text-ink-400">Loading…</p>
@@ -250,8 +264,13 @@ function Provenance({
           that pipeline is separate from the flights one.
         </>
       )}{' '}
-      p50 and p90 come from a fixed-edge histogram, so they are the upper edge of the bucket the
-      percentile falls in, not an interpolated value.
+      The Lambda panel on both tabs reads <span className="font-mono">lambda_report_10m</span>,
+      which the same two rollups fill from the CloudWatch REPORT line — memory used against memory
+      allocated, billed duration, timeouts, OOM kills and cold starts. Percentiles here (p50, p90,
+      p99, and the memory median) come from a fixed-edge histogram, so they are the upper edge of
+      the bucket the percentile falls in, not an interpolated value; one past the top edge reads
+      <span className="font-mono"> &gt; 90 s</span> or <span className="font-mono">&gt; 2048 MB</span>{' '}
+      rather than a number.
     </p>
   );
 }
