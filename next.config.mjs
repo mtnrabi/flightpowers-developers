@@ -60,6 +60,21 @@ const ALIAS_HOSTS = [
   'flightpowers-developers.vercel.app',
 ];
 
+/**
+ * admin.flightpowers.com is deliberately NOT in ALIAS_HOSTS above -- it is a
+ * real host on this same deployment (see src/lib/admin/auth.ts ALLOWED_HOSTS
+ * and src/app/admin/page.tsx), serving the dashboard at /admin and its API at
+ * /api/admin/*, not a byte-identical duplicate of the marketing site.
+ *
+ * But nothing lives at the BARE root of that host, so a person who just types
+ * admin.flightpowers.com falls through to the ordinary marketing homepage
+ * instead of the dashboard. Send only `/` (and `/index`) on that host to
+ * `/admin`; every other path -- `/admin` itself, `/api/admin/*`,
+ * `/robots.txt` -- is untouched.
+ */
+const ADMIN_HOST = 'admin.flightpowers.com';
+const ADMIN_HOST_ROOT_PATHS = ['/', '/index'];
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
@@ -67,6 +82,12 @@ const nextConfig = {
   poweredByHeader: false,
   async redirects() {
     return [
+      ...ADMIN_HOST_ROOT_PATHS.map((source) => ({
+        source,
+        has: [{ type: 'host', value: ADMIN_HOST }],
+        destination: '/admin',
+        permanent: true,
+      })),
       ...ALIAS_HOSTS.map((host) => ({
         source: '/:path*',
         has: [{ type: 'host', value: host }],
