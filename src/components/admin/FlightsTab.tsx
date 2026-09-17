@@ -57,22 +57,29 @@ export function FlightsTab({ data }: { data: LaneMetrics }) {
   const { totals } = data;
   const saved = totals.allProxiedCostUsd - totals.estimatedCostUsd;
 
+  const allowlistNote =
+    totals.allowlistDirectAttempts > 0
+      ? `blocked ${fmtInt(totals.allowlistDirectBlocked)} (fell back to proxy)`
+      : 'allowlist empty, no attempts yet';
+
   return (
     <>
       <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         <Stat label="Calls" value={fmtInt(totals.calls)} note="every lane, every outcome" />
         <Stat
-          label="Direct-first hit rate"
-          value={fmtPct(totals.directFirstHitRate)}
-          note={`${fmtInt(totals.directCalls)} of ${fmtInt(
-            totals.directCalls + totals.fallbackCalls
-          )} direct attempts never touched a proxy`}
+          label="Direct share"
+          value={fmtPct(totals.directShare)}
+          note={`secret lane, no proxy ever — ${fmtInt(totals.directCalls)} of ${fmtInt(
+            totals.calls
+          )} calls`}
         />
         <Stat
-          label="Blocked rate"
-          value={fmtPct(totals.blockedRate)}
-          tone={totals.blockedRate !== null && totals.blockedRate > 0.05 ? 'warning' : undefined}
-          note={`${fmtInt(totals.directBlocked)} direct attempts blocked`}
+          label="Allowlist direct attempts"
+          value={fmtInt(totals.allowlistDirectAttempts)}
+          // Scoped to the `general` lane (lib/admin/lane-metrics.ts GENERAL_LANE) --
+          // the DIRECT_FIRST_USERS allowlist. Named here rather than imported so
+          // this client component never pulls in that 'server-only' module.
+          note={`general lane · ${allowlistNote}`}
         />
         <Stat
           label="Proxied share"

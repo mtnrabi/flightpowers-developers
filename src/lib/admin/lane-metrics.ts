@@ -122,16 +122,38 @@ export type LaneMetrics = {
     proxiedCalls: number;
     fallbackCalls: number;
     directBlocked: number;
-    /** direct attempts that were NOT blocked, over direct attempts made */
-    directFirstHitRate: number | null;
+    /**
+     * transport_used = `direct` ÷ every call, every lane. In practice this is
+     * almost entirely the SECRET lane (it never touches a proxy, ever — see
+     * api-growth CLAUDE.md "secret_flights lane: NO retries, ever"), because
+     * the general lane only attempts direct for allowlisted users. Do not
+     * read this as a general-lane number; that is `allowlistDirectAttempts`.
+     */
+    directShare: number | null;
+    /**
+     * GENERAL-lane calls whose transport touched `direct` at all --
+     * `direct` or `direct_then_proxied` -- i.e. how many calls the
+     * `DIRECT_FIRST_USERS` allowlist actually attempted direct-first. Zero
+     * means the allowlist is empty, not that direct-first failed.
+     */
+    allowlistDirectAttempts: number;
+    /** Of those, how many were blocked and fell back to the proxy. */
+    allowlistDirectBlocked: number;
     /** calls that ended up touching a proxy at all */
     proxiedShare: number | null;
-    blockedRate: number | null;
     estimatedCostUsd: number;
     /** what the same traffic would have cost with every call proxied */
     allProxiedCostUsd: number;
   };
 };
+
+/**
+ * The lane name the backend writes for allowlisted direct-first traffic (see
+ * `lane` in db/0004_lane_metrics.sql). The other value is `secret`. Free text
+ * in the schema, but the dashboard needs to single this one out to scope the
+ * allowlist headline cards to it.
+ */
+export const GENERAL_LANE = 'general';
 
 type Sql = ReturnType<typeof neon>;
 
@@ -467,16 +489,21 @@ export async function fetchLaneMetrics(fromMs: number, toMs: number): Promise<La
   const fallbackCalls = lanes.reduce((sum, lane) => sum + lane.fallbackCalls, 0);
   const directBlocked = lanes.reduce((sum, lane) => sum + lane.directBlocked, 0);
 
-  // A direct attempt was made on every `direct` call and every fallback. The
-  // hit rate is the share of those that did NOT have to fall back -- which is
-  // the one number the whole direct-first experiment is asking about.
-  const directAttempts = directCalls + fallbackCalls;
-
   // A fallback call pays the proxy too, so it counts on the proxied side of
   // the bill as well as the direct side.
   const proxyTouchingCalls = proxiedCalls + fallbackCalls;
   const estimatedCostUsd =
     proxyTouchingCalls * COST_PER_PROXIED_CALL_USD + directCalls * COST_PER_DIRECT_CALL_USD;
+
+  // The allowlist headline cards are scoped to the general lane alone -- see
+  // GENERAL_LANE's doc comment. `directCalls`/`fallbackCalls`/`directBlocked`
+  // above are cross-lane and answer a different question (what share of ALL
+  // traffic, mostly the secret lane, never touches a proxy).
+  const generalLane = lanes.find((lane) => lane.lane === GENERAL_LANE);
+  const allowlistDirectAttempts = generalLane
+    ? generalLane.directCalls + generalLane.fallbackCalls
+    : 0;
+  const allowlistDirectBlocked = generalLane?.directBlocked ?? 0;
 
   return {
     range: { fromIso: from, toIso: to, resolution },
@@ -489,9 +516,10 @@ export async function fetchLaneMetrics(fromMs: number, toMs: number): Promise<La
       proxiedCalls,
       fallbackCalls,
       directBlocked,
-      directFirstHitRate: ratio(directCalls, directAttempts),
+      directShare: ratio(directCalls, calls),
+      allowlistDirectAttempts,
+      allowlistDirectBlocked,
       proxiedShare: ratio(proxyTouchingCalls, calls),
-      blockedRate: ratio(directBlocked, directAttempts),
       estimatedCostUsd,
       allProxiedCostUsd: calls * COST_PER_PROXIED_CALL_USD,
     },
