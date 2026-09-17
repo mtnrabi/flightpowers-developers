@@ -2,6 +2,8 @@
 
 import { useMemo } from 'react';
 import type { LaneMetrics, LanePoint, LaneSummary } from '@/lib/admin/lane-metrics';
+import type { LambdaReport } from '@/lib/admin/lambda-report';
+import { LambdaPanel } from './LambdaPanel';
 import {
   ChartFrame,
   HUES,
@@ -39,18 +41,45 @@ const TRANSPORTS: Series[] = [
 const COLOR_BY_TRANSPORT = Object.fromEntries(TRANSPORTS.map((t) => [t.key, t.color]));
 const LABEL_BY_TRANSPORT = Object.fromEntries(TRANSPORTS.map((t) => [t.key, t.label]));
 
-export function FlightsTab({ data }: { data: LaneMetrics }) {
+/** The Lambda behind this tab. Named here, not imported: lambda-report.ts is 'server-only'. */
+const FLIGHTS_FUNCTION = 'flyMyGApi';
+
+export function FlightsTab({
+  data,
+  lambda = null,
+  lambdaError = null,
+}: {
+  data: LaneMetrics;
+  /** the REPORT-line panel's data — it has its own endpoint and its own failure */
+  lambda?: LambdaReport | null;
+  lambdaError?: string | null;
+}) {
+  // The Lambda panel is rendered even when there are no lane rows: the two
+  // pipelines are independent, and "no [lane] lines yet" says nothing about
+  // whether the function is being OOM-killed.
+  const lambdaPanel = (
+    <LambdaPanel
+      report={lambda}
+      error={lambdaError}
+      functions={[FLIGHTS_FUNCTION]}
+      subtitle="What the CloudWatch REPORT line says the flights function used — memory against its allocation, timeouts, OOM kills, cold starts and compute cost."
+    />
+  );
+
   if (data.empty) {
     return (
-      <div className="mt-10 rounded-md border rule bg-ink-900 px-5 py-6">
-        <p className="text-[15px] text-ink-200">No lane rows in this window.</p>
-        <p className="mt-3 text-[14px] text-ink-400 leading-relaxed">
-          Expected until the backend emits <code className="font-mono">[lane]</code> lines
-          (flight_rabbi PR A) and the 20-minute rollup (PR B) has run at least once. Window read:{' '}
-          <span className="font-mono">{data.range.fromIso}</span> →{' '}
-          <span className="font-mono">{data.range.toIso}</span>.
-        </p>
-      </div>
+      <>
+        <div className="mt-10 rounded-md border rule bg-ink-900 px-5 py-6">
+          <p className="text-[15px] text-ink-200">No lane rows in this window.</p>
+          <p className="mt-3 text-[14px] text-ink-400 leading-relaxed">
+            Expected until the backend emits <code className="font-mono">[lane]</code> lines
+            (flight_rabbi PR A) and the 20-minute rollup (PR B) has run at least once. Window read:{' '}
+            <span className="font-mono">{data.range.fromIso}</span> →{' '}
+            <span className="font-mono">{data.range.toIso}</span>.
+          </p>
+        </div>
+        {lambdaPanel}
+      </>
     );
   }
 
@@ -111,6 +140,8 @@ export function FlightsTab({ data }: { data: LaneMetrics }) {
           resolution={data.range.resolution}
         />
       ))}
+
+      {lambdaPanel}
     </>
   );
 }

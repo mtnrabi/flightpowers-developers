@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit",
     "check-pricing": "node scripts/check-pricing.mjs",
     "check-capture": "node scripts/check-capture-guards.mjs",
+    "test": "node --experimental-strip-types --test scripts/*.test.mjs",
     "predeploy": "npm run check-pricing && npm run build"
   },
   "dependencies": {

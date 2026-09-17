@@ -2,6 +2,8 @@
 
 import { useMemo } from 'react';
 import type { HotelMetrics } from '@/lib/admin/hotel-metrics';
+import type { LambdaReport } from '@/lib/admin/lambda-report';
+import { LambdaPanel } from './LambdaPanel';
 import {
   ChartFrame,
   HUES,
@@ -58,7 +60,23 @@ function withUnknowns(known: Series[], seen: string[]): Series[] {
   return [...present, ...extra];
 }
 
-export function BookingTab({ data }: { data: HotelMetrics }) {
+/**
+ * The two hotels Lambdas, named here rather than imported: lambda-report.ts is
+ * 'server-only'. `hotelAgent` serves the booking-live-api listing;
+ * `multipleHotelsAgent` is the bulk listing, same image, different env.
+ */
+const HOTEL_FUNCTIONS = ['hotelAgent', 'multipleHotelsAgent'];
+
+export function BookingTab({
+  data,
+  lambda = null,
+  lambdaError = null,
+}: {
+  data: HotelMetrics;
+  /** the REPORT-line panel's data — its own endpoint, its own failure */
+  lambda?: LambdaReport | null;
+  lambdaError?: string | null;
+}) {
   const tools = useMemo(() => withUnknowns(TOOL_SERIES, data.tools), [data.tools]);
   const sources = useMemo(() => withUnknowns(SOURCE_SERIES, data.sources), [data.sources]);
 
@@ -116,31 +134,49 @@ export function BookingTab({ data }: { data: HotelMetrics }) {
     [data.series]
   );
 
+  // Rendered whatever the hotels tables say: the REPORT-line pipeline is
+  // independent of them, and "no hotel rows" says nothing about whether the
+  // functions are being OOM-killed.
+  const lambdaPanel = (
+    <LambdaPanel
+      report={lambda}
+      error={lambdaError}
+      functions={HOTEL_FUNCTIONS}
+      subtitle="What the CloudWatch REPORT line says the two hotels functions used — memory against their allocation, timeouts, OOM kills, cold starts and compute cost."
+    />
+  );
+
   if (data.schemaMissing) {
     return (
-      <div className="mt-10 rounded-md border rule bg-ink-900 px-5 py-6">
-        <p className="text-[15px] text-ink-200">The hotels tables do not exist yet.</p>
-        <p className="mt-3 text-[14px] text-ink-400 leading-relaxed">
-          Apply <code className="font-mono">db/0004_lane_metrics.sql</code> — the same file as{' '}
-          <code className="font-mono">backend/ops/lane_metrics.sql</code> in flight_rabbi. One
-          migration creates the flights tables and the hotels ones together.
-        </p>
-      </div>
+      <>
+        <div className="mt-10 rounded-md border rule bg-ink-900 px-5 py-6">
+          <p className="text-[15px] text-ink-200">The hotels tables do not exist yet.</p>
+          <p className="mt-3 text-[14px] text-ink-400 leading-relaxed">
+            Apply <code className="font-mono">db/0004_lane_metrics.sql</code> — the same file as{' '}
+            <code className="font-mono">backend/ops/lane_metrics.sql</code> in flight_rabbi. One
+            migration creates the flights tables and the hotels ones together.
+          </p>
+        </div>
+        {lambdaPanel}
+      </>
     );
   }
 
   if (data.empty) {
     return (
-      <div className="mt-10 rounded-md border rule bg-ink-900 px-5 py-6">
-        <p className="text-[15px] text-ink-200">No hotel rows in this window.</p>
-        <p className="mt-3 text-[14px] text-ink-400 leading-relaxed">
-          The tables exist but nothing has written to them. They are filled by a rollup in
-          mtnrabi/hotel_agent — the hotels Lambdas run in eu-central-1 under a different AWS
-          identity, so their pipeline is separate from the flights one. Window read:{' '}
-          <span className="font-mono">{data.range.fromIso}</span> →{' '}
-          <span className="font-mono">{data.range.toIso}</span>.
-        </p>
-      </div>
+      <>
+        <div className="mt-10 rounded-md border rule bg-ink-900 px-5 py-6">
+          <p className="text-[15px] text-ink-200">No hotel rows in this window.</p>
+          <p className="mt-3 text-[14px] text-ink-400 leading-relaxed">
+            The tables exist but nothing has written to them. They are filled by a rollup in
+            mtnrabi/hotel_agent — the hotels Lambdas run in eu-central-1 under a different AWS
+            identity, so their pipeline is separate from the flights one. Window read:{' '}
+            <span className="font-mono">{data.range.fromIso}</span> →{' '}
+            <span className="font-mono">{data.range.toIso}</span>.
+          </p>
+        </div>
+        {lambdaPanel}
+      </>
     );
   }
 
@@ -318,6 +354,8 @@ export function BookingTab({ data }: { data: HotelMetrics }) {
         <h2 className="text-xl font-semibold text-ink-100">Top callers</h2>
         <TopUsers data={data} />
       </section>
+
+      {lambdaPanel}
     </>
   );
 }

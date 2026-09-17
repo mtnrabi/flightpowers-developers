@@ -82,6 +82,11 @@ export function fmtPercentile(ms: number | null | undefined, overflow = false): 
   return fmtMs(ms);
 }
 
+/** Megabytes, the unit the REPORT line states memory in. */
+export function fmtMb(mb: number | null | undefined): string {
+  return mb === null || mb === undefined ? '—' : `${nf.format(Math.round(mb))} MB`;
+}
+
 export function fmtPct(fraction: number | null | undefined): string {
   return fraction === null || fraction === undefined ? '—' : `${(fraction * 100).toFixed(1)}%`;
 }
@@ -95,16 +100,18 @@ export function fmtUsd(value: number): string {
  * make the reader convert in their head on the last row, which is exactly the
  * moment they misread the chart.
  */
-export type Unit = 'count' | 'ms' | 'pct';
+export type Unit = 'count' | 'ms' | 'pct' | 'mb';
 
 export function tooltipFormatter(unit: Unit): (value: number | null) => string {
   if (unit === 'ms') return fmtMs;
   if (unit === 'pct') return fmtPct;
+  if (unit === 'mb') return fmtMb;
   return fmtInt;
 }
 
 export function axisFormatter(unit: Unit, max: number): (value: number) => string {
   if (unit === 'pct') return (value) => `${Math.round(value * 100)}%`;
+  if (unit === 'mb') return (value) => fmtMb(value);
   if (unit === 'ms') {
     return max >= 1000
       ? (value) => `${(value / 1000).toFixed(value === 0 ? 0 : 1)} s`
@@ -463,18 +470,29 @@ export function StackedBarChart({
   );
 }
 
+/**
+ * A fixed horizontal line to read the series against — the Lambda's memory
+ * allocation, say. It is drawn dashed, in the muted text colour, and it is
+ * INCLUDED IN THE Y SCALE: a p99 at 190 MB under a 1024 MB allocation has to
+ * look like the headroom it is, and a reference line off the top of the plot
+ * would say the opposite of the truth while being technically present.
+ */
+export type ReferenceLine = { value: number; label: string };
+
 export function LineChart({
   points,
   series,
   resolution,
   ariaLabel,
   unit = 'ms',
+  reference,
 }: {
   points: ChartPoint[];
   series: Series[];
   resolution: string;
   ariaLabel: string;
   unit?: Unit;
+  reference?: ReferenceLine;
 }) {
   const { index, setIndex, ref, onMove } = useHoverIndex(points.length);
   const format = tooltipFormatter(unit);
@@ -484,7 +502,8 @@ export function LineChart({
   );
   // A share chart is pinned to 0-100%: a quiet hour with one bad call must not
   // draw itself as a crisis the height of the chart.
-  const max = unit === 'pct' ? 1 : niceMax(Math.max(...values, 1));
+  const max =
+    unit === 'pct' ? 1 : niceMax(Math.max(...values, reference?.value ?? 0, 1));
   const slotWidth = PLOT_W / points.length;
   const xFor = (i: number) => PAD.left + (i + 0.5) * slotWidth;
   const yFor = (value: number) => PAD.top + PLOT_H - (value / max) * PLOT_H;
@@ -501,6 +520,30 @@ export function LineChart({
         onPointerLeave={() => setIndex(null)}
       >
         <YGrid max={max} format={axisFormatter(unit, max)} />
+
+        {reference ? (
+          <g>
+            <line
+              x1={PAD.left}
+              x2={PAD.left + PLOT_W}
+              y1={yFor(reference.value)}
+              y2={yFor(reference.value)}
+              stroke={TEXT_MUTED}
+              strokeWidth="1.5"
+              strokeDasharray="6 4"
+            />
+            <text
+              x={PAD.left + PLOT_W}
+              y={yFor(reference.value) - 6}
+              textAnchor="end"
+              fontSize="11"
+              fill={TEXT_MUTED}
+              fontFamily="var(--font-mono)"
+            >
+              {reference.label}
+            </text>
+          </g>
+        ) : null}
 
         {series.map((s) => {
           // A gap in the data is a gap in the line, never a straight segment
