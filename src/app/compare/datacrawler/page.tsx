@@ -232,7 +232,7 @@ export default function CompareDataCrawlerPage() {
                   One endpoint (<code className="font-mono text-[12px]">/searchFlights</code>) handles both one-way (outbound_date only) and round-trip (outbound_date + return_date). Returns paired results when both dates are supplied.
                 </>,
                 <>
-                  Dedicated <code className="font-mono text-[12px]">/v1/flights/roundtrip</code> endpoint with a single paired-leg response object and per-leg filters (e.g. <code className="font-mono text-[12px]">departure_max_stops</code>, <code className="font-mono text-[12px]">return_min_departure_time</code>).{' '}
+                  Dedicated <code className="font-mono text-[12px]">/v1/flights/roundtrip</code> endpoint with a single paired-leg response object and per-leg filters (e.g. <code className="font-mono text-[12px]">max_departure_stops</code>, <code className="font-mono text-[12px]">return_departure_time_min</code>).{' '}
                   <Link href="/flights-api/round-trip" className="text-signal-400 underline underline-offset-4">Round-trip API →</Link>
                 </>,
               ],
