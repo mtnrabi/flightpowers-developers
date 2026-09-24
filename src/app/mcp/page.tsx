@@ -21,7 +21,7 @@ import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 export const metadata: Metadata = withOg({
   title: 'MCP Servers: Google Flights & Booking.com for Claude, Cursor, ChatGPT',
   description:
-    'Hosted MCP servers for live Google Flights and Booking.com data. Works with Claude, Cursor, ChatGPT, and any MCP client. One URL per server: add it, sign in with Google, paste your RapidAPI key once. Flight date ranges and destination lists in a single call. Free tier: 10 requests/month.',
+    'Hosted MCP servers for live Google Flights and Booking.com data. Works with Claude, Cursor, ChatGPT, and any MCP client. One URL per server: add it, sign in with Google, and your first 10 searches each day are free and ad-free, no key to paste. Flight date ranges and destination lists in a single call.',
   alternates: { canonical: '/mcp' },
 });
 
@@ -60,6 +60,10 @@ const ASK_SLUGS = ['price-insights-check', 'cheapest-date-scan', 'round-trip-sea
 const ASKS = ASK_SLUGS.map((slug) => TASKS.find((t) => t.slug === slug)!);
 
 const faq: Faq[] = [
+  {
+    q: 'Do I need a RapidAPI key to try it?',
+    a: 'No. Add flights.flightpowers.com/mcp or hotels.flightpowers.com/mcp, click Sign in, sign in with Google, and your first 10 searches each day run free and ad-free on our key. Nothing goes into your client. A search is one date x destination combination, so one call over a three-day range spends three. The allowance renews at 00:00 UTC, and past it the tools answer with search_status trial_exhausted instead of an error. Paste your own RapidAPI key on the /connect page when you want the cap gone.',
+  },
   {
     q: 'What happens when I sign in?',
     a: 'Your client opens a Google sign-in, you approve it, and you land on our /connect page. Paste your RapidAPI key there once and it is encrypted before it is stored: only the last four characters are ever shown again. After that the client just works, and Disconnect on the same page deletes the key and cuts off every client that was using it. We keep your Google account id and email, nothing else.',
@@ -124,7 +128,7 @@ export default function McpPage() {
                 Connect Google Flights &amp; Booking.com to <span className="text-signal-500">any MCP client</span>
               </h1>
               <p className="lede mt-5">
-Ask your assistant what a flight costs and get today's real fare, with Google's own price band next to it. Add one URL, sign in with Google, and Claude, Cursor or ChatGPT can search live flights and hotels for you. Nothing to install.
+Ask your assistant what a flight costs and get today's real fare, with Google's own price band next to it. Add one URL, sign in with Google, and your first 10 searches each day are free and ad-free on our key, with nothing to paste. Nothing to install.
               </p>
               <div className="mt-7">
                 <CheckBullets
@@ -163,7 +167,7 @@ Ask your assistant what a flight costs and get today's real fare, with Google's 
                   <svg className="w-3.5 h-3.5 text-signal-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span className="text-ink-300">Free tier: <strong className="text-ink-100">10 requests/month</strong>, no credit card</span>
+                  <span className="text-ink-300">No key to start: <strong className="text-ink-100">10 free ad-free searches a day</strong>, sign in with Google</span>
                 </div>
                 <div className="flex items-center gap-2 font-mono text-[11px]">
                   <svg className="w-3.5 h-3.5 text-signal-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -177,9 +181,9 @@ Ask your assistant what a flight costs and get today's real fare, with Google's 
             <div>
               <Code label="add this URL · flights and hotels">{SIGN_IN_URLS}</Code>
               <p className="mt-3 text-[15px] text-ink-300">
-                Add the URL, click <strong className="text-ink-100">Sign in</strong>, sign in with Google, and paste your
-                RapidAPI key once on the page that opens. Nothing else goes into your client. One URL per server, whichever
-                way you connect.
+                Add the URL, click <strong className="text-ink-100">Sign in</strong>, sign in with Google, and your first
+                10 searches each day are free and ad-free on our key. There is nothing to paste. Paste your own RapidAPI key
+                on the page that opens when you want the cap gone. One URL per server, whichever way you connect.
               </p>
               <div className="mt-5">
                 <Code label="same thing in an mcp.json client">{SIGN_IN_CONFIG}</Code>

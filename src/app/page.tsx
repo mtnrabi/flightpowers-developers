@@ -38,7 +38,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Is there a free tier?',
-    a: 'Yes. BASIC is $0 on RapidAPI, no card, 10 requests per month with a hard cap. Enough to verify your key and see the response shape. The live demo above runs real requests on our key if you want a quick look first. If you want your own assistant to try it, the free ad-supported MCP server needs no key and no signup at all.',
+    a: 'Yes. BASIC is $0 on RapidAPI, no card, 10 requests per month with a hard cap. Enough to verify your key and see the response shape. The live demo above runs real requests on our key if you want a quick look first. And if you want your own assistant to try it, add flights.flightpowers.com/mcp, sign in with Google, and your first 10 searches each day are free and ad-free on our key, with no RapidAPI key at all.',
   },
   {
     q: 'Do flights and hotels share one plan?',

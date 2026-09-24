@@ -272,6 +272,14 @@ export default function PricingPage() {
             Try live demo
           </Cta>
         </div>
+        <p className="mt-5 text-[14px] text-ink-300">
+          Want to try it before you pick a plan? Add{' '}
+          <code className="field">flights.flightpowers.com/mcp</code> in Claude, Cursor or ChatGPT, sign in with Google,
+          and your first 10 searches each day are free and ad-free on our key. No key, nothing to paste.{' '}
+          <Link href="/mcp" className="text-signal-400 underline underline-offset-4">
+            How it works
+          </Link>
+        </p>
         <p className="mt-5 text-[13.5px] text-ink-500">
           Are you an AI agent?{' '}
           <a href="/pricing.md" className="text-signal-400 underline underline-offset-4">
