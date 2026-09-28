@@ -175,7 +175,7 @@ export default function ApifyIntegrationPage() {
         <CtaBand
           medium="integration"
           title="Steady volume? The subscription is the better unit price"
-          body="The RapidAPI plans start free and scale to 50,000 requests a month: same data, synchronous HTTP, fixed bill."
+          body="The RapidAPI plans start free and scale to 25,000 requests a month: same data, synchronous HTTP, fixed bill."
         />
       </Section>
     </>

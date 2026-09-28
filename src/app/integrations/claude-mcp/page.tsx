@@ -323,7 +323,7 @@ export default function ClaudeMcpPage() {
             { href: '/guides/ai-travel-agent', label: 'Build a Travel Agent', sub: '24/7 fare watch in 15 minutes' },
             { href: '/skills', label: 'Agent Skills', sub: '8 MIT-licensed workflows on GitHub' },
             { href: '/mcp', label: 'MCP for all clients', sub: 'ChatGPT, Cursor, and more' },
-            { href: '/pricing', label: 'Pricing', sub: 'Free tier to $50/month' },
+            { href: '/pricing', label: 'Pricing', sub: 'Free tier to $75/month' },
           ].map((l) => (
             <Link key={l.href} href={l.href} className="rounded-2xl border rule bg-ink-900/50 p-5 hover:border-ink-500 transition-colors">
               <p className="text-[15px] font-semibold text-ink-100">{l.label}</p>

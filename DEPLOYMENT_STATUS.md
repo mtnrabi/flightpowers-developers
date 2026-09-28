@@ -24,7 +24,7 @@
    - Free tier highlighted prominently
 
 3. **Pricing Page** (`src/app/pricing/page.tsx`)
-   - SEO: Emphasizes "$0 to $50/month" and free tier
+   - SEO: Emphasizes "$0 to $75/month" and free tier
    - Simplified headline: "Simple pricing: pay for what you use"
    - Clear free tier CTA path
 
@@ -109,19 +109,19 @@ npm run build
 
 ## Pricing Verification
 
-All pricing accurate as of 2026-09-01:
+All pricing accurate as of 2026-09-28 (re-read from the live RapidAPI pricing pages):
 
 **Google Flights Live API**:
 - BASIC: $0/mo, 10 requests
 - PRO: $10/mo, 2,500 requests
 - ULTRA: $25/mo, 10,000 requests (recommended)
-- MEGA: $50/mo, 50,000 requests
+- MEGA: $50/mo, 25,000 requests
 
 **Booking Live API**:
 - BASIC: $0/mo, 10 requests
 - PRO: $10/mo, 2,000 requests
-- ULTRA: $20/mo, 6,500 requests
-- MEGA: $50/mo, 25,000 requests
+- ULTRA: $30/mo, 6,500 requests
+- MEGA: $75/mo, 25,000 requests
 
 ---
 

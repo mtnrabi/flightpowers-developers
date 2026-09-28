@@ -21,7 +21,7 @@ const faq: Faq[] = [
   },
   {
     q: 'How wide a sweep can one plan sustain?',
-    a: 'One route-date is one request, so a daily sweep of 100 route-dates is ~3,000 requests a month, inside the Ultra plan (10,000/month at 250 req/min). Mega (50,000/month at 500 req/min, the lowest per-1k price) fits daily sweeps in the low thousands of route-dates. The per-minute limits mean a sweep is a burst, not an hours-long crawl.',
+    a: 'One route-date is one request, so a daily sweep of 100 route-dates is ~3,000 requests a month, inside the Ultra plan (10,000/month at 250 req/min). Mega (25,000/month at 500 req/min, the lowest per-1k price) fits daily sweeps of about 800 route-dates. The per-minute limits mean a sweep is a burst, not an hours-long crawl.',
   },
   {
     q: 'Can I do the same for hotels?',
