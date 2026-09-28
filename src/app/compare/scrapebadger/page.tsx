@@ -155,7 +155,7 @@ export default function CompareScrapeBadgerPage() {
             <h3 className="text-[16px] font-semibold text-ink-100 mb-3">FlightPowers (Google Flights Live API on RapidAPI)</h3>
             <PricingTable api="flights" plans={FLIGHT_PLANS} medium="compare" compact />
             <p className="mt-4 text-[14px] text-ink-400 leading-relaxed max-w-2xl">
-              Fixed monthly pricing: PRO at $10 for 2,500 requests is {perSearch(pro)} per search; ULTRA at $25 for 10,000 is {perSearch(ultra)}. Paid plans have soft quotas: overages bill at $0.003/req (PRO/ULTRA) or $0.001/req (MEGA). The free tier is 10 requests, hard cap.
+              Fixed monthly pricing: PRO at $10 for 2,500 requests is {perSearch(pro)} per search; ULTRA at $25 for 10,000 is {perSearch(ultra)}. Paid plans have soft quotas: overages bill at $0.003/req (PRO), $0.002/req (ULTRA) or $0.0015/req (MEGA). The free tier is 10 requests, hard cap.
             </p>
           </div>
           <div className="max-w-2xl">

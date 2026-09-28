@@ -21,9 +21,9 @@ import { APIFY, FLIGHT_PLANS, HOTEL_PLANS } from '@/lib/pricing';
 import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const metadata: Metadata = withOg({
-  title: 'API pricing: flights & hotels, $0 to $50/mo',
+  title: 'API pricing: flights & hotels, $0 to $75/mo',
   description:
-    'Flights $0/$10/$25/$50 a month for 10 to 50,000 requests; hotels $0/$10/$20/$50 for 10 to 25,000. Free tier, no card. Billed on RapidAPI.',
+    'Flights $0/$10/$25/$50 a month for 10 to 25,000 requests; hotels $0/$10/$30/$75 for 10 to 25,000. Free tier, no card. Billed on RapidAPI.',
   alternates: { canonical: '/pricing' },
 });
 
@@ -169,7 +169,7 @@ const RIVALS = [
 const faq: Faq[] = [
   {
     q: 'Do flights and hotels share one plan?',
-    a: 'No. They are two listings on RapidAPI with different plans: flights runs $0 / $10 / $25 / $50 at 150 to 500 requests/minute, hotels $0 / $10 / $20 / $50 at 25 to 50. Subscribe to each API you use; the same account key then works for both.',
+    a: 'No. They are two listings on RapidAPI with different plans: flights runs $0 / $10 / $25 / $50 at 150 to 500 requests/minute, hotels $0 / $10 / $30 / $75 at 25 to 50. Subscribe to each API you use; the same account key then works for both.',
   },
   {
     q: 'Where does billing actually happen?',
@@ -234,10 +234,10 @@ const faq: Faq[] = [
   },
   {
     q: 'What happens when I exceed my quota?',
-    a: 'On paid plans the quota is soft: extra requests bill at the plan’s overage rate ($0.003/request on flights Pro and Ultra, $0.001 on Mega; $0.006 / $0.003 / $0.002 on hotels). The free tier is a hard cap: requests beyond 10 are rejected, not billed.',
+    a: 'On paid plans the quota is soft: extra requests bill at the plan’s overage rate ($0.003/request on flights Pro, $0.002 on Ultra, $0.0015 on Mega; $0.006 / $0.0045 / $0.003 on hotels). The free tier is a hard cap: requests beyond 10 are rejected, not billed.',
   },
   {
-    q: 'What if I need more than 50,000 requests a month?',
+    q: 'What if I need more than 25,000 requests a month?',
     a: 'Message through the RapidAPI listing. Custom volume plans are a normal thing there and the developer answers.',
   },
 ];
@@ -551,8 +551,8 @@ export default function PricingPage() {
             <p className="font-mono text-[12px] text-signal-400">MEGA · $50</p>
             <h3 className="mt-2 text-[16px] font-semibold text-ink-100">Scans at scale</h3>
             <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed">
-              50,000 requests at $1.00 per 1k, our cheapest unit price, with 500 req/min and the lowest overage
-              ($0.001). Built for heatmaps over many routes and market analysis.
+              25,000 requests at $2.00 per 1k, our cheapest unit price, with 500 req/min and the lowest overage
+              ($0.0015). Built for heatmaps over many routes and market analysis.
             </p>
           </div>
         </div>

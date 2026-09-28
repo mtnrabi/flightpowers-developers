@@ -42,7 +42,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Is Duffel more expensive than FlightPowers?',
-    a: 'For a travel seller, often not: Duffel’s search allowance (1500 free searches per confirmed order, per their pricing page re-read 2026-09-07) means a well-converting seller pays little for search. For a non-booking workload the allowance is zero, every search is $0.005, and that is 2x our $25 tier and 5x our $50 tier on published list prices.',
+    a: 'For a travel seller, often not: Duffel’s search allowance (1500 free searches per confirmed order, per their pricing page re-read 2026-09-07) means a well-converting seller pays little for search. For a non-booking workload the allowance is zero, every search is $0.005, and that is 2x our $25 tier and 2.5x our $50 tier on published list prices.',
   },
   {
     q: 'Do the two APIs return the same kind of data?',
@@ -218,7 +218,7 @@ export default function CompareDuffelPage() {
             If you place <strong className="text-ink-100">no orders</strong>, you get <strong className="text-ink-100">no free
             searches</strong>, and every search is $0.005. For a non-booking workload that is{' '}
             <strong className="text-ink-100">2x</strong> our ${ultra.priceMonthly} tier ({perSearch(ultra)} per search) and{' '}
-            <strong className="text-ink-100">5x</strong> our ${mega.priceMonthly} tier ({perSearch(mega)}). And that is before the
+            <strong className="text-ink-100">2.5x</strong> our ${mega.priceMonthly} tier ({perSearch(mega)}). And that is before the
             practical problem, which is not price at all:
           </p>
           <p>
