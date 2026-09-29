@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google';
-import { SITE } from '@/lib/site';
+import { LINKS, SITE } from '@/lib/site';
 import { SiteHeader } from '@/components/SiteHeader';
 import { SiteFooter } from '@/components/SiteFooter';
 import { SessionBeacon } from '@/components/SessionBeacon';
@@ -64,7 +64,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           publisher references resolve to a real node instead of a stub.
 
           Every sameAs below is a live profile we control. Nothing here is a
-          claim about size, rating, or customers.
+          claim about size, rating, or customers. The npm entry is the live
+          n8n-nodes-flightpowers package (the earlier n8n-nodes-flight-hotel-data
+          was withdrawn); the registry URL is the official MCP registry's
+          search for our two entries, com.flightpowers/google-flights and
+          com.flightpowers/booking.
         */}
         <JsonLd
           data={{
@@ -83,7 +87,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               'https://rapidapi.com/user/mtnrabi',
               'https://github.com/mtnrabi',
               'https://apify.com/mtnrabi',
-              'https://www.npmjs.com/package/n8n-nodes-flight-hotel-data',
+              LINKS.npmNode,
+              LINKS.smitheryFlights,
+              LINKS.smitheryHotels,
+              'https://registry.modelcontextprotocol.io/v0/servers?search=com.flightpowers',
+              'https://www.postman.com/mtnrabis-team/flightpowers',
+              LINKS.skills,
             ],
           }}
         />

@@ -22,12 +22,17 @@ import { FIXTURES } from '@/lib/fixtures';
 import { FLIGHT_PLANS } from '@/lib/pricing';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = withOg({
-  title: 'Google Flights API: live fares with a price verdict on every result',
-  description:
-    'A REST API over live Google Flights results. POST /oneway and POST /roundtrip return flat JSON with Google’s price_insights band, a low | typical | high verdict, honest X-Search-Status headers, and a booking link on every itinerary.',
-  alternates: { canonical: '/flights-api' },
-});
+// The head term first ("flights API"), the source second; title.absolute keeps
+// the template's " · FlightPowers" suffix off so the tag stays under 60 chars.
+export const metadata: Metadata = {
+  ...withOg({
+    title: 'Flights API: live Google Flights fares with a price verdict',
+    description:
+      "Flights API over live Google Flights: one-way and round-trip fares as JSON with Google's low/typical/high price band and a booking link. PRO $10 for 2,500.",
+    alternates: { canonical: '/flights-api' },
+  }),
+  title: { absolute: 'Flights API: live Google Flights fares with a price verdict' },
+};
 
 export const dynamic = 'force-static';
 
@@ -220,11 +225,20 @@ export default function FlightsApiHubPage() {
             <div>
               <p className="eyebrow">Google Flights API</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
-                Live Google Flights data, with a <span className="text-signal-500">price verdict</span>
+                Flights API for live <span className="text-signal-500">Google Flights fares</span>
               </h1>
+              {/* The citation chunk: name, what it returns, the price, best for. Every
+                  number is from lib/pricing.ts; the SerpApi line is the sanctioned one. */}
               <p className="lede mt-5">
-                Two endpoints over live Google Flights results: fares as flat JSON, with Google&apos;s price band, a
-                low | typical | high verdict, and a booking link.
+                FlightPowers is a flights API for developers and AI agents: live Google Flights fares with Google&apos;s
+                low/typical/high price band and a round trip priced as one request, over REST, MCP and n8n on one RapidAPI
+                key. Free tier of {FLIGHT_PLANS[0]!.quota} searches, PRO ${FLIGHT_PLANS[1]!.priceMonthly} for{' '}
+                {FLIGHT_PLANS[1]!.quota.toLocaleString('en-US')}. Best for price tracking, date scans and AI agents; no
+                booking.
+              </p>
+              <p className="mt-3 text-[15px] text-ink-400 leading-relaxed">
+                Also called a flight price API, airfare API or flight search API. PRO is about a sixth of SerpApi&apos;s price
+                per search (their cheapest plan is $25 for 1,000).
               </p>
               <div className="mt-7">
                 <CheckBullets
@@ -341,6 +355,30 @@ export default function FlightsApiHubPage() {
           </>,
         ]}
       />
+
+      <Section>
+        <div className="max-w-3xl space-y-8">
+          <div>
+            <h2 className="text-[1.5rem] sm:text-3xl font-semibold">Is there a free API for flights?</h2>
+            <p className="mt-3 text-[15px] text-ink-300 leading-relaxed">
+              Yes, with limits: the BASIC plan on RapidAPI is {FLIGHT_PLANS[0]!.quota} searches a month at $0 with no card,
+              and the free, ad-supported{' '}
+              <Link href="/mcp" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+                MCP server
+              </Link>{' '}
+              gives 50 searches a day (250 a month) with a Google sign-in; PRO is ${FLIGHT_PLANS[1]!.priceMonthly} for{' '}
+              {FLIGHT_PLANS[1]!.quota.toLocaleString('en-US')}.
+            </p>
+          </div>
+          <div>
+            <h2 className="text-[1.5rem] sm:text-3xl font-semibold">Is Google Flights API free?</h2>
+            <p className="mt-3 text-[15px] text-ink-300 leading-relaxed">
+              Google has no public flights API (QPX Express closed in 2018); this is an independent API that reads Google
+              Flights live at request time, and its free tier is {FLIGHT_PLANS[0]!.quota} searches a month.
+            </p>
+          </div>
+        </div>
+      </Section>
 
       <Section>
         <SectionHead
@@ -535,7 +573,7 @@ export default function FlightsApiHubPage() {
             { href: '/hotels-api', label: 'Hotels API', sub: 'Booking.com rates, with per-country pricing' },
             { href: '/tools/flight-price-checker', label: 'Flight price checker', sub: 'Try the API free, no signup' },
             { href: '/mcp', label: 'MCP servers', sub: 'The same data, one URL for your agent' },
-            { href: '/pricing', label: 'Full pricing', sub: 'Both APIs, the Apify option, key check' },
+            { href: '/compare', label: 'Compare', sub: 'vs SerpApi, Duffel, HasData and more, with dates' },
           ].map((l) => (
             <Link key={l.href} href={l.href} className="rounded-2xl border rule bg-ink-900/50 p-5 hover:border-ink-500 transition-colors">
               <p className="text-[15px] font-semibold text-ink-100">{l.label}</p>

@@ -45,6 +45,14 @@ export const dynamic = 'force-static';
 
 const CONTACT_EMAIL = 'matan@flightpowers.com';
 
+/**
+ * Request volume, not a customer count: a count goes stale the day it moves
+ * and the 2026-09-28 review replaced count lines with volume everywhere. The
+ * figure is the RapidAPI provider dashboard's 8-day window, read on the date
+ * shown (api-growth handoff recap §1).
+ */
+const VOLUME = { calls: '1.2M calls per 8 days', readOn: '2026-08-17' } as const;
+
 /** The recorded run (facts sheet 8; key fields from the product draft's Run A). */
 const RUN = {
   stamp: '2026-09-29 13:08Z',
@@ -150,7 +158,7 @@ const faq: Faq[] = [
   },
   {
     q: 'What about uptime? Is there an SLA?',
-    a: 'It is a resilient design with no UI elements in the path, and it has run a year without a Google break. Scheduled tests run a few times a day, so I notice a break and fix it right away. The same lane serves 33 paying API customers and about 1.2M calls per 8 days on the flights listing (September 2026).',
+    a: `It is a resilient design with no UI elements in the path, and it has run a year without a Google break. Scheduled tests run a few times a day, so I notice a break and fix it right away. The same lane serves about ${VOLUME.calls} on the flights listing (read ${VOLUME.readOn} from the RapidAPI provider dashboard).`,
   },
   {
     q: 'What are the rate limits at our volume?',
@@ -223,7 +231,7 @@ export default function AssistantsPage() {
           </Cta>
         </div>
         <p className="mt-6 font-mono text-[12px] text-ink-500">
-          33 paying API customers · about 1.2M calls per 8 days on the flights listing (September 2026)
+          About {VOLUME.calls} on the flights listing · read {VOLUME.readOn} from the RapidAPI provider dashboard
         </p>
       </Container>
 

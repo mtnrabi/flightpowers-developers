@@ -118,6 +118,25 @@ export default function CompareCrawlioPage() {
           <p className="lede mt-5 max-w-3xl">
             Crawlio google-flights8 API on RapidAPI offers structured flight data with dedicated date-grid and price-graph endpoints. Both APIs live on RapidAPI, both target developers building fare comparison or monitoring tools, and both handle round-trips — but the round-trip flow is structurally different.
           </p>
+          <p className="mt-5 max-w-3xl text-[14.5px] text-ink-400 leading-relaxed">
+            Looking for an alternative? FlightPowers is a{' '}
+            <Link href="/flights-api" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+              Flights API
+            </Link>{' '}
+            over live Google Flights fares and a{' '}
+            <Link href="/hotels-api" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+              Hotels API
+            </Link>{' '}
+            over live Booking.com rates, with{' '}
+            <Link href="/mcp" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+              MCP servers
+            </Link>{' '}
+            for Claude and Cursor; PRO is $10 for 2,500 flight searches, and the{' '}
+            <Link href="/guides" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+              guides
+            </Link>{' '}
+            have working code for each.
+          </p>
         </Container>
       </div>
 

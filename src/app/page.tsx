@@ -10,12 +10,18 @@ import { FLIGHT_PLANS, HOTEL_PLANS, fmtRate, type Plan } from '@/lib/pricing';
 import { FIXTURES } from '@/lib/fixtures';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = withOg({
-  title: 'FlightPowers - Scan deals 24/7 with real-time flight & hotel data',
-  description:
-    'Scan deals 24/7 with real-time flight & hotel data, connected to your AI agent',
-  alternates: { canonical: '/' },
-});
+// The home page targets "travel data API" / "travel APIs"; title.absolute
+// because the title already starts with the brand and the template would
+// append " · FlightPowers" a second time.
+export const metadata: Metadata = {
+  ...withOg({
+    title: 'FlightPowers: travel data API, live flight and hotel prices',
+    description:
+      'Travel data API for developers and agents: live Google Flights fares with a price band, round trips in one request, Booking.com rates. PRO from $10.',
+    alternates: { canonical: '/' },
+  }),
+  title: { absolute: 'FlightPowers: travel data API, live flight and hotel prices' },
+};
 
 export const dynamic = 'force-static';
 
@@ -167,9 +173,26 @@ export default function HomePage() {
               <h1 className="mt-4 text-hero font-semibold">
                 Your own travel agent, scan deals <span className="text-signal-500">24/7</span>
               </h1>
+              {/* The definition chunk under Matan's H1: name, what it is, the price, best
+                  for. Numbers from lib/pricing.ts; the SerpApi line is the sanctioned one
+                  (their cheapest plan re-read 2026-09-26). */}
               <p className="lede mt-5">
-                Real-time Google Flights and Booking.com prices, wired into your code or your LLM. Three things people do
-                with them:
+                FlightPowers is a travel data API for developers and AI agents: live Google Flights fares with Google&apos;s
+                low/typical/high price band, a round trip priced as one request, and live Booking.com hotel rates, over REST
+                and MCP on one RapidAPI key. Free tier of {FLIGHT_PLANS[0]!.quota} searches, PRO ${FLIGHT_PLANS[1]!.priceMonthly}{' '}
+                for {FLIGHT_PLANS[1]!.quota.toLocaleString('en-US')} flight searches. Best for price tracking, date scans and AI
+                agents; no booking.
+              </p>
+              <p className="mt-3 text-[15px] text-ink-400 leading-relaxed">
+                PRO is about a sixth of SerpApi&apos;s price per search (their cheapest plan is $25 for 1,000); the{' '}
+                <Link href="/compare" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+                  compare pages
+                </Link>{' '}
+                put the numbers side by side, and the{' '}
+                <Link href="/guides" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+                  guides
+                </Link>{' '}
+                have working code for each surface. Three things people do with it:
               </p>
               <div className="mt-6">
                 <PlayList />

@@ -109,15 +109,20 @@ export const LINKS = {
   demoProduct: 'https://demo.flightpowers.com',
 } as const;
 
-/** Top navigation — five items, everything else lives in the footer. */
+/**
+ * Top navigation. The two product hubs are real links (the old "APIs" item
+ * was an anchor to /#apis, so /flights-api and /hotels-api had no nav link at
+ * all); Blog moved to the footer to keep the row on one line. Everything else
+ * lives in the footer.
+ */
 export const NAV: { href: string; label: string; external?: boolean }[] = [
-  { href: '/#apis', label: 'APIs' },
+  { href: '/flights-api', label: 'Flights API' },
+  { href: '/hotels-api', label: 'Hotels API' },
   { href: '/guides/ai-travel-agent', label: 'Build a Travel Agent' },
   { href: '/integrations', label: 'Integrations' },
   { href: '/tools', label: 'Free Tools' },
   { href: '/pricing', label: 'Pricing' },
   { href: SITE.docsUrl, label: 'Docs' },
-  { href: '/blog', label: 'Blog' },
 ];
 
 /**

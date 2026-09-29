@@ -16,15 +16,21 @@ import {
 } from '@/components/ui';
 import { FIXTURES } from '@/lib/fixtures';
 import { AGENTS } from '@/lib/matrix';
+import { FLIGHT_PLANS } from '@/lib/pricing';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 import { PortabilityBand } from '@/components/Portability';
 
-export const metadata: Metadata = withOg({
-  title: 'Travel data for AI agents: MCP, skills, and REST on one key',
-  description:
-    'Live Google Flights and Booking.com prices as flat JSON an agent can act on: booking links, per-country hotel rates. One RapidAPI key authenticates MCP, the open-source skills, and REST.',
-  alternates: { canonical: '/ai-agents' },
-});
+// The head term first ("AI travel agent API"); title.absolute keeps the
+// " · FlightPowers" suffix off so the tag stays under 60 chars.
+export const metadata: Metadata = {
+  ...withOg({
+    title: 'AI travel agent API: live flight and hotel data for agents',
+    description:
+      'AI travel agent API: live Google Flights fares with a price verdict and Booking.com rates as flat JSON, over MCP, skills and REST on one RapidAPI key.',
+    alternates: { canonical: '/ai-agents' },
+  }),
+  title: { absolute: 'AI travel agent API: live flight and hotel data for agents' },
+};
 
 export const dynamic = 'force-static';
 
@@ -153,10 +159,20 @@ export default function AiAgentsPage() {
             <div>
               <p className="eyebrow">For agent builders</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
-                Travel data, built for <span className="text-signal-500">AI agents</span>
+                AI travel agent API for <span className="text-signal-500">live flight and hotel data</span>
               </h1>
+              {/* The citation chunk: definition first, then name, capability, price, best for.
+                  Numbers from lib/pricing.ts; the free path is the plan's placement. */}
               <p className="lede mt-5">
-                Live Google Flights and Booking.com prices as flat JSON, with the fields that turn a number into a decision.
+                An AI travel agent API is a live price feed an agent calls. FlightPowers gives it live Google Flights fares with
+                the low/typical/high price band, round trips in one request and live Booking.com rates, over MCP, skills and
+                REST on one RapidAPI key. Free tier: {FLIGHT_PLANS[0]!.quota} searches; PRO ${FLIGHT_PLANS[1]!.priceMonthly} for{' '}
+                {FLIGHT_PLANS[1]!.quota.toLocaleString('en-US')} flight searches. Best for fare alerts, date scans and trip planners.
+              </p>
+              <p className="mt-3 text-[15px] text-ink-400 leading-relaxed">
+                Try it free with ads at{' '}
+                <code className="font-mono text-[0.85em] text-signal-400">free-trial.flightpowers.com/mcp</code> (Google sign-in,
+                50 searches a day, 250 a month). It prices and links; it does not book.
               </p>
               <div className="mt-7">
                 <CheckBullets
@@ -338,6 +354,21 @@ export default function AiAgentsPage() {
       </Section>
 
       <Section>
+        <div className="max-w-3xl">
+          <h2 className="text-[1.5rem] sm:text-3xl font-semibold">
+            Where can I create an AI agent that compares flight and hotel prices?
+          </h2>
+          <p className="mt-3 text-[15px] text-ink-300 leading-relaxed">
+            In Claude, ChatGPT or Cursor with the MCP servers above, or in n8n with the community node; the{' '}
+            <Link href="/guides/ai-travel-agent" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+              AI travel agent guide
+            </Link>{' '}
+            walks through one that scans your routes every morning and compares fares against Google&apos;s own band.
+          </p>
+        </div>
+      </Section>
+
+      <Section>
         <FaqSection items={faq} />
       </Section>
 
@@ -348,7 +379,7 @@ export default function AiAgentsPage() {
           {[
             { href: '/mcp', label: 'The MCP servers', sub: 'One URL, four tools, your key' },
             { href: '/skills', label: 'The agent skills', sub: `${COUNTS.skills} open-source skills, MIT` },
-            { href: '/integrations', label: 'All integrations', sub: 'Every surface we ship on' },
+            { href: '/guides', label: 'Guides', sub: 'Working code for each surface, dated' },
             { href: '/pricing', label: 'Pricing', sub: 'Plans from $0, billed on RapidAPI' },
           ].map((l) => (
             <Link key={l.href} href={l.href} className="rounded-2xl border rule bg-ink-900/50 p-5 hover:border-ink-500 transition-colors">
