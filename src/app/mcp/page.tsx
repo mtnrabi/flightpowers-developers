@@ -18,12 +18,17 @@ import {
 import { TASKS } from '@/lib/matrix';
 import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = withOg({
-  title: 'MCP Servers: Google Flights & Booking.com for Claude, Cursor, ChatGPT',
-  description:
-    'Hosted MCP servers for live Google Flights and Booking.com data. Works with Claude, Cursor, ChatGPT, and any MCP client. One URL per server: add it, sign in with Google, and your first 10 searches each day are free and ad-free, no key to paste. Flight date ranges and destination lists in a single call.',
-  alternates: { canonical: '/mcp' },
-});
+// The head terms ("travel MCP", "flights MCP", "hotel MCP") each appear once in
+// the hub text; title.absolute keeps the " · FlightPowers" suffix off.
+export const metadata: Metadata = {
+  ...withOg({
+    title: 'Travel MCP servers: Google Flights + Booking.com for Claude',
+    description:
+      'Travel MCP servers for Claude, Cursor and ChatGPT: live Google Flights fares with a price band, live Booking.com rates. Free with ads; ad-free on your key.',
+    alternates: { canonical: '/mcp' },
+  }),
+  title: { absolute: 'Travel MCP servers: Google Flights + Booking.com for Claude' },
+};
 
 export const dynamic = 'force-static';
 
@@ -125,10 +130,22 @@ export default function McpPage() {
             <div>
               <p className="eyebrow">Hosted MCP servers</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
-                Connect Google Flights &amp; Booking.com to <span className="text-signal-500">any MCP client</span>
+                Travel MCP servers for Claude, Cursor and <span className="text-signal-500">any MCP client</span>
               </h1>
+              {/* The citation chunk, MCP variant: the free ad-supported server is named
+                  here on purpose (the plan places it on this hub); numbers from
+                  lib/pricing.ts and the free server's published caps. */}
               <p className="lede mt-5">
-Ask your assistant what a flight costs and get today's real fare, with Google's own price band next to it. Add one URL, sign in with Google, and your first 10 searches each day are free and ad-free on our key, with nothing to paste. Nothing to install.
+                FlightPowers runs travel MCP servers for Claude and Cursor: a flights MCP with live Google Flights fares,
+                Google&apos;s low/typical/high band, a date range and destination list in one call, one-request round trips;
+                and a hotel MCP with live Booking.com rates. Free with ads at{' '}
+                <code className="font-mono text-[0.85em] text-signal-400">{LINKS.mcpFree.replace('https://', '')}</code> (Google
+                sign-in, 50 searches a day); ad-free on your key, PRO $10 for 2,500.
+              </p>
+              <p className="mt-3 text-[15px] text-ink-400 leading-relaxed">
+                Best for price tracking, date scans and AI agents; they do not book. ChatGPT and any other client that takes a
+                URL connects the same way, and on the keyed servers below your first 10 searches each day are free and ad-free
+                with a Google sign-in, nothing to paste.
               </p>
               <div className="mt-7">
                 <CheckBullets
@@ -342,7 +359,7 @@ Ask your assistant what a flight costs and get today's real fare, with Google's 
           {[
             { href: '/ai-agents', label: 'For AI agents', sub: 'Six things to build this week' },
             { href: '/skills', label: 'The agent skills', sub: `${COUNTS.skills} open-source skills, MIT` },
-            { href: '/integrations', label: 'All integrations', sub: 'Every surface we ship on' },
+            { href: '/compare', label: 'Compare', sub: 'vs flight-mcp.com, HasData, SerpApi, with dates' },
             { href: '/flights-api/price-insights', label: 'Price Insights API', sub: 'Price context from Google Flights' },
           ].map((l) => (
             <Link key={l.href} href={l.href} className="rounded-2xl border rule bg-ink-900/50 p-5 hover:border-ink-500 transition-colors">

@@ -5,12 +5,17 @@ import type { Faq } from '@/components/ui';
 
 export const dynamic = 'force-static';
 
-export const metadata: Metadata = withOg({
-  title: 'Live flight & hotel data in Claude: MCP connector setup',
-  description:
-    'Connect Claude to live Google Flights and Booking.com data with two custom-connector URLs, one per API. Sign in with Google once; every fare returns with Google’s price band and a low/typical/high verdict.',
-  alternates: { canonical: '/integrations/claude' },
-});
+// "google flights connector claude" is the query cluster that already clicks
+// (25% CTR); the title uses that word. title.absolute keeps the suffix off.
+export const metadata: Metadata = {
+  ...withOg({
+    title: 'Google Flights connector for Claude: live fares in claude.ai',
+    description:
+      "Google Flights connector for Claude: two connector URLs in claude.ai, Google sign-in, every fare with Google's price band and a low/typical/high verdict.",
+    alternates: { canonical: '/integrations/claude' },
+  }),
+  title: { absolute: 'Google Flights connector for Claude: live fares in claude.ai' },
+};
 
 const steps: ConnectStep[] = [
   {

@@ -24,12 +24,17 @@ import { HOTEL_PLANS } from '@/lib/pricing';
 import { hotelSearchSnippets } from '@/lib/snippets';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = withOg({
-  title: 'Hotel search API: live Booking.com rates',
-  description:
-    'POST /search takes a free-text destination and dates and returns ranked properties with live Booking.com prices, review scores and 24 filters.',
-  alternates: { canonical: '/hotels-api/search' },
-});
+// "hotel price api" is the query this page already sits on page 1 for; the
+// title names it. title.absolute keeps the " · FlightPowers" suffix off.
+export const metadata: Metadata = {
+  ...withOg({
+    title: 'Hotel price API: live Booking.com room rates as JSON',
+    description:
+      'Hotel price API: POST /search takes a destination and dates, returns ranked properties with live Booking.com rates, room type, review score and 24 filters.',
+    alternates: { canonical: '/hotels-api/search' },
+  }),
+  title: { absolute: 'Hotel price API: live Booking.com room rates as JSON' },
+};
 
 export const dynamic = 'force-static';
 
@@ -152,11 +157,16 @@ export default function HotelSearchPage() {
             <div>
               <p className="eyebrow">Hotel Search API</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
-                One destination in, ranked <span className="text-signal-500">live rates</span> out
+                Hotel price API: one destination in, <span className="text-signal-500">live room rates</span> out
               </h1>
+              {/* The citation chunk for this endpoint. Numbers from lib/pricing.ts. */}
               <p className="lede mt-5">
-                <code className="font-mono text-[0.85em] text-signal-400">POST /search</code> takes a free-text destination and
-                dates; returns properties with live prices, review scores, room types and booking links.
+                FlightPowers&apos; hotel price API returns live Booking.com room rates as JSON:{' '}
+                <code className="font-mono text-[0.85em] text-signal-400">POST /search</code> takes a destination and dates and
+                returns ranked properties with price, room type, review score and a booking link, and{' '}
+                <code className="font-mono text-[0.85em] text-signal-400">proxy_country</code> prices the stay as seen from another
+                country. Free tier: {HOTEL_PLANS[0]!.quota} searches; PRO ${HOTEL_PLANS[1]!.priceMonthly} for{' '}
+                {HOTEL_PLANS[1]!.quota.toLocaleString('en-US')}. Best for rate tracking and AI agents; no booking.
               </p>
               <div className="mt-7">
                 <CheckBullets
@@ -269,6 +279,17 @@ export default function HotelSearchPage() {
           </>,
         ]}
       />
+
+      <Section>
+        <div className="max-w-3xl">
+          <h2 className="text-[1.5rem] sm:text-3xl font-semibold">Also called a hotel rates API</h2>
+          <p className="mt-3 text-[15px] text-ink-300 leading-relaxed">
+            Hotel price API, hotel rates API, hotel room rates API: the same endpoint answers all three, one{' '}
+            <code className="field">POST /search</code> with a destination and dates, fetched from Booking.com at request time
+            rather than from a cache, with the room type on every row so two quotes are comparable.
+          </p>
+        </div>
+      </Section>
 
       <Section>
         <div className="flex flex-wrap items-center justify-between gap-3">

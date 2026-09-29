@@ -21,12 +21,17 @@ import { FIXTURES } from '@/lib/fixtures';
 import { HOTEL_PLANS } from '@/lib/pricing';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = withOg({
-  title: 'Booking.com hotel API: live rates and pricing',
-  description:
-    'A REST API for live Booking.com hotel prices. Search a destination or a hotel by name; every endpoint takes proxy_country to price from any market.',
-  alternates: { canonical: '/hotels-api' },
-});
+// The head term first ("hotels API"), the source second; title.absolute keeps
+// the template's " · FlightPowers" suffix off so the tag stays under 60 chars.
+export const metadata: Metadata = {
+  ...withOg({
+    title: 'Hotels API: live Booking.com rates by destination or name',
+    description:
+      'Hotels API over live Booking.com: rates by destination or hotel name, proxy_country to price a stay from any country, 24 filters. PRO $10 for 2,000.',
+    alternates: { canonical: '/hotels-api' },
+  }),
+  title: { absolute: 'Hotels API: live Booking.com rates by destination or name' },
+};
 
 export const dynamic = 'force-static';
 
@@ -215,11 +220,17 @@ export default function HotelsApiHubPage() {
             <div>
               <p className="eyebrow">Booking.com Hotels API</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
-                Live hotel rates, priced from <span className="text-signal-500">any market</span>
+                Hotels API for live <span className="text-signal-500">Booking.com rates</span>
               </h1>
+              {/* The citation chunk: name, what it returns, the price, best for. Every
+                  number is from lib/pricing.ts. A data API, not a booking engine: the
+                  "booking api" query mostly means reservations, and this says so. */}
               <p className="lede mt-5">
-                Search a destination or name a hotel; get Booking.com&apos;s live rates, review scores, room types and booking links
-                as flat JSON.
+                FlightPowers is a hotels API for developers and AI agents: live Booking.com room rates by destination or by
+                hotel name, and <code className="font-mono text-[0.85em] text-signal-400">proxy_country</code> to price a stay as
+                seen from another country, over REST and MCP on one RapidAPI key. Free tier: {HOTEL_PLANS[0]!.quota} searches;
+                PRO ${HOTEL_PLANS[1]!.priceMonthly} for {HOTEL_PLANS[1]!.quota.toLocaleString('en-US')}. Best for rate tracking
+                and AI agents; hotel data, not a booking engine.
               </p>
               <div className="mt-7">
                 <CheckBullets
@@ -339,6 +350,26 @@ export default function HotelsApiHubPage() {
           </>,
         ]}
       />
+
+      <Section>
+        <div className="max-w-3xl space-y-8">
+          <div>
+            <h2 className="text-[1.5rem] sm:text-3xl font-semibold">Is there an API that can find hotel prices?</h2>
+            <p className="mt-3 text-[15px] text-ink-300 leading-relaxed">
+              Yes: <code className="field">POST /search</code> returns live Booking.com rates for a destination and dates, and{' '}
+              <code className="field">POST /hotel_by_name</code> returns them for one property, each with room type, review
+              score and a booking link.
+            </p>
+          </div>
+          <div>
+            <h2 className="text-[1.5rem] sm:text-3xl font-semibold">Which hotel APIs are free to use?</h2>
+            <p className="mt-3 text-[15px] text-ink-300 leading-relaxed">
+              This one has a free BASIC plan of {HOTEL_PLANS[0]!.quota} searches a month on RapidAPI with no card; Booking.com&apos;s
+              own Demand API is for approved affiliates and its Connectivity API for property systems, so neither is self-serve.
+            </p>
+          </div>
+        </div>
+      </Section>
 
       <Section>
         <SectionHead
@@ -507,7 +538,7 @@ export default function HotelsApiHubPage() {
             { href: '/flights-api', label: 'Flights API', sub: 'Google Flights fares with a price verdict' },
             { href: '/tools/hotel-price-by-country', label: 'Hotel price by country', sub: 'Free tool: proxy_country in action' },
             { href: '/mcp', label: 'MCP servers', sub: 'The same data for your agent' },
-            { href: '/pricing', label: 'Pricing', sub: 'Plans, quotas, rate limits' },
+            { href: '/compare', label: 'Compare', sub: 'vs SerpApi, Duffel, Amadeus and more, with dates' },
           ].map((l) => (
             <Link key={l.href} href={l.href} className="rounded-2xl border rule bg-ink-900/50 p-5 hover:border-ink-500 transition-colors">
               <p className="text-[15px] font-semibold text-ink-100">{l.label}</p>

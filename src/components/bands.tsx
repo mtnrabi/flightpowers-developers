@@ -24,7 +24,12 @@ export function SurfaceStrip({ label = 'One API, everywhere your stack already l
   );
 }
 
-/** Full-width closing CTA band. Every page ends with it. */
+/**
+ * Full-width closing CTA band. Every page ends with it. Under the buttons it
+ * names the product hubs in running text, so every guide and compare page
+ * links /flights-api, /hotels-api and /mcp from body copy with the head term
+ * as the anchor (before this the hubs had 5 and 10 body-copy inbound links).
+ */
 export function CtaBand({
   title = 'Get live flight and hotel data',
   body = 'Live Google Flights and Booking.com data as clean JSON. Free tier on RapidAPI, no card to try.',
@@ -62,6 +67,32 @@ export function CtaBand({
         </Cta>
       </div>
       <p className="mt-4 font-mono text-[12px] text-ink-500">Free tier: 10 requests/month. No card to try.</p>
+      <p className="mt-5 text-[14px] text-ink-400">
+        Docs:{' '}
+        {showBoth || api === 'flights' ? (
+          <>
+            the{' '}
+            <Link href="/flights-api" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+              Flights API
+            </Link>
+            {showBoth ? ', ' : ' and '}
+          </>
+        ) : null}
+        {showBoth || api === 'hotels' ? (
+          <>
+            the{' '}
+            <Link href="/hotels-api" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+              Hotels API
+            </Link>{' '}
+            and{' '}
+          </>
+        ) : null}
+        the{' '}
+        <Link href="/mcp" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+          MCP servers
+        </Link>
+        .
+      </p>
     </div>
   );
 }
