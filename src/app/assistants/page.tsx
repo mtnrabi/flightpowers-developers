@@ -252,10 +252,10 @@ export default function AssistantsPage() {
                 booking link.
               </>,
               <>
-                <strong className="text-ink-100">Google&apos;s verdict on every row.</strong> The low and high of Google&apos;s
+                <strong className="text-ink-100">Google&apos;s verdict on the fare.</strong> On standard adult searches, the low and high of Google&apos;s
                 usual range for that route and period (<code className="field">price_insights_low</code> /{' '}
                 <code className="field">price_insights_high</code>) and its low / typical / high verdict, so your assistant can say
-                whether a fare is a good one.
+                whether a fare is a good one (rows priced through the fallback path carry the fare without the range).
               </>,
               <>
                 <strong className="text-ink-100">Each city&apos;s cheapest.</strong>{' '}
