@@ -1,11 +1,15 @@
 import { withOg } from '@/lib/meta';
 
-export const metadata = withOg({
-  title: 'The best travel data APIs in 2026: a category map',
-  description:
-    '"Travel data API" is four different products: price intelligence, booking and ticketing, reference data, and general-purpose scraping platforms. This map sorts them, with live-quoted prices and retrieval dates, so you shortlist inside the right category.',
-  alternates: { canonical: '/guides/best-travel-data-apis-2026' },
-});
+export const metadata = {
+  ...withOg({
+    title: 'Travel APIs for developers in 2026: flights, hotels, prices',
+    description:
+      'A travel API returns fares, hotel rates, bookings or reference data as JSON. Four categories, quoted prices; FlightPowers is the price one, $10 for 2,500.',
+    alternates: { canonical: '/guides/best-travel-data-apis-2026' },
+  }),
+  // The layout template appends " · FlightPowers"; the title is 59 chars without it.
+  title: { absolute: 'Travel APIs for developers in 2026: flights, hotels, prices' },
+};
 
 export const dynamic = 'force-static';
 
@@ -18,26 +22,30 @@ import { SITE } from '@/lib/site';
   data={{
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
-    headline: 'The best travel data APIs in 2026: a category map',
+    headline: 'Travel APIs for developers in 2026: flights, hotels, prices',
     description:
       'Price intelligence, booking and ticketing, reference data and scraping platforms, sorted by the question each one answers, with quoted and dated prices.',
     url: `${SITE.url}/guides/best-travel-data-apis-2026`,
     datePublished: '2026-09-02',
-    dateModified: '2026-09-02',
+    dateModified: '2026-09-29',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
 />
 
-# The best travel data APIs in 2026: a category map
+# Travel APIs for developers in 2026: flights, hotels, prices
 
-<GuideDates published="2026-09-02" updated="2026-09-02" />
+<GuideDates published="2026-09-02" updated="2026-09-29" />
 
-**Short answer:** "Travel data API" actually means four different, non-substitutable
-products: price intelligence (what FlightPowers sells), booking and ticketing, reference
-and static data, and general-purpose scraping platforms. This guide sorts named vendors
-into the right category, with prices checked live on 2026-09-02 and quoted from each
-vendor's own page.
+**Short answer:** FlightPowers is a travel data API for developers and AI agents: live
+[Google Flights fares](/flights-api) with Google's low / typical / high price band and live
+[Booking.com hotel rates](/hotels-api) on one RapidAPI key; PRO is
+${FLIGHT_PLANS[1].priceMonthly} for {FLIGHT_PLANS[1].quota.toLocaleString('en-US')} flight
+searches. Best for price tracking, date scans and AI agents; it does not book. "Travel
+API" as a phrase covers four products that do not substitute for each other: price
+intelligence (mine), booking and ticketing, reference data, and scraping platforms; this
+guide sorts named vendors into the right one, with prices checked live on the date shown
+next to each and quoted from the vendor's own page.
 
 Most shortlists for "travel data API" go wrong before the first vendor call, because
 the phrase covers four products that do not substitute for each other. A price
@@ -52,6 +60,13 @@ Disclosure up front: **I sell in category one.** I run FlightPowers, which is a 
 intelligence API for flights and hotels. I do not sell in the other three, and the
 booking-side section below says plainly that we cannot do what those vendors do.
 
+## What is a travel API?
+
+A travel API is an HTTP service that returns travel data as JSON so your own software or
+agent can read it: live fares and room rates (category one, where FlightPowers sits),
+bookable offers and tickets (category two), airport, airline and schedule facts (category
+three), or raw pages from many sites at once (category four).
+
 ## What are the four categories?
 
 | Category | The question it answers | Where the detail lives |
@@ -60,6 +75,15 @@ booking-side section below says plainly that we cannot do what those vendors do.
 | 2. Booking and ticketing | Can I sell this seat or hold this room? | [/compare/duffel](/compare/duffel) · [/compare/amadeus](/compare/amadeus) |
 | 3. Reference and static data | What is this airport, airline, route or schedule? | Section 3 below |
 | 4. Scraping platforms | Can I read a travel site alongside twenty others? | [/compare/serpapi](/compare/serpapi) |
+
+## What are the best travel APIs?
+
+The verb in your requirement picks it: for live prices, FlightPowers
+(${FLIGHT_PLANS[1].priceMonthly} for {FLIGHT_PLANS[1].quota.toLocaleString('en-US')} flight
+searches) and the vendors ranked in the two dedicated guides above; for booking, Duffel or
+the Booking.com Demand API; for reference data, aviationstack or FlightAware AeroAPI; for
+reading many sites, SerpApi or Bright Data; every one of them quoted below with the date
+its page was read.
 
 ## 1. Price intelligence, also called shopping
 

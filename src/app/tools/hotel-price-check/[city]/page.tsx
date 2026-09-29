@@ -21,11 +21,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { city } = await params;
   const c = findCity(city);
   if (!c) return {};
-  return withOg({
-    title: hotelPriceCheckTitle(c),
-    description: `See what hotels in ${c.name} are quoting right now for your dates: property names, the total for the stay, review scores and a link that opens the same room. One real search, free, no signup.`,
-    alternates: { canonical: `/tools/hotel-price-check/${c.slug}` },
-  });
+  return {
+    ...withOg({
+      title: hotelPriceCheckTitle(c),
+      description: `What hotels in ${c.name} quote for your dates: property names, the total for the stay, review scores and a link that opens the room. Free, no signup.`,
+      alternates: { canonical: `/tools/hotel-price-check/${c.slug}` },
+    }),
+    // The layout template appends " · FlightPowers"; the longest city name keeps the title under 60 without it.
+    title: { absolute: hotelPriceCheckTitle(c) },
+  };
 }
 
 function faqFor(c: GridCity): Faq[] {

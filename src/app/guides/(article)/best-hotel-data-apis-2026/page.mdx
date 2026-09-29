@@ -1,11 +1,15 @@
 import { withOg } from '@/lib/meta';
 
-export const metadata = withOg({
-  title: 'The best hotel data APIs in 2026, compared honestly',
-  description:
-    'A sourced comparison of the hotel data APIs people actually shortlist: Booking.com Live API, SerpApi Google Hotels, Makcorps, Bright Data, Apify scrapers, StayAPI, HasData, SearchApi, StayingAPI, Blue Pillow, the Booking.com Demand API and Amadeus. Every competitor price quoted from their own live page with the date it was read.',
-  alternates: { canonical: '/guides/best-hotel-data-apis-2026' },
-});
+export const metadata = {
+  ...withOg({
+    title: 'The best hotel data APIs in 2026, compared honestly',
+    description:
+      'Twelve hotel data APIs, prices quoted from their own pages: FlightPowers’ Booking.com Live API (mine, $10 for 2,000), SerpApi, Makcorps, StayAPI.',
+    alternates: { canonical: '/guides/best-hotel-data-apis-2026' },
+  }),
+  // The layout template appends " · FlightPowers"; the title is 51 chars without it.
+  title: { absolute: 'The best hotel data APIs in 2026, compared honestly' },
+};
 
 export const dynamic = 'force-static';
 
@@ -23,7 +27,7 @@ import { COUNTS, LINKS, SITE } from '@/lib/site';
       'Booking.com Live API, SerpApi Google Hotels, Makcorps, Bright Data, Apify, StayAPI, HasData, SearchApi, StayingAPI, Blue Pillow and the Booking.com Demand API compared with quoted, dated prices and disclosed bias.',
     url: `${SITE.url}/guides/best-hotel-data-apis-2026`,
     datePublished: '2026-09-02',
-    dateModified: '2026-09-10',
+    dateModified: '2026-09-29',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -31,15 +35,17 @@ import { COUNTS, LINKS, SITE } from '@/lib/site';
 
 # The best hotel data APIs in 2026, compared
 
-<GuideDates published="2026-09-02" updated="2026-09-10" />
+<GuideDates published="2026-09-02" updated="2026-09-29" />
 
-**Short answer:** FlightPowers' Booking.com Live API, SerpApi Google Hotels, Makcorps,
-Bright Data, Apify scrapers, StayAPI, HasData, SearchApi, StayingAPI, Blue Pillow, the
-Booking.com Demand API, and Amadeus Hotel Search are the hotel data APIs people actually
-shortlist in 2026. Rate scrapers, OTA aggregators, cross-OTA comparators, per-listing
-enrichment APIs, and partner booking platforms are
-different products that don't substitute for each other, and every price here is quoted
-live from each vendor's own page, including four priced lower per unit than my
+**Short answer:** The first entry is mine: FlightPowers' [Booking.com Live API](/hotels-api)
+returns live Booking.com room rates by destination or by hotel name, with a `proxy_country`
+parameter that prices the stay as seen from another country; PRO is
+${HOTEL_PLANS[1].priceMonthly} for {HOTEL_PLANS[1].quota.toLocaleString('en-US')} searches;
+a hotel data API, not a booking engine. Best for rate tracking, parity checks and AI
+agents. The other eleven (SerpApi Google Hotels, Makcorps, Bright Data, Apify scrapers,
+StayAPI, HasData, SearchApi, StayingAPI, Blue Pillow, the Booking.com Demand API and
+Amadeus Hotel Search) are the ones people actually shortlist in 2026, every price quoted
+live from the vendor's own page below, including four priced lower per unit than my
 ${HOTEL_PLANS[1].priceMonthly} tier.
 
 "Hotel data API" covers at least five different products. Rate scrapers that read
@@ -49,8 +55,8 @@ answer questions about a listing you already know. And partner platforms that ca
 actually hold a room. They get shortlisted against each other constantly, and they are not
 substitutes.
 
-I should say this in the first paragraph: **the first entry is mine.** I run
-FlightPowers and sell the Booking.com Live API, so read that section as a vendor
+I said it in the first sentence and I will say it again: **the first entry is mine.**
+I run FlightPowers and sell the Booking.com Live API, so read that section as a vendor
 describing his own product. Everything about everyone else is quoted from their own
 live page, read on **2026-09-02** and re-read on **2026-09-09**, with the URL in the
 table. StayAPI, HasData and SearchApi were added on 2026-09-09 and read that day.

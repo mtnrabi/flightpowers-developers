@@ -1,11 +1,15 @@
 import { withOg } from '@/lib/meta';
 
-export const metadata = withOg({
-  title: 'How to monitor hotel rate parity with an API',
-  description:
-    'What rate parity is, why revenue managers watch it, and how to check it programmatically: the proxy_country mechanism, a repeat-sampled run across markets, how to tell a real gap from ordinary movement, a scheduling pattern, and honest notes on how often nothing is drifting at all.',
-  alternates: { canonical: '/guides/monitor-hotel-rate-parity' },
-});
+export const metadata = {
+  ...withOg({
+    title: 'Rate parity monitoring with a hotel price API (geo-pricing)',
+    description:
+      'Rate parity monitoring with FlightPowers’ hotel price API: one Booking.com request, only proxy_country changed, three samples per market, read as ranges.',
+    alternates: { canonical: '/guides/monitor-hotel-rate-parity' },
+  }),
+  // The layout template appends " · FlightPowers"; the title is 59 chars without it.
+  title: { absolute: 'Rate parity monitoring with a hotel price API (geo-pricing)' },
+};
 
 export const dynamic = 'force-static';
 
@@ -13,32 +17,36 @@ import { CapturedBadge, GuideDates, JsonLd } from '@/components/ui';
 import { HotelRepeatSamplesTable } from '@/components/results';
 import { CtaBand } from '@/components/bands';
 import { FIXTURES } from '@/lib/fixtures';
+import { HOTEL_PLANS } from '@/lib/pricing';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <JsonLd
   data={{
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
-    headline: 'How to monitor hotel rate parity with an API',
+    headline: 'Rate parity monitoring with a hotel price API (geo-pricing)',
     description:
       'Checking the same room from multiple markets with proxy_country, a repeat-sampled run, how to tell a real gap from ordinary movement, and how to schedule the check.',
     url: `${SITE.url}/guides/monitor-hotel-rate-parity`,
     datePublished: '2026-08-26',
-    dateModified: '2026-08-28',
+    dateModified: '2026-09-29',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
 />
 
-# How to monitor hotel rate parity
+# Rate parity monitoring with a hotel price API
 
-<GuideDates published="2026-08-26" updated="2026-08-28" />
+<GuideDates published="2026-08-26" updated="2026-09-29" />
 
-**Short answer:** Monitoring hotel rate parity means running identical API requests with
-only `proxy_country` varied, repeated several times per market, and comparing spreads
-rather than single readings. FlightPowers' Booking.com endpoints take `proxy_country` as
-a two-letter code; a controlled repeat-sampled run found real but modest,
-property-dependent gaps, not a single fixed percentage.
+**Short answer:** Rate parity monitoring is one Booking.com request with only
+`proxy_country` changed, repeated per market and compared as ranges, not single readings.
+FlightPowers' [hotel price API](/hotels-api) takes `proxy_country` on every endpoint (a
+two-letter code such as `de` or `jp`); PRO is ${HOTEL_PLANS[1].priceMonthly} for
+{HOTEL_PLANS[1].quota.toLocaleString('en-US')} searches. Best for revenue managers and
+geo-pricing checks. In a controlled repeat-sampled run Japan came in about 4% under
+Germany on all three properties, stable across three runs, while the US market moved by
+up to 7% between identical requests, so one reading per market proves nothing.
 
 Rate parity is the principle (and usually the contractual expectation) that the
 same room, on the same dates, should cost the same wherever and however it is sold.

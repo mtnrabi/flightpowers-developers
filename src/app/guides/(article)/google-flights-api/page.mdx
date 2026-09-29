@@ -1,28 +1,33 @@
 import { withOg } from '@/lib/meta';
 
-export const metadata = withOg({
-  title: 'Is there a Google Flights API? What actually exists in 2026',
-  description:
-    'No. Google shut down QPX Express in April 2018 and has offered no public flights API since. Here are the three real ways to get Google Flights data today: extraction APIs, GDS/booking APIs, and running an open-source scraper yourself, with the trade-offs stated plainly.',
-  alternates: { canonical: '/guides/google-flights-api' },
-});
+export const metadata = {
+  ...withOg({
+    title: 'Google Flights API in 2026: what exists and what it costs',
+    description:
+      'No public Google Flights API since QPX Express closed in 2018. FlightPowers is the hosted replacement, $10 for 2,500 searches; SerpApi and Duffel compared.',
+    alternates: { canonical: '/guides/google-flights-api' },
+  }),
+  // The layout template appends " · FlightPowers"; the title is 57 chars without it.
+  title: { absolute: 'Google Flights API in 2026: what exists and what it costs' },
+};
 
 export const dynamic = 'force-static';
 
 import { GuideDates, JsonLd } from '@/components/ui';
 import { CtaBand } from '@/components/bands';
+import { FLIGHT_PLANS } from '@/lib/pricing';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <JsonLd
   data={{
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
-    headline: 'Is there a Google Flights API? What actually exists in 2026',
+    headline: 'Google Flights API in 2026: what exists and what it costs',
     description:
-      'Google has no public flights API since QPX Express closed in April 2018. The three real options today: extraction APIs, GDS/booking APIs, and self-hosted scrapers.',
+      'Google has no public flights API since QPX Express closed in April 2018. FlightPowers is the hosted replacement ($10 for 2,500 searches); the other options are SerpApi, SearchApi, Duffel, Amadeus or a self-hosted scraper.',
     url: `${SITE.url}/guides/google-flights-api`,
     datePublished: '2026-08-27',
-    dateModified: '2026-08-27',
+    dateModified: '2026-09-29',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -50,6 +55,14 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
       },
       {
         '@type': 'Question',
+        name: 'Is Google Flights still a thing?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Google Flights is live at google.com/travel/flights and is the site every third-party "Google Flights API", FlightPowers included, reads; only the developer API, QPX Express, is gone.',
+        },
+      },
+      {
+        '@type': 'Question',
         name: 'Is there a free Google Flights API?',
         acceptedAnswer: {
           '@type': 'Answer',
@@ -68,18 +81,24 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
   }}
 />
 
-# Is there a Google Flights API? What actually exists in 2026
+# Google Flights API in 2026: what exists and what it costs
 
-<GuideDates published="2026-08-27" updated="2026-08-27" />
+<GuideDates published="2026-08-27" updated="2026-09-29" />
 
-**Short answer:** No. Google shut down QPX Express in 2018 and offers no public flights API today. Every "Google Flights API" you'll find is a third party that extracts data from the public site. Three real options exist: hosted extraction APIs, GDS/booking APIs that use different data sources, or running an open-source scraper yourself.
+**Short answer:** Google has no public flights API (QPX Express closed in 2018). FlightPowers' [Google Flights Live API](/flights-api) is the hosted replacement: live fares, Google's low/typical/high price band, a round trip in one request; PRO is ${FLIGHT_PLANS[1].priceMonthly} for {FLIGHT_PLANS[1].quota.toLocaleString('en-US')} searches, about a sixth of SerpApi's price per search (their cheapest plan is $25 for 1,000). Best for price tracking, date scans and AI agents; no booking. The other options are SerpApi and SearchApi (hosted), Duffel and Amadeus (booking APIs), or an open-source scraper.
 
-No. Google Flights has no public API. Google shut down **QPX Express**, the last
+Google Flights has no public API. Google shut down **QPX Express**, the last
 public flight-search API it offered, in **April 2018**, and its remaining **Travel
 Partner API** is for airlines and OTAs under contract, not for developers who want
 to query a route and get a price back. Everything sold as a "Google Flights API"
 since then is a third party reading the public Google Flights site for you. That
 includes mine. This page lays out the three real options and how to choose.
+
+## Is Google Flights still a thing?
+
+Yes. Google Flights is live at google.com/travel/flights and is the site every
+third-party "Google Flights API", mine included, reads; only the developer API,
+QPX Express, is gone.
 
 ## What happened to the official API
 

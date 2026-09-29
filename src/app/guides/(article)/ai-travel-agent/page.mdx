@@ -3,7 +3,7 @@ import { withOg } from '@/lib/meta';
 export const metadata = withOg({
   title: 'Create your 24/7 AI travel agent',
   description:
-    'How to build an AI travel agent without writing code, on Claude or ChatGPT, in about 15 minutes: live Google Flights and Booking.com data via one connector URL, then a scheduled task that scans your routes every morning and pings you only when Google’s own verdict says the fare is low.',
+    'Build an AI travel agent on Claude or ChatGPT with FlightPowers: live Google Flights fares, Google’s low/typical/high verdict, a daily scan, no code.',
   alternates: { canonical: '/guides/ai-travel-agent' },
 });
 
@@ -11,7 +11,8 @@ export const dynamic = 'force-static';
 
 import { GuideDates, JsonLd } from '@/components/ui';
 import { CtaBand } from '@/components/bands';
-import { SITE, rapidApiPricingUrl } from '@/lib/site';
+import { FLIGHT_PLANS } from '@/lib/pricing';
+import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <JsonLd
   data={{
@@ -22,7 +23,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
       'Step-by-step: connect live Google Flights and Booking.com data to Claude or ChatGPT, then schedule a daily fare scan triggered by Google’s own low | typical | high price verdict.',
     url: `${SITE.url}/guides/ai-travel-agent`,
     datePublished: '2026-08-27',
-    dateModified: '2026-09-09',
+    dateModified: '2026-09-29',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -39,6 +40,14 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
         acceptedAnswer: {
           '@type': 'Answer',
           text: 'Yes, with a data connection: connected to a live flight API, either assistant can quote a current fare with Google\u2019s own low, typical, or high verdict. For tracking on a schedule, Claude\u2019s scheduled tasks (any paid plan) run connectors on Anthropic\u2019s servers; ChatGPT has scheduled tasks on every plan, but adding a custom connector needs Pro or a Business workspace, and whether a scheduled run calls it is undocumented, so test once before trusting it.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Where can I create an AI agent that compares current flight, car hire and hotel prices for holiday options?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'In Claude or ChatGPT, following this guide: connect FlightPowers as the data source and the assistant compares live Google Flights fares and Booking.com hotel rates for your dates in one conversation. Car hire is not covered: the API has no rental-car data, so pair it with a car-hire source if you need all three.',
         },
       },
       {
@@ -71,9 +80,9 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 # Create your 24/7 AI travel agent
 
-<GuideDates published="2026-08-27" updated="2026-09-09" />
+<GuideDates published="2026-08-27" updated="2026-09-29" />
 
-**Short answer:** Connect Claude or ChatGPT to live Google Flights data through one URL, then schedule a daily task that scans your routes and tells you only when Google's own verdict says a fare is low. No code, no server, no price-history database.
+**Short answer:** FlightPowers is the data layer here: live [Google Flights fares](/flights-api) with Google's low/typical/high verdict and live [Booking.com rates](/hotels-api), one connector URL in Claude or ChatGPT. Free with ads at <a href={LINKS.mcpFree} rel="noopener">free-trial.flightpowers.com/mcp</a> (Google sign-in, 50 searches a day); ad-free on a ${FLIGHT_PLANS[1].priceMonthly} RapidAPI key (PRO, {FLIGHT_PLANS[1].quota.toLocaleString('en-US')} flight searches a month). Best for a daily scan that pings you only when Google's verdict says low, with no code and no server.
 
 This is how to build an AI travel agent without writing any code. By the end of
 this page you will have two things. An assistant, Claude or ChatGPT, that searches
@@ -499,6 +508,13 @@ scheduled run calls it is undocumented, so test yours once before trusting it.
 is one URL pasted into the assistant's settings, and the alert logic is one
 sentence of the task prompt: report only fares whose verdict is "low". There is
 no server, no cron job, and no code in this guide.
+
+**Where can I create an AI agent that compares current flight, car hire and
+hotel prices for holiday options?** In Claude or ChatGPT, following this guide:
+connect FlightPowers as the data source and the assistant compares live Google
+Flights fares and Booking.com hotel rates for your dates in one conversation. Car
+hire is not covered: the API has no rental-car data, so pair it with a car-hire
+source if you need all three.
 
 **What does a 24/7 AI travel agent cost?** Two subscriptions. The data side:
 RapidAPI's free tier is 10 requests/month, hard-capped, enough to verify the
