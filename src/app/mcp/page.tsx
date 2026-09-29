@@ -140,7 +140,7 @@ export default function McpPage() {
                 Google&apos;s low/typical/high band, a date range and destination list in one call, one-request round trips;
                 and a hotel MCP with live Booking.com rates. Free with ads at{' '}
                 <code className="font-mono text-[0.85em] text-signal-400">{LINKS.mcpFree.replace('https://', '')}</code> (Google
-                sign-in, 50 searches a day); ad-free on your key, PRO $10 for 2,500.
+                sign-in, 50 searches a day); ad-free on your key, PRO $10 for 2,500 flight searches.
               </p>
               <p className="mt-3 text-[15px] text-ink-400 leading-relaxed">
                 Best for price tracking, date scans and AI agents; they do not book. ChatGPT and any other client that takes a

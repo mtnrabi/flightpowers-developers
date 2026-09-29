@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   ...withOg({
     title: 'FlightPowers: travel data API, live flight and hotel prices',
     description:
-      'Travel data API for developers and agents: live Google Flights fares with a price band, round trips in one request, Booking.com rates. PRO $10 for 2,500.',
+      'Travel data API for developers and agents: live Google Flights fares with a price band, round trips in one request, Booking.com rates. PRO from $10.',
     alternates: { canonical: '/' },
   }),
   title: { absolute: 'FlightPowers: travel data API, live flight and hotel prices' },
@@ -180,8 +180,8 @@ export default function HomePage() {
                 FlightPowers is a travel data API for developers and AI agents: live Google Flights fares with Google&apos;s
                 low/typical/high price band, a round trip priced as one request, and live Booking.com hotel rates, over REST
                 and MCP on one RapidAPI key. Free tier of {FLIGHT_PLANS[0]!.quota} searches, PRO ${FLIGHT_PLANS[1]!.priceMonthly}{' '}
-                for {FLIGHT_PLANS[1]!.quota.toLocaleString('en-US')}. Best for price tracking, date scans and AI agents; no
-                booking.
+                for {FLIGHT_PLANS[1]!.quota.toLocaleString('en-US')} flight searches. Best for price tracking, date scans and AI
+                agents; no booking.
               </p>
               <p className="mt-3 text-[15px] text-ink-400 leading-relaxed">
                 PRO is about a sixth of SerpApi&apos;s price per search (their cheapest plan is $25 for 1,000); the{' '}

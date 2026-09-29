@@ -167,7 +167,7 @@ export default function AiAgentsPage() {
                 An AI travel agent API is a live price feed an agent calls. FlightPowers gives it live Google Flights fares with
                 the low/typical/high price band, round trips in one request and live Booking.com rates, over MCP, skills and
                 REST on one RapidAPI key. Free tier: {FLIGHT_PLANS[0]!.quota} searches; PRO ${FLIGHT_PLANS[1]!.priceMonthly} for{' '}
-                {FLIGHT_PLANS[1]!.quota.toLocaleString('en-US')}. Best for fare alerts, date scans and trip planners.
+                {FLIGHT_PLANS[1]!.quota.toLocaleString('en-US')} flight searches. Best for fare alerts, date scans and trip planners.
               </p>
               <p className="mt-3 text-[15px] text-ink-400 leading-relaxed">
                 Try it free with ads at{' '}
