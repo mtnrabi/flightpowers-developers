@@ -45,6 +45,7 @@ const columns: { heading: string; links: FooterLink[] }[] = [
     links: [
       { href: '/mcp', label: 'MCP servers' },
       { href: '/ai-agents', label: 'AI agents' },
+      { href: '/assistants', label: 'Assistant products' },
       { href: '/skills', label: 'Agent skills' },
       { href: '/integrations/claude', label: 'Claude' },
       { href: '/integrations/chatgpt', label: 'ChatGPT' },
