@@ -53,7 +53,7 @@ const GUIDES = [
   },
   {
     href: '/guides/google-flights-api',
-    title: 'Is there a Google Flights API? What actually exists in 2026',
+    title: 'Google Flights API in 2026: what exists and what it costs',
     sub: 'No, and there has not been one since QPX Express closed in April 2018. The three real options today: extraction APIs, GDS/booking APIs, and self-hosted scrapers, with the trade-offs stated plainly.',
     tag: 'explainer',
   },
@@ -71,13 +71,13 @@ const GUIDES = [
   },
   {
     href: '/guides/google-flights-url-parameters',
-    title: 'Google Flights URL parameters, decoded',
+    title: 'Google Flights URL parameters: search URL format, tfs, dates',
     sub: 'What is inside a Google Flights URL: the tfs= base64url protobuf, the q= natural-language form, curr=. How to decode tfs at the wire level, and why you should never encode it yourself.',
     tag: 'deep dive',
   },
   {
     href: '/guides/monitor-hotel-rate-parity',
-    title: 'How to monitor hotel rate parity',
+    title: 'Rate parity monitoring with a hotel price API',
     sub: 'The proxy_country mechanism, a repeat-sampled run across markets, how to tell a real gap from ordinary movement, a scheduling pattern, and honest notes on how often nothing is drifting at all.',
     tag: 'hotels',
   },
@@ -240,12 +240,12 @@ const GUIDES = [
   {
     href: '/guides/best-hotel-data-apis-2026',
     title: 'The best hotel data APIs in 2026',
-    sub: 'Seven hotel data APIs with every competitor price quoted from their own live page and dated, including the two whose unit price beats ours.',
+    sub: 'Twelve hotel data APIs with every competitor price quoted from their own live page and dated, including the four whose unit price beats ours.',
     tag: 'comparison',
   },
   {
     href: '/guides/best-travel-data-apis-2026',
-    title: 'The best travel data APIs in 2026',
+    title: 'Travel APIs for developers in 2026: flights, hotels, prices',
     sub: '\u201cTravel data API\u201d is four different products. A category map that sends you to the right shortlist before you call a vendor.',
     tag: 'comparison',
   },
