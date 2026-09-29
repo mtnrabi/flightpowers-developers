@@ -366,7 +366,7 @@ export default function FlightsApiHubPage() {
               <Link href="/mcp" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
                 MCP server
               </Link>{' '}
-              gives 50 searches a day with a Google sign-in; PRO is ${FLIGHT_PLANS[1]!.priceMonthly} for{' '}
+              gives 50 searches a day (250 a month) with a Google sign-in; PRO is ${FLIGHT_PLANS[1]!.priceMonthly} for{' '}
               {FLIGHT_PLANS[1]!.quota.toLocaleString('en-US')}.
             </p>
           </div>

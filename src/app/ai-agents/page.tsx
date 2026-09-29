@@ -172,7 +172,7 @@ export default function AiAgentsPage() {
               <p className="mt-3 text-[15px] text-ink-400 leading-relaxed">
                 Try it free with ads at{' '}
                 <code className="font-mono text-[0.85em] text-signal-400">free-trial.flightpowers.com/mcp</code> (Google sign-in,
-                50 searches a day). It prices and links; it does not book.
+                50 searches a day, 250 a month). It prices and links; it does not book.
               </p>
               <div className="mt-7">
                 <CheckBullets
