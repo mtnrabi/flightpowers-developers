@@ -43,6 +43,7 @@ export type UtmMedium =
   | 'guide'
   | 'compare'
   | 'use-case'
+  | 'assistants'
   | 'integration'
   | 'footer'
   | 'endpoint';
