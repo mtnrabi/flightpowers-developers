@@ -8,12 +8,16 @@ import { CapturedBadge, Container, Cta, FaqSection, JsonLd, Section, SectionHead
 import { FIXTURES } from '@/lib/fixtures';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = withOg({
-  title: 'Hotel price by market: one room, 2 countries',
-  description:
-    'See what Booking.com quotes visitors from two countries for the same room, via per-country residential proxies. Each market is asked three times. Free.',
-  alternates: { canonical: '/tools/hotel-price-by-country' },
-});
+export const metadata: Metadata = {
+  ...withOg({
+    title: 'Hotel price by market: one room, priced from another country',
+    description:
+      'The same Booking.com room priced from two countries via residential proxies, each asked three times: one reading per market is not a comparison. Free.',
+    alternates: { canonical: '/tools/hotel-price-by-country' },
+  }),
+  // The layout template appends " · FlightPowers"; the title is 60 chars without it.
+  title: { absolute: 'Hotel price by market: one room, priced from another country' },
+};
 
 export const dynamic = 'force-static';
 

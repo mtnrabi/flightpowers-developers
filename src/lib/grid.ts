@@ -366,7 +366,9 @@ export function roundTripPlannerTitle(r: GridRoute): string {
 }
 
 export function hotelPriceCheckTitle(c: GridCity): string {
-  return `Hotel Prices in ${c.name}, Live from Booking.com`;
+  // The page prints one live search (totals for the stay, cheapest first) and
+  // computes no average, so the title promises live rates and nothing else.
+  return `${c.name} hotel prices (2026), live from Booking.com`;
 }
 
 /** Every title the grid puts on a page, for the share-card prerender. */

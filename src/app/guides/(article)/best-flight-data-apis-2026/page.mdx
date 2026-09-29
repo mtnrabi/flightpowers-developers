@@ -1,11 +1,15 @@
 import { withOg } from '@/lib/meta';
 
-export const metadata = withOg({
-  title: 'The best flight data APIs in 2026, compared honestly',
-  description:
-    'A sourced comparison of the flight data APIs people actually shortlist (Google Flights Live API, Air Scraper, SerpApi, Duffel), with real quoted prices, retrieval dates, the data-source differences that matter, and where the cheaper option genuinely wins.',
-  alternates: { canonical: '/guides/best-flight-data-apis-2026' },
-});
+export const metadata = {
+  ...withOg({
+    title: 'The best flight data APIs in 2026, compared honestly',
+    description:
+      'FlightPowers’ Google Flights Live API ($10 for 2,500, mine), Air Scraper, SerpApi ($25 for 1,000) and Duffel ($3 per order), quoted from their own pages.',
+    alternates: { canonical: '/guides/best-flight-data-apis-2026' },
+  }),
+  // The layout template appends " · FlightPowers"; the title is 52 chars without it.
+  title: { absolute: 'The best flight data APIs in 2026, compared honestly' },
+};
 
 export const dynamic = 'force-static';
 
@@ -23,7 +27,7 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
       'Google Flights Live API, Air Scraper, SerpApi and Duffel compared with quoted, dated prices and disclosed bias.',
     url: `${SITE.url}/guides/best-flight-data-apis-2026`,
     datePublished: '2026-08-26',
-    dateModified: '2026-09-07',
+    dateModified: '2026-09-29',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -31,14 +35,17 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 # The best flight data APIs in 2026, compared
 
-<GuideDates published="2026-08-26" updated="2026-09-07" />
+<GuideDates published="2026-08-26" updated="2026-09-29" />
 
-**Short answer:** FlightPowers (`google-flights-live-api.p.rapidapi.com`), Air Scraper,
-SerpApi, and Duffel are the flight data APIs people actually shortlist in 2026, and they
-solve different jobs: price intelligence, cheaper high-volume shopping, general-purpose
-Google scraping, and actual ticket booking. Every price below is quoted live from each
-vendor's own page, including the one competitor that beats FlightPowers on raw requests
-per dollar.
+**Short answer:** FlightPowers' [Google Flights Live API](/flights-api) (mine) returns live
+Google Flights fares with Google's own low / typical / high price band and a round trip
+priced as one request; PRO is ${FLIGHT_PLANS[1].priceMonthly} for
+{FLIGHT_PLANS[1].quota.toLocaleString('en-US')} searches, about a sixth of SerpApi's price
+per search (their cheapest plan is $25 for 1,000). Best for price tracking, date scans and
+AI agents; it does not book. Air Scraper (cheaper per request, Skyscanner data), SerpApi
+(a Google scraping platform) and Duffel (a booking API) are the other three people
+actually shortlist in 2026, each quoted from its own live page below, including the one
+that beats mine on raw requests per dollar.
 
 If you search for flight data APIs you get a wall of listings with similar names,
 similar screenshots and wildly different data underneath. This page compares the
@@ -182,6 +189,14 @@ repositories are archived, and Amadeus's own developer-guides repository states:
 Enterprise portal remains, which generally requires IATA/ARC accreditation. If you
 are coming from there, the migration mapping is at
 [/compare/amadeus](/compare/amadeus).
+
+## What are the best APIs for tracking flight status and prices?
+
+Flight status (delays, positions, schedules) and flight prices are two different
+products: for prices, the four APIs on this page; for status, a reference feed such as
+aviationstack or FlightAware AeroAPI, both listed with their quoted plans in
+[the travel data API category map](/guides/best-travel-data-apis-2026#3-reference-and-static-data);
+FlightPowers does prices, not status.
 
 ## How to choose in five minutes
 

@@ -1,11 +1,15 @@
 import { withOg } from '@/lib/meta';
 
-export const metadata = withOg({
-  title: 'Google Flights search URL format: parameters',
-  description:
-    'The tfs= parameter is a base64url protobuf holding origin, destination, dates, cabin and stops. Decode it with protoc --decode_raw. Plus q= and curr=.',
-  alternates: { canonical: '/guides/google-flights-url-parameters' },
-});
+export const metadata = {
+  ...withOg({
+    title: 'Google Flights URL parameters: search URL format, tfs, dates',
+    description:
+      'Google Flights search URL format, parameter by parameter: tfs (a base64url protobuf with legs, dates, cabin, stops), q and curr, plus a working decoder.',
+    alternates: { canonical: '/guides/google-flights-url-parameters' },
+  }),
+  // The layout template appends " · FlightPowers"; the title is 60 chars without it.
+  title: { absolute: 'Google Flights URL parameters: search URL format, tfs, dates' },
+};
 
 export const dynamic = 'force-static';
 
@@ -17,26 +21,35 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
   data={{
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
-    headline: 'Google Flights URL parameters, decoded',
+    headline: 'Google Flights URL parameters: search URL format, tfs, dates',
     description:
       'The tfs= base64url protobuf, the q= natural-language search form, and curr=. How to decode a Google Flights URL at the wire level, and why you may not want to build on it.',
     url: `${SITE.url}/guides/google-flights-url-parameters`,
     datePublished: '2026-08-26',
-    dateModified: '2026-08-26',
+    dateModified: '2026-09-29',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
 />
 
-# Google Flights URL parameters, decoded
+# Google Flights URL parameters: search URL format, tfs, dates
 
-<GuideDates published="2026-08-26" updated="2026-08-26" />
+<GuideDates published="2026-08-26" updated="2026-09-29" />
 
 **Short answer:** Google Flights' `tfs=` parameter is a base64url-encoded protocol-buffer
 message packing origin, destination, dates, cabin, and stops into an undocumented blob
 you can decode with `protoc --decode_raw` but should never try to build yourself. Every
-result from FlightPowers' Google Flights Live API already carries a working `buy_link`
-with the blob pre-encoded, so you never need to write a `tfs=` encoder.
+result from FlightPowers' [Google Flights Live API](/flights-api) already carries a working
+`buy_link` with the blob pre-encoded, so you never need to write a `tfs=` encoder.
+
+| Parameter | What it holds | Example |
+|---|---|---|
+| `tfs=` | The whole search as a base64url protobuf: one leg per direction (origin, destination, `YYYY-MM-DD` date), passengers, cabin, stops and airline filters | `tfs=GjwSCjIwMjYtMTAtMjEiIAoDTEFY...` (a real `buy_link` from the API: LAX to SFO on 2026-10-21) |
+| `q=` | A free-text query, parsed like the search box; no dates or filters pinned | `q=flights to tokyo` |
+| `curr=` | The display currency, outside the blob | `curr=USD` |
+
+The dates and airport codes travel inside `tfs=` as plain strings, which is why a
+raw decode shows them straight away; nothing else in the URL carries them.
 
 Copy a URL out of Google Flights after setting up a search and you get something like:
 

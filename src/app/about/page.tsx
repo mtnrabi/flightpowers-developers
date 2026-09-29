@@ -8,7 +8,7 @@ import { COUNTS, LINKS, SITE } from '@/lib/site';
 export const metadata: Metadata = withOg({
   title: 'About: the developer who runs FlightPowers',
   description:
-    'FlightPowers is built and operated by one software engineer, Matan Rabi. The consumer flight-search product came first; the data infrastructure underneath it became the real product. Here is the honest version of that story, and the rules this site runs by.',
+    'FlightPowers is a travel data API run by one developer, Matan Rabi: live Google Flights fares with Google’s price band and live Booking.com rates, one key.',
   alternates: { canonical: '/about' },
 });
 

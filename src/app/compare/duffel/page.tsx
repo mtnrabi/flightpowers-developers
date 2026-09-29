@@ -18,22 +18,27 @@ import {
 import { FLIGHT_PLANS } from '@/lib/pricing';
 import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = withOg({
-  title: 'FlightPowers vs Duffel: flight data API vs booking API',
-  description:
-    'Duffel sells flights; FlightPowers prices them. An honest, sourced comparison of Duffel’s per-order pricing and search allowance against a pure flight-data API. Duffel figures quoted from duffel.com/pricing, re-read 2026-09-07.',
-  alternates: { canonical: '/compare/duffel' },
-});
-
-export const dynamic = 'force-static';
-
 /**
  * Competitor figures below are QUOTES from duffel.com/pricing. First retrieved
- * 2026-08-26; re-read in full on 2026-09-07 with every fee, the 1500:1 ratio,
- * the worked example and the accreditation FAQ answer identical. Do not edit
- * without re-verifying.
+ * 2026-08-26; re-read in full on 2026-09-07 and again on 2026-09-29 with every
+ * fee, the 1500:1 ratio, the worked example and the accreditation FAQ answer
+ * identical. Do not edit without re-verifying.
  */
-const RETRIEVED = '2026-09-07';
+const RETRIEVED = '2026-09-29';
+
+const PRO = FLIGHT_PLANS.find((p) => p.name === 'PRO')!;
+
+export const metadata: Metadata = {
+  ...withOg({
+    title: 'FlightPowers vs Duffel: flight data API vs booking API',
+    description: `Duffel: $3.00 per order, 1,500 searches per order, then $0.005 a search (duffel.com/pricing, read ${RETRIEVED}). FlightPowers: $${PRO.priceMonthly} for ${PRO.quota.toLocaleString('en-US')}, no booking.`,
+    alternates: { canonical: '/compare/duffel' },
+  }),
+  // The layout template appends " · FlightPowers"; the title is 54 chars without it.
+  title: { absolute: 'FlightPowers vs Duffel: flight data API vs booking API' },
+};
+
+export const dynamic = 'force-static';
 
 const faq: Faq[] = [
   {
@@ -42,7 +47,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Is Duffel more expensive than FlightPowers?',
-    a: 'For a travel seller, often not: Duffel’s search allowance (1500 free searches per confirmed order, per their pricing page re-read 2026-09-07) means a well-converting seller pays little for search. For a non-booking workload the allowance is zero, every search is $0.005, and that is 2x our $25 tier and 2.5x our $50 tier on published list prices.',
+    a: 'For a travel seller, often not: Duffel’s search allowance (1500 free searches per confirmed order, per their pricing page re-read 2026-09-29) means a well-converting seller pays little for search. For a non-booking workload the allowance is zero, every search is $0.005, and that is 2x our $25 tier and 2.5x our $50 tier on published list prices.',
   },
   {
     q: 'Do the two APIs return the same kind of data?',
@@ -54,7 +59,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Where do the Duffel numbers on this page come from?',
-    a: 'From duffel.com/pricing, re-read on 2026-09-07 and quoted rather than paraphrased. If a number here disagrees with their site today, believe their site.',
+    a: 'From duffel.com/pricing, re-read on 2026-09-29 and quoted rather than paraphrased. If a number here disagrees with their site today, believe their site.',
   },
 ];
 
@@ -143,7 +148,10 @@ export default function CompareDuffelPage() {
           <p className="lede mt-5 max-w-3xl">
             These two products get compared a lot and they should not be. Duffel is a <strong className="text-ink-100">booking
             platform</strong>: you can issue a real ticket through it. FlightPowers is a{' '}
-            <strong className="text-ink-100">data API</strong>: you can find out what a trip costs. Which one you need comes down to
+            <Link href="/flights-api" className="text-ink-100 font-semibold underline underline-offset-4">
+              flight data API
+            </Link>
+            : you can find out what a trip costs. Which one you need comes down to
             one question: are you selling travel, or are you telling people about travel?
           </p>
           <p className="mt-5 max-w-3xl text-[14px] text-ink-400 leading-relaxed">
