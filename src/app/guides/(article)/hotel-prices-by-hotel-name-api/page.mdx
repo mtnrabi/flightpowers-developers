@@ -1,58 +1,103 @@
 import { withOg } from '@/lib/meta';
 
-export const metadata = withOg({
-  title: 'How to get hotel prices by hotel name with an API',
-  description:
-    'No property ID, no catalogue sync. POST the name a human would type plus two dates and get a live Booking.com rate back, with matched_name so you can check what it resolved to. A real captured response, and the failure modes worth handling.',
-  alternates: { canonical: '/guides/hotel-prices-by-hotel-name-api' },
-});
+export const metadata = {
+  ...withOg({
+    title: 'Hotel rates API: every room price for one hotel by name',
+    description:
+      'Live Booking.com rates for one hotel by the name a person types: the headline price in one call, every room and its price in two. Real runs, 2026-10-06.',
+    alternates: { canonical: '/guides/hotel-prices-by-hotel-name-api' },
+  }),
+  // The layout template appends " · FlightPowers"; the title is 55 chars without it.
+  title: { absolute: 'Hotel rates API: every room price for one hotel by name' },
+};
 
 export const dynamic = 'force-static';
 
 import { GuideDates, JsonLd } from '@/components/ui';
 import { CtaBand } from '@/components/bands';
+import { HOTEL_PLANS } from '@/lib/pricing';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <JsonLd
   data={{
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
-    headline: 'How to get hotel prices by hotel name with an API',
+    headline: 'Hotel rates API: every room price for one hotel by name',
     description:
-      'A name-first hotel rate lookup with a real captured response, the matched_name check, and the failure modes.',
+      'Live Booking.com rates for one property by name: the headline rate with matched_name, then every room type with its own price, from real responses fetched on 2026-10-06.',
     url: `${SITE.url}/guides/hotel-prices-by-hotel-name-api`,
     datePublished: '2026-09-05',
-    dateModified: '2026-09-05',
+    dateModified: '2026-10-06',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
 />
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What is an API in hotels?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'A hotel API is an endpoint your code calls to get hotel data back as JSON, usually room rates and availability for a property and a pair of dates; a hotel rates API like FlightPowers reads live Booking.com prices and does not take bookings.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can I get a hotel price by name without a property ID?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. POST /v1/hotels/by-name takes the name a person would type plus check-in and check-out dates and returns the live Booking.com rate, with matched_name so you can see which property the name resolved to.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'How do I get every room rate for one hotel?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Resolve the name once with POST /v1/hotels/resolve to get its Booking.com ID, cache the ID, then call POST /v1/hotels/rooms with the ID and your dates. The answer lists every room type with its rate plan and its own price for the whole stay.',
+        },
+      },
+    ],
+  }}
+/>
 
-# How to get hotel prices by hotel name
+# Hotel rates API: every room price for one hotel by name
 
-<GuideDates published="2026-09-05" updated="2026-09-05" />
+<GuideDates published="2026-09-05" updated="2026-10-06" />
 
-**Short answer:** `POST hotel_by_name` on `booking-live-api.p.rapidapi.com` takes the plain
-property name plus `checkin_date` and `checkout_date`, no property ID and no catalogue
-sync. It returns a live Booking.com rate and a `matched_name` field so you can confirm
-what the name actually resolved to before you trust the price.
+**Short answer:** FlightPowers' hotels API returns live Booking.com rates for one property
+by the name a person would type. `POST /v1/hotels/by-name` gives the headline rate plus
+`matched_name`, so you can check what the name resolved to; `resolve` then `rooms` lists
+every room type with its own price. PRO is ${HOTEL_PLANS[1].priceMonthly} for{' '}
+{HOTEL_PLANS[1].quota.toLocaleString('en-US')} searches. It is a hotel data API, not a
+booking engine.
 
-Most hotel APIs want an ID. So the first thing you build is not the feature, it is a
-mapping layer: a property catalogue, a sync job to keep it fresh, and a fuzzy matcher for
-the day someone types "the Hilton by the airport". That is a week of work standing between
-you and one price.
+Most hotel APIs want an ID before they answer anything. So the first thing you build is
+not the feature, it is a mapping layer: a property catalogue, a sync job to keep it fresh,
+and a fuzzy matcher for the day someone types "the Hilton by the airport". That is a week
+of work between you and one price. This page skips it, twice: once for the headline rate,
+once for the whole room list. Every response below was fetched on **2026-10-06** for a
+three-night stay in Rome, 18 to 21 November 2026, two adults, in euros.
 
-You can skip it. The lookup takes the name.
+## What is an API in hotels?
 
-## How do you make the request?
+A hotel API is an endpoint your code calls to get hotel data back as JSON, usually room
+rates and availability for a property and a pair of dates; this one reads live Booking.com
+prices and does not take bookings.
+
+## How do you get the rate for one hotel by name?
 
 ```bash
-curl -X POST "https://booking-live-api.p.rapidapi.com/hotel_by_name" \
+curl -X POST "https://api.flightpowers.com/v1/hotels/by-name" \
   -H "Content-Type: application/json" \
-  -H "x-rapidapi-host: booking-live-api.p.rapidapi.com" \
-  -H "x-rapidapi-key: $RAPIDAPI_KEY" \
+  -H "x-api-key: $RAPIDAPI_KEY" \
   -d '{
-    "hotel_name": "Duplo Charme Boutique Hotel",
+    "hotel_name": "Suite della Pigna",
+    "area": "Rome",
     "checkin_date": "2026-11-18",
     "checkout_date": "2026-11-21",
     "adults": 2,
@@ -62,69 +107,207 @@ curl -X POST "https://booking-live-api.p.rapidapi.com/hotel_by_name" \
 
 Required: `hotel_name`, `checkin_date`, `checkout_date`. Optional: `adults`, `children`,
 `currency`, `proxy_country`, `free_cancellation`, and `area` when the name is generic. With
-`area` set, the search runs as "name, area" while the name matching still uses only the
-name you gave.
+`area` set, the search runs as "name, area" while the matching still uses only the name you
+gave. The same endpoint is `POST /hotel_by_name` on `booking-live-api.p.rapidapi.com` with
+the usual `x-rapidapi-key` and `x-rapidapi-host` headers.
 
-Two things that bite on the first attempt. The endpoint is POST only, so a GET returns 405.
-And on the destination search the field is `destination`, not `location`, which 400s with a
-message that says exactly that.
+The answer, as it came back (the two long URLs are cut at the `?` for width):
 
-A key comes from <a href={rapidApiPricingUrl('hotels', 'guide')} rel="noopener">the RapidAPI
-listing</a>, free plan included, and it covers every endpoint on this page.
+```json
+{
+  "name": "Suite della Pigna",
+  "matched_name": "Suite della Pigna",
+  "match_confidence": 1,
+  "matched_via": "name",
+  "available": true,
+  "price_string": "€497",
+  "price": 497,
+  "review_score": 9.1,
+  "review_count": 666,
+  "room_type": "Premium",
+  "image_url": "https://cf.bstatic.com/xdata/images/hotel/square240/275308633.webp",
+  "link": "https://www.booking.com/hotel/it/amazing-rooms-piazza-venezia.html",
+  "nights": 3,
+  "adults": 2,
+  "children": null,
+  "latitude": 41.897104,
+  "longitude": 12.482208,
+  "retrieved_at": "2026-10-06T19:50:07.901Z"
+}
+```
 
-## What does the response contain?
+What to read, in order:
 
-A real answer to the request above, run on **2026-09-04**. Rates move, so yours will differ.
+- **`matched_name`** is the property the text actually resolved to. Compare it with what
+  you asked for before you trust the number. If a user types a name that lands on a hotel
+  two streets away, you find out here instead of in a support ticket.
+- **`price`** is the total for the stay in the currency you asked for, not a nightly rate.
+  `nights` is there so you can divide: €497 over three nights is about €166 a night.
+  `price_string` is the same number formatted for display.
+- **`room_type`** says which room the headline belongs to. Here it is the Premium room,
+  which turned out to be the cheapest room the property had for those dates (see the room
+  list below).
+- **`link`** opens the property on Booking.com with your dates filled in;
+  `latitude` / `longitude` put it on a map; `retrieved_at` is when the rate was read,
+  which is the timestamp to store next to the price.
+
+## What does a sold-out or unknown hotel look like?
+
+Two more real answers from the same session, because they are the ones that break code.
+
+A hotel that exists but has nothing for your dates. Duplo Charme Boutique Hotel in Lisbon,
+same dates (`image_url`, `link`, `adults` and `children` left out for width; the last two were
+`null`):
 
 ```json
 {
   "name": "Duplo Charme Boutique Hotel",
   "matched_name": "Duplo Charme Boutique Hotel",
-  "available": true,
-  "price_string": "€ 206",
-  "price": 206,
-  "review_score": 8.3,
-  "review_count": 3930,
-  "room_type": "Standard Double Room",
-  "link": "https://www.booking.com/hotel/pt/duplo-charme-boutique.html",
-  "nights": 3,
-  "adults": 2,
-  "children": null
+  "available": false,
+  "price_string": null,
+  "price": null,
+  "review_score": 8.2,
+  "review_count": 3877,
+  "room_type": null,
+  "nights": null,
+  "latitude": 38.728339,
+  "longitude": -9.137404,
+  "retrieved_at": "2026-10-06T19:49:34.501Z",
+  "match_confidence": 1,
+  "matched_via": "name"
 }
 ```
 
-Since 2026-10-06 the answer also carries `latitude` and `longitude`, the property's map
-position from Booking.com (Hotel Sant'Angelo in Rome reads `41.9057575, 12.4724811`), and
-both are `null` when the hotel was not found.
+And a name that did not resolve at all. I sent `"Hotel Sant Angelo"` with `"area": "Rome"`
+and got `matched_name: null`, `available: false`, and every other field `null` except
+`name` and `retrieved_at`.
 
-`matched_name` is the whole point of the design. It is the property the text actually
-resolved to, so you can compare it to what you asked for before you trust the number. If a
-user types a name that resolves to a different hotel two streets away, you find out in the
-response instead of in a support ticket.
+The difference matters. Sold out has a `matched_name`, a review score and a position: the
+hotel is real, it just has no room for you. Unresolved has none of them: the name is the
+problem, so fix the name, add an `area`, or show the user what you searched for. Neither one
+is an error, so neither belongs on your error path, and neither may be stored as a price of
+zero.
 
-`price` is the total for the stay in the currency you asked for, not a nightly rate.
-`nights` is there so you can divide. `price_string` is the same number formatted the way
-Booking.com shows it, for display only.
+## How do you get every room rate for one hotel?
+
+The headline rate is one room. That is the right answer to "what does this hotel cost". It
+is the wrong answer for a comp-set tracker or a rate check, where the interesting movement
+is a suite going on sale while the cheapest room sits still. For that you want the room
+list, and it is two calls the first time and one call after.
+
+**Step one, once per property: resolve the name.**
+
+```bash
+curl -X POST "https://api.flightpowers.com/v1/hotels/resolve" \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: $RAPIDAPI_KEY" \
+  -d '{"hotel_name": "Suite della Pigna Rome"}'
+```
+
+```json
+{
+  "hotel_name": "Suite della Pigna Rome",
+  "hotel_booking_id": "it/amazing-rooms-piazza-venezia",
+  "matched_name": "Suite della Pigna",
+  "retrieved_at": "2026-10-06T19:50:20.632Z"
+}
+```
+
+Look at the ID: Booking.com files Suite della Pigna under `amazing-rooms-piazza-venezia`.
+You would never guess that from the name, which is the whole case for resolving by name
+instead of building the ID yourself.
+
+**Step two, on every check: the rooms.** Send the ID with your dates. The optional fields
+are the same as above.
+
+```bash
+curl -X POST "https://api.flightpowers.com/v1/hotels/rooms" \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: $RAPIDAPI_KEY" \
+  -d '{
+    "hotel_booking_id": "it/amazing-rooms-piazza-venezia",
+    "checkin_date": "2026-11-18",
+    "checkout_date": "2026-11-21",
+    "adults": 2,
+    "currency": "EUR"
+  }'
+```
+
+The answer carries the ID, your dates, a `booking_url`, and a `rooms` array. One entry looks
+like this:
+
+```json
+{
+  "room_type": "Premium",
+  "room_economy": "Non-refundable",
+  "guests": null,
+  "price_as_number": 497,
+  "price": "€ 497",
+  "retrieved_at": "2026-10-06T19:50:33.178Z"
+}
+```
+
+All eight entries from that response, in the order they came back:
+
+| Room | Rate plan (`room_economy`) | Total for 3 nights |
+| --- | --- | --- |
+| Premium | Non-refundable | €497 |
+| Deluxe Room | Non-refundable | €562 |
+| Deluxe Room | Non-refundable | €621 |
+| Deluxe Room | Free cancellation before November 13, 2026 | €685 |
+| Loft - Separate Building | Non-refundable | €765 |
+| Loft - Separate Building | Free cancellation before November 13, 2026 | €845 |
+| Suite with Balcony | Non-refundable | €954 |
+| Suite with Balcony | Free cancellation before November 13, 2026 | €1,055 |
+
+Three things this table shows that the headline rate cannot. The same property sold stays
+from €497 to €1,055 on the same dates, so "the price of this hotel" is a range, not a
+number. Free cancellation cost €80 more on the Loft and €101 more on the Suite. And the
+headline from the by-name call, €497 for the Premium room, is the first row here: the two
+calls agreed.
+
+`price_as_number` is the total for the whole stay, not a nightly rate. `room_economy` is the
+free-text line Booking.com prints next to the room, which is where breakfast and
+cancellation terms live, so treat it as a label, not a structured field. `guests` came back
+`null` on every row in this run, so do not key anything on it. And note that `price` on this
+endpoint is formatted `€ 497` with a non-breaking space while the by-name call printed
+`€497`: compare the numbers, never the strings.
+
+## The rule that saves you a plan tier
+
+Resolve once, cache the ID, then never resolve again. A tracker watching 50 properties a
+day that resolves each name on every run makes 50 avoidable requests a day. The ID is the
+Booking.com path for the property and it changes about as often as a hotel renames itself.
+Cache the ID, never the rate.
 
 ## What should you handle?
 
-**`available` can be false.** Sold out and priced are both normal answers. A false value
-is not an error and should not go down your error path, but it also must not be stored as
-a price of zero.
+**`available` can be false, and a name can fail to resolve.** Both are normal answers, as
+shown above. Branch on them before you read `price`.
 
-**Names are ambiguous and the API says so rather than guessing quietly.** Pass `area` for
-anything generic. Read `matched_name` every time. If your product lets users type free
-text, show them the matched name in the UI.
+**Generic names need an `area`.** Read `matched_name` every time. If your product lets users
+type free text, show them the matched name in the interface.
 
-**Rates are live, so they are perishable.** Every call hits Booking.com at request time,
-which is why the number is real. It is also why caching it for a day turns a real price
-into a wrong one.
+**Rates are live, so they are perishable.** Every call reads Booking.com at request time,
+which is why the number is real. It is also why caching it for a day turns a real price into
+a wrong one.
 
-**One stay per call.** This endpoint takes one property and one date pair. There is no
-date-range expansion here, so pricing a week of check-in dates is a request per date.
+**One stay per call.** Both endpoints take one property and one date pair. There is no date
+range here, so pricing a week of check-in dates is a request per date.
 
-If you need every room type in one property rather than the headline rate, that is a
-different call: see [every room rate for one hotel](/guides/hotel-room-rates-by-property).
+**Room lists move faster than properties.** A property can be bookable while the room you
+track is not, so key your history on the room type and the rate plan, and expect gaps rather
+than reading a missing row as a price drop.
+
+## What does it cost?
+
+Each call above is one request on your plan: a by-name lookup is one, a resolve is one, a
+rooms call is one. BASIC is {HOTEL_PLANS[0].quota} requests a month with no card, enough to
+resolve a property and pull its rooms a few times. PRO is ${HOTEL_PLANS[1].priceMonthly} for{' '}
+{HOTEL_PLANS[1].quota.toLocaleString('en-US')}, ULTRA ${HOTEL_PLANS[2].priceMonthly} for{' '}
+{HOTEL_PLANS[2].quota.toLocaleString('en-US')}. Keys come from{' '}
+<a href={rapidApiPricingUrl('hotels', 'guide')} rel="noopener">the RapidAPI listing</a>, and
+the current numbers always live on [/pricing](/pricing).
 
 <CtaBand
   medium="guide"
@@ -134,7 +317,8 @@ different call: see [every room rate for one hotel](/guides/hotel-room-rates-by-
 
 ## Related
 
-- [Hotel by Name API](/hotels-api/by-name): the product page with field reference
-- [Every room rate for one hotel](/guides/hotel-room-rates-by-property): resolve once, then list all rooms
-- [Do hotel prices change by country?](/guides/hotel-prices-by-country-api): the proxy_country check, with a repeat-sampled run
+- [Hotel by Name API](/hotels-api/by-name): the product page with the field reference
+- [Do hotel prices change by country?](/guides/hotel-prices-by-country-api): `proxy_country`, sampled three times per market on this same hotel
+- [How to monitor hotel rate parity](/guides/monitor-hotel-rate-parity): the scheduled version
+- [Hotel comp-set tracking](/use-cases/hotel-comp-set-tracking): what the room list is usually built for
 - [The best hotel data APIs in 2026](/guides/best-hotel-data-apis-2026): the wider field, prices quoted and dated

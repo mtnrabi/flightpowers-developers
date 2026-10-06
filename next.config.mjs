@@ -1,3 +1,4 @@
+import fs from 'node:fs';
 import createMDX from '@next/mdx';
 import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
@@ -47,6 +48,27 @@ const MERGED_COMPARISONS = [
   ['/blog/serpapi-google-flights-alternative', '/compare/serpapi'],
   ['/blog/datacrawler-google-flights-alternative', '/compare/datacrawler'],
 ];
+
+/**
+ * One guide per query (SEO plan W2-3, 2026-10-06). Each source page's unique
+ * sections were pasted into the survivor before its folder was deleted, so the
+ * 301 carries the URL's history to a page that already says everything it did.
+ */
+const MERGED_GUIDES = [
+  ['/guides/what-is-a-google-flights-api', '/guides/google-flights-api'],
+  ['/guides/hotel-room-rates-by-property', '/guides/hotel-prices-by-hotel-name-api'],
+];
+
+/**
+ * Guides that move to a /compare page once that page exists. The redirect is
+ * only emitted when the destination folder is in the build, so this file can
+ * merge before the compare page does without sending the guide to a 404.
+ */
+const GUIDES_MOVING_TO_COMPARE = [
+  ['/guides/skyscanner-api-alternatives', '/compare/skyscanner'],
+].filter(([, destination]) =>
+  fs.existsSync(new URL(`./src/app${destination}`, import.meta.url))
+);
 
 /**
  * This project is served on four hosts. Only the apex should be indexable;
@@ -120,6 +142,11 @@ const nextConfig = {
         permanent: true,
       })),
       ...MERGED_COMPARISONS.map(([source, destination]) => ({
+        source,
+        destination,
+        permanent: true,
+      })),
+      ...[...MERGED_GUIDES, ...GUIDES_MOVING_TO_COMPARE].map(([source, destination]) => ({
         source,
         destination,
         permanent: true,

@@ -1,11 +1,15 @@
 import { withOg } from '@/lib/meta';
 
-export const metadata = withOg({
-  title: 'Amadeus Self-Service alternatives: which ones you can actually get access to',
-  description:
-    'The Amadeus Self-Service API hosts have no DNS record, checked from our own machine on 2026-09-04. This is every alternative a small team shortlists, with the access gate each one puts in front of you (invitation, audience review, monthly-visitor minimum, seller verification), each quoted from the provider page and dated, plus a real request and response for migrating off Flight Offers Search.',
-  alternates: { canonical: '/guides/amadeus-self-service-alternatives' },
-});
+export const metadata = {
+  ...withOg({
+    title: 'Amadeus Self-Service alternatives you can get into',
+    description:
+      'Amadeus Self-Service closed July 17, 2026. Every alternative a small team shortlists, with the access gate on each, quoted and dated, and how to migrate.',
+    alternates: { canonical: '/guides/amadeus-self-service-alternatives' },
+  }),
+  // The layout template appends " · FlightPowers"; the title is 50 chars without it.
+  title: { absolute: 'Amadeus Self-Service alternatives you can get into' },
+};
 
 export const dynamic = 'force-static';
 
@@ -20,12 +24,12 @@ import { SITE } from '@/lib/site';
   data={{
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
-    headline: 'Amadeus Self-Service alternatives: which ones you can actually get access to',
+    headline: 'Amadeus Self-Service alternatives you can get into',
     description:
       'Every Amadeus Self-Service alternative a small team shortlists, with the access gate each one puts in front of you, quoted and dated, plus a real migration request and response.',
     url: `${SITE.url}/guides/amadeus-self-service-alternatives`,
     datePublished: '2026-09-01',
-    dateModified: '2026-09-06',
+    dateModified: '2026-10-06',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -36,6 +40,14 @@ import { SITE } from '@/lib/site';
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Is there a free Amadeus API?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Not for a new developer any more: the Amadeus for Developers self-service portal was decommissioned on July 17, 2026, and what remains is Amadeus Enterprise, built for accredited travel businesses, so the free starts left are the free tiers of self-serve alternatives, such as FlightPowers at 10 flight searches a month.',
+        },
+      },
       {
         '@type': 'Question',
         name: 'Is Amadeus Self-Service shut down?',
@@ -96,9 +108,9 @@ import { SITE } from '@/lib/site';
   }}
 />
 
-# Amadeus Self-Service alternatives: which ones you can actually get access to
+# Amadeus Self-Service alternatives you can get into
 
-<GuideDates published="2026-09-01" updated="2026-09-06" />
+<GuideDates published="2026-09-01" updated="2026-10-06" />
 
 **Short answer:** Amadeus for Developers Self-Service was decommissioned on July 17, 2026,
 per the notice Amadeus itself posted on `developers.amadeus.com` (source below). It is now
@@ -159,6 +171,13 @@ README opens with "The Amadeus for Developers Self-Service offer has been deprec
 Amadeus Enterprise is untouched and still a serious platform. If you hold IATA or ARC
 accreditation, or work through a consolidator, that is your path and nothing here
 argues otherwise. This page is for everyone Enterprise was never designed to serve.
+
+## Is there a free Amadeus API?
+
+Not for a new developer any more: the self-service portal was decommissioned on July 17, 2026,
+and what remains is Amadeus Enterprise, built for accredited travel businesses, so the free
+starts left are the free tiers of self-serve alternatives, such as mine at{' '}
+{FLIGHT_PLANS[0].quota} flight searches a month.
 
 ## What alternatives exist, and what's the gate on each?
 
