@@ -1,0 +1,205 @@
+{
+  "read_at": "2026-10-06T19:50Z",
+  "server": "https://flights.flightpowers.com/mcp",
+  "method": "tools/list",
+  "tools": [
+    {
+      "name": "search_oneway_flights",
+      "title": "FlightPowers: search one-way flights",
+      "summary": "FlightPowers one-way fare search: live prices read from Google Flights.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "required": [
+        "from_airport",
+        "to_airport"
+      ],
+      "parameters": [
+        {
+          "name": "from_airport",
+          "about": "Origin IATA code, e.g. \"TLV\". One origin per search; a second one is refused rather than searched."
+        },
+        {
+          "name": "to_airport",
+          "about": "Destination airport. One IATA code (\"BCN\"), several separated by commas (\"BCN,LIS,ATH\"), or a list ([\"BCN\",\"LIS\",\"ATH\"]) -- every shape is accepted and the destinations are compared in the same search."
+        },
+        {
+          "name": "departure_date",
+          "about": "Single departure date, \"YYYY-MM-DD\"."
+        },
+        {
+          "name": "departure_date_from",
+          "about": "First date of a departure range."
+        },
+        {
+          "name": "departure_date_to",
+          "about": "Last date of a departure range."
+        },
+        {
+          "name": "max_stops",
+          "about": "Maximum stops per flight. 0 means non-stop only."
+        },
+        {
+          "name": "airline_codes",
+          "about": "Restrict to these airline codes, e.g. [\"LY\"]."
+        },
+        {
+          "name": "exclude_airline_codes",
+          "about": "Exclude these airline codes."
+        },
+        {
+          "name": "departure_time_min",
+          "about": "Earliest departure hour, 0-23."
+        },
+        {
+          "name": "departure_time_max",
+          "about": "Latest departure hour, 0-23."
+        },
+        {
+          "name": "arrival_time_min",
+          "about": "Earliest arrival hour, 0-23."
+        },
+        {
+          "name": "arrival_time_max",
+          "about": "Latest arrival hour, 0-23."
+        },
+        {
+          "name": "currency",
+          "about": "ISO currency code, default \"usd\"."
+        },
+        {
+          "name": "max_price",
+          "about": "Only return flights at or below this price."
+        },
+        {
+          "name": "seat_type",
+          "about": "1 economy, 2 premium economy, 3 business, 4 first."
+        },
+        {
+          "name": "passengers",
+          "about": "One entry per traveller, not a count: 1 adult, 2 child (aged 2-11), 3 infant on lap, 4 infant in seat, e.g. [1, 1, 2] for two adults and a child."
+        },
+        {
+          "name": "sort_by",
+          "about": "\"best\", \"price\", or \"duration\". Applied across all results."
+        },
+        {
+          "name": "limit",
+          "about": "Maximum flights to return, after merging and sorting."
+        },
+        {
+          "name": "max_searches",
+          "about": "The billed requests this call may make, up or down."
+        },
+        {
+          "name": "use_fallback",
+          "about": "Leave unset. Switches the search to a second, independent flight data source instead of the usual Google Flights page read."
+        },
+        {
+          "name": "verbose",
+          "about": "Return every field the upstream sends on each fare, and every fare that was selected, with no row bound."
+        }
+      ]
+    },
+    {
+      "name": "search_roundtrip_flights",
+      "title": "FlightPowers: search round-trip flights",
+      "summary": "FlightPowers round-trip fare search: live prices read from Google Flights, priced as paired legs rather than two separate one-ways.",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "required": [
+        "from_airport",
+        "to_airport"
+      ],
+      "parameters": [
+        {
+          "name": "from_airport",
+          "about": "Origin IATA code, e.g. \"TLV\". One origin per search; a second one is refused rather than searched."
+        },
+        {
+          "name": "to_airport",
+          "about": "Destination airport. One IATA code (\"BCN\"), several separated by commas (\"BCN,LIS,ATH\"), or a list ([\"BCN\",\"LIS\",\"ATH\"]) -- every shape is accepted and the destinations are compared in the same search."
+        },
+        {
+          "name": "departure_date",
+          "about": "Single outbound date, \"YYYY-MM-DD\"."
+        },
+        {
+          "name": "departure_date_from",
+          "about": "First date of an outbound range."
+        },
+        {
+          "name": "departure_date_to",
+          "about": "Last date of an outbound range."
+        },
+        {
+          "name": "return_date",
+          "about": "Fixed return date. Use this OR nights, not both."
+        },
+        {
+          "name": "nights",
+          "about": "Trip length in nights; a number, or a list like [5, 6, 7]."
+        },
+        {
+          "name": "max_departure_stops",
+          "about": "Maximum stops on the outbound leg."
+        },
+        {
+          "name": "max_return_stops",
+          "about": "Maximum stops on the return leg."
+        },
+        {
+          "name": "departure_airline_codes",
+          "about": "Restrict the outbound leg to these airlines."
+        },
+        {
+          "name": "return_airline_codes",
+          "about": "Restrict the return leg to these airlines."
+        },
+        {
+          "name": "currency",
+          "about": "ISO currency code, default \"usd\"."
+        },
+        {
+          "name": "max_price",
+          "about": "Only return trips at or below this total price."
+        },
+        {
+          "name": "seat_type",
+          "about": "1 economy, 2 premium economy, 3 business, 4 first."
+        },
+        {
+          "name": "passengers",
+          "about": "One entry per traveller, not a count: 1 adult, 2 child (aged 2-11), 3 infant on lap, 4 infant in seat, e.g. [1, 1, 2] for two adults and a child."
+        },
+        {
+          "name": "sort_by",
+          "about": "\"best\", \"price\", or \"duration\". Applied across all results."
+        },
+        {
+          "name": "limit",
+          "about": "Maximum trips to return, after merging and sorting."
+        },
+        {
+          "name": "max_searches",
+          "about": "The billed requests this call may make, up or down."
+        },
+        {
+          "name": "use_fallback",
+          "about": "Leave unset. Switches the search to a second, independent flight data source instead of the usual Google Flights page read."
+        },
+        {
+          "name": "verbose",
+          "about": "Return every field the upstream sends on each fare, and every fare that was selected, with no row bound."
+        }
+      ]
+    }
+  ]
+}

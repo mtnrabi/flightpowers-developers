@@ -1,0 +1,146 @@
+{
+  "captured_at": "2026-10-06T19:54:31Z",
+  "finished_at": "2026-10-06T19:54:35Z",
+  "server": "https://flights.flightpowers.com/mcp",
+  "tool": "search_roundtrip_flights",
+  "arguments": {
+    "from_airport": "JFK",
+    "to_airport": [
+      "LIS",
+      "BCN"
+    ],
+    "departure_date_from": "2026-11-10",
+    "departure_date_to": "2026-11-12",
+    "nights": 5,
+    "sort_by": "price",
+    "limit": 5
+  },
+  "result": {
+    "search_status": "ok",
+    "from_airport": "New York (JFK)",
+    "results_total": 6,
+    "results_returned": 6,
+    "results": [
+      {
+        "to_airport": "Barcelona (BCN)",
+        "departure_date": "2026-11-11",
+        "return_date": "2026-11-16",
+        "nights": 5,
+        "total_price": "$564",
+        "total_price_as_number": 564,
+        "total_stops": 2,
+        "departure_flight_airline": "Tap Air Portugal | Operated by Portugalia - Companhia Portuguesa",
+        "return_flight_airline": "Tap Air Portugal",
+        "departure_flight_duration": "16 hr 20 min",
+        "return_flight_duration": "32 hr",
+        "price_insights_low": 385,
+        "price_insights_high": 650,
+        "price_range_in_relation_to_other_periods": "typical",
+        "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTEtMTEiHwoDSkZLEgoyMDI2LTExLTExGgNMSVMqAlRQMgMyMTAiIAoDTElTEgoyMDI2LTExLTEyGgNCQ04qAlRQMgQxMDM4agUSA0pGS3IFEgNCQ04aXRIKMjAyNi0xMS0xNiIgCgNCQ04SCjIwMjYtMTEtMTYaA0xJUyoCVFAyBDEwMzciHwoDTElTEgoyMDI2LTExLTE3GgNKRksqAlRQMgMyMDlqBRIDQkNOcgUSA0pGS0IBAUgBmAEB&curr=usd"
+      },
+      {
+        "to_airport": "Barcelona (BCN)",
+        "departure_date": "2026-11-12",
+        "return_date": "2026-11-17",
+        "nights": 5,
+        "total_price": "$577",
+        "total_price_as_number": 577,
+        "total_stops": 2,
+        "departure_flight_airline": "Tap Air Portugal",
+        "return_flight_airline": "Tap Air Portugal | Operated by Portugalia - Companhia Portuguesa",
+        "departure_flight_duration": "19 hr 45 min",
+        "return_flight_duration": "15 hr 10 min",
+        "price_insights_low": 385,
+        "price_insights_high": 650,
+        "price_range_in_relation_to_other_periods": "typical",
+        "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTEtMTIiHwoDSkZLEgoyMDI2LTExLTEyGgNMSVMqAlRQMgMyMTAiIAoDTElTEgoyMDI2LTExLTEzGgNCQ04qAlRQMgQxMDQwagUSA0pGS3IFEgNCQ04aXRIKMjAyNi0xMS0xNyIgCgNCQ04SCjIwMjYtMTEtMTcaA0xJUyoCVFAyBDEwMzEiHwoDTElTEgoyMDI2LTExLTE3GgNKRksqAlRQMgMyMDlqBRIDQkNOcgUSA0pGS0IBAUgBmAEB&curr=usd"
+      },
+      {
+        "to_airport": "Lisbon (LIS)",
+        "departure_date": "2026-11-11",
+        "return_date": "2026-11-16",
+        "nights": 5,
+        "total_price": "$605",
+        "total_price_as_number": 605,
+        "total_stops": 2,
+        "departure_flight_airline": "Aer Lingus",
+        "return_flight_airline": "Aer Lingus",
+        "departure_flight_duration": "12 hr 10 min",
+        "return_flight_duration": "13 hr 39 min",
+        "price_insights_low": 425,
+        "price_insights_high": 700,
+        "price_range_in_relation_to_other_periods": "typical",
+        "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTEtMTEiHwoDSkZLEgoyMDI2LTExLTExGgNEVUIqAkVJMgMxMDQiHwoDRFVCEgoyMDI2LTExLTEyGgNMSVMqAkVJMgM0ODJqBRIDSkZLcgUSA0xJUxpcEgoyMDI2LTExLTE2Ih8KA0xJUxIKMjAyNi0xMS0xNhoDRFVCKgJFSTIDNDgzIh8KA0RVQhIKMjAyNi0xMS0xNhoDSkZLKgJFSTIDMTA3agUSA0xJU3IFEgNKRktCAQFIAZgBAQ&curr=usd"
+      },
+      {
+        "to_airport": "Lisbon (LIS)",
+        "departure_date": "2026-11-12",
+        "return_date": "2026-11-17",
+        "nights": 5,
+        "total_price": "$605",
+        "total_price_as_number": 605,
+        "total_stops": 2,
+        "departure_flight_airline": "Aer Lingus",
+        "return_flight_airline": "Aer Lingus",
+        "departure_flight_duration": "12 hr 10 min",
+        "return_flight_duration": "13 hr 39 min",
+        "price_insights_low": 425,
+        "price_insights_high": 700,
+        "price_range_in_relation_to_other_periods": "typical",
+        "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTEtMTIiHwoDSkZLEgoyMDI2LTExLTEyGgNEVUIqAkVJMgMxMDQiHwoDRFVCEgoyMDI2LTExLTEzGgNMSVMqAkVJMgM0ODJqBRIDSkZLcgUSA0xJUxpcEgoyMDI2LTExLTE3Ih8KA0xJUxIKMjAyNi0xMS0xNxoDRFVCKgJFSTIDNDgzIh8KA0RVQhIKMjAyNi0xMS0xNxoDSkZLKgJFSTIDMTA3agUSA0xJU3IFEgNKRktCAQFIAZgBAQ&curr=usd"
+      },
+      {
+        "to_airport": "Barcelona (BCN)",
+        "departure_date": "2026-11-10",
+        "return_date": "2026-11-15",
+        "nights": 5,
+        "total_price": "$612",
+        "total_price_as_number": 612,
+        "total_stops": 2,
+        "departure_flight_airline": "British Airways | Finnair",
+        "return_flight_airline": "Air Europa",
+        "departure_flight_duration": "10 hr 50 min",
+        "return_flight_duration": "12 hr",
+        "price_insights_low": 385,
+        "price_insights_high": 650,
+        "price_range_in_relation_to_other_periods": "typical",
+        "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTEtMTAiHwoDSkZLEgoyMDI2LTExLTEwGgNMSFIqAkJBMgMxMTQiHwoDTEhSEgoyMDI2LTExLTExGgNCQ04qAkJBMgM0ODJqBRIDSkZLcgUSA0JDThpcEgoyMDI2LTExLTE1IiAKA0JDThIKMjAyNi0xMS0xNRoDTUFEKgJVWDIENzcwNiIeCgNNQUQSCjIwMjYtMTEtMTUaA0pGSyoCVVgyAjkxagUSA0JDTnIFEgNKRktCAQFIAZgBAQ&curr=usd"
+      },
+      {
+        "to_airport": "Lisbon (LIS)",
+        "departure_date": "2026-11-10",
+        "return_date": "2026-11-15",
+        "nights": 5,
+        "total_price": "$668",
+        "total_price_as_number": 668,
+        "total_stops": 2,
+        "departure_flight_airline": "British Airways | Finnair, American",
+        "return_flight_airline": "British Airways",
+        "departure_flight_duration": "12 hr",
+        "return_flight_duration": "12 hr 20 min",
+        "price_insights_low": 425,
+        "price_insights_high": 700,
+        "price_range_in_relation_to_other_periods": "typical",
+        "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTEtMTAiHwoDSkZLEgoyMDI2LTExLTEwGgNMSFIqAkJBMgMxNzYiHwoDTEhSEgoyMDI2LTExLTExGgNMSVMqAkJBMgM1MDRqBRIDSkZLcgUSA0xJUxpcEgoyMDI2LTExLTE1Ih8KA0xJUxIKMjAyNi0xMS0xNRoDTEhSKgJCQTIDNTEzIh8KA0xIUhIKMjAyNi0xMS0xNRoDSkZLKgJCQTIDMTczagUSA0xJU3IFEgNKRktCAQFIAZgBAQ&curr=usd"
+      }
+    ],
+    "search_coverage": {
+      "requested_combinations": 6,
+      "searched_combinations": 6,
+      "truncated": false,
+      "departure_dates_searched": [
+        "2026-11-10",
+        "2026-11-11",
+        "2026-11-12"
+      ],
+      "destinations_searched": [
+        "BCN",
+        "LIS"
+      ],
+      "hub_requests_billed": 6
+    },
+    "api_usage": {
+      "requests_used_by_this_call": 6
+    }
+  }
+}
