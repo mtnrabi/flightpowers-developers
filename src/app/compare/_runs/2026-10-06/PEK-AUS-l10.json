@@ -1,0 +1,449 @@
+{
+ "captured_at": "2026-10-06T19:54:32Z",
+ "request": {
+  "method": "POST",
+  "url": "https://api.flightpowers.com/v1/flights/roundtrip",
+  "body": {
+   "from_airport": "PEK",
+   "to_airport": "AUS",
+   "departure_date": "2026-11-17",
+   "return_date": "2026-11-24",
+   "currency": "USD",
+   "limit": 10
+  }
+ },
+ "response_headers": {
+  "x-search-results": "10",
+  "x-search-status": "ok"
+ },
+ "response": [
+  {
+   "price_range_in_relation_to_other_periods": "typical",
+   "price_insights_low": 1000,
+   "price_insights_high": 1300,
+   "from_airport": "Beijing (PEK)",
+   "to_airport": "Austin (AUS)",
+   "departure_date": "2026-11-17",
+   "return_date": "2026-11-24",
+   "total_price": "$1775",
+   "total_price_as_number": 1775,
+   "total_duration_seconds": 135060,
+   "total_stops": 2,
+   "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTEtMTciHwoDUEVLEgoyMDI2LTExLTE3GgNTRk8qAlVBMgM4ODkiHwoDU0ZPEgoyMDI2LTExLTE3GgNBVVMqAlVBMgMzNzNqBRIDUEVLcgUSA0FVUxpdEgoyMDI2LTExLTI0IiAKA0FVUxIKMjAyNi0xMS0yNBoDU0ZPKgJVQTIEMjE3NyIfCgNTRk8SCjIwMjYtMTEtMjQaA1BFSyoCVUEyAzg4OGoFEgNBVVNyBRIDUEVLQgEBSAGYAQE&curr=USD",
+   "departure_flight_departure_description": "7:20 PM on Tue, Nov 17",
+   "departure_flight_arrival_description": "9:53 PM on Tue, Nov 17",
+   "departure_flight_airline": "United",
+   "departure_flight_stops": 1,
+   "departure_flight_duration": "16 hr 33 min",
+   "departure_stops_info": [
+    {
+     "stop_airport": "SFO",
+     "stop_duration_seconds": 5400
+    }
+   ],
+   "return_flight_departure_description": "6:27 AM on Tue, Nov 24",
+   "return_flight_arrival_description": "5:25 PM on Wed, Nov 25",
+   "return_flight_airline": "United",
+   "return_flight_stops": 1,
+   "return_flight_duration": "20 hr 58 min",
+   "return_stops_info": [
+    {
+     "stop_airport": "SFO",
+     "stop_duration_seconds": 8220
+    }
+   ]
+  },
+  {
+   "price_range_in_relation_to_other_periods": "typical",
+   "price_insights_low": 1000,
+   "price_insights_high": 1300,
+   "from_airport": "Beijing (PEK)",
+   "to_airport": "Austin (AUS)",
+   "departure_date": "2026-11-17",
+   "return_date": "2026-11-24",
+   "total_price": "$1775",
+   "total_price_as_number": 1775,
+   "total_duration_seconds": 139380,
+   "total_stops": 3,
+   "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTEtMTciHwoDUEVLEgoyMDI2LTExLTE3GgNTRk8qAlVBMgM4ODkiHwoDU0ZPEgoyMDI2LTExLTE3GgNBVVMqAlVBMgMzNzNqBRIDUEVLcgUSA0FVUxp_EgoyMDI2LTExLTI0IiAKA0FVUxIKMjAyNi0xMS0yNBoDSUFIKgJVQTIEMTk2NiIgCgNJQUgSCjIwMjYtMTEtMjQaA1NGTyoCVUEyBDEyMjkiHwoDU0ZPEgoyMDI2LTExLTI0GgNQRUsqAlVBMgM4ODhqBRIDQVVTcgUSA1BFS0IBAUgBmAEB&curr=USD",
+   "departure_flight_departure_description": "7:20 PM on Tue, Nov 17",
+   "departure_flight_arrival_description": "9:53 PM on Tue, Nov 17",
+   "departure_flight_airline": "United",
+   "departure_flight_stops": 1,
+   "departure_flight_duration": "16 hr 33 min",
+   "departure_stops_info": [
+    {
+     "stop_airport": "SFO",
+     "stop_duration_seconds": 5400
+    }
+   ],
+   "return_flight_departure_description": "5:15 AM on Tue, Nov 24",
+   "return_flight_arrival_description": "5:25 PM on Wed, Nov 25",
+   "return_flight_airline": "United",
+   "return_flight_stops": 2,
+   "return_flight_duration": "22 hr 10 min",
+   "return_stops_info": [
+    {
+     "stop_airport": "IAH",
+     "stop_duration_seconds": 4320
+    },
+    {
+     "stop_airport": "SFO",
+     "stop_duration_seconds": 3300
+    }
+   ]
+  },
+  {
+   "price_range_in_relation_to_other_periods": "typical",
+   "price_insights_low": 1000,
+   "price_insights_high": 1300,
+   "from_airport": "Beijing (PEK)",
+   "to_airport": "Austin (AUS)",
+   "departure_date": "2026-11-17",
+   "return_date": "2026-11-24",
+   "total_price": "$1262",
+   "total_price_as_number": 1262,
+   "total_duration_seconds": 277740,
+   "total_stops": 4,
+   "buy_link": "https://www.google.com/travel/flights?tfs=Gn0SCjIwMjYtMTEtMTciHwoDUEVLEgoyMDI2LTExLTE3GgNOUlQqAkhVMgM0MzkiHwoDTlJUEgoyMDI2LTExLTE3GgNTRUEqAkFTMgMxMjQiHwoDU0VBEgoyMDI2LTExLTE3GgNBVVMqAkFTMgMzNzRqBRIDUEVLcgUSA0FVUxp9EgoyMDI2LTExLTI0Ih8KA0FVUxIKMjAyNi0xMS0yNBoDU0VBKgJBUzIDMzUyIh8KA1NFQRIKMjAyNi0xMS0yNRoDSUNOKgJBUzIDMTE5Ih8KA0lDThIKMjAyNi0xMS0yNxoDUEVLKgJPWjIDMzMxagUSA0FVU3IFEgNQRUtCAQFIAZgBAQ&curr=USD",
+   "departure_flight_departure_description": "7:35 AM on Tue, Nov 17",
+   "departure_flight_arrival_description": "6:12 PM on Tue, Nov 17",
+   "departure_flight_airline": "Hainan, Alaska",
+   "departure_flight_stops": 2,
+   "departure_flight_duration": "24 hr 37 min",
+   "departure_stops_info": [
+    {
+     "stop_airport": "NRT",
+     "stop_duration_seconds": 19800
+    },
+    {
+     "stop_airport": "SEA",
+     "stop_duration_seconds": 9300
+    }
+   ],
+   "return_flight_departure_description": "3:13 PM on Tue, Nov 24",
+   "return_flight_arrival_description": "9:45 AM on Fri, Nov 27",
+   "return_flight_airline": "Alaska, Asiana Airlines",
+   "return_flight_stops": 2,
+   "return_flight_duration": "52 hr 32 min",
+   "return_stops_info": [
+    {
+     "stop_airport": "SEA",
+     "stop_duration_seconds": 67140
+    },
+    {
+     "stop_airport": "ICN",
+     "stop_duration_seconds": 53100
+    }
+   ]
+  },
+  {
+   "price_range_in_relation_to_other_periods": "typical",
+   "price_insights_low": 1000,
+   "price_insights_high": 1300,
+   "from_airport": "Beijing (PEK)",
+   "to_airport": "Austin (AUS)",
+   "departure_date": "2026-11-17",
+   "return_date": "2026-11-24",
+   "total_price": "$1262",
+   "total_price_as_number": 1262,
+   "total_duration_seconds": 264240,
+   "total_stops": 4,
+   "buy_link": "https://www.google.com/travel/flights?tfs=Gn0SCjIwMjYtMTEtMTciHwoDUEVLEgoyMDI2LTExLTE3GgNOUlQqAkhVMgM0MzkiHwoDTlJUEgoyMDI2LTExLTE3GgNTRUEqAkFTMgMxMjQiHwoDU0VBEgoyMDI2LTExLTE3GgNBVVMqAkFTMgMzNzRqBRIDUEVLcgUSA0FVUxp9EgoyMDI2LTExLTI0Ih8KA0FVUxIKMjAyNi0xMS0yNBoDU0VBKgJBUzIDMzM5Ih8KA1NFQRIKMjAyNi0xMS0yNRoDSUNOKgJBUzIDMTE5Ih8KA0lDThIKMjAyNi0xMS0yNxoDUEVLKgJPWjIDMzMxagUSA0FVU3IFEgNQRUtCAQFIAZgBAQ&curr=USD",
+   "departure_flight_departure_description": "7:35 AM on Tue, Nov 17",
+   "departure_flight_arrival_description": "6:12 PM on Tue, Nov 17",
+   "departure_flight_airline": "Hainan, Alaska",
+   "departure_flight_stops": 2,
+   "departure_flight_duration": "24 hr 37 min",
+   "departure_stops_info": [
+    {
+     "stop_airport": "NRT",
+     "stop_duration_seconds": 19800
+    },
+    {
+     "stop_airport": "SEA",
+     "stop_duration_seconds": 9300
+    }
+   ],
+   "return_flight_departure_description": "6:58 PM on Tue, Nov 24",
+   "return_flight_arrival_description": "9:45 AM on Fri, Nov 27",
+   "return_flight_airline": "Alaska, Asiana Airlines",
+   "return_flight_stops": 2,
+   "return_flight_duration": "48 hr 47 min",
+   "return_stops_info": [
+    {
+     "stop_airport": "SEA",
+     "stop_duration_seconds": 53700
+    },
+    {
+     "stop_airport": "ICN",
+     "stop_duration_seconds": 53100
+    }
+   ]
+  },
+  {
+   "price_range_in_relation_to_other_periods": "typical",
+   "price_insights_low": 1000,
+   "price_insights_high": 1300,
+   "from_airport": "Beijing (PEK)",
+   "to_airport": "Austin (AUS)",
+   "departure_date": "2026-11-17",
+   "return_date": "2026-11-24",
+   "total_price": "$1430",
+   "total_price_as_number": 1430,
+   "total_duration_seconds": 248700,
+   "total_stops": 4,
+   "buy_link": "https://www.google.com/travel/flights?tfs=Gn0SCjIwMjYtMTEtMTciHgoDUEVLEgoyMDI2LTExLTE3GgNZVlIqAkFDMgIzMCIfCgNZVlISCjIwMjYtMTEtMTcaA0xBWCoCQUMyAzU1OCIgCgNMQVgSCjIwMjYtMTEtMTgaA0FVUyoCVUEyBDE2MjVqBRIDUEVLcgUSA0FVUxp9EgoyMDI2LTExLTI0Ih8KA0FVUxIKMjAyNi0xMS0yNBoDSUFIKgJVQTIDMzM0IiAKA0lBSBIKMjAyNi0xMS0yNBoDWVZSKgJBQzIEMTI5MyIeCgNZVlISCjIwMjYtMTEtMjUaA1BFSyoCQUMyAjI5agUSA0FVU3IFEgNQRUtCAQFIAZgBAQ&curr=USD",
+   "departure_flight_departure_description": "8:05 PM on Tue, Nov 17",
+   "departure_flight_arrival_description": "1:14 PM on Wed, Nov 18",
+   "departure_flight_airline": "Air Canada, United",
+   "departure_flight_stops": 2,
+   "departure_flight_duration": "31 hr 9 min",
+   "departure_stops_info": [
+    {
+     "stop_airport": "YVR",
+     "stop_duration_seconds": 17100
+    },
+    {
+     "stop_airport": "LAX",
+     "stop_duration_seconds": 35040
+    }
+   ],
+   "return_flight_departure_description": "2:24 PM on Tue, Nov 24",
+   "return_flight_arrival_description": "6:20 PM on Thu, Nov 26",
+   "return_flight_airline": "United, Air Canada",
+   "return_flight_stops": 2,
+   "return_flight_duration": "37 hr 56 min",
+   "return_stops_info": [
+    {
+     "stop_airport": "IAH",
+     "stop_duration_seconds": 9480
+    },
+    {
+     "stop_airport": "YVR",
+     "stop_duration_seconds": 58080
+    }
+   ]
+  },
+  {
+   "price_range_in_relation_to_other_periods": "typical",
+   "price_insights_low": 1000,
+   "price_insights_high": 1300,
+   "from_airport": "Beijing (PEK)",
+   "to_airport": "Austin (AUS)",
+   "departure_date": "2026-11-17",
+   "return_date": "2026-11-24",
+   "total_price": "$1430",
+   "total_price_as_number": 1430,
+   "total_duration_seconds": 245340,
+   "total_stops": 4,
+   "buy_link": "https://www.google.com/travel/flights?tfs=Gn0SCjIwMjYtMTEtMTciHgoDUEVLEgoyMDI2LTExLTE3GgNZVlIqAkFDMgIzMCIfCgNZVlISCjIwMjYtMTEtMTcaA0xBWCoCQUMyAzU1OCIgCgNMQVgSCjIwMjYtMTEtMTgaA0FVUyoCVUEyBDE2MjVqBRIDUEVLcgUSA0FVUxp9EgoyMDI2LTExLTI0Ih8KA0FVUxIKMjAyNi0xMS0yNBoDU0ZPKgJVQTIDNDQyIiAKA1NGTxIKMjAyNi0xMS0yNBoDWVZSKgJVQTIEMjQyOSIeCgNZVlISCjIwMjYtMTEtMjUaA1BFSyoCQUMyAjI5agUSA0FVU3IFEgNQRUtCAQFIAZgBAQ&curr=USD",
+   "departure_flight_departure_description": "8:05 PM on Tue, Nov 17",
+   "departure_flight_arrival_description": "1:14 PM on Wed, Nov 18",
+   "departure_flight_airline": "Air Canada, United",
+   "departure_flight_stops": 2,
+   "departure_flight_duration": "31 hr 9 min",
+   "departure_stops_info": [
+    {
+     "stop_airport": "YVR",
+     "stop_duration_seconds": 17100
+    },
+    {
+     "stop_airport": "LAX",
+     "stop_duration_seconds": 35040
+    }
+   ],
+   "return_flight_departure_description": "3:20 PM on Tue, Nov 24",
+   "return_flight_arrival_description": "6:20 PM on Thu, Nov 26",
+   "return_flight_airline": "United, Air Canada",
+   "return_flight_stops": 2,
+   "return_flight_duration": "37 hr",
+   "return_stops_info": [
+    {
+     "stop_airport": "SFO",
+     "stop_duration_seconds": 5400
+    },
+    {
+     "stop_airport": "YVR",
+     "stop_duration_seconds": 57660
+    }
+   ]
+  },
+  {
+   "price_range_in_relation_to_other_periods": "typical",
+   "price_insights_low": 1000,
+   "price_insights_high": 1300,
+   "from_airport": "Beijing (PEK)",
+   "to_airport": "Austin (AUS)",
+   "departure_date": "2026-11-17",
+   "return_date": "2026-11-24",
+   "total_price": "$1576",
+   "total_price_as_number": 1576,
+   "total_duration_seconds": 265320,
+   "total_stops": 4,
+   "buy_link": "https://www.google.com/travel/flights?tfs=Gn4SCjIwMjYtMTEtMTciHgoDUEVLEgoyMDI2LTExLTE3GgNZVlIqAkFDMgIzMCIgCgNZVlISCjIwMjYtMTEtMTgaA0lBSCoCQUMyBDEyOTIiIAoDSUFIEgoyMDI2LTExLTE4GgNBVVMqAlVBMgQxNzExagUSA1BFS3IFEgNBVVMafRIKMjAyNi0xMS0yNCIfCgNBVVMSCjIwMjYtMTEtMjQaA0lBSCoCVUEyAzMzNCIgCgNJQUgSCjIwMjYtMTEtMjQaA1lWUioCQUMyBDEyOTMiHgoDWVZSEgoyMDI2LTExLTI1GgNQRUsqAkFDMgIyOWoFEgNBVVNyBRIDUEVLQgEBSAGYAQE&curr=USD",
+   "departure_flight_departure_description": "8:05 PM on Tue, Nov 17",
+   "departure_flight_arrival_description": "5:51 PM on Wed, Nov 18",
+   "departure_flight_airline": "Air Canada, United",
+   "departure_flight_stops": 2,
+   "departure_flight_duration": "35 hr 46 min",
+   "departure_stops_info": [
+    {
+     "stop_airport": "YVR",
+     "stop_duration_seconds": 62700
+    },
+    {
+     "stop_airport": "IAH",
+     "stop_duration_seconds": 7620
+    }
+   ],
+   "return_flight_departure_description": "2:24 PM on Tue, Nov 24",
+   "return_flight_arrival_description": "6:20 PM on Thu, Nov 26",
+   "return_flight_airline": "United, Air Canada",
+   "return_flight_stops": 2,
+   "return_flight_duration": "37 hr 56 min",
+   "return_stops_info": [
+    {
+     "stop_airport": "IAH",
+     "stop_duration_seconds": 9480
+    },
+    {
+     "stop_airport": "YVR",
+     "stop_duration_seconds": 58080
+    }
+   ]
+  },
+  {
+   "price_range_in_relation_to_other_periods": "typical",
+   "price_insights_low": 1000,
+   "price_insights_high": 1300,
+   "from_airport": "Beijing (PEK)",
+   "to_airport": "Austin (AUS)",
+   "departure_date": "2026-11-17",
+   "return_date": "2026-11-24",
+   "total_price": "$1576",
+   "total_price_as_number": 1576,
+   "total_duration_seconds": 261960,
+   "total_stops": 4,
+   "buy_link": "https://www.google.com/travel/flights?tfs=Gn4SCjIwMjYtMTEtMTciHgoDUEVLEgoyMDI2LTExLTE3GgNZVlIqAkFDMgIzMCIgCgNZVlISCjIwMjYtMTEtMTgaA0lBSCoCQUMyBDEyOTIiIAoDSUFIEgoyMDI2LTExLTE4GgNBVVMqAlVBMgQxNzExagUSA1BFS3IFEgNBVVMafRIKMjAyNi0xMS0yNCIfCgNBVVMSCjIwMjYtMTEtMjQaA1NGTyoCVUEyAzQ0MiIgCgNTRk8SCjIwMjYtMTEtMjQaA1lWUioCVUEyBDI0MjkiHgoDWVZSEgoyMDI2LTExLTI1GgNQRUsqAkFDMgIyOWoFEgNBVVNyBRIDUEVLQgEBSAGYAQE&curr=USD",
+   "departure_flight_departure_description": "8:05 PM on Tue, Nov 17",
+   "departure_flight_arrival_description": "5:51 PM on Wed, Nov 18",
+   "departure_flight_airline": "Air Canada, United",
+   "departure_flight_stops": 2,
+   "departure_flight_duration": "35 hr 46 min",
+   "departure_stops_info": [
+    {
+     "stop_airport": "YVR",
+     "stop_duration_seconds": 62700
+    },
+    {
+     "stop_airport": "IAH",
+     "stop_duration_seconds": 7620
+    }
+   ],
+   "return_flight_departure_description": "3:20 PM on Tue, Nov 24",
+   "return_flight_arrival_description": "6:20 PM on Thu, Nov 26",
+   "return_flight_airline": "United, Air Canada",
+   "return_flight_stops": 2,
+   "return_flight_duration": "37 hr",
+   "return_stops_info": [
+    {
+     "stop_airport": "SFO",
+     "stop_duration_seconds": 5400
+    },
+    {
+     "stop_airport": "YVR",
+     "stop_duration_seconds": 57660
+    }
+   ]
+  },
+  {
+   "price_range_in_relation_to_other_periods": "typical",
+   "price_insights_low": 1000,
+   "price_insights_high": 1300,
+   "from_airport": "Beijing (PEK)",
+   "to_airport": "Austin (AUS)",
+   "departure_date": "2026-11-17",
+   "return_date": "2026-11-24",
+   "total_price": "$1618",
+   "total_price_as_number": 1618,
+   "total_duration_seconds": 164340,
+   "total_stops": 4,
+   "buy_link": "https://www.google.com/travel/flights?tfs=GnwSCjIwMjYtMTEtMTciHwoDUEVLEgoyMDI2LTExLTE3GgNJQ04qAktFMgM4NTIiHgoDSUNOEgoyMDI2LTExLTE3GgNTRUEqAktFMgI0MSIfCgNTRUESCjIwMjYtMTEtMTcaA0FVUyoCREwyAzgzMWoFEgNQRUtyBRIDQVVTGn0SCjIwMjYtMTEtMjQiIAoDQVVTEgoyMDI2LTExLTI0GgNMQVgqAkRMMgQyNDM4Ih4KA0xBWBIKMjAyNi0xMS0yNBoDSUNOKgJLRTICMTgiHwoDSUNOEgoyMDI2LTExLTI1GgNQRUsqAktFMgM4NjNqBRIDQVVTcgUSA1BFS0IBAUgBmAEB&curr=USD",
+   "departure_flight_departure_description": "10:40 AM on Tue, Nov 17",
+   "departure_flight_arrival_description": "5:14 PM on Tue, Nov 17",
+   "departure_flight_airline": "Korean Air, Delta",
+   "departure_flight_stops": 2,
+   "departure_flight_duration": "20 hr 34 min",
+   "departure_stops_info": [
+    {
+     "stop_airport": "ICN",
+     "stop_duration_seconds": 8700
+    },
+    {
+     "stop_airport": "SEA",
+     "stop_duration_seconds": 7500
+    }
+   ],
+   "return_flight_departure_description": "7:10 AM on Tue, Nov 24",
+   "return_flight_arrival_description": "10:15 PM on Wed, Nov 25",
+   "return_flight_airline": "Delta, Korean Air",
+   "return_flight_stops": 2,
+   "return_flight_duration": "25 hr 5 min",
+   "return_stops_info": [
+    {
+     "stop_airport": "LAX",
+     "stop_duration_seconds": 8640
+    },
+    {
+     "stop_airport": "ICN",
+     "stop_duration_seconds": 11700
+    }
+   ]
+  },
+  {
+   "price_range_in_relation_to_other_periods": "typical",
+   "price_insights_low": 1000,
+   "price_insights_high": 1300,
+   "from_airport": "Beijing (PEK)",
+   "to_airport": "Austin (AUS)",
+   "departure_date": "2026-11-17",
+   "return_date": "2026-11-24",
+   "total_price": "$1618",
+   "total_price_as_number": 1618,
+   "total_duration_seconds": 164340,
+   "total_stops": 4,
+   "buy_link": "https://www.google.com/travel/flights?tfs=GnwSCjIwMjYtMTEtMTciHwoDUEVLEgoyMDI2LTExLTE3GgNJQ04qAktFMgM4NTIiHgoDSUNOEgoyMDI2LTExLTE3GgNTRUEqAktFMgI0MSIfCgNTRUESCjIwMjYtMTEtMTcaA0FVUyoCREwyAzgzMWoFEgNQRUtyBRIDQVVTGnwSCjIwMjYtMTEtMjQiHwoDQVVTEgoyMDI2LTExLTI0GgNTRk8qAkRMMgMzODEiHgoDU0ZPEgoyMDI2LTExLTI0GgNJQ04qAktFMgIyNCIfCgNJQ04SCjIwMjYtMTEtMjUaA1BFSyoCS0UyAzg2M2oFEgNBVVNyBRIDUEVLQgEBSAGYAQE&curr=USD",
+   "departure_flight_departure_description": "10:40 AM on Tue, Nov 17",
+   "departure_flight_arrival_description": "5:14 PM on Tue, Nov 17",
+   "departure_flight_airline": "Korean Air, Delta",
+   "departure_flight_stops": 2,
+   "departure_flight_duration": "20 hr 34 min",
+   "departure_stops_info": [
+    {
+     "stop_airport": "ICN",
+     "stop_duration_seconds": 8700
+    },
+    {
+     "stop_airport": "SEA",
+     "stop_duration_seconds": 7500
+    }
+   ],
+   "return_flight_departure_description": "7:10 AM on Tue, Nov 24",
+   "return_flight_arrival_description": "10:15 PM on Wed, Nov 25",
+   "return_flight_airline": "Delta, Korean Air",
+   "return_flight_stops": 2,
+   "return_flight_duration": "25 hr 5 min",
+   "return_stops_info": [
+    {
+     "stop_airport": "SFO",
+     "stop_duration_seconds": 9660
+    },
+    {
+     "stop_airport": "ICN",
+     "stop_duration_seconds": 11400
+    }
+   ]
+  }
+ ]
+}

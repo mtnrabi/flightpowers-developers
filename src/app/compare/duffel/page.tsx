@@ -17,25 +17,31 @@ import {
 } from '@/components/ui';
 import { FLIGHT_PLANS } from '@/lib/pricing';
 import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
+import { Quotable } from '../_components/CompareTable';
+import { OtherAlternatives } from '../_components/OtherAlternatives';
 
 /**
  * Competitor figures below are QUOTES from duffel.com/pricing. First retrieved
- * 2026-08-26; re-read in full on 2026-09-07 and again on 2026-09-29 with every
- * fee, the 1500:1 ratio, the worked example and the accreditation FAQ answer
- * identical. Do not edit without re-verifying.
+ * 2026-08-26; re-read in full on 2026-09-07, 2026-09-29 and 2026-10-06 with
+ * every fee, the 1500:1 ratio, the worked example, the 2% FX line and the
+ * accreditation FAQ answer identical. Do not edit without re-verifying.
  */
-const RETRIEVED = '2026-09-29';
+const RETRIEVED = '2026-10-06';
+/** The JFK-LHR run quoted in the "Price context" row was captured on this day (#56). */
+const JFK_LHR_RUN_ON = '2026-09-07';
 
 const PRO = FLIGHT_PLANS.find((p) => p.name === 'PRO')!;
 
 export const metadata: Metadata = {
   ...withOg({
-    title: 'FlightPowers vs Duffel: flight data API vs booking API',
+    title: 'Duffel API pricing vs FlightPowers: booking vs flight data',
     description: `Duffel: $3.00 per order, 1,500 searches per order, then $0.005 a search (duffel.com/pricing, read ${RETRIEVED}). FlightPowers: $${PRO.priceMonthly} for ${PRO.quota.toLocaleString('en-US')}, no booking.`,
     alternates: { canonical: '/compare/duffel' },
   }),
-  // The layout template appends " · FlightPowers"; the title is 54 chars without it.
-  title: { absolute: 'FlightPowers vs Duffel: flight data API vs booking API' },
+  // The layout template appends " · FlightPowers"; the title is 58 chars without it.
+  // Retitled 2026-10-06 (W2-4): leads with "duffel api pricing" (34 impr at 9.0) and keeps
+  // "booking" (booking api pricing, 28 impr) per page-query-join-2026-09-29.md.
+  title: { absolute: 'Duffel API pricing vs FlightPowers: booking vs flight data' },
 };
 
 export const dynamic = 'force-static';
@@ -47,7 +53,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Is Duffel more expensive than FlightPowers?',
-    a: 'For a travel seller, often not: Duffel’s search allowance (1500 free searches per confirmed order, per their pricing page re-read 2026-09-29) means a well-converting seller pays little for search. For a non-booking workload the allowance is zero, every search is $0.005, and that is 2x our $25 tier and 2.5x our $50 tier on published list prices.',
+    a: 'For a travel seller, often not: Duffel’s search allowance (1500 free searches per confirmed order, per their pricing page re-read 2026-10-06) means a well-converting seller pays little for search. For a non-booking workload the allowance is zero, every search is $0.005, and that is 2x our $25 tier and 2.5x our $50 tier on published list prices.',
   },
   {
     q: 'Do the two APIs return the same kind of data?',
@@ -59,7 +65,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Where do the Duffel numbers on this page come from?',
-    a: 'From duffel.com/pricing, re-read on 2026-09-29 and quoted rather than paraphrased. If a number here disagrees with their site today, believe their site.',
+    a: 'From duffel.com/pricing, re-read on 2026-10-06 and quoted rather than paraphrased. If a number here disagrees with their site today, believe their site.',
   },
 ];
 
@@ -117,7 +123,7 @@ export default function CompareDuffelPage() {
         data={{
           '@context': 'https://schema.org',
           '@type': 'WebPage',
-          name: 'FlightPowers vs Duffel: flight data API vs booking API',
+          name: 'Duffel API pricing vs FlightPowers: booking vs flight data',
           url: `${SITE.url}/compare/duffel`,
           dateModified: RETRIEVED,
         }}
@@ -145,6 +151,12 @@ export default function CompareDuffelPage() {
           <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold max-w-4xl">
             FlightPowers vs <span className="text-signal-500">Duffel</span>
           </h1>
+          <Quotable>
+            FlightPowers is a Duffel alternative only if you do not need to sell the ticket. Duffel is a booking API: $3.00 per
+            order, 1,500 free searches per order and $0.005 a search past that. FlightPowers prices flights from Google Flights at{' '}
+            {`$${pro.priceMonthly}`} for {pro.quota.toLocaleString('en-US')} searches and cannot book. Best for fare trackers, research and
+            AI agents; Duffel for checkout.
+          </Quotable>
           <p className="lede mt-5 max-w-3xl">
             These two products get compared a lot and they should not be. Duffel is a <strong className="text-ink-100">booking
             platform</strong>: you can issue a real ticket through it. FlightPowers is a{' '}
@@ -303,7 +315,7 @@ export default function CompareDuffelPage() {
                   Returns the market: every result carries Google’s historical band (
                   <code className="font-mono text-[12px]">price_insights_low/high</code>) and a price context, so a
                   fare-alert product knows whether a $291 JFK–LHR fare is a good price (it is not: that run came back{' '}
-                  <code className="font-mono text-[12px]">high</code> against a $170–$285 band on {RETRIEVED}) without
+                  <code className="font-mono text-[12px]">high</code> against a $170–$285 band on {JFK_LHR_RUN_ON}) without
                   accumulating its own history.{' '}
                   <Link href="/flights-api/price-insights" className="text-signal-400 underline underline-offset-4">Price insights →</Link>
                 </>,
@@ -413,20 +425,7 @@ export default function CompareDuffelPage() {
       </Section>
 
       <Section>
-        <SectionHead eyebrow="Keep comparing" title="Related pages" />
-        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            { href: '/compare/serpapi', label: 'vs SerpApi', sub: 'Platform vs specialist' },
-            { href: '/compare/amadeus', label: 'vs Amadeus Self-Service', sub: 'And when to migrate' },
-            { href: '/guides/best-flight-data-apis-2026', label: 'Best flight data APIs 2026', sub: 'The full field, disclosed bias' },
-            { href: '/flights-api/round-trip', label: 'Round-Trip API', sub: 'Paired-leg itineraries' },
-          ].map((l) => (
-            <Link key={l.href} href={l.href} className="rounded-2xl border rule bg-ink-900/50 p-5 hover:border-ink-500 transition-colors">
-              <p className="text-[15px] font-semibold text-ink-100">{l.label}</p>
-              <p className="mt-1 text-[13px] text-ink-400">{l.sub}</p>
-            </Link>
-          ))}
-        </div>
+        <OtherAlternatives current="/compare/duffel" />
       </Section>
 
       <Section bordered={false} className="!pt-4">

@@ -1,0 +1,129 @@
+{
+ "captured_at": "2026-10-06T19:54:07Z",
+ "request": {
+  "method": "POST",
+  "url": "https://api.flightpowers.com/v1/flights/roundtrip",
+  "body": {
+   "from_airport": "EDI",
+   "to_airport": "BCN",
+   "departure_date": "2026-11-17",
+   "return_date": "2026-11-24",
+   "currency": "USD",
+   "limit": 3
+  }
+ },
+ "response_headers": {
+  "x-search-results": "3",
+  "x-search-status": "ok"
+ },
+ "response": [
+  {
+   "price_range_in_relation_to_other_periods": "high",
+   "price_insights_low": 80,
+   "price_insights_high": 195,
+   "from_airport": "Edinburgh (EDI)",
+   "to_airport": "Barcelona (BCN)",
+   "departure_date": "2026-11-17",
+   "return_date": "2026-11-24",
+   "total_price": "$226",
+   "total_price_as_number": 226,
+   "total_duration_seconds": 70800,
+   "total_stops": 2,
+   "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTEtMTciHwoDRURJEgoyMDI2LTExLTE3GgNGUkEqAkxIMgM5NjUiIAoDRlJBEgoyMDI2LTExLTE3GgNCQ04qAkxIMgQxMTI4agUSA0VESXIFEgNCQ04aXRIKMjAyNi0xMS0yNCIgCgNCQ04SCjIwMjYtMTEtMjQaA0ZSQSoCTEgyBDExMjUiHwoDRlJBEgoyMDI2LTExLTI0GgNFREkqAkxIMgM5NjRqBRIDQkNOcgUSA0VESUIBAUgBmAEB&curr=USD",
+   "departure_flight_departure_description": "6:45 AM on Tue, Nov 17",
+   "departure_flight_arrival_description": "1:00 PM on Tue, Nov 17",
+   "departure_flight_airline": "Lufthansa",
+   "departure_flight_stops": 1,
+   "departure_flight_duration": "5 hr 15 min",
+   "departure_stops_info": [
+    {
+     "stop_airport": "FRA",
+     "stop_duration_seconds": 4800
+    }
+   ],
+   "return_flight_departure_description": "9:55 AM on Tue, Nov 24",
+   "return_flight_arrival_description": "11:20 PM on Tue, Nov 24",
+   "return_flight_airline": "Lufthansa",
+   "return_flight_stops": 1,
+   "return_flight_duration": "14 hr 25 min",
+   "return_stops_info": [
+    {
+     "stop_airport": "FRA",
+     "stop_duration_seconds": 36900
+    }
+   ]
+  },
+  {
+   "price_range_in_relation_to_other_periods": "high",
+   "price_insights_low": 80,
+   "price_insights_high": 195,
+   "from_airport": "Edinburgh (EDI)",
+   "to_airport": "Barcelona (BCN)",
+   "departure_date": "2026-11-17",
+   "return_date": "2026-11-24",
+   "total_price": "$226",
+   "total_price_as_number": 226,
+   "total_duration_seconds": 60000,
+   "total_stops": 2,
+   "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTEtMTciHwoDRURJEgoyMDI2LTExLTE3GgNGUkEqAkxIMgM5NjUiIAoDRlJBEgoyMDI2LTExLTE3GgNCQ04qAkxIMgQxMTI4agUSA0VESXIFEgNCQ04aXRIKMjAyNi0xMS0yNCIgCgNCQ04SCjIwMjYtMTEtMjQaA0ZSQSoCTEgyBDExMjciHwoDRlJBEgoyMDI2LTExLTI0GgNFREkqAkxIMgM5NjRqBRIDQkNOcgUSA0VESUIBAUgBmAEB&curr=USD",
+   "departure_flight_departure_description": "6:45 AM on Tue, Nov 17",
+   "departure_flight_arrival_description": "1:00 PM on Tue, Nov 17",
+   "departure_flight_airline": "Lufthansa",
+   "departure_flight_stops": 1,
+   "departure_flight_duration": "5 hr 15 min",
+   "departure_stops_info": [
+    {
+     "stop_airport": "FRA",
+     "stop_duration_seconds": 4800
+    }
+   ],
+   "return_flight_departure_description": "12:55 PM on Tue, Nov 24",
+   "return_flight_arrival_description": "11:20 PM on Tue, Nov 24",
+   "return_flight_airline": "Lufthansa",
+   "return_flight_stops": 1,
+   "return_flight_duration": "11 hr 25 min",
+   "return_stops_info": [
+    {
+     "stop_airport": "FRA",
+     "stop_duration_seconds": 26100
+    }
+   ]
+  },
+  {
+   "price_range_in_relation_to_other_periods": "high",
+   "price_insights_low": 80,
+   "price_insights_high": 195,
+   "from_airport": "Edinburgh (EDI)",
+   "to_airport": "Barcelona (BCN)",
+   "departure_date": "2026-11-17",
+   "return_date": "2026-11-24",
+   "total_price": "$272",
+   "total_price_as_number": 272,
+   "total_duration_seconds": 71100,
+   "total_stops": 2,
+   "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTEtMTciHwoDRURJEgoyMDI2LTExLTE3GgNBTVMqAktMMgM5MjgiIAoDQU1TEgoyMDI2LTExLTE3GgNCQ04qAktMMgQxNTE5agUSA0VESXIFEgNCQ04aXhIKMjAyNi0xMS0yNCIgCgNCQ04SCjIwMjYtMTEtMjQaA0NERyoCQUYyBDEwNDkiIAoDQ0RHEgoyMDI2LTExLTI1GgNFREkqAkFGMgQxNjg2agUSA0JDTnIFEgNFRElCAQFIAZgBAQ&curr=USD",
+   "departure_flight_departure_description": "1:25 PM on Tue, Nov 17",
+   "departure_flight_arrival_description": "7:00 PM on Tue, Nov 17",
+   "departure_flight_airline": "KLM",
+   "departure_flight_stops": 1,
+   "departure_flight_duration": "4 hr 35 min",
+   "departure_stops_info": [
+    {
+     "stop_airport": "AMS",
+     "stop_duration_seconds": 3300
+    }
+   ],
+   "return_flight_departure_description": "8:20 PM on Tue, Nov 24",
+   "return_flight_arrival_description": "10:30 AM on Wed, Nov 25",
+   "return_flight_airline": "Air France",
+   "return_flight_stops": 1,
+   "return_flight_duration": "15 hr 10 min",
+   "return_stops_info": [
+    {
+     "stop_airport": "CDG",
+     "stop_duration_seconds": 40800
+    }
+   ]
+  }
+ ]
+}
