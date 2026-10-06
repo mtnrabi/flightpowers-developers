@@ -1,11 +1,15 @@
 import { withOg } from '@/lib/meta';
 
-export const metadata = withOg({
-  title: 'How to get round-trip flight prices in one API request',
-  description:
-    'One request prices both legs together. A real BER to CDG run from 2026-10-06: the round trip cost $130, the same two flights as one-ways $169.',
-  alternates: { canonical: '/guides/roundtrip-flight-prices-one-request' },
-});
+export const metadata = {
+  ...withOg({
+    title: 'How to get round-trip flight prices in one API request',
+    description:
+      'One request prices both legs together. A real BER to CDG run from 2026-10-06: the round trip cost $130, the same two flights as one-ways $169.',
+    alternates: { canonical: '/guides/roundtrip-flight-prices-one-request' },
+  }),
+  // The layout template appends " · FlightPowers"; the title is 54 chars without it.
+  title: { absolute: 'How to get round-trip flight prices in one API request' },
+};
 
 export const dynamic = 'force-static';
 

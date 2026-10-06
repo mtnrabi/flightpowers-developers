@@ -1,11 +1,15 @@
 import { withOg } from '@/lib/meta';
 
-export const metadata = withOg({
-  title: 'Hotel prices by country: testing the proxy_country API',
-  description:
-    'Do hotel prices change by country? Two repeat-sampled proxy_country runs, 2026-08-28 and 2026-10-06, and why one call per market proves nothing.',
-  alternates: { canonical: '/guides/hotel-prices-by-country-api' },
-});
+export const metadata = {
+  ...withOg({
+    title: 'Hotel prices by country: testing the proxy_country API',
+    description:
+      'Do hotel prices change by country? Two repeat-sampled proxy_country runs, 2026-08-28 and 2026-10-06, and why one call per market proves nothing.',
+    alternates: { canonical: '/guides/hotel-prices-by-country-api' },
+  }),
+  // The layout template appends " · FlightPowers"; the title is 54 chars without it.
+  title: { absolute: 'Hotel prices by country: testing the proxy_country API' },
+};
 
 export const dynamic = 'force-static';
 
@@ -132,7 +136,7 @@ The non-refundable rate for each room type, total for three nights:
 | Room, non-refundable | `de` sample 1 | `de` sample 2 | `us` sample 1 | `us` sample 2 | `us` against `de` |
 |---|---|---|---|---|---|
 | Premium | €452 | €452 | not listed | €452 | level |
-| Deluxe Room (cheapest) | €511 | €511 | €494 | €494 | 3% under |
+| Deluxe Room (lowest rate) | €511 | €511 | €494 | €494 | 3% under |
 | Loft - Separate Building | €735 | €735 | €615 | €615 | 16% under |
 | Suite with Balcony | €924 | €924 | €773 | €773 | 16% under |
 
