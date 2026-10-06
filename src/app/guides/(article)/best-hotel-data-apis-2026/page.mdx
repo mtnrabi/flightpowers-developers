@@ -109,7 +109,9 @@ measures the noise as much as the market.
 
 The response keys are short and stable: `name`, `price_string`, `price`,
 `review_score`, `review_count`, `room_type`, `location`, `image_url`, `link`,
-`nights`, `adults`, `children`. There are {COUNTS.hotelFilters} documented filters.
+`nights`, `adults`, `children`, `latitude`, `longitude`. The last two are the property's
+map position from Booking.com, enough to plot the results or filter by distance from a
+point. There are {COUNTS.hotelFilters} documented filters.
 
 Plans, from the live listing on {READ_ON}: free tier {HOTEL_PLANS[0].quota} requests
 a month as a hard cap, then ${HOTEL_PLANS[1].priceMonthly} for{' '}

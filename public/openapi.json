@@ -1312,6 +1312,20 @@
             "type": "string",
             "format": "uri",
             "description": "Deep link to the property on Booking.com with dates and occupancy pre-filled."
+          },
+          "latitude": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "description": "The property's latitude in WGS84 decimal degrees, from Booking.com, e.g. `41.9057575`. Null when Booking.com publishes no position."
+          },
+          "longitude": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "description": "The property's longitude in WGS84 decimal degrees, from Booking.com, e.g. `12.4724811`. Null when Booking.com publishes no position."
           }
         }
       },
@@ -1436,6 +1450,20 @@
               "integer",
               "null"
             ]
+          },
+          "latitude": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "description": "The property's latitude in WGS84 decimal degrees, from Booking.com. Null when Booking.com publishes no position, and when the hotel was not found."
+          },
+          "longitude": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "description": "The property's longitude in WGS84 decimal degrees, from Booking.com. Null when Booking.com publishes no position, and when the hotel was not found."
           }
         }
       },

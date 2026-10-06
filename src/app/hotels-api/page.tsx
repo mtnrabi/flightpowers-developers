@@ -278,7 +278,8 @@ export default function HotelsApiHubPage() {
             <Mono>POST /v1/hotels/by-name</Mono> takes the name a person would type and resolves it for you. Both live
             on <Mono>api.flightpowers.com</Mono>, and are <Mono>/search</Mono> and <Mono>/hotel_by_name</Mono> on{' '}
             <Mono>booking-live-api.p.rapidapi.com</Mono> with a RapidAPI key. Every response carries live Booking.com
-            rates for the whole stay, review score and count, room type and a booking link. Every endpoint also takes{' '}
+            rates for the whole stay, review score and count, room type, the property&apos;s latitude and longitude, and a
+            booking link. Every endpoint also takes{' '}
             <code className="field">proxy_country</code>.
           </>
         }
@@ -328,6 +329,13 @@ export default function HotelsApiHubPage() {
             value: fx.data.properties[0]!.room_type,
           },
           {
+            name: 'latitude / longitude',
+            type: 'number | null · number | null',
+            meaning:
+              "Where the property sits on the map, WGS84 decimal, from Booking.com's own data (Hotel Sant'Angelo in Rome: 41.9057575, 12.4724811). Null when Booking.com publishes no position. Enough to plot stays on a map or keep only the ones within a set distance of a point.",
+            value: 'added after this capture',
+          },
+          {
             name: 'proxy_country',
             type: 'string (request)',
             meaning: 'Two-letter code that routes that one request through a residential proxy in that market, so you see the rate that market is quoted.',
@@ -358,7 +366,7 @@ export default function HotelsApiHubPage() {
             <p className="mt-3 text-[15px] text-ink-300 leading-relaxed">
               Yes: <code className="field">POST /search</code> returns live Booking.com rates for a destination and dates, and{' '}
               <code className="field">POST /hotel_by_name</code> returns them for one property, each with room type, review
-              score and a booking link.
+              score, the property&apos;s coordinates and a booking link.
             </p>
           </div>
           <div>
