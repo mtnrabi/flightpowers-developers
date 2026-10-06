@@ -284,8 +284,8 @@ export default function McpPage() {
           <div>
             <p className="font-mono text-[13px] text-ink-400 mb-2">{LINKS.mcpHotels.replace('https://', '')}</p>
             <FieldRow name="search_hotels">
-              Live Booking.com search for a destination: ranked properties with price, review score, room type, and a working
-              booking link, filterable with the {COUNTS.hotelFilters} documented filters.
+              Live Booking.com search for a destination: ranked properties with price, review score, room type, latitude and
+              longitude, and a working booking link, filterable with the {COUNTS.hotelFilters} documented filters.
             </FieldRow>
             <FieldRow name="find_hotel_by_name">
               Availability and price for one named hotel: takes the name a human would type (add the city to disambiguate a

@@ -20,7 +20,7 @@ const faq: Faq[] = [
   },
   {
     q: 'What does each check return?',
-    a: 'The headline rate for your dates as both a string and a number, plus review_score, review_count, and room_type, and a booking link. Sold out or not found returns the same shape with available: false and nulls, so a scheduled tracker never branches on error formats.',
+    a: 'The headline rate for your dates as both a string and a number, plus review_score, review_count, room_type, the property’s latitude and longitude, and a booking link. Sold out or not found returns the same shape with available: false and nulls, so a scheduled tracker never branches on error formats.',
   },
   {
     q: 'How many requests does daily comp-set tracking cost?',
@@ -60,7 +60,8 @@ export default function CompSetTrackingPage() {
           </Feature>
           <Feature title="The fields a rate report needs">
             Price as a number, review_score, review_count, and room_type per property: enough to see who undercut
-            you, with what room, and at what reputation.
+            you, with what room, and at what reputation. Each one also carries its latitude and longitude, so a
+            comp set can be drawn as everyone within a set distance of your own property.
           </Feature>
           <Feature title="Sold out is data, not an exception">
             Unavailable comes back as available: false with nulls in the same shape as a priced result. A competitor selling

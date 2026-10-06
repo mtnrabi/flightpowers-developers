@@ -242,6 +242,12 @@ export default function QuickstartPage() {
                 country. Booking.com quotes different markets differently; this is how you observe that, and it is the
                 basis of rate-parity and geo-pricing monitoring. Omit it and you get the global pool.
               </p>
+              <p>
+                Every property row also carries <code className="field">latitude</code> and{' '}
+                <code className="field">longitude</code> from Booking.com&apos;s own data, so you can plot the stays on a
+                map or keep only the ones near a point. Both are <code className="field">null</code> when Booking.com
+                publishes no position.
+              </p>
             </Step>
           </div>
 

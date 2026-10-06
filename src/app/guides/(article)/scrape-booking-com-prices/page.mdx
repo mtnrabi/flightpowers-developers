@@ -261,8 +261,9 @@ for p in r.json()["properties"]:
 ```
 
 Each property returns `name`, `price` and `price_string`, `review_score` and
-`review_count`, `room_type`, `location`, `image_url`, `link`, and the stay as priced:
-`nights`, `adults`, `children`. Notice what that settles. `room_type` travels with the
+`review_count`, `room_type`, `location`, `latitude` and `longitude` (WGS84, from
+Booking.com, `null` when it publishes no position), `image_url`, `link`, and the stay as
+priced: `nights`, `adults`, `children`. Notice what that settles. `room_type` travels with the
 price, so the underspecification above is at least visible. `link` is a stable identity
 to key on instead of a row index. `nights` makes the total divisible into a nightly
 rate without you remembering what you asked for. The same shapes are on our own domain

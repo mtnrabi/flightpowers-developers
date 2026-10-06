@@ -105,6 +105,8 @@ The response is a JSON object with the headline rate for that property:
 }
 ```
 
+The answer also carries the property's `latitude` and `longitude` (WGS84, from Booking.com, `null` when it publishes no position), so the alert can include a map pin.
+
 Downstream, the workflow is identical to Route A: IF `available` is `true` and `price_as_number` is below your threshold, notify.
 
 Set the node's timeout generously: this is a live search of Booking.com, not a cache read, and response time tracks property complexity. 60 seconds is a sane ceiling.

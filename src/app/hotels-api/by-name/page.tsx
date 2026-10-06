@@ -43,7 +43,9 @@ const RESPONSE_SHAPE = `{
   link:          string | null,   // booking link for this room & dates
   nights:        number | null,
   adults:        number | null,
-  children:      number | null
+  children:      number | null,
+  latitude:      number | null,   // WGS84 decimal, from Booking.com
+  longitude:     number | null
 }`;
 
 const faq: Faq[] = [
@@ -360,6 +362,12 @@ export default function HotelByNamePage() {
             The stay as priced: nights computed from the dates ({us.nights} in the capture), adults as applied ({us.adults},
             the default since the request sent none), and children, <code className="field">null</code> when the request did not
             send any.
+          </FieldRow>
+          <FieldRow name="latitude / longitude" type="number | null · number | null">
+            Where the property sits on the map, in WGS84 decimal degrees, from Booking.com&apos;s own data (Hotel
+            Sant&apos;Angelo in Rome: <code className="field">41.9057575, 12.4724811</code>). Added after the Kremlin Palace
+            capture. <code className="field">null</code> when Booking.com publishes no position, and when the hotel was not
+            found. Handy for putting a tracked property on a map or measuring how far it is from a point.
           </FieldRow>
         </div>
       </Section>

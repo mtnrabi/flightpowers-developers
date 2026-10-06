@@ -93,6 +93,10 @@ A real answer to the request above, run on **2026-09-04**. Rates move, so yours 
 }
 ```
 
+Since 2026-10-06 the answer also carries `latitude` and `longitude`, the property's map
+position from Booking.com (Hotel Sant'Angelo in Rome reads `41.9057575, 12.4724811`), and
+both are `null` when the hotel was not found.
+
 `matched_name` is the whole point of the design. It is the property the text actually
 resolved to, so you can compare it to what you asked for before you trust the number. If a
 user types a name that resolves to a different hotel two streets away, you find out in the

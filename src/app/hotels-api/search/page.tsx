@@ -256,6 +256,13 @@ export default function HotelSearchPage() {
             value: p0.location === null ? 'null' : p0.location,
           },
           {
+            name: 'latitude / longitude',
+            type: 'number | null · number | null',
+            meaning:
+              "The property's position, WGS84 decimal, from Booking.com's own data. Null when Booking.com publishes none. Use it to plot the results on a map or keep only the ones near a point.",
+            value: 'added after this capture',
+          },
+          {
             name: 'link',
             type: 'string',
             meaning: 'A working Booking.com deep link to that property with your dates and party already applied.',
@@ -479,6 +486,13 @@ export default function HotelSearchPage() {
             <FieldRow name="location" type="string | null">
               A location string when Booking.com surfaces one on the result; <code className="field">null</code> otherwise (all
               six captured properties returned null).
+            </FieldRow>
+            <FieldRow name="latitude / longitude" type="number | null · number | null">
+              Where the property sits on the map, in WGS84 decimal degrees, from Booking.com&apos;s own data. Added after the
+              Lisbon capture; a Rome search on 2026-10-06 returned{' '}
+              <code className="field">&quot;latitude&quot;: 41.9057575, &quot;longitude&quot;: 12.4724811</code> for Hotel
+              Sant&apos;Angelo. <code className="field">null</code> when Booking.com publishes no position. Plot the results on a
+              map, or keep only the stays within a set distance of a point.
             </FieldRow>
             <FieldRow name="image_url" type="string | null">
               A property thumbnail hosted by Booking.com, ready for an {'<img>'} tag.

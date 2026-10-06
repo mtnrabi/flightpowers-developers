@@ -5,6 +5,15 @@ schedule.
 
 ---
 
+## 2026-10-06: hotel coordinates
+
+The property rows from `POST /v1/hotels/search` and the `POST /v1/hotels/by-name` answer now
+carry `latitude` and `longitude`: WGS84 decimal degrees from Booking.com's own data, read from
+the same page as the price, so no extra request. Hotel Sant'Angelo in Rome reads
+`41.9057575, 12.4724811`. Both are `null` when Booking.com publishes no position, and on a
+by-name answer for a hotel that was not found. The two MCP servers pass them through on
+`search_hotels` and `find_hotel_by_name`.
+
 ## 2026-08: the new flightpowers.com
 
 The apex domain now serves this site; the consumer product moved to `demo.flightpowers.com`.
