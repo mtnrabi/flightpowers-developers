@@ -21,6 +21,7 @@ import {
 import { FIXTURES } from '@/lib/fixtures';
 import { FLIGHT_PLANS } from '@/lib/pricing';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
+import { apiNode } from '@/lib/schema-offers';
 
 // The head term first ("flights API"), the source second; title.absolute keeps
 // the template's " · FlightPowers" suffix off so the tag stays under 60 chars.
@@ -173,14 +174,12 @@ export default function FlightsApiHubPage() {
       <JsonLd
         data={{
           '@context': 'https://schema.org',
-          '@type': 'WebAPI',
-          name: 'FlightPowers Google Flights API',
-          url: `${SITE.url}/flights-api`,
+          // @id, name, url, provider and the priced offers from lib/pricing.ts
+          ...apiNode('flights'),
           description:
             'REST API over live Google Flights results: one-way and paired round-trip search, Google\u2019s price_insights band with a low | typical | high verdict on every itinerary, and X-Search-Status headers that make an empty result unambiguous.',
           documentation: `${SITE.url}/flights-api`,
           termsOfService: `${SITE.url}/terms`,
-          provider: { '@type': 'Organization', name: 'FlightPowers', url: SITE.url },
           potentialAction: {
             '@type': 'ConsumeAction',
             target: { '@type': 'EntryPoint', urlTemplate: `https://${SITE.apiHost}/v1/flights/oneway`, httpMethod: 'POST', contentType: 'application/json' },

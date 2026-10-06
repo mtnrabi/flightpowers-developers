@@ -1,5 +1,9 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import { ogImagePath } from '@/app/og/card-url';
+import { completeArticleNode, type ArticleDefaults } from '@/lib/jsonld';
+import { ORGANIZATION_ID } from '@/lib/schema-offers';
+import { SITE } from '@/lib/site';
 
 export function Container({ children, className = '' }: { children: ReactNode; className?: string }) {
   return <div className={`mx-auto max-w-6xl px-5 sm:px-8 ${className}`}>{children}</div>;
@@ -187,8 +191,22 @@ export function FaqSection({ items, heading = 'Questions, answered plainly' }: {
   );
 }
 
+const ARTICLE_DEFAULTS: ArticleDefaults = {
+  organizationId: ORGANIZATION_ID,
+  organizationName: SITE.name,
+  authorName: 'Matan Rabi',
+  authorUrl: `${SITE.url}/about`,
+  imageFor: (title) => `${SITE.url}${ogImagePath(title)}`,
+};
+
+/**
+ * An article node (TechArticle, HowTo, BlogPosting) also gets the publisher
+ * @id, the author url and the share-card image it is missing; see lib/jsonld.ts.
+ * Every other node is rendered exactly as passed.
+ */
 export function JsonLd({ data }: { data: Record<string, unknown> }) {
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
+  const node = completeArticleNode(data, ARTICLE_DEFAULTS);
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(node) }} />;
 }
 
 function formatGuideDate(iso: string): string {

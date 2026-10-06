@@ -1,5 +1,6 @@
-import { Breadcrumbs, Container } from '@/components/ui';
+import { Breadcrumbs, Container, JsonLd } from '@/components/ui';
 import { FloatingCta } from '@/components/FloatingCta';
+import { SITE } from '@/lib/site';
 
 /**
  * Article chrome for the MDX guides, modeled on the changelog layout.
@@ -10,6 +11,18 @@ import { FloatingCta } from '@/components/FloatingCta';
 export default function GuideLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
+      {/* The visible trail below, machine-readable. The guide's own TechArticle
+          node (in its page.mdx) carries the title and the url. */}
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+            { '@type': 'ListItem', position: 2, name: 'Guides', item: `${SITE.url}/guides` },
+          ],
+        }}
+      />
       <Container className="py-14 sm:py-20">
         <Breadcrumbs trail={[{ href: '/', label: 'Home' }, { href: '/guides', label: 'guides' }]} />
         <p className="eyebrow mt-8">Guide</p>

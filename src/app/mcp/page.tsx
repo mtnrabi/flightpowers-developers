@@ -17,6 +17,7 @@ import {
 } from '@/components/ui';
 import { TASKS } from '@/lib/matrix';
 import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
+import { ORGANIZATION_ID, aggregateOffer } from '@/lib/schema-offers';
 
 // The head terms ("travel MCP", "flights MCP", "hotel MCP") each appear once in
 // the hub text; title.absolute keeps the " · FlightPowers" suffix off.
@@ -114,11 +115,37 @@ export default function McpPage() {
         data={{
           '@context': 'https://schema.org',
           '@type': 'SoftwareApplication',
+          '@id': `${SITE.url}/mcp#software`,
           name: 'FlightPowers MCP servers',
           applicationCategory: 'DeveloperApplication',
           operatingSystem: 'Any',
-          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Bring your own RapidAPI key; free tier: 10 requests/month' },
           url: `${SITE.url}/mcp`,
+          publisher: { '@id': ORGANIZATION_ID },
+          // The free server's caps are the ones the hero and the FAQ state; the
+          // keyed servers run on the caller's own plan, priced from lib/pricing.ts.
+          offers: [
+            {
+              '@type': 'Offer',
+              name: 'Free with ads',
+              price: 0,
+              priceCurrency: 'USD',
+              url: LINKS.mcpFree,
+              description:
+                'Sign in with Google, no RapidAPI key: 50 searches a day and 250 a month, every result carries one sponsored card',
+            },
+            { ...aggregateOffer('flights'), description: 'Ad-free flights MCP server on your own RapidAPI key, billed on the FlightPowers flights plans' },
+            { ...aggregateOffer('hotels'), description: 'Ad-free hotels MCP server on your own RapidAPI key, billed on the FlightPowers hotels plans' },
+          ],
+        }}
+      />
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+            { '@type': 'ListItem', position: 2, name: 'MCP servers', item: `${SITE.url}/mcp` },
+          ],
         }}
       />
 
