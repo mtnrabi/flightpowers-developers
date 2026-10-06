@@ -1,0 +1,112 @@
+{
+  "captured_at": "2026-10-06T19:54:54Z",
+  "finished_at": "2026-10-06T19:55:03Z",
+  "server": "https://hotels.flightpowers.com/mcp",
+  "tool": "search_hotels",
+  "arguments": {
+    "destination": "Lisbon",
+    "checkin_date": "2026-11-11",
+    "checkout_date": "2026-11-16",
+    "adults": 2,
+    "currency": "usd"
+  },
+  "result": {
+    "result_count": 25,
+    "results_first_six": [
+      {
+        "name": "JAM Lisbon",
+        "price": 648,
+        "price_string": "US$648",
+        "review_score": 8.9,
+        "review_count": 3713,
+        "room_type": "Standard Double Room",
+        "nights": 5,
+        "adults": 2,
+        "latitude": 38.70535,
+        "longitude": -9.158693,
+        "retrieved_at": "2026-10-06T19:55:02.896Z"
+      },
+      {
+        "name": "HF Fénix Lisboa",
+        "price": 809,
+        "price_string": "US$809",
+        "review_score": 8.6,
+        "review_count": 3261,
+        "room_type": "Economy Double or Twin Room",
+        "nights": 5,
+        "adults": 2,
+        "latitude": 38.72496514876953,
+        "longitude": -9.151086956262589,
+        "retrieved_at": "2026-10-06T19:55:02.896Z"
+      },
+      {
+        "name": "Vila Garden Guesthouse",
+        "price": 543,
+        "price_string": "US$543",
+        "review_score": 9.1,
+        "review_count": 1850,
+        "room_type": "Double Room",
+        "nights": 5,
+        "adults": 2,
+        "latitude": 38.730678,
+        "longitude": -9.134275,
+        "retrieved_at": "2026-10-06T19:55:02.896Z"
+      },
+      {
+        "name": "Madalena by The Beautique Hotels",
+        "price": 809,
+        "price_string": "US$809",
+        "review_score": 8.8,
+        "review_count": 2254,
+        "room_type": "Superior Double Room",
+        "nights": 5,
+        "adults": 2,
+        "latitude": 38.713205,
+        "longitude": -9.136545,
+        "retrieved_at": "2026-10-06T19:55:02.896Z"
+      },
+      {
+        "name": "Charme apartamentos Bairro alto",
+        "price": 512,
+        "price_string": "US$512",
+        "review_score": 7.6,
+        "review_count": 83,
+        "room_type": "One-Bedroom Apartment",
+        "nights": 5,
+        "adults": 2,
+        "latitude": 38.71166167317764,
+        "longitude": -9.143725325727928,
+        "retrieved_at": "2026-10-06T19:55:02.896Z"
+      },
+      {
+        "name": "HF Fénix Garden",
+        "price": 721,
+        "price_string": "US$721",
+        "review_score": null,
+        "review_count": 2312,
+        "room_type": "Economy Double or Twin Room",
+        "nights": 5,
+        "adults": 2,
+        "latitude": 38.72504885058263,
+        "longitude": -9.151631444692612,
+        "retrieved_at": "2026-10-06T19:55:02.896Z"
+      }
+    ],
+    "cheapest_of_all": {
+      "name": "V Dinastia",
+      "price": 299,
+      "price_string": "US$299",
+      "review_score": 7.5,
+      "review_count": 3349,
+      "room_type": "Twin Room - Green Room No Cleaning",
+      "nights": 5,
+      "adults": 2,
+      "latitude": 38.72036349073592,
+      "longitude": -9.157313033938408,
+      "retrieved_at": "2026-10-06T19:55:02.896Z"
+    },
+    "api_usage": {
+      "requests_used_by_this_call": 1
+    }
+  }
+}

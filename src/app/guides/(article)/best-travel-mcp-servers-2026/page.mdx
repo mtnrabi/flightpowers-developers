@@ -1,0 +1,359 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = {
+  ...withOg({
+    title: 'Best travel MCP servers in 2026: flights, hotels, compared',
+    description:
+      'Eleven travel MCP servers for Claude, Cursor and ChatGPT, read on 2026-10-06 with prices: Kiwi.com, trivago, HasData, Ignav, SerpApi, fli, mine and more.',
+    alternates: { canonical: '/guides/best-travel-mcp-servers-2026' },
+  }),
+  // The layout template appends " · FlightPowers"; the title is 57 chars without it.
+  title: { absolute: 'Best travel MCP servers in 2026: flights, hotels, compared' },
+};
+
+export const dynamic = 'force-static';
+
+import { GuideDates, JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { FLIGHT_PLANS, HOTEL_PLANS } from '@/lib/pricing';
+import { LINKS, SITE } from '@/lib/site';
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'Best travel MCP servers in 2026: flights, hotels, compared',
+    description:
+      'Kiwi.com, trivago, HasData, Ignav, SerpApi, flight-mcp.com, StayingAPI, fli, flights-mcp (Duffel), FlightPowers and Blue Pillow MCP servers compared from their own pages and live tools/list reads on 2026-10-06, with disclosed bias.',
+    url: `${SITE.url}/guides/best-travel-mcp-servers-2026`,
+    datePublished: '2026-10-06',
+    dateModified: '2026-10-06',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Is there an MCP for flights?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes, several. Kiwi.com runs a free one at mcp.kiwi.com with no key; HasData, Ignav, SerpApi and flight-mcp.com run hosted ones that need an account for live searches; fli and flights-mcp are open source servers you run yourself; FlightPowers runs one on live Google Flights fares, free with ads or ad-free on your own RapidAPI key.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Is there a free travel MCP server?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Yes. Kiwi.com (flights) and trivago (hotels) asked for no key on 2026-10-06, Blue Pillow issues a free anonymous key, fli is free to run yourself, and FlightPowers has a free ad-supported server with Google sign-in and 50 searches a day.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What is an MCP server for?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'An MCP (Model Context Protocol) server gives an AI assistant tools it can call. A travel MCP lets Claude, Cursor or ChatGPT fetch real fares and room rates when you ask, instead of guessing from training data.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Which travel MCP covers both flights and hotels?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Of the eleven read here: HasData (Google Flights, Booking.com, Google Hotels and Airbnb on one key), SerpApi (its Google Flights and Google Hotels engines through one search tool) and FlightPowers (Google Flights and Booking.com, one server each).',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Can a travel MCP book a flight or a hotel?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'None of the eleven read here books. They return prices and a link to book on the airline, the agency or the hotel site.',
+        },
+      },
+    ],
+  }}
+/>
+
+# Best travel MCP servers in 2026: flights and hotels, compared
+
+<GuideDates published="2026-10-06" updated="2026-10-06" />
+
+**Short answer:** for a free flights MCP with no key, Kiwi.com's; for free hotel search,
+trivago's; for Google Flights, Booking.com, Google Hotels and Airbnb behind one key,
+HasData's; for something you run yourself, fli. Mine, FlightPowers, prices a whole date
+range and a round trip in one call on live Google Flights fares, with Google's own
+low / typical / high band, plus live Booking.com rates. I read all eleven servers below on
+**2026-10-06** from their own pages, READMEs or a live `tools/list`, and every figure
+carries that date.
+
+I build FlightPowers, so read entry 10 as a vendor describing his own product. The order is
+not a ranking: the two free, no-key servers from big travel brands come first because they
+are the fastest way to see what a travel MCP does, and the table is the comparison.
+
+## The table
+
+Read 2026-10-06, 19:45 to 20:00 UTC. "Not documented" means I did not find it on the pages
+I read, not that it cannot exist.
+
+| # | Server | Covers | Data from | Sign-in | Free path | Paid entry | Date range in one call | Round trip | Price band |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Kiwi.com MCP | flights | Kiwi.com | none asked | free, no key | none published | yes | one call | not documented |
+| 2 | trivago MCP | hotels | trivago's metasearch | none asked | free, no key | none published | one stay per call | n/a | n/a |
+| 3 | HasData | flights, hotels, Airbnb | Google Flights, Booking.com, Google Hotels, Airbnb | key or OAuth | 1,000 credits a month (about 66 flight searches) | $59 a month for 200,000 credits | no, one date | two calls | yes |
+| 4 | Ignav | flights | not named on its pages | OAuth or key | 1,000 requests, once | $2 per 1,000 successful requests | not documented | one call | not documented |
+| 5 | SerpApi MCP | flights, hotels and much more | SerpApi's Google Flights and Google Hotels engines | key | a free plan on its pricing page | their cheapest plan is $25 for 1,000 | no, one date | two calls | yes |
+| 6 | flight-mcp.com | flights | providers not named | key | 300 calls a month; cached data with no key | $19 for 10,000 calls | no, one date | one call | not documented |
+| 7 | StayingAPI | stays | Airbnb, Booking.com, Vrbo, Google Hotels | OAuth 2.1 | 300 credits, once, for 90 days | $19 a month for 1,900 credits | availability over a range | n/a | n/a |
+| 8 | fli | flights | Google Flights | you run it | free, MIT | none | yes | one call | not documented |
+| 9 | flights-mcp | flights | Duffel | you run it, Duffel key | code free, MIT | Duffel's own pricing | yes, slower | one call | not documented |
+| 10 | FlightPowers (mine) | flights, hotels | Google Flights, Booking.com | Google sign-in or RapidAPI key | free with ads, 50 searches a day | ${FLIGHT_PLANS[1].priceMonthly} for {FLIGHT_PLANS[1].quota.toLocaleString('en-US')} flight searches | yes, flights and hotels | one call | yes |
+| 11 | Blue Pillow | hotels and stays | "16+ booking sites" | free anonymous key | free, no signup | none published | not documented | n/a | n/a |
+
+"Price band" means Google's own historical range for the route with a low / typical / high
+verdict, the field that tells you whether a fare is a good one. "Round trip: two calls" means
+the server's own docs say the return leg is a second request.
+
+## 1. Kiwi.com MCP: free flight search, no key
+
+Kiwi.com runs it at `https://mcp.kiwi.com` (it reports itself as `kiwicom-flight-search`).
+On 2026-10-06 it answered `initialize` and `tools/list` with no key at all and listed two
+tools: `search-flight` and `feedback-to-devs`.
+
+`search-flight` is flexible on dates. It takes city or
+airport names, an explicit departure range (`departureDate` to `departureDateTo`) or plus and
+minus days, a return range or a nights-at-destination range (`nights_in_dst_from` /
+`nights_in_dst_to`), bags per traveller, stopover airports and countries, and whether
+self-transfer tickets are allowed. Each itinerary comes back with a price, the legs, the
+included baggage and a `bookingUrl`.
+
+What it does not carry, in the result shape its own tool description documents: a
+historical price range or a verdict. The results are Kiwi.com's own search.
+
+**Best for:** a free, no-setup flights tool in Claude when Kiwi.com's inventory and its
+self-transfer routes are what you want.
+
+## 2. trivago MCP: free hotel metasearch, no key
+
+trivago runs it at `https://mcp.trivago.com/mcp`, and its own page says "free, no API key".
+On 2026-10-06 `tools/list` returned three tools: `trivago-accommodation-search` (by
+destination or point of interest), `trivago-accommodation-radius-search` (near coordinates)
+and `trivago-destination-price-trends`, which forecasts monthly nightly rates for a
+destination; its own description calls it "a forecasting tool, not a live-availability
+search".
+
+The search tools take one stay per call (arrival and departure), guests and rooms, star and
+review filters, and a `country` code that "determines market-specific pricing".
+
+**Best for:** a free hotel search in Claude or ChatGPT across many booking sites at once.
+
+## 3. HasData: four travel sources behind one key
+
+HasData runs one hosted server, `https://mcp.hasdata.com/mcp`, and an `?apis=` parameter
+picks the tools: `google_travel_flights` for flights, `booking` for Booking.com,
+`google_travel` adds Google Hotels, and `airbnb` adds Airbnb. Drop the parameter and its
+README says the same endpoint exposes all 57 HasData tools. Auth is an `x-api-key` header,
+or OAuth for clients that support it.
+
+The flights tool returns Google's `priceInsights` with a lowest price, a typical range and a
+price level, and carbon figures per itinerary. A search takes one `outboundDate`, and its
+README says "A round trip is two calls, so budget for it."
+
+Price, from the READMEs and `hasdata.com/prices`: 1,000 free credits every month, no card;
+a flight search is 15 credits (about 66 a month free) and a Booking.com call is 10 (about
+100). The Startup plan is $59 a month for 200,000 credits.
+
+**Best for:** Google Flights with the price band plus three stay sources on one key, if one
+date per search is fine.
+
+## 4. Ignav: a flights API with a hosted MCP
+
+Ignav runs `https://ignav.com/mcp` with two tools, `search_airports` and `search_flights`
+(one-way and round trip), and every itinerary carries a `booking_url` to an airline or
+agency page. Cloud clients sign in with OAuth; local ones send an API key.
+
+Price, from `ignav.com/pricing`: 1,000 free requests once, then $2 per 1,000 successful
+requests, and only successful requests are billed. Its pages do not name where the fares
+come from, and I found no price band or date range documented for the MCP tool.
+
+**Best for:** pay-as-you-go flight search with booking links and no monthly plan.
+
+## 5. SerpApi MCP: Google Flights and Google Hotels inside a general search tool
+
+SerpApi runs `https://mcp.serpapi.com/mcp` with one `search` tool that reaches every SerpApi
+engine, Google Flights and Google Hotels among them, plus opt-in table and dashboard tools
+for hosts that render MCP Apps. Its README says no key is needed to connect or list tools;
+`search` needs one.
+
+Through the Google Flights engine you get Google's `price_insights` (lowest price, price
+level, typical range). One search takes one `outbound_date`, and SerpApi's own docs say the
+return leg of a round trip is "another request using a departure_token".
+
+Price: their cheapest plan is $25 for 1,000 searches, and a free plan is listed on the same
+pricing page.
+
+**Best for:** teams that already use SerpApi for other engines and want travel in the same
+tool.
+
+## 6. flight-mcp.com: flights with a cache you choose
+
+flight-mcp.com serves one search contract over REST and MCP (`https://flight-mcp.com/mcp`,
+a bearer key). A request sets how old a cached answer may be, from 60 seconds to 3 days,
+and cache hits do not count against the plan. An "Open Cache" mode, over REST and MCP,
+needs no account and returns only data that is already cached.
+
+A search takes one `departureDate` and an optional `returnDate`, so a round trip is one
+call. Its page names no providers ("every enabled provider"). Price, from
+`flight-mcp.com/pricing`: Free with 300 calls a month, Lite $19 for 10,000, Pro $49 for
+30,000.
+
+**Best for:** an agent that asks the same routes again and again and can live with a cached
+answer.
+
+## 7. StayingAPI: Airbnb, Booking.com, Vrbo and Google Hotels in one schema
+
+StayingAPI runs `https://mcp.stayingapi.com/mcp` with seven read-only tools that map to its
+REST endpoints, among them `search_stays`, `check_availability` (day by day over a date
+range for known listings), `get_price` and `compare_prices` (one property across platforms).
+Sign-in is OAuth 2.1 with PKCE.
+
+Price, from `stayingapi.com/pricing`: 300 free credits once, valid 90 days; Starter is $19 a
+month for 1,900 credits; a `compare_prices` call is 30 credits, and failed or empty calls
+are free.
+
+**Best for:** stays across the big platforms, including vacation rentals, in one schema.
+
+## 8. fli: open source, run it yourself
+
+`punitarani/fli` (3,209 stars on 2026-10-06, MIT) is a Python library and CLI for Google
+Flights with an MCP server included: `pipx install flights`, then `fli-mcp` over stdio or
+`fli-mcp-http` locally. Its README says it talks to Google Flights' internal API rather
+than scraping pages.
+
+Two tools: `search_flights` for one date and `search_dates` for the cheapest dates across a
+range, with a trip duration for round trips. Its README says a round trip costs "1 + top_n
+page fetches". No price band is documented. It costs nothing, and you run it and keep it
+working.
+
+**Best for:** developers who want Google Flights in a local assistant and are happy to host
+it.
+
+## 9. flights-mcp (Duffel): a local server on Duffel's API
+
+`ravinahp/flights-mcp` (231 stars, MIT, last commit 2025-06-11) runs locally and searches
+Duffel's API: one-way, round trip and multi-city, plus a search across several days that
+its README calls "slower". It needs a Duffel live key, which per its README means
+verifying a Duffel account and adding payment details, though the server itself only
+searches. A test key returns simulated data.
+
+**Best for:** people who already have a Duffel account.
+
+## 10. FlightPowers: mine
+
+Two hosted servers. <code>{LINKS.mcpFlights}</code> has `search_oneway_flights` and
+`search_roundtrip_flights` on live Google Flights fares; <code>{LINKS.mcpHotels}</code> has
+`search_hotels`, `find_hotel_by_name` and `compare_hotel_rates` on live Booking.com rates.
+Add the URL, sign in with Google, and the first 10 searches each day are free; after that
+the searches run on your own RapidAPI key.
+
+What I built it around: one call takes a date range, a list of destinations and a list of
+trip lengths, and the fares come back with Google's low / typical / high verdict and its
+range.
+A round trip comes back as one total with one booking link. On 2026-10-06 one call priced
+six New York round trips to Lisbon and Barcelona across three departure days, billed 6
+requests, and came back in about 4 seconds ([the run](/mcp/google-flights)). On the hotel
+side, `price_as_seen_from` prices a stay as a shopper in another country would see it, and
+a range of check-in dates prices several stays in one call.
+
+Price: free with ads at <code>{LINKS.mcpFree.replace('https://', '')}</code> (Google sign-in, 50
+searches a day, 250 a month); on your key, BASIC is free with {FLIGHT_PLANS[0].quota} a
+month, and PRO is ${FLIGHT_PLANS[1].priceMonthly} for{' '}
+{FLIGHT_PLANS[1].quota.toLocaleString('en-US')} flight searches or ${HOTEL_PLANS[1].priceMonthly} for
+{HOTEL_PLANS[1].quota.toLocaleString('en-US')} hotel searches.
+
+The cons, stated as plainly as the others: one-way and round trip only, no multi-city; the
+hotel side is Booking.com; a key means a RapidAPI account; and the free server shows one
+sponsored card per result.
+
+**Best for:** fare tracking and date scans in an assistant, where "is this a good price"
+matters, plus hotel rates on the same sign-in. Setup pages:
+[Google Flights MCP](/mcp/google-flights), [hotel MCP](/mcp/booking-hotels).
+
+## 11. Blue Pillow: hotel and stay prices from many sites, no signup
+
+Blue Pillow runs `https://mcp.b2a.bluepillow.com/` and its page reads "Live hotel & stay
+prices from 16+ booking sites in one call. No signup. No login. Permanent key." The key is
+generated in the browser on that page, and the limits it states are 120 requests a minute
+and 60,000 a day. No price is published on the pages I read.
+
+**Best for:** free hotel price comparison across many sites for an agent.
+
+## Pick by what you need
+
+- **Free, nothing to set up:** Kiwi.com for flights, trivago for hotels.
+- **Google's price band on every fare:** HasData, SerpApi or FlightPowers.
+- **A month of dates in one call:** Kiwi.com, fli or FlightPowers.
+- **Flights and hotels together:** HasData, SerpApi or FlightPowers.
+- **Vacation rentals:** StayingAPI or HasData (Airbnb).
+- **Run it yourself:** fli, or flights-mcp if you are on Duffel.
+
+## How I checked
+
+Every entry was read on 2026-10-06 between 19:45 and 20:00 UTC: the vendor's own MCP page,
+pricing page or README, GitHub's API for stars and last commit, and, for Kiwi.com and
+trivago, an MCP `initialize` plus `tools/list` against the live server. I made no paid
+calls to anyone else's server. My own run is on [the flights MCP page](/mcp/google-flights)
+with its timestamp. If something here is out of date, the date on each line is the day it
+was true.
+
+## Is there an MCP for flights?
+
+Yes, several: Kiwi.com's is free with no key; HasData, Ignav, SerpApi and flight-mcp.com
+run hosted ones that need an account for live searches; fli and flights-mcp are open source servers you run
+yourself; and FlightPowers runs one on live Google Flights fares, free with ads or
+ad-free on your own key.
+
+## Is there a free travel MCP server?
+
+Yes. Kiwi.com and trivago asked for no key on 2026-10-06, Blue Pillow issues a free
+anonymous key, fli is free to run yourself, and FlightPowers has a free ad-supported
+server with Google sign-in and 50 searches a day.
+
+## What is an MCP server for?
+
+An MCP (Model Context Protocol) server gives an AI assistant tools it can call. A travel
+MCP lets Claude, Cursor or ChatGPT fetch real fares and room rates when you ask, instead of
+guessing from training data.
+
+## Which travel MCP covers both flights and hotels?
+
+Of the eleven here: HasData (Google Flights, Booking.com, Google Hotels and Airbnb on one
+key), SerpApi (its Google Flights and Google Hotels engines through one tool) and
+FlightPowers (Google Flights and Booking.com, one server each).
+
+## Can a travel MCP book a flight or a hotel?
+
+None of the eleven read here books. They return prices and a link to book on the airline,
+the agency or the hotel site.
+
+## Related
+
+- [Google Flights MCP server](/mcp/google-flights): setup, the tools printed raw, one real run
+- [Hotel MCP server](/mcp/booking-hotels): Booking.com rates for the same clients
+- [FlightPowers vs flight-mcp.com](/compare/flight-mcp) and [vs HasData](/compare/hasdata): the longer side-by-sides
+- [The best flight data APIs in 2026](/guides/best-flight-data-apis-2026) and [hotel data APIs](/guides/best-hotel-data-apis-2026): the REST side of the same market
+- [Status](/status): what we check on our own servers, and what came back
+
+<CtaBand
+  medium="guide"
+  showBoth
+  title="Try two of them on the same question"
+  body="Ask the same fare question through two servers and compare what comes back: the dates covered, the verdict, the cost of the call. Mine is free to try with a Google sign-in."
+/>

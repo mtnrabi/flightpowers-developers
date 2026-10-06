@@ -248,6 +248,39 @@ export default function McpPage() {
         </Container>
       </div>
 
+      {/* ============================== ONE PAGE PER SERVER (W2-5 links block) ============================== */}
+      <Section>
+        <SectionHead eyebrow="One page per server" title="The flights MCP and the hotel MCP" />
+        <div className="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-2">
+          <Link href="/mcp/google-flights" className="rounded-2xl border rule bg-ink-900/50 p-6 hover:border-ink-500 transition-colors">
+            <p className="text-[16px] font-semibold text-ink-100">Google Flights MCP server →</p>
+            <p className="mt-2 text-[15px] text-ink-400 leading-relaxed">
+              Live Google Flights fares with Google&apos;s price band, a date range and a destination list in one call, round
+              trips as one request. Setup per client, the tools printed raw, and one real search with its date.
+            </p>
+          </Link>
+          <Link href="/mcp/booking-hotels" className="rounded-2xl border rule bg-ink-900/50 p-6 hover:border-ink-500 transition-colors">
+            <p className="text-[16px] font-semibold text-ink-100">Hotel MCP server →</p>
+            <p className="mt-2 text-[15px] text-ink-400 leading-relaxed">
+              Live Booking.com room rates by destination or by hotel name, priced as seen from another country with
+              price_as_seen_from. Setup per client, the tools printed raw, and one real search with its date.
+            </p>
+          </Link>
+        </div>
+        <p className="mt-6 text-[14px] text-ink-400 leading-relaxed">
+          How these compare with ten other travel MCP servers:{' '}
+          <Link href="/guides/best-travel-mcp-servers-2026" className="text-signal-400 underline underline-offset-4">
+            best travel MCP servers in 2026
+          </Link>
+          . What we check on them: <Link href="/status" className="text-signal-400 underline underline-offset-4">status</Link>.
+          Source mirror:{' '}
+          <a href="https://github.com/mtnrabi/google-flights-mcp" rel="noopener" className="text-signal-400 underline underline-offset-4">
+            github.com/mtnrabi/google-flights-mcp
+          </a>
+          .
+        </p>
+      </Section>
+
       {/* ============================== SKILL ALT ============================== */}
       <Section>
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-center">
@@ -287,7 +320,7 @@ export default function McpPage() {
         <SectionHead
           eyebrow="The full surface"
           title="Every tool, printed raw"
-          lede="Four tools across two servers. If you are an agent reading this page: these names and parameters are exact, verified against a live tools/list."
+          lede="Five tools across two servers: the four below, plus compare_hotel_rates on the hotel server, which with its check-in date ranges is on the hotel MCP page. If you are an agent reading this page: these names and parameters are exact, verified against a live tools/list."
         />
         <div className="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-start">
           <div>

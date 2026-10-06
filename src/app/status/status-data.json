@@ -1,0 +1,41 @@
+{
+  "_about": "Read by /status. The daily-read worker updates nightlyTests.nights (one row per nightly RapidAPI Testing result mail) and, after each weekly read, hubCards. Copy values as they appear on the source; never estimate. Source of the 2026-10-06 values: api-growth state/gtm/weekly/2026-10-06.md sections 4 and 5.",
+  "nightlyTests": {
+    "suite": "8 RapidAPI Testing tests across our listings, among them one-way and round-trip flight searches, hotel lookups by ID and by name, and a health check on each listing",
+    "schedule": "run every night against the live listings",
+    "nights": [
+      { "date": "2026-09-28", "passed": 8, "total": 8 },
+      { "date": "2026-09-29", "passed": 8, "total": 8 },
+      { "date": "2026-09-30", "passed": 8, "total": 8 },
+      { "date": "2026-10-01", "passed": 8, "total": 8 },
+      { "date": "2026-10-02", "passed": 8, "total": 8 },
+      { "date": "2026-10-03", "passed": 8, "total": 8 },
+      { "date": "2026-10-04", "passed": 8, "total": 8 },
+      {
+        "date": "2026-10-05",
+        "passed": 7,
+        "total": 8,
+        "note": "Hotel by ID passed 4 of its 5 runs; one hit a 30-second client timeout at 22:39 UTC."
+      }
+    ]
+  },
+  "hubCards": {
+    "readAt": "2026-10-06T06:39Z",
+    "rows": [
+      {
+        "listing": "Google Flights Live API",
+        "url": "https://rapidapi.com/mtnrabi/api/google-flights-live-api",
+        "serviceLevel": "99%",
+        "success": "99%",
+        "latency": "1,152 ms"
+      },
+      {
+        "listing": "Booking Live API",
+        "url": "https://rapidapi.com/mtnrabi/api/booking-live-api",
+        "serviceLevel": "98%",
+        "success": "97%",
+        "latency": "8,800 ms"
+      }
+    ]
+  }
+}
