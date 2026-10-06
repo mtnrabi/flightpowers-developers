@@ -5,7 +5,16 @@ import { RoundTripTool } from '@/components/tools/RoundTripTool';
 import { RouteCrossLinks, RouteFacts } from '@/components/tools/GridSections';
 import { Breadcrumbs, Container, Cta, FaqSection, JsonLd, Section, SectionHead, type Faq } from '@/components/ui';
 import { withOg } from '@/lib/meta';
-import { findRoute, roundTripPlannerTitle, routeArrow, ROUTES, type GridRoute } from '@/lib/grid';
+import {
+  findRoute,
+  gridRouteRobots,
+  gridTitleField,
+  roundTripPlannerDescription,
+  roundTripPlannerTitle,
+  routeArrow,
+  ROUTES,
+  type GridRoute,
+} from '@/lib/grid';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const dynamic = 'force-static';
@@ -21,11 +30,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { route } = await params;
   const r = findRoute(route);
   if (!r) return {};
-  return withOg({
-    title: roundTripPlannerTitle(r),
-    description: `Price a ${r.from.iata} to ${r.to.iata} return trip as one itinerary: paired legs, one total, each side with its own airline, stops and duration. Live Google Flights data, free, no signup.`,
-    alternates: { canonical: `/tools/round-trip-planner/${r.slug}` },
-  });
+  const robots = gridRouteRobots('round-trip-planner', r.slug);
+  const title = roundTripPlannerTitle(r);
+  return {
+    ...withOg({
+      title,
+      description: roundTripPlannerDescription(r),
+      alternates: { canonical: `/tools/round-trip-planner/${r.slug}` },
+    }),
+    title: gridTitleField(title),
+    // Declined by Google (see GRID_NOINDEX): noindex, follow, and out of the sitemap.
+    ...(robots ? { robots } : {}),
+  };
 }
 
 function faqFor(r: GridRoute): Faq[] {

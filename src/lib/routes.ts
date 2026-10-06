@@ -1,6 +1,7 @@
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
+import { declaredDates } from './page-source';
 
 /**
  * Route discovery for sitemap.ts.
@@ -10,9 +11,11 @@ import path from 'node:path';
  * announced. This walks the App Router tree instead: any `page.tsx` / `page.mdx`
  * that exists is in the sitemap, automatically, with no list to remember to edit.
  *
- * `lastModified` comes from the file's last git commit date where git is available
- * (it is, during a Vercel build — the deployment is a clone), falling back to the
- * filesystem mtime. Both are real dates; neither is a made-up one.
+ * `lastModified` is the date the page declares about itself (moved forward only
+ * when the file was edited on a later day), else the last git commit that really
+ * edited the file (see gitHistory below for the shallow-clone and sweep commits
+ * it skips), else nothing. Never the filesystem mtime: on Vercel
+ * that is the checkout time, i.e. every build would claim every page changed.
  */
 
 const APP_DIR = path.join(process.cwd(), 'src', 'app');
@@ -72,35 +75,116 @@ export function discoverRoutes(dir: string = APP_DIR, prefix = ''): DiscoveredRo
   return out;
 }
 
-const gitDateCache = new Map<string, string | null>();
+/**
+ * How many PAGE files one commit may touch and still count as an edit to each
+ * of them. A commit past this is a sweep (a refactor, a copy change across a
+ * family, a generated set shipped in one push) and says nothing about when any
+ * single page's content last changed. Components and lib files do not count
+ * toward it: a nav change touching 3 pages is still a 3-page edit.
+ */
+const SWEEP_PAGE_FILES = 20;
 
-export function lastModified(file: string): Date {
-  if (!gitDateCache.has(file)) {
-    let iso: string | null = null;
-    try {
-      const stdout = execFileSync('git', ['log', '-1', '--format=%cI', '--', file], {
-        cwd: process.cwd(),
-        encoding: 'utf8',
-        stdio: ['ignore', 'pipe', 'ignore'],
-      }).trim();
-      iso = stdout.length > 0 ? stdout : null;
-    } catch {
-      iso = null;
-    }
-    gitDateCache.set(file, iso);
-  }
+let history: Map<string, string> | null = null;
 
-  const iso = gitDateCache.get(file);
-  if (iso) {
-    const d = new Date(iso);
-    if (!Number.isNaN(d.getTime())) return d;
-  }
+function isPageFile(rel: string): boolean {
+  return rel.startsWith('src/app/') && PAGE_FILES.has(path.basename(rel));
+}
 
+/**
+ * File -> date of its last real edit, from one `git log` over the whole
+ * visible history, kept for the build.
+ *
+ * Vercel builds from a SHALLOW clone. The live sitemap read on 2026-10-06
+ * shows it: 162 of its 388 lastmods carried 2026-09-17, the date of the 10th
+ * commit back from main, because the oldest commit a shallow clone can see is
+ * a graft that appears to add every file in the repo. Those boundary commits are
+ * listed in the repository's `shallow` file and are skipped here, together
+ * with every sweep. A file whose last real edit is older than the clone
+ * reaches gets NO git date, and the sitemap then omits its <lastmod>: Google
+ * ignores lastmod on a site where it proves wrong, and an absent value is
+ * not wrong.
+ */
+function gitHistory(): Map<string, string> {
+  if (history) return history;
+  const byFile = new Map<string, string>();
   try {
-    return fs.statSync(file).mtime;
+    const cwd = process.cwd();
+    const run = (args: string[]) =>
+      execFileSync('git', args, { cwd, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'], maxBuffer: 64 * 1024 * 1024 });
+    const shallowFile = run(['rev-parse', '--git-path', 'shallow']).trim();
+    let boundary = new Set<string>();
+    try {
+      boundary = new Set(
+        fs
+          .readFileSync(path.isAbsolute(shallowFile) ? shallowFile : path.join(cwd, shallowFile), 'utf8')
+          .split('\n')
+          .map((l) => l.trim())
+          .filter(Boolean)
+      );
+    } catch {
+      // Not a shallow clone: no boundary commits.
+    }
+    const log = run(['log', '--no-renames', '--format=%x1e%H %cI', '--name-only']);
+    for (const chunk of log.split('\x1e')) {
+      const lines = chunk.split('\n').map((l) => l.trim()).filter(Boolean);
+      if (lines.length === 0) continue;
+      const [hash, iso] = lines[0]!.split(' ');
+      if (!hash || !iso || boundary.has(hash)) continue;
+      const files = lines.slice(1);
+      if (files.filter(isPageFile).length > SWEEP_PAGE_FILES) continue;
+      // `git log` is newest first, so the first sighting of a file is its last edit.
+      for (const file of files) if (!byFile.has(file)) byFile.set(file, iso);
+    }
   } catch {
-    return new Date();
+    // No git (a tarball build): every page falls back to its declared date or none.
   }
+  history = byFile;
+  return history;
+}
+
+function toDate(iso: string | undefined): Date | undefined {
+  if (!iso) return undefined;
+  const d = new Date(iso);
+  return Number.isNaN(d.getTime()) ? undefined : d;
+}
+
+/** The date of the last commit that edited `file` and was not a sweep or a shallow-clone boundary. */
+export function gitEditDate(file: string): Date | undefined {
+  const rel = path.relative(process.cwd(), file).split(path.sep).join('/');
+  return toDate(gitHistory().get(rel));
+}
+
+/**
+ * The date the sitemap prints for a page.
+ *
+ * A page that declares its own date (JSON-LD `dateModified`, or the visible
+ * <GuideDates> line on a guide) gets that date, so <lastmod> says what the
+ * page says about itself. The one exception is a file edited on a LATER day
+ * than the date it declares (the edit forgot to move the date): <lastmod>
+ * then takes the edit, because understating a change throws away the recrawl
+ * it should trigger. The fix for that case is in the page, moving its date
+ * with its edit, after which the two agree again. A page that declares no
+ * date gets its last real edit; with neither, it gets no <lastmod>.
+ */
+export function lastModified(file: string): Date | undefined {
+  let declared: Date | undefined;
+  try {
+    declared = toDate(declaredDates(fs.readFileSync(file, 'utf8')).modified);
+  } catch {
+    declared = undefined;
+  }
+  const edited = gitEditDate(file);
+  if (declared && edited) {
+    const day = (d: Date) => d.toISOString().slice(0, 10);
+    return day(edited) > day(declared) ? edited : declared;
+  }
+  return declared ?? edited;
+}
+
+/** The newest of several files' git edit dates: for a generated page, its dataset and its template. */
+export function newestEdit(files: string[]): Date | undefined {
+  const dates = files.map(gitEditDate).filter((d): d is Date => d !== undefined);
+  return dates.length === 0 ? undefined : new Date(Math.max(...dates.map((d) => d.getTime())));
 }
 
 /**
