@@ -161,7 +161,7 @@ If you already subscribed to the Google Flights Live API, you use the **same Rap
 Test your key with a hotel search in London:
 
 ```bash
-curl -X POST https://booking-live-api.p.rapidapi.com/api/hotels/v1/search \
+curl -X POST https://booking-live-api.p.rapidapi.com/search \
   -H "Content-Type: application/json" \
   -H "x-rapidapi-host: booking-live-api.p.rapidapi.com" \
   -H "x-rapidapi-key: YOUR_RAPIDAPI_KEY" \
@@ -173,22 +173,21 @@ curl -X POST https://booking-live-api.p.rapidapi.com/api/hotels/v1/search \
   }'
 ```
 
-Replace `YOUR_RAPIDAPI_KEY` with your actual key. Success looks like a JSON array of properties:
+Replace `YOUR_RAPIDAPI_KEY` with your actual key. Success is a JSON object whose `properties` array holds one entry per hotel. One entry looks like this:
 
 ```json
 {
-  "hotel_name": "The Savoy",
+  "name": "The Savoy",
   "price_string": "$450",
-  "price_as_number": 450,
+  "price": 450,
   "review_score": 9.1,
   "review_count": 2847,
   "room_type": "Deluxe River View Room",
-  "address": "Strand, London WC2R 0EZ",
-  "booking_link": "https://www.booking.com/hotel/gb/savoy.html?..."
+  "link": "https://www.booking.com/hotel/gb/savoy.html?..."
 }
 ```
 
-Each result includes a working `booking_link` that opens that exact property and dates on Booking.com.
+Each result includes a working `link` that opens that exact property and dates on Booking.com.
 
 ## What makes this API different: proxy_country
 
@@ -214,10 +213,10 @@ Search by destination, dates, and guest count. Returns a ranked list of properti
 Find one specific hotel by name, no property ID required. Pass `hotel_name` and `area` (city), get availability and pricing for that exact property. Name matching is fuzzy and handles chains.
 
 **POST /hotel**  
-Get every room type and rate for one property. Pass a Booking.com `hotel_id`, get back all available rooms with granular pricing.
+Get every room type and rate for one property. Pass a Booking.com `hotel_booking_id`, get back all available rooms with granular pricing.
 
 **POST /resolve**  
-Resolve a hotel name to its Booking.com property ID and metadata. Use when you need the `hotel_id` for another API call.
+Resolve a hotel name to its Booking.com property ID and metadata. Use when you need the `hotel_booking_id` for another API call.
 
 Every endpoint accepts `proxy_country` to control market perspective.
 
@@ -246,7 +245,7 @@ Yes, but it's restricted. Booking.com Partner API requires an existing OTA busin
 The free BASIC tier is 10 requests/month with no credit card required. The PRO tier ($10/month, 2,000 requests) fits rate-parity checks and small-scale scrapers. Pricing is on [/pricing](/pricing).
 
 **Can I book hotels through the API?**  
-No. This is a data API, not a booking API. Every result includes a `booking_link` that opens that exact property on Booking.com where the user completes the reservation.
+No. This is a data API, not a booking API. Every result includes a `link` that opens that exact property on Booking.com where the user completes the reservation.
 
 **What's the difference between this and Expedia or Hotels.com APIs?**  
 Booking.com has the largest inventory of any OTA: 28+ million listings globally as of 2026. The Booking Live API extracts from that full inventory. Expedia Group APIs (covering Expedia, Hotels.com, Vrbo) are separate and require partnership. Neither can price from arbitrary markets the way `proxy_country` does.
