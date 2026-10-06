@@ -483,7 +483,7 @@ adults=2&includedAirlineCodes=TG&max=3" \\
               [code('currencyCode'), <>{code('currency')} (default {code('usd')})</>],
               [code('maxPrice'), code('max_price')],
               [code('nonStop=true'), code('max_stops: 0')],
-              [code('travelClass'), <>{code('seat_type')}: <strong className="text-ink-100">only {code('1')} Economy and {code('3')} Business.</strong> Premium economy and first are not supported</>],
+              [code('travelClass'), <>{code('seat_type')}: {code('1')} Economy, {code('2')} Premium economy, {code('3')} Business, {code('4')} First (a first-class search returned fares on 2026-10-06)</>],
             ]}
           />
         </div>
@@ -600,7 +600,7 @@ hotelIds=MCLONGHM&adults=2&checkInDate=2026-10-19\\
           <li>Delete the OAuth token fetch, cache and refresh logic. Replace with one header.</li>
           <li>
             Rename request fields per the tables above. Watch {code('adults')} → {code('passengers')} (a list) and{' '}
-            {code('travelClass')} → {code('seat_type')} (only two cabins).
+            {code('travelClass')} → {code('seat_type')} (a number, 1 to 4).
           </li>
           <li>Rewrite response parsing: the shape is flat JSON, not Amadeus’s {code('data[]')} / {code('dictionaries')} envelope.</li>
           <li>Drop the hotel ID-resolution step; pass {code('destination')} as free text.</li>
