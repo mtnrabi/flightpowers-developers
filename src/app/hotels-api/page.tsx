@@ -20,6 +20,7 @@ import {
 import { FIXTURES } from '@/lib/fixtures';
 import { HOTEL_PLANS } from '@/lib/pricing';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
+import { apiNode } from '@/lib/schema-offers';
 
 // The head term first ("hotels API"), the source second; title.absolute keeps
 // the template's " · FlightPowers" suffix off so the tag stays under 60 chars.
@@ -178,14 +179,12 @@ export default function HotelsApiHubPage() {
       <JsonLd
         data={{
           '@context': 'https://schema.org',
-          '@type': 'WebAPI',
-          name: 'FlightPowers Booking.com Hotels API',
-          url: `${SITE.url}/hotels-api`,
+          // @id, name, url, provider and the priced offers from lib/pricing.ts
+          ...apiNode('hotels'),
           description:
             'REST API over live Booking.com prices: destination search with 24 filters, hotel lookup by name, room-level pricing, and proxy_country for querying the same property from different markets (rate-parity and geo-pricing monitoring).',
           documentation: `${SITE.url}/hotels-api`,
           termsOfService: `${SITE.url}/terms`,
-          provider: { '@type': 'Organization', name: 'FlightPowers', url: SITE.url },
           potentialAction: {
             '@type': 'ConsumeAction',
             target: { '@type': 'EntryPoint', urlTemplate: `https://${SITE.apiHost}/v1/hotels/search`, httpMethod: 'POST', contentType: 'application/json' },

@@ -19,6 +19,7 @@ import {
 } from '@/components/ui';
 import { APIFY, FLIGHT_PLANS, HOTEL_PLANS } from '@/lib/pricing';
 import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
+import { apiNode } from '@/lib/schema-offers';
 
 export const metadata: Metadata = withOg({
   title: 'API pricing: flights & hotels, $0 to $75/mo',
@@ -251,6 +252,19 @@ export default function PricingPage() {
           '@type': 'WebPage',
           name: 'FlightPowers pricing',
           url: `${SITE.url}/pricing`,
+        }}
+      />
+      {/* Both price lists, machine-readable, generated from lib/pricing.ts (the same nodes as on the two hubs). */}
+      <JsonLd data={{ '@context': 'https://schema.org', ...apiNode('flights') }} />
+      <JsonLd data={{ '@context': 'https://schema.org', ...apiNode('hotels') }} />
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+            { '@type': 'ListItem', position: 2, name: 'Pricing', item: `${SITE.url}/pricing` },
+          ],
         }}
       />
 
