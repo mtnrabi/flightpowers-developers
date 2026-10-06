@@ -347,7 +347,7 @@ export default async function StatusPage() {
             <q className="text-ink-100">a year without a Google break</q>.
           </p>
           <p className="mt-6 text-[15px] text-ink-400 leading-relaxed">
-            Need an SLA for real volume? Ask through RapidAPI messaging on either listing. Changes that ship are dated in the{' '}
+            Questions about running real volume? Ask through RapidAPI messaging on either listing. Changes that ship are dated in the{' '}
             <Link href="/changelog" className="text-signal-400 underline underline-offset-4">
               changelog
             </Link>

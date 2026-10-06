@@ -293,7 +293,7 @@ export default function McpPage() {
         <SectionHead
           eyebrow="The full surface"
           title="Every tool, printed raw"
-          lede="Four tools across two servers. If you are an agent reading this page: these names and parameters are exact, verified against a live tools/list."
+          lede="Five tools across two servers: the four below, plus compare_hotel_rates on the hotel server, which with its check-in date ranges is on the hotel MCP page. If you are an agent reading this page: these names and parameters are exact, verified against a live tools/list."
         />
         <div className="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-start">
           <div>
