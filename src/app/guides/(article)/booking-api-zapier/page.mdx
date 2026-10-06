@@ -35,7 +35,7 @@ import { rapidApiPricingUrl } from '@/lib/site';
 **Short answer:** Zapier has no native Booking.com app, but the **HTTP Request** action
 in **Webhooks by Zapier** (a premium app that needs a paid Zapier plan) calls FlightPowers'
 Booking Live API (`booking-live-api.p.rapidapi.com`) directly with a `POST` to
-`/api/hotels/v1/search` and a raw JSON body. That unlocks live hotel data for any Zapier
+`/search` and a raw JSON body. That unlocks live hotel data for any Zapier
 workflow: scheduled rate watches, price feeds into Airtable or Sheets, or Slack alerts on a
 threshold.
 
@@ -65,7 +65,7 @@ Add the **Webhooks by Zapier** app to your Zap and choose the **Custom Request**
 action. Configure it as a `POST` request to:
 
 ```
-https://booking-live-api.p.rapidapi.com/api/hotels/v1/search
+https://booking-live-api.p.rapidapi.com/search
 ```
 
 Add three headers:
@@ -89,29 +89,29 @@ And set the body to **raw JSON**:
 
 ## What does the response contain?
 
-The API returns an array of hotel objects. Each object includes:
+The API returns a JSON object whose `properties` array holds one object per hotel. Each object includes:
 
-- `hotel_name`: the property name
+- `name`: the property name
 - `price_string`: the price as a formatted string
-- `price_as_number`: the same price as a number for filtering
+- `price`: the same price as a number for filtering
 - `review_score`: the Booking.com review score
 - `room_type`: the room description
-- `booking_link`: a deep link that opens the property on Booking.com ready to book
+- `link`: a deep link that opens the property on Booking.com ready to book
 
 Zapier surfaces these fields under the step's output. Reference them in downstream
-actions the way you would any other Zap data: `{{step_name.price_as_number}}`.
+actions the way you would any other Zap data: `{{step_name.price}}`.
 
 ## Example workflows
 
 **Scheduled rate watch.** Schedule Trigger (daily at 8 AM) → HTTP Request (the
-search above) → Filter (only continue if `price_as_number` is below your
-threshold) → Gmail (send yourself the hotel name, price, and `booking_link`).
+search above) → Filter (only continue if `price` is below your
+threshold) → Gmail (send yourself the hotel name, price, and `link`).
 
 **Destination comparison.** Looping by Zapier (a list of cities) → HTTP Request (one
 search per destination) → Airtable (log each result with timestamp).
 
 **Check a specific hotel.** Same host, path
-`/api/hotels/v1/hotel_by_name`, and use this body instead:
+`/hotel_by_name`, and use this body instead:
 
 ```json
 {
@@ -123,7 +123,7 @@ search per destination) → Airtable (log each result with timestamp).
 }
 ```
 
-The response is a single object with the same fields. This skips the property ID lookup
+The response is a single object with the same fields, plus `available`. This skips the property ID lookup
 and returns pricing for that exact hotel.
 
 ## Multi-market pricing

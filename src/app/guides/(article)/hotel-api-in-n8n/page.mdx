@@ -35,7 +35,7 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 **Short answer:** A hotel rate monitor in n8n needs four nodes: schedule trigger, hotel
 search, IF, notification. Build it with a community node or a plain HTTP Request node
 calling FlightPowers' Booking Live API (`booking-live-api.p.rapidapi.com`), and fire the
-IF when `price_as_number` drops below your threshold. The same pattern scales to
+IF when `price` drops below your threshold. The same pattern scales to
 multi-market rate-parity checks with `proxy_country`.
 
 The workflow this guide builds is a **hotel rate monitor**: every day, check a specific hotel's rate for your dates, and send yourself a message when the price drops below your threshold. Four nodes (schedule trigger → hotel search → IF → notification) and no state to maintain between runs.
@@ -55,17 +55,17 @@ Install it the way you install any n8n community node (from the community-nodes 
 
 1. **Schedule Trigger.** Once a day, at an hour you'll actually read the alert.
 2. **FlightPowers node.** Choose the hotel search operation and set the destination and dates you are watching: for example "Rixos Sungate, Antalya" for check-in on October 5, check-out on October 10. Add your credential (the RapidAPI key) once; every later workflow reuses it.
-3. **IF node.** Condition: the lowest `price_as_number` in the results is below your threshold (say, 800 for $800). That single comparison is the entire alerting logic. Take the minimum rather than the first row: result ordering churns between identical requests, so "the first result" is not a stable thing to compare.
-4. **Notification node**: whatever you already use (email, Telegram, Slack, a webhook). Include the price (`price_string`), the room type (`room_type`), the review score (`review_score`), and the `booking_link`, which opens that exact property and dates on Booking.com ready to book.
+3. **IF node.** Condition: the lowest `price` in the results is below your threshold (say, 800 for $800). That single comparison is the entire alerting logic. Take the minimum rather than the first row: result ordering churns between identical requests, so "the first result" is not a stable thing to compare.
+4. **Notification node**: whatever you already use (email, Telegram, Slack, a webhook). Include the price (`price_string`), the room type (`room_type`), the review score (`review_score`), and the `link`, which opens that exact property and dates on Booking.com ready to book.
 
-One handling note: when no rooms are available, `available` is `false` and `price_as_number` is `null`. Treat `null` as "no inventory," not as "zero price." If availability matters more than price, alert on `available: true` regardless of price.
+One handling note: on the by-name lookup (Route B below), when no rooms are available, `available` is `false` and `price` is `null`. Treat `null` as "no inventory," not as "zero price." If availability matters more than price, alert on `available: true` regardless of price.
 
 ## Route B: the HTTP Request node
 
 No community node required: n8n's built-in HTTP Request node can call the API directly. Configure it as a `POST` to:
 
 ```
-https://booking-live-api.p.rapidapi.com/api/hotels/v1/hotel_by_name
+https://booking-live-api.p.rapidapi.com/hotel_by_name
 ```
 
 with headers:
@@ -96,18 +96,18 @@ The response is a JSON object with the headline rate for that property:
 {
   "name": "Rixos Sungate",
   "price_string": "$750",
-  "price_as_number": 750,
+  "price": 750,
   "review_score": 8.9,
   "review_count": 1247,
   "room_type": "Deluxe Room",
   "available": true,
-  "booking_link": "https://www.booking.com/hotel/tr/rixos-sungate.html?..."
+  "link": "https://www.booking.com/hotel/tr/rixos-sungate.html?..."
 }
 ```
 
 The answer also carries the property's `latitude` and `longitude` (WGS84, from Booking.com, `null` when it publishes no position), so the alert can include a map pin.
 
-Downstream, the workflow is identical to Route A: IF `available` is `true` and `price_as_number` is below your threshold, notify.
+Downstream, the workflow is identical to Route A: IF `available` is `true` and `price` is below your threshold, notify.
 
 Set the node's timeout generously: this is a live search of Booking.com, not a cache read, and response time tracks property complexity. 60 seconds is a sane ceiling.
 
@@ -115,8 +115,8 @@ Set the node's timeout generously: this is a live search of Booking.com, not a c
 
 - **Watch several properties.** Put the hotels in a list (a Code node or a static data node), loop the search over them, and collect the hits below threshold into one digest message instead of N pings. Mind your plan's per-minute rate limit if the list is long: space the iterations rather than firing them all at once.
 - **Multi-market rate parity.** Same named hotel, two markets (`"proxy_country": "DE"` and `"proxy_country": "JP"`), each asked several times, then compare the ranges. A gap counts when one market's whole range sits below the other's; overlapping ranges are movement, not a parity break. The pattern is written up in [How to monitor hotel rate parity](/guides/monitor-hotel-rate-parity).
-- **Destination search instead of one property.** Use the `/search` endpoint instead of `/hotel_by_name`: pass `"destination": "London, UK"` and you get a ranked list of properties. Filter by `price_as_number`, `review_score`, or both.
-- **Threshold + availability.** The strictest trigger is an AND: `available` is `true` and `price_as_number` is under your budget. There is inventory, and it is cheap for you.
+- **Destination search instead of one property.** Use the `/search` endpoint instead of `/hotel_by_name`: pass `"destination": "London, UK"` and you get a ranked list of properties in a `properties` array. Filter by `price`, `review_score`, or both.
+- **Threshold + availability.** The strictest trigger is an AND: `available` is `true` and `price` is under your budget. There is inventory, and it is cheap for you.
 - **Flights.** The companion Google Flights API follows the same pattern: the scheduled version of a fare watch is written up in [Using a flight API in n8n](/guides/flight-api-in-n8n).
 
 ## Related
