@@ -75,6 +75,16 @@ const ALIAS_HOSTS = [
 const ADMIN_HOST = 'admin.flightpowers.com';
 const ADMIN_HOST_ROOT_PATHS = ['/', '/index'];
 
+/**
+ * Text copies of an HTML page, served for agents: [copy, the page it copies].
+ * Each answers with a Link canonical header pointing at the page (headers()
+ * below) and is left out of the sitemap.
+ */
+const MACHINE_READABLE_COPIES = [
+  ['/pricing.md', '/pricing'],
+  ['/pricing.txt', '/pricing'],
+];
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
@@ -147,6 +157,16 @@ const nextConfig = {
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
         ],
       },
+      // The machine-readable pricing copies. They exist for agents (llms.txt
+      // links them) and say the same thing as /pricing, so Google gets one
+      // URL for that content: a canonical in the response header, the only
+      // place a text file can carry one. Search Console had /pricing.md as
+      // "Crawled - currently not indexed" and /pricing.txt as "Discovered"
+      // (index data of 2026-09-21).
+      ...MACHINE_READABLE_COPIES.map(([source, canonical]) => ({
+        source,
+        headers: [{ key: 'Link', value: `<https://flightpowers.com${canonical}>; rel="canonical"` }],
+      })),
     ];
   },
 };

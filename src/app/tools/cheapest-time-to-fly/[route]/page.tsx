@@ -5,7 +5,17 @@ import { CheapestTimeTool } from '@/components/tools/CheapestTimeTool';
 import { RouteCrossLinks, RouteFacts } from '@/components/tools/GridSections';
 import { Breadcrumbs, Container, Cta, FaqSection, JsonLd, Section, SectionHead, type Faq } from '@/components/ui';
 import { withOg } from '@/lib/meta';
-import { cheapestTimeToFlyTitle, findRoute, isDomestic, routeArrow, ROUTES, type GridRoute } from '@/lib/grid';
+import {
+  cheapestTimeToFlyDescription,
+  cheapestTimeToFlyTitle,
+  findRoute,
+  gridRouteRobots,
+  gridTitleField,
+  isDomestic,
+  routeArrow,
+  ROUTES,
+  type GridRoute,
+} from '@/lib/grid';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const dynamic = 'force-static';
@@ -21,11 +31,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { route } = await params;
   const r = findRoute(route);
   if (!r) return {};
-  return withOg({
-    title: cheapestTimeToFlyTitle(r),
-    description: `Scan a year of ${r.from.iata} to ${r.to.iata} fares in one go: one real Google Flights search per coming month, charted side by side, each with Google's own low, typical or high verdict. Free, no signup, live rather than cached.`,
-    alternates: { canonical: `/tools/cheapest-time-to-fly/${r.slug}` },
-  });
+  const robots = gridRouteRobots('cheapest-time-to-fly', r.slug);
+  const title = cheapestTimeToFlyTitle(r);
+  return {
+    ...withOg({
+      title,
+      description: cheapestTimeToFlyDescription(r),
+      alternates: { canonical: `/tools/cheapest-time-to-fly/${r.slug}` },
+    }),
+    title: gridTitleField(title),
+    // Declined by Google (see GRID_NOINDEX): noindex, follow, and out of the sitemap.
+    ...(robots ? { robots } : {}),
+  };
 }
 
 function faqFor(r: GridRoute): Faq[] {

@@ -5,7 +5,7 @@ import { HotelSearchTool } from '@/components/tools/HotelSearchTool';
 import { CityCrossLinks, CityFacts } from '@/components/tools/GridSections';
 import { Breadcrumbs, Container, Cta, FaqSection, JsonLd, Section, SectionHead, type Faq } from '@/components/ui';
 import { withOg } from '@/lib/meta';
-import { CITIES, findCity, hotelPriceCheckTitle, type GridCity } from '@/lib/grid';
+import { CITIES, findCity, hotelPriceCheckDescription, hotelPriceCheckTitle, type GridCity } from '@/lib/grid';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const dynamic = 'force-static';
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     ...withOg({
       title: hotelPriceCheckTitle(c),
-      description: `What hotels in ${c.name} quote for your dates: property names, the total for the stay, review scores and a link that opens the room. Free, no signup.`,
+      description: hotelPriceCheckDescription(c),
       alternates: { canonical: `/tools/hotel-price-check/${c.slug}` },
     }),
     // The layout template appends " · FlightPowers"; the longest city name keeps the title under 60 without it.

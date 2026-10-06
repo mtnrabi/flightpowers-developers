@@ -5,7 +5,16 @@ import { PriceCheckerTool } from '@/components/tools/PriceCheckerTool';
 import { RouteCrossLinks, RouteFacts } from '@/components/tools/GridSections';
 import { Breadcrumbs, Container, Cta, FaqSection, JsonLd, Section, SectionHead, type Faq } from '@/components/ui';
 import { withOg } from '@/lib/meta';
-import { findRoute, flightPriceCheckerTitle, routeArrow, ROUTES, type GridRoute } from '@/lib/grid';
+import {
+  findRoute,
+  flightPriceCheckerDescription,
+  flightPriceCheckerTitle,
+  gridRouteRobots,
+  gridTitleField,
+  routeArrow,
+  ROUTES,
+  type GridRoute,
+} from '@/lib/grid';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const dynamic = 'force-static';
@@ -21,11 +30,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { route } = await params;
   const r = findRoute(route);
   if (!r) return {};
-  return withOg({
-    title: flightPriceCheckerTitle(r),
-    description: `Check a live ${r.from.iata} to ${r.to.iata} fare for any date, with Google's own price band and its low, typical or high verdict on what you are looking at. One real search, free, no signup.`,
-    alternates: { canonical: `/tools/flight-price-checker/${r.slug}` },
-  });
+  const robots = gridRouteRobots('flight-price-checker', r.slug);
+  const title = flightPriceCheckerTitle(r);
+  return {
+    ...withOg({
+      title,
+      description: flightPriceCheckerDescription(r),
+      alternates: { canonical: `/tools/flight-price-checker/${r.slug}` },
+    }),
+    title: gridTitleField(title),
+    // Declined by Google (see GRID_NOINDEX): noindex, follow, and out of the sitemap.
+    ...(robots ? { robots } : {}),
+  };
 }
 
 function faqFor(r: GridRoute): Faq[] {

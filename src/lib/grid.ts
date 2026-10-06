@@ -336,11 +336,103 @@ export const ROUTE_TOOLS = [
   },
 ] as const;
 
+export type RouteToolSlug = (typeof ROUTE_TOOLS)[number]['slug'];
+
+/**
+ * Route pages Google declined, kept live for visitors but out of the index.
+ *
+ * Source: Search Console, URL-prefix property https://flightpowers.com/,
+ * Page indexing report (index data of 2026-09-21, read 2026-10-06), the URL
+ * lists under "Discovered - currently not indexed" (97 route pages) and
+ * "Crawled - currently not indexed" (3 route pages), MINUS every page that
+ * shows impressions in the Performance report for 5 Jul to 4 Oct 2026. That
+ * subtraction keeps flight-price-checker cai-jed, cju-pus and jed-ruh, which
+ * were crawled and declined on 22 Sep and have drawn impressions since. Every
+ * route page that has ever had an impression stays indexable, and so do the
+ * six tool hubs and all 30 hotel city pages.
+ *
+ * These pages get `noindex, follow` and leave the sitemap; the tool on each
+ * one still works and the links on it still count. A page comes off this list
+ * only when it carries something no sibling has, such as a dated run of its
+ * own route; it never comes back as the same template it was declined as.
+ */
+export const GRID_NOINDEX: Record<RouteToolSlug, ReadonlySet<string>> = {
+  'cheapest-time-to-fly': new Set([
+    'bah-dxb', 'bkk-hkg', 'bkk-icn', 'bkk-sin', 'bog-mde', 'bom-del', 'bom-dxb', 'cai-jed',
+    'cai-ruh', 'can-sha', 'cgk-dps', 'cgk-kno', 'cgk-sin', 'cgk-upg', 'cju-gmp', 'cju-pus',
+    'cpt-jnb', 'cts-hnd', 'ctu-pek', 'cun-dfw', 'cun-mex', 'del-dxb', 'dxb-ist', 'dxb-jed',
+    'dxb-lhr', 'dxb-mle', 'dxb-ruh', 'fuk-hnd', 'gmp-pus', 'han-sgn', 'hnd-itm', 'hnd-oka',
+    'iah-mex', 'icn-kix', 'icn-nrt', 'jed-ruh', 'jfk-cdg', 'jfk-fco', 'jfk-lis', 'jfk-sdq',
+    'jfk-sti', 'kul-sin', 'lhr-jfk', 'mco-sju', 'pek-sha', 'sha-szx', 'syd-mel', 'tpe-nrt',
+  ]),
+  'flight-price-checker': new Set([
+    'bkk-hkg', 'bkk-icn', 'bkk-sin', 'bog-mde', 'bom-del', 'bom-dxb', 'cai-ruh', 'can-sha',
+    'cgk-dps', 'cgk-kno', 'cgk-sin', 'cju-gmp', 'cpt-jnb', 'cts-hnd', 'ctu-pek', 'cun-dfw',
+    'cun-mex', 'del-dxb', 'dxb-ist', 'dxb-jed', 'dxb-mle', 'dxb-ruh', 'fuk-hnd', 'gmp-pus',
+    'hkg-tpe', 'hnd-itm', 'hnd-oka', 'iah-mex', 'icn-kix', 'icn-nrt', 'jfk-cdg', 'jfk-fco',
+    'jfk-lis', 'jfk-sdq', 'jfk-sti', 'lhr-jfk', 'mco-sju', 'pek-sha', 'pek-szx', 'sha-szx',
+    'syd-mel', 'tpe-nrt',
+  ]),
+  'round-trip-planner': new Set(['cai-ruh', 'fuk-hnd', 'gmp-pus', 'hnd-oka', 'jed-ruh', 'mco-sju', 'pek-szx']),
+};
+
+/** False for a route page on the GRID_NOINDEX list; true for everything else in the grid. */
+export function isGridRouteIndexed(tool: RouteToolSlug, slug: string): boolean {
+  return !GRID_NOINDEX[tool].has(slug);
+}
+
+/** Metadata `robots` for one route page: undefined (the site default, index) unless it is on the list. */
+export function gridRouteRobots(tool: RouteToolSlug, slug: string): { index: false; follow: true } | undefined {
+  return isGridRouteIndexed(tool, slug) ? undefined : { index: false, follow: true };
+}
+
 /** Every generated page in the grid, for the sitemap and the /tools directory. */
 export function gridPaths(): string[] {
   const routePaths = ROUTE_TOOLS.flatMap((t) => ROUTES.map((r) => `/tools/${t.slug}/${r.slug}`));
   const cityPaths = CITIES.map((c) => `/tools/hotel-price-check/${c.slug}`);
   return [...routePaths, ...cityPaths];
+}
+
+/** The grid pages Google may index: gridPaths() minus GRID_NOINDEX. This is what the sitemap lists. */
+export function indexedGridPaths(): string[] {
+  const routePaths = ROUTE_TOOLS.flatMap((t) =>
+    ROUTES.filter((r) => isGridRouteIndexed(t.slug, r.slug)).map((r) => `/tools/${t.slug}/${r.slug}`)
+  );
+  const cityPaths = CITIES.map((c) => `/tools/hotel-price-check/${c.slug}`);
+  return [...routePaths, ...cityPaths];
+}
+
+/**
+ * The `title` metadata field for a grid page. The root layout appends
+ * " · FlightPowers" to every title; past 45 characters the suffix only pushes
+ * the route name out of Google's ~60-character title window, so a longer
+ * title goes out as written (`title.absolute`). The share card already names
+ * the site through og:site_name.
+ */
+export function gridTitleField(title: string): string | { absolute: string } {
+  return title.length > 45 ? { absolute: title } : title;
+}
+
+/**
+ * Meta descriptions of the three route families, here for the same reason as
+ * the titles below them: one author, and a test (scripts/grid-seo.test.mjs)
+ * holds every one of them to 155 characters so Google shows it whole. IATA
+ * codes are always three letters, so each family has one fixed length.
+ */
+export function cheapestTimeToFlyDescription(r: GridRoute): string {
+  return `The coming year of ${r.from.iata} to ${r.to.iata} fares in one scan: a live Google Flights search per month, charted, each with Google's low, typical or high verdict.`;
+}
+
+export function flightPriceCheckerDescription(r: GridRoute): string {
+  return `Check a live ${r.from.iata} to ${r.to.iata} fare for any date, with Google's own price band and its low, typical or high verdict. One real search, free, no signup.`;
+}
+
+export function roundTripPlannerDescription(r: GridRoute): string {
+  return `Price a ${r.from.iata} to ${r.to.iata} return trip as one itinerary: paired legs, one total, airline, stops and duration on each side. Live Google Flights data, free.`;
+}
+
+export function hotelPriceCheckDescription(c: GridCity): string {
+  return `What hotels in ${c.name} quote for your dates: property names, the total for the stay, review scores and a link that opens the room. Free, no signup.`;
 }
 
 /**
