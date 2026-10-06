@@ -72,6 +72,9 @@ const ALIAS_HOSTS = [
  * `/admin`; every other path -- `/admin` itself, `/api/admin/*`,
  * `/robots.txt` -- is untouched.
  */
+const ADMIN_HOST = 'admin.flightpowers.com';
+const ADMIN_HOST_ROOT_PATHS = ['/', '/index'];
+
 /**
  * Text copies of an HTML page, served for agents: [copy, the page it copies].
  * Each answers with a Link canonical header pointing at the page (headers()
@@ -81,9 +84,6 @@ const MACHINE_READABLE_COPIES = [
   ['/pricing.md', '/pricing'],
   ['/pricing.txt', '/pricing'],
 ];
-
-const ADMIN_HOST = 'admin.flightpowers.com';
-const ADMIN_HOST_ROOT_PATHS = ['/', '/index'];
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
