@@ -15,8 +15,10 @@ export const dynamic = 'force-static';
 
 import { GuideDates, JsonLd } from '@/components/ui';
 import { CtaBand } from '@/components/bands';
-import { FLIGHT_PLANS } from '@/lib/pricing';
+import { FLIGHT_PLANS, READ_ON } from '@/lib/pricing';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+export const q = (p) => p.quota.toLocaleString('en-US');
 
 <JsonLd
   data={{
@@ -27,7 +29,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
       'Google has no public flights API since QPX Express closed in April 2018. FlightPowers is the hosted replacement ($10 for 2,500 searches); the other options are SerpApi, SearchApi, Duffel, Amadeus or a self-hosted scraper.',
     url: `${SITE.url}/guides/google-flights-api`,
     datePublished: '2026-08-27',
-    dateModified: '2026-09-29',
+    dateModified: '2026-10-06',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -66,7 +68,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
         name: 'Is there a free Google Flights API?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Not a usable production one. Free tiers in this niche are verification-sized: FlightPowers’ free RapidAPI tier is 10 requests per month, hard capped, which verifies a key but cannot evaluate the data. Open-source scrapers are free to run but you pay in maintenance every time the page changes.',
+          text: 'Not from Google. FlightPowers has two free ways in: 10 searches a month on the BASIC plan of its RapidAPI listing, which verifies a key, and a free MCP server with ads at free-trial.flightpowers.com/mcp, 50 searches a day after a Google sign-in. Open-source scrapers are free to run, and you pay for them in maintenance every time the page changes.',
         },
       },
       {
@@ -77,13 +79,29 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
           text: 'Itineraries for a route and date as JSON: price, airline, stops, duration, and a booking deep link. FlightPowers additionally returns Google’s own historical price band (price_insights_low/high) with a low, typical or high verdict on every itinerary, and an X-Search-Status header that distinguishes a genuinely empty result from a failed search.',
         },
       },
+      {
+        '@type': 'Question',
+        name: 'Can a Google Flights API issue tickets?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. These are data APIs that return prices and a deep link into Google Flights. They replace the shopping half of a travel stack (search and compare fares), not the booking half (issue tickets, create PNRs). For ticketing, use Duffel or another booking API.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'What is the difference between the REST API and the MCP server?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Both read the same live Google Flights data on the same RapidAPI key. The REST API is a POST endpoint you call from code, one date pair per request. The MCP server is a URL you add to Claude, Cursor or ChatGPT, and the model calls its tools; those tools also take a date range and a list of destination airports in one call.',
+        },
+      },
     ],
   }}
 />
 
 # Google Flights API in 2026: what exists and what it costs
 
-<GuideDates published="2026-08-27" updated="2026-09-29" />
+<GuideDates published="2026-08-27" updated="2026-10-06" />
 
 **Short answer:** Google shut QPX Express in 2018 and has no public flights API. FlightPowers' [Google Flights Live API](/flights-api) is the hosted replacement: live Google Flights fares, Google's own low / typical / high price band, a round trip in one request; PRO is ${FLIGHT_PLANS[1].priceMonthly} for {FLIGHT_PLANS[1].quota.toLocaleString('en-US')} searches, about a sixth of SerpApi's price per search (their cheapest plan is $25 for 1,000). Best for price tracking, date scans and AI agents; no booking. The other options are SerpApi and SearchApi (hosted), Duffel and Amadeus (booking APIs), or an open-source scraper.
 
@@ -92,13 +110,20 @@ public flight-search API it offered, in **April 2018**, and its remaining **Trav
 Partner API** is for airlines and OTAs under contract, not for developers who want
 to query a route and get a price back. Everything sold as a "Google Flights API"
 since then is a third party reading the public Google Flights site for you. That
-includes mine. This page lays out the three real options and how to choose.
+includes mine. This page lays out the three real options, what one of them returns
+on a real request, and how to choose.
 
 ## Is Google Flights still a thing?
 
 Yes. Google Flights is live at google.com/travel/flights and is the site every
 third-party "Google Flights API", mine included, reads; only the developer API,
 QPX Express, is gone.
+
+## Is there a free Google Flights API?
+
+Not from Google, and the free ways into a hosted one are sized for trying it: 10
+searches a month on the free plan of my RapidAPI listing, or 50 a day on the free MCP
+server with ads after a Google sign-in.
 
 ## What happened to the official API
 
@@ -107,6 +132,19 @@ fares for a few cents per request. Google announced its retirement in late 2017
 and switched it off in April 2018. Nothing public replaced it. The demand did not
 go anywhere, which is why the search results for "Google Flights API" are now a
 wall of third-party services with similar names.
+
+## Why did the niche grow in 2026?
+
+Two self-serve doors closed on top of the one Google shut. Amadeus for Developers
+Self-Service, the GDS option a solo developer could sign up for without a sales call,
+was decommissioned on July 17, 2026, by Amadeus' own notice; and Kiwi's Tequila portal
+offers no registration route for new accounts, only a login for existing ones. Both are
+quoted and dated, with the commands to check them yourself, in
+[Amadeus Self-Service alternatives you can get into](/guides/amadeus-self-service-alternatives).
+
+The people who picked those services because they were self-serve still need fares.
+Extraction APIs filled the gap: instead of connecting to a GDS, they read the public
+Google Flights site and hand back JSON.
 
 ## What are the three real options?
 
@@ -134,36 +172,161 @@ consent walls, page redesigns, and the fact that a broken parser returns an empt
 array that looks exactly like "no flights". That last failure mode is the reason
 [this API reports search status explicitly](/guides/handle-empty-flight-search-results).
 
-## How do you get started in 60 seconds?
+## What does a Google Flights API return?
+
+Here is a real request, run on **2026-10-06** through `api.flightpowers.com`: one way,
+Berlin to Paris, Tuesday 17 November 2026.
 
 ```bash
 curl -X POST https://api.flightpowers.com/v1/flights/oneway \
   -H "x-api-key: $RAPIDAPI_KEY" \
   -H "Content-Type: application/json" \
-  -d '{"from_airport": "JFK", "to_airport": "LHR", "departure_date": "2026-10-15"}'
+  -d '{"from_airport": "BER", "to_airport": "CDG", "departure_date": "2026-11-17", "limit": 5, "currency": "usd"}'
 ```
 
-Each itinerary in the response carries the fare, airline, stops, duration, a
-booking deep link, and the two fields the official API never had: Google's own
-historical price band for the route (`price_insights_low` / `price_insights_high`)
-and a `low | typical | high` verdict. That verdict is what turns a price feed
-into "book now or wait" logic. The machine-readable contract is public:
-[OpenAPI spec](/openapi.json), [llms.txt](/llms.txt),
-[full reference](/llms-full.txt).
+It answered 200 with `x-search-status: ok` and `x-search-results: 5`. The first of the
+five itineraries, as it came back:
+
+```json
+{
+  "price_range_in_relation_to_other_periods": "typical",
+  "price_insights_low": 45,
+  "price_insights_high": 105,
+  "from_airport": "Berlin (BER)",
+  "to_airport": "Paris (CDG)",
+  "departure_date": "2026-11-17",
+  "price": "$59",
+  "price_as_number": 59,
+  "duration": "1 hr 55 min",
+  "duration_seconds": 6900,
+  "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTEtMTciIAoDQkVSEgoyMDI2LTExLTE3GgNDREcqAlUyMgQ1MTQ5agUSA0JFUnIFEgNDREdCAQFIAZgBAg&curr=usd",
+  "airline": "easyJet",
+  "stops": 0,
+  "stops_info": [],
+  "departure_description": "6:10 AM on Tue, Nov 17",
+  "arrival_description": "8:05 AM on Tue, Nov 17"
+}
+```
+
+Fares move, so yours will differ. The three fields that separate a useful extraction
+API from a basic one:
+
+1. **`price_range_in_relation_to_other_periods`**: Google's own verdict on the fare,
+   `low`, `typical` or `high`. Here it is `typical`.
+2. **`price_insights_low` / `price_insights_high`**: the band Google shows travelers
+   under the price, $45 to $105 for this route and date. A $59 fare sits in the lower
+   part of it.
+3. **`buy_link`**: a deep link that reopens this exact itinerary on Google Flights,
+   ready to book.
+
+The verdict is what turns a price feed into "book now or wait" logic. Without it you
+need months of your own price history before you can judge a fare. With it, a fare
+alert or an agent can judge the first fare it ever sees. The band is Google's, so on
+thin routes and far-out dates it can be missing; treat a missing verdict as "unjudged",
+never as "not low".
+
+## How do you tell an empty result from a failed search?
+
+The most dangerous answer a search API can give is `200 []`: success, no rows. It can
+mean there are no flights, or that the search timed out, or that the parser found
+nothing on a page full of fares. A fare alert that cannot tell these apart either
+reports "no flights" when it should retry, or stores a gap as a fact.
+
+So every response carries an `X-Search-Status` header. `ok` is a complete search.
+`degraded` or `partial` means some of the work failed, and the result must not be
+stored as "this route has nothing". `X-Search-Results` gives the row count without
+parsing the body. On the MCP servers the same value arrives as `search_status` inside
+the tool result. The full taxonomy is in
+[handling empty flight search results](/guides/handle-empty-flight-search-results).
+
+## REST or MCP?
+
+Both read the same live data with the same key, and the price per search is the same.
+
+**REST** is a POST endpoint you call from any language: a web app, a mobile backend,
+a cron job that scans fares. It takes one date pair per request, so a month of dates
+is a month of requests, sent in parallel within your plan's rate limit.
+
+**MCP** (Model Context Protocol) is a server URL you add to Claude, Cursor or ChatGPT,
+and the model calls its tools when it needs a fare. Those tools take a date range and a
+list of destination airports in one call and expand them server side.
+
+```json
+{
+  "mcpServers": {
+    "flights": {
+      "url": "https://flights.flightpowers.com/mcp",
+      "headers": { "x-rapidapi-key": "YOUR_KEY" }
+    }
+  }
+}
+```
+
+Or drop the `headers` block: the same URL answers a credential-less client with a
+sign-in, and you paste your key once on the page that opens instead of into the file.
+If you are building an agent, start with MCP; if you are building a product with a UI,
+start with REST. The [AI travel agent guide](/guides/ai-travel-agent) shows both in
+context.
+
+## What can't a Google Flights API do?
+
+These are data APIs. They replace the shopping half of a travel stack, not the booking
+half. A Google Flights API cannot issue tickets, create a booking or a PNR, hold
+inventory, take a payment, or sell seats and bags. What it can do: return the fare a
+traveler would see right now with Google's judgement of it, and hand them a link to buy
+it on Google Flights.
+
+It is the right tool for fare alerts, price calendars, trip planners, market analysis
+and AI agents that advise on when to book. It is the wrong tool if your flow ends with
+"confirm booking" inside your own product; then you need [Duffel](/compare/duffel) or a
+GDS.
+
+## What does it cost?
+
+Plans as listed on RapidAPI, re-read on {READ_ON} by a script that fails our build when
+a number drifts:
+
+| Plan | Price a month | Searches a month | Rate limit |
+| --- | --- | --- | --- |
+| BASIC | ${FLIGHT_PLANS[0].priceMonthly} | {q(FLIGHT_PLANS[0])}, hard cap | not listed |
+| PRO | ${FLIGHT_PLANS[1].priceMonthly} | {q(FLIGHT_PLANS[1])} | {FLIGHT_PLANS[1].ratePerMinute} a minute |
+| ULTRA | ${FLIGHT_PLANS[2].priceMonthly} | {q(FLIGHT_PLANS[2])} | {FLIGHT_PLANS[2].ratePerMinute} a minute |
+| MEGA | ${FLIGHT_PLANS[3].priceMonthly} | {q(FLIGHT_PLANS[3])} | {FLIGHT_PLANS[3].ratePerMinute} a minute |
+
+BASIC needs no card and verifies a key; it is too small to judge the data on. Hotels
+are a separate subscription on the same RapidAPI key. Current numbers always live on
+[/pricing](/pricing).
+
+## How do you get a key?
+
+Subscribe on <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">the
+RapidAPI listing</a>, pick a plan, and the key is on the page. There is no application
+and no sales call. If you already use any API on RapidAPI, it is the same key. The
+step-by-step version is
+[how to get a Google Flights API key](/guides/google-flights-api-key).
 
 ## How to choose, in three questions
 
 1. **Do you need to issue tickets?** GDS/booking API. Nothing else will do it.
 2. **Do you need the prices travelers actually compare?** Google Flights data,
-   which means an extraction API or your own scraper.
+   which means an extraction API or your own scraper. Then check which one returns
+   Google's price band and verdict, because without them you are building a price
+   history before you can say whether a fare is good.
 3. **Is this a product or a weekend script?** Products need the failure-mode
    contract (what does an empty array mean?) and a rate limit that supports
-   date scans. Scripts can use anything, including free scrapers.
+   date scans: a 30-date scan is 30 requests, and a 10-a-minute limit turns it into a
+   three-minute wait. Scripts can use anything, including free scrapers.
+
+The machine-readable contract is public: [OpenAPI spec](/openapi.json),
+[llms.txt](/llms.txt), [full reference](/llms-full.txt).
 
 ## Related
 
 - [How to get real-time Google Flights data](/guides/real-time-google-flights-data): the full walkthrough with paste-and-run code
+- [How to get a Google Flights API key](/guides/google-flights-api-key): the two-minute setup
 - [The best flight data APIs in 2026](/guides/best-flight-data-apis-2026): the comparison, bias disclosed
+- [Handling empty flight search results](/guides/handle-empty-flight-search-results): why `200 []` is dangerous
+- [Amadeus Self-Service alternatives you can get into](/guides/amadeus-self-service-alternatives): what replaced the self-serve GDS door
 - [MCP servers](/mcp): the same data as tools for Claude, ChatGPT, Cursor, or any MCP client
 - <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">Get a key on RapidAPI</a>: free tier included (10 requests/month, hard cap: verifies your key, doesn't evaluate)
 

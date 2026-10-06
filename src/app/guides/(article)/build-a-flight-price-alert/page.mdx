@@ -1,36 +1,41 @@
 import { withOg } from '@/lib/meta';
 
-export const metadata = withOg({
-  title: 'How to build a flight price alert',
-  description:
-    'The systems-design version: the schema you end up with, why the dedupe key is harder than it looks, the cold-start problem that makes your first weeks of alerts noise, sampling and threshold design with hysteresis, idempotent delivery, and how Google’s own price band removes the history problem entirely.',
-  alternates: { canonical: '/guides/build-a-flight-price-alert' },
-});
+export const metadata = {
+  ...withOg({
+    title: 'Flight price tracker API: build a fare alert with a cron',
+    description:
+      'Build a flight price tracker with an API and a cron: the schema, the dedupe key, thresholds, and Google’s price band that judges a fare on the first call.',
+    alternates: { canonical: '/guides/build-a-flight-price-alert' },
+  }),
+  // The layout template appends " · FlightPowers"; the title is 56 chars without it.
+  title: { absolute: 'Flight price tracker API: build a fare alert with a cron' },
+};
 
 export const dynamic = 'force-static';
 
 import { GuideDates, JsonLd } from '@/components/ui';
 import { CtaBand } from '@/components/bands';
+import { FLIGHT_PLANS } from '@/lib/pricing';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <JsonLd
   data={{
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
-    headline: 'How to build a flight price alert',
+    headline: 'Flight price tracker API: build a fare alert with a cron',
     description:
       'Schema, sampling, thresholds, hysteresis and idempotent delivery for a fare alert, and the field that removes the cold-start problem.',
     url: `${SITE.url}/guides/build-a-flight-price-alert`,
     datePublished: '2026-09-02',
-    dateModified: '2026-09-02',
+    dateModified: '2026-10-06',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
 />
 
-# How to build a flight price alert
+# Flight price tracker API: build a fare alert with a cron
 
-<GuideDates published="2026-09-02" updated="2026-09-02" />
+<GuideDates published="2026-09-02" updated="2026-10-06" />
 
 **Short answer:** Building your own flight price alert means a schema for observations, a
 dedupe key that survives retries, a cold-start period before you have enough history to
@@ -46,6 +51,11 @@ every part of it has a trap in it that only shows up after the thing is running.
 I run a flight data API, so the last third of this page is me making a case. The first
 two thirds is the design you end up with either way, and it is worth building once even
 if you never buy anything.
+
+## Is there a way to track flight prices?
+
+Yes: travelers can switch on price tracking in Google Flights itself, and in code the way is a
+fare search API called on a schedule, which is what this page builds, down to the cron line.
 
 ## What schema do you end up with?
 
@@ -217,6 +227,21 @@ if fares:
             link=best["buy_link"],          # opens that exact itinerary
         )
 ```
+
+### Run it on a cron
+
+Save the script as `fare_alert.py` and let cron run it once a morning:
+
+```
+# m h dom mon dow  command
+0 7 * * * RAPIDAPI_KEY=your_key /usr/bin/python3 /home/you/fare_alert.py
+```
+
+One route and one date checked daily is about 30 requests a month. Ten routes with two dates
+each is about 600, which fits inside PRO's{' '}
+{FLIGHT_PLANS[1].quota.toLocaleString('en-US')} a month for ${FLIGHT_PLANS[1].priceMonthly}.
+Keep logic out of the crontab line itself: cron reads every unescaped `%` as a newline, so a
+`date +%F` there quietly cuts the command short.
 
 The `buy_link` on every result is the deep link the delivery section asked for, so the
 message can carry a working itinerary instead of a search to repeat. The `X-Search-Status`

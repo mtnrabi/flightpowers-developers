@@ -1,11 +1,15 @@
 import { withOg } from '@/lib/meta';
 
-export const metadata = withOg({
-  title: 'How to scrape Google Flights with Python',
-  description:
-    'A working Playwright scraper for Google Flights in Python: why requests and BeautifulSoup return nothing, why you drive the UI instead of hand-encoding tfs=, how to anchor on ARIA roles instead of hashed class names, how to wait for a result list that streams in, and where the approach stops paying for itself.',
-  alternates: { canonical: '/guides/scrape-google-flights-python' },
-});
+export const metadata = {
+  ...withOg({
+    title: 'Google Flights scraper in Python: a working script (2026)',
+    description:
+      'A working Playwright script for Google Flights in Python: why requests returns nothing, ARIA selectors, waiting on streamed results, and when to stop.',
+    alternates: { canonical: '/guides/scrape-google-flights-python' },
+  }),
+  // The layout template appends " · FlightPowers"; the title is 57 chars without it.
+  title: { absolute: 'Google Flights scraper in Python: a working script (2026)' },
+};
 
 export const dynamic = 'force-static';
 
@@ -17,7 +21,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
   data={{
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
-    headline: 'How to scrape Google Flights with Python',
+    headline: 'Google Flights scraper in Python: a working script (2026)',
     description:
       'A working Playwright approach to scraping Google Flights fares in Python, the failure modes that bite in production, and an honest account of where a browser fleet stops being worth it.',
     url: `${SITE.url}/guides/scrape-google-flights-python`,

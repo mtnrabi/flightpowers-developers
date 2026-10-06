@@ -35,8 +35,8 @@ const GUIDES = [
   },
   {
     href: '/guides/booking-com-api-key',
-    title: 'How to get a Booking.com API Key in 2026',
-    sub: 'Step-by-step guide to getting a Booking.com API key through RapidAPI. The official Partner API requires an OTA business; this path is instant access with proxy_country geo-pricing included.',
+    title: 'Booking.com API key: how to get access, and the alternative',
+    sub: 'How Booking.com\'s own API access works (Demand API for Managed Affiliate Partners, under contract), and live Booking.com rates on a RapidAPI key today, proxy_country included.',
     tag: 'getting started',
   },
   {
@@ -46,12 +46,6 @@ const GUIDES = [
     tag: 'start here',
   },
   {
-    href: '/guides/what-is-a-google-flights-api',
-    title: 'What is a Google Flights API?',
-    sub: 'Category explainer: what these APIs do (return shoppable live fares with Google\'s verdict), why the niche exists (Amadeus Self-Service gone, Kiwi Tequila closed), and what they cannot do (issue tickets).',
-    tag: 'explainer',
-  },
-  {
     href: '/guides/google-flights-api',
     title: 'Google Flights API in 2026: what exists and what it costs',
     sub: 'No, and there has not been one since QPX Express closed in April 2018. The three real options today: extraction APIs, GDS/booking APIs, and self-hosted scrapers, with the trade-offs stated plainly.',
@@ -59,7 +53,7 @@ const GUIDES = [
   },
   {
     href: '/guides/amadeus-self-service-alternatives',
-    title: 'Amadeus Self-Service alternatives, and the gate on each one',
+    title: 'Amadeus Self-Service alternatives you can get into',
     sub: 'Both Amadeus Self-Service API hostnames have no DNS record, checked here on 2026-09-04. Every alternative a small team shortlists, with the access gate each one puts in front of you, quoted and dated, plus a real migration request and response.',
     tag: 'migration guide',
   },
@@ -83,7 +77,7 @@ const GUIDES = [
   },
   {
     href: '/guides/scrape-google-flights-python',
-    title: 'How to scrape Google Flights with Python',
+    title: 'Google Flights scraper in Python: a working script (2026)',
     sub: 'A working Playwright scraper: why requests returns nothing, why you never hand-encode tfs=, anchoring on ARIA roles, waiting on a result list that streams, and where it stops paying for itself.',
     tag: 'do it yourself',
   },
@@ -107,8 +101,8 @@ const GUIDES = [
   },
   {
     href: '/guides/build-a-flight-price-alert',
-    title: 'How to build a flight price alert',
-    sub: 'Schema, dedupe keys, sampling and thresholds with hysteresis, plus idempotent delivery. Then the cold-start problem, and how Google\u2019s own price band removes it on the first run.',
+    title: 'Flight price tracker API: build a fare alert with a cron',
+    sub: 'Schema, dedupe keys, sampling and thresholds with hysteresis, plus idempotent delivery. Then the cold-start problem, how Google\u2019s own price band removes it on the first run, and the cron line that runs it.',
     tag: 'do it yourself',
   },
   {
@@ -180,7 +174,7 @@ const GUIDES = [
   {
     href: '/guides/roundtrip-flight-prices-one-request',
     title: 'How to get round-trip flight prices in one request',
-    sub: 'Two one-way searches do not add up to a round-trip fare. A paired-leg request, a captured BER to CDG itinerary, the field names that differ from one-way results, and how to read an empty response.',
+    sub: 'Two one-way searches do not add up to a round-trip fare. A real BER to CDG run where the round trip cost $130 and the same two flights as one-ways $169, the field names that differ, and how to read an empty response.',
     tag: 'do it yourself',
   },
   {
@@ -197,20 +191,14 @@ const GUIDES = [
   },
   {
     href: '/guides/hotel-prices-by-hotel-name-api',
-    title: 'How to get hotel prices by hotel name',
-    sub: 'No property ID and no catalogue sync. POST the name a person would type plus two dates, and read matched_name to check what it resolved to before you trust the number.',
-    tag: 'hotels',
-  },
-  {
-    href: '/guides/hotel-room-rates-by-property',
-    title: 'How to get every room rate for one hotel',
-    sub: 'Resolve the name to a Booking.com ID once, cache it, then pull the full room list on every check. Two captured payloads and the caching rule that saves you a plan tier.',
+    title: 'Hotel rates API: every room price for one hotel by name',
+    sub: 'No property ID and no catalogue sync. The headline rate in one call with matched_name to check the match, then every room and rate plan in two, from real responses: eight rooms, \u20ac497 to \u20ac1,055.',
     tag: 'hotels',
   },
   {
     href: '/guides/hotel-prices-by-country-api',
     title: 'Do hotel prices change by country?',
-    sub: 'Sometimes, and less than you would think. A repeat-sampled run over three Rome properties and three markets, and why one call per country is not a measurement.',
+    sub: 'Sometimes, and it depends on the hotel, the room and the day. Two repeat-sampled runs five weeks apart, a room-by-room comparison, and why one call per country is not a measurement.',
     tag: 'hotels',
   },
   {

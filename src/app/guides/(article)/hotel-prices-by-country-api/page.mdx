@@ -3,7 +3,7 @@ import { withOg } from '@/lib/meta';
 export const metadata = withOg({
   title: 'Hotel prices by country: testing the proxy_country API',
   description:
-    'Testing whether hotel prices change by country with the proxy_country API: three markets, what the numbers showed, and why one call is not a measurement.',
+    'Do hotel prices change by country? Two repeat-sampled proxy_country runs, 2026-08-28 and 2026-10-06, and why one call per market proves nothing.',
   alternates: { canonical: '/guides/hotel-prices-by-country-api' },
 });
 
@@ -11,6 +11,7 @@ export const dynamic = 'force-static';
 
 import { GuideDates, JsonLd } from '@/components/ui';
 import { CtaBand } from '@/components/bands';
+import { HOTEL_PLANS } from '@/lib/pricing';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <JsonLd
@@ -19,10 +20,10 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
     '@type': 'TechArticle',
     headline: 'Hotel prices by country: testing the proxy_country API',
     description:
-      'A repeat-sampled run across three markets and three properties, the method that makes the answer trustworthy, and the trap of measuring from a single call.',
+      'Two repeat-sampled proxy_country runs on Rome properties, at the headline-rate level and room by room, and the method that keeps a country comparison honest.',
     url: `${SITE.url}/guides/hotel-prices-by-country-api`,
     datePublished: '2026-09-05',
-    dateModified: '2026-09-05',
+    dateModified: '2026-10-06',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -30,34 +31,33 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 # Do hotel prices change by country?
 
-<GuideDates published="2026-09-05" updated="2026-09-05" />
+<GuideDates published="2026-09-05" updated="2026-10-06" />
 
-**Short answer:** Yes, sometimes, but the gap is real, modest, and property-dependent, not
-a fixed percentage. FlightPowers' Booking.com endpoints take a `proxy_country` field (a
-two-letter code) that routes the request through a residential proxy in that market. A
-controlled 2026-08-28 run found Japan about 4% under Germany on three Rome properties
-across repeat samples, while `us` itself varied by more than that between identical calls
-seconds apart.
+**Short answer:** Sometimes, and it depends on the hotel, the room and the day. FlightPowers'
+Booking.com endpoints take a `proxy_country` field (a two-letter code) that sends the request
+through a residential proxy in that market, so you can price a stay as a resident of that
+country would see it. A 2026-08-28 run found Japan about 4% under Germany on three Rome
+properties across repeat samples. A 2026-10-06 run on one of those properties found no gap
+between Germany and Japan at all, and gaps of 3% to 16% between Germany and the US once the
+comparison was made room by room.
 
-Sometimes. Less than the internet says, and not reliably enough to measure with one call.
-
-Booking.com can quote a different rate depending on where the visitor appears to be
-browsing from. Every endpoint here takes `proxy_country`, a two-letter lowercase code that
-routes the request through a residential proxy in that country, so you can price the same
-room as a resident of another market. Leave it out and the request goes through the global
-pool.
+Booking.com can quote a different rate depending on where the visitor appears to be browsing
+from. Every hotels endpoint here takes `proxy_country`, a lowercase two-letter code; leave it
+out and the request goes through the global pool. The mechanism is simple. Measuring what it
+does is not, and this page is mostly about the measuring.
 
 ## How do you make the request?
 
-Same call as any other search, one extra field.
+Same call as any other lookup, one extra field. This is the exact request behind the
+2026-10-06 tables below, with `de` swapped for `jp` and `us`:
 
 ```bash
-curl -X POST "https://booking-live-api.p.rapidapi.com/hotel_by_name" \
+curl -X POST "https://api.flightpowers.com/v1/hotels/by-name" \
   -H "Content-Type: application/json" \
-  -H "x-rapidapi-host: booking-live-api.p.rapidapi.com" \
-  -H "x-rapidapi-key: $RAPIDAPI_KEY" \
+  -H "x-api-key: $RAPIDAPI_KEY" \
   -d '{
-    "hotel_name": "Duplo Charme Boutique Hotel",
+    "hotel_name": "Suite della Pigna",
+    "area": "Rome",
     "checkin_date": "2026-11-18",
     "checkout_date": "2026-11-21",
     "adults": 2,
@@ -66,14 +66,14 @@ curl -X POST "https://booking-live-api.p.rapidapi.com/hotel_by_name" \
   }'
 ```
 
-A key with `proxy_country` included on the free plan comes from
+`proxy_country` is on the free plan too. Keys come from{' '}
 <a href={rapidApiPricingUrl('hotels', 'guide')} rel="noopener">the RapidAPI listing</a>.
-Nothing is held back for the paid tiers.
 
-## What did a controlled run show?
+## What did the first controlled run show?
 
-Three Rome properties, three markets, three identical requests per market. Only
-`proxy_country` changed. Captured **2026-08-28**, totals for the stay in the same currency.
+Three Rome properties, three markets, three identical requests per market through the search
+endpoint. Only `proxy_country` changed. Captured **2026-08-28**, totals for the stay in the same
+currency.
 
 | Property | `de` | `jp` | `us` |
 |---|---|---|---|
@@ -81,35 +81,108 @@ Three Rome properties, three markets, three identical requests per market. Only
 | Suite della Pigna | 486, 486, 486 | 467, 467, 467 | 486, 523, 482 |
 | Suites 51 | 477, 477, 477 | 460, 460, 460 | 477, 512, 473 |
 
-Read the rows before the columns.
+Read the rows before the columns. Japan came back about 4% under Germany on all three
+properties, and it held across three repeat runs. That is a real gap, and it is modest.
 
-Japan came back about 4% under Germany on all three properties, and it held across three
-repeat runs. That is a real gap, and it is modest.
+Then look at `us`. Three identical requests, seconds apart, returned 486, 523 and 482 on one
+property. That spread inside one market is larger than the gap between markets. Sample `us`
+once against a single `de` call and you would have "found" a 7.6% difference that is mostly
+noise.
 
-Now look at `us`. Three identical requests, seconds apart, returned 486, 523 and 482 on one
-property. That spread inside one market is larger than the gap between markets. If you had
-sampled `us` once and compared it to a single `de` call, you would have "found" a 7.6%
-difference that is mostly noise.
+## What did the same check show five weeks later?
+
+On **2026-10-06** I ran it again on one of those properties, Suite della Pigna, for a
+three-night stay on 18 to 21 November 2026, two adults, in euros. This time through the
+by-name endpoint, three samples per market, interleaved `de`, `jp`, `us` so no market got a
+quiet minute to itself.
+
+| Market | Sample 1 | Sample 2 | Sample 3 | Room the headline is for |
+|---|---|---|---|---|
+| `de` | €497 | €497 | €497 | Premium |
+| `jp` | €497 | €497 | €497 | Premium |
+| `us` | €573 | €573 | €573 | Deluxe Room |
+
+Two findings, and the second matters more.
+
+Germany and Japan were identical this time, on the same property where Japan ran about 4%
+under Germany in August. A gap you measured once is a fact about the day you measured it, not
+about the hotel.
+
+The `us` rows look like a 15% gap and are not one. The headline rate is the cheapest room
+Booking.com shows that market, and from `us` that was a Deluxe Room, not the Premium room the
+other two markets got. €573 against €497 compares two different rooms. The `room_type` field
+is in every answer for exactly this reason: check it before you subtract.
+
+## How do you compare room to room?
+
+With the rooms endpoint, which lists every room and rate plan for one property. I resolved the
+name to its Booking.com ID once and then asked for the room list from `de` and from `us`, twice
+each, a few seconds apart:
+
+```bash
+curl -X POST "https://api.flightpowers.com/v1/hotels/rooms" \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: $RAPIDAPI_KEY" \
+  -d '{"hotel_booking_id": "it/amazing-rooms-piazza-venezia", "checkin_date": "2026-11-18",
+       "checkout_date": "2026-11-21", "adults": 2, "currency": "EUR", "proxy_country": "us"}'
+```
+
+The non-refundable rate for each room type, total for three nights:
+
+| Room, non-refundable | `de` sample 1 | `de` sample 2 | `us` sample 1 | `us` sample 2 | `us` against `de` |
+|---|---|---|---|---|---|
+| Premium | €452 | €452 | not listed | €452 | level |
+| Deluxe Room (cheapest) | €511 | €511 | €494 | €494 | 3% under |
+| Loft - Separate Building | €735 | €735 | €615 | €615 | 16% under |
+| Suite with Balcony | €924 | €924 | €773 | €773 | 16% under |
+
+`de` listed two non-refundable Deluxe rates (€511 and €591) and `us` one (€494), so that row
+compares the cheapest of each. The free-cancellation rates were lower from `us` as well, by
+about 9% on each of the three rooms that had one.
+
+So on this hotel, on this day, the market gap was not one number. It was zero on one room,
+3% on another and 16% on two more, and it pointed the other way from the headline-rate table.
+And `us` was again the least stable market: its first room list had no Premium room at all,
+its second did.
+
+One more thing you will notice: the room list priced the Premium room at €452 from `de`, while
+the by-name call priced it at €497 from the same market. The two endpoints read two different
+Booking.com pages, and with `proxy_country` set they did not print the same total for that
+room (with no `proxy_country`, both said €497). So keep every comparison inside one endpoint.
+A gap between a by-name number and a room-list number is not a market gap.
 
 ## How to measure it honestly
 
-**Repeat every market.** One call per country is not a measurement, it is a draw from a
+**Repeat every market.** One call per country is not a measurement, it is one draw from a
 distribution you have not looked at. Sample each market several times and record the spread
 next to the median.
 
-**Hold the property fixed.** Compare one named property to itself across markets. Comparing
-"the first result" between markets compares different hotels, because result ordering is not
-stable between identical runs.
+**Hold the property fixed, then the room.** Compare one named property with itself across
+markets, and then one room type and rate plan with itself. Comparing "the first result"
+between markets compares different hotels, because result order changes between identical
+runs. Comparing headline rates can compare different rooms, as the `us` row above did.
 
-**Do not anchor on `us`.** It was the least stable market in this run. Pick a market that
-repeats cleanly as your baseline.
+**Do not anchor on `us`.** It was the least stable market in both runs. Pick a market that
+repeats cleanly, like `de` here, as your baseline.
 
-**Say what you measured.** "Japan ran about 4% under Germany on these three properties, on
-this date, over three samples" is a claim you can defend. "Prices vary by up to 8% across
-countries" is not.
+**Date every claim.** "Japan ran about 4% under Germany on these three properties, on
+2026-08-28, over three samples" is a claim you can defend. "Prices vary by up to 16% across
+countries" is not, even though one row above shows 16%.
 
-`price_as_seen_from` is an input parameter on the keyed hotels MCP server, not a field in the
-REST response. Do not go looking for it in the JSON.
+`price_as_seen_from` is an input parameter on the keyed hotels MCP server, the same idea as
+`proxy_country`. It is not a field in the REST response, so do not go looking for it in the
+JSON.
+
+## What does a check like this cost?
+
+Every call is one request. The 2026-10-06 run above was nine by-name lookups with
+`proxy_country` (three markets, three samples), one without it, one resolve and five room
+lists: 16 requests. A three-market, three-sample
+check on one property fits inside the free plan's {HOTEL_PLANS[0].quota} a month, once. A
+daily check on a comp set does not: ten properties, two markets, three samples is 60 requests
+a day, about 1,800 a month, which is what PRO's {HOTEL_PLANS[1].quota.toLocaleString('en-US')}{' '}
+for ${HOTEL_PLANS[1].priceMonthly} is sized for. Current plans always live on
+[/pricing](/pricing).
 
 <CtaBand
   medium="guide"
@@ -119,7 +192,7 @@ REST response. Do not go looking for it in the JSON.
 
 ## Related
 
+- [Hotel rates API: every room price for one hotel by name](/guides/hotel-prices-by-hotel-name-api): the two endpoints used above, with full responses
 - [Geo-Pricing API](/hotels-api/geo-pricing): the product page, with the captured runs
 - [How to monitor hotel rate parity](/guides/monitor-hotel-rate-parity): the scheduled version, for brand and channel monitoring
-- [Hotel prices by hotel name](/guides/hotel-prices-by-hotel-name-api): the lookup this builds on
-- [Hotel Price by Country](/tools/hotel-price-by-country): the three-market check in the browser, on our key
+- [Hotel Price by Country](/tools/hotel-price-by-country): the market check in the browser, on our key
