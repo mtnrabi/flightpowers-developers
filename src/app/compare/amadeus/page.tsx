@@ -14,14 +14,21 @@ import {
   SectionHead,
   type Faq,
 } from '@/components/ui';
+import { FLIGHT_PLANS, HOTEL_PLANS } from '@/lib/pricing';
 import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
+import { Quotable } from '../_components/CompareTable';
+import { OtherAlternatives } from '../_components/OtherAlternatives';
 
-export const metadata: Metadata = withOg({
-  title: 'Amadeus Self-Service vs FlightPowers, and when to migrate',
-  description:
-    'The Amadeus for Developers Self-Service portal and sandbox are no longer reachable, verifiable with four commands, all shown here. What FlightPowers replaces for Self-Service users, the parameter mapping, and (honestly) what it does not replace. Observed state first retrieved 2026-08-24, every command re-run 2026-09-07.',
-  alternates: { canonical: '/compare/amadeus' },
-});
+export const metadata: Metadata = {
+  ...withOg({
+    title: 'Amadeus Self-Service vs FlightPowers, and when to migrate',
+    description:
+      'Amadeus Self-Service closed on July 17, 2026; its sandbox host has no DNS record. What FlightPowers replaces, the parameter mapping, what it does not.',
+    alternates: { canonical: '/compare/amadeus' },
+  }),
+  // Same words as before; absolute so the layout suffix does not push it past 60 characters.
+  title: { absolute: 'Amadeus Self-Service vs FlightPowers, and when to migrate' },
+};
 
 export const dynamic = 'force-static';
 
@@ -29,23 +36,32 @@ export const dynamic = 'force-static';
 const RETRIEVED = '2026-08-24';
 /**
  * Re-checked 2026-09-07 from our own machine: every command on this page was
- * re-run and every result was identical. Both API hostnames have no A record
- * at all, which is a stronger observation than the portal redirect.
+ * re-run and every result was identical; both API hostnames had no A record.
+ * Re-checked again 2026-10-06: every result identical EXCEPT api.amadeus.com,
+ * which resolves again (Imperva, 45.60.149.120) and answers an unauthenticated
+ * GET /v2/shopping/flight-offers with 401. test.api.amadeus.com (the
+ * Self-Service sandbox) still has no record. The portal banner was re-read in
+ * a browser the same day. The amadeus.com corporate statement could not be
+ * re-read from our machine (Incapsula block), so it keeps its 2026-09-07 date.
  * Do not edit without re-running the commands shown on the page.
  */
 /** When this page itself was last edited. Feeds JSON-LD dateModified. */
-const UPDATED = '2026-09-07';
-const RECHECKED = '2026-09-07';
+const UPDATED = '2026-10-06';
+const RECHECKED = '2026-10-06';
+/** The amadeus.com corporate statement, last read on this day. */
+const STATEMENT_READ = '2026-09-07';
+const PRO = FLIGHT_PLANS.find((p) => p.name === 'PRO')!;
+const HOTEL_PRO = HOTEL_PLANS.find((p) => p.name === 'PRO')!;
 /** The live run pasted below. Re-capture and update BOTH if you touch it. */
 const CAPTURED = '2026-09-07';
 const CAPTURED_AT = '02:22 UTC on 2026-09-07';
 /** Amadeus's own decommission notice, checked on its live portal. Do not edit without re-checking the source. */
-const SOURCE_CHECKED = '2026-09-06';
+const SOURCE_CHECKED = '2026-10-06';
 
 const faq: Faq[] = [
   {
     q: 'Did Amadeus Self-Service shut down?',
-    a: 'Yes, on July 17, 2026. Amadeus posted the date itself on developers.amadeus.com, which reads “has been decommissioned on July 17th, this website is for Amadeus Enterprise API Portal only” (an archived copy from three days before the cutover gives the year: “will be decommissioned on July 17th, 2026”). What we can additionally verify ourselves, first on 2026-08-24 and again on 2026-09-07 with identical results: the Self-Service portal and pricing pages 301-redirect to the Amadeus homepage, the test sandbox host no longer resolves, all 20 repositories in the amadeus4dev GitHub organisation are archived, and their developer-guides README opens with “The Amadeus for Developers Self-Service offer has been deprecated.” The commands to check each of these yourself are on this page.',
+    a: 'Yes, on July 17, 2026. Amadeus posted the date itself on developers.amadeus.com, which reads “has been decommissioned on July 17th, this website is for Amadeus Enterprise API Portal only” (an archived copy from three days before the cutover gives the year: “will be decommissioned on July 17th, 2026”). What we can additionally verify ourselves, first on 2026-08-24 and again on 2026-10-06: the Self-Service portal and pricing pages 301-redirect to the Amadeus homepage, the test sandbox host still has no DNS record, all 20 repositories in the amadeus4dev GitHub organisation are archived, and their developer-guides README opens with “The Amadeus for Developers Self-Service offer has been deprecated.” The commands to check each of these yourself are on this page.',
   },
   {
     q: 'Should I move to Amadeus Enterprise instead?',
@@ -144,6 +160,13 @@ export default function CompareAmadeusPage() {
           <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold max-w-4xl">
             <span className="text-signal-500">Amadeus Self-Service</span> vs FlightPowers, and when to migrate
           </h1>
+          <Quotable>
+            FlightPowers is an Amadeus Self-Service alternative for flight and hotel shopping: Amadeus closed Self-Service on July
+            17, 2026 and its sandbox host no longer resolves, while our key works the day you subscribe,{' '}
+            {`$${PRO.priceMonthly}`} for {PRO.quota.toLocaleString('en-US')} live Google Flights searches or{' '}
+            {`$${HOTEL_PRO.priceMonthly}`} for {HOTEL_PRO.quota.toLocaleString('en-US')} Booking.com hotel searches. Best for indie
+            developers and AI agents; Amadeus Enterprise for accredited travel sellers.
+          </Quotable>
           <p className="lede mt-5 max-w-3xl">
             If your Amadeus Self-Service integration stopped working, this page is a migration path. It shows you how to verify the
             situation yourself, maps the calls you were making to their equivalents, and is explicit about the things we do{' '}
@@ -175,7 +198,7 @@ export default function CompareAmadeusPage() {
         <SectionHead
           eyebrow="The observable state"
           title="Check it yourself, don’t take our word"
-          lede={`Amadeus for Developers Self-Service was decommissioned on July 17, 2026, per the notice Amadeus posted on its own portal (source below). Here is what was independently observable on ${RETRIEVED} and still true when we re-ran every command on ${RECHECKED}.`}
+          lede={`Amadeus for Developers Self-Service was decommissioned on July 17, 2026, per the notice Amadeus posted on its own portal (source below). Here is what was independently observable on ${RETRIEVED}, and what we saw when we re-ran every command on ${RECHECKED}. One result changed: the production host api.amadeus.com resolves again.`}
         />
         <p className="mt-8 max-w-3xl text-[15px] text-ink-300 leading-relaxed">
           Amadeus itself says so, on its own portal. <code className="font-mono text-[13px]">developers.amadeus.com</code>
@@ -218,7 +241,7 @@ export default function CompareAmadeusPage() {
             >
               amadeus.com, statement regarding Amadeus for Developers portal
             </a>{' '}
-            (retrieved {RECHECKED}).
+            (retrieved {STATEMENT_READ}).
           </em>{' '}
           Read it together with the observations below: Enterprise stays, Self-Service is gone.
         </p>
@@ -241,19 +264,27 @@ curl -sS -o /dev/null -w "%{http_code} -> %{redirect_url}\\n" \\
           </div>
           <div>
             <p className="text-[14.5px] text-ink-300 mb-2 font-semibold">
-              Neither API hostname has a DNS record. Re-checked {RECHECKED}.
+              The Self-Service sandbox host has no DNS record. Re-checked {RECHECKED}.
             </p>
             <Code label="dns">{`getent hosts test.api.amadeus.com
-# (no output, no record)
-getent hosts api.amadeus.com
 # (no output, no record)
 
 curl -sS -m 15 \\
   https://test.api.amadeus.com/v1/security/oauth2/token
-# curl: (6) Could not resolve host: test.api.amadeus.com`}</Code>
+# curl: (6) Could not resolve host: test.api.amadeus.com
+
+getent hosts api.amadeus.com
+# 45.60.149.120  r9thhv7.ng.impervadns.net api.amadeus.com
+
+curl -sS -o /dev/null -w "%{http_code}\\n" \\
+  "https://api.amadeus.com/v2/shopping/flight-offers"
+# 401`}</Code>
             <p className="mt-3 text-[13.5px] text-ink-400 leading-relaxed">
-              This is the part we trust most, because it is our own observation rather than a report. A missing A record is
-              not a paused account or an expired key. There is nothing at the address to authenticate against.
+              The sandbox is the part we trust most, because it is our own observation rather than a report: a missing A record is
+              not a paused account or an expired key. The production host is a correction. On 2026-09-07 it had no record either;
+              on {RECHECKED} it resolves to an Imperva address and answers 401 to a call without credentials, which is what an API
+              behind a contract looks like. Read that as Enterprise being live, as Amadeus says it is, not as Self-Service coming
+              back.
             </p>
           </div>
           <div>
@@ -583,22 +614,18 @@ hotelIds=MCLONGHM&adults=2&checkInDate=2026-10-19\\
       </Section>
 
       <Section>
-        <SectionHead eyebrow="Keep going" title="Related pages" />
-        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            { href: '/guides/amadeus-self-service-alternatives', label: 'Every alternative, and its gate', sub: 'Kiwi, Skyscanner, Travelpayouts, Duffel, SerpApi' },
-            { href: '/tools/flight-price-checker', label: 'Flight Price Checker', sub: 'Run a live query with no key at all' },
-            { href: '/tools/cheapest-month-to-fly', label: 'Cheapest Month to Fly', sub: 'What a date scan looks like' },
-            { href: '/compare/duffel', label: 'vs Duffel', sub: 'If you need to actually sell tickets' },
-            { href: '/compare/serpapi', label: 'vs SerpApi', sub: 'Platform vs specialist' },
-            { href: '/guides/real-time-google-flights-data', label: 'The full API walkthrough', sub: 'Endpoints, fields, parallel scans' },
-          ].map((l) => (
-            <Link key={l.href} href={l.href} className="rounded-2xl border rule bg-ink-900/50 p-5 hover:border-ink-500 transition-colors">
-              <p className="text-[15px] font-semibold text-ink-100">{l.label}</p>
-              <p className="mt-1 text-[13px] text-ink-400">{l.sub}</p>
-            </Link>
-          ))}
-        </div>
+        <OtherAlternatives current="/compare/amadeus" />
+        <p className="mt-8 max-w-3xl text-[14px] text-ink-400 leading-relaxed">
+          Every other Self-Service alternative with its access gate is in{' '}
+          <Link href="/guides/amadeus-self-service-alternatives" className="text-signal-400 underline underline-offset-4">
+            the Amadeus Self-Service alternatives guide
+          </Link>
+          , and a live query with no key at all is on the{' '}
+          <Link href="/tools/flight-price-checker" className="text-signal-400 underline underline-offset-4">
+            flight price checker
+          </Link>
+          .
+        </p>
       </Section>
 
       <Section bordered={false} className="!pt-4">

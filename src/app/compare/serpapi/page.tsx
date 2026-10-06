@@ -15,35 +15,45 @@ import {
   SectionHead,
   type Faq,
 } from '@/components/ui';
-import { FLIGHT_PLANS, perThousand } from '@/lib/pricing';
+import { FLIGHT_PLANS } from '@/lib/pricing';
 import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
+import { Quotable } from '../_components/CompareTable';
+import { OtherAlternatives } from '../_components/OtherAlternatives';
 
-export const metadata: Metadata = withOg({
-  title: 'FlightPowers vs SerpApi for Google Flights data',
-  description:
-    'An honest, sourced comparison of SerpApi’s Google Flights API and FlightPowers: pricing per search, how each handles round-trips, and what SerpApi does better. Competitor figures quoted from SerpApi’s own pages, re-read 2026-09-07.',
-  alternates: { canonical: '/compare/serpapi' },
-});
+export const metadata: Metadata = {
+  ...withOg({
+    title: 'FlightPowers vs SerpApi for Google Flights data',
+    description:
+      'SerpApi vs FlightPowers for Google Flights: cost per search at every tier, the two-call round trip, their MCP server, what SerpApi does better.',
+    alternates: { canonical: '/compare/serpapi' },
+  }),
+  // Same words as before; absolute so the layout suffix does not push it past 60 characters.
+  title: { absolute: 'FlightPowers vs SerpApi for Google Flights data' },
+};
 
 export const dynamic = 'force-static';
 
 /**
  * Competitor figures below are QUOTES from serpapi.com. First retrieved
- * 2026-08-24; re-read in full on 2026-09-07 (serpapi.com/pricing and
- * serpapi.com/google-flights-api) with every plan price, quota, throughput
- * and quoted sentence identical. Do not edit without re-verifying.
+ * 2026-08-24; re-read in full on 2026-09-07 and again on 2026-10-06
+ * (serpapi.com/pricing and serpapi.com/google-flights-api) with every plan
+ * price, quota, throughput and quoted sentence identical. New on 2026-10-06:
+ * serpapi.com/integrations/mcp (a hosted MCP server, mcp.serpapi.com), which
+ * replaces the old "we are not aware of an MCP endpoint" cell.
+ * Do not edit without re-verifying.
  */
-const RETRIEVED = '2026-09-07';
+const RETRIEVED = '2026-10-06';
 /** The live FlightPowers run pasted below. Re-capture and update if you touch it. */
 const CAPTURED_AT = '02:22 UTC on 2026-09-07';
 
 const ULTRA = FLIGHT_PLANS.find((p) => p.name === 'ULTRA')!;
+const PRO_PLAN = FLIGHT_PLANS.find((p) => p.name === 'PRO')!;
 const ULTRA_PER_SEARCH = `$${(ULTRA.priceMonthly / ULTRA.quota).toFixed(4)}`;
 
 const faq: Faq[] = [
   {
     q: 'Is FlightPowers cheaper than SerpApi?',
-    a: `On published list prices, per flight search, yes at every tier: ${ULTRA_PER_SEARCH} per search on our $${ULTRA.priceMonthly} plan against $0.015 on SerpApi’s $75 plan (their figures re-read 2026-09-07). Two honest caveats in SerpApi’s favour: their credits are fungible across all their Google engines, so a flights-only comparison understates what the credit buys, and they only count successful searches toward quota.`,
+    a: `On published list prices, per flight search, yes at every tier: ${ULTRA_PER_SEARCH} per search on our $${ULTRA.priceMonthly} plan against $0.015 on SerpApi’s $75 plan (their figures re-read 2026-10-06). Two honest caveats in SerpApi’s favour: their credits are fungible across all their Google engines, so a flights-only comparison understates what the credit buys, and they only count successful searches toward quota.`,
   },
   {
     q: 'Does FlightPowers return price history like SerpApi?',
@@ -59,7 +69,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Where do the SerpApi numbers on this page come from?',
-    a: 'From serpapi.com/pricing and serpapi.com/google-flights-api, re-read on 2026-09-07 and quoted rather than paraphrased. If a number here disagrees with their site today, believe their site.',
+    a: 'From serpapi.com/pricing, serpapi.com/google-flights-api and serpapi.com/integrations/mcp, re-read on 2026-10-06 and quoted rather than paraphrased. If a number here disagrees with their site today, believe their site.',
   },
 ];
 
@@ -145,13 +155,24 @@ export default function CompareSerpApiPage() {
           <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold max-w-4xl">
             FlightPowers vs <span className="text-signal-500">SerpApi</span> for Google Flights data
           </h1>
+          <Quotable>
+            FlightPowers is a SerpApi alternative for Google Flights: the same live fares and Google&apos;s price band, a round trip
+            priced in one request where SerpApi needs a second call with a departure_token, and PRO at{' '}
+            {`$${PRO_PLAN.priceMonthly}`} for {PRO_PLAN.quota.toLocaleString('en-US')} searches; SerpApi&apos;s cheapest plan is
+            $25 for 1,000. Best for flight-heavy workloads; SerpApi if you need many Google engines.
+          </Quotable>
           <p className="lede mt-5 max-w-3xl">
             SerpApi is the default answer when someone asks “how do I get Google Flights data.” It is a good product, it is well
             documented, and for a lot of teams it is the right choice. This page is about the cases where it is not.
           </p>
           <p className="mt-5 max-w-3xl text-[14px] text-ink-400 leading-relaxed">
             All competitor figures below were read from SerpApi’s own live pages on <strong className="text-ink-200">{RETRIEVED}</strong>{' '}
-            and are quoted rather than paraphrased. If a number here disagrees with their site today, believe their site.
+            and are quoted rather than paraphrased. If a number here disagrees with their site today, believe their site. Moving
+            a workload rather than comparing? The{' '}
+            <Link href="/guides/serpapi-google-flights-alternative" className="text-signal-400 underline underline-offset-4">
+              SerpApi alternative guide
+            </Link>{' '}
+            walks through what changes in your code.
           </p>
           <p className="mt-5 max-w-3xl text-[14.5px] text-ink-400 leading-relaxed">
             Looking for an alternative? FlightPowers is a{' '}
@@ -375,7 +396,7 @@ export default function CompareSerpApiPage() {
               [
                 'Itinerary breadth',
                 'Multi-city via type=3 with multi_city_json; travel_class covers Economy, Premium economy, Business and First; a carbon_emissions object per itinerary.',
-                'One-way and round-trip only: no multi-city or open-jaw. seat_type documents Economy and Business only. No emissions data at all; for anything with a sustainability angle that is close to disqualifying for us.',
+                'One-way and round-trip only: no multi-city or open-jaw. Four cabins: seat_type 1 to 4, economy to first (a first-class LHR to JFK search returned fares on 2026-10-06). No emissions data at all; for anything with a sustainability angle that is close to disqualifying for us.',
               ],
               [
                 'Legal',
@@ -384,10 +405,11 @@ export default function CompareSerpApiPage() {
               ],
               [
                 'AI agents',
-                'We are not aware of a comparable first-party MCP endpoint from SerpApi (a statement about what we found, not proof of absence).',
+                'A hosted MCP server at mcp.serpapi.com with one search tool for every engine, google_flights included: the agent picks the engine and fills in that engine’s parameters. Their words: “Multi-Engine Search: Google, Bing, Yahoo, DuckDuckGo, YouTube, eBay, and more”.',
                 <>
-                  First-party hosted MCP servers for flights and hotels: point an MCP-capable host at{' '}
-                  <code className="font-mono text-[12px]">{LINKS.mcpFlights}</code> with your key and search becomes a native tool.{' '}
+                  Hosted MCP servers built for travel: point an MCP-capable host at{' '}
+                  <code className="font-mono text-[12px]">{LINKS.mcpFlights}</code> with your key and you get flight tools that take
+                  a date range and a list of destinations in one call (each date and destination counts as one search).{' '}
                   <Link href="/mcp" className="text-signal-400 underline underline-offset-4">MCP setup →</Link>
                 </>,
               ],
@@ -419,7 +441,6 @@ export default function CompareSerpApiPage() {
               <li>You need more Google surfaces than flights: one vendor, one bill.</li>
               <li>You want price history charted without building it.</li>
               <li>Multi-city itineraries or carbon emissions matter to your product.</li>
-              <li>Premium economy or first class must be searchable.</li>
               <li>Your legal team wants the indemnity clause.</li>
             </ul>
           </div>
@@ -472,20 +493,7 @@ export default function CompareSerpApiPage() {
       </Section>
 
       <Section>
-        <SectionHead eyebrow="Keep comparing" title="Related pages" />
-        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            { href: '/compare/duffel', label: 'vs Duffel', sub: 'Data API vs booking platform' },
-            { href: '/compare/amadeus', label: 'vs Amadeus Self-Service', sub: 'And when to migrate' },
-            { href: '/guides/best-flight-data-apis-2026', label: 'Best flight data APIs 2026', sub: 'The full field, disclosed bias' },
-            { href: '/flights-api/price-insights', label: 'Price Insights API', sub: 'The price_range_in_relation_to_other_periods field, proven' },
-          ].map((l) => (
-            <Link key={l.href} href={l.href} className="rounded-2xl border rule bg-ink-900/50 p-5 hover:border-ink-500 transition-colors">
-              <p className="text-[15px] font-semibold text-ink-100">{l.label}</p>
-              <p className="mt-1 text-[13px] text-ink-400">{l.sub}</p>
-            </Link>
-          ))}
-        </div>
+        <OtherAlternatives current="/compare/serpapi" />
       </Section>
 
       <Section bordered={false} className="!pt-4">
