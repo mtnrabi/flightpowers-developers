@@ -66,6 +66,7 @@ shaped for it.
 | `DAILY_BACKEND_CALL_BUDGET` | global daily demo budget (mrabi's dial) |
 | `DEMO_PER_IP_DAILY` | per-visitor daily cap |
 | `NEXT_PUBLIC_SITE_URL` | canonical origin override (defaults to https://flightpowers.com) |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | GA4 web stream id (`G-…`, public). Production only; unset = no GA tag at all. Inlined at BUILD time, so a change needs a redeploy. See `src/lib/ga.ts` |
 
 ### Honesty rules enforced in code
 

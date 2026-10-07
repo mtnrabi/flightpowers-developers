@@ -6,7 +6,7 @@ import { Container } from '@/components/ui';
 export const metadata: Metadata = withOg({
   title: 'Privacy',
   description:
-    'Plain-language privacy notes for flightpowers.com: no cookies, no third-party trackers, no ad pixels. A first-party anonymous event beacon, transient demo processing, API keys that are forwarded once and never stored, and one opt-in email list you can leave in one click.',
+    'Plain-language privacy notes for flightpowers.com: Google Analytics visit counts with no ads and no cookie in the EU, no ad pixels, a first-party anonymous event beacon, transient demo processing, API keys that are never stored, and one opt-in email list.',
   alternates: { canonical: '/privacy' },
 });
 
@@ -23,10 +23,18 @@ export default function PrivacyPage() {
           this site is built to need as little of your data as possible, and it collects accordingly.
         </p>
 
-        <h2>No cookies, no third-party trackers</h2>
+        <h2>Visit counts: Google Analytics, without the ads</h2>
         <p>
-          The site sets no cookies, loads no third-party analytics scripts, and carries no ad pixels. There is no consent
-          banner because there is nothing to consent to.
+          The site counts visits with Google Analytics 4. It is the only third-party script on the site, and it is set up
+          to count, not to advertise: Google signals and ad personalisation are off, the ad consent signals are denied, and
+          no user ID is sent. It records the pages you view and a few interactions such as scrolling, outbound clicks and
+          file downloads, with your approximate location and device type as Google Analytics reports them.
+        </p>
+        <p>
+          If you browse from the EU, the EEA, the UK or Switzerland, Google Analytics runs without cookies: it sends an
+          anonymous ping and stores nothing on your device. Everywhere else it sets its own first-party{' '}
+          <code>_ga</code> cookies so that one visit is counted once. The site sets no other cookies and carries no ad
+          pixels.
         </p>
 
         <h2>A first-party anonymous event beacon</h2>

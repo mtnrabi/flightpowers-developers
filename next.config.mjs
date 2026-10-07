@@ -162,14 +162,18 @@ const nextConfig = {
         headers: [
           { key: 'X-Content-Type-Options', value: 'nosniff' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-          // The site is fully self-contained (self-hosted fonts, no third-party
-          // scripts), so the CSP can be tight. 'unsafe-inline' for scripts is
-          // required by Next's own bootstrap inline scripts.
+          // The site is self-contained (self-hosted fonts) except for one
+          // third-party script, Google Analytics 4 (src/lib/ga.ts), so the CSP
+          // stays tight: the three GA hosts below are Google's documented GA4
+          // allowlist and nothing else. 'unsafe-inline' for scripts is required
+          // by Next's own bootstrap inline scripts (and the GA consent bootstrap).
           {
             key: 'Content-Security-Policy',
             value:
-              "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; " +
-              "img-src 'self' data:; font-src 'self'; connect-src 'self'; " +
+              "default-src 'self'; script-src 'self' 'unsafe-inline' https://*.googletagmanager.com; " +
+              "style-src 'self' 'unsafe-inline'; " +
+              "img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; " +
+              "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; " +
               // form-action stays 'self'. The /admin sign-in is an ordinary
               // GET link to our own /api/admin/auth/login, which then 302s to
               // Google -- a top-level navigation, which form-action does not

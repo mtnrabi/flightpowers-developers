@@ -5,6 +5,7 @@ import { SiteHeader } from '@/components/SiteHeader';
 import { SiteFooter } from '@/components/SiteFooter';
 import { SessionBeacon } from '@/components/SessionBeacon';
 import { OutboundTracker } from '@/components/OutboundTracker';
+import { GoogleAnalytics } from '@/components/GoogleAnalytics';
 import { JsonLd } from '@/components/ui';
 import './globals.css';
 
@@ -105,6 +106,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             a marketplace/listing destination (RapidAPI, Apify, Smithery,
             npm, our GitHub, our MCP hosts) — no per-page wiring needed. */}
         <OutboundTracker />
+        {/* GA4 visit counter, read by the growth dashboard through the GA4 Data
+            API. Off unless NEXT_PUBLIC_GA_MEASUREMENT_ID is set (production
+            only). Consent defaults and scope: src/lib/ga.ts. */}
+        <GoogleAnalytics />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-3 focus:left-3 focus:bg-signal-500 focus:text-ink-950 focus:px-3 focus:py-2 focus:rounded"
