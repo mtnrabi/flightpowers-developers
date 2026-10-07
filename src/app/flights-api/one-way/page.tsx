@@ -57,7 +57,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Can I search business class, or for a family?',
-    a: 'seat_type selects the cabin: 1 for Economy, 3 for Business. passengers is an array of per-passenger codes: 1 adult, 2 child, 3 infant on lap, 4 infant in seat, so [1, 1, 2] is two adults and a child.',
+    a: 'seat_type selects the cabin: 1 for Economy, 2 for Premium economy, 3 for Business, 4 for First. passengers is an array of per-passenger codes: 1 adult, 2 child, 3 infant on lap, 4 infant in seat, so [1, 1, 2] is two adults and a child.',
   },
   {
     q: 'Do I pay extra for the price-insights fields?',
@@ -324,7 +324,8 @@ export default function OneWayPage() {
               Upper bound on the fare.
             </FieldRow>
             <FieldRow name="seat_type" type="int">
-              Cabin: <code className="field">1</code> Economy, <code className="field">3</code> Business.
+              Cabin: <code className="field">1</code> Economy, <code className="field">2</code> Premium economy,{' '}
+              <code className="field">3</code> Business, <code className="field">4</code> First.
             </FieldRow>
             <FieldRow name="passengers" type="int[]">
               Per-passenger codes: <code className="field">1</code> adult, <code className="field">2</code> child,{' '}
