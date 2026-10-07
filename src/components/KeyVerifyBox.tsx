@@ -8,9 +8,9 @@ import { track } from '@/lib/track';
  * relay it once to GET /v1/verify through a same-origin route that never
  * logs it. Closes the loop RapidAPI leaves open after checkout.
  *
- * Honest cost disclosure: /v1/verify performs a real upstream check that
- * counts as one request against the key's hotels-plan quota (measured
- * 2026-08-26), so the box says so before the button.
+ * Cost: /v1/verify asks RapidAPI whether the key is subscribed and never
+ * runs a search, so it costs no request on any plan (flight_rabbi #523,
+ * re-measured 2026-10-07 on the hotels counter).
  */
 export function KeyVerifyBox() {
   const [key, setKey] = useState('');
@@ -78,7 +78,7 @@ export function KeyVerifyBox() {
         </button>
       </form>
       <p className="mt-2.5 font-mono text-[11px] text-ink-500">
-        Heads-up: the check itself is one real request against your hotels quota. That is how you know it works.
+        The check is free: it asks RapidAPI whether the key is subscribed and never runs a search, so it costs no request.
       </p>
       {result ? (
         <p className={`mt-3 text-[14px] leading-relaxed ${result.ok ? 'text-verdict-low' : 'text-verdict-typical'}`}>{result.text}</p>

@@ -8,8 +8,9 @@
  *  - our own demo key is not involved in any way
  *  - lightly rate-limited so this can't be used as a key-testing oracle
  *
- * Honesty note (measured 2026-08-26): /v1/verify performs a real check that
- * counts as one request against the key's hotels plan. The page says so.
+ * Cost: /v1/verify asks RapidAPI whether the key is subscribed and never runs
+ * a search, so it costs no request on any plan (flight_rabbi #523). The page
+ * says so.
  */
 
 import { NextResponse } from 'next/server';
