@@ -261,6 +261,11 @@ export default function HotelsApiHubPage() {
                   The Booking.com API alternative
                 </Link>{' '}
                 covers what the Demand API needs and what this API does instead.
+                How it measures against six other hotel price APIs, slow parts included:{' '}
+                <Link href="/guides/hotel-rates-api-benchmark-2026" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+                  the 2026 benchmark
+                </Link>
+                .
               </p>
             </div>
 
