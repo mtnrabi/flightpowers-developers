@@ -5,6 +5,7 @@ import { SiteHeader } from '@/components/SiteHeader';
 import { SiteFooter } from '@/components/SiteFooter';
 import { SessionBeacon } from '@/components/SessionBeacon';
 import { OutboundTracker } from '@/components/OutboundTracker';
+import { SiteAnalytics } from '@/components/SiteAnalytics';
 import { JsonLd } from '@/components/ui';
 import './globals.css';
 
@@ -116,6 +117,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </main>
         <SiteFooter />
+        {/* Cookieless page-view counts (Vercel Web Analytics, same-origin
+            script). The query string is cut to the utm labels first. */}
+        <SiteAnalytics />
       </body>
     </html>
   );

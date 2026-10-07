@@ -164,7 +164,10 @@ const nextConfig = {
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           // The site is fully self-contained (self-hosted fonts, no third-party
           // scripts), so the CSP can be tight. 'unsafe-inline' for scripts is
-          // required by Next's own bootstrap inline scripts.
+          // required by Next's own bootstrap inline scripts. Vercel Web
+          // Analytics needs nothing added: its script and intake are served
+          // from this origin (/_vercel/insights/*, or the seeded path of v2's
+          // resilient intake), which 'self' already covers.
           {
             key: 'Content-Security-Policy',
             value:
