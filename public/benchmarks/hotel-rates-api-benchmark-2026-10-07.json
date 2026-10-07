@@ -1,0 +1,554 @@
+{
+ "title": "Hotel rates API benchmark, 2026-10-07",
+ "page": "https://flightpowers.com/guides/hotel-rates-api-benchmark-2026",
+ "author": "Matan Rabi (runs FlightPowers, one of the APIs tested)",
+ "method": {
+  "stay": "check-in 2026-11-20, check-out 2026-11-23, 2 adults, 1 room, USD",
+  "queries": {
+   "h1": "destination search, Lisbon, sorted by price where supported",
+   "h2": "one named hotel, Hotel Artemide Rome (FlightPowers h2-rooms = its room-list endpoint)",
+   "h3-de / h3-us": "the same hotel with a country input (proxy_country / gl / country_market)",
+   "resolve-*": "ID or URL lookups some APIs need before a named-hotel call",
+   "probe-*": "single checks (FlightPowers ignoring an unknown sort field; first Artemide availability check)"
+  },
+  "timing": "wall clock, request sent to last byte, one GCP VM in the US, vendors in parallel threads, each vendor's runs sequential",
+  "serpapi": "no_cache=true"
+ },
+ "medians_seconds": {
+  "apify:h1": 75.38,
+  "apify:h2": 39.06,
+  "flightpowers:h1": 7.88,
+  "flightpowers:h2": 10.22,
+  "flightpowers:h2-rooms": 8.94,
+  "flightpowers:h3-de": 10.6,
+  "flightpowers:h3-us": 11.21,
+  "flightpowers:probe-artemide": 14.05,
+  "flightpowers:probe-sort-price": 8.2,
+  "hasdata:h1": 2.06,
+  "hasdata:h2": 3.19,
+  "hasdata:resolve-hotel": 0.14,
+  "searchapi:h1": 1.94,
+  "searchapi:h2": 3.01,
+  "searchapi:resolve-hotel": 3.2,
+  "serpapi:h1": 2.42,
+  "serpapi:h2": 2.45,
+  "serpapi:h3-de": 8.13,
+  "serpapi:h3-us": 2.41,
+  "stayapi:h1": 1.1,
+  "stayapi:h2": 2.5,
+  "stayapi:h3-de": 4.92,
+  "stayapi:h3-us": 2.27,
+  "stayapi:resolve-hotel": 0.74,
+  "stayapi:resolve-hotel2": 1.33,
+  "stayapi:resolve-lisbon": 0.81,
+  "xotelo:h1": 0.7,
+  "xotelo:h2": 0.67,
+  "xotelo:resolve-lisbon": 0.82
+ },
+ "calls": [
+  {
+   "vendor": "apify",
+   "query": "h1",
+   "run": 1,
+   "started_utc": "2026-10-07T14:01:43+00:00",
+   "wall_seconds": 68.178,
+   "http_status": 201
+  },
+  {
+   "vendor": "apify",
+   "query": "h1",
+   "run": 2,
+   "started_utc": "2026-10-07T14:02:52+00:00",
+   "wall_seconds": 79.247,
+   "http_status": 201
+  },
+  {
+   "vendor": "apify",
+   "query": "h1",
+   "run": 3,
+   "started_utc": "2026-10-07T14:04:11+00:00",
+   "wall_seconds": 75.377,
+   "http_status": 201
+  },
+  {
+   "vendor": "apify",
+   "query": "h2",
+   "run": 1,
+   "started_utc": "2026-10-07T14:05:55+00:00",
+   "wall_seconds": 39.058,
+   "http_status": 201
+  },
+  {
+   "vendor": "flightpowers",
+   "query": "h1",
+   "run": 1,
+   "started_utc": "2026-10-07T14:01:43+00:00",
+   "wall_seconds": 7.133,
+   "http_status": 200
+  },
+  {
+   "vendor": "flightpowers",
+   "query": "h1",
+   "run": 2,
+   "started_utc": "2026-10-07T14:01:51+00:00",
+   "wall_seconds": 7.88,
+   "http_status": 200
+  },
+  {
+   "vendor": "flightpowers",
+   "query": "h1",
+   "run": 3,
+   "started_utc": "2026-10-07T14:01:58+00:00",
+   "wall_seconds": 8.963,
+   "http_status": 200
+  },
+  {
+   "vendor": "flightpowers",
+   "query": "h2-rooms",
+   "run": 1,
+   "started_utc": "2026-10-07T14:08:54+00:00",
+   "wall_seconds": 10.247,
+   "http_status": 200
+  },
+  {
+   "vendor": "flightpowers",
+   "query": "h2-rooms",
+   "run": 2,
+   "started_utc": "2026-10-07T14:09:04+00:00",
+   "wall_seconds": 8.938,
+   "http_status": 200
+  },
+  {
+   "vendor": "flightpowers",
+   "query": "h2-rooms",
+   "run": 3,
+   "started_utc": "2026-10-07T14:09:13+00:00",
+   "wall_seconds": 8.211,
+   "http_status": 200
+  },
+  {
+   "vendor": "flightpowers",
+   "query": "h2",
+   "run": 1,
+   "started_utc": "2026-10-07T14:05:55+00:00",
+   "wall_seconds": 12.57,
+   "http_status": 200
+  },
+  {
+   "vendor": "flightpowers",
+   "query": "h2",
+   "run": 2,
+   "started_utc": "2026-10-07T14:06:07+00:00",
+   "wall_seconds": 10.222,
+   "http_status": 200
+  },
+  {
+   "vendor": "flightpowers",
+   "query": "h2",
+   "run": 3,
+   "started_utc": "2026-10-07T14:06:17+00:00",
+   "wall_seconds": 8.485,
+   "http_status": 200
+  },
+  {
+   "vendor": "flightpowers",
+   "query": "h3-de",
+   "run": 1,
+   "started_utc": "2026-10-07T14:07:21+00:00",
+   "wall_seconds": 10.598,
+   "http_status": 200
+  },
+  {
+   "vendor": "flightpowers",
+   "query": "h3-de",
+   "run": 2,
+   "started_utc": "2026-10-07T14:07:32+00:00",
+   "wall_seconds": 11.619,
+   "http_status": 200
+  },
+  {
+   "vendor": "flightpowers",
+   "query": "h3-de",
+   "run": 3,
+   "started_utc": "2026-10-07T14:07:43+00:00",
+   "wall_seconds": 6.385,
+   "http_status": 200
+  },
+  {
+   "vendor": "flightpowers",
+   "query": "h3-us",
+   "run": 1,
+   "started_utc": "2026-10-07T14:07:50+00:00",
+   "wall_seconds": 11.211,
+   "http_status": 200
+  },
+  {
+   "vendor": "flightpowers",
+   "query": "h3-us",
+   "run": 2,
+   "started_utc": "2026-10-07T14:08:01+00:00",
+   "wall_seconds": 12.097,
+   "http_status": 200
+  },
+  {
+   "vendor": "flightpowers",
+   "query": "h3-us",
+   "run": 3,
+   "started_utc": "2026-10-07T14:08:13+00:00",
+   "wall_seconds": 9.765,
+   "http_status": 200
+  },
+  {
+   "vendor": "flightpowers",
+   "query": "probe-artemide",
+   "run": 1,
+   "started_utc": "2026-10-07T14:01:03+00:00",
+   "wall_seconds": 14.046,
+   "http_status": 200
+  },
+  {
+   "vendor": "flightpowers",
+   "query": "probe-sort-price",
+   "run": 1,
+   "started_utc": "2026-10-07T14:16:12+00:00",
+   "wall_seconds": 8.195,
+   "http_status": 200
+  },
+  {
+   "vendor": "hasdata",
+   "query": "h1",
+   "run": 1,
+   "started_utc": "2026-10-07T14:01:43+00:00",
+   "wall_seconds": 3.238,
+   "http_status": 200
+  },
+  {
+   "vendor": "hasdata",
+   "query": "h1",
+   "run": 2,
+   "started_utc": "2026-10-07T14:01:47+00:00",
+   "wall_seconds": 1.59,
+   "http_status": 200
+  },
+  {
+   "vendor": "hasdata",
+   "query": "h1",
+   "run": 3,
+   "started_utc": "2026-10-07T14:01:48+00:00",
+   "wall_seconds": 2.055,
+   "http_status": 200
+  },
+  {
+   "vendor": "hasdata",
+   "query": "h2",
+   "run": 1,
+   "started_utc": "2026-10-07T14:05:55+00:00",
+   "wall_seconds": 3.295,
+   "http_status": 200
+  },
+  {
+   "vendor": "hasdata",
+   "query": "h2",
+   "run": 2,
+   "started_utc": "2026-10-07T14:05:58+00:00",
+   "wall_seconds": 3.194,
+   "http_status": 200
+  },
+  {
+   "vendor": "hasdata",
+   "query": "h2",
+   "run": 3,
+   "started_utc": "2026-10-07T14:06:01+00:00",
+   "wall_seconds": 2.545,
+   "http_status": 200
+  },
+  {
+   "vendor": "hasdata",
+   "query": "resolve-hotel",
+   "run": 1,
+   "started_utc": "2026-10-07T14:00:51+00:00",
+   "wall_seconds": 0.144,
+   "http_status": 422
+  },
+  {
+   "vendor": "searchapi",
+   "query": "h1",
+   "run": 1,
+   "started_utc": "2026-10-07T14:01:43+00:00",
+   "wall_seconds": 1.936,
+   "http_status": 200
+  },
+  {
+   "vendor": "searchapi",
+   "query": "h1",
+   "run": 2,
+   "started_utc": "2026-10-07T14:01:45+00:00",
+   "wall_seconds": 2.613,
+   "http_status": 200
+  },
+  {
+   "vendor": "searchapi",
+   "query": "h1",
+   "run": 3,
+   "started_utc": "2026-10-07T14:01:48+00:00",
+   "wall_seconds": 1.645,
+   "http_status": 200
+  },
+  {
+   "vendor": "searchapi",
+   "query": "h2",
+   "run": 1,
+   "started_utc": "2026-10-07T14:05:55+00:00",
+   "wall_seconds": 2.489,
+   "http_status": 200
+  },
+  {
+   "vendor": "searchapi",
+   "query": "h2",
+   "run": 2,
+   "started_utc": "2026-10-07T14:05:57+00:00",
+   "wall_seconds": 3.008,
+   "http_status": 200
+  },
+  {
+   "vendor": "searchapi",
+   "query": "h2",
+   "run": 3,
+   "started_utc": "2026-10-07T14:06:00+00:00",
+   "wall_seconds": 3.985,
+   "http_status": 200
+  },
+  {
+   "vendor": "searchapi",
+   "query": "resolve-hotel",
+   "run": 1,
+   "started_utc": "2026-10-07T14:00:47+00:00",
+   "wall_seconds": 3.197,
+   "http_status": 200
+  },
+  {
+   "vendor": "serpapi",
+   "query": "h1",
+   "run": 1,
+   "started_utc": "2026-10-07T14:01:43+00:00",
+   "wall_seconds": 1.901,
+   "http_status": 200
+  },
+  {
+   "vendor": "serpapi",
+   "query": "h1",
+   "run": 2,
+   "started_utc": "2026-10-07T14:01:45+00:00",
+   "wall_seconds": 2.421,
+   "http_status": 200
+  },
+  {
+   "vendor": "serpapi",
+   "query": "h1",
+   "run": 3,
+   "started_utc": "2026-10-07T14:01:48+00:00",
+   "wall_seconds": 2.899,
+   "http_status": 200
+  },
+  {
+   "vendor": "serpapi",
+   "query": "h2",
+   "run": 1,
+   "started_utc": "2026-10-07T14:05:55+00:00",
+   "wall_seconds": 2.081,
+   "http_status": 200
+  },
+  {
+   "vendor": "serpapi",
+   "query": "h2",
+   "run": 2,
+   "started_utc": "2026-10-07T14:05:57+00:00",
+   "wall_seconds": 2.448,
+   "http_status": 200
+  },
+  {
+   "vendor": "serpapi",
+   "query": "h2",
+   "run": 3,
+   "started_utc": "2026-10-07T14:05:59+00:00",
+   "wall_seconds": 7.895,
+   "http_status": 200
+  },
+  {
+   "vendor": "serpapi",
+   "query": "h3-de",
+   "run": 1,
+   "started_utc": "2026-10-07T14:07:21+00:00",
+   "wall_seconds": 6.813,
+   "http_status": 200
+  },
+  {
+   "vendor": "serpapi",
+   "query": "h3-de",
+   "run": 2,
+   "started_utc": "2026-10-07T14:07:28+00:00",
+   "wall_seconds": 9.438,
+   "http_status": 200
+  },
+  {
+   "vendor": "serpapi",
+   "query": "h3-us",
+   "run": 1,
+   "started_utc": "2026-10-07T14:07:37+00:00",
+   "wall_seconds": 2.348,
+   "http_status": 200
+  },
+  {
+   "vendor": "serpapi",
+   "query": "h3-us",
+   "run": 2,
+   "started_utc": "2026-10-07T14:07:40+00:00",
+   "wall_seconds": 2.478,
+   "http_status": 200
+  },
+  {
+   "vendor": "stayapi",
+   "query": "h1",
+   "run": 1,
+   "started_utc": "2026-10-07T14:01:43+00:00",
+   "wall_seconds": 1.826,
+   "http_status": 200
+  },
+  {
+   "vendor": "stayapi",
+   "query": "h1",
+   "run": 2,
+   "started_utc": "2026-10-07T14:01:45+00:00",
+   "wall_seconds": 1.102,
+   "http_status": 200
+  },
+  {
+   "vendor": "stayapi",
+   "query": "h1",
+   "run": 3,
+   "started_utc": "2026-10-07T14:01:46+00:00",
+   "wall_seconds": 1.016,
+   "http_status": 200
+  },
+  {
+   "vendor": "stayapi",
+   "query": "h2",
+   "run": 1,
+   "started_utc": "2026-10-07T14:05:55+00:00",
+   "wall_seconds": 2.517,
+   "http_status": 200
+  },
+  {
+   "vendor": "stayapi",
+   "query": "h2",
+   "run": 2,
+   "started_utc": "2026-10-07T14:05:57+00:00",
+   "wall_seconds": 2.499,
+   "http_status": 200
+  },
+  {
+   "vendor": "stayapi",
+   "query": "h2",
+   "run": 3,
+   "started_utc": "2026-10-07T14:06:00+00:00",
+   "wall_seconds": 1.463,
+   "http_status": 200
+  },
+  {
+   "vendor": "stayapi",
+   "query": "h3-de",
+   "run": 1,
+   "started_utc": "2026-10-07T14:07:21+00:00",
+   "wall_seconds": 4.92,
+   "http_status": 200
+  },
+  {
+   "vendor": "stayapi",
+   "query": "h3-us",
+   "run": 1,
+   "started_utc": "2026-10-07T14:07:26+00:00",
+   "wall_seconds": 2.266,
+   "http_status": 200
+  },
+  {
+   "vendor": "stayapi",
+   "query": "resolve-hotel2",
+   "run": 1,
+   "started_utc": "2026-10-07T14:01:26+00:00",
+   "wall_seconds": 1.334,
+   "http_status": 200
+  },
+  {
+   "vendor": "stayapi",
+   "query": "resolve-hotel",
+   "run": 1,
+   "started_utc": "2026-10-07T14:00:39+00:00",
+   "wall_seconds": 0.745,
+   "http_status": 200
+  },
+  {
+   "vendor": "stayapi",
+   "query": "resolve-lisbon",
+   "run": 1,
+   "started_utc": "2026-10-07T14:00:39+00:00",
+   "wall_seconds": 0.81,
+   "http_status": 200
+  },
+  {
+   "vendor": "xotelo",
+   "query": "h1",
+   "run": 1,
+   "started_utc": "2026-10-07T14:01:43+00:00",
+   "wall_seconds": 2.186,
+   "http_status": 200
+  },
+  {
+   "vendor": "xotelo",
+   "query": "h1",
+   "run": 2,
+   "started_utc": "2026-10-07T14:01:46+00:00",
+   "wall_seconds": 0.704,
+   "http_status": 200
+  },
+  {
+   "vendor": "xotelo",
+   "query": "h1",
+   "run": 3,
+   "started_utc": "2026-10-07T14:01:46+00:00",
+   "wall_seconds": 0.704,
+   "http_status": 200
+  },
+  {
+   "vendor": "xotelo",
+   "query": "h2",
+   "run": 1,
+   "started_utc": "2026-10-07T14:05:55+00:00",
+   "wall_seconds": 3.316,
+   "http_status": 200
+  },
+  {
+   "vendor": "xotelo",
+   "query": "h2",
+   "run": 2,
+   "started_utc": "2026-10-07T14:05:58+00:00",
+   "wall_seconds": 0.665,
+   "http_status": 200
+  },
+  {
+   "vendor": "xotelo",
+   "query": "h2",
+   "run": 3,
+   "started_utc": "2026-10-07T14:05:59+00:00",
+   "wall_seconds": 0.667,
+   "http_status": 200
+  },
+  {
+   "vendor": "xotelo",
+   "query": "resolve-lisbon",
+   "run": 1,
+   "started_utc": "2026-10-07T14:00:51+00:00",
+   "wall_seconds": 0.818,
+   "http_status": 200
+  }
+ ]
+}

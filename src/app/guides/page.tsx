@@ -46,6 +46,12 @@ const GUIDES = [
     tag: 'hotels',
   },
   {
+    href: '/guides/hotel-rates-api-benchmark-2026',
+    title: 'Hotel rates API benchmark 2026: seven APIs, one hotel',
+    sub: 'The same Lisbon search and the same Rome hotel sent to seven hotel price APIs, three runs each: speed, rows, which number includes the tax, pricing from two countries, price per request, and where mine loses.',
+    tag: 'benchmark',
+  },
+  {
     href: '/guides/real-time-google-flights-data',
     title: 'How to get real-time Google Flights data',
     sub: 'The full walkthrough: endpoints, paste-and-run code, the price-insight fields, paired round-trips, and scanning a whole month of dates in one parallel burst.',
