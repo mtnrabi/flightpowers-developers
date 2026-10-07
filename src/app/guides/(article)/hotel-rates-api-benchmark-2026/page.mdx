@@ -22,7 +22,7 @@ export const q = (p) => p.quota.toLocaleString('en-US');
 
 {/*
   Every number on this page comes from a real call made on 2026-10-07 between
-  14:00:39Z and 14:09:13Z from one GCP VM, three runs per query, saved raw
+  14:00:39Z and 14:16:12Z from one GCP VM, three runs per query, saved raw
   (request, UTC start, wall seconds, status, body) in the agents repo under
   api-growth/state/gtm/research/benchmarks/hotels-2026-10-07/raw/, summarised by
   analyze.py into summary.json. Rival prices were read from their own pages at
@@ -123,7 +123,7 @@ Same questions, same dates, every API: check-in **2026-11-20**, check-out **2026
 Wall time is from the request leaving to the last byte of the answer, from one server in the US,
 three runs per question, median shown. SerpApi got `no_cache=true`, because by default it serves an
 identical search from its cache for an hour and that would flatter the time. All calls ran between
-14:00 and 14:10 UTC on free tiers. Makcorps is not in the timings: its sign-up wants a username
+14:00 and 14:17 UTC on free tiers. Makcorps is not in the timings: its sign-up wants a username
 and password, and I only signed up where Google sign-in was offered. The Booking.com Demand API is
 not in them either, because it needs a partner contract.
 
