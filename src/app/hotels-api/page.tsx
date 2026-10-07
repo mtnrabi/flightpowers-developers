@@ -255,6 +255,13 @@ export default function HotelsApiHubPage() {
                 </Cta>
               </div>
               <p className="mt-4 font-mono text-[12px] text-ink-500">Free tier on RapidAPI. No card to try.</p>
+              <p className="mt-3 text-[14px] text-ink-400 leading-relaxed">
+                Not a Booking.com partner?{' '}
+                <Link href="/guides/booking-com-api-alternative" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+                  The Booking.com API alternative
+                </Link>{' '}
+                covers what the Demand API needs and what this API does instead.
+              </p>
             </div>
 
             <ExecuteWidget

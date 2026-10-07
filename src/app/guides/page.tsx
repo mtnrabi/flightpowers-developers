@@ -40,6 +40,12 @@ const GUIDES = [
     tag: 'getting started',
   },
   {
+    href: '/guides/booking-com-api-alternative',
+    title: 'Booking.com API alternative: live rates without approval',
+    sub: 'The Demand API is for approved affiliate partners. Live Booking.com rates by hotel name or destination on a self-serve key, priced from a country you pick, three checks that tell a reliable rates API from a stale one, and the providers that fit better when you need more than Booking.com.',
+    tag: 'hotels',
+  },
+  {
     href: '/guides/real-time-google-flights-data',
     title: 'How to get real-time Google Flights data',
     sub: 'The full walkthrough: endpoints, paste-and-run code, the price-insight fields, paired round-trips, and scanning a whole month of dates in one parallel burst.',

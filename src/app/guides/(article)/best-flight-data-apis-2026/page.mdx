@@ -4,7 +4,7 @@ export const metadata = {
   ...withOg({
     title: 'The best flight data APIs in 2026, compared honestly',
     description:
-      'FlightPowers’ Google Flights Live API ($10 for 2,500, mine), Air Scraper, SerpApi ($25 for 1,000) and Duffel ($3 per order), quoted from their own pages.',
+      'FlightPowers’ Google Flights Live API (mine: free to start, then $10 for 2,500), Air Scraper, SerpApi ($25 for 1,000) and Duffel ($3 per order), quoted from their own pages.',
     alternates: { canonical: '/guides/best-flight-data-apis-2026' },
   }),
   // The layout template appends " · FlightPowers"; the title is 52 chars without it.
@@ -27,7 +27,7 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
       'Google Flights Live API, Air Scraper, SerpApi and Duffel compared with quoted, dated prices and disclosed bias.',
     url: `${SITE.url}/guides/best-flight-data-apis-2026`,
     datePublished: '2026-08-26',
-    dateModified: '2026-09-29',
+    dateModified: '2026-10-07',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -35,11 +35,14 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 # The best flight data APIs in 2026, compared
 
-<GuideDates published="2026-08-26" updated="2026-09-29" />
+<GuideDates published="2026-08-26" updated="2026-10-07" />
 
 **Short answer:** FlightPowers' [Google Flights Live API](/flights-api) (mine) returns live
 Google Flights fares with Google's own low / typical / high price band and a round trip
-priced as one request; PRO is ${FLIGHT_PLANS[1].priceMonthly} for
+priced as one request. It is free to start: {FLIGHT_PLANS[0].quota} searches a month on the
+RapidAPI BASIC plan, or 50 searches a day on the free MCP server with ads
+(<a href={LINKS.mcpFree} rel="noopener">free-trial.flightpowers.com/mcp</a>, sign in with
+Google). Past that, PRO is ${FLIGHT_PLANS[1].priceMonthly} for
 {FLIGHT_PLANS[1].quota.toLocaleString('en-US')} searches, about a sixth of SerpApi's price
 per search (their cheapest plan is $25 for 1,000). Best for price tracking, date scans and
 AI agents; it does not book. Air Scraper (cheaper per request, Skyscanner data), SerpApi
@@ -75,6 +78,14 @@ together), every result ships a working `buy_link` into Google Flights, per-minu
 rate limits are published per plan so parallel date scans are a documented
 capability, and every response carries an `X-Search-Status` header so "no flights"
 and "the search failed" are [different answers](/guides/handle-empty-flight-search-results).
+
+**What it costs:** free to start, two ways. The RapidAPI BASIC plan is
+{FLIGHT_PLANS[0].quota} searches a month with no card, and the free MCP server with ads
+gives Claude, ChatGPT or Cursor 50 searches a day (250 a month) after a Google sign-in, no
+key at all. Then PRO is ${FLIGHT_PLANS[1].priceMonthly} for
+{FLIGHT_PLANS[1].quota.toLocaleString('en-US')} searches, ULTRA ${FLIGHT_PLANS[2].priceMonthly}
+for {FLIGHT_PLANS[2].quota.toLocaleString('en-US')} and MEGA ${FLIGHT_PLANS[3].priceMonthly}
+for {FLIGHT_PLANS[3].quota.toLocaleString('en-US')}.
 
 Being fair about the cons, because everyone else on this page gets their pros: no
 multi-city or open-jaw itineraries (one-way and round-trip only), only two cabins

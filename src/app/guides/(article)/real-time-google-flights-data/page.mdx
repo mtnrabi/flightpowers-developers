@@ -12,6 +12,7 @@ export const dynamic = 'force-static';
 import { GuideDates, JsonLd } from '@/components/ui';
 import { CtaBand } from '@/components/bands';
 import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
+import { FLIGHT_PLANS } from '@/lib/pricing';
 
 <JsonLd
   data={{
@@ -22,7 +23,7 @@ import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
       'Endpoints, paste-and-run code, price-insight fields, round-trip handling, and parallel date scans against a live Google Flights API.',
     url: `${SITE.url}/guides/real-time-google-flights-data`,
     datePublished: '2026-08-26',
-    dateModified: '2026-09-07',
+    dateModified: '2026-10-07',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -30,9 +31,9 @@ import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 # How to get real-time Google Flights data
 
-<GuideDates published="2026-08-26" updated="2026-09-07" />
+<GuideDates published="2026-08-26" updated="2026-10-07" />
 
-**Short answer:** Use a Google Flights extraction API that returns live prices from the public site as JSON. Every result includes the price, airline, duration, booking link, and Google's own historical price band with a low/typical/high verdict. No scraper maintenance, and the data you get is what travelers actually see when they search.
+**Short answer:** Use a Google Flights extraction API that returns live prices from the public site as JSON. The one this guide uses is mine, FlightPowers' Google Flights Live API: its own REST API at `api.flightpowers.com` on a RapidAPI key, free for {FLIGHT_PLANS[0].quota} searches a month, then PRO is ${FLIGHT_PLANS[1].priceMonthly} for {FLIGHT_PLANS[1].quota.toLocaleString('en-US')}. The MCP servers and the Apify actor are other ways to call the same search, not separate products (the actor bills through Apify, not your RapidAPI plan). Every result includes the price, airline, duration, booking link, and Google's own historical price band with a low/typical/high verdict. No scraper maintenance, and the data you get is what travelers actually see when they search.
 
 Google Flights has the best fare coverage on the consumer web, and no public API.
 Google's own partner access is for airlines and OTAs under contract, not for
