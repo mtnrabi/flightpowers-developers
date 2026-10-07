@@ -88,9 +88,9 @@ for {FLIGHT_PLANS[2].quota.toLocaleString('en-US')} and MEGA ${FLIGHT_PLANS[3].p
 for {FLIGHT_PLANS[3].quota.toLocaleString('en-US')}.
 
 Being fair about the cons, because everyone else on this page gets their pros: no
-multi-city or open-jaw itineraries (one-way and round-trip only), only two cabins
-documented (Economy and Business), no car rentals, and the top public tier caps at
-25,000 requests a month. Current plan prices live on [/pricing](/pricing); the
+multi-city or open-jaw itineraries (one-way and round-trip only), no car rentals, and
+the top public tier caps at 25,000 requests a month. All four cabins are covered:
+`seat_type` 1 economy, 2 premium economy, 3 business, 4 first. Current plan prices live on [/pricing](/pricing); the
 companion [Booking.com hotels API](/hotels-api) is a separate listing on the same
 account.
 
@@ -159,7 +159,7 @@ their column.
 
 Where it beats me, plainly: its `price_insights` object includes a `price_history`
 array where we return a band; it returns per-itinerary carbon emissions; it supports
-multi-city and four cabin classes; and it advertises a legal indemnity of up to $2
+multi-city; and it advertises a legal indemnity of up to $2
 million for search-engine scraping. The full side-by-side, with everything quoted
 and dated, is at [/compare/serpapi](/compare/serpapi).
 

@@ -223,14 +223,14 @@ export default function QuickstartPage() {
             <Step n={2} title="Check the key works, before you spend a search on finding out">
               <Code label="curl">{VERIFY}</Code>
               <p>
-                A <code className="field">200</code> means the key authenticates. Anything else is worth fixing before
-                step 3: <code className="field">401</code> is a key the gateway does not recognise,{' '}
-                <code className="field">403</code> is a real key that is not subscribed to that listing.
+                A <code className="field">200</code> means the key works, and <code className="field">checks</code> says
+                which listing it is subscribed to, flights, hotels or both. A <code className="field">401</code> is worth
+                fixing before step 3: either the gateway does not recognise the key, or it is a real key not subscribed to
+                either listing.
               </p>
               <p className="text-[14px] text-ink-400">
-                Honest note: <code className="field">/v1/verify</code> performs a real upstream check, so it costs one
-                request against the hotels plan. On a {HOTELS_FREE.quota}-request free tier that is worth knowing before
-                you run it in a loop.
+                <code className="field">/v1/verify</code> is free to call: it asks RapidAPI whether the key is
+                subscribed and never runs a search, so it costs no request on any plan.
               </p>
             </Step>
           </div>
