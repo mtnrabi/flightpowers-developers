@@ -226,6 +226,12 @@ const GUIDES = [
     tag: 'comparison',
   },
   {
+    href: '/guides/flight-api-benchmark-2026',
+    title: 'Flight API benchmark 2026: four Google Flights APIs tested',
+    sub: 'The same three searches on FlightPowers, SerpApi, SearchApi and HasData in the same hour: identical fares to the dollar, then the real differences in round-trip requests, response time, scans, free tiers and price per 1,000. Raw numbers dated, including where ours loses.',
+    tag: 'benchmark',
+  },
+  {
     href: '/guides/best-flight-data-apis-2026',
     title: 'The best flight data APIs in 2026',
     sub: 'The listicle, with disclosed bias: it starts with our own API and says so, quotes every competitor price with a retrieval date, and names the competitor that is cheaper per request than we are.',

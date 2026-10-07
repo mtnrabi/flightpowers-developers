@@ -1,0 +1,1426 @@
+{
+ "benchmark": "Flight API benchmark 2026",
+ "run_date": "2026-10-07",
+ "window_utc": "13:52-14:03",
+ "origin_network": "GCP us-central1 (Iowa)",
+ "page": "https://flightpowers.com/guides/flight-api-benchmark-2026",
+ "queries": {
+  "q1": "JFK-LHR round trip 2026-11-18 / 2026-11-25, 1 adult, economy, USD",
+  "q2": "TLV-BKK one way 2026-12-03",
+  "q3": "LHR-BCN, departures 2026-11-10..16, 3 nights (7 date pairs)"
+ },
+ "notes": [
+  "wall_seconds = request sent to full body read; for round trips on SerpApi, SearchApi and HasData it includes the second request with departure_token for the first listed itinerary",
+  "Q3 rows with calls_per_run 7 ran the 7 date pairs in parallel (HasData 5 at a time, trial concurrency)",
+  "cheapest = lowest price in the response(s), USD"
+ ],
+ "results": [
+  {
+   "api": "FlightPowers paid MCP server, one call for the range",
+   "query": "q3",
+   "calls_per_run": 1,
+   "median_wall_seconds": 3.243,
+   "median_first_response_seconds": 3.243,
+   "runs": [
+    {
+     "started_utc": "2026-10-07T13:55:29Z",
+     "wall_seconds": 3.243,
+     "first_response_seconds": 3.243,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 3.238
+      }
+     ],
+     "return_leg": null
+    },
+    {
+     "started_utc": "2026-10-07T13:55:35Z",
+     "wall_seconds": 3.371,
+     "first_response_seconds": 3.371,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 3.366
+      }
+     ],
+     "return_leg": null
+    },
+    {
+     "started_utc": "2026-10-07T13:55:40Z",
+     "wall_seconds": 3.109,
+     "first_response_seconds": 3.109,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 3.106
+      }
+     ],
+     "return_leg": null
+    }
+   ],
+   "itineraries_per_run": [
+    10,
+    10,
+    10
+   ],
+   "cheapest_per_run": [
+    93,
+    93,
+    93
+   ],
+   "price_band": {
+    "low": 90,
+    "high": 170,
+    "verdict": "typical"
+   },
+   "cheapest_by_departure_date": {
+    "2026-11-10": 122,
+    "2026-11-11": 116,
+    "2026-11-12": 101,
+    "2026-11-13": 111,
+    "2026-11-14": 93,
+    "2026-11-15": 111,
+    "2026-11-16": 158
+   }
+  },
+  {
+   "api": "FlightPowers REST, limit 100",
+   "query": "q1",
+   "calls_per_run": 1,
+   "median_wall_seconds": 15.683,
+   "median_first_response_seconds": 15.683,
+   "runs": [
+    {
+     "started_utc": "2026-10-07T13:52:49Z",
+     "wall_seconds": 15.474,
+     "first_response_seconds": 15.474,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 15.464
+      }
+     ],
+     "return_leg": null
+    },
+    {
+     "started_utc": "2026-10-07T13:53:07Z",
+     "wall_seconds": 15.683,
+     "first_response_seconds": 15.683,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 15.677
+      }
+     ],
+     "return_leg": null
+    },
+    {
+     "started_utc": "2026-10-07T13:53:24Z",
+     "wall_seconds": 16.263,
+     "first_response_seconds": 16.263,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 16.257
+      }
+     ],
+     "return_leg": null
+    }
+   ],
+   "itineraries_per_run": [
+    100,
+    100,
+    100
+   ],
+   "cheapest_per_run": [
+    692,
+    692,
+    692
+   ],
+   "price_band": {
+    "low": 480,
+    "high": 670,
+    "verdict": "high"
+   },
+   "cheapest_by_departure_date": null
+  },
+  {
+   "api": "FlightPowers REST, limit 100",
+   "query": "q2",
+   "calls_per_run": 1,
+   "median_wall_seconds": 1.565,
+   "median_first_response_seconds": 1.565,
+   "runs": [
+    {
+     "started_utc": "2026-10-07T13:53:43Z",
+     "wall_seconds": 1.626,
+     "first_response_seconds": 1.626,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 1.621
+      }
+     ],
+     "return_leg": null
+    },
+    {
+     "started_utc": "2026-10-07T13:53:46Z",
+     "wall_seconds": 1.518,
+     "first_response_seconds": 1.518,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 1.514
+      }
+     ],
+     "return_leg": null
+    },
+    {
+     "started_utc": "2026-10-07T13:53:50Z",
+     "wall_seconds": 1.565,
+     "first_response_seconds": 1.565,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 1.561
+      }
+     ],
+     "return_leg": null
+    }
+   ],
+   "itineraries_per_run": [
+    52,
+    52,
+    52
+   ],
+   "cheapest_per_run": [
+    619,
+    619,
+    619
+   ],
+   "price_band": {
+    "low": 440,
+    "high": 620,
+    "verdict": "typical"
+   },
+   "cheapest_by_departure_date": null
+  },
+  {
+   "api": "FlightPowers REST, limit 100",
+   "query": "q3",
+   "calls_per_run": 7,
+   "median_wall_seconds": 15.713,
+   "median_first_response_seconds": 15.713,
+   "runs": [
+    {
+     "started_utc": "2026-10-07T13:53:53Z",
+     "wall_seconds": 59.107,
+     "first_response_seconds": 59.107,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 59.099
+      },
+      {
+       "status": 200,
+       "seconds": 19.276
+      },
+      {
+       "status": 200,
+       "seconds": 15.917
+      },
+      {
+       "status": 200,
+       "seconds": 19.366
+      },
+      {
+       "status": 200,
+       "seconds": 17.926
+      },
+      {
+       "status": 200,
+       "seconds": 18.755
+      },
+      {
+       "status": 200,
+       "seconds": 15.096
+      }
+     ],
+     "return_leg": null
+    },
+    {
+     "started_utc": "2026-10-07T13:54:55Z",
+     "wall_seconds": 14.857,
+     "first_response_seconds": 14.857,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 14.848
+      },
+      {
+       "status": 200,
+       "seconds": 13.236
+      },
+      {
+       "status": 200,
+       "seconds": 14.047
+      },
+      {
+       "status": 200,
+       "seconds": 13.871
+      },
+      {
+       "status": 200,
+       "seconds": 13.91
+      },
+      {
+       "status": 200,
+       "seconds": 14.344
+      },
+      {
+       "status": 200,
+       "seconds": 13.89
+      }
+     ],
+     "return_leg": null
+    },
+    {
+     "started_utc": "2026-10-07T13:55:11Z",
+     "wall_seconds": 15.713,
+     "first_response_seconds": 15.713,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 14.078
+      },
+      {
+       "status": 200,
+       "seconds": 13.73
+      },
+      {
+       "status": 200,
+       "seconds": 13.847
+      },
+      {
+       "status": 200,
+       "seconds": 15.158
+      },
+      {
+       "status": 200,
+       "seconds": 15.7
+      },
+      {
+       "status": 200,
+       "seconds": 13.076
+      },
+      {
+       "status": 200,
+       "seconds": 14.281
+      }
+     ],
+     "return_leg": null
+    }
+   ],
+   "itineraries_per_run": [
+    694,
+    700,
+    700
+   ],
+   "cheapest_per_run": [
+    93,
+    93,
+    93
+   ],
+   "price_band": {
+    "low": 90,
+    "high": 170,
+    "verdict": "typical"
+   },
+   "cheapest_by_departure_date": {
+    "2026-11-10": 122,
+    "2026-11-11": 116,
+    "2026-11-12": 101,
+    "2026-11-13": 111,
+    "2026-11-14": 93,
+    "2026-11-15": 111,
+    "2026-11-16": 158
+   }
+  },
+  {
+   "api": "FlightPowers REST, default limit (10)",
+   "query": "q1",
+   "calls_per_run": 1,
+   "median_wall_seconds": 3.27,
+   "median_first_response_seconds": 3.27,
+   "runs": [
+    {
+     "started_utc": "2026-10-07T13:58:38Z",
+     "wall_seconds": 3.59,
+     "first_response_seconds": 3.59,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 3.587
+      }
+     ],
+     "return_leg": null
+    },
+    {
+     "started_utc": "2026-10-07T13:58:44Z",
+     "wall_seconds": 3.27,
+     "first_response_seconds": 3.27,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 3.267
+      }
+     ],
+     "return_leg": null
+    },
+    {
+     "started_utc": "2026-10-07T13:58:49Z",
+     "wall_seconds": 3.093,
+     "first_response_seconds": 3.093,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 3.089
+      }
+     ],
+     "return_leg": null
+    }
+   ],
+   "itineraries_per_run": [
+    10,
+    10,
+    10
+   ],
+   "cheapest_per_run": [
+    692,
+    692,
+    692
+   ],
+   "price_band": {
+    "low": 480,
+    "high": 670,
+    "verdict": "high"
+   },
+   "cheapest_by_departure_date": null
+  },
+  {
+   "api": "FlightPowers REST, default limit (10)",
+   "query": "q3",
+   "calls_per_run": 7,
+   "median_wall_seconds": 3.107,
+   "median_first_response_seconds": 3.107,
+   "runs": [
+    {
+     "started_utc": "2026-10-07T13:58:54Z",
+     "wall_seconds": 3.114,
+     "first_response_seconds": 3.114,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 2.745
+      },
+      {
+       "status": 200,
+       "seconds": 2.685
+      },
+      {
+       "status": 200,
+       "seconds": 2.948
+      },
+      {
+       "status": 200,
+       "seconds": 2.803
+      },
+      {
+       "status": 200,
+       "seconds": 2.588
+      },
+      {
+       "status": 200,
+       "seconds": 2.733
+      },
+      {
+       "status": 200,
+       "seconds": 3.098
+      }
+     ],
+     "return_leg": null
+    },
+    {
+     "started_utc": "2026-10-07T13:58:59Z",
+     "wall_seconds": 3.068,
+     "first_response_seconds": 3.068,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 2.601
+      },
+      {
+       "status": 200,
+       "seconds": 2.857
+      },
+      {
+       "status": 200,
+       "seconds": 3.059
+      },
+      {
+       "status": 200,
+       "seconds": 2.525
+      },
+      {
+       "status": 200,
+       "seconds": 2.784
+      },
+      {
+       "status": 200,
+       "seconds": 2.56
+      },
+      {
+       "status": 200,
+       "seconds": 2.969
+      }
+     ],
+     "return_leg": null
+    },
+    {
+     "started_utc": "2026-10-07T13:59:04Z",
+     "wall_seconds": 3.107,
+     "first_response_seconds": 3.107,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 3.101
+      },
+      {
+       "status": 200,
+       "seconds": 2.752
+      },
+      {
+       "status": 200,
+       "seconds": 2.991
+      },
+      {
+       "status": 200,
+       "seconds": 2.658
+      },
+      {
+       "status": 200,
+       "seconds": 2.632
+      },
+      {
+       "status": 200,
+       "seconds": 2.929
+      },
+      {
+       "status": 200,
+       "seconds": 2.921
+      }
+     ],
+     "return_leg": null
+    }
+   ],
+   "itineraries_per_run": [
+    70,
+    70,
+    70
+   ],
+   "cheapest_per_run": [
+    93,
+    93,
+    93
+   ],
+   "price_band": {
+    "low": 90,
+    "high": 170,
+    "verdict": "typical"
+   },
+   "cheapest_by_departure_date": {
+    "2026-11-10": 122,
+    "2026-11-11": 116,
+    "2026-11-12": 101,
+    "2026-11-13": 111,
+    "2026-11-14": 93,
+    "2026-11-15": 111,
+    "2026-11-16": 158
+   }
+  },
+  {
+   "api": "HasData Google Flights",
+   "query": "q1",
+   "calls_per_run": 2,
+   "median_wall_seconds": 7.562,
+   "median_first_response_seconds": 5.234,
+   "runs": [
+    {
+     "started_utc": "2026-10-07T13:58:34Z",
+     "wall_seconds": 5.665,
+     "first_response_seconds": 3.064,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 3.058
+      }
+     ],
+     "return_leg": {
+      "status": 200,
+      "seconds": 2.597
+     }
+    },
+    {
+     "started_utc": "2026-10-07T13:58:41Z",
+     "wall_seconds": 21.535,
+     "first_response_seconds": 19.059,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 19.054
+      }
+     ],
+     "return_leg": {
+      "status": 200,
+      "seconds": 2.473
+     }
+    },
+    {
+     "started_utc": "2026-10-07T13:59:05Z",
+     "wall_seconds": 7.562,
+     "first_response_seconds": 5.234,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 5.23
+      }
+     ],
+     "return_leg": {
+      "status": 200,
+      "seconds": 2.325
+     }
+    }
+   ],
+   "itineraries_per_run": [
+    25,
+    25,
+    25
+   ],
+   "cheapest_per_run": [
+    692,
+    692,
+    692
+   ],
+   "price_band": {
+    "low": 480,
+    "high": 670,
+    "verdict": "high"
+   },
+   "cheapest_by_departure_date": null
+  },
+  {
+   "api": "HasData Google Flights",
+   "query": "q2",
+   "calls_per_run": 1,
+   "median_wall_seconds": 2.786,
+   "median_first_response_seconds": 2.786,
+   "runs": [
+    {
+     "started_utc": "2026-10-07T13:59:14Z",
+     "wall_seconds": 2.786,
+     "first_response_seconds": 2.786,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 2.78
+      }
+     ],
+     "return_leg": null
+    },
+    {
+     "started_utc": "2026-10-07T13:59:19Z",
+     "wall_seconds": 2.812,
+     "first_response_seconds": 2.812,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 2.807
+      }
+     ],
+     "return_leg": null
+    },
+    {
+     "started_utc": "2026-10-07T13:59:24Z",
+     "wall_seconds": 2.686,
+     "first_response_seconds": 2.686,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 2.681
+      }
+     ],
+     "return_leg": null
+    }
+   ],
+   "itineraries_per_run": [
+    12,
+    12,
+    12
+   ],
+   "cheapest_per_run": [
+    619,
+    619,
+    619
+   ],
+   "price_band": {
+    "low": 440,
+    "high": 620,
+    "verdict": "typical"
+   },
+   "cheapest_by_departure_date": null
+  },
+  {
+   "api": "HasData Google Flights",
+   "query": "q3",
+   "calls_per_run": 7,
+   "median_wall_seconds": 15.989,
+   "median_first_response_seconds": 15.989,
+   "runs": [
+    {
+     "started_utc": "2026-10-07T13:59:29Z",
+     "wall_seconds": 15.989,
+     "first_response_seconds": 15.989,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 2.734
+      },
+      {
+       "status": 200,
+       "seconds": 3.461
+      },
+      {
+       "status": 200,
+       "seconds": 15.98
+      },
+      {
+       "status": 200,
+       "seconds": 3.198
+      },
+      {
+       "status": 200,
+       "seconds": 3.958
+      },
+      {
+       "status": 200,
+       "seconds": 2.915
+      },
+      {
+       "status": 200,
+       "seconds": 2.7
+      }
+     ],
+     "return_leg": null
+    },
+    {
+     "started_utc": "2026-10-07T13:59:47Z",
+     "wall_seconds": 6.574,
+     "first_response_seconds": 6.574,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 4.549
+      },
+      {
+       "status": 200,
+       "seconds": 3.239
+      },
+      {
+       "status": 200,
+       "seconds": 3.806
+      },
+      {
+       "status": 200,
+       "seconds": 3.039
+      },
+      {
+       "status": 200,
+       "seconds": 4.746
+      },
+      {
+       "status": 200,
+       "seconds": 2.716
+      },
+      {
+       "status": 200,
+       "seconds": 3.327
+      }
+     ],
+     "return_leg": null
+    },
+    {
+     "started_utc": "2026-10-07T13:59:55Z",
+     "wall_seconds": 22.475,
+     "first_response_seconds": 22.475,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 2.825
+      },
+      {
+       "status": 200,
+       "seconds": 22.464
+      },
+      {
+       "status": 200,
+       "seconds": 2.311
+      },
+      {
+       "status": 200,
+       "seconds": 2.572
+      },
+      {
+       "status": 200,
+       "seconds": 2.722
+      },
+      {
+       "status": 200,
+       "seconds": 2.835
+      },
+      {
+       "status": 200,
+       "seconds": 2.373
+      }
+     ],
+     "return_leg": null
+    }
+   ],
+   "itineraries_per_run": [
+    66,
+    66,
+    66
+   ],
+   "cheapest_per_run": [
+    93,
+    93,
+    93
+   ],
+   "price_band": {
+    "low": 90,
+    "high": 170,
+    "verdict": "typical"
+   },
+   "cheapest_by_departure_date": {
+    "2026-11-10": 122,
+    "2026-11-11": 116,
+    "2026-11-12": 101,
+    "2026-11-13": 111,
+    "2026-11-14": 93,
+    "2026-11-15": 111,
+    "2026-11-16": 158
+   }
+  },
+  {
+   "api": "SearchApi google_flights",
+   "query": "q1",
+   "calls_per_run": 2,
+   "median_wall_seconds": 4.29,
+   "median_first_response_seconds": 1.978,
+   "runs": [
+    {
+     "started_utc": "2026-10-07T13:58:33Z",
+     "wall_seconds": 4.29,
+     "first_response_seconds": 2.117,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 2.11
+      }
+     ],
+     "return_leg": {
+      "status": 200,
+      "seconds": 2.169
+     }
+    },
+    {
+     "started_utc": "2026-10-07T13:58:40Z",
+     "wall_seconds": 5.823,
+     "first_response_seconds": 1.978,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 1.969
+      }
+     ],
+     "return_leg": {
+      "status": 200,
+      "seconds": 3.84
+     }
+    },
+    {
+     "started_utc": "2026-10-07T13:58:48Z",
+     "wall_seconds": 3.54,
+     "first_response_seconds": 1.626,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 1.62
+      }
+     ],
+     "return_leg": {
+      "status": 200,
+      "seconds": 1.909
+     }
+    }
+   ],
+   "itineraries_per_run": [
+    25,
+    25,
+    25
+   ],
+   "cheapest_per_run": [
+    692,
+    692,
+    692
+   ],
+   "price_band": {
+    "low": 480,
+    "high": 670,
+    "verdict": "high"
+   },
+   "cheapest_by_departure_date": null
+  },
+  {
+   "api": "SearchApi google_flights",
+   "query": "q2",
+   "calls_per_run": 1,
+   "median_wall_seconds": 1.502,
+   "median_first_response_seconds": 1.502,
+   "runs": [
+    {
+     "started_utc": "2026-10-07T13:58:53Z",
+     "wall_seconds": 1.51,
+     "first_response_seconds": 1.51,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 1.504
+      }
+     ],
+     "return_leg": null
+    },
+    {
+     "started_utc": "2026-10-07T13:58:57Z",
+     "wall_seconds": 1.319,
+     "first_response_seconds": 1.319,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 1.312
+      }
+     ],
+     "return_leg": null
+    },
+    {
+     "started_utc": "2026-10-07T13:59:00Z",
+     "wall_seconds": 1.502,
+     "first_response_seconds": 1.502,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 1.495
+      }
+     ],
+     "return_leg": null
+    }
+   ],
+   "itineraries_per_run": [
+    12,
+    12,
+    12
+   ],
+   "cheapest_per_run": [
+    619,
+    619,
+    619
+   ],
+   "price_band": {
+    "low": 440,
+    "high": 620,
+    "verdict": "typical"
+   },
+   "cheapest_by_departure_date": null
+  },
+  {
+   "api": "SearchApi google_flights",
+   "query": "q3",
+   "calls_per_run": 7,
+   "median_wall_seconds": 28.366,
+   "median_first_response_seconds": 28.366,
+   "runs": [
+    {
+     "started_utc": "2026-10-07T13:59:03Z",
+     "wall_seconds": 2.765,
+     "first_response_seconds": 2.765,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 1.603
+      },
+      {
+       "status": 200,
+       "seconds": 1.517
+      },
+      {
+       "status": 200,
+       "seconds": 2.223
+      },
+      {
+       "status": 200,
+       "seconds": 1.713
+      },
+      {
+       "status": 200,
+       "seconds": 1.911
+      },
+      {
+       "status": 200,
+       "seconds": 2.752
+      },
+      {
+       "status": 200,
+       "seconds": 1.586
+      }
+     ],
+     "return_leg": null
+    },
+    {
+     "started_utc": "2026-10-07T13:59:08Z",
+     "wall_seconds": 28.737,
+     "first_response_seconds": 28.737,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 1.569
+      },
+      {
+       "status": 200,
+       "seconds": 3.431
+      },
+      {
+       "status": 200,
+       "seconds": 1.624
+      },
+      {
+       "status": 200,
+       "seconds": 1.763
+      },
+      {
+       "status": 200,
+       "seconds": 2.212
+      },
+      {
+       "status": 200,
+       "seconds": 28.721
+      },
+      {
+       "status": 200,
+       "seconds": 1.743
+      }
+     ],
+     "return_leg": null
+    },
+    {
+     "started_utc": "2026-10-07T13:59:39Z",
+     "wall_seconds": 28.366,
+     "first_response_seconds": 28.366,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 2.394
+      },
+      {
+       "status": 200,
+       "seconds": 28.355
+      },
+      {
+       "status": 200,
+       "seconds": 2.093
+      },
+      {
+       "status": 200,
+       "seconds": 1.643
+      },
+      {
+       "status": 200,
+       "seconds": 1.903
+      },
+      {
+       "status": 200,
+       "seconds": 1.683
+      },
+      {
+       "status": 200,
+       "seconds": 3.475
+      }
+     ],
+     "return_leg": null
+    }
+   ],
+   "itineraries_per_run": [
+    65,
+    65,
+    65
+   ],
+   "cheapest_per_run": [
+    93,
+    93,
+    93
+   ],
+   "price_band": {
+    "low": 90,
+    "high": 170,
+    "verdict": "high"
+   },
+   "cheapest_by_departure_date": {
+    "2026-11-10": 122,
+    "2026-11-11": 116,
+    "2026-11-12": 101,
+    "2026-11-13": 111,
+    "2026-11-14": 93,
+    "2026-11-15": 111,
+    "2026-11-16": 158
+   }
+  },
+  {
+   "api": "SearchApi google_flights_calendar, one call for the range",
+   "query": "q3",
+   "calls_per_run": 1,
+   "median_wall_seconds": 4.224,
+   "median_first_response_seconds": 4.224,
+   "runs": [
+    {
+     "started_utc": "2026-10-07T14:02:37Z",
+     "wall_seconds": 5.008,
+     "first_response_seconds": 5.008,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 5.002
+      }
+     ],
+     "return_leg": null
+    },
+    {
+     "started_utc": "2026-10-07T14:02:44Z",
+     "wall_seconds": 2.61,
+     "first_response_seconds": 2.61,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 2.604
+      }
+     ],
+     "return_leg": null
+    },
+    {
+     "started_utc": "2026-10-07T14:02:49Z",
+     "wall_seconds": 4.224,
+     "first_response_seconds": 4.224,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 4.221
+      }
+     ],
+     "return_leg": null
+    }
+   ],
+   "itineraries_per_run": [
+    0,
+    0,
+    0
+   ],
+   "cheapest_per_run": [],
+   "price_band": {
+    "low": null,
+    "high": null,
+    "verdict": null
+   },
+   "cheapest_by_departure_date": null
+  },
+  {
+   "api": "SerpApi google_flights",
+   "query": "q1",
+   "calls_per_run": 2,
+   "median_wall_seconds": 6.358,
+   "median_first_response_seconds": 2.259,
+   "runs": [
+    {
+     "started_utc": "2026-10-07T13:54:32Z",
+     "wall_seconds": 6.358,
+     "first_response_seconds": 2.259,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 2.253
+      }
+     ],
+     "return_leg": {
+      "status": 200,
+      "seconds": 4.094
+     }
+    },
+    {
+     "started_utc": "2026-10-07T13:54:41Z",
+     "wall_seconds": 8.288,
+     "first_response_seconds": 6.756,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 6.751
+      }
+     ],
+     "return_leg": {
+      "status": 200,
+      "seconds": 1.527
+     }
+    },
+    {
+     "started_utc": "2026-10-07T13:54:51Z",
+     "wall_seconds": 5.879,
+     "first_response_seconds": 1.693,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 1.689
+      }
+     ],
+     "return_leg": {
+      "status": 200,
+      "seconds": 4.182
+     }
+    }
+   ],
+   "itineraries_per_run": [
+    25,
+    25,
+    25
+   ],
+   "cheapest_per_run": [
+    692,
+    692,
+    692
+   ],
+   "price_band": {
+    "low": 480,
+    "high": 670,
+    "verdict": "high"
+   },
+   "cheapest_by_departure_date": null
+  },
+  {
+   "api": "SerpApi google_flights",
+   "query": "q2",
+   "calls_per_run": 1,
+   "median_wall_seconds": 1.343,
+   "median_first_response_seconds": 1.343,
+   "runs": [
+    {
+     "started_utc": "2026-10-07T13:54:59Z",
+     "wall_seconds": 4.475,
+     "first_response_seconds": 4.475,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 4.47
+      }
+     ],
+     "return_leg": null
+    },
+    {
+     "started_utc": "2026-10-07T13:55:05Z",
+     "wall_seconds": 1.343,
+     "first_response_seconds": 1.343,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 1.338
+      }
+     ],
+     "return_leg": null
+    },
+    {
+     "started_utc": "2026-10-07T13:55:09Z",
+     "wall_seconds": 1.332,
+     "first_response_seconds": 1.332,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 1.327
+      }
+     ],
+     "return_leg": null
+    }
+   ],
+   "itineraries_per_run": [
+    11,
+    12,
+    12
+   ],
+   "cheapest_per_run": [
+    619,
+    619,
+    619
+   ],
+   "price_band": {
+    "low": 440,
+    "high": 620,
+    "verdict": "typical"
+   },
+   "cheapest_by_departure_date": null
+  },
+  {
+   "api": "SerpApi google_flights",
+   "query": "q3",
+   "calls_per_run": 7,
+   "median_wall_seconds": 4.54,
+   "median_first_response_seconds": 4.54,
+   "runs": [
+    {
+     "started_utc": "2026-10-07T13:55:12Z",
+     "wall_seconds": 4.54,
+     "first_response_seconds": 4.54,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 0.963
+      },
+      {
+       "status": 200,
+       "seconds": 3.873
+      },
+      {
+       "status": 200,
+       "seconds": 4.277
+      },
+      {
+       "status": 200,
+       "seconds": 4.519
+      },
+      {
+       "status": 200,
+       "seconds": 1.595
+      },
+      {
+       "status": 200,
+       "seconds": 2.507
+      },
+      {
+       "status": 200,
+       "seconds": 1.226
+      }
+     ],
+     "return_leg": null
+    },
+    {
+     "started_utc": "2026-10-07T13:55:19Z",
+     "wall_seconds": 6.568,
+     "first_response_seconds": 6.568,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 2.329
+      },
+      {
+       "status": 200,
+       "seconds": 3.51
+      },
+      {
+       "status": 200,
+       "seconds": 1.535
+      },
+      {
+       "status": 200,
+       "seconds": 6.555
+      },
+      {
+       "status": 200,
+       "seconds": 2.733
+      },
+      {
+       "status": 200,
+       "seconds": 1.614
+      },
+      {
+       "status": 200,
+       "seconds": 1.817
+      }
+     ],
+     "return_leg": null
+    },
+    {
+     "started_utc": "2026-10-07T13:55:27Z",
+     "wall_seconds": 3.538,
+     "first_response_seconds": 3.538,
+     "calls": [
+      {
+       "status": 200,
+       "seconds": 3.532
+      },
+      {
+       "status": 200,
+       "seconds": 1.858
+      },
+      {
+       "status": 200,
+       "seconds": 1.699
+      },
+      {
+       "status": 200,
+       "seconds": 0.964
+      },
+      {
+       "status": 200,
+       "seconds": 2.669
+      },
+      {
+       "status": 200,
+       "seconds": 2.088
+      },
+      {
+       "status": 200,
+       "seconds": 1.433
+      }
+     ],
+     "return_leg": null
+    }
+   ],
+   "itineraries_per_run": [
+    66,
+    66,
+    66
+   ],
+   "cheapest_per_run": [
+    93,
+    93,
+    93
+   ],
+   "price_band": {
+    "low": 90,
+    "high": 170,
+    "verdict": "typical"
+   },
+   "cheapest_by_departure_date": {
+    "2026-11-10": 122,
+    "2026-11-11": 116,
+    "2026-11-12": 101,
+    "2026-11-13": 111,
+    "2026-11-14": 93,
+    "2026-11-15": 111,
+    "2026-11-16": 158
+   }
+  }
+ ]
+}
