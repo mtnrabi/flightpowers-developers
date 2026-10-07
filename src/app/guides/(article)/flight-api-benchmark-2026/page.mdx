@@ -41,7 +41,7 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
         name: 'What is the best API for live flight prices?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'It depends on the shape of your searches, because the fares themselves were identical: on 2026-10-07 FlightPowers, SerpApi, SearchApi and HasData returned the same cheapest Google Flights fare to the dollar on all three test searches. For round trips with both legs in one request and an entry plan of $10 for 2,500 searches, FlightPowers (run by the author). For the fastest first price and a date grid in one billed search, SearchApi. For the biggest free tier (250 searches a month) and many non-travel engines on one key, SerpApi. HasData sits between them on price and was the slowest in this run.',
+          text: 'It depends on the shape of your searches, because the fares themselves were identical: on 2026-10-07 FlightPowers, SerpApi, SearchApi and HasData returned the same cheapest Google Flights fare to the dollar on all three test searches. For round trips with both legs in one request and an entry plan of $10 for 2,500 searches, FlightPowers (run by the author). For the fastest first price and a date grid in one billed search, SearchApi. For the biggest free tier (250 searches a month) and many non-travel engines on one key, SerpApi. HasData sits between them on price and was the slowest on the round trip and the one way in this run.',
         },
       },
       {
@@ -57,7 +57,7 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
         name: 'Do different Google Flights APIs return different prices?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Not in our test. On 2026-10-07 the four APIs returned the same cheapest fare for a New York to London round trip ($692), a Tel Aviv to Bangkok one way ($619) and every one of seven London to Barcelona date pairs ($93 at the lowest), with the same Google price band. They read the same Google Flights results, so pick on response shape, speed and price per answer.',
+          text: 'Not in our test. On 2026-10-07 the four APIs returned the same cheapest fare for a New York to London round trip ($692), a Tel Aviv to Bangkok one way ($619) and every one of seven London to Barcelona date pairs ($93 at the lowest), with the same Google price range. They read the same Google Flights results, so pick on response shape, speed and price per answer.',
         },
       },
       {
@@ -65,7 +65,7 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
         name: 'Which Google Flights API is fastest?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'For the first price on a round trip, SearchApi (1.98 s median) and SerpApi (2.25 s) beat FlightPowers (3.27 s) and HasData (5.23 s) in our 2026-10-07 run. For a round trip with both legs, FlightPowers was fastest (3.27 s in one request) because the other three need a second request with a departure token (4.29 s, 6.36 s and 7.56 s). On a one-way search SerpApi (1.34 s), SearchApi (1.50 s) and FlightPowers (1.56 s) were within a quarter of a second of each other.',
+          text: 'For the first price on a round trip, SearchApi (1.98 s median) and SerpApi (2.26 s) beat FlightPowers (3.27 s) and HasData (5.23 s) in our 2026-10-07 run. For a round trip with both legs, FlightPowers was fastest (3.27 s in one request) because the other three need a second request with a departure token (4.29 s, 6.36 s and 7.56 s). On a one-way search SerpApi (1.34 s), SearchApi (1.50 s) and FlightPowers (1.56 s) were within a quarter of a second of each other.',
         },
       },
     ],
@@ -78,11 +78,11 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 **Short answer:** we ran the same three flight searches through FlightPowers, SerpApi,
 SearchApi and HasData in the same hour on **2026-10-07**. All four returned the same
-cheapest fare to the dollar on every search, with the same Google price band, because all
+cheapest fare to the dollar on every search, with the same Google price range, because all
 four read Google Flights. What differs is the shape of the answer and what it costs: a round
 trip with both legs is one request on FlightPowers and two on the other three, SearchApi and
 SerpApi put the first price on the table faster, SerpApi has the biggest free tier, and
-FlightPowers and SearchApi are the cheapest per 1,000 searches at entry ($4.00).
+FlightPowers and SearchApi both come to $4.00 per 1,000 searches on their entry plans.
 
 Disclosure: I run FlightPowers, one of the four rows. So the method, the places where my API
 loses and the timing of every single call
@@ -98,7 +98,7 @@ All times are medians of 3 runs, measured from a server in Iowa (GCP us-central1
 |---|---|---|---|---|
 | **Q1 round trip, cheapest** | $692 | $692 | $692 | $692 |
 | Q1 Google price band, verdict | $480 to $670, high | same | same | same |
-| Q1 time to the first price | 3.27 s | 2.25 s | **1.98 s** | 5.23 s |
+| Q1 time to the first price | 3.27 s | 2.26 s | **1.98 s** | 5.23 s |
 | Q1 time to both legs | **3.27 s, 1 request** | 6.36 s, 2 requests | 4.29 s, 2 requests | 7.56 s, 2 requests |
 | Q1 itineraries returned | 10 paired by default, 100 with `limit: 100` (15.68 s) | 25 outbound options | 25 outbound options | 25 outbound options |
 | **Q2 one way, cheapest** | $619 | $619 | $619 | $619 |
@@ -114,7 +114,7 @@ All times are medians of 3 runs, measured from a server in Iowa (GCP us-central1
 | Per 1,000 searches at entry | **$4.00** | $25.00 | **$4.00** | $4.43 ($3.69 billed annually) |
 | Per 1,000 round trips with both legs | **$4.00** | $50.00 | $8.00 | $8.85 |
 | Rate limit on the entry plan | 150 per minute | 200 per hour | 20% of the plan per hour | 5 concurrent |
-| Counted as a request | every request, errors included | successful searches only | successful searches only | successful requests only |
+| Counted as a request | every request, a rejected (422) one included | successful searches only | successful searches only | successful requests only |
 
 Two tail events are in those medians and worth naming: on SearchApi one of the seven scan
 calls took about 28 seconds in two of the three runs (the median call was 1.9 s), and on
@@ -169,11 +169,13 @@ Prices of the plans were read from [serpapi.com/pricing](https://serpapi.com/pri
 
 **The fare is not a reason to pick one.** Every API returned the same cheapest price on all
 nine price points we compared (Q1, Q2 and each of Q3's seven date pairs) and the same Google
-price band. If a vendor tells you its Google Flights prices are better, ask it for the
+price range. The one difference was a label: SearchApi's `price_level` read "high" on two of
+the seven Q3 dates (10 and 16 November) in all three runs, where the other three said "typical".
+If a vendor tells you its Google Flights prices are better, ask it for the
 request that shows it.
 
 **The round trip is where they really differ.** If you need the return flight, not only
-the round-trip total, the other three cost two requests and two to four seconds more, and a
+the round-trip total, the other three cost two requests and one to four seconds more than ours, and a
 search per itinerary you want to inspect. FlightPowers pairs both legs in one answer, which is
 why a round trip with both legs costs $4.00 per 1,000 here against $8.00 to $50.00 elsewhere.
 
@@ -190,7 +192,7 @@ no itinerary details. If a price grid is all you need, that is cheaper than ours
 
 This is the part a benchmark written by a vendor usually leaves out.
 
-- **The first price is slower.** SearchApi (1.98 s) and SerpApi (2.25 s) give you a round-trip
+- **The first price is slower.** SearchApi (1.98 s) and SerpApi (2.26 s) give you a round-trip
   total before we do (3.27 s). On the one way, SerpApi (1.34 s) and SearchApi (1.50 s) edged our
   1.56 s. If you only ever need the total, they are quicker.
 - **Asking for every itinerary is slow.** With `limit: 100` our round trip took 15.68 s, because
@@ -206,7 +208,7 @@ This is the part a benchmark written by a vendor usually leaves out.
 - **Breadth.** SerpApi, SearchApi and HasData do multi-city and dozens of non-travel engines on one
   key. We do one way and round trip, plus Booking.com hotels.
 - **Billing.** The other three count successful searches only. On RapidAPI every request that
-  reaches our listing is counted, an error included.
+  reaches our listing is counted against the plan, a request we reject as invalid (422) included.
 
 ## APIs we could not run
 
@@ -225,14 +227,14 @@ This is the part a benchmark written by a vendor usually leaves out.
 because the fares were identical. For round trips with both legs in one request and a $10
 entry plan, FlightPowers (mine). For the fastest first price and a date grid in one billed
 search, SearchApi. For the biggest free tier and many non-travel engines on one key, SerpApi.
-HasData sits between them on price and was the slowest in this run.
+HasData sits between them on price and was the slowest on the round trip and the one way.
 
 **What is a good Google Flights API alternative?** Google has had no public flights API since
 QPX Express closed in April 2018 ([the long version](/guides/google-flights-api)). The
 self-serve APIs that return live Google Flights fares today are the four in the table above.
 
 **Do different Google Flights APIs return different prices?** Not in this test: same cheapest
-fare to the dollar on all nine price points, same band.
+fare to the dollar on all nine price points, same price range.
 
 **Which Google Flights API is fastest?** For the first round-trip price, SearchApi and SerpApi.
 For a round trip with both legs, FlightPowers. On a one way the top three were within a
