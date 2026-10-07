@@ -56,7 +56,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
         name: 'Does the cabin matter when comparing a booked fare to the band?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes, and getting it wrong makes every result meaningless. Send seat_type 1 for economy and 3 for business on the request so the band you compare against is for the same cabin the trip was booked in. A business-class ticket held next to an economy band will always look like an overpayment.',
+          text: 'Yes, and getting it wrong makes every result meaningless. Send seat_type 1 for economy, 2 for premium economy, 3 for business, or 4 for first on the request so the band you compare against is for the same cabin the trip was booked in. A business-class ticket held next to an economy band will always look like an overpayment.',
         },
       },
       {
@@ -152,7 +152,7 @@ def grade(leg):
         "from_airport": leg["from_airport"],
         "to_airport": leg["to_airport"],
         "departure_date": leg["departure_date"],
-        "seat_type": leg.get("seat_type", 1),  # 1 = economy, 3 = business
+        "seat_type": leg.get("seat_type", 1),  # 1 = economy, 2 = premium economy, 3 = business, 4 = first
         "limit": 5,
     }
     r = requests.post(URL, headers=HEADERS, json=body, timeout=120)
@@ -259,9 +259,9 @@ This is the part to be straight about, because the check has real edges.
 date. Once the flight is in the past there is nothing to search, so grading last year's
 expenses is not something this can do. Point it at the forward book.
 
-**The cabin has to match.** `seat_type` is `1` for economy and `3` for business. Hold a
-business-class ticket next to an economy band and every row screams overpayment. Get this
-wrong and the whole report is noise.
+**The cabin has to match.** `seat_type` is `1` for economy, `2` for premium economy, `3` for
+business, `4` for first. Hold a business-class ticket next to an economy band and every row
+screams overpayment. Get this wrong and the whole report is noise.
 
 **The band is not on every route.** Google publishes it where it has enough history, which
 is most well-travelled routes and not all of them. When it is missing the fields come back

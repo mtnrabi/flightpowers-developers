@@ -438,7 +438,8 @@ export default function FlightsApiHubPage() {
               Upper bound on the fare, in the requested currency.
             </FieldRow>
             <FieldRow name="seat_type" type="int">
-              Cabin: <code className="field">1</code> Economy, <code className="field">3</code> Business.
+              Cabin: <code className="field">1</code> Economy, <code className="field">2</code> Premium economy,{' '}
+              <code className="field">3</code> Business, <code className="field">4</code> First.
             </FieldRow>
           </div>
 
