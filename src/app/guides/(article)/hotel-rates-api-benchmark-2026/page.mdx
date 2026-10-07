@@ -55,7 +55,7 @@ export const q = (p) => p.quota.toLocaleString('en-US');
         name: 'What is the best hotel price API?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: `It depends on what you need, so here is what each one did on the same calls on 2026-10-07. Fastest Booking.com search: StayAPI (1.1 s median), then SearchApi (1.9 s) and HasData (2.1 s). Most sellers for one hotel: SerpApi's Google Hotels engine (34 sellers for Hotel Artemide, Rome). Lowest price per request at entry: HasData (about $0.003 a Booking.com call on its $59 plan) and SearchApi ($0.004 on its $40 plan). Lowest entry ticket, a hotel by name in one call, a tax-inclusive total and a country you pick: FlightPowers, mine, free for ${HOTEL_PLANS[0].quota} requests a month and $${HOTEL_PLANS[1].priceMonthly} for ${q(HOTEL_PLANS[1])}, but it was the slowest of the six APIs at 7.9 s.`,
+          text: `It depends on what you need, so here is what each one did on the same calls on 2026-10-07. Fastest Booking.com search: StayAPI (1.1 s median), then SearchApi (1.9 s) and HasData (2.1 s). Most sellers for one hotel: SerpApi's Google Hotels engine (34 sellers for Hotel Artemide, Rome). Lowest price per request at entry: HasData (about $0.003 a Booking.com call on its $59 plan) and SearchApi ($0.004 on its $40 plan). The smallest monthly plan in this test, with one tax-inclusive total from a country you pick: FlightPowers, mine, free for ${HOTEL_PLANS[0].quota} requests a month and $${HOTEL_PLANS[1].priceMonthly} for ${q(HOTEL_PLANS[1])}, but at 7.9 s it was slower than every API here except an Apify scraper run.`,
         },
       },
       {
@@ -101,7 +101,7 @@ export const q = (p) => p.quota.toLocaleString('en-US');
 **Short answer:** I sent the same Lisbon search and the same Rome hotel to seven hotel price
 APIs on 2026-10-07, three runs each. StayAPI, SearchApi and HasData answered a Booking.com
 destination search in 1.1 to 2.1 seconds and SerpApi's Google Hotels engine in 2.4. Mine,
-FlightPowers, took 7.9, the slowest of the six APIs, and an Apify scraper took 75. The bigger
+FlightPowers, took 7.9, slower than every API here except an Apify scraper run, which took 75. The bigger
 finding was the price: the same room came back as $915 or as $1,057 depending on whether the
 API put Rome's VAT and city tax into the number it called the price.
 
@@ -134,17 +134,21 @@ Every call's start time, wall time and status is in
 
 | API (what it reads) | Lisbon search, median | rows | sorts by price | cheapest row, 3 nights | one named hotel: calls, median |
 | --- | --- | --- | --- | --- | --- |
-| StayAPI (Booking.com) | 1.1 s, plus 0.8 s once to look up the city ID | 25 | no | $147.67, tax not stated on the row | 2 calls (ID lookup, then prices); 2.5 s |
-| SearchApi (Booking.com) | 1.9 s | 15 to 20 | yes | $51 + $30 taxes listed | 2 calls (a search for the URL, then the property); 3.0 s |
-| HasData (Booking.com) | 2.1 s | 25 | yes | $50.97 + $30.07 taxes listed | 2 calls (a search for the URL, then the place); 3.2 s |
+| StayAPI (Booking.com) | 1.1 s, plus 0.8 s once to look up the city ID | 25 | no | $147.67, tax not stated on the row | 2 calls (ID lookup, then prices); 2.5 s for the prices call |
+| SearchApi (Booking.com) | 1.9 s | 15 to 20 | yes | $51 + $30 taxes listed | 2 calls for the room list (a search for the URL, then the property); 3.0 s for the property call |
+| HasData (Booking.com) | 2.1 s | 25 | yes | $50.97 + $30.07 taxes listed | 2 calls for the room list (a search for the URL, then the place); 3.2 s for the place call |
 | SerpApi (Google Hotels) | 2.4 s | 18 | yes | $78 with taxes ($73 before) | 1 call by name; 2.5 s |
 | FlightPowers, mine (Booking.com) | 7.9 s | 15 to 25 | **no**, Booking's popularity order | $203 to $257 with taxes, cheapest of the rows it returned | 1 call by name; 10.2 s |
-| Apify `voyager/booking-scraper` | 75 s, including the actor start | 20 | yes | $40.52, but that row is one bed in a 10-bed dorm priced for 1 person on a 2-adult search | 1 run by name; 39 s (one run) |
+| Apify `voyager/booking-scraper` | 75 s, including the actor start | 20 | asked (`sortBy: price`), rows came back unsorted | $40.52, but that row is one bed in a 10-bed dorm priced for 1 person on a 2-adult search | 1 run by name; 39 s (one run) |
 | Xotelo (TripAdvisor rates) | 0.7 s, but the list takes no dates | 30 | n/a | n/a, static price ranges | by TripAdvisor key; 0.7 s, per-night rates from 3 sellers |
 
 The two cheapest Booking.com rows in Lisbon were the same dorm bunk at Samps Hostel on SearchApi
 and HasData, $51 before tax and $81 after. SerpApi reads Google Hotels, which is a metasearch
 across many sellers, so its Lisbon list is a different set of hotels and not a like-for-like row.
+
+SearchApi's and HasData's search also take a hotel name (SearchApi put Hotel Sant'Angelo first when
+I searched it by name), so a single row price for a named hotel is one call there too; the second
+call in the table is for the full room list.
 
 ## One room, three prices
 
@@ -158,13 +162,14 @@ Hotel Artemide, Basic Double Room, 20 to 23 November 2026, 2 adults:
 | SearchApi property call | | no tax field on the room rows | $915 |
 | FlightPowers, `proxy_country=us`, 3 runs | | | $1,057, $1,057, $1,057 |
 | FlightPowers, `proxy_country=de`, 3 runs | | | $1,062, $1,028, $1,028 |
-| SerpApi, Booking.com seller row, `gl=us`, 2 runs | | | $1,034, $1,034 |
+| SerpApi, Booking.com seller row, `gl=us`, 5 runs | | | $1,050 three times, then $1,034 twice |
 | SerpApi, cheapest of 34 sellers | $812 | | $888 (Priceline) |
 
 Almost all of the spread between $915 and $1,062 is tax display, not a different rate.
 Booking.com's US view shows the room before tax and adds VAT and city tax at the end; the German
 view folds them in. So StayAPI's `total_price` means "before tax" in one market and "after tax"
-in the other for the same room. Their tax breakdown says which, so a careful client can fix it,
+in the other for the same room. Their docs warn that the market can change tax inclusion, and
+the tax breakdown says which way it went, so a careful client can fix it,
 but a dashboard that compares the field across markets will invent a 16% gap that isn't there.
 
 If you are comparing hotel APIs, or comparing countries, compare the tax-inclusive total.
@@ -194,7 +199,7 @@ Read from each vendor's own pricing page at 14:09 UTC on 2026-10-07.
 | HasData | 1,000 credits a month; a Booking.com call is 10 credits, so 100 calls | $59 for 200,000 credits | about $0.003 a Booking.com call | 5 concurrent requests |
 | SerpApi | 250 searches a month | their cheapest plan is $25 for 1,000 | $0.025 | 200 an hour |
 | StayAPI | 50 requests once | $49 for 1,500 | $0.033 | not on the plan card |
-| Makcorps | the home page says 30 free calls, the sign-up page says 15 credits | $350 for 10,000 | $0.035 | 5 concurrent calls |
+| Makcorps | 30 free API calls, per their pricing page | $350 for 10,000 | $0.035 | 5 concurrent calls |
 | Apify `voyager/booking-scraper` | Apify's free plan credit, $5 a month | pay per hotel row | $0.005 a row on the free tier, so about $0.10 for a 20-row search | n/a |
 | Xotelo | list and rates free, no key | name search only through RapidAPI | n/a | not published |
 | Booking.com Demand API | none | Managed Affiliate Partner contract | n/a | n/a |
@@ -217,9 +222,10 @@ are requests of their own.
 5. **A named hotel returns one room.** The full room list is a second endpoint
    (`/v1/hotels/rooms`, 8.9 s), and in one of three default runs the by-name call returned a
    different room than the other two.
-6. **Pin a country or the number moves.** Without `proxy_country`, each call leaves from a
-   different country's residential IP: the same room read $935, $1,011 and $1,062 on three calls.
-   With `proxy_country=us` it read $1,057 three times out of three.
+6. **The number moves between calls.** Without `proxy_country`, each call can leave from a
+   different country's residential IP: the Basic Double read $935, $1,011 and $1,062 on three calls
+   to the room list. Pinning a country helps but doesn't settle it: `proxy_country=us` read $1,057
+   three times out of three, `proxy_country=de` read $1,062, $1,028 and $1,028.
 7. **Per request, two are cheaper.** HasData and SearchApi cost less per call at their entry plans.
    What mine has is the smaller ticket: ${HOTEL_PLANS[1].priceMonthly} to start, against $40, $49
    and $59.
@@ -228,8 +234,7 @@ are requests of their own.
 
 ## Which one I'd pick, by job
 
-- **Fast Booking.com search at volume:** SearchApi or HasData. Both sort, both itemise tax on the
-  search rows, both are cheaper per call than mine.
+- **Fast Booking.com search at volume:** SearchApi or HasData. Both sort, both show the tax on the search rows, both are cheaper per call than mine.
 - **One hotel across many sellers:** SerpApi's Google Hotels engine.
 - **Reviews, photos and property details on top of rates:** StayAPI.
 - **A hotel by the name a person types, one tax-inclusive total, from a country you choose, for
@@ -245,8 +250,8 @@ are requests of their own.
 
 It depends on the job. On these calls: StayAPI was the fastest Booking.com search (1.1 s), SerpApi
 covered the most sellers (34 for one hotel), HasData and SearchApi were the cheapest per request at
-entry, and mine had the lowest entry ticket, a hotel by name in one call, a tax-inclusive total and
-a country input, while being the slowest at 7.9 s.
+entry, and mine had the smallest monthly plan in this test, one tax-inclusive total and a country input,
+while being slower than every API here except the Apify scraper run, at 7.9 s.
 
 **Which Booking.com rates API includes taxes in the price?**
 
