@@ -16,8 +16,8 @@ import {
 } from '@/components/ui';
 import { FIXTURES } from '@/lib/fixtures';
 import { AGENTS } from '@/lib/matrix';
-import { FLIGHT_PLANS } from '@/lib/pricing';
-import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
+import { FLIGHT_PLANS, HOTEL_PLANS } from '@/lib/pricing';
+import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 import { PortabilityBand } from '@/components/Portability';
 
 // The head term first ("AI travel agent API"); title.absolute keeps the
@@ -35,6 +35,28 @@ export const metadata: Metadata = {
 export const dynamic = 'force-static';
 
 type Recipe = { title: string; chips: string[]; body: string };
+
+/**
+ * The direct answer to the buyer question "What is the easiest way to connect
+ * flights and hotels data to my AI agent?" (Otterly P12, 0 of 4 engines named
+ * us on 2026-10-07; ChatGPT answers it from Duffel's getting-started docs).
+ * One string, used twice: the visible paragraph under the H2 and the FAQPage
+ * answer, so the schema never drifts from the page. Numbers from lib/pricing.ts
+ * and lib/site.ts; the 50 / 250 free caps are the free server's own (Vercel env
+ * FAIR_USE_DAY_CAP / FAIR_USE_MONTH_CAP since 2026-09-15). The date range and
+ * the night options are MCP-only, so the scan sentence names the MCP server.
+ */
+const P12_Q = 'What is the easiest way to connect flights and hotels data to my AI agent?';
+const host = (url: string) => url.replace('https://', '');
+const P12_A = `Add the FlightPowers MCP servers as connectors: ${LINKS.mcpFlights} for flights and ${LINKS.mcpHotels} for hotels. In Claude, ChatGPT or Cursor you paste the URL, sign in with Google and paste your RapidAPI key once, and the agent can call live Google Flights fares and live Booking.com rates as tools, with no SDK and no server to run. With no key at all, ${host(LINKS.mcpFree)} serves the same four tools free with ads after a Google sign-in (50 searches a day, 250 a month). On your key the free BASIC plan is ${FLIGHT_PLANS[0]!.quota} searches a month, flights PRO is $${FLIGHT_PLANS[1]!.priceMonthly} for ${FLIGHT_PLANS[1]!.quota.toLocaleString('en-US')} searches and hotels PRO is $${HOTEL_PLANS[1]!.priceMonthly} for ${HOTEL_PLANS[1]!.quota.toLocaleString('en-US')}.`;
+// Line breaks only so the prompt reads without sideways scrolling on a phone.
+const P12_PROMPT = [
+  'Find the cheapest round trip from JFK',
+  'to Lisbon, Rome or Athens, any day in',
+  'the next 30 days, for 5, 6 or 7 nights,',
+  'and tell me which fares Google marks',
+  'as low.',
+].join('\n');
 
 const repeat = FIXTURES.hotelGeoRepeatRome;
 
@@ -110,8 +132,10 @@ const DECISION_ROWS: TableRow[] = [
 
 const faq: Faq[] = [
   {
-    q: 'What is the fastest way to connect an agent?',
-    a: 'The MCP URL. Paste https://flights.flightpowers.com/mcp into Claude, Cursor, or ChatGPT, sign in with Google, and the four tools appear. No SDK, no install. It is one URL either way: a script or a client without a sign-in button sends the key on that same address. The /mcp page has the exact block to copy.',
+    // Was "What is the fastest way to connect an agent?"; reworded to the
+    // buyer's own question so the page carries one FAQPage, not two.
+    q: P12_Q,
+    a: `${P12_A} A script or a client without a sign-in button sends the key on that same URL. The /mcp page has the exact block to copy.`,
   },
   {
     q: 'Does one key really cover MCP, the skills, and REST?',
@@ -226,6 +250,30 @@ export default function AiAgentsPage() {
           </div>
         </Container>
       </div>
+
+      {/* ========================= THE DIRECT ANSWER ========================= */}
+      <Section>
+        <div className="max-w-3xl">
+          <h2 className="text-[1.5rem] sm:text-3xl font-semibold">{P12_Q}</h2>
+          <p className="mt-4 text-[16px] text-ink-200 leading-relaxed">{P12_A}</p>
+          <p className="mt-4 text-[15px] text-ink-300 leading-relaxed">
+            Then ask in plain English. One prompt that works as written:
+          </p>
+          <div className="mt-4">
+            <Code label="example prompt">{P12_PROMPT}</Code>
+          </div>
+          <p className="mt-4 text-[15px] text-ink-300 leading-relaxed">
+            That prompt is the two jobs people connect it for. The first is a daily scan of your favourite destinations a month
+            ahead, scheduled in your client, that only speaks up when Google marks a fare low (the{' '}
+            <Link href="/guides/ai-travel-agent" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+              AI travel agent guide
+            </Link>{' '}
+            sets it up). The second is one big scan: on the MCP server a single call takes a list of destination airports, a date
+            range and several night options, and on your key it prices up to 300 combinations at once (the prompt above is 270).
+            Over REST the same scan is one request per date pair, fired in parallel.
+          </p>
+        </div>
+      </Section>
 
       {/* ============================== HOW ============================== */}
       <Section>

@@ -20,6 +20,18 @@ import { EmailCapture } from '@/components/EmailCapture';
 
 const FLIGHTS_FREE = FLIGHT_PLANS.find((p) => p.priceMonthly === 0)!;
 const HOTELS_FREE = HOTEL_PLANS.find((p) => p.priceMonthly === 0)!;
+const FLIGHTS_PRO = FLIGHT_PLANS.find((p) => p.name === 'PRO')!;
+
+/**
+ * The direct answer to the buyer question "How can I add live flight search to
+ * my travel app?" (Otterly P14, 0 of 3 finished answers named us on
+ * 2026-10-07; ChatGPT answers it from Duffel's offer-request docs, whose first
+ * lines answer the question). One string, rendered under the H2 and used as
+ * the FAQPage answer, so the two cannot drift. REST takes one date pair per
+ * request, so there is no date-range claim here.
+ */
+const P14_Q = 'How do I add live flight search to my travel app?';
+const P14_A = `Send one HTTP request. Subscribe to the free BASIC plan of the Google Flights Live API on RapidAPI (${FLIGHTS_FREE.quota} searches a month, no card), then POST two IATA airport codes and a date to https://api.flightpowers.com/v1/flights/oneway with your key in the x-api-key header. The answer is live Google Flights fares as JSON, with a booking link on each result and Google's own price band for the route and dates. A round trip is also one request: /v1/flights/roundtrip prices both legs together and returns one total and one booking link. When you go live, PRO is $${FLIGHTS_PRO.priceMonthly} for ${FLIGHTS_PRO.quota.toLocaleString('en-US')} searches a month at ${FLIGHTS_PRO.ratePerMinute} requests a minute, enough to price a month of dates in one parallel burst.`;
 
 export const metadata: Metadata = withOg({
   title: 'Five-minute quickstart: your first flight and hotel price call',
@@ -117,6 +129,19 @@ export default function QuickstartPage() {
       <JsonLd
         data={{
           '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: [
+            {
+              '@type': 'Question',
+              name: P14_Q,
+              acceptedAnswer: { '@type': 'Answer', text: P14_A },
+            },
+          ],
+        }}
+      />
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
           itemListElement: [
             { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
@@ -150,6 +175,25 @@ export default function QuickstartPage() {
           </p>
         </Container>
       </div>
+
+      <Section id="add-flight-search">
+        <div className="max-w-3xl">
+          <h2 className="text-[1.5rem] sm:text-3xl font-semibold">{P14_Q}</h2>
+          <p className="mt-4 text-[16px] text-ink-200 leading-relaxed">{P14_A}</p>
+          <p className="mt-4 text-[15px] text-ink-300 leading-relaxed">
+            The steps below are that answer as pastes: get the key, check it, run the search, read the verdict. The scan pattern
+            is on{' '}
+            <Link href="/flights-api/parallel-date-scan" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+              the parallel date scan page
+            </Link>{' '}
+            and the paired-leg model on{' '}
+            <Link href="/flights-api/round-trip" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+              the round-trip page
+            </Link>
+            .
+          </p>
+        </div>
+      </Section>
 
       <Section>
         <div className="space-y-12">

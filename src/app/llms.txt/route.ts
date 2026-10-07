@@ -85,6 +85,7 @@ ${DIFFERENTIATORS.map((d) => `- ${d.title}: ${d.short}`).join('\n')}
 - [How to get round-trip flight prices in one API request](${u('/guides/roundtrip-flight-prices-one-request')}): the paired-leg model, a real BER-CDG capture, and why two one-ways don't add up
 - [How to check if your company is overpaying for flights](${u('/guides/overpaying-for-flights')}): grading the forward book against Google's own price band, with the cabin trap and the trips it cannot judge
 - [Cheapest destinations from one airport this month](${u('/guides/cheapest-destinations-from-one-airport')}): a destination list and a date range in one call, a captured 15-combination run, and the limit that drops a destination
+- [Booking.com API alternative: live rates without approval](${u('/guides/booking-com-api-alternative')}): the Demand API is for approved affiliate partners; live Booking.com rates by hotel name or destination on a self-serve key, priced from a chosen country, and when another provider fits better
 - [How to get hotel prices by hotel name with an API](${u('/guides/hotel-prices-by-hotel-name-api')}): POST the name a human would type, no property ID or catalogue sync
 - [How to get every room rate for one hotel with an API](${u('/guides/hotel-room-rates-by-property')}): resolve the name to an ID once, cache it, then call the rooms endpoint
 - [Do hotel prices change by country?](${u('/guides/hotel-prices-by-country-api')}): a repeat-sampled proxy_country run across three markets, and why one call per country is not a measurement
