@@ -84,8 +84,10 @@ trip with both legs is one request on FlightPowers and two on the other three, S
 SerpApi put the first price on the table faster, SerpApi has the biggest free tier, and
 FlightPowers and SearchApi are the cheapest per 1,000 searches at entry ($4.00).
 
-Disclosure: I run FlightPowers, one of the four rows. So the method, the raw timings and the
-places where my API loses are all on this page, and the test gets re-run every month.
+Disclosure: I run FlightPowers, one of the four rows. So the method, the places where my API
+loses and the timing of every single call
+([benchmark JSON](/benchmarks/flight-api-benchmark-2026-10-07.json)) are all public, and the test
+gets re-run every month.
 
 ## Results
 
@@ -150,6 +152,8 @@ Monday 16 November, was $158.
   and `deepSearch`; we did not test those.
 - **Free tiers only.** Every rival account was a free account created for this test, and no
   card was entered anywhere.
+- **Every call is published.** Status, seconds, itinerary count and cheapest fare for each of the
+  calls behind the table are in [the benchmark JSON](/benchmarks/flight-api-benchmark-2026-10-07.json).
 
 What each vendor's own docs say about the return leg, verbatim:
 
