@@ -518,6 +518,17 @@ export default function FlightsApiHubPage() {
             <FieldRow name="sort_type · currency · max_price · seat_type · passengers · limit · strict · use_ext_proxy">
               Exactly as on one-way, applied to the paired search as a whole.
             </FieldRow>
+            <FieldRow name="returns_per_outbound" type="int 1–5">
+              How many return flights to pair with each outbound flight, 1 to 5. Defaults to{' '}
+              <code className="field">2</code>. The paired itineraries are ranked together and{' '}
+              <code className="field">limit</code> still caps how many come back. <code className="field">limit</code> also
+              sets how many outbound flights are searched (one return lookup each), so a higher{' '}
+              <code className="field">limit</code> is slower. With the default <code className="field">limit</code>,{' '}
+              <code className="field">5</code> means the 10 results are the best of up to 50 pairings instead of 20. Not
+              applied to results that come from the fallback source (<code className="field">X-Search-Fallback: used</code>{' '}
+              without <code className="field">X-Search-Notes: upstream_no_render</code>). Must be a whole number from 1 to 5
+              (<code className="field">null</code> is rejected).
+            </FieldRow>
           </div>
           <div className="mt-8">
             <Cta href="/flights-api/round-trip" variant="ghost">

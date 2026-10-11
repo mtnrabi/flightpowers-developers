@@ -954,6 +954,13 @@
             "default": 10,
             "description": "Maximum number of results to return."
           },
+          "returns_per_outbound": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5,
+            "default": 2,
+            "description": "How many return flights to pair with each outbound flight, 1 to 5. Defaults to 2. The paired itineraries are ranked together and `limit` still caps how many come back. `limit` also sets how many outbound flights are searched (one return lookup each), so a higher `limit` is slower. With the default `limit`, 5 means the 10 results are the best of up to 50 pairings instead of 20. Not applied to results that come from the fallback source (`X-Search-Fallback: used` without `X-Search-Notes: upstream_no_render`). Must be a whole number from 1 to 5 (null is rejected)."
+          },
           "use_fallback": {
             "type": "boolean",
             "description": "A secondary flight-data source the API can escalate to when the live Google Flights search does not come back with results. Last resort, not part of the normal path: a search that succeeds never touches it. Send `false` to switch the escalation off for a request. Responses that do use it can take longer."
