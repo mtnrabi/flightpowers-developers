@@ -171,7 +171,9 @@ the morning" is one request, not a filter you run afterwards:
   `departure_arrival_time_min` / `_max`, and the same four for `return_`
 
 The common ones apply to the pair: `currency`, `max_price`, `seat_type`, `passengers`,
-`sort_type` and `limit`. The full list is in the [OpenAPI spec](/openapi.json).
+`sort_type` and `limit`. `returns_per_outbound` (1 to 5, default 2) sets how many return
+flights are paired with each outbound flight; the pairs are ranked together and `limit` still
+caps how many come back. The full list is in the [OpenAPI spec](/openapi.json).
 
 ## How do other flight APIs handle a round trip?
 
