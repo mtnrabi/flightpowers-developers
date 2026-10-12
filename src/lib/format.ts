@@ -22,3 +22,14 @@ export function airlineText(raw: string): string {
   const { main, operatedBy } = splitAirline(raw);
   return operatedBy ? `${main} (operated by ${operatedBy})` : main;
 }
+
+/**
+ * Default dates for the home playground's live forms: departure and check-in
+ * 35 days out, check-out 5 nights later (the captured Rixos stay's length).
+ * The captured runs keep their own request dates; these only pre-fill the
+ * forms, so a Send never starts from a past date.
+ */
+export function playgroundDates(now = Date.now()): { date: string; checkin: string; checkout: string } {
+  const iso = (days: number) => new Date(now + days * 86_400_000).toISOString().slice(0, 10);
+  return { date: iso(35), checkin: iso(35), checkout: iso(40) };
+}
