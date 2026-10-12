@@ -29,12 +29,12 @@ export const metadata: Metadata = withOg({
 const CURL = `curl -X POST "https://api.flightpowers.com/v1/flights/oneway" \\
   -H "x-api-key: $RAPIDAPI_KEY" \\
   -H "Content-Type: application/json" \\
-  -d '{"from_airport":"LHR","to_airport":"JFK","departure_date":"2026-10-13"}'`;
+  -d '{"from_airport":"LHR","to_airport":"JFK","departure_date":"2027-04-15"}'`;
 
 const CURL_HOTELS = `curl -X POST "https://api.flightpowers.com/v1/hotels/search" \\
   -H "x-api-key: $RAPIDAPI_KEY" \\
   -H "Content-Type: application/json" \\
-  -d '{"destination":"Lisbon","checkin_date":"2026-10-09","checkout_date":"2026-10-12"}'`;
+  -d '{"destination":"Lisbon","checkin_date":"2027-04-15","checkout_date":"2027-04-18"}'`;
 
 /** Zapier's and Make's round-trip actions expose a single "Max Stops" input,
  * not the two per-leg fields, so this alias exists to keep no-code callers
@@ -42,8 +42,8 @@ const CURL_HOTELS = `curl -X POST "https://api.flightpowers.com/v1/hotels/search
 const CURL_MAX_STOPS = `curl -X POST "https://api.flightpowers.com/v1/flights/roundtrip" \\
   -H "x-api-key: $RAPIDAPI_KEY" \\
   -H "Content-Type: application/json" \\
-  -d '{"from_airport":"LAX","to_airport":"ORD","departure_date":"2026-11-10",
-       "return_date":"2026-11-15","max_stops":0}'
+  -d '{"from_airport":"LAX","to_airport":"ORD","departure_date":"2027-04-15",
+       "return_date":"2027-04-20","max_stops":0}'
 # -> forwarded upstream as max_departure_stops: 0, max_return_stops: 0
 # -> response header: X-Field-Aliased: max_stops -> max_departure_stops, max_return_stops`;
 

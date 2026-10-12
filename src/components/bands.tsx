@@ -139,7 +139,7 @@ export function AgentBand() {
   -H "x-rapidapi-key: $RAPIDAPI_KEY" \\
   -H "Content-Type: application/json" \\
   -d '{"from_airport":"JFK","to_airport":"CUN",
-       "departure_date":"2027-01-01"}'`}</Code>
+       "departure_date":"2027-04-15"}'`}</Code>
           <Link href="/ai-agents" className="mt-3 inline-block text-sm text-signal-400 underline underline-offset-4 hover:text-signal-500">
             Agent recipes →
           </Link>

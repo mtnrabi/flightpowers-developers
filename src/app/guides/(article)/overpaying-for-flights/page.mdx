@@ -119,7 +119,7 @@ response.
 curl -X POST "https://api.flightpowers.com/v1/flights/oneway" \
   -H "Content-Type: application/json" \
   -H "x-api-key: $FLIGHTPOWERS_API_KEY" \
-  -d '{"from_airport":"LAX","to_airport":"SFO","departure_date":"2026-10-21","seat_type":1}'
+  -d '{"from_airport":"LAX","to_airport":"SFO","departure_date":"2027-04-15","seat_type":1}'
 ```
 
 The body is a plain JSON array of itineraries, and each one carries three fields that are
@@ -187,8 +187,8 @@ Feed it the export. Two rows so the columns are unambiguous, in a file called `t
 
 ```text
 from_airport,to_airport,departure_date,paid,seat_type
-LAX,SFO,2026-10-21,142,1
-JFK,CUN,2027-01-01,410,1
+LAX,SFO,2027-04-15,142,1
+JFK,CUN,2027-06-26,410,1
 ```
 
 ```python
@@ -230,8 +230,8 @@ half-second gap keeps a thousand-row export polite and costs you eight minutes.
 
 ## What does a real response look like?
 
-Here is a captured run of exactly the request above, LAX to SFO, taken on
-{FIXTURES.onewayLaxSfoLow.captured_at}.
+Here is a captured run of the same route, LAX to SFO, departing
+{FIXTURES.onewayLaxSfoLow.request.body.departure_date}, taken on {FIXTURES.onewayLaxSfoLow.captured_at}.
 
 <FlightResults flights={FIXTURES.onewayLaxSfoLow.data} />
 

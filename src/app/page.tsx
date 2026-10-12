@@ -8,6 +8,7 @@ import { IntegrationGrid } from '@/components/IntegrationLogos';
 import { HOME_INTEGRATIONS } from '@/lib/integrations';
 import { FLIGHT_PLANS, HOTEL_PLANS, fmtRate, type Plan } from '@/lib/pricing';
 import { FIXTURES } from '@/lib/fixtures';
+import { playgroundDates } from '@/lib/format';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 // The home page targets "travel data API" / "travel APIs"; title.absolute
@@ -145,6 +146,7 @@ export default function HomePage() {
       query: { hotel: 'Rixos Sungate', area: 'Antalya', checkin: '2026-10-05', checkout: '2026-10-10', countries: ['us', 'de', 'il'] },
       markets: (['us', 'de', 'il'] as const).map((c) => ({ country: c, result: geo.data[c] })),
     },
+    formDates: playgroundDates(),
   };
 
   return (

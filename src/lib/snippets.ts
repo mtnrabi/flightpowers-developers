@@ -229,7 +229,7 @@ export function yearScanSnippets(
   host: SnippetHost = 'rapidapi'
 ): Snippets {
   const t = target('flights', '/api/google_flights/oneway/v1', host);
-  const first = params.months[0] ?? '2026-09';
+  const first = params.months[0] ?? '2027-06';
   const exampleBody = { from_airport: params.from, to_airport: params.to, departure_date: `${first}-15`, currency: 'usd' };
   const monthsJs = JSON.stringify(params.months);
   return {
@@ -396,7 +396,7 @@ export function dealHuntSnippets(
   const exampleBody = {
     from_airport: params.from,
     to_airport: params.dests[0] ?? 'ATH',
-    departure_date: params.dates[0] ?? '2027-01-01',
+    departure_date: params.dates[0] ?? '2027-04-15',
     currency: 'usd',
   };
   const n = params.dests.length * params.dates.length;

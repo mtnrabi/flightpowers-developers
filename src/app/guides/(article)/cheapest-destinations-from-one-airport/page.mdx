@@ -160,7 +160,7 @@ import collections, json, requests
 body = {"jsonrpc": "2.0", "id": 3, "method": "tools/call", "params": {
     "name": "search_oneway_flights",
     "arguments": {"from_airport": "BER", "to_airport": ["BCN", "LIS", "ATH", "IST", "CDG"],
-                  "departure_date_from": "2026-10-06", "departure_date_to": "2026-10-08",
+                  "departure_date_from": "2027-04-15", "departure_date_to": "2027-04-17",
                   "max_stops": 1, "sort_by": "price", "limit": 150}}}
 r = requests.post("https://flights.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY",
                   json=body,
@@ -235,7 +235,7 @@ curl -X POST "https://google-flights-live-api.p.rapidapi.com/api/google_flights/
   -d '{
     "from_airport": "BER",
     "to_airport": "CDG",
-    "departure_date": "2026-10-06",
+    "departure_date": "2027-04-15",
     "max_stops": 1,
     "limit": 10,
     "currency": "usd"
@@ -250,7 +250,7 @@ from concurrent.futures import ThreadPoolExecutor
 import requests
 
 DESTS = ["BCN", "LIS", "ATH", "IST", "CDG"]
-DATES = ["2026-10-06", "2026-10-07", "2026-10-08"]
+DATES = ["2027-04-15", "2027-04-16", "2027-04-17"]
 HEADERS = {"Content-Type": "application/json",
            "x-rapidapi-host": "google-flights-live-api.p.rapidapi.com",
            "x-rapidapi-key": os.environ["RAPIDAPI_KEY"]}

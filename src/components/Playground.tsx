@@ -1,10 +1,11 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CodeTabs } from './CodeTabs';
 import { HotelMarketsTable, SearchHeaderChips } from './results';
 import { CapturedBadge } from './ui';
 import type { HotelByName, OnewayFlight } from '@/lib/fixtures';
+import { playgroundDates } from '@/lib/format';
 import { hotelGeoSnippets, onewaySnippets } from '@/lib/snippets';
 import { rapidApiPricingUrl } from '@/lib/site';
 import { track } from '@/lib/track';
@@ -34,6 +35,8 @@ export type PlaygroundInitial = {
     query: { hotel: string; area?: string; checkin: string; checkout: string; countries: string[] };
     markets: Market[];
   };
+  /** Form defaults (playgroundDates at build time); refreshed from today on mount. */
+  formDates: { date: string; checkin: string; checkout: string };
 };
 
 /** Mirrors the server's allowlist (shapes.ts GEO_COUNTRIES), first 6 shown. */
@@ -74,17 +77,25 @@ type RunState =
 export function Playground({ initial }: { initial: PlaygroundInitial }) {
   const [api, setApi] = useState<'flights' | 'hotels'>('flights');
 
-  // Flights request (defaults come from the captured run: deterministic,
-  // so server HTML and hydration agree).
+  // Flights request. Route from the captured run; dates from the server's
+  // formDates, so server HTML and hydration agree, then moved to today + 35
+  // on mount (the static build can be weeks old).
   const [from, setFrom] = useState(initial.flights.request.from);
   const [to, setTo] = useState(initial.flights.request.to);
-  const [date, setDate] = useState(initial.flights.request.date);
+  const [date, setDate] = useState(initial.formDates.date);
 
   // Hotels request.
   const [hotel, setHotel] = useState(initial.hotels.query.hotel);
-  const [checkin, setCheckin] = useState(initial.hotels.query.checkin);
-  const [checkout, setCheckout] = useState(initial.hotels.query.checkout);
+  const [checkin, setCheckin] = useState(initial.formDates.checkin);
+  const [checkout, setCheckout] = useState(initial.formDates.checkout);
   const [countries, setCountries] = useState<string[]>(initial.hotels.query.countries);
+
+  useEffect(() => {
+    const d = playgroundDates();
+    setDate(d.date);
+    setCheckin(d.checkin);
+    setCheckout(d.checkout);
+  }, []);
 
   const [state, setState] = useState<RunState>({ phase: 'idle' });
   const [elapsed, setElapsed] = useState(0);
@@ -335,7 +346,15 @@ export function Playground({ initial }: { initial: PlaygroundInitial }) {
               <span className="font-mono text-[11px] text-ink-500">{(state.ms / 1000).toFixed(1)}s upstream</span>
             </>
           ) : state.phase === 'idle' ? (
-            <CapturedBadge date={api === 'flights' ? initial.flights.capturedAt : initial.hotels.capturedAt} />
+            <>
+              <CapturedBadge date={api === 'flights' ? initial.flights.capturedAt : initial.hotels.capturedAt} />
+              {/* The form is pre-filled with future dates; the captured run keeps its own. */}
+              <span className="font-mono text-[11px] text-ink-500">
+                {api === 'flights'
+                  ? `${initial.flights.request.from} → ${initial.flights.request.to} · ${initial.flights.request.date}`
+                  : `${initial.hotels.query.checkin} → ${initial.hotels.query.checkout}`}
+              </span>
+            </>
           ) : null}
         </div>
 

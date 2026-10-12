@@ -265,7 +265,7 @@ Parse response  Yes`,
     connectSnippet: `curl -X POST "https://api.flightpowers.com/v1/flights/oneway" \\
   -H "x-api-key: $RAPIDAPI_KEY" \\
   -H "Content-Type: application/json" \\
-  -d '{"from_airport":"LHR","to_airport":"JFK","departure_date":"2026-10-13"}'`,
+  -d '{"from_airport":"LHR","to_airport":"JFK","departure_date":"2027-04-15"}'`,
     connectNote:
       'The API on our own domain, with an OpenAPI spec at a fixed path. x-api-key, x-rapidapi-key and Authorization: Bearer are all accepted and equivalent. The key is the one RapidAPI issued you; there is no second account.',
   },
@@ -278,18 +278,18 @@ Parse response  Yes`,
   -H "Content-Type: application/json" \\
   -H "x-rapidapi-host: google-flights-live-api.p.rapidapi.com" \\
   -H "x-rapidapi-key: $RAPIDAPI_KEY" \\
-  -d '{"from_airport":"LHR","to_airport":"JFK","departure_date":"2026-10-13"}'`,
+  -d '{"from_airport":"LHR","to_airport":"JFK","departure_date":"2027-04-15"}'`,
     connectSnippets: {
       flights: `curl -X POST "https://google-flights-live-api.p.rapidapi.com/api/google_flights/oneway/v1" \\
   -H "Content-Type: application/json" \\
   -H "x-rapidapi-host: google-flights-live-api.p.rapidapi.com" \\
   -H "x-rapidapi-key: $RAPIDAPI_KEY" \\
-  -d '{"from_airport":"LHR","to_airport":"JFK","departure_date":"2026-10-13"}'`,
+  -d '{"from_airport":"LHR","to_airport":"JFK","departure_date":"2027-04-15"}'`,
       hotels: `curl -X POST "https://booking-live-api.p.rapidapi.com/search" \\
   -H "Content-Type: application/json" \\
   -H "x-rapidapi-host: booking-live-api.p.rapidapi.com" \\
   -H "x-rapidapi-key: $RAPIDAPI_KEY" \\
-  -d '{"destination":"Lisbon","checkin_date":"2026-10-09","checkout_date":"2026-10-12"}'`,
+  -d '{"destination":"Lisbon","checkin_date":"2027-04-15","checkout_date":"2027-04-18"}'`,
     },
     connectNote:
       'The marketplace host is where the key comes from and where the usage meters. Same API, same request bodies; the only difference from our own domain is the host and the extra x-rapidapi-host header. Flights and hotels are separate listings with separate subscriptions.',
@@ -303,14 +303,14 @@ Parse response  Yes`,
 # or run it from the API with your Apify token
 curl -X POST "https://api.apify.com/v2/acts/mtnrabi~google-flights-real-time-api/run-sync-get-dataset-items?token=$APIFY_TOKEN" \\
   -H "Content-Type: application/json" \\
-  -d '{"endpoint":"oneway","from_airport":"LHR","to_airport":"JFK","departure_date":"2026-10-13","currency":"usd"}'`,
+  -d '{"endpoint":"oneway","from_airport":"LHR","to_airport":"JFK","departure_date":"2027-04-15","currency":"usd"}'`,
     connectSnippets: {
       flights: `curl -X POST "https://api.apify.com/v2/acts/mtnrabi~google-flights-real-time-api/run-sync-get-dataset-items?token=$APIFY_TOKEN" \\
   -H "Content-Type: application/json" \\
-  -d '{"endpoint":"oneway","from_airport":"LHR","to_airport":"JFK","departure_date":"2026-10-13","currency":"usd"}'`,
+  -d '{"endpoint":"oneway","from_airport":"LHR","to_airport":"JFK","departure_date":"2027-04-15","currency":"usd"}'`,
       hotels: `curl -X POST "https://api.apify.com/v2/acts/mtnrabi~booking-real-time-api/run-sync-get-dataset-items?token=$APIFY_TOKEN" \\
   -H "Content-Type: application/json" \\
-  -d '{"endpoint":"/search","destination":"Lisbon","checkin_date":"2026-10-09","checkout_date":"2026-10-12","adults":2,"currency":"USD"}'`,
+  -d '{"endpoint":"/search","destination":"Lisbon","checkin_date":"2027-04-15","checkout_date":"2027-04-18","adults":2,"currency":"USD"}'`,
     },
     connectNote:
       'Pay-per-event through your own Apify account: no monthly plan, and an idle month costs nothing. The input field names and the endpoint values are the actors\u2019 own published input schemas, read from api.apify.com on 2026-09-02. Nothing to subscribe to on RapidAPI for this path.',
@@ -323,18 +323,18 @@ export const TASKS: TaskDef[] = [
     name: 'One-way flight search',
     api: 'flights',
     tool: 'search_oneway_flights',
-    prompt: 'Find me a nonstop JFK to Cancun flight on January 1 and tell me if the price is any good.',
-    toolCall: { from_airport: 'JFK', to_airport: 'CUN', departure_date: '2027-01-01', max_stops: 0, limit: 5 },
+    prompt: 'Find me a nonstop JFK to Cancun flight on April 15 and tell me if the price is any good.',
+    toolCall: { from_airport: 'JFK', to_airport: 'CUN', departure_date: '2027-04-15', max_stops: 0, limit: 5 },
     fields: ['price', 'price_insights_low', 'price_insights_high', 'price_range_in_relation_to_other_periods', 'buy_link'],
     description:
       'The agent searches live Google Flights data and answers with fares it can actually judge: every result carries Google’s historical price band and a low | typical | high verdict, so “is the price any good” is a field read, not a guess. The buy_link hands the user a working booking deep link.',
     rest: {
       path: '/v1/flights/oneway',
-      body: { from_airport: 'JFK', to_airport: 'CUN', departure_date: '2027-01-01', max_stops: 0, limit: 5 },
+      body: { from_airport: 'JFK', to_airport: 'CUN', departure_date: '2027-04-15', max_stops: 0, limit: 5 },
     },
     apify: {
       actor: 'flights',
-      input: { endpoint: 'oneway', from_airport: 'JFK', to_airport: 'CUN', departure_date: '2027-01-01', currency: 'usd', limit: 5 },
+      input: { endpoint: 'oneway', from_airport: 'JFK', to_airport: 'CUN', departure_date: '2027-04-15', currency: 'usd', limit: 5 },
     },
   },
   {
@@ -342,14 +342,14 @@ export const TASKS: TaskDef[] = [
     name: 'Round-trip search',
     api: 'flights',
     tool: 'search_roundtrip_flights',
-    prompt: 'I need a round trip New York to Paris, out October 6, back October 13. What are my options?',
-    toolCall: { from_airport: 'JFK', to_airport: 'CDG', departure_date: '2026-10-06', return_date: '2026-10-13', limit: 5 },
+    prompt: 'I need a round trip New York to Paris, out April 15, back April 22. What are my options?',
+    toolCall: { from_airport: 'JFK', to_airport: 'CDG', departure_date: '2027-04-15', return_date: '2027-04-22', limit: 5 },
     fields: ['total_price', 'total_duration_seconds', 'departure_flight_airline', 'return_flight_airline', 'buy_link'],
     description:
       'Round-trip is a first-class paired-leg search: one object per itinerary with both legs already matched and a combined total, not two one-way lists the agent has to cross-join. The agent reads total_price and presents real bookable combinations.',
     rest: {
       path: '/v1/flights/roundtrip',
-      body: { from_airport: 'JFK', to_airport: 'CDG', departure_date: '2026-10-06', return_date: '2026-10-13', limit: 5 },
+      body: { from_airport: 'JFK', to_airport: 'CDG', departure_date: '2027-04-15', return_date: '2027-04-22', limit: 5 },
     },
     apify: {
       actor: 'flights',
@@ -357,8 +357,8 @@ export const TASKS: TaskDef[] = [
         endpoint: 'roundtrip',
         from_airport: 'JFK',
         to_airport: 'CDG',
-        departure_date: '2026-10-06',
-        return_date: '2026-10-13',
+        departure_date: '2027-04-15',
+        return_date: '2027-04-22',
         currency: 'usd',
         limit: 5,
       },
@@ -369,19 +369,19 @@ export const TASKS: TaskDef[] = [
     name: 'Price-insights check',
     api: 'flights',
     tool: 'search_oneway_flights',
-    prompt: 'I was quoted $129 for JFK→Cancún on January 1. Should I take it?',
-    toolCall: { from_airport: 'JFK', to_airport: 'CUN', departure_date: '2027-01-01', limit: 3 },
+    prompt: 'I was quoted $129 for JFK→Cancún on April 15. Should I take it?',
+    toolCall: { from_airport: 'JFK', to_airport: 'CUN', departure_date: '2027-04-15', limit: 3 },
     fields: ['price_insights_low', 'price_insights_high', 'price_range_in_relation_to_other_periods'],
     description:
       'The recipe that only this API can run: the agent compares a quoted fare against Google’s own price band for the route and dates. Below the band’s low end → take it; above the high end → wait. The verdict field gives the agent a defensible recommendation with a source.',
     rest: {
       path: '/v1/flights/oneway',
-      body: { from_airport: 'JFK', to_airport: 'CUN', departure_date: '2027-01-01', limit: 3 },
+      body: { from_airport: 'JFK', to_airport: 'CUN', departure_date: '2027-04-15', limit: 3 },
       note: 'The band and the verdict ride on every result of the ordinary search. There is no separate insights endpoint to call and nothing extra to enable.',
     },
     apify: {
       actor: 'flights',
-      input: { endpoint: 'oneway', from_airport: 'JFK', to_airport: 'CUN', departure_date: '2027-01-01', currency: 'usd', limit: 3 },
+      input: { endpoint: 'oneway', from_airport: 'JFK', to_airport: 'CUN', departure_date: '2027-04-15', currency: 'usd', limit: 3 },
     },
   },
   {
@@ -389,19 +389,19 @@ export const TASKS: TaskDef[] = [
     name: 'Cheapest-date scan',
     api: 'flights',
     tool: 'search_oneway_flights',
-    prompt: 'What is the cheapest day to fly LIS to New York in November?',
-    toolCall: { from_airport: 'LIS', to_airport: 'JFK', departure_date_from: '2026-11-01', departure_date_to: '2026-11-30', limit: 5 },
+    prompt: 'What is the cheapest day to fly LIS to New York in June?',
+    toolCall: { from_airport: 'LIS', to_airport: 'JFK', departure_date_from: '2027-06-01', departure_date_to: '2027-06-30', limit: 5 },
     fields: ['departure_date', 'price', 'price_range_in_relation_to_other_periods'],
     description:
       'The tool accepts a date RANGE and expands it internally: one call, not thirty. The agent gets a fare per day and answers with the cheapest date and how much picking it saves. Over REST, the same scan is a parallel burst of per-date requests; the rate limits (150–500/min by tier) exist exactly for this.',
     rest: {
       path: '/v1/flights/oneway',
-      body: { from_airport: 'LIS', to_airport: 'JFK', departure_date: '2026-11-01', limit: 5 },
+      body: { from_airport: 'LIS', to_airport: 'JFK', departure_date: '2027-06-01', limit: 5 },
       note: 'The date range is an MCP convenience. Over HTTP it is one request per date, fired in parallel: 30 dates meters as 30 requests, and the per-minute rate limit on your plan is what makes the burst finish quickly.',
     },
     apify: {
       actor: 'flights',
-      input: { endpoint: 'oneway', from_airport: 'LIS', to_airport: 'JFK', departure_date: '2026-11-01', currency: 'usd', limit: 5 },
+      input: { endpoint: 'oneway', from_airport: 'LIS', to_airport: 'JFK', departure_date: '2027-06-01', currency: 'usd', limit: 5 },
       note: 'The actor input takes one departure_date. A month scan is one run per date, which is what Apify\u2019s own scheduling and concurrency are for.',
     },
   },
@@ -410,8 +410,8 @@ export const TASKS: TaskDef[] = [
     name: 'Hotel search',
     api: 'hotels',
     tool: 'search_hotels',
-    prompt: 'Find me a hotel in Lisbon, October 9 to 12, 2 adults, review score 8+, free cancellation.',
-    toolCall: { destination: 'Lisbon', checkin_date: '2026-10-09', checkout_date: '2026-10-12', adults: 2, filters: ['review_score_8', 'free_cancellation'] },
+    prompt: 'Find me a hotel in Lisbon, April 15 to 18, 2 adults, review score 8+, free cancellation.',
+    toolCall: { destination: 'Lisbon', checkin_date: '2027-04-15', checkout_date: '2027-04-18', adults: 2, filters: ['review_score_8', 'free_cancellation'] },
     fields: ['name', 'price_string', 'review_score', 'review_count', 'room_type', 'link'],
     description:
       'Live Booking.com rates with the filters the real site has (24 of them). Every property returns with a price, review score, room type, and a working booking link, so the agent can present a shortlist the user can act on immediately.',
@@ -419,8 +419,8 @@ export const TASKS: TaskDef[] = [
       path: '/v1/hotels/search',
       body: {
         destination: 'Lisbon',
-        checkin_date: '2026-10-09',
-        checkout_date: '2026-10-12',
+        checkin_date: '2027-04-15',
+        checkout_date: '2027-04-18',
         adults: 2,
         filters: ['review_score_8', 'free_cancellation'],
       },
@@ -431,8 +431,8 @@ export const TASKS: TaskDef[] = [
       input: {
         endpoint: '/search',
         destination: 'Lisbon',
-        checkin_date: '2026-10-09',
-        checkout_date: '2026-10-12',
+        checkin_date: '2027-04-15',
+        checkout_date: '2027-04-18',
         adults: 2,
         currency: 'USD',
       },
@@ -443,8 +443,8 @@ export const TASKS: TaskDef[] = [
     name: 'Rate-parity check',
     api: 'hotels',
     tool: 'find_hotel_by_name',
-    prompt: 'Price the Rixos Sungate in Antalya for Oct 5–10 as seen from Germany and from Japan. Ask each market three times.',
-    toolCall: { hotel_name: 'Rixos Sungate Antalya', checkin_date: '2026-10-05', checkout_date: '2026-10-10', price_as_seen_from: 'de' },
+    prompt: 'Price the Rixos Sungate in Antalya for Apr 15–20 as seen from Germany and from Japan. Ask each market three times.',
+    toolCall: { hotel_name: 'Rixos Sungate Antalya', checkin_date: '2027-04-15', checkout_date: '2027-04-20', price_as_seen_from: 'de' },
     fields: ['available', 'price_string', 'price', 'room_type'],
     description:
       'Identical calls except price_as_seen_from (the REST field is proxy_country), a two-letter code that prices the stay as a shopper in that country would see it. Ask each market more than once: in a controlled run on 2026-08-28, Germany and Japan answered with the same number every time while the US market moved between identical requests. The agent compares the ranges and calls a gap real only when one market’s whole range sits below the other’s.',
@@ -452,8 +452,8 @@ export const TASKS: TaskDef[] = [
       path: '/v1/hotels/by-name',
       body: {
         hotel_name: 'Rixos Sungate Antalya',
-        checkin_date: '2026-10-05',
-        checkout_date: '2026-10-10',
+        checkin_date: '2027-04-15',
+        checkout_date: '2027-04-20',
         proxy_country: 'de',
       },
       note: 'proxy_country is an input, never a response field. Hold one named property fixed and sample each market several times back to back: rates move between identical calls, so a single reading per country measures the noise as much as the market.',
@@ -463,8 +463,8 @@ export const TASKS: TaskDef[] = [
       input: {
         endpoint: '/hotel_by_name',
         hotel_name: 'Rixos Sungate Antalya',
-        checkin_date: '2026-10-05',
-        checkout_date: '2026-10-10',
+        checkin_date: '2027-04-15',
+        checkout_date: '2027-04-20',
         currency: 'USD',
         proxy_country: 'de',
       },
@@ -476,18 +476,18 @@ export const TASKS: TaskDef[] = [
     api: 'flights',
     tool: 'search_oneway_flights',
     prompt: 'Every morning, check JFK→LHR fares for my December dates and alert me when Google’s verdict flips to low.',
-    toolCall: { from_airport: 'JFK', to_airport: 'LHR', departure_date: '2026-12-10', limit: 3 },
+    toolCall: { from_airport: 'JFK', to_airport: 'LHR', departure_date: '2027-12-10', limit: 3 },
     fields: ['price', 'price_range_in_relation_to_other_periods', 'buy_link'],
     description:
       'The verdict field makes alerting trivial: poll on a schedule and fire only when price_range_in_relation_to_other_periods === "low". No home-grown price-history database needed, because Google’s band IS the history. Send the buy_link in the alert so the user can book from the notification.',
     rest: {
       path: '/v1/flights/oneway',
-      body: { from_airport: 'JFK', to_airport: 'LHR', departure_date: '2026-12-10', limit: 3 },
+      body: { from_airport: 'JFK', to_airport: 'LHR', departure_date: '2027-12-10', limit: 3 },
       note: 'One request per run. A daily check is about 30 requests a month.',
     },
     apify: {
       actor: 'flights',
-      input: { endpoint: 'oneway', from_airport: 'JFK', to_airport: 'LHR', departure_date: '2026-12-10', currency: 'usd', limit: 3 },
+      input: { endpoint: 'oneway', from_airport: 'JFK', to_airport: 'LHR', departure_date: '2027-12-10', currency: 'usd', limit: 3 },
       note: 'Apify runs this on its own schedule. Pay-per-event means a daily run costs only the events it fires.',
     },
   },

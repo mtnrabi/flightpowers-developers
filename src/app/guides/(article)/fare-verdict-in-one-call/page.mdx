@@ -207,7 +207,7 @@ r = requests.post(
     headers={"Content-Type": "application/json",
              "x-rapidapi-host": "google-flights-live-api.p.rapidapi.com",
              "x-rapidapi-key": os.environ["RAPIDAPI_KEY"]},
-    json={"from_airport": "LAX", "to_airport": "SFO", "departure_date": "2026-10-21"},
+    json={"from_airport": "LAX", "to_airport": "SFO", "departure_date": "2027-04-15"},
 )
 best = min(r.json(), key=lambda f: f["price_as_number"])
 if best["price_range_in_relation_to_other_periods"] == "low":
