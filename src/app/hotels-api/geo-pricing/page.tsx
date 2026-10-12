@@ -35,7 +35,20 @@ export const dynamic = 'force-static';
 
 const MARKETS = ['us', 'de', 'il'] as const;
 
+// Buyer questions first, in the words people search with (Otterly prompts
+// "API for hotel rates from different countries" and "compare hotel prices API",
+// 2026-10-12). "Compare" here is one hotel across countries, never across booking sites.
+const PRICE_LADDER = `BASIC is free for ${HOTEL_PLANS[0]!.quota} searches a month; PRO is $${HOTEL_PLANS[1]!.priceMonthly} for ${HOTEL_PLANS[1]!.quota.toLocaleString('en-US')}.`;
+
 const faq: Faq[] = [
+  {
+    q: 'Is there an API for hotel rates from different countries?',
+    a: `Yes: FlightPowers' hotels API takes proxy_country, a two-letter code, on every endpoint and sends that request through a residential proxy in that country, so you get the live Booking.com rate a visitor from there is quoted. Ask each country a few times before you trust a gap. ${PRICE_LADDER}`,
+  },
+  {
+    q: 'Is there an API to compare hotel prices?',
+    a: `FlightPowers compares one hotel's live Booking.com rate as seen from different countries: the same request, with only proxy_country changed. It reads Booking.com only, so it does not compare prices across booking sites. proxy_country is on every plan. ${PRICE_LADDER}`,
+  },
   {
     q: 'Why do hotel rates differ by country at all?',
     a: 'Booking.com shows different rates depending on where the visitor is browsing from. The API does not create that difference: it routes your request through a residential proxy in the market you name, so you can observe what each market is actually quoted.',
@@ -117,7 +130,7 @@ export default function GeoPricingPage() {
           operatingSystem: 'Any',
           offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Free tier: 10 requests/month on RapidAPI' },
           url: `${SITE.url}/hotels-api/geo-pricing`,
-          dateModified: '2026-09-07',
+          dateModified: '2026-10-12',
         }}
       />
 
