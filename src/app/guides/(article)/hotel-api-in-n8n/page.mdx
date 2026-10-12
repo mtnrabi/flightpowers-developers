@@ -54,7 +54,7 @@ There is a first-party community node, <a href={LINKS.npmNode} rel="noopener">`n
 Install it the way you install any n8n community node (from the community-nodes section of your instance's settings, by the package name `n8n-nodes-flightpowers`), then build the workflow:
 
 1. **Schedule Trigger.** Once a day, at an hour you'll actually read the alert.
-2. **FlightPowers node.** Choose the hotel search operation and set the destination and dates you are watching: for example "Rixos Sungate, Antalya" for check-in on October 5, check-out on October 10. Add your credential (the RapidAPI key) once; every later workflow reuses it.
+2. **FlightPowers node.** Choose the hotel search operation and set the destination and dates you are watching: for example "Rixos Sungate, Antalya" for check-in on April 15, check-out on April 20. Add your credential (the RapidAPI key) once; every later workflow reuses it.
 3. **IF node.** Condition: the lowest `price` in the results is below your threshold (say, 800 for $800). That single comparison is the entire alerting logic. Take the minimum rather than the first row: result ordering churns between identical requests, so "the first result" is not a stable thing to compare.
 4. **Notification node**: whatever you already use (email, Telegram, Slack, a webhook). Include the price (`price_string`), the room type (`room_type`), the review score (`review_score`), and the `link`, which opens that exact property and dates on Booking.com ready to book.
 

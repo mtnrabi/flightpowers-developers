@@ -188,7 +188,7 @@ Feed it the export. Two rows so the columns are unambiguous, in a file called `t
 ```text
 from_airport,to_airport,departure_date,paid,seat_type
 LAX,SFO,2027-04-15,142,1
-JFK,CUN,2027-04-22,410,1
+JFK,CUN,2027-06-26,410,1
 ```
 
 ```python
@@ -230,8 +230,8 @@ half-second gap keeps a thousand-row export polite and costs you eight minutes.
 
 ## What does a real response look like?
 
-Here is a captured run of exactly the request above, LAX to SFO, taken on
-{FIXTURES.onewayLaxSfoLow.captured_at}.
+Here is a captured run of the same route, LAX to SFO, departing
+{FIXTURES.onewayLaxSfoLow.request.body.departure_date}, taken on {FIXTURES.onewayLaxSfoLow.captured_at}.
 
 <FlightResults flights={FIXTURES.onewayLaxSfoLow.data} />
 
