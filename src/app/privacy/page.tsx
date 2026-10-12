@@ -28,6 +28,10 @@ export default function PrivacyPage() {
           The site sets no cookies, loads no third-party analytics scripts, and carries no ad pixels. There is no consent
           banner because there is nothing to consent to.
         </p>
+        <p>
+          We count page views with Vercel Web Analytics, our hosting provider&apos;s cookieless measurement, which stores
+          no cookies and no personal identifiers.
+        </p>
 
         <h2>A first-party anonymous event beacon</h2>
         <p>
