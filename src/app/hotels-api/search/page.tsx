@@ -399,6 +399,17 @@ export default function HotelSearchPage() {
               <FieldRow name="filters" type="string[]">
                 Any of the {COUNTS.hotelFilters} values below.
               </FieldRow>
+              {/* Values from hotel_agent nodejs_mvp/main.js SORT_OPTIONS (#48, live 2026-10-07). */}
+              <FieldRow name="sort" type="string">
+                <code className="field">price_asc</code> (cheapest first), <code className="field">price_desc</code> (most
+                expensive first) or <code className="field">rating_desc</code> (highest review score first);{' '}
+                <code className="field">price</code> and <code className="field">rating</code> are shorthands for{' '}
+                <code className="field">price_asc</code> and <code className="field">rating_desc</code>. Booking.com sorts the
+                whole destination first, then the rows are ordered by the tax-inclusive <code className="field">price</code> (or{' '}
+                <code className="field">review_score</code>), rows without one last. Case does not matter. Leave it out, or send
+                an empty string, for Booking.com&apos;s own order. Any other value is a 400 that lists the valid ones, before any
+                search runs.
+              </FieldRow>
             </div>
           </div>
           <div>

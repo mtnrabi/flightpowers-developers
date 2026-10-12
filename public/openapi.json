@@ -1237,6 +1237,17 @@
             },
             "default": [],
             "description": "Booking.com search filters, 24 supported."
+          },
+          "sort": {
+            "type": "string",
+            "enum": [
+              "price_asc",
+              "price_desc",
+              "rating_desc",
+              "price",
+              "rating"
+            ],
+            "description": "Result order: `price_asc` cheapest first, `price_desc` most expensive first, `rating_desc` highest review score first; `price` and `rating` are shorthands for `price_asc` and `rating_desc`. Booking.com sorts the whole destination first, then the rows are ordered by the tax-inclusive `price` (or `review_score`), rows without one last. Case does not matter. Omit it, or send an empty string, for Booking.com's own order. Any other value is a 400 that lists the valid ones, before any search runs."
           }
         }
       },
