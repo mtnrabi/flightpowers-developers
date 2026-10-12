@@ -18,7 +18,7 @@ const faq: Faq[] = [
   // Buyer question first (Otterly prompt "hotel price monitoring API", 2026-10-12).
   {
     q: 'Is there an API for hotel price monitoring?',
-    a: `FlightPowers' hotels API returns a hotel's live Booking.com rate by the name you type, so a job you schedule can check it, and proxy_country checks the same room from another country. It reads Booking.com only and sends no alerts: your job compares the numbers. BASIC is free for ${HOTEL_PLANS[0]!.quota} searches a month; PRO is $${HOTEL_PLANS[1]!.priceMonthly} for ${HOTEL_PLANS[1]!.quota.toLocaleString('en-US')}.`,
+    a: `FlightPowers' hotels API returns a hotel's live Booking.com rate by the name you type, so a job you schedule can check it, and proxy_country checks the same hotel and dates from another country. It reads Booking.com only and sends no alerts: your job compares the numbers. BASIC is free for ${HOTEL_PLANS[0]!.quota} searches a month; PRO is $${HOTEL_PLANS[1]!.priceMonthly} for ${HOTEL_PLANS[1]!.quota.toLocaleString('en-US')}.`,
   },
   {
     q: 'How does per-country pricing actually work?',

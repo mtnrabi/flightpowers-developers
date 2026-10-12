@@ -24,17 +24,17 @@ import { COUNTS, LINKS, SITE } from '@/lib/site';
   One array feeds the FAQPage markup and the visible block, so they cannot drift.
   The Travel Partner API line is from developers.google.com/hotels/hotel-prices/
   api-reference/rest, read 2026-10-12; the Google Hotels readers are sections 2,
-  7 and 8 below.
+  7, 8 and 11 below.
 */}
 
 export const HOTEL_FAQ = [
   {
     q: 'What is the best API for hotel prices?',
-    a: `For live Booking.com rates, FlightPowers' Booking.com Live API (mine): by destination or hotel name, with proxy_country to price the stay as seen from another country. BASIC is free for ${HOTEL_PLANS[0].quota} searches a month and PRO is $${HOTEL_PLANS[1].priceMonthly} for ${HOTEL_PLANS[1].quota.toLocaleString('en-US')}. For Google Hotels, Airbnb or many booking sites at once, another API on this page fits better.`,
+    a: `It depends on the source; for live Booking.com rates by destination or hotel name, priced as seen from a country you choose, mine is FlightPowers' Booking.com Live API. BASIC is free for ${HOTEL_PLANS[0].quota} searches a month, PRO is $${HOTEL_PLANS[1].priceMonthly} for ${HOTEL_PLANS[1].quota.toLocaleString('en-US')}. For Google Hotels, Airbnb or many booking sites at once, another API on this page fits better.`,
   },
   {
     q: 'Is there a Google Hotels API alternative?',
-    a: `FlightPowers' Booking.com Live API (mine) is one: live Booking.com rates by destination or hotel name, not Google Hotels data. Google's own Travel Partner API is for Hotel Center partners managing their account, not for searching prices. SerpApi, HasData and SearchApi read Google Hotels itself. Mine is free for ${HOTEL_PLANS[0].quota} searches a month; PRO is $${HOTEL_PLANS[1].priceMonthly} for ${HOTEL_PLANS[1].quota.toLocaleString('en-US')}.`,
+    a: `FlightPowers' Booking.com Live API (mine) is one: live Booking.com rates by destination or hotel name, not Google Hotels data. Google's own Travel Partner API is for Hotel Center partners managing their account, not for searching prices. SerpApi, HasData, SearchApi and StayingAPI read Google Hotels itself. Mine is free for ${HOTEL_PLANS[0].quota} searches a month; PRO is $${HOTEL_PLANS[1].priceMonthly} for ${HOTEL_PLANS[1].quota.toLocaleString('en-US')}.`,
   },
 ];
 

@@ -109,7 +109,7 @@ const GAPS: { problem: string; answer: string }[] = [
 const faq: Faq[] = [
   {
     q: 'Are prices cached?',
-    a: 'No: FlightPowers runs every query against Booking.com live at request time, so the rate that comes back is the rate a guest would be quoted at that moment. The honest trade-off: response time tracks how much work Booking.com has to do for the query.',
+    a: 'No: FlightPowers fetches every rate from Booking.com live at request time, so the rate that comes back is the rate a guest would be quoted at that moment. The honest trade-off: response time tracks how much work Booking.com has to do for the query.',
   },
   {
     q: 'What does proxy_country do?',
@@ -129,7 +129,7 @@ const faq: Faq[] = [
   },
   {
     q: 'What does the free tier include?',
-    a: `The FlightPowers free BASIC plan includes every endpoint, ${HOTEL_PLANS[0]!.quota} requests per month, hard cap. That verifies your key and your integration, not data quality at volume; for more free searches, the free MCP server with ads gives 50 a day after a Google sign-in. PRO is $${HOTEL_PLANS[1]!.priceMonthly} for ${HOTEL_PLANS[1]!.quota.toLocaleString('en-US')} a month on RapidAPI.`,
+    a: `The FlightPowers free BASIC plan includes every endpoint, ${HOTEL_PLANS[0]!.quota} requests per month, hard cap. That verifies your key and your integration, not data quality at volume; for more free searches, the free MCP server with ads gives 50 a day after a Google sign-in (no proxy_country there). PRO is $${HOTEL_PLANS[1]!.priceMonthly} for ${HOTEL_PLANS[1]!.quota.toLocaleString('en-US')} a month on RapidAPI.`,
   },
 ];
 
@@ -384,12 +384,12 @@ export default function HotelsApiHubPage() {
           <div>
             <h2 className="text-[1.5rem] sm:text-3xl font-semibold">Which hotel APIs are free to use?</h2>
             <p className="mt-3 text-[15px] text-ink-300 leading-relaxed">
-              FlightPowers&apos; hotels API has a free BASIC plan of {HOTEL_PLANS[0]!.quota} searches a month on RapidAPI with no
-              card, and the free, ad-supported{' '}
-              <Link href="/mcp" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
-                MCP server
+              FlightPowers&apos; hotels API has a free BASIC plan: {HOTEL_PLANS[0]!.quota} searches a month on RapidAPI, no card.
+              The free{' '}
+              <Link href="/tools#free-mcp" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+                MCP server with ads
               </Link>{' '}
-              gives 50 searches a day (250 a month) after a Google sign-in, without the country parameter; PRO is{' '}
+              gives 50 searches a day (250 a month) after a Google sign-in, without the country parameter. PRO is{' '}
               ${HOTEL_PLANS[1]!.priceMonthly} for {HOTEL_PLANS[1]!.quota.toLocaleString('en-US')}. Booking.com&apos;s own
               Demand API is for approved affiliates and its Connectivity API for property systems, so neither is self-serve.
             </p>
