@@ -400,8 +400,8 @@ adults=2&includedAirlineCodes=TG&max=3" \\
   -d '{
     "from_airport": "SYD",
     "to_airport": "BKK",
-    "departure_date": "2026-10-19",
-    "return_date": "2026-10-23",
+    "departure_date": "2027-04-15",
+    "return_date": "2027-04-19",
     "passengers": [1, 1],
     "departure_airline_codes": ["TG"],
     "limit": 3
@@ -515,16 +515,16 @@ locations/hotels/by-city?cityCode=PAR" \\
 
 # 2. price those specific hotels
 curl -X GET "https://test.api.amadeus.com/v3/shopping/hotel-offers?\\
-hotelIds=MCLONGHM&adults=2&checkInDate=2026-10-19\\
-&checkOutDate=2026-10-23" \\
+hotelIds=MCLONGHM&adults=2&checkInDate=2027-04-15\\
+&checkOutDate=2027-04-19" \\
   -H "Authorization: Bearer $ACCESS_TOKEN"`}</Code>
           <Code label="after · free-text destination, one call, no ID resolution">{`curl -X POST https://api.flightpowers.com/v1/hotels/search \\
   -H "x-api-key: $FLIGHTPOWERS_API_KEY" \\
   -H "Content-Type: application/json" \\
   -d '{
     "destination": "Paris",
-    "checkin_date": "2026-10-19",
-    "checkout_date": "2026-10-23",
+    "checkin_date": "2027-04-15",
+    "checkout_date": "2027-04-19",
     "adults": 2,
     "currency": "EUR"
   }'`}</Code>

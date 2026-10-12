@@ -39,16 +39,16 @@ export const q = (p) => p.quota.toLocaleString('en-US');
 export const BENCHMARK_FAQ = [
   {
     q: 'What is the best hotel price API?',
-    a: 'It depends on the job. On these calls: StayAPI was the fastest Booking.com search (1.1 s), SerpApi covered the most sellers (34 for one hotel), HasData and SearchApi were the cheapest per request at entry, and mine had the smallest monthly plan in this test, one tax-inclusive total and a country input, while being slower than every API here except the Apify scraper run, at 7.9 s.',
+    a: 'It depends on the job. On these calls: StayAPI was the fastest Booking.com search (1.1 s), SerpApi covered the most sellers (34 for one hotel), HasData and SearchApi were the cheapest per request at entry, and mine, FlightPowers, had the smallest monthly plan in this test, one tax-inclusive total and a country input, while being slower than every API here except the Apify scraper run, at 7.9 s.',
   },
   {
     q: 'Which Booking.com rates API includes taxes in the price?',
-    a: "HasData returns the before-tax price, the tax lines and a total. StayAPI's total_price includes tax in some markets and not in others, with a breakdown that says which. Mine returns one tax-inclusive total. SearchApi's property rooms came back with no tax field.",
+    a: "HasData returns the before-tax price, the tax lines and a total. StayAPI's total_price includes tax in some markets and not in others, with a breakdown that says which. Mine, FlightPowers, returns one tax-inclusive total. SearchApi's property rooms came back with no tax field.",
     code: 'total_price',
   },
   {
     q: 'How fast is a Booking.com rates API?',
-    a: '1.1 to 3.2 seconds for the fastest four on a search or a named hotel, 7.9 to 10.2 for mine, 39 to 75 for an Apify scraper run.',
+    a: '1.1 to 3.2 seconds for the fastest four on a search or a named hotel, 7.9 to 10.2 for mine (FlightPowers), 39 to 75 for an Apify scraper run.',
   },
   {
     q: 'Is there an official Booking.com rates API?',
@@ -57,7 +57,7 @@ export const BENCHMARK_FAQ = [
   },
   {
     q: 'How much does a Booking.com rates API cost per request?',
-    a: 'About $0.003 (HasData), $0.004 (SearchApi), $0.005 (mine), $0.033 (StayAPI) and $0.035 (Makcorps) at each entry plan, read on 2026-10-07.',
+    a: 'About $0.003 (HasData), $0.004 (SearchApi), $0.005 (FlightPowers, mine), $0.033 (StayAPI) and $0.035 (Makcorps) at each entry plan, read on 2026-10-07.',
   },
 ];
 

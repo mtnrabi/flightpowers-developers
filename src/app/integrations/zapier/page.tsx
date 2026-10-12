@@ -81,7 +81,7 @@ Method   POST
 
 Data     {"from_airport": "JFK",
           "to_airport": "CUN",
-          "departure_date": "2027-01-01"}
+          "departure_date": "2027-04-15"}
 
 Headers  x-api-key: YOUR_RAPIDAPI_KEY
          Content-Type: application/json`}</Code>
@@ -119,8 +119,8 @@ Headers  x-api-key: YOUR_RAPIDAPI_KEY
 Method   POST
 
 Data     {"destination": "Lisbon",
-          "checkin_date": "2026-10-09",
-          "checkout_date": "2026-10-12"}
+          "checkin_date": "2027-04-15",
+          "checkout_date": "2027-04-18"}
 
 Headers  x-api-key: YOUR_RAPIDAPI_KEY
          Content-Type: application/json`}</Code>

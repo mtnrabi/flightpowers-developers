@@ -211,7 +211,7 @@ r = requests.post(
         "x-rapidapi-key": os.environ["RAPIDAPI_KEY"],
     },
     json={"from_airport": "JFK", "to_airport": "LHR",
-          "departure_date": "2026-10-15", "currency": "usd"},
+          "departure_date": "2027-04-15", "currency": "usd"},
 )
 
 if r.headers.get("X-Search-Status") == "degraded":

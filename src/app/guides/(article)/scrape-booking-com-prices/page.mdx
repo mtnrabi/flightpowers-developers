@@ -85,8 +85,8 @@ SEARCH = "https://www.booking.com/searchresults.html"
 def search_url(**overrides):
     q = {
         "ss": "Lisbon",
-        "checkin": "2026-10-05",
-        "checkout": "2026-10-08",
+        "checkin": "2027-04-15",
+        "checkout": "2027-04-18",
         "group_adults": 2,
         "group_children": 0,
         "no_rooms": 1,
@@ -235,8 +235,8 @@ curl -X POST "https://booking-live-api.p.rapidapi.com/search" \
   -H "x-rapidapi-key: $RAPIDAPI_KEY" \
   -d '{
     "destination": "Lisbon",
-    "checkin_date": "2026-10-05",
-    "checkout_date": "2026-10-08",
+    "checkin_date": "2027-04-15",
+    "checkout_date": "2027-04-18",
     "adults": 2,
     "currency": "USD"
   }'
@@ -252,8 +252,8 @@ r = requests.post(
         "x-rapidapi-host": "booking-live-api.p.rapidapi.com",
         "x-rapidapi-key": os.environ["RAPIDAPI_KEY"],
     },
-    json={"destination": "Lisbon", "checkin_date": "2026-10-05",
-          "checkout_date": "2026-10-08", "adults": 2, "currency": "USD"},
+    json={"destination": "Lisbon", "checkin_date": "2027-04-15",
+          "checkout_date": "2027-04-18", "adults": 2, "currency": "USD"},
 )
 
 for p in r.json()["properties"]:

@@ -122,7 +122,7 @@ export function parseIntent(text: string, now = new Date()): ParsedIntent {
     return {
       kind: 'unparsed',
       hint:
-        'Tell me a route and a date, like "JFK to CUN on 2027-01-01", "cheapest day LIS to New York in November", or tap one of the examples.',
+        'Tell me a route and a date, like "JFK to CUN on 2027-04-15", "cheapest day LIS to New York in November", or tap one of the examples.',
     };
   }
   const [from, to] = [airports[0]!, airports[1]!];

@@ -118,7 +118,7 @@ const HOTEL_SEARCH_EXCERPT = (() => {
 export default function HotelSearchPage() {
   const fx = FIXTURES.hotelSearchLisbon;
   const p0 = fx.data.properties[0]!;
-  const snippets = hotelSearchSnippets({ destination: 'Lisbon', checkin: '2026-10-09', checkout: '2026-10-12' });
+  const snippets = hotelSearchSnippets({ destination: 'Lisbon', checkin: '2027-04-15', checkout: '2027-04-18' });
 
   return (
     <>

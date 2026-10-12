@@ -402,8 +402,8 @@ export default function CompareDuffelPage() {
   -d '{
     "from_airport": "JFK",
     "to_airport": "LHR",
-    "departure_date": "2026-10-15",
-    "return_date": "2026-10-22"
+    "departure_date": "2027-04-15",
+    "return_date": "2027-04-22"
   }'`}</Code>
           <p className="mt-4 text-[14px] text-ink-400 leading-relaxed">
             Free tier: 10 requests/month, hard cap. It verifies your key, doesn’t evaluate. The full walkthrough is in{' '}

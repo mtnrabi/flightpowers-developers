@@ -469,8 +469,8 @@ export default function CompareSerpApiPage() {
   -d '{
     "from_airport": "JFK",
     "to_airport": "LHR",
-    "departure_date": "2026-10-15",
-    "return_date": "2026-10-22"
+    "departure_date": "2027-04-15",
+    "return_date": "2027-04-22"
   }'`}</Code>
           <p className="mt-4 text-[14px] text-ink-400 leading-relaxed">
             There is a free tier (10 requests/month, hard cap: enough to verify your key, not to evaluate). The full walkthrough is

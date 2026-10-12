@@ -238,7 +238,7 @@ The same job, one POST:
 curl -X POST https://api.flightpowers.com/v1/flights/oneway \
   -H "x-api-key: $FLIGHTPOWERS_API_KEY" \
   -H "Content-Type: application/json" \
-  -d '{"from_airport":"JFK","to_airport":"LHR","departure_date":"2026-10-15","currency":"usd"}'
+  -d '{"from_airport":"JFK","to_airport":"LHR","departure_date":"2027-04-15","currency":"usd"}'
 ```
 
 ```python
@@ -252,7 +252,7 @@ r = requests.post(
         "x-rapidapi-key": os.environ["RAPIDAPI_KEY"],
     },
     json={"from_airport": "JFK", "to_airport": "LHR",
-          "departure_date": "2026-10-15", "currency": "usd"},
+          "departure_date": "2027-04-15", "currency": "usd"},
 )
 for f in sorted(r.json(), key=lambda x: x["price_as_number"]):
     print(f["price"], f["price_range_in_relation_to_other_periods"], f["airline"], f["buy_link"])

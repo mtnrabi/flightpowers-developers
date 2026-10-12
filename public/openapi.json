@@ -682,7 +682,7 @@
             "format": "date",
             "description": "YYYY-MM-DD.",
             "examples": [
-              "2026-10-15"
+              "2027-04-15"
             ]
           },
           "max_stops": {
