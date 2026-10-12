@@ -39,7 +39,7 @@ export const q = (p) => p.quota.toLocaleString('en-US');
       'The same Lisbon destination search and the same Rome hotel sent to FlightPowers, SerpApi Google Hotels, SearchApi, HasData, StayAPI, Xotelo and an Apify Booking.com scraper on 2026-10-07, three runs each, with speed, rows returned, tax handling, per-country pricing and price per request.',
     url: `${SITE.url}/guides/hotel-rates-api-benchmark-2026`,
     datePublished: '2026-10-07',
-    dateModified: '2026-10-07',
+    dateModified: '2026-10-12',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -96,7 +96,7 @@ export const q = (p) => p.quota.toLocaleString('en-US');
 
 # Hotel rates API benchmark 2026: seven APIs, one hotel, real calls
 
-<GuideDates published="2026-10-07" updated="2026-10-07" />
+<GuideDates published="2026-10-07" updated="2026-10-12" />
 
 **Short answer:** I sent the same Lisbon search and the same Rome hotel to seven hotel price
 APIs on 2026-10-07, three runs each. StayAPI, SearchApi and HasData answered a Booking.com
@@ -138,7 +138,7 @@ Every call's start time, wall time and status is in
 | SearchApi (Booking.com) | 1.9 s | 15 to 20 | yes | $51 + $30 taxes listed | 2 calls for the room list (a search for the URL, then the property); 3.0 s for the property call |
 | HasData (Booking.com) | 2.1 s | 25 | yes | $50.97 + $30.07 taxes listed | 2 calls for the room list (a search for the URL, then the place); 3.2 s for the place call |
 | SerpApi (Google Hotels) | 2.4 s | 18 | yes | $78 with taxes ($73 before) | 1 call by name; 2.5 s |
-| FlightPowers, mine (Booking.com) | 7.9 s | 15 to 25 | **no**, Booking's popularity order | $203 to $257 with taxes, cheapest of the rows it returned | 1 call by name; 10.2 s |
+| FlightPowers, mine (Booking.com) | 7.9 s | 15 to 25 | **no** that day, Booking's popularity order; fixed since (see below) | $203 to $257 with taxes, cheapest of the rows it returned | 1 call by name; 10.2 s |
 | Apify `voyager/booking-scraper` | 75 s, including the actor start | 20 | asked (`sortBy: price`), rows came back unsorted | $40.52, but that row is one bed in a 10-bed dorm priced for 1 person on a 2-adult search | 1 run by name; 39 s (one run) |
 | Xotelo (TripAdvisor rates) | 0.7 s, but the list takes no dates | 30 | n/a | n/a, static price ranges | by TripAdvisor key; 0.7 s, per-night rates from 3 sellers |
 
@@ -213,8 +213,11 @@ are requests of their own.
 1. **Speed.** 7.9 s on the search and 10.2 s on a named hotel, against 1.1 to 3.2 s for the four
    other APIs. Each call loads Booking.com through a residential proxy in a real browser, and that
    is the cost of it.
-2. **No price sort.** Results come in Booking's popularity order. Worse, I sent `"sort": "price"`
-   and the API took it without an error and ignored it. That one is a bug, and it's on my list.
+2. **No price sort on the test day.** Results came in Booking's popularity order: I sent
+   `"sort": "price"` and the API took it without an error and ignored it. That was a bug, fixed
+   later the same day: `/v1/hotels/search` now passes `sort` (`price_asc`, `price_desc` or
+   `rating_desc`) to Booking's own sorter. On 2026-10-12 the same Lisbon search with
+   `"sort": "price_asc"` came back cheapest first: 20 rows, $81 to $133 for the 3 nights.
 3. **Row count moves.** 15, 25 and 15 rows on three identical calls. HasData and StayAPI returned
    25 every time and both page.
 4. **No tax breakdown.** You get one tax-inclusive total. HasData and StayAPI itemise VAT and city

@@ -20,6 +20,27 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 export const q = (p) => p.quota.toLocaleString('en-US');
 
+{/* One array feeds the FAQPage markup and the visible Questions block, so they cannot drift. */}
+
+export const BOOKING_FAQ = [
+  {
+    q: 'How do I find a reliable Booking.com hotel rates API?',
+    a: `Without a partner contract, use a hosted rates API and test it on your own hotels: live or cached, what a name lookup matched, and whether sold out looks different from an error. Mine is free for ${HOTEL_PLANS[0].quota} searches a month and $${HOTEL_PLANS[1].priceMonthly} for ${q(HOTEL_PLANS[1])} on PRO.`,
+  },
+  {
+    q: 'Can I get Booking.com API access without being a partner?',
+    a: 'Not to the official Demand API, whose key comes from Partner Centre after a signed affiliate contract. A hosted API that reads live Booking.com rates needs only a key.',
+  },
+  {
+    q: 'How much does a Booking.com rates API cost?',
+    a: `Mine: free for ${HOTEL_PLANS[0].quota}, then $${HOTEL_PLANS[1].priceMonthly} for ${q(HOTEL_PLANS[1])}. StayAPI: $49 for 1,500 after 50 free requests. SearchApi: $40 for 10,000 after 100 free requests. All read on 2026-10-07.`,
+  },
+  {
+    q: 'Can I see the Booking.com rate a guest in another country gets?',
+    a: 'Yes, with proxy_country (or price_as_seen_from over MCP). Sample each country several times before you call a gap real.',
+  },
+];
+
 {/*
   Written for the buyer question "How do I find a reliable Booking.com hotel
   rates API?" (Otterly P15: named nobody we could find on 0 of 4 engines on
@@ -49,40 +70,11 @@ export const q = (p) => p.quota.toLocaleString('en-US');
   data={{
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: 'How do I find a reliable Booking.com hotel rates API?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: `Booking.com's own Demand API is for approved Managed Affiliate Partners under contract, so without that agreement you use a hosted rates API. FlightPowers' Booking Live API on RapidAPI is self-serve: it returns the live Booking.com rate for a hotel by the name a person would type, or the properties for a destination and dates, and proxy_country prices the stay as seen from a country you choose. The free BASIC plan is ${HOTEL_PLANS[0].quota} searches a month and PRO is $${HOTEL_PLANS[1].priceMonthly} for ${q(HOTEL_PLANS[1])}. Check any provider on your own hotels before you trust it: is the rate live or cached, does a name lookup tell you what it matched, and does sold out look different from an error.`,
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Can I get Booking.com API access without being a partner?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Not to the official Demand API: Booking.com issues its key and X-Affiliate-Id in Partner Centre, which a Booking.com account manager opens after a signed affiliate contract. A hosted API that reads live Booking.com rates and returns them as JSON needs no contract, only a key.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'How much does a Booking.com rates API cost?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: `FlightPowers' Booking Live API: BASIC free for ${HOTEL_PLANS[0].quota} searches a month, PRO $${HOTEL_PLANS[1].priceMonthly} for ${q(HOTEL_PLANS[1])}, ULTRA $${HOTEL_PLANS[2].priceMonthly} for ${q(HOTEL_PLANS[2])}, MEGA $${HOTEL_PLANS[3].priceMonthly} for ${q(HOTEL_PLANS[3])}. Read from their own pages on 2026-10-07: StayAPI gives 50 free requests on signup, then $49 a month for 1,500; SearchApi gives 100 free requests, then $40 a month for 10,000 searches across its engines, Booking.com included.`,
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'Can I see the Booking.com rate a guest in another country gets?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Yes. proxy_country (price_as_seen_from on the hotels MCP server) sends the request through a residential proxy in that country, so the rate is the one Booking.com quotes a visitor from there. Rates can move between identical requests, so ask each country several times and compare ranges before you call a difference real.',
-        },
-      },
-    ],
+    mainEntity: BOOKING_FAQ.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
   }}
 />
 
@@ -209,24 +201,11 @@ Twelve providers, with every price quoted and dated, are in
 
 ## Questions
 
-**How do I find a reliable Booking.com hotel rates API?**
-Without a partner contract, use a hosted rates API and test it on your own hotels: live or
-cached, what a name lookup matched, and whether sold out looks different from an error. Mine
-is free for {HOTEL_PLANS[0].quota} searches a month and ${HOTEL_PLANS[1].priceMonthly} for{' '}
-{q(HOTEL_PLANS[1])} on PRO.
-
-**Can I get Booking.com API access without being a partner?**
-Not to the official Demand API, whose key comes from Partner Centre after a signed affiliate
-contract. A hosted API that reads live Booking.com rates needs only a key.
-
-**How much does a Booking.com rates API cost?**
-Mine: free for {HOTEL_PLANS[0].quota}, then ${HOTEL_PLANS[1].priceMonthly} for{' '}
-{q(HOTEL_PLANS[1])}. StayAPI: $49 for 1,500 after 50 free requests. SearchApi: $40 for 10,000
-after 100 free requests. All read on 2026-10-07.
-
-**Can I see the Booking.com rate a guest in another country gets?**
-Yes, with `proxy_country` (or `price_as_seen_from` over MCP). Sample each country several
-times before you call a gap real.
+{BOOKING_FAQ.map((f) => (
+  <p key={f.q}>
+    <strong>{f.q}</strong>{' '}{f.a}
+  </p>
+))}
 
 ## Related
 
