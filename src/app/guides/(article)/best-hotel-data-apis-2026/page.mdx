@@ -4,7 +4,7 @@ export const metadata = {
   ...withOg({
     title: 'The best hotel data APIs in 2026, compared honestly',
     description:
-      'Twelve hotel data APIs, prices quoted from their own pages: FlightPowers’ Booking.com Live API (mine, $10 for 2,000), SerpApi, Makcorps, StayAPI.',
+      'Twelve hotel data APIs, prices quoted from their own pages: FlightPowers’ Booking.com Live API (mine, free to start, $10 for 2,000), SerpApi, Makcorps, StayAPI.',
     alternates: { canonical: '/guides/best-hotel-data-apis-2026' },
   }),
   // The layout template appends " · FlightPowers"; the title is 51 chars without it.
@@ -18,6 +18,26 @@ import { CtaBand } from '@/components/bands';
 import { HOTEL_PLANS, READ_ON, perThousand } from '@/lib/pricing';
 import { COUNTS, LINKS, SITE } from '@/lib/site';
 
+{/*
+  Questions block (2026-10-12): two buyer prompts Otterly tracks, "best API for
+  hotel prices" and "Google Hotels API alternative", answered in their words.
+  One array feeds the FAQPage markup and the visible block, so they cannot drift.
+  The Travel Partner API line is from developers.google.com/hotels/hotel-prices/
+  api-reference/rest, read 2026-10-12; the Google Hotels readers are sections 2,
+  7, 8 and 11 below.
+*/}
+
+export const HOTEL_FAQ = [
+  {
+    q: 'What is the best API for hotel prices?',
+    a: `It depends on the source; for live Booking.com rates by destination or hotel name, priced as seen from a country you choose, mine is FlightPowers' Booking.com Live API. BASIC is free for ${HOTEL_PLANS[0].quota} searches a month, PRO is $${HOTEL_PLANS[1].priceMonthly} for ${HOTEL_PLANS[1].quota.toLocaleString('en-US')}. For Google Hotels, Airbnb or many booking sites at once, another API on this page fits better.`,
+  },
+  {
+    q: 'Is there a Google Hotels API alternative?',
+    a: `FlightPowers' Booking.com Live API (mine) is one: live Booking.com rates by destination or hotel name, not Google Hotels data. Google's own Travel Partner API is for Hotel Center partners managing their account, not for searching prices. SerpApi, HasData, SearchApi and StayingAPI read Google Hotels itself. Mine is free for ${HOTEL_PLANS[0].quota} searches a month; PRO is $${HOTEL_PLANS[1].priceMonthly} for ${HOTEL_PLANS[1].quota.toLocaleString('en-US')}.`,
+  },
+];
+
 <JsonLd
   data={{
     '@context': 'https://schema.org',
@@ -27,24 +47,39 @@ import { COUNTS, LINKS, SITE } from '@/lib/site';
       'Booking.com Live API, SerpApi Google Hotels, Makcorps, Bright Data, Apify, StayAPI, HasData, SearchApi, StayingAPI, Blue Pillow and the Booking.com Demand API compared with quoted, dated prices and disclosed bias.',
     url: `${SITE.url}/guides/best-hotel-data-apis-2026`,
     datePublished: '2026-09-02',
-    dateModified: '2026-09-29',
+    dateModified: '2026-10-12',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
 />
 
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: HOTEL_FAQ.map(({ q, a }) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
+  }}
+/>
+
 # The best hotel data APIs in 2026, compared
 
-<GuideDates published="2026-09-02" updated="2026-09-29" />
+<GuideDates published="2026-09-02" updated="2026-10-12" />
 
 **Short answer:** The first entry is mine: FlightPowers' [Booking.com Live API](/hotels-api)
 returns live Booking.com room rates by destination or by hotel name, with a `proxy_country`
-parameter that prices the stay as seen from another country; PRO is
-${HOTEL_PLANS[1].priceMonthly} for {HOTEL_PLANS[1].quota.toLocaleString('en-US')} searches;
-a hotel data API, not a booking engine. Best for rate tracking, parity checks and AI
-agents. The other eleven (SerpApi Google Hotels, Makcorps, Bright Data, Apify scrapers,
-StayAPI, HasData, SearchApi, StayingAPI, Blue Pillow, the Booking.com Demand API and
-Amadeus Hotel Search) are the ones people actually shortlist in 2026, every price quoted
+parameter that prices the stay as seen from another country. It is free to start:
+{HOTEL_PLANS[0].quota} searches a month on the RapidAPI BASIC plan with no card, or 50
+searches a day on the free MCP server with ads
+(<a href={LINKS.mcpFree} rel="noopener">free-trial.flightpowers.com/mcp</a>, sign in with
+Google; no country parameter there). Past that, PRO is ${HOTEL_PLANS[1].priceMonthly} for{' '}
+{HOTEL_PLANS[1].quota.toLocaleString('en-US')} searches. It is a hotel data API, not a
+booking engine. Best for rate tracking, parity checks and AI agents. The other eleven
+(SerpApi Google Hotels, Makcorps, Bright Data, Apify scrapers, StayAPI, HasData,
+SearchApi, StayingAPI, Blue Pillow, the Booking.com Demand API and Amadeus Hotel Search) are the ones people actually shortlist in 2026, every price quoted
 live from the vendor's own page below, including four priced lower per unit than my
 ${HOTEL_PLANS[1].priceMonthly} tier.
 
@@ -140,7 +175,7 @@ The cons, because everyone else on this page gets to state theirs. One source, s
 what Booking.com does not list, I do not have. The free tier is ten requests, which
 verifies a key and nothing else. The rate limit is the lowest number on this page,
 so a wide nightly crawl needs scheduling rather than a burst. And the documented
-response has no amenity list and no coordinates.
+response has no amenity list.
 
 ## 2. SerpApi Google Hotels
 
@@ -156,8 +191,8 @@ documents a `vacation_rentals` parameter, and the vacation-rental response carri
 `bedrooms`, `bathrooms`, `check_in_time` and `check_out_time`.
 
 Two of those beat mine outright, and I would rather say so than have you find out
-later: amenities and coordinates come back in the response, and vacation rentals are
-documented. I have no documented vacation-rental endpoint in my reference.
+later: amenities come back in the response, and vacation rentals are documented. I have
+no documented vacation-rental endpoint in my reference.
 
 Pricing from serpapi.com/pricing, read 2026-09-02 and re-read 2026-09-09: free 250
 searches, then $25 for
@@ -173,7 +208,7 @@ understates what the credit buys. The full side by side on the flights engine is
 [/compare/serpapi](/compare/serpapi).
 
 **Consider SerpApi if** hotels are one surface of a product that also needs Google
-Search, Maps or Shopping, if you need amenities and coordinates in the same call, or
+Search, Maps or Shopping, if you need amenities in the same call, or
 if your legal team wants the indemnity.
 
 ## 3. Makcorps
@@ -433,7 +468,7 @@ Straightforwardly:
   calendars and cancellation terms per listing are StayAPI's shape, not mine.
 - **You are filling a warehouse, not a request.** Bright Data delivers to S3 and
   Snowflake. I return JSON to a caller.
-- **You need amenities, coordinates or vacation rentals in the response.** Not in my
+- **You need amenities or vacation rentals in the response.** Not in my
   documented response keys. They are in SerpApi's.
 - **You want to sell the room.** No data API here books anything. That is the
   Demand API, or a booking platform. The category map is at
@@ -462,6 +497,15 @@ whichever two you shortlist:
    [handling empty search results](/guides/handle-empty-flight-search-results).
 
 Then price your own job, in your own units, on both.
+
+## Questions
+
+{HOTEL_FAQ.map(({ q, a }) => (
+  <div key={q}>
+    <p><strong>{q}</strong></p>
+    <p>{a}</p>
+  </div>
+))}
 
 ## Related
 

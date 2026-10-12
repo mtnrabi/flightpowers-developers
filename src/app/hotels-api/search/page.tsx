@@ -55,6 +55,12 @@ const FILTER_CATEGORIES: { category: string; filters: string[] }[] = [
 ];
 
 const faq: Faq[] = [
+  // Buyer question first (Otterly prompt "real-time hotel availability API",
+  // 2026-10-12): live rates for the dates, sold out on by-name, no booking.
+  {
+    q: 'Is there a real-time hotel availability API?',
+    a: `FlightPowers /search checks Booking.com at request time, nothing cached, and returns the properties listed for your destination and dates with each one's live rate, room type and booking link. For one hotel, /hotel_by_name answers available: false when it is sold out. It does not book. BASIC is free for ${HOTEL_PLANS[0]!.quota} searches a month; PRO is $${HOTEL_PLANS[1]!.priceMonthly} for ${HOTEL_PLANS[1]!.quota.toLocaleString('en-US')}.`,
+  },
   {
     q: 'Why did I get a 400 about missing fields?',
     a: 'The usual cause: the request sent location instead of destination. The three required fields are destination, checkin_date and checkout_date. The 400 body names them plainly. destination appears in the request; a location string can appear per property in the response. They are different fields.',
@@ -136,7 +142,7 @@ export default function HotelSearchPage() {
           operatingSystem: 'Any',
           offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Free tier: 10 requests/month on RapidAPI' },
           url: `${SITE.url}/hotels-api/search`,
-          dateModified: '2026-09-07',
+          dateModified: '2026-10-12',
         }}
       />
 

@@ -109,27 +109,27 @@ const GAPS: { problem: string; answer: string }[] = [
 const faq: Faq[] = [
   {
     q: 'Are prices cached?',
-    a: 'No. Every query hits Booking.com live at request time, so the rate that comes back is the rate a guest would be quoted at that moment. The honest trade-off: response time tracks how much work Booking.com has to do for the query.',
+    a: 'No: FlightPowers fetches every rate from Booking.com live at request time, so the rate that comes back is the rate a guest would be quoted at that moment. The honest trade-off: response time tracks how much work Booking.com has to do for the query.',
   },
   {
     q: 'What does proxy_country do?',
-    a: 'Every endpoint accepts proxy_country, a two-letter lowercase country code ("us", "de", "il"). The request routes through a residential proxy in that country, so you see the rates Booking.com quotes that market. Leave it out and the request goes through the global residential pool.',
+    a: 'Every FlightPowers hotels endpoint accepts proxy_country, a two-letter lowercase country code ("us", "de", "il"). The request routes through a residential proxy in that country, so you see the rates Booking.com quotes that market. Leave it out and the request goes through the global residential pool.',
   },
   {
     q: 'Which endpoint do I start with?',
-    a: 'POST /search for a destination, POST /hotel_by_name for one property by its name (resolution included), and POST /resolve followed by POST /hotel when you want the full room-by-room list for a property you check repeatedly.',
+    a: 'On FlightPowers, POST /search for a destination, POST /hotel_by_name for one property by its name (resolution included), and POST /resolve followed by POST /hotel when you want the full room-by-room list for a property you check repeatedly.',
   },
   {
     q: 'What fields does /search require?',
-    a: 'destination (free text: "Paris", "Tokyo Shibuya"), checkin_date, and checkout_date in YYYY-MM-DD. Note the field is destination, not location. Sending location returns a 400 with a clear message naming the fields it needs.',
+    a: 'FlightPowers /search requires destination (free text: "Paris", "Tokyo Shibuya"), checkin_date, and checkout_date in YYYY-MM-DD. Note the field is destination, not location. Sending location returns a 400 with a clear message naming the fields it needs.',
   },
   {
     q: 'How do sold-out and not-found come back?',
-    a: 'As the same response shape with "available": false and nulls in the price fields, so your parser never has to branch on an error format.',
+    a: 'FlightPowers /hotel_by_name returns a sold-out or unknown hotel in the same response shape, with "available": false and nulls in the price fields, so your parser never has to branch on an error format.',
   },
   {
     q: 'What does the free tier include?',
-    a: `Every endpoint, ${HOTEL_PLANS[0]!.quota} requests per month, hard cap. That verifies your key and your integration. It is not enough volume to evaluate data quality. Paid plans start at $${HOTEL_PLANS[1]!.priceMonthly}/month on RapidAPI.`,
+    a: `The FlightPowers free BASIC plan includes every endpoint, ${HOTEL_PLANS[0]!.quota} requests per month, hard cap. That verifies your key and your integration, not data quality at volume; for more free searches, the free MCP server with ads gives 50 a day after a Google sign-in (no proxy_country there). PRO is $${HOTEL_PLANS[1]!.priceMonthly} for ${HOTEL_PLANS[1]!.quota.toLocaleString('en-US')} a month on RapidAPI.`,
   },
 ];
 
@@ -199,7 +199,7 @@ export default function HotelsApiHubPage() {
           description:
             'Live Booking.com hotel prices over REST: destination search, name-based lookup, room-level pricing, and per-market pricing via proxy_country.',
           url: `${SITE.url}/hotels-api`,
-          dateModified: '2026-09-07',
+          dateModified: '2026-10-12',
           hasPart: ENDPOINTS.map((e) => ({
             '@type': 'WebPage',
             name: e.label,
@@ -375,16 +375,23 @@ export default function HotelsApiHubPage() {
           <div>
             <h2 className="text-[1.5rem] sm:text-3xl font-semibold">Is there an API that can find hotel prices?</h2>
             <p className="mt-3 text-[15px] text-ink-300 leading-relaxed">
-              Yes: <code className="field">POST /search</code> returns live Booking.com rates for a destination and dates, and{' '}
-              <code className="field">POST /hotel_by_name</code> returns them for one property, each with room type, review
-              score, the property&apos;s coordinates and a booking link.
+              Yes: FlightPowers&apos; hotels API returns live Booking.com rates for a destination and dates with{' '}
+              <code className="field">POST /search</code>, and for one property with{' '}
+              <code className="field">POST /hotel_by_name</code>, each with room type, review score, the property&apos;s
+              coordinates and a booking link.
             </p>
           </div>
           <div>
             <h2 className="text-[1.5rem] sm:text-3xl font-semibold">Which hotel APIs are free to use?</h2>
             <p className="mt-3 text-[15px] text-ink-300 leading-relaxed">
-              This one has a free BASIC plan of {HOTEL_PLANS[0]!.quota} searches a month on RapidAPI with no card; Booking.com&apos;s
-              own Demand API is for approved affiliates and its Connectivity API for property systems, so neither is self-serve.
+              FlightPowers&apos; hotels API has a free BASIC plan: {HOTEL_PLANS[0]!.quota} searches a month on RapidAPI, no card.
+              The free{' '}
+              <Link href="/tools#free-mcp" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+                MCP server with ads
+              </Link>{' '}
+              gives 50 searches a day (250 a month) after a Google sign-in, without the country parameter. PRO is{' '}
+              ${HOTEL_PLANS[1]!.priceMonthly} for {HOTEL_PLANS[1]!.quota.toLocaleString('en-US')}. Booking.com&apos;s own
+              Demand API is for approved affiliates and its Connectivity API for property systems, so neither is self-serve.
             </p>
           </div>
         </div>

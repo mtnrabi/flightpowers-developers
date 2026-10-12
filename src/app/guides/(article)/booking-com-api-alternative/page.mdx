@@ -39,7 +39,7 @@ export const q = (p) => p.quota.toLocaleString('en-US');
       'Booking.com’s Demand API is for approved affiliate partners. How to get live Booking.com rates by hotel name or destination on a self-serve key instead, priced from a country you choose, and when another provider fits better.',
     url: `${SITE.url}/guides/booking-com-api-alternative`,
     datePublished: '2026-10-07',
-    dateModified: '2026-10-07',
+    dateModified: '2026-10-12',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -88,7 +88,7 @@ export const q = (p) => p.quota.toLocaleString('en-US');
 
 # Booking.com API alternative: live rates without approval
 
-<GuideDates published="2026-10-07" updated="2026-10-07" />
+<GuideDates published="2026-10-07" updated="2026-10-12" />
 
 **Short answer:** Booking.com's own Demand API is for approved Managed Affiliate Partners
 and its Connectivity APIs are for software that manages properties, so if you need live
@@ -120,7 +120,8 @@ reservation itself, the Demand API is the right road and this page is not.
 
 ## What makes a Booking.com rates API reliable?
 
-You can test this yourself in an afternoon, on any provider, mine included. Three checks:
+You can test any provider in an afternoon, FlightPowers' Booking Live API (mine) included.
+Three checks:
 
 1. **Live or cached.** A rate read from a snapshot can be hours old. Mine runs the search
    on Booking.com at request time and serves nothing from a cache, and every destination

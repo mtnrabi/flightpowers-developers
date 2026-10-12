@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { CheckBullets, Container, FaqSection, Feature, Section, SectionHead, type Faq } from '@/components/ui';
+import { HOTEL_PLANS } from '@/lib/pricing';
 
 export const metadata: Metadata = withOg({
   title: 'Rate-Parity Monitoring: see your hotel rates the way each market sees them',
@@ -14,6 +15,11 @@ export const metadata: Metadata = withOg({
 export const dynamic = 'force-static';
 
 const faq: Faq[] = [
+  // Buyer question first (Otterly prompt "hotel price monitoring API", 2026-10-12).
+  {
+    q: 'Is there an API for hotel price monitoring?',
+    a: `FlightPowers' hotels API returns a hotel's live Booking.com rate by the name you type, so a job you schedule can check it, and proxy_country checks the same hotel and dates from another country. It reads Booking.com only and sends no alerts: your job compares the numbers. BASIC is free for ${HOTEL_PLANS[0]!.quota} searches a month; PRO is $${HOTEL_PLANS[1]!.priceMonthly} for ${HOTEL_PLANS[1]!.quota.toLocaleString('en-US')}.`,
+  },
   {
     q: 'How does per-country pricing actually work?',
     a: 'Every hotels endpoint accepts proxy_country, a two-letter code like "de", "jp", or "us". The request is routed through a residential proxy in that country, so Booking.com responds exactly as it would to a local visitor. Ask for the same room from each market a few times and compare the ranges: that is the parity check.',
