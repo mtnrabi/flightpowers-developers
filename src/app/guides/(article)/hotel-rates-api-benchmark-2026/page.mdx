@@ -27,7 +27,9 @@ export const q = (p) => p.quota.toLocaleString('en-US');
   api-growth/state/gtm/research/benchmarks/hotels-2026-10-07/raw/, summarised by
   analyze.py into summary.json. Rival prices were read from their own pages at
   14:09Z the same day (saved alongside). FlightPowers prices come from
-  lib/pricing.ts. Free tiers only, no card anywhere.
+  lib/pricing.ts. Free tiers only, no card anywhere. One later re-check of the
+  sort fix (2026-10-12 08:25Z, sort: price_asc, through api.flightpowers.com on
+  our own key) is saved as raw/flightpowers_recheck-sort-price-asc_2026-10-12.json.
 */}
 
 <JsonLd
@@ -106,8 +108,9 @@ finding was the price: the same room came back as $915 or as $1,057 depending on
 API put Rome's VAT and city tax into the number it called the price.
 
 I run FlightPowers and sell one of the APIs in this test, so read my rows as a vendor
-measuring himself. Every number below is from a call I made that afternoon, with the raw
-response kept, and the list of where mine loses is longer than the list of where it wins.
+measuring himself. Every number below is from a call I made that afternoon, apart from one dated
+re-check of the sort fix, with the raw response kept, and the list of where mine loses
+is longer than the list of where it wins.
 
 ## How I tested
 
@@ -216,8 +219,10 @@ are requests of their own.
 2. **No price sort on the test day.** Results came in Booking's popularity order: I sent
    `"sort": "price"` and the API took it without an error and ignored it. That was a bug, fixed
    later the same day: `/v1/hotels/search` now passes `sort` (`price_asc`, `price_desc` or
-   `rating_desc`) to Booking's own sorter. On 2026-10-12 the same Lisbon search with
-   `"sort": "price_asc"` came back cheapest first: 20 rows, $81 to $133 for the 3 nights.
+   `rating_desc`; `"price"` works too) to Booking's own sorter and re-orders the rows on the
+   tax-inclusive total. On 2026-10-12 the same Lisbon search with `"sort": "price_asc"` came
+   back cheapest first: 20 rows, $81 to $133 for the 3 nights, starting with the same Samps
+   Hostel dorm bunk that SearchApi and HasData listed at $81 after tax.
 3. **Row count moves.** 15, 25 and 15 rows on three identical calls. HasData and StayAPI returned
    25 every time and both page.
 4. **No tax breakdown.** You get one tax-inclusive total. HasData and StayAPI itemise VAT and city
@@ -237,7 +242,7 @@ are requests of their own.
 
 ## Which one I'd pick, by job
 
-- **Fast Booking.com search at volume:** SearchApi or HasData. Both sort, both show the tax on the search rows, both are cheaper per call than mine.
+- **Fast Booking.com search at volume:** SearchApi or HasData. Both show the tax on the search rows, both are cheaper per call than mine.
 - **One hotel across many sellers:** SerpApi's Google Hotels engine.
 - **Reviews, photos and property details on top of rates:** StayAPI.
 - **A hotel by the name a person types, one tax-inclusive total, from a country you choose, for
