@@ -393,7 +393,7 @@ export const TASKS: TaskDef[] = [
     toolCall: { from_airport: 'LIS', to_airport: 'JFK', departure_date_from: '2027-06-01', departure_date_to: '2027-06-30', limit: 5 },
     fields: ['departure_date', 'price', 'price_range_in_relation_to_other_periods'],
     description:
-      'The tool accepts a date RANGE and expands it internally: one call, not thirty. The agent gets a fare per day and answers with the cheapest date and how much picking it saves. Over REST, the same scan is a parallel burst of per-date requests; the rate limits (150–500/min by tier) exist exactly for this.',
+      'On the MCP server the tool accepts a date RANGE and expands it internally: one call, not thirty. The agent gets a fare per day and answers with the cheapest date and how much picking it saves. Over REST, the same scan is a parallel burst of per-date requests, which the rate limits (150–500/min by tier) exist for; an Apify run takes one departure date, so the scan is one run per date.',
     rest: {
       path: '/v1/flights/oneway',
       body: { from_airport: 'LIS', to_airport: 'JFK', departure_date: '2027-06-01', limit: 5 },

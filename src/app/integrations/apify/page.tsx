@@ -26,7 +26,7 @@ const n = (x: number) => x.toLocaleString('en-US');
 export const metadata: Metadata = withOg({
   title: 'Apify actors: the same data, pay-per-event',
   description:
-    'Both FlightPowers APIs also run as Apify actors: Google Flights fares and Booking.com hotel rates billed per search through your own Apify account. The fit for pipelines that already live in Apify.',
+    'Both FlightPowers APIs also run as Apify actors: Google Flights fares and Booking.com hotel rates, pay-per-event through your own Apify account. The fit for pipelines that already live in Apify.',
   alternates: { canonical: '/integrations/apify' },
 });
 
@@ -87,7 +87,7 @@ export default function ApifyIntegrationPage() {
             The same data, <span className="text-signal-500">pay-per-event</span>
           </h1>
           <p className="lede mt-5 max-w-2xl">
-            Both APIs also run as Apify actors, billed per search through your own Apify account. They&apos;re the right
+            Both APIs also run as Apify actors, pay-per-event through your own Apify account. They&apos;re the right
             pick if your pipelines already live in Apify. Calling from your own code? The RapidAPI key is the simpler
             path, and the same key runs the paid MCP server for date scans.
           </p>

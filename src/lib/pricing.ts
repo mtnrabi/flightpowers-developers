@@ -13,7 +13,7 @@
  * scripts/check-pricing.mjs re-parses the live listings and fails the build
  * loudly on drift or on any non-public plan reaching this file.
  */
-export const READ_ON = '2026-09-28';
+export const READ_ON = '2026-10-14';
 
 export type Plan = {
   name: string;

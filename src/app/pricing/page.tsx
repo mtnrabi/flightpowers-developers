@@ -640,8 +640,9 @@ export default function PricingPage() {
             <h3 className="text-[16px] font-semibold text-ink-100">Booking.com Scraper</h3>
             <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed">
               Live rates, availability and review scores. By the actor&apos;s own event table ({APIFY.hotelsSearchEvent},{' '}
-              {APIFY.hotelsResultEvent}), a 25-property search costs about $0.004, roughly{' '}
-              <strong className="text-ink-100">{APIFY.hotelsPer1kSearches}</strong>. Priced per <em>search</em>, not per result row.
+              {APIFY.hotelsResultEvent}), a 25-property search costs about $0.004 all in, and the lookup event alone is{' '}
+              <strong className="text-ink-100">{APIFY.hotelsPer1kSearches}</strong>. The unit is the <em>search</em>, not the
+              result row.
             </p>
             <div className="mt-4 flex flex-wrap gap-3">
               <Cta href={LINKS.apifyHotelsConsole} external variant="ghost">
@@ -654,8 +655,8 @@ export default function PricingPage() {
           </div>
         </div>
         <p className="mt-6 max-w-3xl text-[14px] text-ink-400 leading-relaxed">
-          Rule of thumb: steady monthly volume is cheaper on RapidAPI ({COUNTS.flightsRateLimits} req/min and a fixed bill);
-          occasional batch jobs with zero baseline fit Apify&apos;s pay-per-event model.
+          Rule of thumb: the actors fit pipelines that already live in Apify. Calling regularly or on a schedule from your own
+          code? RapidAPI is one HTTP request per search on a fixed monthly bill ({COUNTS.flightsRateLimits} req/min).
         </p>
       </Section>
 
