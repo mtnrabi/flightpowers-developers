@@ -13,31 +13,39 @@ import {
   SectionHead,
   type Faq,
 } from '@/components/ui';
-import { APIFY } from '@/lib/pricing';
+import { APIFY, FLIGHT_PLANS, HOTEL_PLANS, perThousand } from '@/lib/pricing';
 import { COUNTS, LINKS, SITE } from '@/lib/site';
 import { AgentRecipes } from '../_recipes';
 
 export const dynamic = 'force-static';
 
+const [, F_PRO, F_ULTRA] = FLIGHT_PLANS;
+const [, H_PRO, , H_MEGA] = HOTEL_PLANS;
+const n = (x: number) => x.toLocaleString('en-US');
+
 export const metadata: Metadata = withOg({
   title: 'Apify actors: the same data, pay-per-event',
   description:
-    'Both FlightPowers APIs run as Apify actors: Google Flights fares and Booking.com hotel rates with no monthly fee: you pay per event, metered by Apify. The fit for batch jobs with zero baseline volume.',
+    'Both FlightPowers APIs also run as Apify actors: Google Flights fares and Booking.com hotel rates billed per search through your own Apify account. The fit for pipelines that already live in Apify.',
   alternates: { canonical: '/integrations/apify' },
 });
 
 const faq: Faq[] = [
   {
     q: 'How does pay-per-event billing work?',
-    a: 'Apify meters named events per run (a search performed, a result returned) and bills your Apify account for what actually happened. There is no monthly subscription for the actor itself; a month with no runs costs nothing.',
+    a: 'Apify meters named events per run (a search performed, a result returned) and bills your Apify account for what actually happened. There’s no monthly subscription for the actor itself, so a month with no runs costs nothing on the actor.',
   },
   {
     q: 'What does the hotels actor cost in practice?',
-    a: `By its own event table (${APIFY.hotelsSearchEvent} plus ${APIFY.hotelsResultEvent} and ${APIFY.hotelsStartEvent}), a search returning 25 properties costs about $0.004, roughly ${APIFY.hotelsPer1kSearches}. The unit is the search, not the result row; a listing badge that divides by result rows will look misleadingly cheap.`,
+    a: `By its own event table (${APIFY.hotelsSearchEvent} plus ${APIFY.hotelsResultEvent} and ${APIFY.hotelsStartEvent}), a search returning 25 properties costs about $0.004 all in. The lookup event alone is ${APIFY.hotelsPer1kSearches}. The unit is the search, not the result row, so a listing badge that divides by result rows looks cheaper than a search really is.`,
   },
   {
     q: 'What does the flights actor cost?',
-    a: 'Its per-event rates are on the listing. Check the pricing table there before a large run. We don’t restate a number here that we haven’t verified against the actor’s own event table.',
+    a: `By its own event table (${APIFY.flightsSearchEvent} plus ${APIFY.flightsResultEvent} and ${APIFY.flightsStartEvent}), the lookup event alone is ${APIFY.flightsPer1kSearches}, and the result and start events add a fraction of a cent per run (a 25-result search is about $0.0033 all in). One run is one search: one route, one departure date (and a return date on a round trip).`,
+  },
+  {
+    q: 'Can the actor scan a month of dates in one run?',
+    a: 'No. Each run searches one route and one departure date (plus a return date on a round trip), same as one request on the REST API, so a month of departure dates is about 30 runs. A range of departure dates and a list of destination airports in one call exist only in the flights MCP servers. The paid one runs on your RapidAPI key and counts each date and destination combination as one search.',
   },
   {
     q: 'Do I need a RapidAPI key for the actors?',
@@ -45,11 +53,11 @@ const faq: Faq[] = [
   },
   {
     q: 'Is the data different from the API’s?',
-    a: 'No. Same live scan, same fields: Google’s price band and low/typical/high verdict on flights, live Booking.com rates on hotels. What changes is the billing model and the runtime (an actor run instead of an HTTP request).',
+    a: 'No. Same live data, same fields: Google’s price band and low/typical/high verdict on flights, live Booking.com rates on hotels. What changes is the billing model and the runtime (an actor run instead of an HTTP request).',
   },
   {
-    q: 'When is RapidAPI the better deal?',
-    a: `At steady volume. A fixed monthly plan with ${COUNTS.flightsRateLimits} requests/minute on flights beats per-event billing once you are calling every day, and a synchronous HTTP request is simpler to build against than starting a run. Occasional batch jobs with idle months are where the actors win.`,
+    q: 'When is RapidAPI the better fit?',
+    a: `When you run lookups regularly or on a schedule from your own code. It’s one synchronous HTTP request per search instead of starting a run, the bill is a fixed monthly plan, and flights takes ${COUNTS.flightsRateLimits} requests a minute by plan. PRO is $${F_PRO.priceMonthly} for ${n(F_PRO.quota)} flight searches (hotels PRO is $${H_PRO.priceMonthly} for ${n(H_PRO.quota)}). If you use the whole quota, the bigger plans cost less per search than the actors: flights ULTRA is $${F_ULTRA.priceMonthly} for ${n(F_ULTRA.quota)} (${perThousand(F_ULTRA)} per 1,000) and hotels MEGA is $${H_MEGA.priceMonthly} for ${n(H_MEGA.quota)} (${perThousand(H_MEGA)} per 1,000).`,
   },
 ];
 
@@ -79,8 +87,9 @@ export default function ApifyIntegrationPage() {
             The same data, <span className="text-signal-500">pay-per-event</span>
           </h1>
           <p className="lede mt-5 max-w-2xl">
-            Both APIs run as Apify actors: no monthly fee, billed per event through your Apify account. If your workload is
-            an occasional batch job rather than steady daily traffic, this is the cheaper door.
+            Both APIs also run as Apify actors, billed per search through your own Apify account. They&apos;re the right
+            pick if your pipelines already live in Apify. Calling from your own code? The RapidAPI key is the simpler
+            path, and the same key runs the paid MCP server for date scans.
           </p>
         </Container>
       </div>
@@ -96,7 +105,10 @@ export default function ApifyIntegrationPage() {
             <h3 className="text-[16px] font-semibold text-ink-100">Google Flights Scraper</h3>
             <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed">
               One-way and round-trip fares with airlines, layovers, Google&apos;s price band and low | typical | high verdict,
-              and a booking link on every result. Pay-per-event: the current rates are the event table on the listing.
+              and a booking link on every result. By the actor&apos;s own event table ({APIFY.flightsSearchEvent},{' '}
+              {APIFY.flightsResultEvent}), the lookup event alone is{' '}
+              <strong className="text-ink-100">{APIFY.flightsPer1kSearches}</strong>. One run is one route and one departure
+              date (plus a return date on a round trip).
             </p>
             <div className="mt-4 flex flex-wrap gap-3">
               <Cta href={LINKS.apifyFlightsConsole} external variant="primary">
@@ -111,7 +123,7 @@ export default function ApifyIntegrationPage() {
             <h3 className="text-[16px] font-semibold text-ink-100">Booking.com Scraper</h3>
             <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed">
               Live rates, availability, review scores and room types. By the actor&apos;s own event table (
-              {APIFY.hotelsSearchEvent}, {APIFY.hotelsResultEvent}), a 25-property search costs about $0.004, roughly{' '}
+              {APIFY.hotelsSearchEvent}, {APIFY.hotelsResultEvent}), a 25-property search costs about $0.004 all in, and the lookup event alone is{' '}
               <strong className="text-ink-100">{APIFY.hotelsPer1kSearches}</strong>. The unit is the <em>search</em>, not the
               result row.
             </p>
@@ -130,19 +142,29 @@ export default function ApifyIntegrationPage() {
       <Section>
         <SectionHead
           eyebrow="Which door for which workload"
-          title="Apify for bursts, RapidAPI for baseline"
-          lede="Same data either way: the honest question is the shape of your usage."
+          title="Apify for Apify pipelines, RapidAPI for regular lookups"
+          lede="Same live data on every door. Pick by where your code runs and how often it calls."
         />
-        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 max-w-4xl">
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3 max-w-5xl">
           <Feature title="Pick the actors when…">
-            Your jobs are occasional and bursty: a monthly market sweep, a one-off dataset, a research scrape. Zero baseline
-            cost (idle months cost nothing) and runs, retries, and result storage live in Apify&apos;s console alongside
-            your other actors.
+            Your pipelines already live in Apify: runs, schedules, retries and datasets sit in the same console as your
+            other actors, and the bill goes on your Apify account. You pay per search ({APIFY.flightsPer1kSearches},{' '}
+            {APIFY.hotelsPer1kSearches}, plus a fraction of a cent per run for results) and a month with no runs costs nothing on the actor.
           </Feature>
           <Feature title="Pick RapidAPI when…">
-            You call every day: an app feature, an agent, a fare-watch cron. A fixed plan makes per-call cost predictable,
-            requests are synchronous HTTP instead of actor runs, and the flights listing sustains {COUNTS.flightsRateLimits}{' '}
-            requests/minute by tier for parallel date scans.
+            You run lookups regularly or on a schedule from your own code: an app feature, an agent, a nightly fare check.
+            One HTTP request per search and a fixed monthly bill. PRO is ${F_PRO.priceMonthly} for {n(F_PRO.quota)} flight
+            searches, hotels PRO is ${H_PRO.priceMonthly} for {n(H_PRO.quota)}, and flights takes{' '}
+            {COUNTS.flightsRateLimits} requests a minute by plan.
+          </Feature>
+          <Feature title="Pick the MCP server when…">
+            You want a scan: a range of departure dates and a few destination airports in one prompt, from Claude, Cursor
+            or ChatGPT. Only the MCP servers take a date range (the REST API and the actors take one date per request or
+            run). It runs on the same RapidAPI key, and each date and destination combination counts as one search.{' '}
+            <Link href="/mcp/google-flights" className="underline underline-offset-4">
+              See a real scan
+            </Link>
+            .
           </Feature>
         </div>
       </Section>
@@ -159,6 +181,9 @@ export default function ApifyIntegrationPage() {
           <Link href="/integrations/rapidapi" className="chip">
             The RapidAPI plans
           </Link>
+          <Link href="/mcp" className="chip">
+            The MCP servers
+          </Link>
           <Link href="/pricing" className="chip">
             Full pricing comparison
           </Link>
@@ -174,8 +199,8 @@ export default function ApifyIntegrationPage() {
       <Section bordered={false} className="!pt-4">
         <CtaBand
           medium="integration"
-          title="Steady volume? The subscription is the better unit price"
-          body="The RapidAPI plans start free and scale to 25,000 requests a month: same data, synchronous HTTP, fixed bill."
+          title="Calling regularly from your own code? Get the key"
+          body={`PRO is $${F_PRO.priceMonthly} for ${n(F_PRO.quota)} flight searches a month: same data, one HTTP request per search, a fixed bill. The same key runs the paid MCP server for date scans.`}
         />
       </Section>
     </>
