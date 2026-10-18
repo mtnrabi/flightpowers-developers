@@ -90,18 +90,26 @@ const PLAYS: { href: string; label: string; line: string }[] = [
   {
     href: '/guides/cheapest-destinations-from-one-airport',
     label: 'Scan for deals',
-    line: 'One MCP call takes a date range and a list of airports and comes back with every fare, each one carrying Google\u2019s own low, typical or high verdict.',
+    line: 'One MCP call takes a date range and a list of airports and returns every fare, each with Google\u2019s low, typical or high verdict.',
   },
   {
     href: '/docs',
     label: 'Put live search in your app',
-    line: 'REST endpoints on api.flightpowers.com, flat JSON, and a working booking link on every result you hand back to a user.',
+    line: 'REST endpoints on api.flightpowers.com, flat JSON, a working booking link on every result.',
   },
   {
     href: '/guides/five-minute-travel-agent',
     label: 'Run a 24/7 AI travel agent',
     line: 'It scans your routes every morning on the $10 plan. Sign in with Google, connect the server to Claude or ChatGPT.',
   },
+];
+
+/** The hero's facts, one line each on a phone. Same claims the old lede carried. */
+const HERO_FACTS: [string, string][] = [
+  ['Live flight fares', 'from Google Flights, with Google\u2019s low/typical/high price band'],
+  ['Round trips', 'priced as one request'],
+  ['Live hotel rates', 'from Booking.com'],
+  ['REST and MCP', 'on one RapidAPI key'],
 ];
 
 function PlayList() {
@@ -116,7 +124,7 @@ function PlayList() {
             <span className="mt-0.5 shrink-0 font-mono text-[12px] text-signal-400 tabular-nums">{i + 1}</span>
             <span className="min-w-0">
               <span className="text-[15px] font-semibold text-ink-100 group-hover:text-signal-400">{p.label}</span>
-              <span className="ml-1.5 text-[14px] text-ink-400 leading-relaxed">{p.line}</span>
+              <span className="mt-0.5 block text-[14px] text-ink-400 leading-relaxed">{p.line}</span>
             </span>
           </Link>
         </li>
@@ -175,28 +183,40 @@ export default function HomePage() {
               <h1 className="mt-4 text-hero font-semibold">
                 Your own travel agent, scan deals <span className="text-signal-500">24/7</span>
               </h1>
-              {/* The definition chunk under Matan's H1: name, what it is, the price, best
-                  for. Numbers from lib/pricing.ts; the SerpApi line is the sanctioned one
-                  (their cheapest plan re-read 2026-09-26). */}
+              {/* The definition chunk under Matan's H1 (answer first, #108): one sentence
+                  of name + what + who, then the facts as a short list and the price as a
+                  plain ladder, so it scans on a phone (Matan 2026-10-18: "too much
+                  un-organized text"). Numbers from lib/pricing.ts. */}
               <p className="lede mt-5">
-                FlightPowers is a travel data API for developers and AI agents: live Google Flights fares with Google&apos;s
-                low/typical/high price band, a round trip priced as one request, and live Booking.com hotel rates, over REST
-                and MCP on one RapidAPI key. Free tier of {FLIGHT_PLANS[0]!.quota} searches, PRO ${FLIGHT_PLANS[1]!.priceMonthly}{' '}
-                for {FLIGHT_PLANS[1]!.quota.toLocaleString('en-US')} flight searches. Best for price tracking, date scans and AI
-                agents; no booking.
+                FlightPowers is a travel data API for live Google Flights fares and Booking.com hotel rates, built for
+                developers and AI agents who track prices and scan dates (no booking).
               </p>
-              <p className="mt-3 text-[15px] text-ink-400 leading-relaxed">
-                PRO is about a sixth of SerpApi&apos;s price per search (their cheapest plan is $25 for 1,000); the{' '}
-                <Link href="/compare" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
-                  compare pages
-                </Link>{' '}
-                put the numbers side by side, and the{' '}
-                <Link href="/guides" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
-                  guides
-                </Link>{' '}
-                have working code for each surface. Three things people do with it:
+              <ul className="mt-5 space-y-2 text-[15px] leading-snug text-ink-300">
+                {HERO_FACTS.map(([lead, rest]) => (
+                  <li key={lead} className="flex gap-2.5">
+                    <span className="mt-[0.45em] h-1.5 w-1.5 shrink-0 rounded-full bg-signal-500" aria-hidden="true" />
+                    <span>
+                      <strong className="font-semibold text-ink-100">{lead}</strong> {rest}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 flex flex-wrap gap-x-5 gap-y-1 font-mono text-[13px] text-ink-300">
+                <span className="whitespace-nowrap">
+                  Free: <strong className="text-ink-100">{FLIGHT_PLANS[0]!.quota} searches/month</strong>
+                </span>
+                <span className="whitespace-nowrap">
+                  PRO: <strong className="text-ink-100">${FLIGHT_PLANS[1]!.priceMonthly}/month</strong> for{' '}
+                  {FLIGHT_PLANS[1]!.quota.toLocaleString('en-US')} flight searches
+                </span>
               </p>
-              <div className="mt-6">
+              <div className="mt-8 flex items-baseline justify-between gap-3">
+                <p className="eyebrow">Three ways to use it</p>
+                <Link href="/guides" className="shrink-0 whitespace-nowrap font-mono text-[12px] text-signal-400 hover:text-signal-500">
+                  All guides →
+                </Link>
+              </div>
+              <div className="mt-3">
                 <PlayList />
               </div>
               {/* Rate parity and geo-pricing: of every hotel and flight data vendor read in
@@ -212,7 +232,7 @@ export default function HomePage() {
                   <span className="text-[15px] font-semibold text-ink-100 group-hover:text-signal-400">
                     Watch rate parity
                   </span>
-                  <span className="ml-1.5 text-[14px] text-ink-400 leading-relaxed">
+                  <span className="mt-0.5 block text-[14px] text-ink-400 leading-relaxed">
                     <code className="font-mono text-[13px] text-signal-400">proxy_country</code> prices the same hotel
                     room as a guest booking from another market, so you can sample one property across countries on a
                     schedule.
@@ -250,6 +270,13 @@ export default function HomePage() {
                   <span className="text-ink-300">MCP servers for <Link href="/mcp" className="text-signal-400 hover:text-signal-500 underline underline-offset-2">Claude, Cursor, ChatGPT →</Link></span>
                 </div>
               </div>
+              {/* The sanctioned SerpApi line (their cheapest plan re-read 2026-09-26). */}
+              <p className="mt-4 text-[14px] text-ink-400 leading-relaxed">
+                PRO is about a sixth of SerpApi&apos;s price per search (their cheapest plan is $25 for 1,000).{' '}
+                <Link href="/compare" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+                  Compare
+                </Link>
+              </p>
             </div>
             <div className="scroll-mt-24">
               <Playground initial={playgroundInitial} />
