@@ -27,7 +27,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
       'Two repeat-sampled proxy_country runs on Rome properties, at the headline-rate level and room by room, and the method that keeps a country comparison honest.',
     url: `${SITE.url}/guides/hotel-prices-by-country-api`,
     datePublished: '2026-09-05',
-    dateModified: '2026-10-06',
+    dateModified: '2026-10-18',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -35,15 +35,16 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 # Do hotel prices change by country?
 
-<GuideDates published="2026-09-05" updated="2026-10-06" />
+<GuideDates published="2026-09-05" updated="2026-10-18" />
 
-**Short answer:** Sometimes, and it depends on the hotel, the room and the day. FlightPowers'
-Booking.com endpoints take a `proxy_country` field (a two-letter code) that sends the request
-through a residential proxy in that market, so you can price a stay as a resident of that
-country would see it. A 2026-08-28 run found Japan about 4% under Germany on three Rome
-properties across repeat samples. A 2026-10-06 run on one of those properties found no gap
-between Germany and Japan at all, and gaps of 3% to 16% between Germany and the US once the
-comparison was made room by room.
+**Short answer:** Sometimes, and it depends on the hotel, the room and the day.
+FlightPowers' [hotels API](/hotels-api) gets Booking.com hotel rates from different
+countries: every endpoint takes a `proxy_country` field (a two-letter code) that sends the
+request through a residential proxy in that market, so you price a stay as a resident of
+that country would see it. PRO is ${HOTEL_PLANS[1].priceMonthly} for{' '}
+{HOTEL_PLANS[1].quota.toLocaleString('en-US')} searches. In my repeat-sampled runs one pair
+of markets differed and the same pair matched on a later day, so sample each market several
+times before you call a gap real. The runs are below.
 
 Booking.com can quote a different rate depending on where the visitor appears to be browsing
 from. Every hotels endpoint here takes `proxy_country`, a lowercase two-letter code; leave it

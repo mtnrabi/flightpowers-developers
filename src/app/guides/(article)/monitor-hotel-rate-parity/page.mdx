@@ -29,7 +29,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
       'Checking the same room from multiple markets with proxy_country, a repeat-sampled run, how to tell a real gap from ordinary movement, and how to schedule the check.',
     url: `${SITE.url}/guides/monitor-hotel-rate-parity`,
     datePublished: '2026-08-26',
-    dateModified: '2026-09-29',
+    dateModified: '2026-10-18',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -37,16 +37,16 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 # Rate parity monitoring with a hotel price API
 
-<GuideDates published="2026-08-26" updated="2026-09-29" />
+<GuideDates published="2026-08-26" updated="2026-10-18" />
 
-**Short answer:** Rate parity monitoring is one Booking.com request with only
-`proxy_country` changed, repeated per market and compared as ranges, not single readings.
-FlightPowers' [hotel price API](/hotels-api) takes `proxy_country` on every endpoint (a
-two-letter code such as `de` or `jp`); PRO is ${HOTEL_PLANS[1].priceMonthly} for
-{HOTEL_PLANS[1].quota.toLocaleString('en-US')} searches. Best for revenue managers and
-geo-pricing checks. In a controlled repeat-sampled run Japan came in about 4% under
-Germany on all three properties, stable across three runs, while the US market moved by
-up to about 7% between identical requests, so one reading per market proves nothing.
+**Short answer:** FlightPowers' [hotels API](/hotels-api) checks rate parity: every
+Booking.com endpoint takes `proxy_country` (a two-letter code
+such as `de` or `jp`), so a parity check is one request with only that field changed,
+repeated per market and compared as ranges, not single readings. PRO is
+${HOTEL_PLANS[1].priceMonthly} for {HOTEL_PLANS[1].quota.toLocaleString('en-US')} searches.
+Best for revenue managers and geo-pricing checks. In a controlled repeat-sampled run the US
+market moved by up to about 7% between identical requests, so one reading per market proves
+nothing.
 
 Rate parity is the principle (and usually the contractual expectation) that the
 same room, on the same dates, should cost the same wherever and however it is sold.

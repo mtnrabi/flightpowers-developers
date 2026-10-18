@@ -29,7 +29,7 @@ import { SITE } from '@/lib/site';
       'Every Amadeus Self-Service alternative a small team shortlists, with the access gate each one puts in front of you, quoted and dated, plus a real migration request and response.',
     url: `${SITE.url}/guides/amadeus-self-service-alternatives`,
     datePublished: '2026-09-01',
-    dateModified: '2026-10-06',
+    dateModified: '2026-10-18',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -110,13 +110,18 @@ import { SITE } from '@/lib/site';
 
 # Amadeus Self-Service alternatives you can get into
 
-<GuideDates published="2026-09-01" updated="2026-10-06" />
+<GuideDates published="2026-09-01" updated="2026-10-18" />
 
 **Short answer:** Amadeus for Developers Self-Service was decommissioned on July 17, 2026,
-per the notice Amadeus itself posted on `developers.amadeus.com` (source below). It is now
-fully gone: `test.api.amadeus.com` and `api.amadeus.com` have no DNS record, `/self-service`
-redirects to the homepage, and the `amadeus4dev` GitHub org is fully archived (checked
-2026-09-04). The real alternatives are gated differently, from Duffel's instant
+per the notice Amadeus itself posted on
+<a href="https://developers.amadeus.com/" rel="noopener">developers.amadeus.com</a>
+([archived 2026-07-15](https://web.archive.org/web/20260715114814/https://developers.amadeus.com/)).
+Self-Service is now fully gone: `test.api.amadeus.com` and `api.amadeus.com` have no DNS
+record, `/self-service` redirects to the homepage, and the `amadeus4dev` GitHub org is fully
+archived (checked 2026-09-04). For flight prices with no application, FlightPowers'
+[Google Flights Live API](/flights-api) gives you a key today: live Google Flights fares,
+{FLIGHT_PLANS[0].quota} free searches a month, PRO ${FLIGHT_PLANS[1].priceMonthly} for
+{FLIGHT_PLANS[1].quota.toLocaleString('en-US')}. The real alternatives are gated differently, from Duffel's instant
 self-serve booking access to RapidAPI marketplace extraction APIs like FlightPowers
 with no application at all, each quoted and dated from its own provider page.
 

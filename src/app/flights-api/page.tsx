@@ -592,6 +592,13 @@ export default function FlightsApiHubPage() {
             </Link>
           ))}
         </div>
+        <p className="mt-6 text-[14px] text-ink-400 leading-relaxed">
+          Moving off Amadeus Self-Service (closed July 17, 2026)? The options you can still get a key for are in{' '}
+          <Link href="/guides/amadeus-self-service-alternatives" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+            Amadeus Self-Service alternatives
+          </Link>
+          .
+        </p>
       </Section>
 
       <Section bordered={false} className="!pt-4">

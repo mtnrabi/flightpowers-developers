@@ -161,11 +161,23 @@ export default function CompareAmadeusPage() {
             <span className="text-signal-500">Amadeus Self-Service</span> vs FlightPowers, and when to migrate
           </h1>
           <Quotable>
-            FlightPowers is an Amadeus Self-Service alternative for flight and hotel shopping: Amadeus closed Self-Service on July
-            17, 2026 and its sandbox host no longer resolves, while our key works the day you subscribe,{' '}
-            {`$${PRO.priceMonthly}`} for {PRO.quota.toLocaleString('en-US')} live Google Flights searches or{' '}
-            {`$${HOTEL_PRO.priceMonthly}`} for {HOTEL_PRO.quota.toLocaleString('en-US')} Booking.com hotel searches. Best for indie
-            developers and AI agents; Amadeus Enterprise for accredited travel sellers.
+            Amadeus closed Self-Service on July 17, 2026, per its own notice on{' '}
+            <a href="https://developers.amadeus.com/" rel="noopener" className="underline underline-offset-4">
+              developers.amadeus.com
+            </a>{' '}
+            (
+            <a
+              href="https://web.archive.org/web/20260715114814/https://developers.amadeus.com/"
+              rel="noopener"
+              className="underline underline-offset-4"
+            >
+              archived 2026-07-15
+            </a>
+            ), and its sandbox host no longer resolves. FlightPowers is an alternative whose key works the day you subscribe: live
+            Google Flights fares, {FLIGHT_PLANS[0]!.quota} free searches a month, {`$${PRO.priceMonthly}`} for{' '}
+            {PRO.quota.toLocaleString('en-US')} on PRO, or {`$${HOTEL_PRO.priceMonthly}`} for{' '}
+            {HOTEL_PRO.quota.toLocaleString('en-US')} Booking.com hotel searches. Best for indie developers and AI agents; Amadeus
+            Enterprise for accredited travel sellers.
           </Quotable>
           <p className="lede mt-5 max-w-3xl">
             If your Amadeus Self-Service integration stopped working, this page is a migration path. It shows you how to verify the
