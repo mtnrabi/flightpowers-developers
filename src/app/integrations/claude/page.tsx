@@ -1,7 +1,9 @@
 import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import { AgentIntegrationPage, type ConnectStep, type ToolLine } from '../_agent-page';
-import type { Faq } from '@/components/ui';
+import Link from 'next/link';
+import { Section, SectionHead, type Faq } from '@/components/ui';
+import { CLAUDE_FARE_ALERT_PAGE } from '@/lib/matrix';
 
 export const dynamic = 'force-static';
 
@@ -101,6 +103,22 @@ export default function ClaudeIntegrationPage() {
       toolsTitle="The four tools Claude sees"
       toolsLede="Printed raw on purpose: this page is written to be read by an agent as much as by a person."
       tools={tools}
+      extra={
+        <Section>
+          <SectionHead eyebrow="Fare alerts" title="A Claude fare alert" />
+          <p className="mt-6 max-w-3xl text-[15px] text-ink-300 leading-relaxed">
+            Poll a route on a schedule and act only when Google&apos;s verdict reads low: the{' '}
+            <Link href="/integrations/claude/fare-alert-cron" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+              fare-alert recipe for these connectors
+            </Link>{' '}
+            has the prompt, the call and the fields it reads. On the desktop app with a config file instead, use the{' '}
+            <Link href={CLAUDE_FARE_ALERT_PAGE} className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+              Claude fare alert in Claude Desktop
+            </Link>
+            .
+          </p>
+        </Section>
+      }
       faq={faq}
     />
   );

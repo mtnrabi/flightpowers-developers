@@ -24,6 +24,11 @@ import { apiNode } from '@/lib/schema-offers';
 
 // The head term first ("hotels API"), the source second; title.absolute keeps
 // the template's " · FlightPowers" suffix off so the tag stays under 60 chars.
+// 2026-10-18 (double-down plan item 2): the page sits at position 11.9 with 10
+// clicks in 28 days and ranks for "booking.com api pricing", so the <title> now
+// carries the PRO price (from lib/pricing.ts). The og card keeps the literal
+// title so the share card stays prerendered (src/app/og/titles.ts).
+const HOTELS_PRO = HOTEL_PLANS.find((p) => p.name === 'PRO')!;
 export const metadata: Metadata = {
   ...withOg({
     title: 'Hotels API: live Booking.com rates by destination or name',
@@ -31,7 +36,9 @@ export const metadata: Metadata = {
       'Hotels API over live Booking.com: rates by destination or hotel name, proxy_country to price a stay from any country, 24 filters. PRO $10 for 2,000.',
     alternates: { canonical: '/hotels-api' },
   }),
-  title: { absolute: 'Hotels API: live Booking.com rates by destination or name' },
+  title: {
+    absolute: `Hotels API: live Booking.com rates, $${HOTELS_PRO.priceMonthly} for ${HOTELS_PRO.quota.toLocaleString('en-US')} searches`,
+  },
 };
 
 export const dynamic = 'force-static';
@@ -254,7 +261,10 @@ export default function HotelsApiHubPage() {
                   See geo-pricing
                 </Cta>
               </div>
-              <p className="mt-4 font-mono text-[12px] text-ink-500">Free tier on RapidAPI. No card to try.</p>
+              <p className="mt-4 font-mono text-[12px] text-ink-500">
+                PRO ${HOTELS_PRO.priceMonthly} a month for {HOTELS_PRO.quota.toLocaleString('en-US')} searches. {HOTEL_PLANS[0]!.quota} free
+                searches a month on RapidAPI, no card to try.
+              </p>
               <p className="mt-3 text-[14px] text-ink-400 leading-relaxed">
                 Not a Booking.com partner?{' '}
                 <Link href="/guides/booking-com-api-alternative" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
