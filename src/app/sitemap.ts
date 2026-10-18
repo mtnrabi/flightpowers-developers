@@ -15,9 +15,17 @@ const src = (...parts: string[]) => path.join(process.cwd(), 'src', ...parts);
  * later day; a page with neither gets no <lastmod> at all rather than a
  * guessed one. See lastModified() in src/lib/routes.ts.
  */
+/**
+ * Pages that stay live (and indexable if linked) but are not announced.
+ * /hotels-api/bulk: Matan's standing decision of 2026-08-26 is that the bulk
+ * hotels lane is not advertised on the site; the page stays up for anyone who
+ * already uses it, it is just not in the sitemap or the site nav.
+ */
+const UNLISTED_ROUTES = new Set(['/hotels-api/bulk']);
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = discoverRoutes()
-    .filter(({ pathname }) => !NOINDEX_ROUTES.has(pathname))
+    .filter(({ pathname }) => !NOINDEX_ROUTES.has(pathname) && !UNLISTED_ROUTES.has(pathname))
     .map(({ pathname, file }) => ({
       url: new URL(pathname, SITE.url).toString(),
       lastModified: lastModified(file),

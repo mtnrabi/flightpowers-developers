@@ -14,7 +14,7 @@ export const metadata = {
 export const dynamic = 'force-static';
 
 import { GuideDates, JsonLd } from '@/components/ui';
-import { CtaBand } from '@/components/bands';
+import { CtaBand, TwoStepCta } from '@/components/bands';
 import { FLIGHT_PLANS, HOTEL_PLANS } from '@/lib/pricing';
 import { LINKS, SITE } from '@/lib/site';
 
@@ -27,7 +27,7 @@ import { LINKS, SITE } from '@/lib/site';
       'Kiwi.com, trivago, HasData, Ignav, SerpApi, flight-mcp.com, StayingAPI, fli, flights-mcp (Duffel), FlightPowers and Blue Pillow MCP servers compared from their own pages and live tools/list reads on 2026-10-06, with disclosed bias.',
     url: `${SITE.url}/guides/best-travel-mcp-servers-2026`,
     datePublished: '2026-10-06',
-    dateModified: '2026-10-06',
+    dateModified: '2026-10-18',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -84,13 +84,16 @@ import { LINKS, SITE } from '@/lib/site';
 
 # Best travel MCP servers in 2026: flights and hotels, compared
 
-<GuideDates published="2026-10-06" updated="2026-10-06" />
+<GuideDates published="2026-10-06" updated="2026-10-18" />
 
 **Short answer:** for a free flights MCP with no key, Kiwi.com's; for free hotel search,
 trivago's; for Google Flights, Booking.com, Google Hotels and Airbnb behind one key,
-HasData's; for something you run yourself, fli. Mine, FlightPowers, prices a whole date
-range and a round trip in one call on live Google Flights fares, with Google's own
-low / typical / high band, plus live Booking.com rates. I read all eleven servers below on
+HasData's; for something you run yourself, fli; and for a whole date range and a round trip
+in one call on live Google Flights fares, with Google's own low / typical / high band, plus
+live Booking.com rates, mine, FlightPowers: the flights MCP `flights.flightpowers.com/mcp`
+and the hotel MCP `hotels.flightpowers.com/mcp` on your own RapidAPI key, or both free with
+ads at `free-trial.flightpowers.com/mcp` (Google sign-in, 50 searches a day). I read all
+eleven servers below on
 **2026-10-06** from their own pages, READMEs or a live `tools/list`, and every figure
 carries that date.
 
@@ -120,6 +123,8 @@ I read, not that it cannot exist.
 "Price band" means Google's own historical range for the route with a low / typical / high
 verdict, the field that tells you whether a fare is a good one. "Round trip: two calls" means
 the server's own docs say the return leg is a second request.
+
+<TwoStepCta medium="guide" />
 
 ## 1. Kiwi.com MCP: free flight search, no key
 

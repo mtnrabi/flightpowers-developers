@@ -1,7 +1,7 @@
 import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { CtaBand } from '@/components/bands';
+import { CtaBand, TwoStepCta } from '@/components/bands';
 import {
   CheckBullets,
   Code,
@@ -112,6 +112,7 @@ export default function SkillsPage() {
               <p className="mt-3 text-[15px] text-ink-300">One line. The skills land in your agent&apos;s skill directory, readable before they run.</p>
             </div>
           </div>
+          <TwoStepCta medium="mcp" />
         </Container>
       </div>
 

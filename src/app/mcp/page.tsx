@@ -2,6 +2,7 @@ import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
+import { McpFreeConnect } from '@/components/McpFreeConnect';
 import {
   CheckBullets,
   Code,
@@ -21,6 +22,12 @@ import { ORGANIZATION_ID, aggregateOffer } from '@/lib/schema-offers';
 
 // The head terms ("travel MCP", "flights MCP", "hotel MCP") each appear once in
 // the hub text; title.absolute keeps the " · FlightPowers" suffix off.
+// 2026-10-18 review round: the title and H1 stay the hub's. 'google flights mcp'
+// averages 10.9 while /mcp sits at 11.8, so a better-ranked page already holds
+// the query, most likely /mcp/google-flights (built for it on 10-06). Retitling
+// the hub would compete with it; the hero links that page with the query as
+// its anchor text instead. The literal title also keeps the share card
+// prerendered (src/app/og/titles.ts reads quoted literals only).
 export const metadata: Metadata = {
   ...withOg({
     title: 'Travel MCP servers: Google Flights + Booking.com for Claude',
@@ -163,9 +170,18 @@ export default function McpPage() {
                   here on purpose (the plan places it on this hub); numbers from
                   lib/pricing.ts and the free server's published caps. */}
               <p className="lede mt-5">
-                FlightPowers runs travel MCP servers for Claude and Cursor: a flights MCP with live Google Flights fares,
-                Google&apos;s low/typical/high band, a date range and destination list in one call, one-request round trips;
-                and a hotel MCP with live Booking.com rates. Free with ads at{' '}
+                FlightPowers runs two travel MCP servers for Claude and Cursor: the{' '}
+                <Link href="/mcp/google-flights" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+                  Google Flights MCP
+                </Link>{' '}
+                at <code className="font-mono text-[0.85em] text-signal-400">{LINKS.mcpFlights.replace('https://', '')}</code>,
+                with live Google Flights fares, Google&apos;s low/typical/high band, a date range and destination list in one
+                call and one-request round trips; and the{' '}
+                <Link href="/mcp/booking-hotels" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+                  hotel MCP
+                </Link>{' '}
+                at <code className="font-mono text-[0.85em] text-signal-400">{LINKS.mcpHotels.replace('https://', '')}</code>,
+                with live Booking.com rates. Free with ads at{' '}
                 <code className="font-mono text-[0.85em] text-signal-400">{LINKS.mcpFree.replace('https://', '')}</code> (Google
                 sign-in, 50 searches a day, 250 a month); ad-free on your key, PRO $10 for 2,500 flight searches.
               </p>
@@ -279,6 +295,32 @@ export default function McpPage() {
           </a>
           .
         </p>
+      </Section>
+
+      {/* ============================== HOTEL MCP (double-down plan item 5) ============================== */}
+      <Section>
+        <SectionHead
+          eyebrow="Hotel MCP"
+          title="An MCP server for hotel prices"
+          lede="For the assistant that has to answer what a room costs on given dates, not what it cost last month."
+        />
+        <div className="mt-6 max-w-3xl space-y-4 text-[15px] text-ink-300 leading-relaxed">
+          <p>
+            Add <code className="font-mono text-[0.9em] text-signal-400">{LINKS.mcpHotels.replace('https://', '')}</code> to
+            Claude, Cursor or ChatGPT and the assistant gets live Booking.com room rates two ways:{' '}
+            <code className="field">search_hotels</code> for a destination and dates, and{' '}
+            <code className="field">find_hotel_by_name</code> for one property by the name a person would type. Both take{' '}
+            <code className="field">price_as_seen_from</code>, a two-letter country code that prices the stay as a shopper in
+            that country would see it. It reads Booking.com only, and it does not book.
+          </p>
+          <p>
+            Setup per client, every tool parameter and one real search with its date are on the{' '}
+            <Link href="/mcp/booking-hotels" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+              hotel MCP server page
+            </Link>
+            .
+          </p>
+        </div>
       </Section>
 
       {/* ============================== SKILL ALT ============================== */}
@@ -399,11 +441,14 @@ export default function McpPage() {
             15 date × destination combinations instead of 30. Use it to try the tools before getting a key; point production and
             anything you ship at the keyed servers above.
           </p>
+          <div className="mt-6">
+            <McpFreeConnect url={LINKS.mcpFree} />
+          </div>
           <Link
             href="/tools#free-mcp"
             className="mt-4 inline-block text-sm text-signal-400 underline underline-offset-4 hover:text-signal-500"
           >
-            Connect it, and read the full list of what it does not do →
+            The full list of what it does not do →
           </Link>
         </div>
       </Section>

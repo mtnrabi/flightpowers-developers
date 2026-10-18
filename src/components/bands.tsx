@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { FLIGHT_PLANS, HOTEL_PLANS } from '@/lib/pricing';
 import { COUNTS, LINKS, SURFACES, rapidApiPricingUrl, type UtmMedium } from '@/lib/site';
 import { Code, Cta, SectionHead } from './ui';
 
@@ -19,6 +20,50 @@ export function SurfaceStrip({ label = 'One API, everywhere your stack already l
             </Link>
           )
         )}
+      </div>
+    </div>
+  );
+}
+
+/**
+ * The two-step start, for pages that get search traffic but send almost
+ * nobody to pricing (site double-down plan 2026-10-18, item 1): taste on the
+ * free ad-supported MCP server, then the PRO key for the big scans. Both
+ * buttons are outbound links the site-wide OutboundTracker already records
+ * (free-trial.flightpowers.com is an MCP host, the pricing link carries the
+ * page's utm_medium), so the effect reads per page on the beacon. Numbers come
+ * from lib/pricing.ts; the 50-a-day cap is the free server's published one.
+ */
+export function TwoStepCta({ medium }: { medium: UtmMedium }) {
+  const flightsPro = FLIGHT_PLANS.find((p) => p.name === 'PRO')!;
+  const hotelsPro = HOTEL_PLANS.find((p) => p.name === 'PRO')!;
+  const freeHost = LINKS.mcpFree.replace('https://', '');
+  return (
+    <div className="my-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div className="rounded-2xl border rule bg-ink-900/60 p-5">
+        <p className="font-mono text-[11px] uppercase tracking-wider text-ink-500">1 · Try it free</p>
+        <p className="mt-2 text-[14.5px] text-ink-300 leading-relaxed">
+          Add <code className="font-mono text-[0.9em] text-signal-400 break-all">{freeHost}</code> to Claude, ChatGPT or
+          Cursor and sign in with Google: 50 searches a day, no key, one labelled sponsored card per result.
+        </p>
+        <div className="mt-4">
+          <Cta href={LINKS.mcpFree} external variant="ghost">
+            Open the free MCP →
+          </Cta>
+        </div>
+      </div>
+      <div className="rounded-2xl border border-signal-600/30 bg-signal-600/[0.05] p-5">
+        <p className="font-mono text-[11px] uppercase tracking-wider text-ink-500">2 · Run the big scans</p>
+        <p className="mt-2 text-[14.5px] text-ink-300 leading-relaxed">
+          PRO is ${flightsPro.priceMonthly} a month for {flightsPro.quota.toLocaleString('en-US')} flight searches on RapidAPI.
+          Hotels is a separate PRO plan, ${hotelsPro.priceMonthly} for {hotelsPro.quota.toLocaleString('en-US')}. Each key
+          works over REST and in the keyed MCP servers, with no ads.
+        </p>
+        <div className="mt-4">
+          <Cta href={rapidApiPricingUrl('flights', medium)} external variant="primary">
+            See PRO on RapidAPI →
+          </Cta>
+        </div>
       </div>
     </div>
   );

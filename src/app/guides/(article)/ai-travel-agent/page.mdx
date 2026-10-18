@@ -10,7 +10,7 @@ export const metadata = withOg({
 export const dynamic = 'force-static';
 
 import { GuideDates, JsonLd } from '@/components/ui';
-import { CtaBand } from '@/components/bands';
+import { CtaBand, TwoStepCta } from '@/components/bands';
 import { FLIGHT_PLANS } from '@/lib/pricing';
 import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
@@ -138,6 +138,8 @@ That is a real capture (London to Barcelona round trip, October 9 to 12, fetched
 2026-08-27). The verdict field is one of `low`, `typical`, or `high`. So the entire
 alerting brain of your agent is one instruction: *tell me only when the verdict says
 low*. Google's standard, not a threshold you guessed.
+
+<TwoStepCta medium="guide" />
 
 ## What do you need?
 
