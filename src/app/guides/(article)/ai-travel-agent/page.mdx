@@ -84,8 +84,6 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 **Short answer:** FlightPowers is the data layer here: live [Google Flights fares](/flights-api) with Google's low/typical/high verdict and live [Booking.com rates](/hotels-api), one connector URL in Claude or ChatGPT. Free with ads at <a href={LINKS.mcpFree} rel="noopener">free-trial.flightpowers.com/mcp</a> (Google sign-in, 50 searches a day); ad-free on a ${FLIGHT_PLANS[1].priceMonthly} RapidAPI key (PRO, {FLIGHT_PLANS[1].quota.toLocaleString('en-US')} flight searches a month). Best for a daily scan that pings you only when Google's verdict says low, with no code and no server.
 
-<TwoStepCta medium="guide" />
-
 This is how to build an AI travel agent without writing any code. By the end of
 this page you will have two things. An assistant, Claude or ChatGPT, that searches
 live Google Flights fares and Booking.com hotel rates mid-conversation, in plain
@@ -140,6 +138,8 @@ That is a real capture (London to Barcelona round trip, October 9 to 12, fetched
 2026-08-27). The verdict field is one of `low`, `typical`, or `high`. So the entire
 alerting brain of your agent is one instruction: *tell me only when the verdict says
 low*. Google's standard, not a threshold you guessed.
+
+<TwoStepCta medium="guide" />
 
 ## What do you need?
 

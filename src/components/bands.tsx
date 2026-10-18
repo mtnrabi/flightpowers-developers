@@ -55,9 +55,9 @@ export function TwoStepCta({ medium }: { medium: UtmMedium }) {
       <div className="rounded-2xl border border-signal-600/30 bg-signal-600/[0.05] p-5">
         <p className="font-mono text-[11px] uppercase tracking-wider text-ink-500">2 · Run the big scans</p>
         <p className="mt-2 text-[14.5px] text-ink-300 leading-relaxed">
-          PRO is ${flightsPro.priceMonthly} a month for {flightsPro.quota.toLocaleString('en-US')} flight searches on RapidAPI
-          (hotels: ${hotelsPro.priceMonthly} for {hotelsPro.quota.toLocaleString('en-US')}). One key works over REST and in
-          the keyed MCP servers, with no ads.
+          PRO is ${flightsPro.priceMonthly} a month for {flightsPro.quota.toLocaleString('en-US')} flight searches on RapidAPI.
+          Hotels is a separate PRO plan, ${hotelsPro.priceMonthly} for {hotelsPro.quota.toLocaleString('en-US')}. Each key
+          works over REST and in the keyed MCP servers, with no ads.
         </p>
         <div className="mt-4">
           <Cta href={rapidApiPricingUrl('flights', medium)} external variant="primary">
