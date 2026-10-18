@@ -2,13 +2,16 @@ import { withOg } from '@/lib/meta';
 
 export const metadata = {
   ...withOg({
-    title: 'Booking.com API key: how to get access, and the alternative',
+    title: 'Booking.com API key: how to get one, and the price',
     description:
-      'Booking.com gives Demand API keys to Managed Affiliate Partners under contract. How it works, and live Booking.com rates on a RapidAPI key: $10 for 2,000.',
+      'Booking.com API keys go to partners under contract. A key for live Booking.com rates on RapidAPI: free for 10 requests, PRO $10 for 2,000, no approval.',
     alternates: { canonical: '/guides/booking-com-api-key' },
   }),
-  // The layout template appends " · FlightPowers"; the title is 59 chars without it.
-  title: { absolute: 'Booking.com API key: how to get access, and the alternative' },
+  // The layout template appends " · FlightPowers"; the title is 50 chars without it.
+  // Retitled 2026-10-18 (double-down plan item 2): 1,306 impressions at 1.0% CTR,
+  // position 6.3; 'booking api key' at position 6.5 with 1 click. The buyer asks for
+  // the price, so the title promises it. Numbers match HOTEL_PLANS (BASIC 10, PRO $10/2,000).
+  title: { absolute: 'Booking.com API key: how to get one, and the price' },
 };
 
 export const dynamic = 'force-static';
@@ -24,12 +27,12 @@ export const q = (p) => p.quota.toLocaleString('en-US');
   data={{
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
-    headline: 'Booking.com API key: how to get access, and the alternative',
+    headline: 'Booking.com API key: how to get one, and the price',
     description:
       'How Booking.com API access works (Demand API for Managed Affiliate Partners, Connectivity APIs for property software) and how to get live Booking.com rates on a RapidAPI key instead.',
     url: `${SITE.url}/guides/booking-com-api-key`,
     datePublished: '2026-09-01',
-    dateModified: '2026-10-06',
+    dateModified: '2026-10-18',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -115,15 +118,15 @@ export const q = (p) => p.quota.toLocaleString('en-US');
   }}
 />
 
-# Booking.com API key: how to get access, and the alternative
+# Booking.com API key: how to get one, and the price
 
-<GuideDates published="2026-09-01" updated="2026-10-06" />
+<GuideDates published="2026-09-01" updated="2026-10-18" />
 
 **Short answer:** Booking.com's own APIs sit behind an agreement: the Demand API is for
 Managed Affiliate Partners, whose access comes from a Booking.com account manager after a
 signed contract, and the Connectivity APIs are for software that manages properties on
-Booking.com. If you just need live Booking.com rates as JSON, the Booking Live API on RapidAPI
-gives you a key today with no approval: PRO is ${HOTEL_PLANS[1].priceMonthly} for{' '}
+Booking.com. If you just need live Booking.com rates as JSON, FlightPowers'
+[Booking Live API](/hotels-api) on RapidAPI gives you a key today with no approval: PRO is ${HOTEL_PLANS[1].priceMonthly} for{' '}
 {HOTEL_PLANS[1].quota.toLocaleString('en-US')} searches, with a free tier of{' '}
 {HOTEL_PLANS[0].quota}. It is a hotel data API, not a booking engine.
 
@@ -165,7 +168,7 @@ key, and the answer is JSON. The rest of this page is that second path.
 
 ## When you cannot get access: live rates on a RapidAPI key
 
-The Booking Live API runs live searches on Booking.com for you and returns the result as JSON.
+The [Booking Live API](/hotels-api) runs live searches on Booking.com for you and returns the result as JSON.
 You subscribe on RapidAPI and the key is usable the same minute: no partner agreement, no
 traffic minimum, no account manager. What you get back on every call:
 

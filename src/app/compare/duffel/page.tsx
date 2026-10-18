@@ -34,19 +34,25 @@ const PRO = FLIGHT_PLANS.find((p) => p.name === 'PRO')!;
 
 export const metadata: Metadata = {
   ...withOg({
-    title: 'Duffel API pricing vs FlightPowers: booking vs flight data',
-    description: `Duffel: $3.00 per order, 1,500 searches per order, then $0.005 a search (duffel.com/pricing, read ${RETRIEVED}). FlightPowers: $${PRO.priceMonthly} for ${PRO.quota.toLocaleString('en-US')}, no booking.`,
+    title: 'Duffel API pricing: $3.00 per order, $0.005 per search',
+    description: `Duffel API pricing (duffel.com/pricing): $3.00 per order, 1,500 free searches per order, then $0.005 a search. FlightPowers: $${PRO.priceMonthly} for ${PRO.quota.toLocaleString('en-US')} flight searches.`,
     alternates: { canonical: '/compare/duffel' },
   }),
-  // The layout template appends " · FlightPowers"; the title is 58 chars without it.
-  // Retitled 2026-10-06 (W2-4): leads with "duffel api pricing" (34 impr at 9.0) and keeps
-  // "booking" (booking api pricing, 28 impr) per page-query-join-2026-09-29.md.
-  title: { absolute: 'Duffel API pricing vs FlightPowers: booking vs flight data' },
+  // The layout template appends " · FlightPowers"; the title is 54 chars without it.
+  // Retitled 2026-10-18 (double-down plan item 3): 'duffel api pricing' (pos 6.2) and
+  // 'duffel pricing' (5.8) at a 0.6% page CTR, so the title now IS the pricing answer,
+  // quoted from duffel.com/pricing. 2026-10-06 (W2-4) title was "Duffel API pricing vs
+  // FlightPowers: booking vs flight data".
+  title: { absolute: 'Duffel API pricing: $3.00 per order, $0.005 per search' },
 };
 
 export const dynamic = 'force-static';
 
 const faq: Faq[] = [
+  {
+    q: 'How much does the Duffel API cost?',
+    a: `Per duffel.com/pricing (read ${RETRIEVED}): $3.00 per confirmed order, 1% of the order value on Managed Content, $2.00 per paid ancillary, and 1,500 free searches per confirmed order, then $0.005 per excess search. A team that only prices flights and never books pays $0.005 for every search there; FlightPowers PRO is $${PRO.priceMonthly} for ${PRO.quota.toLocaleString('en-US')} flight searches, and it cannot book.`,
+  },
   {
     q: 'Can FlightPowers book a flight?',
     a: 'No, and this page says so in its first paragraph. FlightPowers returns prices and a buy_link, a deep link that opens the exact itinerary on Google Flights, where the traveller completes the purchase somewhere else. If the transaction must happen inside your product, Duffel is the right kind of tool and we are not.',
@@ -123,7 +129,7 @@ export default function CompareDuffelPage() {
         data={{
           '@context': 'https://schema.org',
           '@type': 'WebPage',
-          name: 'Duffel API pricing vs FlightPowers: booking vs flight data',
+          name: 'Duffel API pricing: $3.00 per order, $0.005 per search',
           url: `${SITE.url}/compare/duffel`,
           dateModified: RETRIEVED,
         }}
@@ -149,13 +155,13 @@ export default function CompareDuffelPage() {
         <Container className="relative pt-8 sm:pt-12 pb-14">
           <p className="eyebrow">Comparison · competitor data retrieved {RETRIEVED}</p>
           <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold max-w-4xl">
-            FlightPowers vs <span className="text-signal-500">Duffel</span>
+            <span className="text-signal-500">Duffel</span> API pricing vs FlightPowers
           </h1>
           <Quotable>
-            FlightPowers is a Duffel alternative only if you do not need to sell the ticket. Duffel is a booking API: $3.00 per
-            order, 1,500 free searches per order and $0.005 a search past that. FlightPowers prices flights from Google Flights at{' '}
-            {`$${pro.priceMonthly}`} for {pro.quota.toLocaleString('en-US')} searches and cannot book. Best for fare trackers, research and
-            AI agents; Duffel for checkout.
+            Duffel API pricing: $3.00 per confirmed order, 1,500 free searches per order, then $0.005 a search. Use Duffel to book
+            the ticket and FlightPowers to price it: FlightPowers returns live Google Flights fares at {`$${pro.priceMonthly}`} for{' '}
+            {pro.quota.toLocaleString('en-US')} searches and cannot book. Best for fare trackers, research and AI agents; Duffel for
+            checkout.
           </Quotable>
           <p className="lede mt-5 max-w-3xl">
             These two products get compared a lot and they should not be. Duffel is a <strong className="text-ink-100">booking
@@ -193,30 +199,8 @@ export default function CompareDuffelPage() {
       </div>
 
       <Section className="!pt-12">
-        <SectionHead eyebrow="The decisive difference" title="Duffel can sell a ticket. FlightPowers cannot." />
-        <div className="mt-6 max-w-3xl space-y-5 text-[15.5px] text-ink-300 leading-relaxed">
-          <p>
-            Duffel gives you real bookable airline inventory, order creation, ancillaries, and their own IATA accreditation so you do
-            not need your own. From their pricing page:
-          </p>
-          <blockquote className="border-l-2 border-signal-600 pl-4 text-[15px] text-ink-300">
-            “If you have your own accreditation and would like to use it please contact us to discuss pricing and next steps.
-            Alternatively, you can use our accreditation through our Managed Content. This includes access to our 5 IATAs worldwide
-            with no need for any additional forms or up-front capital.”
-            <footer className="mt-2 font-mono text-[11px] text-ink-500">duffel.com/pricing · retrieved {RETRIEVED}</footer>
-          </blockquote>
-          <p>
-            That is a genuinely hard problem solved, and nothing on our side substitutes for it. FlightPowers returns a{' '}
-            <code className="font-mono text-[13px]">buy_link</code>, a deep link that opens the exact itinerary on Google Flights,
-            where the traveller completes the purchase somewhere else. If you need the transaction to happen inside your product,
-            stop reading and go to Duffel.
-          </p>
-        </div>
-      </Section>
-
-      <Section>
         <SectionHead
-          eyebrow="Their model"
+          eyebrow="Duffel pricing"
           title="Duffel’s pricing: orders pay, search rides along"
           lede="Quoted from their pricing page. A well-designed model for a travel seller."
         />
@@ -242,6 +226,28 @@ export default function CompareDuffelPage() {
           <p className="mt-6 text-[15px] text-ink-300 leading-relaxed">
             This is a well-designed model <strong className="text-ink-100">for a travel seller</strong>. Search is nearly free as
             long as you convert, and 1500:1 is a generous ratio.
+          </p>
+        </div>
+      </Section>
+
+      <Section>
+        <SectionHead eyebrow="The decisive difference" title="Duffel can sell a ticket. FlightPowers cannot." />
+        <div className="mt-6 max-w-3xl space-y-5 text-[15.5px] text-ink-300 leading-relaxed">
+          <p>
+            Duffel gives you real bookable airline inventory, order creation, ancillaries, and their own IATA accreditation so you do
+            not need your own. From their pricing page:
+          </p>
+          <blockquote className="border-l-2 border-signal-600 pl-4 text-[15px] text-ink-300">
+            “If you have your own accreditation and would like to use it please contact us to discuss pricing and next steps.
+            Alternatively, you can use our accreditation through our Managed Content. This includes access to our 5 IATAs worldwide
+            with no need for any additional forms or up-front capital.”
+            <footer className="mt-2 font-mono text-[11px] text-ink-500">duffel.com/pricing · retrieved {RETRIEVED}</footer>
+          </blockquote>
+          <p>
+            That is a genuinely hard problem solved, and nothing on our side substitutes for it. FlightPowers returns a{' '}
+            <code className="font-mono text-[13px]">buy_link</code>, a deep link that opens the exact itinerary on Google Flights,
+            where the traveller completes the purchase somewhere else. If you need the transaction to happen inside your product,
+            stop reading and go to Duffel.
           </p>
         </div>
       </Section>

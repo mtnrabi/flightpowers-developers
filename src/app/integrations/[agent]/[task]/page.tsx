@@ -20,6 +20,8 @@ import {
   TASKS,
   apiName,
   connectSnippetFor,
+  CLAUDE_FARE_ALERT_PAGE,
+  matrixDescription,
   matrixPairs,
   matrixTitle,
   type AgentDef,
@@ -56,7 +58,9 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const { agent, task } = pair;
   return withOg({
     title: matrixTitle(agent, task),
-    description: `Connect ${agent.name} to live ${apiName(task)} data and run a ${task.name.toLowerCase()}: the config, the prompt, the call, and the fields your logic reads.`,
+    description:
+      matrixDescription(agent, task) ??
+      `Connect ${agent.name} to live ${apiName(task)} data and run a ${task.name.toLowerCase()}: the config, the prompt, the call, and the fields your logic reads.`,
     alternates: { canonical: `/integrations/${agent.slug}/${task.slug}` },
   });
 }
@@ -342,6 +346,15 @@ export default async function MatrixPage({ params }: { params: Promise<Params> }
             </Cta>
           </div>
           <p className="mt-4 font-mono text-[12px] text-ink-500">{heroCta.footnote}</p>
+          {task.slug === 'fare-alert-cron' && (agent.slug === 'claude' || agent.slug === 'claude-code') ? (
+            <p className="mt-4 max-w-2xl text-[14px] text-ink-400 leading-relaxed">
+              Using the Claude Desktop app?{' '}
+              <Link href={CLAUDE_FARE_ALERT_PAGE} className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+                The Claude fare alert in Claude Desktop
+              </Link>{' '}
+              is the same recipe with the config file.
+            </p>
+          ) : null}
         </Container>
       </div>
 
