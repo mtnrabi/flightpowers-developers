@@ -37,14 +37,14 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <GuideDates published="2026-09-05" updated="2026-10-18" />
 
-**Short answer:** FlightPowers' [hotels API](/hotels-api) gets Booking.com hotel rates from
-different countries: every endpoint takes a `proxy_country` field (a two-letter code) that
-sends the request through a residential proxy in that market, so you price a stay as a
-resident of that country would see it. PRO is ${HOTEL_PLANS[1].priceMonthly} for{' '}
-{HOTEL_PLANS[1].quota.toLocaleString('en-US')} searches. Do the prices change by country?
-Sometimes, and it depends on the hotel, the room and the day: in my repeat-sampled runs one
-pair of markets differed and the same pair matched on a later day, so sample each market
-several times before you call a gap real. The runs are below.
+**Short answer:** Sometimes, and it depends on the hotel, the room and the day.
+FlightPowers' [hotels API](/hotels-api) gets Booking.com hotel rates from different
+countries: every endpoint takes a `proxy_country` field (a two-letter code) that sends the
+request through a residential proxy in that market, so you price a stay as a resident of
+that country would see it. PRO is ${HOTEL_PLANS[1].priceMonthly} for{' '}
+{HOTEL_PLANS[1].quota.toLocaleString('en-US')} searches. In my repeat-sampled runs one pair
+of markets differed and the same pair matched on a later day, so sample each market several
+times before you call a gap real. The runs are below.
 
 Booking.com can quote a different rate depending on where the visitor appears to be browsing
 from. Every hotels endpoint here takes `proxy_country`, a lowercase two-letter code; leave it

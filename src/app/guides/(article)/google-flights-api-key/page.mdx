@@ -239,6 +239,12 @@ Be precise about who else has them. SerpApi and HasData both document a comparab
 
 ## FAQs
 
+**How do I get a Google Flights API key?**  
+Google has none to give: it has had no public flights API since QPX Express closed in 2018. You get a key from FlightPowers' Google Flights Live API on RapidAPI: subscribe, copy the key, and the first {FLIGHT_PLANS[0].quota} searches a month are free; PRO is ${FLIGHT_PLANS[1].priceMonthly} for {FLIGHT_PLANS[1].quota.toLocaleString('en-US')}.
+
+**Is Google Flights API free?**  
+Not from Google, which has had no public flights API since QPX Express closed in April 2018. The hosted Google Flights Live API this guide gets you a key for is free for {FLIGHT_PLANS[0].quota} searches a month on BASIC, then PRO is ${FLIGHT_PLANS[1].priceMonthly} for {FLIGHT_PLANS[1].quota.toLocaleString('en-US')}; with no key at all, the FlightPowers MCP server with ads gives 50 searches a day after a Google sign-in.
+
 **Is there an official Google Flights API key?**  
 No. Google shut down QPX Express in 2018 and has offered no public flights API since. Every Google Flights API key today comes from a third-party extraction service.
 

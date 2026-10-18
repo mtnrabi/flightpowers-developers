@@ -164,8 +164,16 @@ export default function CompareAmadeusPage() {
             Amadeus closed Self-Service on July 17, 2026, per its own notice on{' '}
             <a href="https://developers.amadeus.com/" rel="noopener" className="underline underline-offset-4">
               developers.amadeus.com
+            </a>{' '}
+            (
+            <a
+              href="https://web.archive.org/web/20260715114814/https://developers.amadeus.com/"
+              rel="noopener"
+              className="underline underline-offset-4"
+            >
+              archived 2026-07-15
             </a>
-            , and its sandbox host no longer resolves. FlightPowers is an alternative whose key works the day you subscribe: live
+            ), and its sandbox host no longer resolves. FlightPowers is an alternative whose key works the day you subscribe: live
             Google Flights fares, {FLIGHT_PLANS[0]!.quota} free searches a month, {`$${PRO.priceMonthly}`} for{' '}
             {PRO.quota.toLocaleString('en-US')} on PRO, or {`$${HOTEL_PRO.priceMonthly}`} for{' '}
             {HOTEL_PRO.quota.toLocaleString('en-US')} Booking.com hotel searches. Best for indie developers and AI agents; Amadeus
