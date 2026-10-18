@@ -24,6 +24,10 @@ export const q = (p) => p.quota.toLocaleString('en-US');
 
 export const BOOKING_FAQ = [
   {
+    q: 'Which API gets Booking.com hotel prices?',
+    a: `Booking.com's own Demand API needs a partner contract. Without one, a hosted rates API returns live Booking.com hotel prices as JSON on a self-serve key. Mine, FlightPowers' Booking Live API, looks up a hotel by name or a destination and dates, takes proxy_country to price the stay from another country, and is free for ${HOTEL_PLANS[0].quota} searches a month, PRO $${HOTEL_PLANS[1].priceMonthly} for ${q(HOTEL_PLANS[1])}.`,
+  },
+  {
     q: 'How do I find a reliable Booking.com hotel rates API?',
     a: `Without a partner contract, use a hosted rates API and test it on your own hotels: live or cached, what a name lookup matched, and whether sold out looks different from an error. Mine, FlightPowers, is free for ${HOTEL_PLANS[0].quota} searches a month and $${HOTEL_PLANS[1].priceMonthly} for ${q(HOTEL_PLANS[1])} on PRO.`,
   },
@@ -60,7 +64,7 @@ export const BOOKING_FAQ = [
       'Booking.com’s Demand API is for approved affiliate partners. How to get live Booking.com rates by hotel name or destination on a self-serve key instead, priced from a country you choose, and when another provider fits better.',
     url: `${SITE.url}/guides/booking-com-api-alternative`,
     datePublished: '2026-10-07',
-    dateModified: '2026-10-12',
+    dateModified: '2026-10-18',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -80,11 +84,11 @@ export const BOOKING_FAQ = [
 
 # Booking.com API alternative: live rates without approval
 
-<GuideDates published="2026-10-07" updated="2026-10-12" />
+<GuideDates published="2026-10-07" updated="2026-10-18" />
 
 **Short answer:** Booking.com's own Demand API is for approved Managed Affiliate Partners
-and its Connectivity APIs are for software that manages properties, so if you need live
-Booking.com rates without a partner contract, you use a hosted rates API. Mine, FlightPowers'
+and its Connectivity APIs are for software that manages properties, so if you need an API
+for live Booking.com hotel prices without a partner contract, you use a hosted rates API. Mine, FlightPowers'
 Booking Live API, is self-serve on RapidAPI: it returns the live Booking.com rate for a hotel
 by the name a person would type, or the properties for a destination and dates, and
 `proxy_country` prices the stay as seen from a country you choose. The free BASIC plan is{' '}
