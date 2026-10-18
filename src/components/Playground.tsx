@@ -169,7 +169,7 @@ export function Playground({ initial }: { initial: PlaygroundInitial }) {
   const running = state.phase === 'running';
 
   return (
-    <div className="terminal" id="demo">
+    <div className="terminal scroll-mt-32 lg:scroll-mt-24" id="demo">
       <div className="terminal-bar justify-between">
         <div className="flex items-center gap-2">
           <span className="terminal-dots flex gap-1.5" aria-hidden="true">

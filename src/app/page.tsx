@@ -104,9 +104,9 @@ const PLAYS: { href: string; label: string; line: string }[] = [
   },
 ];
 
-/** The hero's facts, one line each on a phone. Same claims the old lede carried. */
+/** The hero's facts, one line each on a phone. */
 const HERO_FACTS: [string, string][] = [
-  ['Live flight fares', 'from Google Flights, with Google\u2019s low/typical/high price band'],
+  ['Live flight fares', 'from Google Flights'],
   ['Round trips', 'priced as one request'],
   ['Live hotel rates', 'from Booking.com'],
   ['REST and MCP', 'on one RapidAPI key'],
@@ -183,14 +183,7 @@ export default function HomePage() {
               <h1 className="mt-4 text-hero font-semibold">
                 Your own travel agent, scan deals <span className="text-signal-500">24/7</span>
               </h1>
-              {/* The definition chunk under Matan's H1 (answer first, #108): one sentence
-                  of name + what + who, then the facts as a short list and the price as a
-                  plain ladder, so it scans on a phone (Matan 2026-10-18: "too much
-                  un-organized text"). Numbers from lib/pricing.ts. */}
-              <p className="lede mt-5">
-                FlightPowers is a travel data API for live Google Flights fares and Booking.com hotel rates, built for
-                developers and AI agents who track prices and scan dates (no booking).
-              </p>
+              {/* Bullets only under the H1, then the demo button (Matan 2026-10-18). */}
               <ul className="mt-5 space-y-2 text-[15px] leading-snug text-ink-300">
                 {HERO_FACTS.map(([lead, rest]) => (
                   <li key={lead} className="flex gap-2.5">
@@ -201,6 +194,11 @@ export default function HomePage() {
                   </li>
                 ))}
               </ul>
+              <div className="mt-6">
+                <Cta href="#demo" variant="primary">
+                  Try the live demo ↓
+                </Cta>
+              </div>
               <p className="mt-5 flex flex-wrap gap-x-5 gap-y-1 font-mono text-[13px] text-ink-300">
                 <span className="whitespace-nowrap">
                   Free: <strong className="text-ink-100">{FLIGHT_PLANS[0]!.quota} searches/month</strong>
@@ -245,9 +243,6 @@ export default function HomePage() {
                 </Cta>
                 <Cta href={rapidApiPricingUrl('hotels', 'hero')} external variant="primary">
                   Hotels key (free tier) →
-                </Cta>
-                <Cta href="#demo" variant="ghost">
-                  Try live demo ↓
                 </Cta>
               </div>
               <div className="mt-5 space-y-2">
