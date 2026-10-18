@@ -505,11 +505,6 @@ export function apiName(task: TaskDef): string {
 }
 
 /**
- * The page title for one {agent} × {task} pair. Shared with `/og/[card]`'s
- * `generateStaticParams` for the same reason as the grid titles: the build
- * prerenders one card per title, so the title must have exactly one author.
- */
-/**
  * One page per query. "claude fare" (281 impressions at position 5.8, 0 clicks
  * over two months, GSC read 2026-10-18) splits across the Claude, Claude Code
  * and Claude Desktop fare-alert pages; Claude Desktop holds 145 of the 281, so
@@ -521,7 +516,10 @@ export const CLAUDE_FARE_ALERT_PAGE = '/integrations/claude-mcp/fare-alert-cron'
 
 const TITLE_OVERRIDES: Record<string, { title: string; description: string }> = {
   'claude-mcp/fare-alert-cron': {
-    title: 'Claude fare alert with live Google Flights',
+    // Keeps "Desktop": the sibling /integrations/claude/fare-alert-cron renders as
+    // "Claude fare-alert cron: live Google Flights", and two near-identical titles
+    // would split "claude fare" further (review round 2026-10-18).
+    title: 'Claude Desktop fare alert: live Google Flights',
     description:
       'A Claude fare alert on live Google Flights in Claude Desktop: the config, the prompt, the call, and the verdict field that says when a fare is low.',
   },
@@ -532,6 +530,11 @@ export function matrixDescription(agent: AgentDef, task: TaskDef): string | null
   return TITLE_OVERRIDES[`${agent.slug}/${task.slug}`]?.description ?? null;
 }
 
+/**
+ * The page title for one {agent} × {task} pair. Shared with `/og/[card]`'s
+ * `generateStaticParams` for the same reason as the grid titles: the build
+ * prerenders one card per title, so the title must have exactly one author.
+ */
 export function matrixTitle(agent: AgentDef, task: TaskDef): string {
   const override = TITLE_OVERRIDES[`${agent.slug}/${task.slug}`];
   if (override) return override.title;

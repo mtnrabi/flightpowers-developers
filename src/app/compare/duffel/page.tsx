@@ -35,7 +35,7 @@ const PRO = FLIGHT_PLANS.find((p) => p.name === 'PRO')!;
 export const metadata: Metadata = {
   ...withOg({
     title: 'Duffel API pricing: $3.00 per order, $0.005 per search',
-    description: `Duffel API pricing (duffel.com/pricing): $3.00 per order, 1,500 free searches per order, then $0.005 a search. FlightPowers: $${PRO.priceMonthly} for ${PRO.quota.toLocaleString('en-US')} flight searches.`,
+    description: `Duffel API pricing (duffel.com/pricing, read ${RETRIEVED}): $3.00 per order, 1,500 free searches per order, then $0.005 a search. FlightPowers: $${PRO.priceMonthly} for ${PRO.quota.toLocaleString('en-US')} flight searches.`,
     alternates: { canonical: '/compare/duffel' },
   }),
   // The layout template appends " · FlightPowers"; the title is 54 chars without it.

@@ -262,8 +262,8 @@ export default function HotelsApiHubPage() {
                 </Cta>
               </div>
               <p className="mt-4 font-mono text-[12px] text-ink-500">
-                PRO ${HOTELS_PRO.priceMonthly} a month for {HOTELS_PRO.quota.toLocaleString('en-US')} searches. Free tier of{' '}
-                {HOTEL_PLANS[0]!.quota} on RapidAPI, no card to try.
+                PRO ${HOTELS_PRO.priceMonthly} a month for {HOTELS_PRO.quota.toLocaleString('en-US')} searches. {HOTEL_PLANS[0]!.quota} free
+                searches a month on RapidAPI, no card to try.
               </p>
               <p className="mt-3 text-[14px] text-ink-400 leading-relaxed">
                 Not a Booking.com partner?{' '}

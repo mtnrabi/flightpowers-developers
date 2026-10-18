@@ -108,10 +108,14 @@ export default function ClaudeIntegrationPage() {
           <SectionHead eyebrow="Fare alerts" title="A Claude fare alert" />
           <p className="mt-6 max-w-3xl text-[15px] text-ink-300 leading-relaxed">
             Poll a route on a schedule and act only when Google&apos;s verdict reads low: the{' '}
-            <Link href={CLAUDE_FARE_ALERT_PAGE} className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
-              Claude fare alert recipe
+            <Link href="/integrations/claude/fare-alert-cron" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+              fare-alert recipe for these connectors
             </Link>{' '}
-            has the config, the prompt, the call and the fields it reads.
+            has the prompt, the call and the fields it reads. On the desktop app with a config file instead, use the{' '}
+            <Link href={CLAUDE_FARE_ALERT_PAGE} className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+              Claude fare alert in Claude Desktop
+            </Link>
+            .
           </p>
         </Section>
       }
