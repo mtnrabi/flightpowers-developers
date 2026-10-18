@@ -2,6 +2,7 @@ import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
+import { McpFreeConnect } from '@/components/McpFreeConnect';
 import {
   CheckBullets,
   Code,
@@ -19,16 +20,19 @@ import { TASKS } from '@/lib/matrix';
 import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 import { ORGANIZATION_ID, aggregateOffer } from '@/lib/schema-offers';
 
-// The head terms ("travel MCP", "flights MCP", "hotel MCP") each appear once in
-// the hub text; title.absolute keeps the " · FlightPowers" suffix off.
+// The head terms ("google flights mcp", "travel MCP", "hotel MCP") each appear
+// in the hub text; title.absolute keeps the " · FlightPowers" suffix off.
+// 2026-10-18 (double-down plan item 5): 'google flights mcp' sat at position
+// 10.9 with /mcp at 11.8, so the query goes in the title and H1.
+const TITLE = 'Google Flights MCP and hotel MCP: travel servers for Claude';
 export const metadata: Metadata = {
   ...withOg({
-    title: 'Travel MCP servers: Google Flights + Booking.com for Claude',
+    title: TITLE,
     description:
-      'Travel MCP servers for Claude, Cursor and ChatGPT: live Google Flights fares with a price band, live Booking.com rates. Free with ads; ad-free on your key.',
+      'Google Flights MCP and hotel MCP for Claude, Cursor and ChatGPT: live fares with a price band, live Booking.com rates. Free with ads, ad-free on your key.',
     alternates: { canonical: '/mcp' },
   }),
-  title: { absolute: 'Travel MCP servers: Google Flights + Booking.com for Claude' },
+  title: { absolute: TITLE },
 };
 
 export const dynamic = 'force-static';
@@ -157,15 +161,22 @@ export default function McpPage() {
             <div>
               <p className="eyebrow">Hosted MCP servers</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
-                Travel MCP servers for Claude, Cursor and <span className="text-signal-500">any MCP client</span>
+                Google Flights MCP and hotel MCP for Claude, Cursor and <span className="text-signal-500">any MCP client</span>
               </h1>
               {/* The citation chunk, MCP variant: the free ad-supported server is named
                   here on purpose (the plan places it on this hub); numbers from
                   lib/pricing.ts and the free server's published caps. */}
               <p className="lede mt-5">
-                FlightPowers runs travel MCP servers for Claude and Cursor: a flights MCP with live Google Flights fares,
-                Google&apos;s low/typical/high band, a date range and destination list in one call, one-request round trips;
-                and a hotel MCP with live Booking.com rates. Free with ads at{' '}
+                FlightPowers runs two travel MCP servers for Claude and Cursor: the Google Flights MCP at{' '}
+                <a href={LINKS.mcpFlights} rel="noopener" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+                  {LINKS.mcpFlights.replace('https://', '')}
+                </a>
+                , with live Google Flights fares, Google&apos;s low/typical/high band, a date range and destination list in one
+                call and one-request round trips; and the hotel MCP at{' '}
+                <a href={LINKS.mcpHotels} rel="noopener" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+                  {LINKS.mcpHotels.replace('https://', '')}
+                </a>
+                , with live Booking.com rates. Free with ads at{' '}
                 <code className="font-mono text-[0.85em] text-signal-400">{LINKS.mcpFree.replace('https://', '')}</code> (Google
                 sign-in, 50 searches a day, 250 a month); ad-free on your key, PRO $10 for 2,500 flight searches.
               </p>
@@ -279,6 +290,35 @@ export default function McpPage() {
           </a>
           .
         </p>
+      </Section>
+
+      {/* ============================== HOTEL MCP (double-down plan item 5) ============================== */}
+      <Section>
+        <SectionHead
+          eyebrow="Hotel MCP"
+          title="An MCP server for hotel prices"
+          lede="For the assistant that has to answer what a room costs on given dates, not what it cost last month."
+        />
+        <div className="mt-6 max-w-3xl space-y-4 text-[15px] text-ink-300 leading-relaxed">
+          <p>
+            Add{' '}
+            <a href={LINKS.mcpHotels} rel="noopener" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+              {LINKS.mcpHotels.replace('https://', '')}
+            </a>{' '}
+            to Claude, Cursor or ChatGPT and the assistant gets live Booking.com room rates two ways:{' '}
+            <code className="field">search_hotels</code> for a destination and dates, and{' '}
+            <code className="field">find_hotel_by_name</code> for one property by the name a person would type. Both take{' '}
+            <code className="field">price_as_seen_from</code>, a two-letter country code that prices the stay as a shopper in
+            that country would see it. It reads Booking.com only, and it does not book.
+          </p>
+          <p>
+            Setup per client, every tool parameter and one real search with its date are on the{' '}
+            <Link href="/mcp/booking-hotels" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+              hotel MCP server page
+            </Link>
+            .
+          </p>
+        </div>
       </Section>
 
       {/* ============================== SKILL ALT ============================== */}
@@ -399,11 +439,14 @@ export default function McpPage() {
             15 date × destination combinations instead of 30. Use it to try the tools before getting a key; point production and
             anything you ship at the keyed servers above.
           </p>
+          <div className="mt-6">
+            <McpFreeConnect url={LINKS.mcpFree} />
+          </div>
           <Link
             href="/tools#free-mcp"
             className="mt-4 inline-block text-sm text-signal-400 underline underline-offset-4 hover:text-signal-500"
           >
-            Connect it, and read the full list of what it does not do →
+            The full list of what it does not do →
           </Link>
         </div>
       </Section>

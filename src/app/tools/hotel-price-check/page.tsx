@@ -154,11 +154,10 @@ export default function Page() {
 
       <Section>
         <SectionHead eyebrow="Related tools" title="Keep going" />
-        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {[
             { href: '/tools/hotel-price-by-country', label: 'Hotel Price by Country', sub: 'Repeat-sampled per-market pricing' },
             { href: '/tools/cheapest-time-to-fly', label: 'Cheapest Time to Fly', sub: 'Which month is cheapest to get there' },
-            { href: '/hotels-api/bulk', label: 'Bulk hotel search', sub: 'Up to five properties in one request' },
             { href: '/use-cases/hotel-comp-set-tracking', label: 'Comp-set tracking', sub: 'What people build with this' },
           ].map((l) => (
             <Link key={l.href} href={l.href} className="rounded-2xl border rule bg-ink-900/50 p-5 transition-colors hover:border-ink-500">

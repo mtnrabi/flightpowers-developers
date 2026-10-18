@@ -10,7 +10,7 @@ export const metadata = withOg({
 export const dynamic = 'force-static';
 
 import { GuideDates, JsonLd } from '@/components/ui';
-import { CtaBand } from '@/components/bands';
+import { CtaBand, TwoStepCta } from '@/components/bands';
 import { FLIGHT_PLANS } from '@/lib/pricing';
 import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
@@ -83,6 +83,8 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 <GuideDates published="2026-08-27" updated="2026-09-29" />
 
 **Short answer:** FlightPowers is the data layer here: live [Google Flights fares](/flights-api) with Google's low/typical/high verdict and live [Booking.com rates](/hotels-api), one connector URL in Claude or ChatGPT. Free with ads at <a href={LINKS.mcpFree} rel="noopener">free-trial.flightpowers.com/mcp</a> (Google sign-in, 50 searches a day); ad-free on a ${FLIGHT_PLANS[1].priceMonthly} RapidAPI key (PRO, {FLIGHT_PLANS[1].quota.toLocaleString('en-US')} flight searches a month). Best for a daily scan that pings you only when Google's verdict says low, with no code and no server.
+
+<TwoStepCta medium="guide" />
 
 This is how to build an AI travel agent without writing any code. By the end of
 this page you will have two things. An assistant, Claude or ChatGPT, that searches

@@ -37,7 +37,6 @@ const columns: { heading: string; links: FooterLink[] }[] = [
       { href: '/hotels-api/search', label: 'Hotel search' },
       { href: '/hotels-api/by-name', label: 'Hotel by name' },
       { href: '/hotels-api/geo-pricing', label: 'Geo-pricing' },
-      { href: '/hotels-api/bulk', label: 'Competitive sets' },
     ],
   },
   {

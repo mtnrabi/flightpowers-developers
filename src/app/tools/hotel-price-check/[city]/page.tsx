@@ -175,11 +175,10 @@ export default async function Page({ params }: Props) {
 
       <Section>
         <SectionHead eyebrow="Keep going" title="The rest of the toolkit" />
-        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {[
             { href: '/tools/hotel-price-check', label: 'Any other destination', sub: 'The same search, empty form' },
             { href: '/tools/hotel-price-by-country', label: 'Hotel Price by Country', sub: 'Repeat-sampled per-market pricing' },
-            { href: '/hotels-api/bulk', label: 'Bulk hotel search', sub: 'Up to five properties in one request' },
             { href: '/tools#free-mcp', label: 'Free MCP server', sub: 'Ask your assistant instead. Sign in with Google, no key' },
           ].map((l) => (
             <Link key={l.href} href={l.href} className="rounded-2xl border rule bg-ink-900/50 p-5 transition-colors hover:border-ink-500">
