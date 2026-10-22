@@ -6,7 +6,7 @@
  */
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { LINKS, installLinks } from '../src/lib/site.ts';
+import { CLAUDE_AUTH_HINT, LINKS, installLinks } from '../src/lib/site.ts';
 
 const SERVERS = [
   ['free', LINKS.mcpFree, 'flightpowers-free', 'FlightPowers (free, with ads)'],
@@ -21,6 +21,9 @@ for (const [server, url, name, connectorName] of SERVERS) {
     assert.equal(u.searchParams.get('modal'), 'add-custom-connector');
     assert.equal(u.searchParams.get('connectorName'), connectorName);
     assert.equal(u.searchParams.get('connectorUrl'), url);
+    // claude.ai reads no auth-mode parameter, and any extra parameter lands on
+    // a Settings page with no dialog (checked 2026-10-22): exactly these three.
+    assert.deepEqual([...u.searchParams.keys()].sort(), ['connectorName', 'connectorUrl', 'modal']);
   });
 
   test(`${server}: Cursor config is base64 of {url} only`, () => {
@@ -56,4 +59,8 @@ test('the install-ux reference links come out byte for byte (free server)', () =
     free.vscode,
     'https://vscode.dev/redirect/mcp/install?name=flightpowers-free&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Ffree-trial.flightpowers.com%2Fmcp%22%7D'
   );
+});
+
+test('the Add to Claude line names the real radio label', () => {
+  assert.match(CLAUDE_AUTH_HINT, /Sign in when needed/);
 });

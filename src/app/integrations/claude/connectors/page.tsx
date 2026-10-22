@@ -222,11 +222,11 @@ export default function ClaudeConnectorsPage() {
           {[
             {
               title: 'Add the connector',
-              body: 'Press Add to Claude above: claude.ai opens Add custom connector with the name and URL filled in, then press Add. By hand it is Customize → Connectors → + Add → Add custom connector, with the URL above. Add it on the web once and it works in the Claude app on your phone too.',
+              body: 'Press Add to Claude above: claude.ai opens Add custom connector with the name and URL filled in. Press Continue; on the second screen, choose Sign in when needed, then Add. By hand it is Customize → Connectors → + Add → Add custom connector, with the URL above. Add it on the web once and it works in the Claude app on your phone too.',
             },
             {
               title: 'Sign in with Google',
-              body: 'In Claude, press Connect next to the connector. A FlightPowers page opens: sign in with Google there. Google shares only your account id and email address with us. Do this once for each connector you added. That gives you 10 searches a day, no ads, no key.',
+              body: 'Claude asks you to sign in the first time it searches. A FlightPowers page opens: sign in with Google there. Google shares only your account id and email address with us. Do this once for each connector you added. That gives you 10 searches a day, no ads, no key.',
             },
             {
               title: 'Ask',
@@ -266,7 +266,7 @@ export default function ClaudeConnectorsPage() {
         <SectionHead
           eyebrow="Tools"
           title="The tools listed in Claude"
-          lede="Claude shows each connector’s exact list when you open it. These are the searches behind the prompts above, all read-only. The hotels connector currently also lists compare_hotel_rates, which needs a connected key."
+          lede="Claude shows each connector’s exact list when you open it. These are the searches behind the prompts above, all read-only."
         />
         <div className="mt-8 max-w-3xl">
           {TOOLS.map((tool) => (
@@ -304,7 +304,7 @@ export default function ClaudeConnectorsPage() {
           ))}
         </div>
         <p className="mt-6 max-w-3xl text-[14px] text-ink-400 leading-relaxed">
-          Questions: <a href="mailto:matan@flightpowers.com" className="text-signal-400 underline underline-offset-4">matan@flightpowers.com</a>.
+          Questions: <a href="mailto:app@flightpowers.com" className="text-signal-400 underline underline-offset-4">app@flightpowers.com</a>.
           Scheduled fare checks and more ways to use FlightPowers with Claude:{' '}
           <Link href="/integrations/claude" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
             FlightPowers and Claude

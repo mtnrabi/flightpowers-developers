@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 const steps: ConnectStep[] = [
   {
     title: 'Add the free server',
-    body: 'Press Add to Claude above: claude.ai opens Add custom connector with the name and URL filled in. Press Add, then Connect, and sign in with Google. By hand it is Customize → Connectors → + Add → Add custom connector, with the URL free-trial.flightpowers.com/mcp.',
+    body: 'Press Add to Claude above: claude.ai opens Add custom connector with the name and URL filled in. Press Continue; on the second screen, choose Sign in when needed, then Add. Claude asks you to sign in with Google the first time it searches. By hand it is Customize → Connectors → + Add → Add custom connector, with the URL free-trial.flightpowers.com/mcp.',
   },
   {
     title: 'Turn it on in a chat, then ask',
@@ -30,7 +30,7 @@ const steps: ConnectStep[] = [
   },
   {
     title: 'For no ads and the big scans, add the keyed servers',
-    body: 'Press Add to Claude on the flights row above (and hotels if you want them) and sign in with Google: the first 10 searches a day are free and ad-free. When you want more, paste a RapidAPI key once on the page that opens (the PRO plan above). For scripts and clients without a sign-in button, send the same URL with an x-rapidapi-key header instead.',
+    body: 'Press Add to Claude on the flights row above (and hotels if you want them), choose Sign in when needed on the second screen, then Add, and sign in with Google when Claude asks: the first 10 searches a day are free and ad-free. When you want more, paste a RapidAPI key once on the page that opens (the PRO plan above). For scripts and clients without a sign-in button, send the same URL with an x-rapidapi-key header instead.',
   },
 ];
 
@@ -101,7 +101,7 @@ export default function ClaudeIntegrationPage() {
       ]}
       toolsEyebrow="Tool inventory"
       toolsTitle="The search tools Claude sees"
-      toolsLede="The free server lists these four. On the ad-free servers the flight tools sit on the flights connector and the hotel tools on the hotels one, and the hotels connector also lists compare_hotel_rates; Claude shows each connector’s full list. Printed raw on purpose: this page is written to be read by an agent as much as by a person."
+      toolsLede="The free server lists these four. On the ad-free servers the flight tools sit on the flights connector and the hotel tools on the hotels one; Claude shows each connector’s full list. Printed raw on purpose: this page is written to be read by an agent as much as by a person."
       tools={tools}
       extra={
         <Section>

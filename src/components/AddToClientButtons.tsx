@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, type ReactElement } from 'react';
-import { installLinks, type InstallServer } from '@/lib/site';
+import { CLAUDE_AUTH_HINT, installLinks, type InstallServer } from '@/lib/site';
 import { track } from '@/lib/track';
 
 /**
@@ -26,6 +26,7 @@ export function AddToClientButtons({
   chatgptHref = '/integrations/chatgpt#connect',
   claudeLabel = 'Add to Claude',
   claudeVariant = 'primary',
+  claudeHint = true,
 }: {
   server: InstallServer;
   /** which buttons, in this order */
@@ -33,6 +34,8 @@ export function AddToClientButtons({
   chatgptHref?: string;
   claudeLabel?: string;
   claudeVariant?: 'primary' | 'ghost';
+  /** the sign-in line under the row; off only where the page prints it itself */
+  claudeHint?: boolean;
 }) {
   const links = installLinks(server);
   const [copied, setCopied] = useState(false);
@@ -77,5 +80,14 @@ export function AddToClientButtons({
     ),
   };
 
-  return <div className="flex flex-wrap items-center gap-3">{clients.map((c) => buttons[c])}</div>;
+  const row = <div className="flex flex-wrap items-center gap-3">{clients.map((c) => buttons[c])}</div>;
+  if (!claudeHint || !clients.includes('claude')) return row;
+  return (
+    <div>
+      {row}
+      <p className="mt-2 text-[12.5px] text-ink-400 leading-relaxed">
+        {clients.length > 1 ? `Add to Claude: ${CLAUDE_AUTH_HINT.replace(/^On/, 'on')}` : CLAUDE_AUTH_HINT}
+      </p>
+    </div>
+  );
 }

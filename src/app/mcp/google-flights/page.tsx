@@ -337,8 +337,8 @@ export default function GoogleFlightsMcpPage() {
           <div>
             <h3 className="text-[16px] font-semibold text-ink-100">Claude (claude.ai and Desktop)</h3>
             <p className="mt-2 text-[15px] text-ink-400 leading-relaxed">
-              Settings, Connectors, Add custom connector, paste <code className="field">{LINKS.mcpFlights}</code>, press
-              Connect and sign in with Google.
+              Customize, Connectors, Add custom connector, paste <code className="field">{LINKS.mcpFlights}</code>, press
+              Continue, choose Sign in when needed on the second screen, then Add, and sign in with Google when Claude asks.
             </p>
             <h3 className="mt-6 text-[16px] font-semibold text-ink-100">Claude Code</h3>
             <div className="mt-2">
