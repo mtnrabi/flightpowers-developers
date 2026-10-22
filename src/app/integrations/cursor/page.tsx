@@ -14,16 +14,16 @@ export const metadata: Metadata = withOg({
 
 const steps: ConnectStep[] = [
   {
-    title: 'Get a RapidAPI key',
-    body: 'Subscribe on the listing’s pricing tab: Google Flights Live API for flights, Booking Live API for hotels. The free tier needs no card. One key covers both once you subscribe to each listing.',
+    title: 'Press Add to Cursor',
+    body: 'The first button above adds the free server (50 searches a day, one labelled sponsored card per result); the flights and hotels buttons add the ad-free servers. Cursor opens and asks you to confirm. Or paste the block above into .cursor/mcp.json (project) or ~/.cursor/mcp.json (global).',
   },
   {
-    title: 'Add the block to .cursor/mcp.json',
-    body: 'Project-level or global: paste the config above. It registers both servers, flights and hotels, and dropping either entry is fine if you only need one. Nothing secret goes in the file on this path.',
+    title: 'Sign in with Google',
+    body: 'Cursor registers itself and offers the sign-in; you manage the server on the Customize page in the sidebar. On the ad-free servers the first 10 searches a day are free; after that, paste a RapidAPI key once on the page that opens (the PRO plan above).',
   },
   {
-    title: 'Restart Cursor and sign in',
-    body: 'Cursor registers itself and offers the sign-in: sign in with Google, paste your RapidAPI key once, and the tools appear in the Agent toolbox. The same shape works in any mcp.json-style client. For CI and headless runs, keep the same URL and add an x-rapidapi-key header instead.',
+    title: 'Ask the agent',
+    body: 'The tools appear in the Agent toolbox. The same shape works in any mcp.json-style client. For CI and headless runs, keep the same URL and add an x-rapidapi-key header instead.',
   },
 ];
 
@@ -82,17 +82,18 @@ export default function CursorIntegrationPage() {
       steps={steps}
       promptsLede="Prompts for a coding agent: each one runs a live call and puts the result to work."
       prompts={[
-        'Call search_oneway_flights for LHR to JFK on October 13 and show me the raw JSON so we can write a parser for it.',
-        'Fetch live fares for LIS to JFK across November and build a test fixture from the five cheapest days.',
+        'Call search_oneway_flights for LHR to JFK on March 10, 2027 and show me the raw JSON so we can write a parser for it.',
+        'Fetch live fares for LIS to JFK across February 2027 and build a test fixture from the five cheapest days.',
         'Add a fareVerdict helper that maps price_range_in_relation_to_other_periods to a badge color, then check it against a live JFK to LHR search.',
-        'Query search_hotels for Lisbon, October 9 to 12, and generate a TypeScript type from the response.',
+        'Query search_hotels for Lisbon, March 5 to 8, 2027, and generate a TypeScript type from the response.',
         'Run find_hotel_by_name for the Rixos Sungate with price_as_seen_from de and jp, three times each, and print the range each market landed in.',
       ]}
       toolsEyebrow="Tool inventory"
-      toolsTitle="The four tools in the Agent toolbox"
-      toolsLede="Printed raw on purpose: this page is written to be read by an agent as much as by a person."
+      toolsTitle="The search tools in the Agent toolbox"
+      toolsLede="The free server lists these four. On the ad-free servers the flight tools sit on the flights connector and the hotel tools on the hotels one, and the hotels connector also lists compare_hotel_rates; Cursor shows each connector’s full list. Printed raw on purpose: this page is written to be read by an agent as much as by a person."
       tools={tools}
       faq={faq}
+      install="cursor"
     />
   );
 }

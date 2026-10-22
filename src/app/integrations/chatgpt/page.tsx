@@ -14,16 +14,16 @@ export const metadata: Metadata = withOg({
 
 const steps: ConnectStep[] = [
   {
-    title: 'Get a RapidAPI key',
-    body: 'Subscribe on the listing’s pricing tab: Google Flights Live API for flights, Booking Live API for hotels. The free tier needs no card. One key covers both once you subscribe to each listing.',
+    title: 'Turn on developer mode',
+    body: 'On chatgpt.com, open the Plugins settings and switch Developer mode on (the first link below). It needs a paid ChatGPT plan (Plus or above) on the web; free accounts can’t add custom servers yet.',
   },
   {
-    title: 'Add both connectors in developer mode',
-    body: 'Settings → Connectors, enable developer mode, and add each server URL above (flights, then hotels). Set authentication to OAuth and leave the client id and secret empty: the server registers ChatGPT for you. Developer mode is what gates custom connectors, and OpenAI ships it on the Pro and Business plans (per its own help pages, checked 2026-08-27).',
+    title: 'Add the server as a plugin',
+    body: 'Go to chatgpt.com/plugins → + → Add custom MCP server. Name it and paste the Server URL: https://free-trial.flightpowers.com/mcp for the free server. Set Authentication to OAuth and leave the client id and secret empty. Select I understand and want to continue, then Create as a plugin.',
   },
   {
-    title: 'Sign in, then use it in a chat',
-    body: 'Sign in with Google and paste your RapidAPI key once on the page that opens, and the flight and hotel tools become available in conversations. We have no paid ChatGPT account, so we have not run this end to end ourselves; if your connector refuses to attach, the fallback is the same URL with ?rapidapi_key= on it and authentication set to none.',
+    title: 'Install it, sign in, then @ it in a chat',
+    body: 'It is your own private plugin, not a listing: install it from your plugins, sign in with Google, and in a new chat type @ and pick FlightPowers. For no ads and the big scans, add https://flights.flightpowers.com/mcp the same way: the first 10 searches a day are free after sign-in, then the PRO key above. We have no paid ChatGPT account, so we have not run this end to end ourselves; if the plugin refuses to attach, the fallback is the keyed URL with ?rapidapi_key= on it and authentication set to none.',
   },
 ];
 
@@ -65,7 +65,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Why developer mode, and which ChatGPT plan has it?',
-    a: 'Custom MCP connectors in ChatGPT are added through its developer-mode connector settings, which OpenAI documents as a Pro and Business plan feature (checked 2026-08-27). Nothing about the server itself is experimental: the same URL serves Claude, Cursor, and any other MCP client.',
+    a: 'ChatGPT adds custom MCP servers as plugins, and only with developer mode on. It needs a paid ChatGPT plan (Plus or above) on the web; free accounts can’t add custom servers yet (OpenAI’s docs, read 2026-09-16). Nothing about the server itself is experimental: the same URL serves Claude, Cursor, and any other MCP client.',
   },
   {
     q: 'Can ChatGPT run these searches on a schedule?',
@@ -73,7 +73,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Can I try it before adding a key?',
-    a: 'Yes. The live demo on the homepage and the free tools on this site run real requests on our key, so you can see the exact responses ChatGPT will get before you subscribe.',
+    a: 'Yes, two ways. The free server (free-trial.flightpowers.com/mcp) needs only a Google sign-in: 50 searches a day, with one labelled sponsored card per result. The keyed servers give you the first 10 searches a day free and ad-free after the same sign-in, before you paste any key.',
   },
 ];
 
@@ -81,22 +81,46 @@ export default function ChatGptIntegrationPage() {
   return (
     <AgentIntegrationPage
       slug="chatgpt"
-      lede="ChatGPT’s developer-mode connectors speak MCP. Two URLs, flights and hotels, connect it to live Google Flights and Booking.com data, billed to your own key, judged by Google’s own price band."
-      heroCodeLabel="add each as a connector (developer mode)"
+      lede="ChatGPT’s developer mode speaks MCP. Add one URL, free, and ChatGPT searches live Google Flights and Booking.com data, judged by Google’s own price band."
+      heroCodeLabel="the ad-free server URLs (developer mode)"
       steps={steps}
       promptsLede="ChatGPT picks the tool and fills the parameters itself: these all work as written."
       prompts={[
-        'Is $480 for LHR to JFK in mid-October a good price, or should I wait?',
-        'Find me the cheapest nonstop from Berlin to Paris in the second week of June.',
-        'Round trip JFK to London, out September 22, back September 29. Rank the options by value rather than price alone.',
-        'Find a hotel in Tokyo Shibuya for November 3 to 7, 2 adults, breakfast included.',
+        'Is $480 for LHR to JFK in mid-March 2027 a good price, or should I wait?',
+        'Find me the cheapest nonstop from Berlin to Paris in the second week of June 2027.',
+        'Round trip JFK to London, out March 22, 2027, back March 29. Rank the options by value rather than price alone.',
+        'Find a hotel in Tokyo Shibuya for March 3 to 7, 2027, 2 adults, breakfast included.',
         'Compare what the same room at the Kremlin Palace in Antalya costs when booked from Germany versus the US.',
       ]}
       toolsEyebrow="Tool inventory"
-      toolsTitle="The four tools ChatGPT sees"
-      toolsLede="Printed raw on purpose: this page is written to be read by an agent as much as by a person."
+      toolsTitle="The search tools ChatGPT sees"
+      toolsLede="The free server lists these four. On the ad-free servers the flight tools sit on the flights connector and the hotel tools on the hotels one, and the hotels connector also lists compare_hotel_rates; ChatGPT shows each connector’s full list. Printed raw on purpose: this page is written to be read by an agent as much as by a person."
       tools={tools}
       faq={faq}
+      install="chatgpt"
+      stepsNote={
+        <>
+          <p>
+            Two shortcuts into ChatGPT’s settings (they fill nothing in; if one lands somewhere else, follow the steps above):{' '}
+            <a href="https://chatgpt.com/plugins#settings/Security" rel="noopener" className="text-signal-400 underline underline-offset-4">
+              turn on developer mode
+            </a>{' '}
+            and{' '}
+            <a
+              href="https://chatgpt.com/plugins#settings/Connectors?create-connector=true"
+              rel="noopener"
+              className="text-signal-400 underline underline-offset-4"
+            >
+              add a server
+            </a>
+            .
+          </p>
+          <p>
+            Needs a paid ChatGPT plan (Plus or above) on the web; free accounts can’t add custom servers yet (OpenAI’s docs,
+            read 2026-09-16).
+          </p>
+        </>
+      }
     />
   );
 }

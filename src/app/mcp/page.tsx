@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { McpFreeConnect } from '@/components/McpFreeConnect';
+import { AddToClientButtons } from '@/components/AddToClientButtons';
 import {
   CheckBullets,
   Code,
@@ -267,21 +268,31 @@ export default function McpPage() {
       {/* ============================== ONE PAGE PER SERVER (W2-5 links block) ============================== */}
       <Section>
         <SectionHead eyebrow="One page per server" title="The flights MCP and the hotel MCP" />
-        <div className="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-2">
-          <Link href="/mcp/google-flights" className="rounded-2xl border rule bg-ink-900/50 p-6 hover:border-ink-500 transition-colors">
-            <p className="text-[16px] font-semibold text-ink-100">Google Flights MCP server →</p>
-            <p className="mt-2 text-[15px] text-ink-400 leading-relaxed">
-              Live Google Flights fares with Google&apos;s price band, a date range and a destination list in one call, round
-              trips as one request. Setup per client, the tools printed raw, and one real search with its date.
-            </p>
-          </Link>
-          <Link href="/mcp/booking-hotels" className="rounded-2xl border rule bg-ink-900/50 p-6 hover:border-ink-500 transition-colors">
-            <p className="text-[16px] font-semibold text-ink-100">Hotel MCP server →</p>
-            <p className="mt-2 text-[15px] text-ink-400 leading-relaxed">
-              Live Booking.com room rates by destination or by hotel name, priced as seen from another country with
-              price_as_seen_from. Setup per client, the tools printed raw, and one real search with its date.
-            </p>
-          </Link>
+        <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <div>
+            <Link href="/mcp/google-flights" className="block rounded-2xl border rule bg-ink-900/50 p-6 hover:border-ink-500 transition-colors">
+              <p className="text-[16px] font-semibold text-ink-100">Google Flights MCP server →</p>
+              <p className="mt-2 text-[15px] text-ink-400 leading-relaxed">
+                Live Google Flights fares with Google&apos;s price band, a date range and a destination list in one call, round
+                trips as one request. Setup per client, the tools printed raw, and one real search with its date.
+              </p>
+            </Link>
+            <div className="mt-3">
+              <AddToClientButtons server="flights" />
+            </div>
+          </div>
+          <div>
+            <Link href="/mcp/booking-hotels" className="block rounded-2xl border rule bg-ink-900/50 p-6 hover:border-ink-500 transition-colors">
+              <p className="text-[16px] font-semibold text-ink-100">Hotel MCP server →</p>
+              <p className="mt-2 text-[15px] text-ink-400 leading-relaxed">
+                Live Booking.com room rates by destination or by hotel name, priced as seen from another country with
+                price_as_seen_from. Setup per client, the tools printed raw, and one real search with its date.
+              </p>
+            </Link>
+            <div className="mt-3">
+              <AddToClientButtons server="hotels" />
+            </div>
+          </div>
         </div>
         <p className="mt-6 text-[14px] text-ink-400 leading-relaxed">
           How these compare with ten other travel MCP servers:{' '}
@@ -441,6 +452,9 @@ export default function McpPage() {
             15 date × destination combinations instead of 30. Use it to try the tools before getting a key; point production and
             anything you ship at the keyed servers above.
           </p>
+          <div className="mt-6">
+            <AddToClientButtons server="free" />
+          </div>
           <div className="mt-6">
             <McpFreeConnect url={LINKS.mcpFree} />
           </div>

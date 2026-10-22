@@ -10,6 +10,7 @@ import { FLIGHT_PLANS, HOTEL_PLANS, fmtRate, type Plan } from '@/lib/pricing';
 import { FIXTURES } from '@/lib/fixtures';
 import { playgroundDates } from '@/lib/format';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
+import { AddToClientButtons } from '@/components/AddToClientButtons';
 
 // The home page targets "travel data API" / "travel APIs"; title.absolute
 // because the title already starts with the brand and the template would
@@ -194,14 +195,15 @@ export default function HomePage() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-6">
+              <div className="mt-6 flex flex-wrap items-center gap-3">
                 <Cta href="#demo" variant="primary">
                   Try the live demo ↓
                 </Cta>
+                <AddToClientButtons server="free" clients={['claude']} claudeLabel="Add to Claude, free" claudeVariant="ghost" />
               </div>
               <p className="mt-5 flex flex-wrap gap-x-5 gap-y-1 font-mono text-[13px] text-ink-300">
                 <span className="whitespace-nowrap">
-                  Free: <strong className="text-ink-100">{FLIGHT_PLANS[0]!.quota} searches/month</strong>
+                  Free server: <strong className="text-ink-100">50 searches/day</strong>
                 </span>
                 <span className="whitespace-nowrap">
                   PRO: <strong className="text-ink-100">${FLIGHT_PLANS[1]!.priceMonthly}/month</strong> for{' '}
