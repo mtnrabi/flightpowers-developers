@@ -86,15 +86,15 @@ export default function ChatGptIntegrationPage() {
       steps={steps}
       promptsLede="ChatGPT picks the tool and fills the parameters itself: these all work as written."
       prompts={[
-        'Is $480 for LHR to JFK in mid-October a good price, or should I wait?',
-        'Find me the cheapest nonstop from Berlin to Paris in the second week of June.',
-        'Round trip JFK to London, out September 22, back September 29. Rank the options by value rather than price alone.',
-        'Find a hotel in Tokyo Shibuya for November 3 to 7, 2 adults, breakfast included.',
+        'Is $480 for LHR to JFK in mid-March 2027 a good price, or should I wait?',
+        'Find me the cheapest nonstop from Berlin to Paris in the second week of June 2027.',
+        'Round trip JFK to London, out March 22, 2027, back March 29. Rank the options by value rather than price alone.',
+        'Find a hotel in Tokyo Shibuya for March 3 to 7, 2027, 2 adults, breakfast included.',
         'Compare what the same room at the Kremlin Palace in Antalya costs when booked from Germany versus the US.',
       ]}
       toolsEyebrow="Tool inventory"
-      toolsTitle="The four tools ChatGPT sees"
-      toolsLede="Printed raw on purpose: this page is written to be read by an agent as much as by a person."
+      toolsTitle="The search tools ChatGPT sees"
+      toolsLede="The free server lists these four. On the ad-free servers the flight tools sit on the flights connector and the hotel tools on the hotels one, and the hotels connector also lists compare_hotel_rates; ChatGPT shows each connector’s full list. Printed raw on purpose: this page is written to be read by an agent as much as by a person."
       tools={tools}
       faq={faq}
       install="chatgpt"

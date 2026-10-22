@@ -93,15 +93,15 @@ export default function ClaudeIntegrationPage() {
       steps={steps}
       promptsLede="Claude picks the tool and fills the parameters itself: these all work as written."
       prompts={[
-        'Find me a nonstop LHR to JFK flight on October 13 and tell me if the price is any good.',
-        'What is the cheapest day to fly Lisbon to New York in November?',
-        'I need a round trip JFK to Paris, out October 6, back October 13. What are my best-value options?',
-        'Find a hotel in Lisbon, October 9 to 12, 2 adults, review score 8+, free cancellation.',
-        'Price the Rixos Sungate in Antalya for October 5–10 as seen from the US, Germany, and Israel.',
+        'Find me a nonstop LHR to JFK flight on March 10, 2027 and tell me if the price is any good.',
+        'What is the cheapest day to fly Lisbon to New York in February 2027?',
+        'I need a round trip JFK to Paris, out March 10, 2027, back March 17. What are my best-value options?',
+        'Find a hotel in Lisbon, March 5 to 8, 2027, 2 adults, review score 8+, free cancellation.',
+        'Price the Rixos Sungate in Antalya for May 5–10, 2027 as seen from the US, Germany, and Israel.',
       ]}
       toolsEyebrow="Tool inventory"
-      toolsTitle="The four tools Claude sees"
-      toolsLede="Printed raw on purpose: this page is written to be read by an agent as much as by a person."
+      toolsTitle="The search tools Claude sees"
+      toolsLede="The free server lists these four. On the ad-free servers the flight tools sit on the flights connector and the hotel tools on the hotels one, and the hotels connector also lists compare_hotel_rates; Claude shows each connector’s full list. Printed raw on purpose: this page is written to be read by an agent as much as by a person."
       tools={tools}
       extra={
         <Section>
@@ -124,6 +124,13 @@ export default function ClaudeIntegrationPage() {
       stepsNote={
         <>
           <p>Claude Free allows one custom connector: use the free server, it has flights and hotels in one URL.</p>
+          <p>
+            The ad-free Flights and Hotels connectors have their own page:{' '}
+            <Link href="/integrations/claude/connectors" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+              FlightPowers connectors for Claude
+            </Link>
+            .
+          </p>
           <p>Add it on the web once, then it works in the Claude app on your phone.</p>
           <p>On a Team plan an Owner adds the connector first; members then press Connect.</p>
         </>

@@ -81,10 +81,10 @@ export default function ClaudeCodeIntegrationPage() {
       promptsLede="After the install, plain requests route to the right skill: these all work as written."
       prompts={[
         'Find the cheapest week to fly LGW to Lisbon this winter.',
-        'Check JFK to LHR for December 10 and tell me whether Google calls the fare low, typical, or high.',
-        'Plan a 5-day Lisbon trip in October: flights from LGW plus a hotel with a review score above 8.',
-        'Is the Rixos Sungate cheaper booked from the US than from Israel for October 5 to 10?',
-        'Scan November for the cheapest LIS to JFK date and write the results to a CSV.',
+        'Check JFK to LHR for March 10, 2027 and tell me whether Google calls the fare low, typical, or high.',
+        'Plan a 5-day Lisbon trip in April 2027: flights from LGW plus a hotel with a review score above 8.',
+        'Is the Rixos Sungate cheaper booked from the US than from Israel for May 5 to 10, 2027?',
+        'Scan February 2027 for the cheapest LIS to JFK date and write the results to a CSV.',
       ]}
       toolsEyebrow="The skills"
       toolsTitle={`${COUNTS.skills} skills, MIT-licensed`}
