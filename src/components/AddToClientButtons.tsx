@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, type ReactElement } from 'react';
-import { CLAUDE_AUTH_HINT, installLinks, type InstallServer } from '@/lib/site';
+import { CLAUDE_AUTH_HINT, CLAUDE_AUTH_HINT_LABELLED, installLinks, type InstallServer } from '@/lib/site';
 import { track } from '@/lib/track';
 
 /**
@@ -86,7 +86,7 @@ export function AddToClientButtons({
     <div>
       {row}
       <p className="mt-2 text-[12.5px] text-ink-400 leading-relaxed">
-        {clients.length > 1 ? `Add to Claude: ${CLAUDE_AUTH_HINT.replace(/^On/, 'on')}` : CLAUDE_AUTH_HINT}
+        {clients.length > 1 ? CLAUDE_AUTH_HINT_LABELLED : CLAUDE_AUTH_HINT}
       </p>
     </div>
   );

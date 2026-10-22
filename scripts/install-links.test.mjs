@@ -6,7 +6,7 @@
  */
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { CLAUDE_AUTH_HINT, LINKS, installLinks } from '../src/lib/site.ts';
+import { CLAUDE_AUTH_HINT, CLAUDE_AUTH_HINT_LABELLED, LINKS, installLinks } from '../src/lib/site.ts';
 
 const SERVERS = [
   ['free', LINKS.mcpFree, 'flightpowers-free', 'FlightPowers (free, with ads)'],
@@ -62,5 +62,8 @@ test('the install-ux reference links come out byte for byte (free server)', () =
 });
 
 test('the Add to Claude line names the real radio label', () => {
-  assert.match(CLAUDE_AUTH_HINT, /Sign in when needed/);
+  for (const hint of [CLAUDE_AUTH_HINT, CLAUDE_AUTH_HINT_LABELLED]) {
+    assert.match(hint, /‘Sign in when needed’/);
+    assert.match(hint, /‘No sign-in’/);
+  }
 });

@@ -9,7 +9,7 @@ import { HOME_INTEGRATIONS } from '@/lib/integrations';
 import { FLIGHT_PLANS, HOTEL_PLANS, fmtRate, type Plan } from '@/lib/pricing';
 import { FIXTURES } from '@/lib/fixtures';
 import { playgroundDates } from '@/lib/format';
-import { CLAUDE_AUTH_HINT, COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
+import { CLAUDE_AUTH_HINT_LABELLED, COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 import { AddToClientButtons } from '@/components/AddToClientButtons';
 
 // The home page targets "travel data API" / "travel APIs"; title.absolute
@@ -201,7 +201,7 @@ export default function HomePage() {
                 </Cta>
                 <AddToClientButtons server="free" clients={['claude']} claudeLabel="Add to Claude, free" claudeVariant="ghost" claudeHint={false} />
               </div>
-              <p className="mt-2 text-[12.5px] text-ink-400 leading-relaxed">Add to Claude: {CLAUDE_AUTH_HINT.replace(/^On/, 'on')}</p>
+              <p className="mt-2 text-[12.5px] text-ink-400 leading-relaxed">{CLAUDE_AUTH_HINT_LABELLED}</p>
               <p className="mt-5 flex flex-wrap gap-x-5 gap-y-1 font-mono text-[13px] text-ink-300">
                 <span className="whitespace-nowrap">
                   Free server: <strong className="text-ink-100">50 searches/day</strong>

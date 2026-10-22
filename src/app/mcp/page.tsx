@@ -96,7 +96,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Which clients does this work with?',
-    a: 'Any MCP client that supports remote servers: Claude (Settings → Connectors), Claude Code, Cursor (.cursor/mcp.json), ChatGPT (developer-mode connectors), and anything else that takes an mcpServers-style config. Give it the /mcp URL and it shows a Sign in button. A client with no sign-in button, and anything headless, sends that same URL with an x-rapidapi-key header, or ?rapidapi_key= on the URL where headers are not supported.'
+    a: 'Any MCP client that supports remote servers: Claude (Customize → Connectors), Claude Code, Cursor (.cursor/mcp.json), ChatGPT (developer-mode connectors), and anything else that takes an mcpServers-style config. Give it the /mcp URL and it shows a Sign in button. A client with no sign-in button, and anything headless, sends that same URL with an x-rapidapi-key header, or ?rapidapi_key= on the URL where headers are not supported.'
   },
   {
     q: 'Where does my key end up?',

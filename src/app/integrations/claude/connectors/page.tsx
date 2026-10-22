@@ -222,7 +222,7 @@ export default function ClaudeConnectorsPage() {
           {[
             {
               title: 'Add the connector',
-              body: 'Press Add to Claude above: claude.ai opens Add custom connector with the name and URL filled in. Press Continue; on the second screen, choose Sign in when needed, then Add. By hand it is Customize → Connectors → + Add → Add custom connector, with the URL above. Add it on the web once and it works in the Claude app on your phone too.',
+              body: 'Press Add to Claude above: claude.ai opens Add custom connector with the name and URL filled in: press Continue, choose ‘Sign in when needed’ (not the pre-selected ‘No sign-in’), then Add. By hand it is Customize → Connectors → + Add → Add custom connector, a name and the URL above, then the same: press Continue, choose ‘Sign in when needed’ (not the pre-selected ‘No sign-in’), then Add. Add it on the web once and it works in the Claude app on your phone too.',
             },
             {
               title: 'Sign in with Google',

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 const steps: ConnectStep[] = [
   {
     title: 'Add the free server',
-    body: 'Press Add to Claude above: claude.ai opens Add custom connector with the name and URL filled in. Press Continue; on the second screen, choose Sign in when needed, then Add. Claude asks you to sign in with Google the first time it searches. By hand it is Customize → Connectors → + Add → Add custom connector, with the URL free-trial.flightpowers.com/mcp.',
+    body: 'Press Add to Claude above: claude.ai opens Add custom connector with the name and URL filled in: press Continue, choose ‘Sign in when needed’ (not the pre-selected ‘No sign-in’), then Add. Claude asks you to sign in with Google the first time it searches. By hand it is Customize → Connectors → + Add → Add custom connector, a name and the URL free-trial.flightpowers.com/mcp, then the same: press Continue, choose ‘Sign in when needed’ (not the pre-selected ‘No sign-in’), then Add.',
   },
   {
     title: 'Turn it on in a chat, then ask',
@@ -30,7 +30,7 @@ const steps: ConnectStep[] = [
   },
   {
     title: 'For no ads and the big scans, add the keyed servers',
-    body: 'Press Add to Claude on the flights row above (and hotels if you want them), choose Sign in when needed on the second screen, then Add, and sign in with Google when Claude asks: the first 10 searches a day are free and ad-free. When you want more, paste a RapidAPI key once on the page that opens (the PRO plan above). For scripts and clients without a sign-in button, send the same URL with an x-rapidapi-key header instead.',
+    body: 'Press Add to Claude on the flights row above (and hotels if you want them), then press Continue, choose ‘Sign in when needed’ (not the pre-selected ‘No sign-in’), then Add. Sign in with Google when Claude asks: the first 10 searches a day are free and ad-free. When you want more, paste a RapidAPI key once on the page that opens (the PRO plan above). For scripts and clients without a sign-in button, send the same URL with an x-rapidapi-key header instead.',
   },
 ];
 
