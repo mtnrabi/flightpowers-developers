@@ -90,6 +90,10 @@ export default function PrivacyPage() {
           way. To have yours
           deleted, ask us (see Questions).
         </p>
+        <p>
+          We may publish anonymous statistics from demo searches (counts and percentages of groups of 20 or more people,
+          never one person&apos;s searches); write to app@flightpowers.com to object.
+        </p>
 
         <h2 id="failed-searches">Failed flight searches</h2>
         <p>
