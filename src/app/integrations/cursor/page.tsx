@@ -15,11 +15,11 @@ export const metadata: Metadata = withOg({
 const steps: ConnectStep[] = [
   {
     title: 'Press Add to Cursor',
-    body: 'The first button above adds the free server (50 searches a day, one labelled sponsored card per result); the flights and hotels buttons add the ad-free servers. Cursor opens and asks you to confirm. Or paste the block above into .cursor/mcp.json (project) or ~/.cursor/mcp.json (global).',
+    body: 'The flights and hotels buttons above add the two servers, no ads. Cursor opens and asks you to confirm. Or paste the block above into .cursor/mcp.json (project) or ~/.cursor/mcp.json (global).',
   },
   {
     title: 'Sign in with Google',
-    body: 'Cursor registers itself and offers the sign-in; you manage the server on the Customize page in the sidebar. On the ad-free servers the first 10 searches a day are free; after that, paste a RapidAPI key once on the page that opens (the PRO plan above).',
+    body: 'Cursor registers itself and offers the sign-in; you manage the server on the Customize page in the sidebar. The first 10 searches a day are free; after that, paste a RapidAPI key once on the page that opens (the PRO plan above).',
   },
   {
     title: 'Ask the agent',
@@ -90,7 +90,7 @@ export default function CursorIntegrationPage() {
       ]}
       toolsEyebrow="Tool inventory"
       toolsTitle="The search tools in the Agent toolbox"
-      toolsLede="The free server lists these four. On the ad-free servers the flight tools sit on the flights connector and the hotel tools on the hotels one; Cursor shows each connector’s full list. Printed raw on purpose: this page is written to be read by an agent as much as by a person."
+      toolsLede="The flight tools sit on the flights connector and the hotel tools on the hotels one; Cursor shows each connector’s full list. Printed raw on purpose: this page is written to be read by an agent as much as by a person."
       tools={tools}
       faq={faq}
       install="cursor"

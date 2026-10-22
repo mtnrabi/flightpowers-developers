@@ -67,3 +67,44 @@ test('the Add to Claude line names the real radio label', () => {
     assert.match(hint, /‘No sign-in’/);
   }
 });
+
+// Matan 2026-10-22: "Add to claude / chat gpt buttons should be the paid MCP
+// version". Every button and copy line on the site resolves to the paid hosts;
+// the free ad server keeps one text line (FREE_SERVER_LINE), never a button.
+test('flights and hotels install links resolve to the paid hosts', () => {
+  for (const [server, host] of [['flights', 'flights.flightpowers.com'], ['hotels', 'hotels.flightpowers.com']]) {
+    const links = installLinks(server);
+    assert.equal(new URL(links.url).host, host);
+    assert.equal(new URL(new URL(links.claude).searchParams.get('connectorUrl')).host, host);
+    assert.equal(new URL(JSON.parse(atob(new URL(links.cursorWeb).searchParams.get('config'))).url).host, host);
+    assert.equal(new URL(JSON.parse(new URL(links.vscode).searchParams.get('config')).url).host, host);
+    assert.ok(links.claudeCode.endsWith(`https://${host}/mcp`));
+  }
+});
+
+test('every install button and Claude Code line on the site uses a paid server', async () => {
+  const fs = await import('node:fs');
+  const path = await import('node:path');
+  const files = [];
+  const walk = (dir) => {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, e.name);
+      if (e.isDirectory()) walk(full);
+      else if (/\.(tsx|ts|mdx)$/.test(e.name)) files.push(full);
+    }
+  };
+  walk(path.join(process.cwd(), 'src'));
+  let buttons = 0;
+  for (const file of files) {
+    const src = fs.readFileSync(file, 'utf8');
+    for (const m of src.matchAll(/<AddToClientButtons\s+server=(?:"([^"]+)"|\{([^}]+)\})/g)) {
+      buttons++;
+      if (m[1]) assert.ok(['flights', 'hotels'].includes(m[1]), `${file}: server="${m[1]}"`);
+      else assert.match(m[2], /^(server|c\.server)$/, `${file}: server={${m[2]}}`);
+    }
+    if (!file.endsWith(path.join('lib', 'site.ts'))) {
+      assert.doesNotMatch(src, /installLinks\(\s*['"]free['"]\s*\)/, `${file} builds an install link for the free server`);
+    }
+  }
+  assert.ok(buttons >= 5, `found only ${buttons} buttons`);
+});

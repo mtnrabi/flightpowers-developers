@@ -16,8 +16,8 @@ import {
   type Faq,
 } from '@/components/ui';
 import { AGENTS, TASKS } from '@/lib/matrix';
-import { FLIGHT_PLANS } from '@/lib/pricing';
-import { SITE, installLinks, rapidApiPricingUrl } from '@/lib/site';
+import { FREE_SERVER_LINE, PAID_TRIAL_LINE } from '@/lib/install-copy';
+import { CLAUDE_AUTH_HINT, SITE, installLinks, rapidApiPricingUrl } from '@/lib/site';
 
 /**
  * Shared skeleton for the per-agent-brand integration pages
@@ -63,8 +63,9 @@ export function AgentIntegrationPage({
   faq: Faq[];
   /**
    * The client this page is about. When set, the hero leads with install
-   * buttons: the free server first, then the ad-free servers, and the key
-   * becomes the upgrade instead of step 1.
+   * buttons for the ad-free flights and hotels servers (10 free searches a
+   * day after sign-in), the key becomes the upgrade instead of step 1, and
+   * the free ad server gets one text line under the steps.
    */
   install?: InstallClient;
   /** plain plan limits and caveats, under the steps */
@@ -73,7 +74,6 @@ export function AgentIntegrationPage({
   const agent = AGENTS.find((a) => a.slug === slug);
   if (!agent) throw new Error(`Unknown agent slug: ${slug}`);
   const otherAgents = AGENTS.filter((a) => a.slug !== slug);
-  const pro = FLIGHT_PLANS.find((p) => p.name === 'PRO')!;
 
   return (
     <>
@@ -113,49 +113,32 @@ export function AgentIntegrationPage({
                 />
               </div>
               {install ? (
-                <div className="mt-8 space-y-6">
-                  <div className="rounded-2xl border rule bg-ink-900/60 p-5">
-                    <p className="font-mono text-[11px] uppercase tracking-wider text-ink-500">1 · Try it free</p>
-                    <p className="mt-2 text-[14.5px] text-ink-300 leading-relaxed">
-                      One URL, sign in with Google, 50 searches a day, one labelled sponsored card per result. Flights and
-                      hotels in one server.
-                    </p>
-                    <div className="mt-4">
-                      {install === 'chatgpt' ? (
-                        // No prefill link exists for ChatGPT: show the URL to paste, and the steps.
-                        <code className="font-mono text-[13px] text-signal-400 break-all">{installLinks('free').url}</code>
-                      ) : (
-                        <AddToClientButtons server="free" clients={[install]} />
-                      )}
-                    </div>
+                <div className="mt-8 rounded-2xl border border-signal-600/30 bg-signal-600/[0.05] p-5">
+                  <p className="font-mono text-[11px] uppercase tracking-wider text-ink-500">Add it · no ads</p>
+                  <p className="mt-2 text-[14.5px] text-ink-300 leading-relaxed">{PAID_TRIAL_LINE}</p>
+                  <div className="mt-4 space-y-3">
+                    {(['flights', 'hotels'] as const).map((server) => (
+                      <div key={server} className="flex flex-wrap items-center gap-3">
+                        <span className="w-20 font-mono text-[12px] text-ink-400">{server === 'flights' ? 'Flights' : 'Hotels'}</span>
+                        {install === 'chatgpt' ? (
+                          // No prefill link exists for ChatGPT: show the URL to paste.
+                          <code className="font-mono text-[13px] text-signal-400 break-all">{installLinks(server).url}</code>
+                        ) : (
+                          <AddToClientButtons server={server} clients={[install]} claudeHint={false} />
+                        )}
+                      </div>
+                    ))}
                   </div>
-                  <div className="rounded-2xl border border-signal-600/30 bg-signal-600/[0.05] p-5">
-                    <p className="font-mono text-[11px] uppercase tracking-wider text-ink-500">2 · Ad-free and the big scans</p>
-                    <p className="mt-2 text-[14.5px] text-ink-300 leading-relaxed">
-                      No ads, and the first 10 searches a day are free after sign-in. PRO is ${pro.priceMonthly} for{' '}
-                      {pro.quota.toLocaleString('en-US')} flight searches a month.
-                    </p>
-                    <div className="mt-4 space-y-3">
-                      {(['flights', 'hotels'] as const).map((server) => (
-                        <div key={server} className="flex flex-wrap items-center gap-3">
-                          <span className="w-32 font-mono text-[12px] text-ink-400">{server === 'flights' ? 'Flights, no ads' : 'Hotels, no ads'}</span>
-                          {install === 'chatgpt' ? (
-                            // No prefill link exists for ChatGPT: show the URL to paste.
-                            <code className="font-mono text-[13px] text-signal-400 break-all">{installLinks(server).url}</code>
-                          ) : (
-                            <AddToClientButtons server={server} clients={[install]} />
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                    <div className="mt-4 flex flex-wrap gap-3">
-                      <Cta href={rapidApiPricingUrl('flights', 'integration')} external variant="ghost">
-                        PRO key on RapidAPI →
-                      </Cta>
-                      <Cta href="/mcp" variant="ghost">
-                        All MCP options
-                      </Cta>
-                    </div>
+                  {install === 'claude' ? (
+                    <p className="mt-3 text-[12.5px] text-ink-400 leading-relaxed">{CLAUDE_AUTH_HINT}</p>
+                  ) : null}
+                  <div className="mt-4 flex flex-wrap gap-3">
+                    <Cta href={rapidApiPricingUrl('flights', 'integration')} external variant="ghost">
+                      PRO key on RapidAPI →
+                    </Cta>
+                    <Cta href="/mcp" variant="ghost">
+                      All MCP options
+                    </Cta>
                   </div>
                 </div>
               ) : (
@@ -197,6 +180,7 @@ export function AgentIntegrationPage({
           ))}
         </ol>
         {stepsNote ? <div className="mt-6 max-w-3xl space-y-2 text-[14px] text-ink-400 leading-relaxed">{stepsNote}</div> : null}
+        {install ? <p className="mt-6 max-w-3xl text-[13.5px] text-ink-400 leading-relaxed">{FREE_SERVER_LINE}</p> : null}
       </Section>
 
       <Section>
