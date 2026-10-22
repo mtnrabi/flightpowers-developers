@@ -19,11 +19,11 @@ const steps: ConnectStep[] = [
   },
   {
     title: 'Add the server as a plugin',
-    body: 'Go to chatgpt.com/plugins → + → Add custom MCP server. Name it and paste the Server URL: free-trial.flightpowers.com/mcp for the free server. Set Authentication to OAuth and leave the client id and secret empty. Select I understand and want to continue, then Create as a plugin.',
+    body: 'Go to chatgpt.com/plugins → + → Add custom MCP server. Name it and paste the Server URL: https://free-trial.flightpowers.com/mcp for the free server. Set Authentication to OAuth and leave the client id and secret empty. Select I understand and want to continue, then Create as a plugin.',
   },
   {
     title: 'Install it, sign in, then @ it in a chat',
-    body: 'Install the plugin, sign in with Google, and in a new chat type @ and pick FlightPowers. For no ads and the big scans, add flights.flightpowers.com/mcp the same way: the first 10 searches a day are free after sign-in, and PRO is $10 for 2,500 flight searches a month. We have no paid ChatGPT account, so we have not run this end to end ourselves; if the plugin refuses to attach, the fallback is the keyed URL with ?rapidapi_key= on it and authentication set to none.',
+    body: 'It is your own private plugin, not a listing: install it from your plugins, sign in with Google, and in a new chat type @ and pick FlightPowers. For no ads and the big scans, add https://flights.flightpowers.com/mcp the same way: the first 10 searches a day are free after sign-in, then the PRO key above. We have no paid ChatGPT account, so we have not run this end to end ourselves; if the plugin refuses to attach, the fallback is the keyed URL with ?rapidapi_key= on it and authentication set to none.',
   },
 ];
 
@@ -65,7 +65,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Why developer mode, and which ChatGPT plan has it?',
-    a: 'ChatGPT adds custom MCP servers as plugins, and only with developer mode on. It needs a paid ChatGPT plan (Plus or above) on the web; free accounts can’t add custom servers yet (OpenAI’s docs, read 2026-09-16; today’s docs name no plans). Nothing about the server itself is experimental: the same URL serves Claude, Cursor, and any other MCP client.',
+    a: 'ChatGPT adds custom MCP servers as plugins, and only with developer mode on. It needs a paid ChatGPT plan (Plus or above) on the web; free accounts can’t add custom servers yet (OpenAI’s docs, read 2026-09-16). Nothing about the server itself is experimental: the same URL serves Claude, Cursor, and any other MCP client.',
   },
   {
     q: 'Can ChatGPT run these searches on a schedule?',
@@ -81,7 +81,7 @@ export default function ChatGptIntegrationPage() {
   return (
     <AgentIntegrationPage
       slug="chatgpt"
-      lede="ChatGPT’s developer-mode connectors speak MCP. Two URLs, flights and hotels, connect it to live Google Flights and Booking.com data, billed to your own key, judged by Google’s own price band."
+      lede="ChatGPT’s developer mode speaks MCP. Add one URL, free, and ChatGPT searches live Google Flights and Booking.com data, judged by Google’s own price band."
       heroCodeLabel="the ad-free server URLs (developer mode)"
       steps={steps}
       promptsLede="ChatGPT picks the tool and fills the parameters itself: these all work as written."
@@ -101,7 +101,7 @@ export default function ChatGptIntegrationPage() {
       stepsNote={
         <>
           <p>
-            Two links that open the right ChatGPT settings page (they do not fill anything in):{' '}
+            Two shortcuts into ChatGPT’s settings (they fill nothing in; if one lands somewhere else, follow the steps above):{' '}
             <a href="https://chatgpt.com/plugins#settings/Security" rel="noopener" className="text-signal-400 underline underline-offset-4">
               turn on developer mode
             </a>{' '}
@@ -111,7 +111,7 @@ export default function ChatGptIntegrationPage() {
               rel="noopener"
               className="text-signal-400 underline underline-offset-4"
             >
-              create the plugin
+              add a server
             </a>
             .
           </p>

@@ -74,9 +74,6 @@ export function AgentIntegrationPage({
   if (!agent) throw new Error(`Unknown agent slug: ${slug}`);
   const otherAgents = AGENTS.filter((a) => a.slug !== slug);
   const pro = FLIGHT_PLANS.find((p) => p.name === 'PRO')!;
-  const allClients: InstallClient[] = ['claude', 'cursor', 'vscode', 'chatgpt', 'claude-code'];
-  const freeClients = install ? [install, ...allClients.filter((c) => c !== install)] : allClients;
-  const chatgptHref = slug === 'chatgpt' ? '#connect' : '/integrations/chatgpt#connect';
 
   return (
     <>
@@ -124,7 +121,12 @@ export function AgentIntegrationPage({
                       hotels in one server.
                     </p>
                     <div className="mt-4">
-                      <AddToClientButtons server="free" clients={freeClients} chatgptHref={chatgptHref} />
+                      {install === 'chatgpt' ? (
+                        // No prefill link exists for ChatGPT: show the URL to paste, and the steps.
+                        <code className="font-mono text-[13px] text-signal-400 break-all">{installLinks('free').url}</code>
+                      ) : (
+                        <AddToClientButtons server="free" clients={[install]} />
+                      )}
                     </div>
                   </div>
                   <div className="rounded-2xl border border-signal-600/30 bg-signal-600/[0.05] p-5">
@@ -136,12 +138,12 @@ export function AgentIntegrationPage({
                     <div className="mt-4 space-y-3">
                       {(['flights', 'hotels'] as const).map((server) => (
                         <div key={server} className="flex flex-wrap items-center gap-3">
-                          <span className="w-16 font-mono text-[12px] text-ink-400">{server}</span>
+                          <span className="w-32 font-mono text-[12px] text-ink-400">{server === 'flights' ? 'Flights, no ads' : 'Hotels, no ads'}</span>
                           {install === 'chatgpt' ? (
                             // No prefill link exists for ChatGPT: show the URL to paste.
                             <code className="font-mono text-[13px] text-signal-400 break-all">{installLinks(server).url}</code>
                           ) : (
-                            <AddToClientButtons server={server} clients={[install]} chatgptHref={chatgptHref} />
+                            <AddToClientButtons server={server} clients={[install]} />
                           )}
                         </div>
                       ))}

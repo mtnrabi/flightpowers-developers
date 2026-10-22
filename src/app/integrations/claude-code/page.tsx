@@ -21,7 +21,7 @@ const steps: ConnectStep[] = [
   },
   {
     title: 'For no ads and the big scans, add the keyed servers',
-    body: 'claude mcp add --transport http flightpowers-flights https://flights.flightpowers.com/mcp (hotels the same way). The first 10 searches a day are free after sign-in; PRO is $10 for 2,500 flight searches a month. Headless runs send --header "x-rapidapi-key: YOUR_KEY" instead of signing in.',
+    body: 'claude mcp add --transport http flightpowers-flights https://flights.flightpowers.com/mcp (hotels the same way). The first 10 searches a day are free after sign-in, then the PRO key above. Headless runs send --header "x-rapidapi-key: YOUR_KEY" instead of signing in.',
   },
   {
     title: 'Or install the skills',

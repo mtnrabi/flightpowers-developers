@@ -7,7 +7,8 @@ import { track } from '@/lib/track';
 /**
  * One row of install buttons for one MCP server: Add to Claude (claude.ai
  * opens "Add custom connector" already filled in), Add to Cursor (Cursor's
- * own badge, served from /public because the CSP allows no outside images),
+ * own badge, served from /public because the CSP allows no outside images;
+ * the https form, so a machine without Cursor lands on a page, not nothing),
  * Install in VS Code, a link to the ChatGPT steps (ChatGPT has no prefill
  * link), and a copy button for the Claude Code command.
  *
@@ -55,7 +56,7 @@ export function AddToClientButtons({
       </a>
     ),
     cursor: (
-      <a key="cursor" href={links.cursor} className="inline-flex items-center" onClick={() => click('cursor')}>
+      <a key="cursor" href={links.cursorWeb} target="_blank" rel="noopener" className="inline-flex items-center" onClick={() => click('cursor')}>
         <img src="/badges/add-to-cursor-dark.svg" alt="Add to Cursor" width={126} height={28} className="h-10 w-auto" />
       </a>
     ),

@@ -116,8 +116,9 @@ export const LINKS = {
 
 /**
  * One-click install links per MCP server, built from the URL in code so they
- * cannot drift from LINKS. Formats are the clients' own documented ones
- * (read 2026-10-22, state/gtm/easy-install-2026-10-22/install-ux.md):
+ * cannot drift from LINKS. Formats are the clients' own documented ones,
+ * read 2026-10-22: claude.com/docs/connectors/building/directory-vs-custom,
+ * cursor.com/docs/context/mcp/install-links, code.visualstudio.com/api/extension-guides/ai/mcp.
  * - Claude: claude.ai opens "Add custom connector" with name and URL filled
  *   in; the user still presses Add.
  * - Cursor: config = base64 of the inner server object only. The https twin
@@ -128,7 +129,7 @@ export const LINKS = {
 export type InstallServer = 'free' | 'flights' | 'hotels';
 
 const INSTALL_SERVERS: Record<InstallServer, { url: string; name: string; connectorName: string }> = {
-  free: { url: LINKS.mcpFree, name: 'flightpowers-free', connectorName: 'FlightPowers (free)' },
+  free: { url: LINKS.mcpFree, name: 'flightpowers-free', connectorName: 'FlightPowers (free, with ads)' },
   flights: { url: LINKS.mcpFlights, name: 'flightpowers-flights', connectorName: 'FlightPowers Flights' },
   hotels: { url: LINKS.mcpHotels, name: 'flightpowers-hotels', connectorName: 'FlightPowers Hotels' },
 };

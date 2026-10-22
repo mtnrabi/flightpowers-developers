@@ -19,7 +19,7 @@ const steps: ConnectStep[] = [
   },
   {
     title: 'Sign in with Google',
-    body: 'Cursor registers itself and offers the sign-in; you manage the server on the Customize page in the sidebar. On the ad-free servers the first 10 searches a day are free; after that, paste a RapidAPI key once on the page that opens (PRO is $10 for 2,500 flight searches a month).',
+    body: 'Cursor registers itself and offers the sign-in; you manage the server on the Customize page in the sidebar. On the ad-free servers the first 10 searches a day are free; after that, paste a RapidAPI key once on the page that opens (the PRO plan above).',
   },
   {
     title: 'Ask the agent',

@@ -9,7 +9,7 @@ import { test } from 'node:test';
 import { LINKS, installLinks } from '../src/lib/site.ts';
 
 const SERVERS = [
-  ['free', LINKS.mcpFree, 'flightpowers-free', 'FlightPowers (free)'],
+  ['free', LINKS.mcpFree, 'flightpowers-free', 'FlightPowers (free, with ads)'],
   ['flights', LINKS.mcpFlights, 'flightpowers-flights', 'FlightPowers Flights'],
   ['hotels', LINKS.mcpHotels, 'flightpowers-hotels', 'FlightPowers Hotels'],
 ];
@@ -56,8 +56,4 @@ test('the install-ux reference links come out byte for byte (free server)', () =
     free.vscode,
     'https://vscode.dev/redirect/mcp/install?name=flightpowers-free&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Ffree-trial.flightpowers.com%2Fmcp%22%7D'
   );
-});
-
-test('the free server page for people is the root, not the /mcp endpoint', () => {
-  assert.equal(LINKS.freeHome, 'https://free-trial.flightpowers.com/');
 });

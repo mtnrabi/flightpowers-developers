@@ -30,7 +30,7 @@ const steps: ConnectStep[] = [
   },
   {
     title: 'For no ads and the big scans, add the keyed servers',
-    body: 'Press Add to Claude on the flights row above (and hotels if you want them) and sign in with Google: the first 10 searches a day are free and ad-free. When you want more, paste a RapidAPI key once on the page that opens: PRO is $10 for 2,500 flight searches a month. For scripts and clients without a sign-in button, send the same URL with an x-rapidapi-key header instead.',
+    body: 'Press Add to Claude on the flights row above (and hotels if you want them) and sign in with Google: the first 10 searches a day are free and ad-free. When you want more, paste a RapidAPI key once on the page that opens (the PRO plan above). For scripts and clients without a sign-in button, send the same URL with an x-rapidapi-key header instead.',
   },
 ];
 
@@ -88,7 +88,7 @@ export default function ClaudeIntegrationPage() {
   return (
     <AgentIntegrationPage
       slug="claude"
-      lede="Add one connector and Claude searches live Google Flights and Booking.com data mid-conversation, with Google’s own price verdict attached to every fare it quotes."
+      lede="Add one connector, free, and Claude searches live Google Flights and Booking.com data mid-conversation, with Google’s own price verdict attached to every fare it quotes."
       heroCodeLabel="the ad-free servers, to add by hand"
       steps={steps}
       promptsLede="Claude picks the tool and fills the parameters itself: these all work as written."

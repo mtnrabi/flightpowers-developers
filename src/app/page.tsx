@@ -203,7 +203,7 @@ export default function HomePage() {
               </div>
               <p className="mt-5 flex flex-wrap gap-x-5 gap-y-1 font-mono text-[13px] text-ink-300">
                 <span className="whitespace-nowrap">
-                  Free in Claude: <strong className="text-ink-100">50 searches/day</strong>
+                  Free server: <strong className="text-ink-100">50 searches/day</strong>
                 </span>
                 <span className="whitespace-nowrap">
                   PRO: <strong className="text-ink-100">${FLIGHT_PLANS[1]!.priceMonthly}/month</strong> for{' '}

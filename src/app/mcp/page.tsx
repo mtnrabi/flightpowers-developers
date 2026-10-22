@@ -267,19 +267,8 @@ export default function McpPage() {
 
       {/* ============================== ONE PAGE PER SERVER (W2-5 links block) ============================== */}
       <Section>
-        <SectionHead eyebrow="One page per server" title="The free server, the flights MCP and the hotel MCP" />
-        <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-3">
-          <div>
-            <Link href="#free-server" className="block rounded-2xl border rule bg-ink-900/50 p-6 hover:border-ink-500 transition-colors">
-              <p className="text-[16px] font-semibold text-ink-100">Free server, with ads →</p>
-              <p className="mt-2 text-[15px] text-ink-400 leading-relaxed">
-                Flights and hotels in one URL. Sign in with Google: 50 searches a day, one labelled sponsored card per result.
-              </p>
-            </Link>
-            <div className="mt-3">
-              <AddToClientButtons server="free" />
-            </div>
-          </div>
+        <SectionHead eyebrow="One page per server" title="The flights MCP and the hotel MCP" />
+        <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <div>
             <Link href="/mcp/google-flights" className="block rounded-2xl border rule bg-ink-900/50 p-6 hover:border-ink-500 transition-colors">
               <p className="text-[16px] font-semibold text-ink-100">Google Flights MCP server →</p>
@@ -452,7 +441,7 @@ export default function McpPage() {
       </Section>
 
       {/* ============================== FREE SERVER, SEPARATED ============================== */}
-      <Section id="free-server">
+      <Section>
         <div className="rounded-3xl border border-dashed rule bg-ink-950/60 p-6 sm:p-10 max-w-3xl">
           <p className="eyebrow">Separate, and honestly labelled</p>
           <h2 className="mt-3 text-2xl font-semibold">A free, ad-supported server also exists</h2>

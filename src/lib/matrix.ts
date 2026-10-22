@@ -127,7 +127,7 @@ export const AGENTS: AgentDef[] = [
     slug: 'cursor',
     name: 'Cursor',
     connectKind: 'mcp-config',
-    connectLabel: 'Add to .cursor/mcp.json',
+    connectLabel: 'Add to Cursor',
     connectSnippet: MCP_JSON_BOTH,
     connectSnippets: { flights: MCP_JSON('flights'), hotels: MCP_JSON('hotels') },
     connectNote: `Cursor hits the 401, registers itself, and offers you the sign-in (manage it on the Customize page in the sidebar): ${SIGN_IN_STEP} The same shape works in any mcp.json-style client. For scripts, CI and clients without a sign-in button, keep the same URL and add a header instead: ${MCP_JSON_KEYED('flights').replace(/\s+/g, ' ')}`,
