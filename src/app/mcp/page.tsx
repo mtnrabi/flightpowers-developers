@@ -96,7 +96,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Which clients does this work with?',
-    a: 'Any MCP client that supports remote servers: Claude (Settings → Connectors), Claude Code, Cursor (.cursor/mcp.json), ChatGPT (developer-mode connectors), and anything else that takes an mcpServers-style config. Give it the /mcp URL and it shows a Sign in button. A client with no sign-in button, and anything headless, sends that same URL with an x-rapidapi-key header, or ?rapidapi_key= on the URL where headers are not supported.'
+    a: 'Any MCP client that supports remote servers: Claude (Customize → Connectors), Claude Code, Cursor (.cursor/mcp.json), ChatGPT (developer-mode connectors), and anything else that takes an mcpServers-style config. Give it the /mcp URL and it shows a Sign in button. A client with no sign-in button, and anything headless, sends that same URL with an x-rapidapi-key header, or ?rapidapi_key= on the URL where headers are not supported.'
   },
   {
     q: 'Where does my key end up?',
@@ -373,7 +373,7 @@ export default function McpPage() {
         <SectionHead
           eyebrow="The full surface"
           title="Every tool, printed raw"
-          lede="Five tools across two servers: the four below, plus compare_hotel_rates on the hotel server, which with its check-in date ranges is on the hotel MCP page. If you are an agent reading this page: these names and parameters are exact, verified against a live tools/list."
+          lede="Four tools across two servers, all below. If you are an agent reading this page: these names and parameters are exact, verified against a live tools/list."
         />
         <div className="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-start">
           <div>

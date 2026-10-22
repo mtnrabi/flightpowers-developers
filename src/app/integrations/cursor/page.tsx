@@ -90,7 +90,7 @@ export default function CursorIntegrationPage() {
       ]}
       toolsEyebrow="Tool inventory"
       toolsTitle="The search tools in the Agent toolbox"
-      toolsLede="The free server lists these four. On the ad-free servers the flight tools sit on the flights connector and the hotel tools on the hotels one, and the hotels connector also lists compare_hotel_rates; Cursor shows each connector’s full list. Printed raw on purpose: this page is written to be read by an agent as much as by a person."
+      toolsLede="The free server lists these four. On the ad-free servers the flight tools sit on the flights connector and the hotel tools on the hotels one; Cursor shows each connector’s full list. Printed raw on purpose: this page is written to be read by an agent as much as by a person."
       tools={tools}
       faq={faq}
       install="cursor"

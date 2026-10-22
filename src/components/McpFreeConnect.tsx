@@ -30,7 +30,7 @@ export function McpFreeConnect({ url }: { url: string }) {
     {
       id: 'claude',
       label: 'Claude',
-      where: 'Customize → Connectors → + Add → Add custom connector. Paste the URL and press Add, then Connect and sign in with Google. In a chat, + → Connectors turns it on. No key anywhere. Claude Free allows one custom connector, and this one has flights and hotels.',
+      where: 'Customize → Connectors → + Add → Add custom connector. Type a name, paste the URL, press Continue, choose ‘Sign in when needed’ (not the pre-selected ‘No sign-in’), then Add. Sign in with Google when Claude asks. In a chat, + → Connectors turns it on. No key anywhere. Claude Free allows one custom connector, and this one has flights and hotels.',
       payloadLabel: 'server url · the whole configuration',
       payload: url,
       wrap: true,

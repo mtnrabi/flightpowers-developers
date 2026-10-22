@@ -111,7 +111,7 @@ export const AGENTS: AgentDef[] = [
     connectSnippet: CONNECTOR_URLS_BOTH,
     connectSnippets: { flights: CONNECTOR_URL('flights'), hotels: CONNECTOR_URL('hotels') },
     connectNote:
-      `Customize → Connectors → + Add → Add custom connector, one connector per URL, then + → Connectors in a chat to turn it on. ${SIGN_IN_STEP} Flights and hotels are separate servers and one key covers both once you subscribe to each listing. A script or a client without a sign-in button sends the same URL with the key on it: ${CONNECTOR_URL_KEYED('flights')}`,
+      `Customize → Connectors → + Add → Add custom connector, one connector per URL; press Continue, choose ‘Sign in when needed’ (not the pre-selected ‘No sign-in’), then Add. Then + → Connectors in a chat to turn it on. ${SIGN_IN_STEP} Flights and hotels are separate servers and one key covers both once you subscribe to each listing. A script or a client without a sign-in button sends the same URL with the key on it: ${CONNECTOR_URL_KEYED('flights')}`,
   },
   {
     slug: 'chatgpt',

@@ -128,6 +128,18 @@ export const LINKS = {
  */
 export type InstallServer = 'free' | 'flights' | 'hotels';
 
+/**
+ * Shown with every Add to Claude button. claude.ai pre-picks "No sign-in
+ * (Detected)" for our hosts on the dialog's second screen (observed
+ * 2026-10-22), and a connector added that way gets a 401 on every search. The prefill link cannot pick the mode: read in
+ * the claude.ai bundle on 2026-10-22, the dialog takes only connectorName and
+ * connectorUrl, and any other parameter sends the link to a Settings page
+ * with no dialog. So the link stays exactly three parameters and we say it.
+ */
+export const CLAUDE_AUTH_HINT = 'After Continue, choose ‘Sign in when needed’ (not the pre-selected ‘No sign-in’), then Add.';
+/** The same line where other clients' buttons sit next to Claude's. */
+export const CLAUDE_AUTH_HINT_LABELLED = 'Add to Claude: after Continue, choose ‘Sign in when needed’ (not the pre-selected ‘No sign-in’), then Add.';
+
 const INSTALL_SERVERS: Record<InstallServer, { url: string; name: string; connectorName: string }> = {
   free: { url: LINKS.mcpFree, name: 'flightpowers-free', connectorName: 'FlightPowers (free, with ads)' },
   flights: { url: LINKS.mcpFlights, name: 'flightpowers-flights', connectorName: 'FlightPowers Flights' },
