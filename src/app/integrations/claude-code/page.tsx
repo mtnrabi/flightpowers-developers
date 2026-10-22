@@ -16,12 +16,12 @@ export const metadata: Metadata = withOg({
 
 const steps: ConnectStep[] = [
   {
-    title: 'Add the server',
-    body: 'Run the command above, then type /mcp inside Claude Code and sign in with Google. Add --scope user to have it in every project. If you already added FlightPowers as a connector on claude.ai, it shows up in Claude Code by itself when you sign in with the same account.',
+    title: 'Add the servers',
+    body: 'Run the commands above (the hotels line only if you want hotels), then type /mcp inside Claude Code and sign in with Google: the first 10 searches a day are free, with no ads. Add --scope user to have it in every project. If you already added FlightPowers as a connector on claude.ai, it shows up in Claude Code by itself when you sign in with the same account.',
   },
   {
-    title: 'For no ads and the big scans, add the keyed servers',
-    body: 'claude mcp add --transport http flightpowers-flights https://flights.flightpowers.com/mcp (hotels the same way). The first 10 searches a day are free after sign-in, then the PRO key above. Headless runs send --header "x-rapidapi-key: YOUR_KEY" instead of signing in.',
+    title: 'For the big scans, add your key',
+    body: 'When you want more than 10 a day, paste a RapidAPI key once at flights.flightpowers.com/connect (the PRO plan above). Headless runs send --header "x-rapidapi-key: YOUR_KEY" instead of signing in.',
   },
   {
     title: 'Or install the skills',

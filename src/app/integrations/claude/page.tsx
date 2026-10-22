@@ -21,16 +21,16 @@ export const metadata: Metadata = {
 
 const steps: ConnectStep[] = [
   {
-    title: 'Add the free server',
-    body: 'Press Add to Claude above: claude.ai opens Add custom connector with the name and URL filled in: press Continue, choose ‘Sign in when needed’ (not the pre-selected ‘No sign-in’), then Add. Claude asks you to sign in with Google the first time it searches. By hand it is Customize → Connectors → + Add → Add custom connector, a name and the URL free-trial.flightpowers.com/mcp, then the same: press Continue, choose ‘Sign in when needed’ (not the pre-selected ‘No sign-in’), then Add.',
+    title: 'Add the connector',
+    body: 'Press Add to Claude on the flights row above (and on the hotels row if you want hotels too): claude.ai opens Add custom connector with the name and URL filled in: press Continue, choose ‘Sign in when needed’ (not the pre-selected ‘No sign-in’), then Add. By hand it is Customize → Connectors → + Add → Add custom connector, a name and the URL flights.flightpowers.com/mcp (hotels.flightpowers.com/mcp for hotels), then the same: press Continue, choose ‘Sign in when needed’ (not the pre-selected ‘No sign-in’), then Add.',
   },
   {
     title: 'Turn it on in a chat, then ask',
-    body: 'In a chat, press + → Connectors and turn FlightPowers on, then ask for a fare. 50 searches a day, flights and hotels, with one labelled sponsored card per result.',
+    body: 'In a chat, press + → Connectors and turn FlightPowers on, then ask for a fare. Claude asks you to sign in with Google the first time it searches: the first 10 searches a day are free, with no ads, shared by the flights and hotels connectors.',
   },
   {
-    title: 'For no ads and the big scans, add the keyed servers',
-    body: 'Press Add to Claude on the flights row above (and hotels if you want them), then press Continue, choose ‘Sign in when needed’ (not the pre-selected ‘No sign-in’), then Add. Sign in with Google when Claude asks: the first 10 searches a day are free and ad-free. When you want more, paste a RapidAPI key once on the page that opens (the PRO plan above). For scripts and clients without a sign-in button, send the same URL with an x-rapidapi-key header instead.',
+    title: 'For the big scans, add your key',
+    body: 'When you want more than 10 a day, paste a RapidAPI key once at flights.flightpowers.com/connect (the PRO plan above). For scripts and clients without a sign-in button, send the same URL with an x-rapidapi-key header instead.',
   },
 ];
 
@@ -72,7 +72,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Can I try it before adding a key?',
-    a: 'Yes, two ways. The free server (free-trial.flightpowers.com/mcp) needs only a Google sign-in: 50 searches a day, with one labelled sponsored card per result. The keyed servers give you the first 10 searches a day free and ad-free after the same sign-in, before you paste any key.',
+    a: 'Yes. Sign in with Google and the first 10 searches a day are free and ad-free, shared by the flights and hotels connectors, before you paste any key.',
   },
   {
     q: 'Can Claude run these searches on a schedule?',
@@ -88,7 +88,7 @@ export default function ClaudeIntegrationPage() {
   return (
     <AgentIntegrationPage
       slug="claude"
-      lede="Add one connector, free, and Claude searches live Google Flights and Booking.com data mid-conversation, with Google’s own price verdict attached to every fare it quotes."
+      lede="Add one connector, sign in with Google, and Claude searches live Google Flights and Booking.com data mid-conversation, with Google’s own price verdict attached to every fare it quotes."
       heroCodeLabel="the ad-free servers, to add by hand"
       steps={steps}
       promptsLede="Claude picks the tool and fills the parameters itself: these all work as written."
@@ -101,7 +101,7 @@ export default function ClaudeIntegrationPage() {
       ]}
       toolsEyebrow="Tool inventory"
       toolsTitle="The search tools Claude sees"
-      toolsLede="The free server lists these four. On the ad-free servers the flight tools sit on the flights connector and the hotel tools on the hotels one; Claude shows each connector’s full list. Printed raw on purpose: this page is written to be read by an agent as much as by a person."
+      toolsLede="The flight tools sit on the flights connector and the hotel tools on the hotels one; Claude shows each connector’s full list. Printed raw on purpose: this page is written to be read by an agent as much as by a person."
       tools={tools}
       extra={
         <Section>
@@ -123,7 +123,7 @@ export default function ClaudeIntegrationPage() {
       install="claude"
       stepsNote={
         <>
-          <p>Claude Free allows one custom connector: use the free server, it has flights and hotels in one URL.</p>
+          <p>Claude Free allows one custom connector: add Flights, or Hotels if rooms are what you need.</p>
           <p>
             The ad-free Flights and Hotels connectors have their own page:{' '}
             <Link href="/integrations/claude/connectors" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">

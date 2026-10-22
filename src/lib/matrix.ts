@@ -100,7 +100,7 @@ const CONNECTOR_URL_KEYED = (server: 'flights' | 'hotels') =>
   `https://${server}.flightpowers.com/mcp?rapidapi_key=YOUR_RAPIDAPI_KEY`;
 
 const SIGN_IN_STEP =
-  'Add the URL, click Sign in, sign in with Google, and paste your RapidAPI key once on the page that opens. One URL, whichever way you connect.';
+  'Add the URL, click Sign in and sign in with Google: the first 10 searches a day are free, and you paste your RapidAPI key once on the page that opens when you want more. One URL, whichever way you connect.';
 
 export const AGENTS: AgentDef[] = [
   {
@@ -137,7 +137,8 @@ export const AGENTS: AgentDef[] = [
     name: 'Claude Code',
     connectKind: 'skill',
     connectLabel: 'Add the MCP server, or install the skills',
-    connectSnippet: `${installLinks('free').claudeCode}
+    connectSnippet: `${installLinks('flights').claudeCode}
+${installLinks('hotels').claudeCode}
 # then inside Claude Code: /mcp, and sign in with Google
 
 # or the open-source skills:
@@ -148,7 +149,7 @@ npx skills add mtnrabi/travel-agent-skills`,
       hotels: `npx skills add mtnrabi/travel-agent-skills`,
     },
     connectNote:
-      'The MCP server is the free one: 50 searches a day, one labelled sponsored card per result. The eight MIT-licensed skills (cheapest dates, fare watch, trip planning, hotel search, rate-parity monitoring…) talk to the same API over MCP or plain REST with your key.',
+      'The MCP servers have no ads: sign in with Google and the first 10 searches a day are free, then your own RapidAPI key. The eight MIT-licensed skills (cheapest dates, fare watch, trip planning, hotel search, rate-parity monitoring…) talk to the same API over MCP or plain REST with your key.',
   },
   {
     slug: 'n8n',

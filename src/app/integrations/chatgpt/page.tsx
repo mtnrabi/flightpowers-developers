@@ -19,11 +19,11 @@ const steps: ConnectStep[] = [
   },
   {
     title: 'Add the server as a plugin',
-    body: 'Go to chatgpt.com/plugins → + → Add custom MCP server. Name it and paste the Server URL: https://free-trial.flightpowers.com/mcp for the free server. Set Authentication to OAuth and leave the client id and secret empty. Select I understand and want to continue, then Create as a plugin.',
+    body: 'Go to chatgpt.com/plugins → + → Add custom MCP server. Name it and paste the Server URL: https://flights.flightpowers.com/mcp (add https://hotels.flightpowers.com/mcp the same way for hotels). Set Authentication to OAuth and leave the client id and secret empty. Select I understand and want to continue, then Create as a plugin.',
   },
   {
     title: 'Install it, sign in, then @ it in a chat',
-    body: 'It is your own private plugin, not a listing: install it from your plugins, sign in with Google, and in a new chat type @ and pick FlightPowers. For no ads and the big scans, add https://flights.flightpowers.com/mcp the same way: the first 10 searches a day are free after sign-in, then the PRO key above. We have no paid ChatGPT account, so we have not run this end to end ourselves; if the plugin refuses to attach, the fallback is the keyed URL with ?rapidapi_key= on it and authentication set to none.',
+    body: 'It is your own private plugin, not a listing: install it from your plugins, sign in with Google, and in a new chat type @ and pick FlightPowers. The first 10 searches a day are free, with no ads; for more, the PRO key above. We have no paid ChatGPT account, so we have not run this end to end ourselves; if the plugin refuses to attach, the fallback is the keyed URL with ?rapidapi_key= on it and authentication set to none.',
   },
 ];
 
@@ -73,7 +73,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Can I try it before adding a key?',
-    a: 'Yes, two ways. The free server (free-trial.flightpowers.com/mcp) needs only a Google sign-in: 50 searches a day, with one labelled sponsored card per result. The keyed servers give you the first 10 searches a day free and ad-free after the same sign-in, before you paste any key.',
+    a: 'Yes. Sign in with Google and the first 10 searches a day are free and ad-free, shared by the flights and hotels servers, before you paste any key.',
   },
 ];
 
@@ -81,7 +81,7 @@ export default function ChatGptIntegrationPage() {
   return (
     <AgentIntegrationPage
       slug="chatgpt"
-      lede="ChatGPT’s developer mode speaks MCP. Add one URL, free, and ChatGPT searches live Google Flights and Booking.com data, judged by Google’s own price band."
+      lede="ChatGPT’s developer mode speaks MCP. Add one URL, sign in with Google, and ChatGPT searches live Google Flights and Booking.com data, judged by Google’s own price band."
       heroCodeLabel="the ad-free server URLs (developer mode)"
       steps={steps}
       promptsLede="ChatGPT picks the tool and fills the parameters itself: these all work as written."
@@ -94,7 +94,7 @@ export default function ChatGptIntegrationPage() {
       ]}
       toolsEyebrow="Tool inventory"
       toolsTitle="The search tools ChatGPT sees"
-      toolsLede="The free server lists these four. On the ad-free servers the flight tools sit on the flights connector and the hotel tools on the hotels one; ChatGPT shows each connector’s full list. Printed raw on purpose: this page is written to be read by an agent as much as by a person."
+      toolsLede="The flight tools sit on the flights connector and the hotel tools on the hotels one; ChatGPT shows each connector’s full list. Printed raw on purpose: this page is written to be read by an agent as much as by a person."
       tools={tools}
       faq={faq}
       install="chatgpt"

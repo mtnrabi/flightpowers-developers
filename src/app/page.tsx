@@ -11,6 +11,7 @@ import { FIXTURES } from '@/lib/fixtures';
 import { playgroundDates } from '@/lib/format';
 import { CLAUDE_AUTH_HINT_LABELLED, COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 import { AddToClientButtons } from '@/components/AddToClientButtons';
+import { PAID_TRIAL_LINE } from '@/lib/install-copy';
 
 // The home page targets "travel data API" / "travel APIs"; title.absolute
 // because the title already starts with the brand and the template would
@@ -199,18 +200,10 @@ export default function HomePage() {
                 <Cta href="#demo" variant="primary">
                   Try the live demo ↓
                 </Cta>
-                <AddToClientButtons server="free" clients={['claude']} claudeLabel="Add to Claude, free" claudeVariant="ghost" claudeHint={false} />
+                <AddToClientButtons server="flights" clients={['claude']} claudeLabel="Add to Claude" claudeVariant="ghost" claudeHint={false} />
               </div>
-              <p className="mt-2 text-[12.5px] text-ink-400 leading-relaxed">{CLAUDE_AUTH_HINT_LABELLED}</p>
-              <p className="mt-5 flex flex-wrap gap-x-5 gap-y-1 font-mono text-[13px] text-ink-300">
-                <span className="whitespace-nowrap">
-                  Free server: <strong className="text-ink-100">50 searches/day</strong>
-                </span>
-                <span className="whitespace-nowrap">
-                  PRO: <strong className="text-ink-100">${FLIGHT_PLANS[1]!.priceMonthly}/month</strong> for{' '}
-                  {FLIGHT_PLANS[1]!.quota.toLocaleString('en-US')} flight searches
-                </span>
-              </p>
+              <p className="mt-3 text-[14px] text-ink-300 leading-relaxed">{PAID_TRIAL_LINE}</p>
+              <p className="mt-1.5 text-[12.5px] text-ink-400 leading-relaxed">{CLAUDE_AUTH_HINT_LABELLED}</p>
               <div className="mt-8 flex items-baseline justify-between gap-3">
                 <p className="eyebrow">Three ways to use it</p>
                 <Link href="/guides" className="shrink-0 whitespace-nowrap font-mono text-[12px] text-signal-400 hover:text-signal-500">

@@ -2,8 +2,8 @@ import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
-import { McpFreeConnect } from '@/components/McpFreeConnect';
 import { AddToClientButtons } from '@/components/AddToClientButtons';
+import { FREE_SERVER_LINE, PAID_TRIAL_LINE } from '@/lib/install-copy';
 import {
   CheckBullets,
   Code,
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   ...withOg({
     title: 'Travel MCP servers: Google Flights + Booking.com for Claude',
     description:
-      'Travel MCP servers for Claude, Cursor and ChatGPT: live Google Flights fares with a price band, live Booking.com rates. Free with ads; ad-free on your key.',
+      'Travel MCP servers for Claude, Cursor and ChatGPT: live Google Flights fares with a price band, live Booking.com rates. 10 free searches a day after Google sign-in; more on your key.',
     alternates: { canonical: '/mcp' },
   }),
   title: { absolute: 'Travel MCP servers: Google Flights + Booking.com for Claude' },
@@ -112,7 +112,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Is there a way to try it without a key?',
-    a: 'Yes: a separate free, ad-supported server. Sign in with Google and you get the same four tools with no RapidAPI key at all, 50 searches a day and 250 a month under your own name. Every result carries one labelled sponsored card and one call searches at most 15 date × destination combinations instead of 30. Connect it from the free tools page. It is for trying the tools before you get a key, not for production.',
+    a: 'Yes. Add either server, sign in with Google, and the first 10 searches a day are free and ad-free, shared by the flights and hotels servers. Nothing to paste.',
   },
 ];
 
@@ -129,8 +129,9 @@ export default function McpPage() {
           operatingSystem: 'Any',
           url: `${SITE.url}/mcp`,
           publisher: { '@id': ORGANIZATION_ID },
-          // The free server's caps are the ones the hero and the FAQ state; the
-          // keyed servers run on the caller's own plan, priced from lib/pricing.ts.
+          // The free server's published caps (its one text line on this page,
+          // FREE_SERVER_LINE, gives the daily one); the keyed servers run on the
+          // caller's own plan, priced from lib/pricing.ts.
           offers: [
             {
               '@type': 'Offer',
@@ -167,9 +168,9 @@ export default function McpPage() {
               <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
                 Travel MCP servers for Claude, Cursor and <span className="text-signal-500">any MCP client</span>
               </h1>
-              {/* The citation chunk, MCP variant: the free ad-supported server is named
-                  here on purpose (the plan places it on this hub); numbers from
-                  lib/pricing.ts and the free server's published caps. */}
+              {/* The citation chunk, MCP variant: the paid servers first (Matan
+                  2026-10-22); the trial line comes from lib/install-copy.ts, prices
+                  from lib/pricing.ts. */}
               <p className="lede mt-5">
                 FlightPowers runs two travel MCP servers for Claude and Cursor: the{' '}
                 <Link href="/mcp/google-flights" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
@@ -182,14 +183,11 @@ export default function McpPage() {
                   hotel MCP
                 </Link>{' '}
                 at <code className="font-mono text-[0.85em] text-signal-400">{LINKS.mcpHotels.replace('https://', '')}</code>,
-                with live Booking.com rates. Free with ads at{' '}
-                <code className="font-mono text-[0.85em] text-signal-400">{LINKS.mcpFree.replace('https://', '')}</code> (Google
-                sign-in, 50 searches a day, 250 a month); ad-free on your key, PRO $10 for 2,500 flight searches.
+                with live Booking.com rates. {PAID_TRIAL_LINE}
               </p>
               <p className="mt-3 text-[15px] text-ink-400 leading-relaxed">
                 Best for price tracking, date scans and AI agents; they do not book. ChatGPT and any other client that takes a
-                URL connects the same way, and on the keyed servers below your first 10 searches each day are free and ad-free
-                with a Google sign-in, nothing to paste.
+                URL connects the same way.
               </p>
               <div className="mt-7">
                 <CheckBullets
@@ -440,31 +438,14 @@ export default function McpPage() {
         </div>
       </Section>
 
-      {/* ============================== FREE SERVER, SEPARATED ============================== */}
+      {/* ============================== FREE SERVER: ONE LINE, NO BUTTON ============================== */}
       <Section>
-        <div className="rounded-3xl border border-dashed rule bg-ink-950/60 p-6 sm:p-10 max-w-3xl">
-          <p className="eyebrow">Separate, and honestly labelled</p>
-          <h2 className="mt-3 text-2xl font-semibold">A free, ad-supported server also exists</h2>
-          <p className="mt-4 text-[15px] text-ink-400 leading-relaxed">
-            <code className="field">{LINKS.mcpFree.replace('https://', '')}</code> serves all four tools, flights and hotels,
-            with no RapidAPI key at all. Add the URL, sign in with Google, and you are searching: 50 searches a day and 250 a
-            month under your own name. The trade: every result carries one labelled sponsored card, and one call searches at most
-            15 date × destination combinations instead of 30. Use it to try the tools before getting a key; point production and
-            anything you ship at the keyed servers above.
-          </p>
-          <div className="mt-6">
-            <AddToClientButtons server="free" />
-          </div>
-          <div className="mt-6">
-            <McpFreeConnect url={LINKS.mcpFree} />
-          </div>
-          <Link
-            href="/tools#free-mcp"
-            className="mt-4 inline-block text-sm text-signal-400 underline underline-offset-4 hover:text-signal-500"
-          >
-            The full list of what it does not do →
+        <p className="max-w-3xl text-[14px] text-ink-400 leading-relaxed">
+          {FREE_SERVER_LINE}{' '}
+          <Link href="/tools#free-mcp" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+            (what it does not do)
           </Link>
-        </div>
+        </p>
       </Section>
 
       <Section>
