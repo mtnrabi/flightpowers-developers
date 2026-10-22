@@ -95,6 +95,11 @@ export const LINKS = {
   mcpConnectHotels: 'https://hotels.flightpowers.com/connect',
   /** Free server: sign in with Google, no key, ad-supported. Same four tools. */
   mcpFree: 'https://free-trial.flightpowers.com/mcp',
+  /**
+   * The free server's own page, for people. A browser that opens the /mcp
+   * URL itself gets a 401 JSON error, so human-facing links go here.
+   */
+  freeHome: 'https://free-trial.flightpowers.com/',
   smitheryFlights: 'https://smithery.ai/server/mrabi/google-flights',
   smitheryHotels: 'https://smithery.ai/server/mrabi/booking',
   smitheryFree: 'https://smithery.ai/server/mrabi/freemium-google-flights-and-booking-mcp',
@@ -108,6 +113,43 @@ export const LINKS = {
   github: 'https://github.com/mtnrabi',
   demoProduct: 'https://demo.flightpowers.com',
 } as const;
+
+/**
+ * One-click install links per MCP server, built from the URL in code so they
+ * cannot drift from LINKS. Formats are the clients' own documented ones
+ * (read 2026-10-22, state/gtm/easy-install-2026-10-22/install-ux.md):
+ * - Claude: claude.ai opens "Add custom connector" with name and URL filled
+ *   in; the user still presses Add.
+ * - Cursor: config = base64 of the inner server object only. The https twin
+ *   is for places that strip cursor:// links (GitHub READMEs).
+ * - VS Code: the vscode.dev redirect opens vscode:mcp/install.
+ * - Claude Code has no link, only a command.
+ */
+export type InstallServer = 'free' | 'flights' | 'hotels';
+
+const INSTALL_SERVERS: Record<InstallServer, { url: string; name: string; connectorName: string }> = {
+  free: { url: LINKS.mcpFree, name: 'flightpowers-free', connectorName: 'FlightPowers (free)' },
+  flights: { url: LINKS.mcpFlights, name: 'flightpowers-flights', connectorName: 'FlightPowers Flights' },
+  hotels: { url: LINKS.mcpHotels, name: 'flightpowers-hotels', connectorName: 'FlightPowers Hotels' },
+};
+
+export function installLinks(server: InstallServer) {
+  const { url, name, connectorName } = INSTALL_SERVERS[server];
+  const cursorQuery = `name=${encodeURIComponent(name)}&config=${encodeURIComponent(btoa(JSON.stringify({ url })))}`;
+  return {
+    url,
+    name,
+    claude:
+      'https://claude.ai/customize/connectors?modal=add-custom-connector' +
+      `&connectorName=${encodeURIComponent(connectorName)}&connectorUrl=${encodeURIComponent(url)}`,
+    cursor: `cursor://anysphere.cursor-deeplink/mcp/install?${cursorQuery}`,
+    cursorWeb: `https://cursor.com/install-mcp?${cursorQuery}`,
+    vscode:
+      `https://vscode.dev/redirect/mcp/install?name=${encodeURIComponent(name)}` +
+      `&config=${encodeURIComponent(JSON.stringify({ type: 'http', url }))}`,
+    claudeCode: `claude mcp add --transport http ${name} ${url}`,
+  };
+}
 
 /**
  * Top navigation. The two product hubs are real links (the old "APIs" item

@@ -47,7 +47,7 @@ export function TwoStepCta({ medium }: { medium: UtmMedium }) {
           Cursor and sign in with Google: 50 searches a day, no key, one labelled sponsored card per result.
         </p>
         <div className="mt-4">
-          <Cta href={LINKS.mcpFree} external variant="ghost">
+          <Cta href={LINKS.freeHome} external variant="ghost">
             Open the free MCP →
           </Cta>
         </div>

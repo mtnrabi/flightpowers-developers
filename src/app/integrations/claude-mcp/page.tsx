@@ -44,8 +44,8 @@ const faq: Faq[] = [
     a: 'On paid plans, requests beyond your monthly quota bill at the plan\'s overage rate. The free tier (10 requests/month) is hard-capped: requests beyond 10 are rejected, not billed. The MCP server returns api_usage in every response showing your remaining quota.',
   },
   {
-    q: 'Can I use this with the free Lulu MCP server?',
-    a: 'Yes, but the Lulu server (free-trial.flightpowers.com/mcp) is for trying the tools before getting a key. You sign in with Google instead of using a RapidAPI key, and you get 50 searches a day and 250 a month. Every response carries one sponsored card. Point production work at the keyed servers documented here.',
+    q: 'Can I use this with the free server?',
+    a: 'Yes, but the free server (free-trial.flightpowers.com/mcp) is for trying the tools before getting a key. You sign in with Google instead of using a RapidAPI key, and you get 50 searches a day and 250 a month. Every response carries one sponsored card. Point production work at the keyed servers documented here.',
   },
   {
     q: 'Why are flights and hotels separate servers?',
@@ -296,7 +296,7 @@ export default function ClaudeMcpPage() {
       <Section>
         <div className="rounded-3xl border border-dashed rule bg-ink-950/60 p-6 sm:p-10 max-w-3xl">
           <p className="eyebrow">Alternative</p>
-          <h2 className="mt-3 text-2xl font-semibold">Try before you get a key: the free Lulu MCP server</h2>
+          <h2 className="mt-3 text-2xl font-semibold">Try before you get a key: the free server</h2>
           <p className="mt-4 text-[15px] text-ink-400 leading-relaxed">
             <code className="field">{LINKS.mcpFree.replace('https://', '')}</code> serves all four tools with no RapidAPI key.
             Add the URL, sign in with Google, and you get 50 searches a day and 250 a month under your own name. The trade:

@@ -11,6 +11,7 @@
  *   { e: "outbound", target, medium, path }
  *   { e: "upsell_view", tool, path }                       -- card scrolled into view, once per mount
  *   { e: "email_submit", tool, action: ok|created|error, path }
+ *   { e: "install_click", tool: free|flights|hotels, action: claude|cursor|vscode|chatgpt|claude-code, path }
 
  * Together those four are the whole capture funnel, in order:
  *   demo_run -> upsell_view -> api_upsell_click -> email_submit.
@@ -47,6 +48,7 @@ const ALLOWED = new Set([
   'outbound',
   'verify_key',
   'email_submit',
+  'install_click',
 ]);
 
 /** Labels only. Anything that is not a short campaign token is dropped. */

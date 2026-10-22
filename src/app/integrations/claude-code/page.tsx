@@ -16,16 +16,16 @@ export const metadata: Metadata = withOg({
 
 const steps: ConnectStep[] = [
   {
-    title: 'Get a RapidAPI key',
-    body: 'Subscribe on the listing’s pricing tab. The free tier needs no card. The skills bill every call to your own subscription.',
+    title: 'Add the server',
+    body: 'Run the command above, then type /mcp inside Claude Code and sign in with Google. Add --scope user to have it in every project. If you already added FlightPowers as a connector on claude.ai, it shows up in Claude Code by itself when you sign in with the same account.',
   },
   {
-    title: 'Install the skills',
-    body: 'Run npx skills add mtnrabi/travel-agent-skills in your terminal. Eight MIT-licensed skills from the public repo, no build step.',
+    title: 'For no ads and the big scans, add the keyed servers',
+    body: 'claude mcp add --transport http flightpowers-flights https://flights.flightpowers.com/mcp (hotels the same way). The first 10 searches a day are free after sign-in; PRO is $10 for 2,500 flight searches a month. Headless runs send --header "x-rapidapi-key: YOUR_KEY" instead of signing in.',
   },
   {
-    title: 'Give them your key',
-    body: 'The skills talk to the same API over MCP or plain REST with your key. The repo’s README documents both paths per skill. Then just ask; Claude Code picks the right skill from the request.',
+    title: 'Or install the skills',
+    body: 'Run npx skills add mtnrabi/travel-agent-skills in your terminal. Eight MIT-licensed skills from the public repo, no build step. They talk to the same API over MCP or plain REST with your key; the repo’s README documents both paths per skill.',
   },
 ];
 
@@ -75,7 +75,7 @@ export default function ClaudeCodeIntegrationPage() {
   return (
     <AgentIntegrationPage
       slug="claude-code"
-      lede="One install line gives Claude Code eight open-source travel skills on the same live API: cheapest dates, fare watch, trip planning, hotel search, rate-parity monitoring."
+      lede="One command adds FlightPowers to Claude Code as an MCP server. One more line gives it eight open-source travel skills on the same live API: cheapest dates, fare watch, trip planning, hotel search, rate-parity monitoring."
       heroCodeLabel="terminal"
       steps={steps}
       promptsLede="After the install, plain requests route to the right skill: these all work as written."
@@ -108,6 +108,7 @@ export default function ClaudeCodeIntegrationPage() {
         </Section>
       }
       faq={faq}
+      install="claude-code"
     />
   );
 }

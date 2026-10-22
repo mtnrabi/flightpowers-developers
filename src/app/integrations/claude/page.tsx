@@ -21,16 +21,16 @@ export const metadata: Metadata = {
 
 const steps: ConnectStep[] = [
   {
-    title: 'Get a RapidAPI key',
-    body: 'Subscribe on the listing’s pricing tab: Google Flights Live API for flights, Booking Live API for hotels. The free tier needs no card. One key covers both once you subscribe to each listing.',
+    title: 'Add the free server',
+    body: 'Press Add to Claude above: claude.ai opens Add custom connector with the name and URL filled in. Press Add, then Connect, and sign in with Google. By hand it is Customize → Connectors → + Add → Add custom connector, with the URL free-trial.flightpowers.com/mcp.',
   },
   {
-    title: 'Add both connectors',
-    body: 'Settings → Connectors → Add custom connector, once per URL above: first flights, then hotels. Leave Authentication on what Claude detects. They are separate servers and both sit behind the same sign-in.',
+    title: 'Turn it on in a chat, then ask',
+    body: 'In a chat, press + → Connectors and turn FlightPowers on, then ask for a fare. 50 searches a day, flights and hotels, with one labelled sponsored card per result.',
   },
   {
-    title: 'Sign in, then ask',
-    body: 'Press Connect, sign in with Google, and paste your RapidAPI key once on the page that opens. Then toggle the connector on in a chat (+ → Connectors) and ask for a fare. For scripts, CI and clients without a sign-in button, send the same URL with an x-rapidapi-key header instead.',
+    title: 'For no ads and the big scans, add the keyed servers',
+    body: 'Press Add to Claude on the flights row above (and hotels if you want them) and sign in with Google: the first 10 searches a day are free and ad-free. When you want more, paste a RapidAPI key once on the page that opens: PRO is $10 for 2,500 flight searches a month. For scripts and clients without a sign-in button, send the same URL with an x-rapidapi-key header instead.',
   },
 ];
 
@@ -72,7 +72,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Can I try it before adding a key?',
-    a: 'Yes. The live demo on the homepage and the free tools on this site run real requests on our key, so you can see the exact responses Claude will get before you subscribe.',
+    a: 'Yes, two ways. The free server (free-trial.flightpowers.com/mcp) needs only a Google sign-in: 50 searches a day, with one labelled sponsored card per result. The keyed servers give you the first 10 searches a day free and ad-free after the same sign-in, before you paste any key.',
   },
   {
     q: 'Can Claude run these searches on a schedule?',
@@ -88,8 +88,8 @@ export default function ClaudeIntegrationPage() {
   return (
     <AgentIntegrationPage
       slug="claude"
-      lede="Add two connector URLs, flights and hotels, and Claude searches live Google Flights and Booking.com data mid-conversation, with Google’s own price verdict attached to every fare it quotes."
-      heroCodeLabel="add each as a custom connector"
+      lede="Add one connector and Claude searches live Google Flights and Booking.com data mid-conversation, with Google’s own price verdict attached to every fare it quotes."
+      heroCodeLabel="the ad-free servers, to add by hand"
       steps={steps}
       promptsLede="Claude picks the tool and fills the parameters itself: these all work as written."
       prompts={[
@@ -120,6 +120,14 @@ export default function ClaudeIntegrationPage() {
         </Section>
       }
       faq={faq}
+      install="claude"
+      stepsNote={
+        <>
+          <p>Claude Free allows one custom connector: use the free server, it has flights and hotels in one URL.</p>
+          <p>Add it on the web once, then it works in the Claude app on your phone.</p>
+          <p>On a Team plan an Owner adds the connector first; members then press Connect.</p>
+        </>
+      }
     />
   );
 }

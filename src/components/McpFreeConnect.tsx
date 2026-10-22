@@ -30,7 +30,7 @@ export function McpFreeConnect({ url }: { url: string }) {
     {
       id: 'claude',
       label: 'Claude',
-      where: 'Settings → Connectors → Add custom connector. Paste the URL and save, then click Sign in and sign in with Google. The four tools appear in a new chat. No key anywhere.',
+      where: 'Customize → Connectors → + Add → Add custom connector. Paste the URL and press Add, then Connect and sign in with Google. In a chat, + → Connectors turns it on. No key anywhere. Claude Free allows one custom connector, and this one has flights and hotels.',
       payloadLabel: 'server url · the whole configuration',
       payload: url,
       wrap: true,
@@ -38,7 +38,7 @@ export function McpFreeConnect({ url }: { url: string }) {
     {
       id: 'chatgpt',
       label: 'ChatGPT',
-      where: 'Settings → Connectors → Advanced → Developer mode, then Create. Paste the URL, set authentication to OAuth and leave client id and secret empty, then sign in with Google.',
+      where: 'chatgpt.com/plugins → + → Add custom MCP server (developer mode on). Paste the Server URL, set Authentication to OAuth and leave client id and secret empty, select I understand, then Create as a plugin. Install it, sign in with Google, and @ it in a chat. Needs a paid ChatGPT plan (Plus or above) on the web.',
       payloadLabel: 'server url · the whole configuration',
       payload: url,
       wrap: true,

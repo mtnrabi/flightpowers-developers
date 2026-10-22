@@ -22,7 +22,8 @@ export type TrackEvent = {
     | 'outbound'
     | 'verify_key'
     | 'email_submit'
-    | 'session_start';
+    | 'session_start'
+    | 'install_click';
   tool?: string;
   action?: string;
   target?: string;

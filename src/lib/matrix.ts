@@ -11,7 +11,7 @@
  * recipe, with a copyable config/install line as the CTA.
  */
 
-import { LINKS } from './site';
+import { LINKS, installLinks } from './site';
 
 export type AgentDef = {
   slug: string;
@@ -111,7 +111,7 @@ export const AGENTS: AgentDef[] = [
     connectSnippet: CONNECTOR_URLS_BOTH,
     connectSnippets: { flights: CONNECTOR_URL('flights'), hotels: CONNECTOR_URL('hotels') },
     connectNote:
-      `Settings → Connectors → Add custom connector, one connector per URL. ${SIGN_IN_STEP} Flights and hotels are separate servers and one key covers both once you subscribe to each listing. A script or a client without a sign-in button sends the same URL with the key on it: ${CONNECTOR_URL_KEYED('flights')}`,
+      `Customize → Connectors → + Add → Add custom connector, one connector per URL, then + → Connectors in a chat to turn it on. ${SIGN_IN_STEP} Flights and hotels are separate servers and one key covers both once you subscribe to each listing. A script or a client without a sign-in button sends the same URL with the key on it: ${CONNECTOR_URL_KEYED('flights')}`,
   },
   {
     slug: 'chatgpt',
@@ -121,7 +121,7 @@ export const AGENTS: AgentDef[] = [
     connectSnippet: CONNECTOR_URLS_BOTH,
     connectSnippets: { flights: CONNECTOR_URL('flights'), hotels: CONNECTOR_URL('hotels') },
     connectNote:
-      `Settings → Connectors (developer mode) → add each server URL, authentication OAuth, client id and secret left empty. ${SIGN_IN_STEP} Flights and hotels are separate servers and one key covers both once you subscribe to each listing. A script or a client without a sign-in button sends the same URL with the key on it: ${CONNECTOR_URL_KEYED('flights')}`,
+      `chatgpt.com/plugins → + → Add custom MCP server → paste the Server URL, Authentication OAuth (client id and secret left empty) → I understand → Create as a plugin → install it → @ it in a chat. Developer mode on, a paid ChatGPT plan (Plus or above) on the web. ${SIGN_IN_STEP} Flights and hotels are separate servers and one key covers both once you subscribe to each listing. A script or a client without a sign-in button sends the same URL with the key on it: ${CONNECTOR_URL_KEYED('flights')}`,
   },
   {
     slug: 'cursor',
@@ -130,16 +130,25 @@ export const AGENTS: AgentDef[] = [
     connectLabel: 'Add to .cursor/mcp.json',
     connectSnippet: MCP_JSON_BOTH,
     connectSnippets: { flights: MCP_JSON('flights'), hotels: MCP_JSON('hotels') },
-    connectNote: `Restart Cursor. It hits the 401, registers itself, and offers you the sign-in: ${SIGN_IN_STEP} The same shape works in any mcp.json-style client. For scripts, CI and clients without a sign-in button, keep the same URL and add a header instead: ${MCP_JSON_KEYED('flights').replace(/\s+/g, ' ')}`,
+    connectNote: `Cursor hits the 401, registers itself, and offers you the sign-in (manage it on the Customize page in the sidebar): ${SIGN_IN_STEP} The same shape works in any mcp.json-style client. For scripts, CI and clients without a sign-in button, keep the same URL and add a header instead: ${MCP_JSON_KEYED('flights').replace(/\s+/g, ' ')}`,
   },
   {
     slug: 'claude-code',
     name: 'Claude Code',
     connectKind: 'skill',
-    connectLabel: 'Install the open-source skills',
-    connectSnippet: `npx skills add mtnrabi/travel-agent-skills`,
+    connectLabel: 'Add the MCP server, or install the skills',
+    connectSnippet: `${installLinks('free').claudeCode}
+# then inside Claude Code: /mcp, and sign in with Google
+
+# or the open-source skills:
+npx skills add mtnrabi/travel-agent-skills`,
+    // Task pages render the skill framing, so they keep the skills line.
+    connectSnippets: {
+      flights: `npx skills add mtnrabi/travel-agent-skills`,
+      hotels: `npx skills add mtnrabi/travel-agent-skills`,
+    },
     connectNote:
-      'Eight MIT-licensed skills (cheapest dates, fare watch, trip planning, hotel search, rate-parity monitoring…). They talk to the same API over MCP or plain REST with your key.',
+      'The MCP server is the free one: 50 searches a day, one labelled sponsored card per result. The eight MIT-licensed skills (cheapest dates, fare watch, trip planning, hotel search, rate-parity monitoring…) talk to the same API over MCP or plain REST with your key.',
   },
   {
     slug: 'n8n',
