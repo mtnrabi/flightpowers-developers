@@ -168,9 +168,9 @@ export default function McpPage() {
               <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
                 Travel MCP servers for Claude, Cursor and <span className="text-signal-500">any MCP client</span>
               </h1>
-              {/* The citation chunk, MCP variant: the free ad-supported server is named
-                  here on purpose (the plan places it on this hub); numbers from
-                  lib/pricing.ts and the free server's published caps. */}
+              {/* The citation chunk, MCP variant: the paid servers first (Matan
+                  2026-10-22); the trial line comes from lib/install-copy.ts, prices
+                  from lib/pricing.ts. */}
               <p className="lede mt-5">
                 FlightPowers runs two travel MCP servers for Claude and Cursor: the{' '}
                 <Link href="/mcp/google-flights" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
@@ -187,8 +187,7 @@ export default function McpPage() {
               </p>
               <p className="mt-3 text-[15px] text-ink-400 leading-relaxed">
                 Best for price tracking, date scans and AI agents; they do not book. ChatGPT and any other client that takes a
-                URL connects the same way, and on the keyed servers below your first 10 searches each day are free and ad-free
-                with a Google sign-in, nothing to paste.
+                URL connects the same way.
               </p>
               <div className="mt-7">
                 <CheckBullets

@@ -129,16 +129,6 @@ export const LINKS = {
 export type InstallServer = 'free' | 'flights' | 'hotels';
 
 /**
- * The paid servers' allowance after a Google sign-in, before any key. From the
- * server's own instructions (read 2026-10-22): "10 free searches a day after
- * sign-in with Google, shared by FlightPowers' flights and hotels servers".
- * Every install button points at those servers (Matan 2026-10-22: "Add to
- * claude / chat gpt buttons should be the paid MCP version"); the free ad
- * server keeps one plain text line, no button.
- */
-export const PAID_TRIAL_PER_DAY = 10;
-
-/**
  * Shown with every Add to Claude button. claude.ai pre-picks "No sign-in
  * (Detected)" for our hosts on the dialog's second screen (observed
  * 2026-10-22), and a connector added that way gets a 401 on every search. The prefill link cannot pick the mode: read in
