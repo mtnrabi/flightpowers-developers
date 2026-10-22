@@ -69,19 +69,25 @@ export default function PrivacyPage() {
           name, email address, profile picture, and when you signed up and last visited.
         </p>
         <p>
-          What you type is sent to OpenAI to turn it into a search. The conversation and its results are kept in a cache
+          What you type is sent to OpenAI, under OpenAI&apos;s API data terms, to turn it into a search. The conversation and its results are kept in a cache
           for 3 hours so the results page can load, and are not tied to your account. Flights you choose to save are kept
           with your account email (route, dates, airlines, stops, price and booking link) until you remove them.
+          Price alerts you set (route, dates or nights, stops, times, airlines, your rule and the last cheapest price
+          found) are kept with your email until you delete them; alert emails go out through Amazon SES.
         </p>
         <p>
           The demo uses PostHog (EU servers) for analytics: it records the text of your search, the country part of your
           browser&apos;s language setting, and clicks on flights and sponsored links, under a random id that PostHog keeps
-          in your browser&apos;s local storage. Session recording and heatmaps are off. Signing in uses a cookie.
+          in your browser&apos;s local storage. PostHog&apos;s script also sends its standard details (the page address,
+          the referring page, browser, operating system and device), and PostHog receives your IP address, which it can
+          use to estimate your location. Session recording and heatmaps are off. Signing in uses a cookie that holds your
+          Google sign-in tokens.
         </p>
         <p>
           An earlier version of the demo (April 2025 to March 2026) saved each search (airports, dates, nights, stops)
           with the signed-in account&apos;s email address, and on a small number of rows the IP address. That history is
-          still in our database and is kept until deleted; the current demo does not save searches this way. To have yours
+          still in our database and is kept until deleted; the current demo&apos;s search page does not save searches this
+          way. To have yours
           deleted, ask us (see Questions).
         </p>
 
@@ -123,8 +129,9 @@ export default function PrivacyPage() {
         <h2>Server logs</h2>
         <p>
           Like every website, the servers keep standard infrastructure logs (request paths, status codes, timestamps) for
-          debugging and abuse prevention. They are ordinary operational logs, not an analytics system. Our search
-          backends&apos; logs include the search itself and are kept for about a day.
+          debugging and abuse prevention. They are ordinary operational logs, not an analytics system. Our flights API
+          backend&apos;s logs include the search itself and are kept for about a day. The demo&apos;s own backend also
+          logs the searches it handles and their results, kept for our hosting provider&apos;s standard log period.
         </p>
 
         <h2>The marketplaces are separate</h2>
