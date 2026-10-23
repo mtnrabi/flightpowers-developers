@@ -20,6 +20,7 @@ import hotelSearchLisbon from './fixtures/hotel-search-lisbon.json';
 import dealHuntLgw from './fixtures/deal-hunt-lgw.json';
 import onewayJfkCun from './fixtures/oneway-jfk-cun.json';
 import onewayLaxSfoLow from './fixtures/oneway-lax-sfo-low.json';
+import airbnbSearchRome from './fixtures/airbnb-search-rome.json';
 
 export type OnewayFlight = {
   price_range_in_relation_to_other_periods: 'low' | 'typical' | 'high' | null;
@@ -150,6 +151,55 @@ export type YearMonth = {
   buy_link: string | null;
 };
 
+/**
+ * One row from the Airbnb Live API's POST /search (hotel_agent ota_lite,
+ * common/schema.js PROPERTY_KEYS). Every key is on every row; a field Airbnb
+ * did not publish is null.
+ */
+export type AirbnbRow = {
+  name: string | null;
+  price_string: string | null;
+  price: number | null;
+  review_score: number | null;
+  review_count: number | null;
+  room_type: string | null;
+  location: string | null;
+  image_url: string | null;
+  link: string | null;
+  nights: number | null;
+  adults: number | null;
+  children: number | null;
+  provider: 'airbnb';
+  provider_property_id: string | null;
+  latitude: number | null;
+  longitude: number | null;
+  price_total: number | null;
+  price_per_night: number | null;
+  price_original_total: number | null;
+  currency: string | null;
+  taxes_included: boolean | null;
+  rating: number | null;
+  rating_scale: number | null;
+  beds: number | null;
+  bedrooms: number | null;
+  baths: number | null;
+  available: boolean;
+  retrieved_at: string;
+};
+
+export type AirbnbSearch = {
+  provider: 'airbnb';
+  destination: string;
+  checkin_date: string;
+  checkout_date: string;
+  filters_applied: Record<string, { value: unknown; applied_by: 'airbnb' | 'flightpowers'; post_filter: boolean }>;
+  search_status: 'ok' | 'empty' | 'degraded' | 'error';
+  search_reason: string;
+  /** Added by the capture: how many rows the full response carried before the fixture was trimmed. */
+  properties_returned: number;
+  properties: AirbnbRow[];
+};
+
 export type Fixture<T> = {
   captured_at: string;
   captured_from: string;
@@ -172,6 +222,7 @@ export const FIXTURES = {
   dealHuntLgw: dealHuntLgw as unknown as Fixture<DealHuntRow[]>,
   onewayJfkCun: onewayJfkCun as unknown as Fixture<OnewayFlight[]>,
   onewayLaxSfoLow: onewayLaxSfoLow as unknown as Fixture<OnewayFlight[]>,
+  airbnbSearchRome: airbnbSearchRome as unknown as Fixture<AirbnbSearch>,
   hotelSearchLisbon: hotelSearchLisbon as unknown as Fixture<{
     destination: string;
     checkin_date: string;

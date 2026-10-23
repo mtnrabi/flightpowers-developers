@@ -41,6 +41,24 @@ export const HOTEL_PLANS: Plan[] = [
   { name: 'MEGA', priceMonthly: 75, quota: 25000, overagePerRequest: 0.003, ratePerMinute: 50, hardLimit: false },
 ];
 
+/**
+ * Airbnb Live API (rapidapi.com/mtnrabi/api/airbnb-live-api), its own listing
+ * and subscription. Ladder decided 2026-10-23 (PLAN §4.3 + the burst test,
+ * state/gtm/research/multi-ota-2026-10-23 in the agents repo). The listing was
+ * not public when this was written: scripts/check-pricing.mjs reads it like the
+ * other two, so run it once the listing is public and before this deploys.
+ * null until that check passes: the table then makes no "read from the live
+ * listing" claim. Set it to the day check-pricing printed OK for airbnb.
+ */
+export const AIRBNB_READ_ON: string | null = '2026-10-23';
+
+export const AIRBNB_PLANS: Plan[] = [
+  { name: 'BASIC', priceMonthly: 0, quota: 100, overagePerRequest: null, ratePerMinute: null, hardLimit: true },
+  { name: 'PRO', priceMonthly: 10, quota: 10000, overagePerRequest: 0.001, ratePerMinute: 60, hardLimit: false },
+  { name: 'ULTRA', priceMonthly: 25, quota: 35000, overagePerRequest: 0.0007, ratePerMinute: 150, hardLimit: false },
+  { name: 'MEGA', priceMonthly: 50, quota: 100000, overagePerRequest: 0.0005, ratePerMinute: 300, hardLimit: false },
+];
+
 /** "$ per 1k requests" — the number a developer actually compares on. */
 export function perThousand(plan: Plan): string {
   if (plan.priceMonthly === 0) return '—';

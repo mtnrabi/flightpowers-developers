@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Pricing drift check — fetches both RapidAPI listing pages anonymously,
+ * Pricing drift check — fetches the three RapidAPI listing pages anonymously,
  * extracts the billing plans from the RSC payload, filters to PUBLIC, and
  * compares against the committed data in src/lib/pricing.ts.
  *
@@ -27,6 +27,7 @@ const UA =
 const LISTINGS = {
   flights: 'https://rapidapi.com/mtnrabi/api/google-flights-live-api',
   hotels: 'https://rapidapi.com/mtnrabi/api/booking-live-api',
+  airbnb: 'https://rapidapi.com/mtnrabi/api/airbnb-live-api',
 };
 
 /** Pull every {"id":"billingplan_... object out of the RSC payload by brace-matching. */
@@ -96,11 +97,18 @@ function normalizeLive(plan) {
 async function main() {
   const here = dirname(fileURLToPath(import.meta.url));
   const fullSrc = readFileSync(join(here, '..', 'src', 'lib', 'pricing.ts'), 'utf8');
-  // Scope the comparison per API: FLIGHT_PLANS and HOTEL_PLANS share plan names.
-  const hotelStart = fullSrc.indexOf('HOTEL_PLANS');
+  // Scope the comparison per API: FLIGHT_PLANS, HOTEL_PLANS and AIRBNB_PLANS share plan names.
+  const hotelStart = fullSrc.indexOf('export const HOTEL_PLANS');
+  const airbnbStart = fullSrc.indexOf('export const AIRBNB_READ_ON');
+  if (hotelStart === -1 || airbnbStart === -1 || airbnbStart < hotelStart) {
+    console.error('[check-pricing] PARSE FAILURE: pricing.ts no longer has HOTEL_PLANS followed by AIRBNB_READ_ON.');
+    process.exitCode = 2;
+    return;
+  }
   const sections = {
     flights: fullSrc.slice(0, hotelStart),
-    hotels: fullSrc.slice(hotelStart),
+    hotels: fullSrc.slice(hotelStart, airbnbStart),
+    airbnb: fullSrc.slice(airbnbStart),
   };
 
   let drift = false;
@@ -157,6 +165,18 @@ async function main() {
         console.error(`[check-pricing] DRIFT (${api} ${live.name}): quota live ${live.quota} vs committed ${committedQuota}.`);
         drift = true;
       }
+    }
+
+    // Reverse check: a committed row with no live PUBLIC plan behind it (a tier never created) is drift too.
+    const liveNames = new Set(pub.map((p) => p.name));
+    for (const m of sections[api].matchAll(/name: '([A-Z]+)', priceMonthly:/g)) {
+      if (!liveNames.has(m[1])) {
+        console.error(`[check-pricing] DRIFT (${api}): committed plan ${m[1]} has no live PUBLIC plan; remove the row.`);
+        drift = true;
+      }
+    }
+    if (api === 'airbnb' && /AIRBNB_READ_ON[^=]*= null/.test(sections.airbnb)) {
+      console.log('[check-pricing] airbnb: AIRBNB_READ_ON is null; if this run ends OK, set it to today so the table names the date.');
     }
   }
 
