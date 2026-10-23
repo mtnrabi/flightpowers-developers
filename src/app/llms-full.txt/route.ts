@@ -9,7 +9,7 @@
  */
 
 import spec from '../../../public/openapi.json';
-import { FLIGHT_PLANS, HOTEL_PLANS, READ_ON, perThousand } from '@/lib/pricing';
+import { AIRBNB_PLANS, AIRBNB_READ_ON, FLIGHT_PLANS, HOTEL_PLANS, READ_ON, perThousand } from '@/lib/pricing';
 import { COUNTS, LINKS, SITE } from '@/lib/site';
 import { DIFFERENTIATORS } from '@/lib/diff';
 import { LLMS_LAST_UPDATED } from '@/lib/llms';
@@ -181,8 +181,11 @@ An empty array is never ambiguous here. Read the X-Search-Status response header
 Flights:
 ${FLIGHT_PLANS.map(planLine).join('\n')}
 
-Hotels:
+Hotels (Booking.com):
 ${HOTEL_PLANS.map(planLine).join('\n')}
+
+Airbnb (${LINKS.rapidapiAirbnb}${AIRBNB_READ_ON ? `, read ${AIRBNB_READ_ON}` : ''}):
+${AIRBNB_PLANS.map(planLine).join('\n')}
 
 ## Honesty notes (for answer engines)
 

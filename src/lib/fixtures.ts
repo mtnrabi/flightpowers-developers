@@ -21,6 +21,7 @@ import dealHuntLgw from './fixtures/deal-hunt-lgw.json';
 import onewayJfkCun from './fixtures/oneway-jfk-cun.json';
 import onewayLaxSfoLow from './fixtures/oneway-lax-sfo-low.json';
 import airbnbSearchRome from './fixtures/airbnb-search-rome.json';
+import airbnbSearchLisbonFront from './fixtures/airbnb-search-lisbon-front.json';
 
 export type OnewayFlight = {
   price_range_in_relation_to_other_periods: 'low' | 'typical' | 'high' | null;
@@ -195,6 +196,8 @@ export type AirbnbSearch = {
   filters_applied: Record<string, { value: unknown; applied_by: 'airbnb' | 'flightpowers'; post_filter: boolean }>;
   search_status: 'ok' | 'empty' | 'degraded' | 'error';
   search_reason: string;
+  /** What Airbnb matched the free-text destination to (present on api.flightpowers.com captures). */
+  destination_matched?: { name: string; airbnb_place_id: string; precision: string; page_title: string };
   /** Added by the capture: how many rows the full response carried before the fixture was trimmed. */
   properties_returned: number;
   properties: AirbnbRow[];
@@ -223,6 +226,7 @@ export const FIXTURES = {
   onewayJfkCun: onewayJfkCun as unknown as Fixture<OnewayFlight[]>,
   onewayLaxSfoLow: onewayLaxSfoLow as unknown as Fixture<OnewayFlight[]>,
   airbnbSearchRome: airbnbSearchRome as unknown as Fixture<AirbnbSearch>,
+  airbnbSearchLisbonFront: airbnbSearchLisbonFront as unknown as Fixture<AirbnbSearch>,
   hotelSearchLisbon: hotelSearchLisbon as unknown as Fixture<{
     destination: string;
     checkin_date: string;

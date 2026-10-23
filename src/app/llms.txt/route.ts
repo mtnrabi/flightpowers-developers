@@ -9,7 +9,7 @@
  * inline for engines that fetch one file and stop.
  */
 
-import { FLIGHT_PLANS, HOTEL_PLANS, READ_ON, perThousand } from '@/lib/pricing';
+import { AIRBNB_PLANS, AIRBNB_READ_ON, FLIGHT_PLANS, HOTEL_PLANS, READ_ON, perThousand } from '@/lib/pricing';
 import { COUNTS, LINKS, SITE } from '@/lib/site';
 import { DIFFERENTIATORS } from '@/lib/diff';
 import { AGENTS, TASKS } from '@/lib/matrix';
@@ -63,6 +63,7 @@ ${DIFFERENTIATORS.map((d) => `- ${d.title}: ${d.short}`).join('\n')}
 - [Parallel date scans](${u('/flights-api/parallel-date-scan')}): scanning a month of dates inside the per-minute rate limit
 - [Hotels API reference](${u('/hotels-api')}): search, by-name, rooms, resolve, with captured examples
 - [Hotel geo-pricing](${u('/hotels-api/geo-pricing')}): proxy_country, the rate-parity primitive
+- [Airbnb API reference](${u('/hotels-api/airbnb')}): POST /search on its own RapidAPI listing (airbnb-live-api), live Airbnb listings with the stay total and the price per night as numbers; also reachable as provider=airbnb on POST /v1/hotels/search. The MCP servers do not search Airbnb
 - [MCP setup](${u('/mcp')}): connect Claude, ChatGPT, Cursor, or any MCP client
 - [AI agent recipes](${u('/ai-agents')}): agent patterns on top of the API
 
@@ -87,6 +88,7 @@ ${DIFFERENTIATORS.map((d) => `- ${d.title}: ${d.short}`).join('\n')}
 - [How to check if your company is overpaying for flights](${u('/guides/overpaying-for-flights')}): grading the forward book against Google's own price band, with the cabin trap and the trips it cannot judge
 - [Cheapest destinations from one airport this month](${u('/guides/cheapest-destinations-from-one-airport')}): a destination list and a date range in one call, a captured 15-combination run, and the limit that drops a destination
 - [Booking.com API alternative: live rates without approval](${u('/guides/booking-com-api-alternative')}): the Demand API is for approved affiliate partners; live Booking.com rates by hotel name or destination on a self-serve key, priced from a chosen country, and when another provider fits better
+- [Airbnb API in 2026: is there a public one, and a key you can buy](${u('/guides/airbnb-api')}): Airbnb's own API serves host software under partner programs; live Airbnb search results on a RapidAPI key, a real captured response, which filters run at Airbnb and which run after, the limits, and the alternatives with dated prices
 - [Hotel rates API benchmark 2026](${u('/guides/hotel-rates-api-benchmark-2026')}): the same Lisbon search and the same Rome hotel sent to seven hotel price APIs on 2026-10-07, three runs each, with speed, rows, tax handling, per-country pricing and price per request, measured, not quoted
 - [How to get hotel prices by hotel name with an API](${u('/guides/hotel-prices-by-hotel-name-api')}): POST the name a human would type, no property ID or catalogue sync
 - [Do hotel prices change by country?](${u('/guides/hotel-prices-by-country-api')}): a repeat-sampled proxy_country run across three markets, and why one call per country is not a measurement
@@ -114,10 +116,13 @@ ${DIFFERENTIATORS.map((d) => `- ${d.title}: ${d.short}`).join('\n')}
 Flights (${LINKS.rapidapiFlights}/pricing):
 ${FLIGHT_PLANS.map(planLine).join('\n')}
 
-Hotels (${LINKS.rapidapiHotels}/pricing):
+Hotels, Booking.com (${LINKS.rapidapiHotels}/pricing):
 ${HOTEL_PLANS.map(planLine).join('\n')}
 
-Flights and hotels are separate subscriptions; within each API every plan includes every endpoint, differing only on volume and rate limit. Billing is on RapidAPI. Apify actors are pay-per-event, per each actor's own event table read 2026-09-28: flights $3.00 per 1,000 lookups, hotels $3.70 per 1,000 lookups.
+Airbnb (${LINKS.rapidapiAirbnb}/pricing${AIRBNB_READ_ON ? `, read ${AIRBNB_READ_ON}` : ''}):
+${AIRBNB_PLANS.map(planLine).join('\n')}
+
+Flights, Booking.com hotels and Airbnb are separate subscriptions; within each API every plan includes every endpoint, differing only on volume and rate limit. Billing is on RapidAPI. Apify actors are pay-per-event, per each actor's own event table read 2026-09-28: flights $3.00 per 1,000 lookups, hotels $3.70 per 1,000 lookups.
 
 ## Free tools (no signup)
 

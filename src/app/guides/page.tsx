@@ -46,6 +46,12 @@ const GUIDES = [
     tag: 'getting started',
   },
   {
+    href: '/guides/airbnb-api',
+    title: 'Airbnb API in 2026: is there a public one, and a key you can buy',
+    sub: 'Airbnb\'s own API serves host software under partner programs, with no guest search. Live Airbnb listings with the stay total and the price per night on a RapidAPI key, a real captured response, which filters run at Airbnb, the limits, and the alternatives with dated prices.',
+    tag: 'hotels',
+  },
+  {
     href: '/guides/booking-com-api-alternative',
     title: 'Booking.com API alternative: live rates without approval',
     sub: 'The Demand API is for approved affiliate partners. Live Booking.com rates by hotel name or destination on a self-serve key, priced from a country you pick, three checks that tell a reliable rates API from a stale one, and the providers that fit better when you need more than Booking.com.',

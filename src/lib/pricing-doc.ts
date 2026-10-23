@@ -15,6 +15,8 @@
  */
 
 import {
+  AIRBNB_PLANS,
+  AIRBNB_READ_ON,
   APIFY,
   FLIGHT_PLANS,
   HOTEL_PLANS,
@@ -69,12 +71,14 @@ Human version: ${SITE.url}/pricing
 
 ## What you are buying
 
-Two REST APIs sold on RapidAPI, and two remote MCP servers that call them with your own key.
-Billing happens on RapidAPI. We never see your card. Flights and hotels are separate
-subscriptions; one RapidAPI account key works for both once you subscribe to each.
+Three REST APIs sold on RapidAPI (flights, Booking.com hotels, Airbnb), and two remote MCP
+servers that call the flights and Booking.com APIs with your own key. Billing happens on
+RapidAPI. We never see your card. Each API is a separate subscription; one RapidAPI account
+key works for all three once you subscribe to each.
 
 - Flights listing: ${LINKS.rapidapiFlights}
-- Hotels listing: ${LINKS.rapidapiHotels}
+- Hotels (Booking.com) listing: ${LINKS.rapidapiHotels}
+- Airbnb listing: ${LINKS.rapidapiAirbnb}
 - Flights MCP server: ${LINKS.mcpFlights}
 - Hotels MCP server: ${LINKS.mcpHotels}
 
@@ -88,6 +92,13 @@ ${planTable(FLIGHT_PLANS)}
 
 ${planTable(HOTEL_PLANS)}
 
+## Airbnb Live API
+
+${planTable(AIRBNB_PLANS)}
+
+${AIRBNB_READ_ON ? `Airbnb plans read from the live listing on ${AIRBNB_READ_ON}.` : ''} One Airbnb search returns one page of
+Airbnb's results (20 to 30 listings in our tests). The MCP servers do not search Airbnb.
+
 ## How a request is counted
 
 This is the part most cost estimates get wrong.
@@ -98,12 +109,13 @@ This is the part most cost estimates get wrong.
 - A date range and a destination list expand internally. One call with 7 dates and 3
   destinations spends 7 x 3 = 21 requests, not 1. Every response reports what it spent and
   what is left in \`api_usage\`.
-- A hotel search prices one stay at a time. No date range, no destination list.
+- A hotel search (Booking.com or Airbnb) prices one stay at a time. No date range, no destination list.
 - A 4xx from request validation is refused before the search runs.
 
 ## Free tiers
 
-- RapidAPI BASIC on each listing: $0, ${FLIGHT_PLANS[0].quota} requests a month, hard cap, no card, no approval step.
+- RapidAPI BASIC: $0, hard cap, no card, no approval step. ${FLIGHT_PLANS[0].quota} requests a month on flights,
+  ${HOTEL_PLANS[0].quota} on Booking.com hotels, ${AIRBNB_PLANS[0].quota} on Airbnb.
 - The free MCP server, ${LINKS.mcpFree}, is $0, needs a Google
   sign-in, carries a sponsored card in results, and allows 50 backend searches per user per
   day and 250 per calendar month. The paid servers carry no ads.
@@ -123,9 +135,11 @@ Steady monthly volume is cheaper on RapidAPI. Occasional batch jobs with no base
 
 ## Questions an agent usually has to ask
 
-**Is there a free trial?** BASIC is free forever at ${FLIGHT_PLANS[0].quota} requests a month. No card, no approval.
+**Is there a free trial?** BASIC is free forever: ${FLIGHT_PLANS[0].quota} requests a month on flights,
+${HOTEL_PLANS[0].quota} on Booking.com hotels, ${AIRBNB_PLANS[0].quota} on Airbnb. No card, no approval. On the paid MCP
+servers, a Google sign-in gives 10 free searches a day before any key, shared by the flights and hotels servers.
 
-**Do flights and hotels share a plan?** No. Two listings, two subscriptions, one account key.
+**Do flights, hotels and Airbnb share a plan?** No. Three listings, three subscriptions, one account key.
 
 **Who bills me?** RapidAPI. Their invoice is your invoice.
 
