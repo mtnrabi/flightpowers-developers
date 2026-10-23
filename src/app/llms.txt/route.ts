@@ -73,7 +73,7 @@ ${DIFFERENTIATORS.map((d) => `- ${d.title}: ${d.short}`).join('\n')}
 - [Handling empty flight search results](${u('/guides/handle-empty-flight-search-results')}): why 200 [] is dangerous and how X-Search-Status fixes it
 - [The best flight data APIs in 2026](${u('/guides/best-flight-data-apis-2026')}): the comparison, with disclosed bias and dated competitor prices
 - [Flight API benchmark 2026](${u('/guides/flight-api-benchmark-2026')}): FlightPowers, SerpApi, SearchApi and HasData on the same three searches, same hour: identical fares, different round-trip requests, times and prices
-- [The best hotel data APIs in 2026](${u('/guides/best-hotel-data-apis-2026')}): seven hotel data APIs with every competitor price quoted from their own live page and dated
+- [The best hotel data APIs in 2026](${u('/guides/best-hotel-data-apis-2026')}): thirteen hotel data APIs with every competitor price quoted from their own live page and dated
 - [The best travel data APIs in 2026](${u('/guides/best-travel-data-apis-2026')}): a category map, because "travel data API" means four different products
 - [How to scrape Google Flights with Python](${u('/guides/scrape-google-flights-python')}): the honest DIY route with Playwright, and where it stops paying for itself
 - [How to scrape Google Flights with Puppeteer](${u('/guides/scrape-google-flights-puppeteer')}): the Node version, including the browser-pool maths behind a 30-date scan

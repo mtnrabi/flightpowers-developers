@@ -246,7 +246,7 @@ const GUIDES = [
   {
     href: '/guides/best-hotel-data-apis-2026',
     title: 'The best hotel data APIs in 2026',
-    sub: 'Twelve hotel data APIs with every competitor price quoted from their own live page and dated, including the four whose unit price beats ours.',
+    sub: 'Thirteen hotel data APIs with every competitor price quoted from their own live page and dated, including the seven whose unit price beats ours.',
     tag: 'comparison',
   },
   {
