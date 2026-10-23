@@ -166,6 +166,18 @@ async function main() {
         drift = true;
       }
     }
+
+    // Reverse check: a committed row with no live PUBLIC plan behind it (a tier never created) is drift too.
+    const liveNames = new Set(pub.map((p) => p.name));
+    for (const m of sections[api].matchAll(/name: '([A-Z]+)', priceMonthly:/g)) {
+      if (!liveNames.has(m[1])) {
+        console.error(`[check-pricing] DRIFT (${api}): committed plan ${m[1]} has no live PUBLIC plan; remove the row.`);
+        drift = true;
+      }
+    }
+    if (api === 'airbnb' && /AIRBNB_READ_ON[^=]*= null/.test(sections.airbnb)) {
+      console.log('[check-pricing] airbnb: AIRBNB_READ_ON is null; if this run ends OK, set it to today so the table names the date.');
+    }
   }
 
   if (drift) {

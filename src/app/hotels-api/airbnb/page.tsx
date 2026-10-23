@@ -71,8 +71,8 @@ const FILTERS: { name: string; type: string; what: string; at: 'Airbnb' | 'ours'
   { name: 'infants', type: 'integer', what: 'Infants', at: 'Airbnb' },
   { name: 'pets', type: 'integer', what: 'Pets', at: 'Airbnb' },
   { name: 'currency', type: 'ISO code, default USD', what: 'Prices and currency on every row come back in it', at: 'Airbnb' },
-  { name: 'price_min', type: 'number', what: "Airbnb's own price filter, in currency", at: 'Airbnb' },
-  { name: 'price_max', type: 'number', what: "Airbnb's own price filter, in currency", at: 'Airbnb' },
+  { name: 'price_min', type: 'number', what: "Airbnb's own price filter, per night, in currency", at: 'Airbnb' },
+  { name: 'price_max', type: 'number', what: "Airbnb's own price filter, per night, in currency", at: 'Airbnb' },
   { name: 'min_bedrooms', type: 'integer', what: 'Minimum bedrooms', at: 'Airbnb' },
   { name: 'min_beds', type: 'integer', what: 'Minimum beds', at: 'Airbnb' },
   { name: 'min_bathrooms', type: 'number', what: 'Minimum bathrooms', at: 'Airbnb' },
@@ -159,7 +159,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Can I use my Booking.com filters here?',
-    a: 'No, and the API says so instead of ignoring them. filters, budget_per_night, free_cancellation, hotel_name, hotel_booking_id and price_as_seen_from are refused with unsupported_for_provider and the name of the Airbnb parameter to use instead. A parameter name this API does not know at all (a typo) is ignored, so check filters_applied: a filter that is not listed there did not run.',
+    a: 'No, and the API says so instead of ignoring them. filters, budget_per_night, free_cancellation, hotel_name, hotel_booking_id and price_as_seen_from are refused with unsupported_for_provider and, where Airbnb has one, the name of the parameter to use instead. A parameter name this API does not know at all (a typo) is ignored, so check filters_applied: a filter that is not listed there did not run.',
   },
   {
     q: 'Is it the same key as the flights and Booking.com APIs?',
@@ -329,7 +329,7 @@ export default function AirbnbApiPage() {
         }
         excerptLabel={`Rome, ${fx.data.checkin_date} → ${fx.data.checkout_date} · 2 of ${fx.data.properties_returned} listings, trimmed · captured ${fx.captured_at}`}
         excerpt={AIRBNB_SEARCH_EXCERPT}
-        valueHeading="First listing"
+        valueHeading="First excerpted listing"
         fields={[
           {
             name: 'price_total',
@@ -451,7 +451,7 @@ export default function AirbnbApiPage() {
         </div>
         <p className="mt-3 text-[14px] text-ink-400 leading-relaxed max-w-3xl">
           Prices in USD. &ldquo;Was&rdquo; is <code className="field">price_original_total</code>, the struck-through price on a
-          discounted listing; a dash is a <code className="field">null</code> in the response (the first listing had no rating
+          discounted listing; a dash is a <code className="field">null</code> in the response (the first row of this table had no rating
           yet). Every row also has <code className="field">price_string</code>, <code className="field">image_url</code>,{' '}
           <code className="field">provider_property_id</code> and <code className="field">retrieved_at</code>.
         </p>
@@ -505,7 +505,7 @@ export default function AirbnbApiPage() {
           <code className="field">budget_per_night</code>, <code className="field">free_cancellation</code>,{' '}
           <code className="field">hotel_name</code>, <code className="field">hotel_booking_id</code>,{' '}
           <code className="field">price_as_seen_from</code>) is refused with <code className="field">unsupported_for_provider</code>{' '}
-          and the name of the Airbnb parameter to use instead. Refused, not dropped, because a dropped filter hands you more
+          and, where Airbnb has one, the name of the parameter to use instead. Refused, not dropped, because a dropped filter hands you more
           listings than you asked for. A parameter name this API doesn&apos;t know (a typo like{' '}
           <code className="field">min_bedroom</code>) is ignored, so check <code className="field">filters_applied</code>: a
           filter that isn&apos;t listed there didn&apos;t run.

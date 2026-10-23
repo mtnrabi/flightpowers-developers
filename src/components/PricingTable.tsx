@@ -17,8 +17,8 @@ export function PricingTable({
   plans: Plan[];
   medium: UtmMedium;
   compact?: boolean;
-  /** The date this table's plans were read from their listing (lib/pricing.ts). */
-  readOn?: string;
+  /** The date this table's plans were read from their listing (lib/pricing.ts); null = not read yet, no date claimed. */
+  readOn?: string | null;
 }) {
   return (
     <div>
@@ -80,7 +80,7 @@ export function PricingTable({
         {api === 'airbnb'
           ? 'Airbnb, Booking.com hotels and flights are separate subscriptions.'
           : 'flights and hotels are separate subscriptions.'}{' '}
-        Read from the live listing on {readOn}; the listing is authoritative.
+        {readOn ? `Read from the live listing on ${readOn}; the listing is authoritative.` : 'The listing is authoritative.'}
       </p>
     </div>
   );

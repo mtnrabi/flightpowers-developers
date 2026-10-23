@@ -47,8 +47,10 @@ export const HOTEL_PLANS: Plan[] = [
  * state/gtm/research/multi-ota-2026-10-23 in the agents repo). The listing was
  * not public when this was written: scripts/check-pricing.mjs reads it like the
  * other two, so run it once the listing is public and before this deploys.
+ * null until that check passes: the table then makes no "read from the live
+ * listing" claim. Set it to the day check-pricing printed OK for airbnb.
  */
-export const AIRBNB_READ_ON = '2026-10-23';
+export const AIRBNB_READ_ON: string | null = null;
 
 export const AIRBNB_PLANS: Plan[] = [
   { name: 'BASIC', priceMonthly: 0, quota: 100, overagePerRequest: null, ratePerMinute: null, hardLimit: true },

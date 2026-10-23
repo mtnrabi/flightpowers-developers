@@ -19,6 +19,9 @@ import {
 } from '@/components/ui';
 import { FIXTURES } from '@/lib/fixtures';
 import { AIRBNB_PLANS, HOTEL_PLANS } from '@/lib/pricing';
+
+const AIRBNB_BASIC = AIRBNB_PLANS.find((p) => p.name === 'BASIC')!;
+const AIRBNB_PRO = AIRBNB_PLANS.find((p) => p.name === 'PRO')!;
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 import { apiNode } from '@/lib/schema-offers';
 
@@ -432,8 +435,8 @@ export default function HotelsApiHubPage() {
           <p className="mt-2 text-[17px] font-semibold text-ink-100">Airbnb Live API</p>
           <p className="mt-1.5 text-[14px] text-ink-400 leading-relaxed">
             Live Airbnb listings for a place and dates, with the stay total and the price per night as numbers. A separate
-            RapidAPI subscription: free for {AIRBNB_PLANS[0]!.quota} requests a month, PRO ${AIRBNB_PLANS[1]!.priceMonthly} for{' '}
-            {AIRBNB_PLANS[1]!.quota.toLocaleString('en-US')}.
+            RapidAPI subscription: free for {AIRBNB_BASIC.quota} requests a month, PRO ${AIRBNB_PRO.priceMonthly} for{' '}
+            {AIRBNB_PRO.quota.toLocaleString('en-US')}.
           </p>
         </Link>
         <p className="mt-6 text-[14.5px] text-ink-400">
