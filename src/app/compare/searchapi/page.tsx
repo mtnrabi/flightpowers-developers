@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { Breadcrumbs, Code, Container, FaqSection, JsonLd, Section, SectionHead, type Faq } from '@/components/ui';
-import { FLIGHT_PLANS, HOTEL_PLANS, perThousand } from '@/lib/pricing';
+import { AIRBNB_PLANS, FLIGHT_PLANS, HOTEL_PLANS, perThousand } from '@/lib/pricing';
 import { LINKS, SITE } from '@/lib/site';
 import { CompareTable, Quotable } from '../_components/CompareTable';
 import { OtherAlternatives } from '../_components/OtherAlternatives';
@@ -21,6 +21,7 @@ const CAPTURED = '19:54 UTC on 2026-10-06';
 const PRO = FLIGHT_PLANS.find((p) => p.name === 'PRO')!;
 const ULTRA = FLIGHT_PLANS.find((p) => p.name === 'ULTRA')!;
 const HOTEL_PRO = HOTEL_PLANS.find((p) => p.name === 'PRO')!;
+const AIRBNB_PRO = AIRBNB_PLANS.find((p) => p.name === 'PRO')!;
 
 const TITLE = 'SearchApi alternative for Google Flights, priced per search';
 
@@ -54,7 +55,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Does SearchApi have hotels too?',
-    a: `Yes: Google Hotels, Booking.com Search and Airbnb Search are sold on the same plans. Our Hotels API is Booking.com only, $${HOTEL_PRO.priceMonthly} for ${HOTEL_PRO.quota.toLocaleString('en-US')} searches, with a proxy_country parameter that prices a stay as seen from another country.`,
+    a: `Yes: Google Hotels, Booking.com Search and Airbnb Search are sold on the same plans. Ours are two separate listings, each with its own plan: the Booking.com Live API, $${HOTEL_PRO.priceMonthly} for ${HOTEL_PRO.quota.toLocaleString('en-US')} searches, with a proxy_country parameter that prices a stay as seen from another country, and the Airbnb Live API, $${AIRBNB_PRO.priceMonthly} for ${AIRBNB_PRO.quota.toLocaleString('en-US')} searches. We have no Google Hotels API.`,
   },
 ];
 
@@ -139,7 +140,7 @@ export default function CompareSearchApiPage() {
                 'Yes, on REST: the google_flights_calendar engine returns every date pair in a range, up to 200 combinations.',
                 'Not on REST (one date pair per request). Yes on our MCP servers: a date range and a destination list in one tool call, each combination counted as one search.',
               ],
-              ['Hotels', 'Google Hotels, Booking.com Search and Airbnb Search on the same plans.', `Booking.com only, on its own plan: $${HOTEL_PRO.priceMonthly} for ${HOTEL_PRO.quota.toLocaleString('en-US')}, with proxy_country.`],
+              ['Hotels', 'Google Hotels, Booking.com Search and Airbnb Search on the same plans.', `Booking.com and Airbnb, each on its own plan: Booking.com $${HOTEL_PRO.priceMonthly} for ${HOTEL_PRO.quota.toLocaleString('en-US')}, with proxy_country; Airbnb $${AIRBNB_PRO.priceMonthly} for ${AIRBNB_PRO.quota.toLocaleString('en-US')}. No Google Hotels.`],
               [
                 'MCP',
                 'Their docs menu has an MCP section ("Your MCPs") behind sign-in. We did not test it.',

@@ -46,6 +46,8 @@ export function AgentIntegrationPage({
   faq,
   install,
   stepsNote,
+  installFirst = false,
+  installExtra,
 }: {
   /** must match an AGENTS slug in src/lib/matrix.ts */
   slug: string;
@@ -70,10 +72,50 @@ export function AgentIntegrationPage({
   install?: InstallClient;
   /** plain plan limits and caveats, under the steps */
   stepsNote?: ReactNode;
+  /**
+   * Put the install box straight under the lede, above the bullets, so the
+   * Add buttons sit in a phone's first screen. The page's lede must then carry
+   * the free-searches-then-PRO line itself: the box drops PAID_TRIAL_LINE so the
+   * first screen does not say it twice.
+   */
+  installFirst?: boolean;
+  /** extra content at the bottom of the install box (a first prompt, a pointer) */
+  installExtra?: ReactNode;
 }) {
   const agent = AGENTS.find((a) => a.slug === slug);
   if (!agent) throw new Error(`Unknown agent slug: ${slug}`);
   const otherAgents = AGENTS.filter((a) => a.slug !== slug);
+  const installBox = install ? (
+    <div className="mt-8 rounded-2xl border border-signal-600/30 bg-signal-600/[0.05] p-5">
+      <p className="font-mono text-[11px] uppercase tracking-wider text-ink-500">Add it · no ads</p>
+      {installFirst ? null : <p className="mt-2 text-[14.5px] text-ink-300 leading-relaxed">{PAID_TRIAL_LINE}</p>}
+      <div className="mt-4 space-y-3">
+        {(['flights', 'hotels'] as const).map((server) => (
+          <div key={server} className="flex flex-wrap items-center gap-3">
+            <span className="w-20 font-mono text-[12px] text-ink-400">{server === 'flights' ? 'Flights' : 'Hotels'}</span>
+            {install === 'chatgpt' ? (
+              // No prefill link exists for ChatGPT: show the URL to paste.
+              <code className="font-mono text-[13px] text-signal-400 break-all">{installLinks(server).url}</code>
+            ) : (
+              <AddToClientButtons server={server} clients={[install]} claudeHint={false} />
+            )}
+          </div>
+        ))}
+      </div>
+      {install === 'claude' ? (
+        <p className="mt-3 text-[12.5px] text-ink-400 leading-relaxed">{CLAUDE_AUTH_HINT}</p>
+      ) : null}
+      {installExtra ? <div className="mt-5 space-y-3">{installExtra}</div> : null}
+      <div className="mt-4 flex flex-wrap gap-3">
+        <Cta href={rapidApiPricingUrl('flights', 'integration')} external variant="ghost">
+          PRO key on RapidAPI →
+        </Cta>
+        <Cta href="/mcp" variant="ghost">
+          All MCP options
+        </Cta>
+      </div>
+    </div>
+  ) : null;
 
   return (
     <>
@@ -102,6 +144,7 @@ export function AgentIntegrationPage({
                 Live flight &amp; hotel data in <span className="text-signal-500">{agent.name}</span>
               </h1>
               <p className="lede mt-5">{lede}</p>
+              {installFirst ? installBox : null}
               <div className="mt-7">
                 <CheckBullets
                   items={[
@@ -113,34 +156,7 @@ export function AgentIntegrationPage({
                 />
               </div>
               {install ? (
-                <div className="mt-8 rounded-2xl border border-signal-600/30 bg-signal-600/[0.05] p-5">
-                  <p className="font-mono text-[11px] uppercase tracking-wider text-ink-500">Add it · no ads</p>
-                  <p className="mt-2 text-[14.5px] text-ink-300 leading-relaxed">{PAID_TRIAL_LINE}</p>
-                  <div className="mt-4 space-y-3">
-                    {(['flights', 'hotels'] as const).map((server) => (
-                      <div key={server} className="flex flex-wrap items-center gap-3">
-                        <span className="w-20 font-mono text-[12px] text-ink-400">{server === 'flights' ? 'Flights' : 'Hotels'}</span>
-                        {install === 'chatgpt' ? (
-                          // No prefill link exists for ChatGPT: show the URL to paste.
-                          <code className="font-mono text-[13px] text-signal-400 break-all">{installLinks(server).url}</code>
-                        ) : (
-                          <AddToClientButtons server={server} clients={[install]} claudeHint={false} />
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                  {install === 'claude' ? (
-                    <p className="mt-3 text-[12.5px] text-ink-400 leading-relaxed">{CLAUDE_AUTH_HINT}</p>
-                  ) : null}
-                  <div className="mt-4 flex flex-wrap gap-3">
-                    <Cta href={rapidApiPricingUrl('flights', 'integration')} external variant="ghost">
-                      PRO key on RapidAPI →
-                    </Cta>
-                    <Cta href="/mcp" variant="ghost">
-                      All MCP options
-                    </Cta>
-                  </div>
-                </div>
+                installFirst ? null : installBox
               ) : (
                 <>
               <div className="mt-8 flex flex-wrap gap-3">

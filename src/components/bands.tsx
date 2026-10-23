@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { FLIGHT_PLANS, HOTEL_PLANS } from '@/lib/pricing';
-import { COUNTS, LINKS, SURFACES, rapidApiPricingUrl, type UtmMedium } from '@/lib/site';
+import { COUNTS, LINKS, SURFACES, rapidApiPricingUrl, type RapidApiListing, type UtmMedium } from '@/lib/site';
 import { Code, Cta, SectionHead } from './ui';
 
 /** The breadth argument: the surfaces we actually ship on. Server-rendered. */
@@ -85,7 +85,7 @@ export function CtaBand({
   title?: string;
   body?: string;
   medium: UtmMedium;
-  api?: 'flights' | 'hotels';
+  api?: RapidApiListing;
   showBoth?: boolean;
 }) {
   return (

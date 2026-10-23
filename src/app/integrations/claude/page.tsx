@@ -4,6 +4,24 @@ import { AgentIntegrationPage, type ConnectStep, type ToolLine } from '../_agent
 import Link from 'next/link';
 import { Section, SectionHead, type Faq } from '@/components/ui';
 import { CLAUDE_FARE_ALERT_PAGE } from '@/lib/matrix';
+import { CopyPrompt } from '@/components/CopyPrompt';
+import { FLIGHT_PLANS, HOTEL_PLANS } from '@/lib/pricing';
+
+const FLIGHTS_PRO = FLIGHT_PLANS.find((p) => p.name === 'PRO')!;
+const HOTELS_PRO = HOTEL_PLANS.find((p) => p.name === 'PRO')!;
+
+/*
+ * Conversion pass 2026-10-23 (state/gtm/research/site-fronts-2026-10-23.md in the
+ * agents repo). This page produced a payer the same day (Google -> this page ->
+ * paid connector sign-in -> 10 free searches -> PRO), while fp_events showed 0
+ * install_click on it since the Add buttons shipped 10-22 (9 sessions). So the
+ * Add buttons and the free-then-$10 line move into the phone's first screen, and
+ * the box carries one first prompt sized to fit the free 10 a day: a 7-date
+ * scan, where a month across three cities (90 searches) is refused on the free
+ * allowance with nothing spent. Copies are counted (api_upsell_click/copy_prompt).
+ */
+const FIRST_PROMPT =
+  'Check one-way fares from London Heathrow to Lisbon for every day from March 1 to March 7, 2027. Which day is cheapest, and does Google call that price low, typical or high?';
 
 export const dynamic = 'force-static';
 
@@ -88,7 +106,24 @@ export default function ClaudeIntegrationPage() {
   return (
     <AgentIntegrationPage
       slug="claude"
-      lede="Add one connector, sign in with Google, and Claude searches live Google Flights and Booking.com data mid-conversation, with Google’s own price verdict attached to every fare it quotes."
+      lede={`Add the connector to Claude and sign in with Google: 10 free searches a day, then $${FLIGHTS_PRO.priceMonthly} for ${FLIGHTS_PRO.quota.toLocaleString('en-US')} flight searches on your own key. Claude searches live Google Flights fares and Booking.com rates mid-conversation, with Google’s own price verdict on every fare.`}
+      installFirst
+      installExtra={
+        <>
+          <p className="text-[13.5px] text-ink-300 leading-relaxed">
+            Then paste this as your first message. It is 7 searches, inside the free 10 a day:
+          </p>
+          <CopyPrompt prompt={FIRST_PROMPT} tool="claude-connector" />
+          <p className="text-[12.5px] text-ink-400 leading-relaxed">
+            A month of dates to three cities is 90 searches: that is what the ${FLIGHTS_PRO.priceMonthly} key is for. The Hotels
+            connector searches live Booking.com rates on the same 10 free a day (hotels PRO is ${HOTELS_PRO.priceMonthly} for{' '}
+            {HOTELS_PRO.quota.toLocaleString('en-US')}).{' '}
+            <Link href="/integrations/claude/connectors" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+              Both connectors
+            </Link>
+          </p>
+        </>
+      }
       heroCodeLabel="the ad-free servers, to add by hand"
       steps={steps}
       promptsLede="Claude picks the tool and fills the parameters itself: these all work as written."

@@ -17,14 +17,14 @@ import {
   VerdictBadge,
   type Faq,
 } from '@/components/ui';
-import { APIFY, FLIGHT_PLANS, HOTEL_PLANS } from '@/lib/pricing';
+import { AIRBNB_PLANS, AIRBNB_READ_ON, APIFY, FLIGHT_PLANS, HOTEL_PLANS } from '@/lib/pricing';
 import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 import { apiNode } from '@/lib/schema-offers';
 
 export const metadata: Metadata = withOg({
   title: 'API pricing: flights & hotels, $0 to $75/mo',
   description:
-    'Flights $0/$10/$25/$50 a month for 10 to 25,000 requests; hotels $0/$10/$30/$75 for 10 to 25,000. Free tier, no card. Billed on RapidAPI.',
+    'Flights $0/$10/$25/$50 a month for 10 to 25,000 requests; Booking.com hotels $0/$10/$30/$75 for 10 to 25,000; Airbnb $0/$10/$25/$50 for 100 to 100,000. Free tier, no card. Billed on RapidAPI.',
   alternates: { canonical: '/pricing' },
 });
 
@@ -170,7 +170,7 @@ const RIVALS = [
 const faq: Faq[] = [
   {
     q: 'Do flights and hotels share one plan?',
-    a: 'No. They are two listings on RapidAPI with different plans: flights runs $0 / $10 / $25 / $50 at 150 to 500 requests/minute, hotels $0 / $10 / $30 / $75 at 25 to 50. Subscribe to each API you use; the same account key then works for both.',
+    a: `No. They are separate listings on RapidAPI with different plans: flights runs $0 / $10 / $25 / $50 at 150 to 500 requests/minute, Booking.com hotels $0 / $10 / $30 / $75 at 25 to 50, and Airbnb $${AIRBNB_PLANS.map((p) => p.priceMonthly).join(' / $')} for ${AIRBNB_PLANS[0].quota} to ${AIRBNB_PLANS[AIRBNB_PLANS.length - 1].quota.toLocaleString('en-US')} requests a month. Subscribe to each API you use; the same account key then works for all of them.`,
   },
   {
     q: 'Where does billing actually happen?',
@@ -366,7 +366,7 @@ export default function PricingPage() {
         <SectionHead
           eyebrow="The plans"
           title="Pay for volume, nothing else"
-          lede="Flights and hotels are separate APIs with separate plans. One RapidAPI account key works for both once you subscribe to each. No card for the free tier, no approval step, no feature gates."
+          lede="Flights, Booking.com hotels and Airbnb are separate APIs with separate plans. One RapidAPI account key works for all three once you subscribe to each. No card for the free tier, no approval step, no feature gates."
         />
         <div className="mt-10 space-y-12">
           <div>
@@ -386,6 +386,22 @@ export default function PricingPage() {
               </a>
             </div>
             <PricingTable api="hotels" plans={HOTEL_PLANS} medium="pricing" />
+          </div>
+          <div>
+            <div className="flex flex-wrap items-baseline justify-between gap-3 mb-4">
+              <h3 className="text-2xl font-semibold">Airbnb Live API</h3>
+              <a href={rapidApiPricingUrl('airbnb', 'pricing')} rel="noopener" className="text-sm text-signal-400 underline underline-offset-4">
+                Open the live pricing tab →
+              </a>
+            </div>
+            <PricingTable api="airbnb" plans={AIRBNB_PLANS} medium="pricing" readOn={AIRBNB_READ_ON} />
+            <p className="mt-3 text-[13.5px] text-ink-400 leading-relaxed max-w-3xl">
+              Live Airbnb listings with the stay total and the price per night as numbers. One search is one page of Airbnb&apos;s
+              results. Not on the MCP servers.{' '}
+              <Link href="/hotels-api/airbnb" className="text-signal-400 underline underline-offset-4">
+                Airbnb API reference
+              </Link>
+            </p>
           </div>
         </div>
         <div className="mt-8 max-w-4xl rounded-xl border rule bg-ink-900/40 px-5 py-3.5">

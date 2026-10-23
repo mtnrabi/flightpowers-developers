@@ -1,0 +1,374 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = {
+  ...withOg({
+    title: 'Airbnb API in 2026: is there a public one, and a key you can buy',
+    description:
+      "Airbnb's own API serves host software under partner programs, with no guest search. How to get live Airbnb listings and nightly prices as JSON on a RapidAPI key, with a real captured response.",
+    alternates: { canonical: '/guides/airbnb-api' },
+  }),
+  // The answer-first guide for the "airbnb api" query (SEO pass 2026-10-23 item 7),
+  // next to the product page /hotels-api/airbnb, which owns "Airbnb API: live listings".
+  // Every FlightPowers claim comes from /hotels-api/airbnb (reviewed listing copy) or the
+  // captured Lisbon response in src/lib/fixtures/airbnb-search-lisbon-front.json. Rival
+  // prices were read from their own pages on 2026-10-23; re-read before editing a number.
+  title: { absolute: 'Airbnb API in 2026: is there a public one, and a key you can buy' },
+};
+
+export const dynamic = 'force-static';
+
+import { CapturedBadge, Code, GuideDates, JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { PricingTable } from '@/components/PricingTable';
+import { FIXTURES } from '@/lib/fixtures';
+import { AIRBNB_PLANS, AIRBNB_READ_ON, perThousand } from '@/lib/pricing';
+import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+export const FX = FIXTURES.airbnbSearchLisbonFront;
+export const ROWS = FX.data.properties;
+export const R0 = ROWS[0];
+export const BASIC = AIRBNB_PLANS[0];
+export const PRO = AIRBNB_PLANS[1];
+export const MEGA = AIRBNB_PLANS[AIRBNB_PLANS.length - 1];
+export const fmt = (n) => n.toLocaleString('en-US');
+export const dash = (v) => (v === null || v === undefined ? '—' : String(v));
+
+export const EXCERPT = JSON.stringify(
+  {
+    provider: FX.data.provider,
+    destination: FX.data.destination,
+    checkin_date: FX.data.checkin_date,
+    checkout_date: FX.data.checkout_date,
+    destination_matched: FX.data.destination_matched,
+    search_status: FX.data.search_status,
+    search_reason: FX.data.search_reason,
+    filters_applied: {
+      price_max: FX.data.filters_applied.price_max,
+      min_rating: FX.data.filters_applied.min_rating,
+    },
+    properties: [
+      {
+        name: R0.name,
+        price_total: R0.price_total,
+        price_per_night: R0.price_per_night,
+        price_original_total: R0.price_original_total,
+        currency: R0.currency,
+        nights: R0.nights,
+        rating: R0.rating,
+        rating_scale: R0.rating_scale,
+        review_count: R0.review_count,
+        bedrooms: R0.bedrooms,
+        latitude: R0.latitude,
+        longitude: R0.longitude,
+        link: R0.link,
+        taxes_included: R0.taxes_included,
+        available: R0.available,
+      },
+    ],
+  },
+  null,
+  2
+);
+
+export const AIRBNB_FAQ = [
+  {
+    q: 'Does Airbnb have a public API?',
+    a: "Not for searching listings. Airbnb's API Terms describe its API programs as connections for host services: property management, channel management, operations management, connected devices and hospitality providers, the Preferred Software Partner Program, and activity and tour booking software. Its developer docs cover a Homes API and an Activities API (listings, availability checks, reservations, messages). There is no guest-side search endpoint in that documentation (read 2026-10-23).",
+  },
+  {
+    q: 'How do I get Airbnb listings and prices as JSON?',
+    a: `Use a hosted API that reads Airbnb's search results for you. FlightPowers' Airbnb Live API takes a place and two dates and returns the listings Airbnb is showing at that moment, with the stay total and the price per night as numbers. BASIC is free for ${BASIC.quota} requests a month; PRO is $${PRO.priceMonthly} for ${fmt(PRO.quota)}. It is an independent API, not Airbnb's.`,
+  },
+  {
+    q: 'How many listings does one search return?',
+    a: 'One page of Airbnb results: 20 to 30 listings in our tests. A city with a thousand homes needs several narrower searches (by price band, room type or bedrooms) to cover it.',
+  },
+  {
+    q: 'Is the Airbnb price filter per night or per stay?',
+    a: "Per night, in the currency you send. price_min and price_max go to Airbnb's own search, so a stay total can be well above price_max.",
+  },
+  {
+    q: 'Can I use the Airbnb API from Claude or another MCP client?',
+    a: 'Not yet. The FlightPowers MCP servers search Google Flights and Booking.com; Airbnb is REST only for now.',
+  },
+  {
+    q: 'Is this an official Airbnb API?',
+    a: 'No. It is an independent API, not affiliated with, endorsed by, or sponsored by Airbnb, Inc.',
+  },
+];
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'Airbnb API in 2026: is there a public one, and a key you can buy',
+    description:
+      "What Airbnb's own API covers, and how to get live Airbnb listings and nightly prices as JSON with a captured request and response, the filters, the limits and dated alternatives.",
+    url: `${SITE.url}/guides/airbnb-api`,
+    datePublished: '2026-10-23',
+    dateModified: '2026-10-23',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: AIRBNB_FAQ.map(({ q, a }) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
+  }}
+/>
+
+# Airbnb API in 2026: is there a public one, and a key you can buy
+
+<GuideDates published="2026-10-23" updated="2026-10-23" />
+
+**Short answer:** Airbnb has an API, but it is for software that serves hosts (property
+managers, channel managers and the like), accepted into one of its partner programs. It
+has no endpoint for searching listings the way a guest does. If what you want is live
+Airbnb listings with prices as JSON, a hosted API has to read Airbnb's search for you.
+Mine is the [Airbnb Live API](/hotels-api/airbnb) on RapidAPI: a place and two dates in,
+the listings Airbnb is showing right now out, with the stay total and the price per night
+as numbers. BASIC is free for {BASIC.quota} requests a month, PRO is ${PRO.priceMonthly} for{' '}
+{fmt(PRO.quota)}. It is an independent API, not Airbnb's.
+
+## What does Airbnb offer developers?
+
+Airbnb's [API Terms of Service](https://www.airbnb.com/help/article/3418) (last updated
+October 15, 2025, read 2026-10-23) open with what the API is for: "We make the API available
+to facilitate a variety of Host Services and other functionality on or in connection with
+use of the Airbnb Platform". The examples they list are connections to property management,
+channel management, operations management, connected device and hospitality providers, the
+Preferred Software Partner Program, and activity and tour booking management software. Each
+organisation gets the access scopes "appropriate to the API Program in which your
+organization participates".
+
+The developer docs ([developer.withairbnb.com](https://developer.withairbnb.com/), which
+developer.airbnb.com redirects to) match that. They cover a Homes API and an Activities API
+behind a Partner Portal: manage listings, sync availability checks during booking,
+reservations, messages, a sandbox. Every one of those starts from a listing or a booking you
+already manage. None of them searches Airbnb for a place and dates.
+
+So the question splits in two. If you build software for hosts, Airbnb's partner programs
+are the door, and nothing below replaces them. If you want to read what a guest sees (which
+homes are listed in Lisbon for the first week of December, and what they cost), you need a
+search API, and that is what the rest of this page is about.
+
+## How do you get live Airbnb listings and prices as JSON?
+
+One POST. The same RapidAPI key works two ways: straight on the Airbnb Live API listing
+(`POST https://airbnb-live-api.p.rapidapi.com/search`), or through our own front at
+`api.flightpowers.com` with `"provider": "airbnb"` in the body. Both bill to your Airbnb Live
+API subscription. Here is the second form in Python, the exact request captured below:
+
+```python
+import os, requests
+
+r = requests.post(
+    "https://api.flightpowers.com/v1/hotels/search",
+    headers={"x-api-key": os.environ["RAPIDAPI_KEY"]},
+    json={
+        "provider": "airbnb",
+        "destination": "Lisbon, Portugal",
+        "checkin_date": "2026-12-04",
+        "checkout_date": "2026-12-07",
+        "adults": 2,
+        "currency": "EUR",
+        "price_max": 200,                    # per night, Airbnb's own filter
+        "room_types": ["Entire home/apt"],
+        "min_rating": 4.7,                   # applied by us, after the search
+        "sort": "price_asc",                 # orders this page, not all of Airbnb
+    },
+    timeout=60,
+)
+data = r.json()
+if data.get("search_status") != "ok":
+    print(r.status_code, data.get("search_status"), data.get("search_reason"))
+else:
+    for p in data["properties"]:
+        print(p["price_total"], p["currency"], p["price_per_night"], p["rating"], p["name"])
+```
+
+The curl form on the RapidAPI host takes the same body without `provider`:
+
+```bash
+curl -X POST "https://airbnb-live-api.p.rapidapi.com/search" \
+  -H "Content-Type: application/json" \
+  -H "x-rapidapi-host: airbnb-live-api.p.rapidapi.com" \
+  -H "x-rapidapi-key: $RAPIDAPI_KEY" \
+  -d '{"destination":"Lisbon, Portugal","checkin_date":"2026-12-04","checkout_date":"2026-12-07","adults":2,"currency":"EUR","price_max":200}'
+```
+
+## What comes back?
+
+This is a real response to the Python request above, captured on {FX.captured_at} through
+`api.flightpowers.com`. It came back with the response header `x-plan-metering:
+rapidapi:airbnb-live-api`, meaning it was billed to the Airbnb Live API plan. It returned{' '}
+{FX.data.properties_returned} listings; here is the envelope and the first one, trimmed to
+the fields worth reading first:
+
+<Code label={`POST /v1/hotels/search · provider airbnb · captured ${FX.captured_at}`}>{EXCERPT}</Code>
+
+And the first {ROWS.length} of the {FX.data.properties_returned} rows, as they came back
+(sorted by price per night, which is what `sort: price_asc` does):
+
+<div className="not-prose my-6 overflow-x-auto rounded-2xl border rule">
+  <table className="w-full text-[14px]">
+    <thead>
+      <tr className="text-left font-mono text-[11px] uppercase tracking-wider text-ink-500 bg-ink-900/80">
+        <th className="px-4 py-3 font-normal">Listing</th>
+        <th className="px-4 py-3 font-normal text-right">Rating</th>
+        <th className="px-4 py-3 font-normal text-right">Per night</th>
+        <th className="px-4 py-3 font-normal text-right">Total, {R0.nights} nights</th>
+        <th className="px-4 py-3 font-normal text-right">Was</th>
+      </tr>
+    </thead>
+    <tbody>
+      {ROWS.map((p) => (
+        <tr key={p.provider_property_id ?? p.name} className="border-t rule">
+          <td className="px-4 py-3 text-ink-100">{p.name}</td>
+          <td className="px-4 py-3 text-right font-mono tabular-nums text-ink-200">{dash(p.rating)}</td>
+          <td className="px-4 py-3 text-right font-mono tabular-nums text-ink-200">{dash(p.price_per_night)}</td>
+          <td className="px-4 py-3 text-right font-mono tabular-nums text-ink-100">{dash(p.price_total)}</td>
+          <td className="px-4 py-3 text-right font-mono tabular-nums text-ink-500">{dash(p.price_original_total)}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<CapturedBadge date={FX.captured_at} />
+
+Prices in {R0.currency}. "Was" is `price_original_total`, the struck-through total on a
+discounted listing, and a dash is a `null`. Every row also carries `price_string` (Airbnb's
+own label, `"{R0.price_string}"` on the first one), `review_count`, `beds`, `bedrooms`,
+`baths`, `latitude` / `longitude`, `image_url`, `link`, `provider_property_id` and
+`retrieved_at`. A field Airbnb did not publish is `null`, never a made-up zero.
+
+Read `price_per_night` with care. It is Airbnb's own per-night line, so `nights` times
+`price_per_night` need not add up to `price_total`: on the first row it is {R0.nights} ×{' '}
+{R0.price_per_night} against a total of {R0.price_total}. Use `price_total` for what the stay
+costs.
+
+## Which filters run at Airbnb, and which run after?
+
+Most filters go into Airbnb's own search, so the page comes back already narrowed. Two run
+on our side, on the rows we parsed, and `filters_applied` in every response says which is
+which (`applied_by: "airbnb"` or `"flightpowers"`, `post_filter: true` for ours).
+
+| Parameter | Runs at | What it does |
+|---|---|---|
+| `destination`, `checkin_date`, `checkout_date` | Airbnb | Required. Free-text place, the way a person types it |
+| `adults`, `children`, `infants`, `pets` | Airbnb | Guests |
+| `currency` | Airbnb | Prices on every row come back in it (USD if you send none) |
+| `price_min`, `price_max` | Airbnb | **Per night**, in `currency` |
+| `min_bedrooms`, `min_beds`, `min_bathrooms` | Airbnb | Minimums |
+| `room_types` | Airbnb | `Entire home/apt`, `Private room`, `Shared room`, `Hotel room`. Spell them exactly: another value is ignored |
+| `min_rating` | us, after | Airbnb's search has no rating filter. A listing with no rating yet is dropped |
+| `sort` | us, after | `price_asc`, `price_desc`, `rating_desc`. Orders the page you got, not all of Airbnb |
+| `proxy_country` | us | Sends the search out through a residential connection in that country. Filters nothing |
+
+A filter that belongs to our Booking.com API (`filters`, `free_cancellation`, `hotel_name` and
+the like) is refused with `unsupported_for_provider`, not silently dropped. A parameter name
+the API does not know at all (a typo) is ignored, so check `filters_applied`: a filter that
+is not listed there did not run.
+
+## What are the limits?
+
+Stated plainly, before you build on it:
+
+- **One page a search.** A search returns one page of Airbnb's results, 20 to 30 listings in
+  our tests ({FX.data.properties_returned} here, after the rating filter). In the capture
+  above, Airbnb's own page title read "{FX.data.destination_matched?.page_title}". To cover a
+  city, run several narrower searches (price bands, room types, bedrooms). There is no
+  next-page parameter.
+- **The price filter is per night.** `price_max: 200` above kept listings whose nightly line
+  is under 200; the first row's stay total is {R0.price_total} for {R0.nights} nights.
+- **`sort` and `min_rating` work on that one page.** They do not reach into listings Airbnb
+  did not return.
+- **No availability calendar.** You get what Airbnb lists for the dates you send. `available:
+  true` means the row has a price; when `nights` differs from your stay, Airbnb priced
+  different dates. There is no per-listing calendar or minimum-night lookup.
+- **No price on a single listing.** `POST /details` (on the RapidAPI host) returns a
+  listing's name, rating, coordinates, capacity and amenities, with `price_total: null`:
+  Airbnb loads a listing page's price after the page opens. For a price, search.
+- **Taxes are not established.** `taxes_included` is always `null`; Airbnb's display total
+  treats taxes differently by place.
+- **Not in the MCP servers.** Our Claude and ChatGPT connectors search Google Flights and
+  Booking.com, not Airbnb.
+- **Every call counts.** A 400 (a past date, a malformed body) is a request on your plan like
+  any other.
+
+## What does it cost?
+
+Its own RapidAPI listing and its own subscription; one RapidAPI key works on it and on our
+flights and Booking.com APIs once you subscribe to each.
+
+<PricingTable api="airbnb" plans={AIRBNB_PLANS} medium="guide" readOn={AIRBNB_READ_ON} compact />
+
+That is {perThousand(PRO)} per 1,000 searches on PRO and {perThousand(MEGA)} on MEGA. Every
+filter and every field is on every plan, the free one too.
+
+## Other Airbnb APIs, with their own prices
+
+Units differ, so read them before the sticker: one request on mine is one search page of 20
+to 30 listings; on StayAPI one request is one call (a search page holds 18 listings);
+HasData, SearchApi and DataCrawler price per request too. All prices below were read from
+each vendor's own page on 2026-10-23. I have not benchmarked their Airbnb responses.
+
+**StayAPI** (stayapi.com). An Airbnb search by city or postal code, "18 per page, pages
+1–15", plus per-listing endpoints mine does not have: a calendar, a nightly price breakdown
+for a listing and dates, reviews, photos and details. Their own note on search: "no
+availability confirmation or property-name lookup". Pricing: 50 free requests once, then
+$49 a month for 1,500, $149 for 10,000 or $249 for 25,000, $450 for 100,000. Best fit if
+your job starts from a listing you already know.
+
+**HasData** (hasdata.com). An Airbnb Scraper API among many scrapers on one credit plan. Their
+pricing table prints $2.46 per 1,000 Airbnb requests on the entry plan billed annually, $0.99
+and $0.69 on the larger ones, and 100 Airbnb requests a month on the free plan.
+
+**SearchApi** (searchapi.io). An `engine=airbnb` search with its own filters, among them
+`price_min`, `price_max`, `type_of_place`, amenities and a bounding box, on the same plans as
+their Google and Booking.com engines: 100 free requests, then $40 a month for 10,000
+searches ($4 per 1,000), and their pricing page bills only successful searches.
+
+**DataCrawler `airbnb19`** (on RapidAPI). Search by place, location or coordinates, property
+details, a checkout price, reviews and an availability check. BASIC is 10 requests a month,
+PRO $7.99 for 4,000, ULTRA $45 for 40,000, MEGA $200 for 700,000. At their MEGA that is about
+$0.29 per 1,000, below my MEGA's {perThousand(MEGA)}.
+
+Where mine fits: numbers you can sort on (stay total, per-night line, the struck-through
+price, rating and its scale, coordinates) in one flat row, the price, room type and bedroom
+filters sent into Airbnb's own search, `filters_applied` telling you what ran where, and a
+${PRO.priceMonthly} entry plan with {fmt(PRO.quota)} searches. Where it does not: more than one page
+of a city per search, calendars, and per-listing prices. Those are StayAPI's and
+DataCrawler's shape.
+
+## FAQ
+
+{AIRBNB_FAQ.map(({ q, a }) => (
+  <div key={q}>
+    <p><strong>{q}</strong></p>
+    <p>{a}</p>
+  </div>
+))}
+
+## Related
+
+- [Airbnb Live API reference](/hotels-api/airbnb): every field, every filter, the error table
+- [The best hotel data APIs in 2026](/guides/best-hotel-data-apis-2026): thirteen hotel APIs, prices quoted and dated
+- [Booking.com API key: how to get one](/guides/booking-com-api-key): the same question for Booking.com
+
+<CtaBand
+  medium="guide"
+  api="airbnb"
+  title="Try one Airbnb search"
+  body={`BASIC is free for ${BASIC.quota} requests a month, no card. PRO is $${PRO.priceMonthly} for ${fmt(PRO.quota)} when you need more.`}
+/>
+
+Independent API. Not affiliated with, endorsed by, or sponsored by Airbnb, Inc.

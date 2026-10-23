@@ -47,7 +47,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Is there an API to compare hotel prices?',
-    a: `Not across booking sites: FlightPowers reads Booking.com only. What you can compare with it is one hotel's live Booking.com rate seen from different countries, the same request with only proxy_country changed, on every plan. ${PRICE_LADDER}`,
+    a: `Not across booking sites: this API reads Booking.com only (Airbnb is a separate FlightPowers API, and neither compares one property across sites). What you can compare with it is one hotel's live Booking.com rate seen from different countries, the same request with only proxy_country changed, on every plan. ${PRICE_LADDER}`,
   },
   {
     q: 'Why do hotel rates differ by country at all?',
