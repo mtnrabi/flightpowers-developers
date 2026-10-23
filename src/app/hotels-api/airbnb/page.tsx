@@ -655,7 +655,7 @@ export default function AirbnbApiPage() {
           {[
             { href: '/hotels-api/search', label: 'Booking.com search', sub: 'Live rates by destination' },
             { href: '/hotels-api/by-name', label: 'Hotel by name', sub: 'No property-ID step' },
-            { href: '/hotels-api', label: 'Hotels API hub', sub: 'Every Booking.com endpoint' },
+            { href: '/guides/airbnb-api', label: 'Airbnb API guide', sub: 'Official API, limits, alternatives' },
             { href: '/flights-api', label: 'Flights API', sub: 'Live Google Flights fares' },
           ].map((l) => (
             <Link key={l.href} href={l.href} className="rounded-2xl border rule bg-ink-900/50 p-5 hover:border-ink-500 transition-colors">
