@@ -34,6 +34,12 @@ const GUIDES = [
     tag: 'getting started',
   },
   {
+    href: '/guides/google-flights-prices-python',
+    title: 'How to get Google Flights prices with Python',
+    sub: 'Twelve lines of requests, a real captured response, and the three price-insight fields that arrive with every fare. No browser pool, no tfs= encoding, and the limits stated up front.',
+    tag: 'start here',
+  },
+  {
     href: '/guides/booking-com-api-key',
     title: 'Booking.com API key: how to get access, and the alternative',
     sub: 'How Booking.com\'s own API access works (Demand API for Managed Affiliate Partners, under contract), and live Booking.com rates on a RapidAPI key today, proxy_country included.',
@@ -178,12 +184,6 @@ const GUIDES = [
     tag: 'AI agents',
   },
   {
-    href: '/guides/google-flights-prices-python',
-    title: 'How to get Google Flights prices with Python',
-    sub: 'Twelve lines of requests, a real captured response, and the three price-insight fields that arrive with every fare. No browser pool, no tfs= encoding, and the limits stated up front.',
-    tag: 'start here',
-  },
-  {
     href: '/guides/roundtrip-flight-prices-one-request',
     title: 'How to get round-trip flight prices in one request',
     sub: 'Two one-way searches do not add up to a round-trip fare. A real BER to CDG run where the round trip cost $130 and the same two flights as one-ways $169, the field names that differ, and how to read an empty response.',
@@ -226,14 +226,14 @@ const GUIDES = [
     tag: 'comparison',
   },
   {
-    href: '/guides/skyscanner-api-alternatives',
-    title: 'Skyscanner API alternatives for indie developers',
-    sub: 'Their published refusal list names a 100K monthly active user minimum and a two-week review. What that rules out, and the alternatives with the access gate on each, quoted and dated.',
+    href: '/compare/skyscanner',
+    title: 'Skyscanner API alternative: no partner approval, live fares',
+    sub: 'An application, a two-week review and a commission model, against a key that works today. What their partners get that we cannot give.',
     tag: 'comparison',
   },
   {
     href: '/guides/flight-api-benchmark-2026',
-    title: 'Flight API benchmark 2026: four Google Flights APIs tested',
+    title: 'Best Google Flights API 2026: four APIs, same three searches',
     sub: 'The same three searches on FlightPowers, SerpApi, SearchApi and HasData in the same hour: identical fares to the dollar, then the real differences in round-trip requests, response time, scans, free tiers and price per 1,000. Raw numbers dated, including where ours loses.',
     tag: 'benchmark',
   },

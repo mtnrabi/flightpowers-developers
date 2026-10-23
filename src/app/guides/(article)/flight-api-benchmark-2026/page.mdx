@@ -2,13 +2,13 @@ import { withOg } from '@/lib/meta';
 
 export const metadata = {
   ...withOg({
-    title: 'Flight API benchmark 2026: four Google Flights APIs tested',
+    title: 'Best Google Flights API 2026: four APIs, same three searches',
     description:
-      'The same three searches on FlightPowers, SerpApi, SearchApi and HasData on 2026-10-07: same fares to the dollar, different round-trip shapes, times and prices. Raw numbers dated.',
+      'Which Google Flights API is best? FlightPowers, SerpApi, SearchApi and HasData returned the same fares on three searches (2026-10-07); they differ in round-trip requests, speed and price.',
     alternates: { canonical: '/guides/flight-api-benchmark-2026' },
   }),
-  // The layout template appends " · FlightPowers"; the title is 57 chars without it.
-  title: { absolute: 'Flight API benchmark 2026: four Google Flights APIs tested' },
+  // The layout template appends " · FlightPowers"; the title is 60 chars without it.
+  title: { absolute: 'Best Google Flights API 2026: four APIs, same three searches' },
 };
 
 export const dynamic = 'force-static';
@@ -86,8 +86,8 @@ FlightPowers and SearchApi both come to $4.00 per 1,000 searches on their entry 
 
 Disclosure: I run FlightPowers, one of the four rows. So the method, the places where my API
 loses and the timing of every single call
-([benchmark JSON](/benchmarks/flight-api-benchmark-2026-10-07.json)) are all public, and the test
-gets re-run every month.
+([benchmark JSON](/benchmarks/flight-api-benchmark-2026-10-07.json)) are all public, so anyone
+can re-run the test.
 
 ## Results
 
@@ -242,9 +242,9 @@ quarter of a second.
 
 ## Re-running it
 
-The numbers on this page are from **2026-10-07** and fares move within minutes, so the
-benchmark is re-run every month with the same three searches, moved forward by a month, and
-this page is updated with the date. If you run it yourself and get something different, the
+The numbers on this page are from **2026-10-07** and fares move within minutes. When the
+benchmark is re-run, it uses the same three searches moved forward by a month, and this page
+shows the new date. If you run it yourself and get something different, the
 request that shows it is welcome at [our contact page](/contact).
 
 To try the paired round trip on your own routes: a key from <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">the
