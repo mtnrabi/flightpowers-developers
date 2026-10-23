@@ -1,5 +1,5 @@
 import { fmtOverage, fmtQuota, fmtRate, perThousand, READ_ON, type Plan } from '@/lib/pricing';
-import { rapidApiPricingUrl, type UtmMedium } from '@/lib/site';
+import { rapidApiPricingUrl, type RapidApiListing, type UtmMedium } from '@/lib/site';
 
 /**
  * The pricing table, rendered from the verified plan data in lib/pricing.ts.
@@ -11,11 +11,14 @@ export function PricingTable({
   plans,
   medium,
   compact = false,
+  readOn = READ_ON,
 }: {
-  api: 'flights' | 'hotels';
+  api: RapidApiListing;
   plans: Plan[];
   medium: UtmMedium;
   compact?: boolean;
+  /** The date this table's plans were read from their listing (lib/pricing.ts). */
+  readOn?: string;
 }) {
   return (
     <div>
@@ -73,8 +76,11 @@ export function PricingTable({
       </div>
       <p className="scroll-hint">Swipe the table sideways for overage and rate limits.</p>
       <p className="mt-3 font-mono text-[11px] text-ink-500">
-        Every plan on this API includes all of its endpoints; flights and hotels are separate subscriptions. Read from the live
-        listing on {READ_ON}; the listing is authoritative.
+        Every plan on this API includes all of its endpoints;{' '}
+        {api === 'airbnb'
+          ? 'Airbnb, Booking.com hotels and flights are separate subscriptions.'
+          : 'flights and hotels are separate subscriptions.'}{' '}
+        Read from the live listing on {readOn}; the listing is authoritative.
       </p>
     </div>
   );

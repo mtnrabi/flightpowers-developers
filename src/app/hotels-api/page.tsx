@@ -18,7 +18,7 @@ import {
   type Faq,
 } from '@/components/ui';
 import { FIXTURES } from '@/lib/fixtures';
-import { HOTEL_PLANS } from '@/lib/pricing';
+import { AIRBNB_PLANS, HOTEL_PLANS } from '@/lib/pricing';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 import { apiNode } from '@/lib/schema-offers';
 
@@ -422,6 +422,20 @@ export default function HotelsApiHubPage() {
             </Link>
           ))}
         </div>
+        {/* Airbnb is its own listing and subscription, so it sits outside the
+            "one subscription" grid above. Numbers from lib/pricing.ts. */}
+        <Link
+          href="/hotels-api/airbnb"
+          className="mt-4 block rounded-2xl border rule bg-ink-900/50 p-6 hover:border-ink-500 transition-colors"
+        >
+          <p className="font-mono text-[11px] text-signal-400">POST /search · its own listing</p>
+          <p className="mt-2 text-[17px] font-semibold text-ink-100">Airbnb Live API</p>
+          <p className="mt-1.5 text-[14px] text-ink-400 leading-relaxed">
+            Live Airbnb listings for a place and dates, with the stay total and the price per night as numbers. A separate
+            RapidAPI subscription: free for {AIRBNB_PLANS[0]!.quota} requests a month, PRO ${AIRBNB_PLANS[1]!.priceMonthly} for{' '}
+            {AIRBNB_PLANS[1]!.quota.toLocaleString('en-US')}.
+          </p>
+        </Link>
         <p className="mt-6 text-[14.5px] text-ink-400">
           After flight data instead? The{' '}
           <Link href="/flights-api" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">

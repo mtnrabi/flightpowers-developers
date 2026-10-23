@@ -53,15 +53,19 @@ const CAMPAIGN_MONTH = '2026-09';
 const RAPIDAPI = {
   flights: 'https://rapidapi.com/mtnrabi/api/google-flights-live-api',
   hotels: 'https://rapidapi.com/mtnrabi/api/booking-live-api',
+  /** Its own listing and subscription (host airbnb-live-api.p.rapidapi.com). */
+  airbnb: 'https://rapidapi.com/mtnrabi/api/airbnb-live-api',
 } as const;
 
+export type RapidApiListing = keyof typeof RAPIDAPI;
+
 /** UTM-tagged deep link straight to the /pricing tab — the only real deep link RapidAPI has. */
-export function rapidApiPricingUrl(api: 'flights' | 'hotels', medium: UtmMedium): string {
+export function rapidApiPricingUrl(api: RapidApiListing, medium: UtmMedium): string {
   return `${RAPIDAPI[api]}/pricing?utm_source=flightpowers&utm_medium=${medium}&utm_campaign=${api}-${CAMPAIGN_MONTH}`;
 }
 
 /** Bare listing link (for "view the listing" references, not CTAs). */
-export function rapidApiListingUrl(api: 'flights' | 'hotels'): string {
+export function rapidApiListingUrl(api: RapidApiListing): string {
   return RAPIDAPI[api];
 }
 
@@ -72,6 +76,7 @@ export function rapidApiListingUrl(api: 'flights' | 'hotels'): string {
 export const LINKS = {
   rapidapiFlights: RAPIDAPI.flights,
   rapidapiHotels: RAPIDAPI.hotels,
+  rapidapiAirbnb: RAPIDAPI.airbnb,
   apifyFlights: 'https://apify.com/mtnrabi/google-flights-real-time-api',
   apifyHotels: 'https://apify.com/mtnrabi/booking-real-time-api',
   /** One-click console deep links (actor pre-added after signup). */
