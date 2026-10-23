@@ -47,6 +47,14 @@ function isRouteGroup(name: string): boolean {
  */
 export const NOINDEX_ROUTES = new Set(['/unsubscribe', '/admin']);
 
+/**
+ * Page files that are never served because next.config.mjs redirects their
+ * URL (GUIDES_MOVING_TO_COMPARE). The file stays until its unique lines move
+ * to the destination; until then it is left out of the sitemap and the feed,
+ * which list only URLs that answer 200.
+ */
+export const REDIRECTED_ROUTES = new Set(['/guides/skyscanner-api-alternatives']);
+
 export type DiscoveredRoute = { pathname: string; file: string };
 
 export function discoverRoutes(dir: string = APP_DIR, prefix = ''): DiscoveredRoute[] {

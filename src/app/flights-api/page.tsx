@@ -597,6 +597,14 @@ export default function FlightsApiHubPage() {
           <Link href="/guides/amadeus-self-service-alternatives" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
             Amadeus Self-Service alternatives
           </Link>
+          . Writing Python? The requests version is{' '}
+          <Link href="/guides/google-flights-prices-python" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+            How to get Google Flights prices with Python
+          </Link>
+          , and the browser version, with where it stops paying for itself, is{' '}
+          <Link href="/guides/scrape-google-flights-python" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+            the Google Flights scraper in Python
+          </Link>
           .
         </p>
       </Section>

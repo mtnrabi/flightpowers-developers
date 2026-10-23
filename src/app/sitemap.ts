@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { SITE } from '@/lib/site';
 import path from 'node:path';
-import { NOINDEX_ROUTES, discoverRoutes, lastModified, newestEdit, priorityFor } from '@/lib/routes';
+import { NOINDEX_ROUTES, REDIRECTED_ROUTES, discoverRoutes, lastModified, newestEdit, priorityFor } from '@/lib/routes';
 import { matrixPairs } from '@/lib/matrix';
 import { indexedGridPaths } from '@/lib/grid';
 
@@ -25,7 +25,10 @@ const UNLISTED_ROUTES = new Set(['/hotels-api/bulk']);
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = discoverRoutes()
-    .filter(({ pathname }) => !NOINDEX_ROUTES.has(pathname) && !UNLISTED_ROUTES.has(pathname))
+    .filter(
+      ({ pathname }) =>
+        !NOINDEX_ROUTES.has(pathname) && !UNLISTED_ROUTES.has(pathname) && !REDIRECTED_ROUTES.has(pathname)
+    )
     .map(({ pathname, file }) => ({
       url: new URL(pathname, SITE.url).toString(),
       lastModified: lastModified(file),

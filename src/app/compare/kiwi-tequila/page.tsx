@@ -20,18 +20,20 @@ import { OtherAlternatives } from '../_components/OtherAlternatives';
  * Kiwi publishes no Tequila price we could read, so no Kiwi price appears.
  */
 const READ = '2026-10-06';
+/** partners.kiwi.com re-read on this date: it still redirects to the May 30, 2024 article, "invitation only basis" still in it. */
+const INVITE_RECHECKED = '2026-10-23';
 /** The live FlightPowers run pasted below (raw: src/app/compare/_runs/2026-10-06/PRG-LHR-l10.json). */
 const CAPTURED = '19:54 UTC on 2026-10-06';
 
 const PRO = FLIGHT_PLANS.find((p) => p.name === 'PRO')!;
 const HOTEL_PRO = HOTEL_PLANS.find((p) => p.name === 'PRO')!;
 
-const TITLE = 'Kiwi Tequila API alternative: live fares without an invite';
+const TITLE = 'Kiwi Tequila API sign-up: invite only since 2024';
 
 export const metadata: Metadata = {
   ...withOg({
     title: TITLE,
-    description: `New Kiwi.com Tequila partners are invitation only. FlightPowers is a key you subscribe to today: $${PRO.priceMonthly} for ${PRO.quota.toLocaleString('en-US')} Google Flights searches. Read ${READ}.`,
+    description: `New Kiwi.com Tequila partners are invitation only (Kiwi.com, May 30, 2024; still so on ${INVITE_RECHECKED}). The alternative: FlightPowers, a key you subscribe to today, $${PRO.priceMonthly} for ${PRO.quota.toLocaleString('en-US')} Google Flights searches.`,
     alternates: { canonical: '/compare/kiwi-tequila' },
   }),
   title: { absolute: TITLE },

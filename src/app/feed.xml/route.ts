@@ -8,7 +8,7 @@
 
 import fs from 'node:fs';
 import { SITE } from '@/lib/site';
-import { discoverRoutes } from '@/lib/routes';
+import { REDIRECTED_ROUTES, discoverRoutes } from '@/lib/routes';
 import { declaredDates, declaredMeta } from '@/lib/page-source';
 import { renderRss, type FeedItem } from '@/lib/feed';
 
@@ -21,6 +21,7 @@ function feedItems(): FeedItem[] {
   const items: FeedItem[] = [];
   for (const { pathname, file } of discoverRoutes()) {
     if (!FEED_FAMILIES.some((family) => pathname.startsWith(family))) continue;
+    if (REDIRECTED_ROUTES.has(pathname)) continue;
     const source = fs.readFileSync(file, 'utf8');
     const { title, description } = declaredMeta(source);
     const { published, modified } = declaredDates(source);

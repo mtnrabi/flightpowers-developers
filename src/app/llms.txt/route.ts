@@ -93,7 +93,7 @@ ${DIFFERENTIATORS.map((d) => `- ${d.title}: ${d.short}`).join('\n')}
 - [Do hotel prices change by country?](${u('/guides/hotel-prices-by-country-api')}): a repeat-sampled proxy_country run across three markets, and why one call per country is not a measurement
 - [A SerpApi google_flights alternative](${u('/guides/serpapi-google-flights-alternative')}): request shape, round-trip model, and price-insight fields compared, SerpApi's own prices quoted and dated
 - [Amadeus flight offers or live Google Flights fares](${u('/guides/amadeus-flight-offers-vs-google-flights')}): which one a price tracker actually needs, and what the deprecated Self-Service tier means in practice
-- [Skyscanner API alternatives for indie developers](${u('/guides/skyscanner-api-alternatives')}): Skyscanner's own 100K MAU minimum, and the access gate each alternative puts in front of you
+- [Skyscanner API alternative](${u('/compare/skyscanner')}): an application, a two-week review and a commission model, against a key that works today
 
 ## Comparisons
 
