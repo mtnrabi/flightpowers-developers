@@ -135,9 +135,9 @@ Steady monthly volume is cheaper on RapidAPI. Occasional batch jobs with no base
 
 ## Questions an agent usually has to ask
 
-**Is there a free trial?** BASIC is free forever: ${FLIGHT_PLANS[0].quota} requests a month on flights and Booking.com
-hotels, ${AIRBNB_PLANS[0].quota} on Airbnb. No card, no approval. On the paid MCP servers, a Google sign-in gives
-10 free searches a day before any key.
+**Is there a free trial?** BASIC is free forever: ${FLIGHT_PLANS[0].quota} requests a month on flights,
+${HOTEL_PLANS[0].quota} on Booking.com hotels, ${AIRBNB_PLANS[0].quota} on Airbnb. No card, no approval. On the paid MCP
+servers, a Google sign-in gives 10 free searches a day before any key, shared by the flights and hotels servers.
 
 **Do flights, hotels and Airbnb share a plan?** No. Three listings, three subscriptions, one account key.
 

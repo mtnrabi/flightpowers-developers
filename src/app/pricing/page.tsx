@@ -23,8 +23,7 @@ import { apiNode } from '@/lib/schema-offers';
 
 export const metadata: Metadata = withOg({
   title: 'API pricing: flights & hotels, $0 to $75/mo',
-  description:
-    'Flights $0/$10/$25/$50 a month for 10 to 25,000 requests; Booking.com hotels $0/$10/$30/$75 for 10 to 25,000; Airbnb $0/$10/$25/$50 for 100 to 100,000. Free tier, no card. Billed on RapidAPI.',
+  description: `Flights $0/$10/$25/$50 a month for 10 to 25,000 requests; Booking.com hotels $0/$10/$30/$75 for 10 to 25,000; Airbnb $${AIRBNB_PLANS.map((p) => p.priceMonthly).join('/$')} for ${AIRBNB_PLANS[0].quota} to ${AIRBNB_PLANS[AIRBNB_PLANS.length - 1].quota.toLocaleString('en-US')}. Free tier, no card. Billed on RapidAPI.`,
   alternates: { canonical: '/pricing' },
 });
 

@@ -106,7 +106,7 @@ export default function ClaudeIntegrationPage() {
   return (
     <AgentIntegrationPage
       slug="claude"
-      lede={`Add the connector to Claude and sign in with Google: 10 free searches a day, then $${FLIGHTS_PRO.priceMonthly} for ${FLIGHTS_PRO.quota.toLocaleString('en-US')} flight searches on your own key. Claude searches live Google Flights fares and Booking.com rates mid-conversation, with Google’s own price verdict on every fare.`}
+      lede={`Add the connector to Claude and sign in with Google: 10 free searches a day, then $${FLIGHTS_PRO.priceMonthly} for ${FLIGHTS_PRO.quota.toLocaleString('en-US')} flight searches on your own key. Claude searches live Google Flights fares and Booking.com rates mid-conversation, with Google’s own price verdict on the fares it quotes.`}
       installFirst
       installExtra={
         <>
@@ -115,7 +115,7 @@ export default function ClaudeIntegrationPage() {
           </p>
           <CopyPrompt prompt={FIRST_PROMPT} tool="claude-connector" />
           <p className="text-[12.5px] text-ink-400 leading-relaxed">
-            A month of dates to three cities is 90 searches: that is what the ${FLIGHTS_PRO.priceMonthly} key is for. The Hotels
+            30 days of dates to three cities is 90 searches: that is what the ${FLIGHTS_PRO.priceMonthly} key is for. The Hotels
             connector searches live Booking.com rates on the same 10 free a day (hotels PRO is ${HOTELS_PRO.priceMonthly} for{' '}
             {HOTELS_PRO.quota.toLocaleString('en-US')}).{' '}
             <Link href="/integrations/claude/connectors" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">

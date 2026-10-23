@@ -89,7 +89,7 @@ export const AIRBNB_FAQ = [
   },
   {
     q: 'Can I use the Airbnb API from Claude or another MCP client?',
-    a: 'Not yet. The FlightPowers MCP servers search Google Flights and Booking.com; Airbnb is REST only for now.',
+    a: 'No. The FlightPowers MCP servers search Google Flights and Booking.com only; Airbnb is REST only.',
   },
   {
     q: 'Is this an official Airbnb API?',
@@ -188,7 +188,9 @@ r = requests.post(
 )
 data = r.json()
 if data.get("search_status") != "ok":
-    print(r.status_code, data.get("search_status"), data.get("search_reason"))
+    # api.flightpowers.com answers a failed search with error / reason / message
+    print(r.status_code, data.get("error") or data.get("search_status"),
+          data.get("reason") or data.get("search_reason"), data.get("message") or data.get("detail"))
 else:
     for p in data["properties"]:
         print(p["price_total"], p["currency"], p["price_per_night"], p["rating"], p["name"])
@@ -250,8 +252,9 @@ own label, `"{R0.price_string}"` on the first one), `review_count`, `beds`, `bed
 `baths`, `latitude` / `longitude`, `image_url`, `link`, `provider_property_id` and
 `retrieved_at`. A field Airbnb did not publish is `null`, never a made-up zero.
 
-Read `price_per_night` with care. It is Airbnb's own per-night line, so `nights` times
-`price_per_night` need not add up to `price_total`: on the first row it is {R0.nights} ×{' '}
+Read `price_per_night` with care. It is the nightly rate from Airbnb's own price breakdown
+(the "3 nights x …" line), and the other lines of that breakdown sit in the total, not in it.
+So `nights` times `price_per_night` need not add up to `price_total`: on the first row it is {R0.nights} ×{' '}
 {R0.price_per_night} against a total of {R0.price_total}. Use `price_total` for what the stay
 costs.
 
@@ -268,13 +271,15 @@ which (`applied_by: "airbnb"` or `"flightpowers"`, `post_filter: true` for ours)
 | `currency` | Airbnb | Prices on every row come back in it (USD if you send none) |
 | `price_min`, `price_max` | Airbnb | **Per night**, in `currency` |
 | `min_bedrooms`, `min_beds`, `min_bathrooms` | Airbnb | Minimums |
-| `room_types` | Airbnb | `Entire home/apt`, `Private room`, `Shared room`, `Hotel room`. Spell them exactly: another value is ignored |
-| `min_rating` | us, after | Airbnb's search has no rating filter. A listing with no rating yet is dropped |
+| `room_types` | Airbnb | `Entire home/apt`, `Private room`, `Shared room`, `Hotel room`. Spell them exactly: any other value is refused with a 400 |
+| `min_rating` | us, after | Out of 5. Airbnb's search has no rating filter. A listing with no rating yet is dropped; a value that is not a number from 0 to 5 is refused |
 | `sort` | us, after | `price_asc`, `price_desc`, `rating_desc`. Orders the page you got, not all of Airbnb |
-| `proxy_country` | us | Sends the search out through a residential connection in that country. Filters nothing |
+| `proxy_country` | us | Two-letter code such as `de`. Sends the search out through a residential connection in that country. Filters nothing |
 
-A filter that belongs to our Booking.com API (`filters`, `free_cancellation`, `hotel_name` and
-the like) is refused with `unsupported_for_provider`, not silently dropped. A parameter name
+A filter that belongs to our Booking.com API (`filters`, `free_cancellation: true`, `hotel_name`
+and the like) is refused with `unsupported_for_provider`, not silently dropped. One exception on
+`api.flightpowers.com`: `budget_per_night` is renamed to `price_max` for you (the
+`X-Field-Aliased` response header says so); on the RapidAPI host it is refused. A parameter name
 the API does not know at all (a typo) is ignored, so check `filters_applied`: a filter that
 is not listed there did not run.
 
@@ -301,8 +306,8 @@ Stated plainly, before you build on it:
   treats taxes differently by place.
 - **Not in the MCP servers.** Our Claude and ChatGPT connectors search Google Flights and
   Booking.com, not Airbnb.
-- **Every call counts.** A 400 (a past date, a malformed body) is a request on your plan like
-  any other.
+- **Every call counts.** A 400 from the API (a past date, a bad value) is a request on your
+  plan like any other.
 
 ## What does it cost?
 
@@ -346,8 +351,8 @@ Where mine fits: numbers you can sort on (stay total, per-night line, the struck
 price, rating and its scale, coordinates) in one flat row, the price, room type and bedroom
 filters sent into Airbnb's own search, `filters_applied` telling you what ran where, and a
 ${PRO.priceMonthly} entry plan with {fmt(PRO.quota)} searches. Where it does not: more than one page
-of a city per search, calendars, and per-listing prices. Those are StayAPI's and
-DataCrawler's shape.
+of a city per search, calendars, and per-listing prices. Calendars are StayAPI's; per-listing
+prices are StayAPI's and DataCrawler's.
 
 ## FAQ
 

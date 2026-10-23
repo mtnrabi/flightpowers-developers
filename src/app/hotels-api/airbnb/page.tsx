@@ -79,7 +79,7 @@ const FILTERS: { name: string; type: string; what: string; at: 'Airbnb' | 'ours'
   {
     name: 'room_types',
     type: 'array of strings',
-    what: 'Any of "Entire home/apt", "Private room", "Shared room", "Hotel room". Any other value is ignored, so spell them exactly',
+    what: 'Any of "Entire home/apt", "Private room", "Shared room", "Hotel room". Any other value is refused with a 400, so spell them exactly',
     at: 'Airbnb',
   },
   {

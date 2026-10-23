@@ -6,7 +6,7 @@
  *
  * Event vocabulary (mirrors SocialKit's api_upsell_click instrumentation):
  *   { e: "session_start", us, um, uc, ref, path }   -- once per tab, see below
- *   { e: "api_upsell_click", tool, action: copy_curl|copy_python|copy_node|get_key|docs, path }
+ *   { e: "api_upsell_click", tool, action: copy_curl|copy_python|copy_node|copy_prompt|get_key|docs, path }
  *   { e: "demo_run", tool, mode: live|cached|canned|capped, path }
  *   { e: "outbound", target, medium, path }
  *   { e: "upsell_view", tool, path }                       -- card scrolled into view, once per mount
