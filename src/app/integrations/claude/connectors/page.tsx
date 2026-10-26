@@ -123,7 +123,7 @@ const TOOLS = [
   {
     name: 'compare_hotel_rates',
     type: 'FlightPowers Hotels',
-    note: 'One stay priced on Booking.com and Airbnb: a row per source with the cheapest total, the median total and how many places were priced. A source you have no subscription for is listed as skipped.',
+    note: 'One stay priced on Booking.com and Airbnb: a row per source with the cheapest total, the median total and how many places were priced. A source you have no subscription for is listed as skipped. It runs on your own RapidAPI key; the free sign-in searches do not cover it.',
   },
 ];
 

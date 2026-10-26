@@ -274,7 +274,7 @@ export default function ClaudeMcpPage() {
             <div className="mt-4" />
             <Feature title="compare_hotel_rates">
               The same stay priced on Booking.com and Airbnb: one row per source with the cheapest and median total. A source you
-              have no subscription for is listed as skipped.
+              have no subscription for is listed as skipped. It runs on your own RapidAPI key; the free sign-in searches do not cover it.
             </Feature>
           </div>
         </div>

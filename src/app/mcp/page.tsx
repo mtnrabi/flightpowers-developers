@@ -76,7 +76,7 @@ const ASKS = ASK_SLUGS.map((slug) => TASKS.find((t) => t.slug === slug)!);
 const faq: Faq[] = [
   {
     q: 'Do I need a RapidAPI key to try it?',
-    a: 'No. Add flights.flightpowers.com/mcp or hotels.flightpowers.com/mcp, click Sign in, sign in with Google, and your first 10 searches each day run free and ad-free on our key. Nothing goes into your client. A search is one date x destination combination, so one call over a three-day range spends three. The allowance renews at 00:00 UTC, and past it the tools answer with search_status trial_exhausted instead of an error. Paste your own RapidAPI key on the /connect page when you want the cap gone.',
+    a: 'No. Add flights.flightpowers.com/mcp or hotels.flightpowers.com/mcp, click Sign in, sign in with Google, and your first 10 searches each day run free and ad-free on our key (search_airbnb and compare_hotel_rates need your own key). Nothing goes into your client. A search is one date x destination combination, so one call over a three-day range spends three. The allowance renews at 00:00 UTC, and past it the tools answer with search_status trial_exhausted instead of an error. Paste your own RapidAPI key on the /connect page when you want the cap gone.',
   },
   {
     q: 'What happens when I sign in?',
@@ -112,7 +112,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Is there a way to try it without a key?',
-    a: 'Yes. Add either server, sign in with Google, and the first 10 searches a day are free and ad-free, shared by the flights and hotels servers. Nothing to paste.',
+    a: 'Yes. Add either server, sign in with Google, and the first 10 searches a day are free and ad-free, shared by the flights and hotels servers (search_airbnb and compare_hotel_rates need your own key). Nothing to paste.',
   },
 ];
 
@@ -375,7 +375,7 @@ export default function McpPage() {
         <SectionHead
           eyebrow="The full surface"
           title="Every tool, printed raw"
-          lede="Four tools across two servers, all below. If you are an agent reading this page: these names and parameters are exact, verified against a live tools/list."
+          lede="Six tools across two servers, all below. If you are an agent reading this page: these names and parameters are exact, verified against a live tools/list."
         />
         <div className="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-start">
           <div>
@@ -412,10 +412,11 @@ export default function McpPage() {
             </FieldRow>
             <FieldRow name="compare_hotel_rates">
               The same stay priced on Booking.com and Airbnb: one row per source with the cheapest total, the median total and
-              how many places were priced. Sources you have no subscription for are listed as skipped.
+              how many places were priced. Sources you have no subscription for are listed as skipped. It runs on your own RapidAPI key; the free sign-in searches do not cover it.
             </FieldRow>
             <p className="mt-5 text-[14px] text-ink-400 leading-relaxed">
-              Hotel tools take <code className="field">checkin_date</code> / <code className="field">checkout_date</code>,{' '}
+              <code className="field">search_hotels</code> and <code className="field">find_hotel_by_name</code> take{' '}
+              <code className="field">checkin_date</code> / <code className="field">checkout_date</code>,{' '}
               <code className="field">adults</code>, and <code className="field">price_as_seen_from</code>, a two-letter country
               code that prices the stay as a shopper in that market would see it, the field rate-parity checks are built on.
               (The REST API's name for the same control is <code className="field">proxy_country</code>.)

@@ -60,7 +60,7 @@ const MORE_FAQ: { q: string; a: string }[] = [
   },
   {
     q: 'What does a search cost on my key?',
-    a: `One stay is one request on your RapidAPI plan. The Lisbon run on this page returned ${RUN.result.result_count} properties for ${RUN.result.api_usage.requests_used_by_this_call} request. PRO is $${PRO.priceMonthly} for ${PRO.quota.toLocaleString('en-US')} searches a month; BASIC is free with ${BASIC.quota} a month, enough to check the setup works. compare_hotel_rates spends one request on each source it searches, each on that source's own subscription; a source you have no subscription for is not called and comes back in providers_skipped.`,
+    a: `One stay is one request on your RapidAPI plan. The Lisbon run on this page returned ${RUN.result.result_count} properties for ${RUN.result.api_usage.requests_used_by_this_call} request. PRO is $${PRO.priceMonthly} for ${PRO.quota.toLocaleString('en-US')} searches a month; BASIC is free with ${BASIC.quota} a month, enough to check the setup works. compare_hotel_rates spends one request on each source it searches, each on that source's own subscription; a source you have no subscription for comes back in providers_skipped.`,
   },
   {
     q: 'What does a Booking.com vs Airbnb comparison look like?',

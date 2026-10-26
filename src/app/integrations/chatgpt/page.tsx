@@ -56,7 +56,7 @@ const tools: ToolLine[] = [
   {
     name: 'compare_hotel_rates',
     type: 'hotels server',
-    note: 'The same stay priced on Booking.com and Airbnb: the cheapest and median total from each, one billed request per source.',
+    note: 'The same stay priced on Booking.com and Airbnb: the cheapest and median total from each, one billed request per source. It runs on your own RapidAPI key; the free sign-in searches do not cover it.',
   },
 ];
 

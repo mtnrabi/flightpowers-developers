@@ -117,7 +117,7 @@ I read, not that it cannot exist.
 | 7 | StayingAPI | stays | Airbnb, Booking.com, Vrbo, Google Hotels | OAuth 2.1 | 300 credits, once, for 90 days | $19 a month for 1,900 credits | availability over a range | n/a | n/a |
 | 8 | fli | flights | Google Flights | you run it | free, MIT | none | yes | one call | not documented |
 | 9 | flights-mcp | flights | Duffel | you run it, Duffel key | code free, MIT | Duffel's own pricing | yes, slower | one call | not documented |
-| 10 | FlightPowers (mine) | flights, hotels, Airbnb (since 2026-10-26) | Google Flights, Booking.com, Airbnb | Google sign-in or RapidAPI key | free with ads, 50 searches a day | ${FLIGHT_PLANS[1].priceMonthly} for {FLIGHT_PLANS[1].quota.toLocaleString('en-US')} flight searches | yes, flights and hotels | one call | yes |
+| 10 | FlightPowers (mine) | flights, hotels, Airbnb (since 2026-10-26) | Google Flights, Booking.com, Airbnb (keyed hotels server only) | Google sign-in or RapidAPI key | free with ads, 50 searches a day | ${FLIGHT_PLANS[1].priceMonthly} for {FLIGHT_PLANS[1].quota.toLocaleString('en-US')} flight searches | yes, flights and hotels | one call | yes |
 | 11 | Blue Pillow | hotels and stays | "16+ booking sites" | free anonymous key | free, no signup | none published | not documented | n/a | n/a |
 
 "Price band" means Google's own historical range for the route with a low / typical / high
@@ -264,12 +264,12 @@ searches. A test key returns simulated data.
 
 Two hosted servers. <code>{LINKS.mcpFlights}</code> has `search_oneway_flights` and
 `search_roundtrip_flights` on live Google Flights fares; <code>{LINKS.mcpHotels}</code> has
-`search_hotels`, `find_hotel_by_name` and `compare_hotel_rates` on live Booking.com rates.
+`search_hotels` and `find_hotel_by_name` on live Booking.com rates.
 Since 2026-10-26 it also has `search_airbnb`, live Airbnb stays on an Airbnb Live API
 subscription, and `compare_hotel_rates` prices the same stay on Booking.com and Airbnb, one
 row per source with the cheapest and median total. The free server with ads does not search
 Airbnb.
-Add the URL, sign in with Google, and the first 10 searches each day are free; after that
+Add the URL, sign in with Google, and the first 10 searches each day are free (flights and Booking.com only; Airbnb and compare_hotel_rates need your key); after that
 the searches run on your own RapidAPI key.
 
 What I built it around: one call takes a date range, a list of destinations and a list of
