@@ -239,8 +239,8 @@ export default function ClaudeMcpPage() {
       <Section>
         <SectionHead
           eyebrow="What Claude sees"
-          title="Four MCP tools across two servers"
-          lede="These are the tools that appear in Claude after setup. Each one returns live data from Google Flights or Booking.com."
+          title="Six MCP tools across two servers"
+          lede="These are the tools that appear in Claude after setup. Each one returns live data from Google Flights, Booking.com or Airbnb."
         />
         <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <div className="rounded-2xl border rule bg-ink-900/60 p-6">
@@ -265,6 +265,16 @@ export default function ClaudeMcpPage() {
             <Feature title="find_hotel_by_name">
               Find one property by name + city, no property ID required. price_as_seen_from (proxy_country) prices it from any market:
               the rate-parity tool.
+            </Feature>
+            <div className="mt-4" />
+            <Feature title="search_airbnb">
+              Live Airbnb stays for a destination and dates: stay total, price per night, rating out of 5, room type, bedrooms,
+              beds, baths and an Airbnb link. Needs an Airbnb Live API subscription on the same key.
+            </Feature>
+            <div className="mt-4" />
+            <Feature title="compare_hotel_rates">
+              The same stay priced on Booking.com and Airbnb: one row per source with the cheapest and median total. A source you
+              have no subscription for is listed as skipped. It runs on your own RapidAPI key; the free sign-in searches do not cover it.
             </Feature>
           </div>
         </div>
@@ -298,7 +308,8 @@ export default function ClaudeMcpPage() {
           <p className="eyebrow">Alternative</p>
           <h2 className="mt-3 text-2xl font-semibold">Try before you get a key: the free server</h2>
           <p className="mt-4 text-[15px] text-ink-400 leading-relaxed">
-            <code className="field">{LINKS.mcpFree.replace('https://', '')}</code> serves all four tools with no RapidAPI key.
+            <code className="field">{LINKS.mcpFree.replace('https://', '')}</code> serves the two flight tools and the two
+            Booking.com hotel tools with no RapidAPI key (no Airbnb).
             Add the URL, sign in with Google, and you get 50 searches a day and 250 a month under your own name. The trade:
             every result carries one labelled sponsored card, and one call searches at most 15 date × destination combinations
             instead of 30. Use it to try the tools before getting a key; point production work at the keyed servers above.

@@ -27,8 +27,10 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
  * claims audit points each one at hotel_agent ota_lite code) or from the
  * captured Rome response in src/lib/fixtures/airbnb-search-rome.json.
  * Plan numbers come from lib/pricing.ts. Do not add a claim that is in
- * neither. The hotels MCP does not search Airbnb yet: do not mention it here
- * until search_airbnb is switched on and tested.
+ * neither. The hotels MCP (hotels.flightpowers.com/mcp) serves search_airbnb and
+ * compare_hotel_rates on this same subscription since 2026-10-26, switched on
+ * and tested with a live Lisbon call; the one line about it is under "AI
+ * travel agents" below.
  */
 
 const AIRBNB_BASIC = AIRBNB_PLANS.find((p) => p.name === 'BASIC')!;
@@ -629,7 +631,14 @@ export default function AirbnbApiPage() {
                 <code className="field">null</code> here, so compare with that in mind.
               </>,
               <>
-                <strong className="text-ink-100">AI travel agents.</strong> Flat JSON that drops straight into a tool call.
+                <strong className="text-ink-100">AI travel agents.</strong> Flat JSON that drops straight into a tool call. Or
+                skip the code: on this same subscription, the{' '}
+                <Link href="/mcp/booking-hotels" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+                  hotels MCP server
+                </Link>{' '}
+                gives Claude, Cursor or ChatGPT <code className="field">search_airbnb</code> and{' '}
+                <code className="field">compare_hotel_rates</code>, which prices one stay on Booking.com and Airbnb when you
+                subscribe to both.
               </>,
               <>
                 <strong className="text-ink-100">Market analysis.</strong> Coordinates on the rows, so you can place listings by

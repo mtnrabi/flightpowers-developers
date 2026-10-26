@@ -3,10 +3,10 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { Breadcrumbs, CapturedBadge, Code, Container, Cta, JsonLd, Section, SectionHead } from '@/components/ui';
-import { HOTEL_PLANS } from '@/lib/pricing';
+import { AIRBNB_PLANS, HOTEL_PLANS } from '@/lib/pricing';
 import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 import RUN from './run-2026-10-06.json';
-import TOOLS from './tools-2026-10-06.json';
+import TOOLS from './tools-2026-10-26.json';
 
 // W2-5: the "hotel mcp" / "booking.com mcp" page. Before this, the only page
 // with the phrase was the 3.6 KB shell on hotels.flightpowers.com (audit C §4).
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   ...withOg({
     title: TITLE,
     description:
-      'Hotel MCP server for Claude, Cursor and ChatGPT: live Booking.com rates by destination or hotel name, priced as seen from another country if you ask.',
+      'Hotel MCP server for Claude, Cursor and ChatGPT: live Booking.com rates by destination or hotel name, priced as seen from another country if you ask, plus live Airbnb stays and a Booking.com vs Airbnb comparison on an Airbnb subscription.',
     alternates: { canonical: '/mcp/booking-hotels' },
   }),
   title: { absolute: TITLE },
@@ -29,6 +29,10 @@ const PRO = HOTEL_PLANS[1]!;
 const BASIC = HOTEL_PLANS[0]!;
 const FREE_HOST = LINKS.mcpFree.replace('https://', '');
 const HOST = LINKS.mcpHotels.replace('https://', '');
+const AIRBNB_BASIC = AIRBNB_PLANS.find((p) => p.name === 'BASIC')!;
+const AIRBNB_PRO = AIRBNB_PLANS.find((p) => p.name === 'PRO')!;
+/** search_airbnb and the Airbnb row of compare_hotel_rates went live on this server. */
+const AIRBNB_ON = '2026-10-26';
 
 const SHORT_ANSWERS: { q: string; a: string }[] = [
   {
@@ -43,16 +47,24 @@ const SHORT_ANSWERS: { q: string; a: string }[] = [
     q: 'Can it show the price a shopper in another country sees?',
     a: 'Yes. price_as_seen_from takes a two-letter country code and prices the stay through a connection in that country. Gaps between countries are real but usually modest and depend on the property, so hold one hotel fixed and call each country a few times before you call it a gap.',
   },
+  {
+    q: 'Does it search Airbnb too?',
+    a: `Yes, since ${AIRBNB_ON}. search_airbnb returns live Airbnb stays for a destination and dates, read from Airbnb's public search page when you ask: the stay total, the price per night, rating out of 5, room type, bedrooms, beds, baths and an Airbnb link. compare_hotel_rates prices the same stay on Booking.com and Airbnb and returns one row per source: the cheapest total, the median total and how many places were priced. Airbnb needs its own subscription to the Airbnb Live API on the same RapidAPI key (BASIC is free for ${AIRBNB_BASIC.quota} searches a month, PRO is $${AIRBNB_PRO.priceMonthly} for ${AIRBNB_PRO.quota.toLocaleString('en-US')}); the 10 free sign-in searches a day do not cover it.`,
+  },
 ];
 
 const MORE_FAQ: { q: string; a: string }[] = [
   {
     q: 'Is there a free hotel MCP?',
-    a: `Yes, ${FREE_HOST}: sign in with Google and you get hotel and flight search with no key, 50 searches a day and 250 a month, with one labelled sponsored card on each result. Use it to try the tools; use the ad-free server on this page, on your own RapidAPI key, for anything you ship.`,
+    a: `Yes, ${FREE_HOST}: sign in with Google and you get hotel and flight search with no key, 50 searches a day and 250 a month, with one labelled sponsored card on each result. Its hotel search reads Booking.com only; Airbnb is on the server on this page, on your own key. Use the free one to try the tools; use the ad-free server on this page, on your own RapidAPI key, for anything you ship.`,
   },
   {
     q: 'What does a search cost on my key?',
-    a: `One stay is one request on your RapidAPI plan. The Lisbon run on this page returned ${RUN.result.result_count} properties for ${RUN.result.api_usage.requests_used_by_this_call} request. PRO is $${PRO.priceMonthly} for ${PRO.quota.toLocaleString('en-US')} searches a month; BASIC is free with ${BASIC.quota} a month, enough to check the setup works.`,
+    a: `One stay is one request on your RapidAPI plan. The Lisbon run on this page returned ${RUN.result.result_count} properties for ${RUN.result.api_usage.requests_used_by_this_call} request. PRO is $${PRO.priceMonthly} for ${PRO.quota.toLocaleString('en-US')} searches a month; BASIC is free with ${BASIC.quota} a month, enough to check the setup works. compare_hotel_rates spends one request on each source it searches, each on that source's own subscription; a source you have no subscription for comes back in providers_skipped.`,
+  },
+  {
+    q: 'What does a Booking.com vs Airbnb comparison look like?',
+    a: 'In one test search on 2026-10-26 (Lisbon, March 5 to 8, 2027, two adults, USD), compare_hotel_rates returned Booking.com: 20 places, cheapest $202, median $410; Airbnb: 26 places, cheapest $132, median $284. That is one search on one day, not a typical gap. Read the caveats on each row: rating_scale is 10 on Booking.com and 5 on Airbnb, and taxes_included is true on Booking.com and null on Airbnb, because the Airbnb page does not say.',
   },
   {
     q: 'Can it price several dates in one call?',
@@ -60,7 +72,7 @@ const MORE_FAQ: { q: string; a: string }[] = [
   },
   {
     q: 'Is the price per night or for the stay?',
-    a: 'For the stay. Every row carries nights, so a nightly rate is one division away.',
+    a: 'For the stay. Every Booking.com row carries nights, so a nightly rate is one division away. An Airbnb row has both the stay total and a per-night price.',
   },
 ];
 
@@ -204,7 +216,8 @@ export default function BookingHotelsMcpPage() {
                 parameter that prices the stay as a shopper in another country would see it. Free with ads at{' '}
                 <code className="font-mono text-[0.85em] text-signal-400">{FREE_HOST}</code> (Google sign-in, 50 searches a
                 day); ad-free on your own RapidAPI key, where PRO is ${PRO.priceMonthly} for{' '}
-                {PRO.quota.toLocaleString('en-US')} searches. A hotel data server, not a booking engine.
+                {PRO.quota.toLocaleString('en-US')} searches. With an Airbnb subscription on the same key it also searches
+                live Airbnb stays and compares one stay on Booking.com and Airbnb. A hotel data server, not a booking engine.
               </p>
               <p className="mt-3 text-[15px] text-ink-400 leading-relaxed">
                 Also called a Booking.com MCP or a hotel price MCP. It is hosted: you add a URL, nothing runs on your machine.
@@ -374,9 +387,17 @@ export default function BookingHotelsMcpPage() {
           ))}
         </div>
         <p className="mt-8 max-w-3xl text-[14px] text-ink-400 leading-relaxed">
-          Booking.com is the source a FlightPowers hotels key covers. The <code className="field">providers</code> argument and{' '}
-          <code className="field">compare_hotel_rates</code> price a stay only on sources you hold a key for, and list the rest
-          as skipped.
+          <code className="field">search_hotels</code> and <code className="field">find_hotel_by_name</code> read Booking.com
+          on a Booking Live API subscription. <code className="field">search_airbnb</code> reads Airbnb and needs its own{' '}
+          <a href={LINKS.rapidapiAirbnb} rel="noopener" className="text-signal-400 underline underline-offset-4">
+            Airbnb Live API
+          </a>{' '}
+          subscription on the same RapidAPI key; a Booking or flights subscription does not cover it, and neither do the free
+          sign-in searches. <code className="field">compare_hotel_rates</code> prices the stay on every source you subscribe to,
+          one billed request per source, and lists the rest in <code className="field">providers_skipped</code>. Guest counts,
+          price, bedroom, bed, bathroom and room-type filters on <code className="field">search_airbnb</code> are Airbnb&apos;s
+          own; <code className="field">min_rating</code> and <code className="field">sort</code> are applied by FlightPowers to
+          the page of stays Airbnb returned.
         </p>
       </Section>
 

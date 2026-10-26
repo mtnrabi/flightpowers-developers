@@ -89,7 +89,7 @@ export const AIRBNB_FAQ = [
   },
   {
     q: 'Can I use the Airbnb API from Claude or another MCP client?',
-    a: 'No. The FlightPowers MCP servers search Google Flights and Booking.com only; Airbnb is REST only.',
+    a: 'Yes, since 2026-10-26. The FlightPowers hotels MCP server at hotels.flightpowers.com/mcp has search_airbnb, live Airbnb stays for a destination and dates, and compare_hotel_rates, which prices the same stay on Booking.com and Airbnb. It runs on the same Airbnb Live API subscription on your RapidAPI key; the free Google sign-in searches do not cover Airbnb.',
   },
   {
     q: 'Is this an official Airbnb API?',
@@ -106,7 +106,7 @@ export const AIRBNB_FAQ = [
       "What Airbnb's own API covers, and how to get live Airbnb listings and nightly prices as JSON with a captured request and response, the filters, the limits and dated alternatives.",
     url: `${SITE.url}/guides/airbnb-api`,
     datePublished: '2026-10-23',
-    dateModified: '2026-10-23',
+    dateModified: '2026-10-26',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -126,7 +126,7 @@ export const AIRBNB_FAQ = [
 
 # Airbnb API in 2026: is there a public one, and a key you can buy
 
-<GuideDates published="2026-10-23" updated="2026-10-23" />
+<GuideDates published="2026-10-23" updated="2026-10-26" />
 
 **Short answer:** Airbnb has an API, but it is for software that serves hosts (property
 managers, channel managers and the like), accepted into one of its partner programs. It
@@ -304,8 +304,10 @@ Stated plainly, before you build on it:
   Airbnb loads a listing page's price after the page opens. For a price, search.
 - **Taxes are not established.** `taxes_included` is always `null`; Airbnb's display total
   treats taxes differently by place.
-- **Not in the MCP servers.** Our Claude and ChatGPT connectors search Google Flights and
-  Booking.com, not Airbnb.
+- **In the hotels MCP on the same key.** Since 2026-10-26 our hotels MCP server
+  (`hotels.flightpowers.com/mcp`) has `search_airbnb` and `compare_hotel_rates` for Claude,
+  ChatGPT and Cursor. They run on this subscription; the free Google sign-in searches do not
+  cover Airbnb, and the free server with ads does not search it.
 - **Every call counts.** A 400 from the API (a past date, a bad value) is a request on your
   plan like any other.
 

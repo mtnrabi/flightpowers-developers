@@ -64,7 +64,7 @@ export const BOOKING_FAQ = [
       'Booking.com’s Demand API is for approved affiliate partners. How to get live Booking.com rates by hotel name or destination on a self-serve key instead, priced from a country you choose, and when another provider fits better.',
     url: `${SITE.url}/guides/booking-com-api-alternative`,
     datePublished: '2026-10-07',
-    dateModified: '2026-10-18',
+    dateModified: '2026-10-26',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -84,7 +84,7 @@ export const BOOKING_FAQ = [
 
 # Booking.com API alternative: live rates without approval
 
-<GuideDates published="2026-10-07" updated="2026-10-18" />
+<GuideDates published="2026-10-07" updated="2026-10-26" />
 
 **Short answer:** Booking.com's own Demand API is for approved Managed Affiliate Partners
 and its Connectivity APIs are for software that manages properties, so if you need an API
@@ -198,7 +198,9 @@ believe their page.
   prints as $4 per 1,000. That is cheaper per search than my PRO plan; the difference is the
   $40 entry against ${HOTEL_PLANS[1].priceMonthly}. It is not the lowest: DataCrawler and HasData list
   lower per-request rates, see the [hotel data APIs guide](/guides/best-hotel-data-apis-2026).
-- **You need Airbnb.** Mine does not have it.
+- **You need Airbnb.** This API does not have it. I sell Airbnb as a separate listing,
+  the [Airbnb Live API](/hotels-api/airbnb), on its own subscription, and the hotels MCP
+  server can price one stay on Booking.com and Airbnb side by side.
 - **You sell the room.** That is the Demand API, or a booking platform.
 
 Thirteen providers, with every price quoted and dated, are in

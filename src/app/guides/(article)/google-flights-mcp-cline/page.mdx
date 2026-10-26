@@ -22,7 +22,7 @@ import { rapidApiPricingUrl } from '@/lib/site';
       'Connect live Google Flights and Booking.com data to Cline using MCP servers. The agent can fetch real flight prices and hotel rates while coding.',
     url: `https://flightpowers.com/guides/google-flights-mcp-cline`,
     datePublished: '2026-09-02',
-    dateModified: '2026-09-02',
+    dateModified: '2026-10-26',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -30,17 +30,17 @@ import { rapidApiPricingUrl } from '@/lib/site';
 
 # Using the Google Flights MCP in Cline
 
-<GuideDates published="2026-09-02" updated="2026-09-02" />
+<GuideDates published="2026-09-02" updated="2026-10-26" />
 
-**Short answer:** One block in `cline_mcp_settings.json` unlocks four tools for Cline's
-agent: live Google Flights pricing, Booking.com hotel search, plus date-range and
+**Short answer:** One block in `cline_mcp_settings.json` unlocks six tools for Cline's
+agent: live Google Flights pricing, Booking.com hotel search, Airbnb search on an Airbnb subscription, plus date-range and
 destination-list expansion that turn a single prompt into a multi-day scan. No REST code,
 just the config block and either a Google sign-in or your RapidAPI key.
 
 Cline's agent can write and test your travel features against real flight and hotel
 data when you connect the FlightPowers MCP servers. One block in
-`cline_mcp_settings.json` unlocks four tools: live Google Flights pricing, Booking.com
-hotel searches, and the date-range and destination-list expansions that turn a single
+`cline_mcp_settings.json` unlocks six tools: live Google Flights pricing, Booking.com
+hotel searches, Airbnb searches on an Airbnb subscription, and the date-range and destination-list expansions that turn a single
 prompt into a multi-day scan.
 
 ## What you need
@@ -151,7 +151,7 @@ tab gives you nowhere to sign in, use the key on the URL instead:
 
 The tools appear in the agent toolbox once the servers are connected.
 
-## The four tools
+## The six tools
 
 **search_oneway_flights**: Live one-way flight prices from Google Flights. Pass a
 single date or a date range (`departure_date_from` / `departure_date_to`) and the
@@ -174,6 +174,18 @@ human would type (add the city to disambiguate a chain) and resolves the propert
 internally. Supports `price_as_seen_from`, a two-letter country code that prices the
 stay as a shopper in that market would see it, the field rate-parity checks are built
 on.
+
+**search_airbnb**: Live Airbnb stays for a destination and dates, read from Airbnb's
+public search page when you ask. Each stay has a stay total, a per-night price, a rating
+out of 5, room type, bedrooms, beds, baths and an Airbnb link. It needs its own
+[Airbnb Live API](/hotels-api/airbnb) subscription on the same RapidAPI key; the free
+sign-in searches do not cover it.
+
+**compare_hotel_rates**: Prices the same stay on Booking.com and Airbnb and returns one
+row per source: the cheapest total, the median total and how many places were priced.
+Ratings are out of 10 on Booking.com and out of 5 on Airbnb, and `taxes_included` is null on
+Airbnb. It runs on your own RapidAPI key; the free sign-in searches do not cover it.
+Each source is one billed request on its own subscription.
 
 ## Example prompts
 

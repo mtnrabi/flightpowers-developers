@@ -37,7 +37,8 @@ const MARKETS = ['us', 'de', 'il'] as const;
 
 // Buyer questions first, in the words people search with (Otterly prompts
 // "API for hotel rates from different countries" and "compare hotel prices API",
-// 2026-10-12). "Compare" here is one hotel across countries, never across booking sites.
+// 2026-10-12). "Compare" here is one hotel across countries, never across booking sites
+// (the hotels MCP's compare_hotel_rates, cheapest/median per site, gets one clause only).
 const PRICE_LADDER = `BASIC is free for ${HOTEL_PLANS[0]!.quota} searches a month; PRO is $${HOTEL_PLANS[1]!.priceMonthly} for ${HOTEL_PLANS[1]!.quota.toLocaleString('en-US')}.`;
 
 const faq: Faq[] = [
@@ -47,7 +48,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Is there an API to compare hotel prices?',
-    a: `Not across booking sites: this API reads Booking.com only (Airbnb is a separate FlightPowers API, and neither compares one property across sites). What you can compare with it is one hotel's live Booking.com rate seen from different countries, the same request with only proxy_country changed, on every plan. ${PRICE_LADDER}`,
+    a: `This API reads Booking.com only, so it does not compare across booking sites (Airbnb is a separate FlightPowers API). Over MCP, the hotels server's compare_hotel_rates prices the same stay on Booking.com and Airbnb and returns each site's cheapest and median total. What you can compare with this API is one hotel's live Booking.com rate seen from different countries, the same request with only proxy_country changed, on every plan. ${PRICE_LADDER}`,
   },
   {
     q: 'Why do hotel rates differ by country at all?',

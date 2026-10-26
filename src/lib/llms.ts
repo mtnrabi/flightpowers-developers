@@ -4,4 +4,4 @@
  */
 
 /** Stamped manually when the generated llms.txt content meaningfully changes. */
-export const LLMS_LAST_UPDATED = '2026-10-23';
+export const LLMS_LAST_UPDATED = '2026-10-26';
