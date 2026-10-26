@@ -183,7 +183,7 @@ export default function McpPage() {
                   hotel MCP
                 </Link>{' '}
                 at <code className="font-mono text-[0.85em] text-signal-400">{LINKS.mcpHotels.replace('https://', '')}</code>,
-                with live Booking.com rates. {PAID_TRIAL_LINE}
+                with live Booking.com rates, and Airbnb stays on an Airbnb subscription. {PAID_TRIAL_LINE}
               </p>
               <p className="mt-3 text-[15px] text-ink-400 leading-relaxed">
                 Best for price tracking, date scans and AI agents; they do not book. ChatGPT and any other client that takes a
@@ -284,7 +284,8 @@ export default function McpPage() {
               <p className="text-[16px] font-semibold text-ink-100">Hotel MCP server →</p>
               <p className="mt-2 text-[15px] text-ink-400 leading-relaxed">
                 Live Booking.com room rates by destination or by hotel name, priced as seen from another country with
-                price_as_seen_from. Setup per client, the tools printed raw, and one real search with its date.
+                price_as_seen_from, plus live Airbnb stays and a Booking.com vs Airbnb comparison on an Airbnb subscription.
+                Setup per client, the tools printed raw, and one real search with its date.
               </p>
             </Link>
             <div className="mt-3">
@@ -320,7 +321,10 @@ export default function McpPage() {
             <code className="field">search_hotels</code> for a destination and dates, and{' '}
             <code className="field">find_hotel_by_name</code> for one property by the name a person would type. Both take{' '}
             <code className="field">price_as_seen_from</code>, a two-letter country code that prices the stay as a shopper in
-            that country would see it. It reads Booking.com only, and it does not book.
+            that country would see it. With an Airbnb subscription on the same RapidAPI key it also has{' '}
+            <code className="field">search_airbnb</code>, live Airbnb stays for a destination and dates, and{' '}
+            <code className="field">compare_hotel_rates</code>, which prices one stay on Booking.com and Airbnb and returns
+            the cheapest and median total from each. It reads rates; it does not book.
           </p>
           <p>
             Setup per client, every tool parameter and one real search with its date are on the{' '}
@@ -401,6 +405,14 @@ export default function McpPage() {
             <FieldRow name="find_hotel_by_name">
               Availability and price for one named hotel: takes the name a human would type (add the city to disambiguate a
               chain); name resolution is included.
+            </FieldRow>
+            <FieldRow name="search_airbnb">
+              Live Airbnb stays for a destination and dates: stay total, price per night, rating out of 5, room type,
+              bedrooms, beds, baths and an Airbnb link. Needs an Airbnb Live API subscription on the same key.
+            </FieldRow>
+            <FieldRow name="compare_hotel_rates">
+              The same stay priced on Booking.com and Airbnb: one row per source with the cheapest total, the median total and
+              how many places were priced. Sources you have no subscription for are listed as skipped.
             </FieldRow>
             <p className="mt-5 text-[14px] text-ink-400 leading-relaxed">
               Hotel tools take <code className="field">checkin_date</code> / <code className="field">checkout_date</code>,{' '}

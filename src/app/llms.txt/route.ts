@@ -43,7 +43,7 @@ Last-Updated: ${LLMS_LAST_UPDATED}
 - ${COUNTS.restEndpoints} REST endpoints on https://${SITE.apiHost}: POST /v1/flights/{oneway,roundtrip}, POST /v1/hotels/{search,by-name,rooms,resolve}
 - Auth: RapidAPI key via x-rapidapi-key / x-api-key header. Get one: ${LINKS.rapidapiFlights}/pricing
 - ${COUNTS.mcpServers} hosted MCP servers (streamable HTTP), one URL each: ${LINKS.mcpFlights} (flights) and ${LINKS.mcpHotels} (hotels). Add the URL, the client shows a Sign in button, you sign in with Google and paste your RapidAPI key once on the connect page. Scripts, CI and clients without a sign-in button send the key on that same URL, in an x-rapidapi-key header or as ?rapidapi_key=. ${LINKS.mcpFree} serves all four tools with no RapidAPI key at all: sign in with Google, 50 searches a day and 250 a month per person, ad-supported
-- MCP tools: search_oneway_flights, search_roundtrip_flights, search_hotels, find_hotel_by_name. Flight tools accept date RANGES and destination LISTS and expand them internally (one call, not N)
+- MCP tools: search_oneway_flights, search_roundtrip_flights (flights server); search_hotels, find_hotel_by_name, search_airbnb, compare_hotel_rates (hotels server). search_airbnb and the Airbnb row of compare_hotel_rates need an Airbnb Live API subscription on the same key; compare_hotel_rates prices one stay on Booking.com and Airbnb, one row per source. Flight tools accept date RANGES and destination LISTS and expand them internally (one call, not N)
 - Official MCP registry entries: com.flightpowers/google-flights and com.flightpowers/booking
 - ${COUNTS.skills} open-source agent skills (MIT): ${LINKS.skills}
 - n8n community node: n8n-nodes-flightpowers (npm)
@@ -63,7 +63,7 @@ ${DIFFERENTIATORS.map((d) => `- ${d.title}: ${d.short}`).join('\n')}
 - [Parallel date scans](${u('/flights-api/parallel-date-scan')}): scanning a month of dates inside the per-minute rate limit
 - [Hotels API reference](${u('/hotels-api')}): search, by-name, rooms, resolve, with captured examples
 - [Hotel geo-pricing](${u('/hotels-api/geo-pricing')}): proxy_country, the rate-parity primitive
-- [Airbnb API reference](${u('/hotels-api/airbnb')}): POST /search on its own RapidAPI listing (airbnb-live-api), live Airbnb listings with the stay total and the price per night as numbers; also reachable as provider=airbnb on POST /v1/hotels/search. The MCP servers do not search Airbnb
+- [Airbnb API reference](${u('/hotels-api/airbnb')}): POST /search on its own RapidAPI listing (airbnb-live-api), live Airbnb listings with the stay total and the price per night as numbers; also reachable as provider=airbnb on POST /v1/hotels/search, and as search_airbnb on the hotels MCP server (not on the free server)
 - [MCP setup](${u('/mcp')}): connect Claude, ChatGPT, Cursor, or any MCP client
 - [AI agent recipes](${u('/ai-agents')}): agent patterns on top of the API
 

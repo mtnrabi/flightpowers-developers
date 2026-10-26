@@ -425,7 +425,7 @@ export default function AiAgentsPage() {
         <SectionHead eyebrow="Keep going" title="Where to next" />
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            { href: '/mcp', label: 'The MCP servers', sub: 'One URL, four tools, your key' },
+            { href: '/mcp', label: 'The MCP servers', sub: 'One URL each, six tools, your key' },
             { href: '/skills', label: 'The agent skills', sub: `${COUNTS.skills} open-source skills, MIT` },
             { href: '/guides', label: 'Guides', sub: 'Working code for each surface, dated' },
             { href: '/pricing', label: 'Pricing', sub: 'Plans from $0, billed on RapidAPI' },

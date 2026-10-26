@@ -72,7 +72,7 @@ Human version: ${SITE.url}/pricing
 ## What you are buying
 
 Three REST APIs sold on RapidAPI (flights, Booking.com hotels, Airbnb), and two remote MCP
-servers that call the flights and Booking.com APIs with your own key. Billing happens on
+servers that call them with your own key (the hotels server calls Booking.com and Airbnb). Billing happens on
 RapidAPI. We never see your card. Each API is a separate subscription; one RapidAPI account
 key works for all three once you subscribe to each.
 
@@ -97,7 +97,9 @@ ${planTable(HOTEL_PLANS)}
 ${planTable(AIRBNB_PLANS)}
 
 ${AIRBNB_READ_ON ? `Airbnb plans read from the live listing on ${AIRBNB_READ_ON}.` : ''} One Airbnb search returns one page of
-Airbnb's results (20 to 30 listings in our tests). The MCP servers do not search Airbnb.
+Airbnb's results (20 to 30 listings in our tests). The hotels MCP server's search_airbnb and the Airbnb row of
+compare_hotel_rates spend this subscription; the free Google sign-in searches on the MCP servers do not cover Airbnb.
+compare_hotel_rates spends one request on each source it searches, each on that source's own subscription.
 
 ## How a request is counted
 

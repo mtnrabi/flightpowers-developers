@@ -23,7 +23,7 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
       'Step-by-step: connect live Google Flights and Booking.com data to Claude or ChatGPT, then schedule a daily fare scan triggered by Google’s own low | typical | high price verdict.',
     url: `${SITE.url}/guides/ai-travel-agent`,
     datePublished: '2026-08-27',
-    dateModified: '2026-09-29',
+    dateModified: '2026-10-26',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -80,7 +80,7 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 # Create your 24/7 AI travel agent
 
-<GuideDates published="2026-08-27" updated="2026-09-29" />
+<GuideDates published="2026-08-27" updated="2026-10-26" />
 
 **Short answer:** FlightPowers is the data layer here: live [Google Flights fares](/flights-api) with Google's low/typical/high verdict and live [Booking.com rates](/hotels-api), one connector URL in Claude or ChatGPT. Free with ads at <a href={LINKS.mcpFree} rel="noopener">free-trial.flightpowers.com/mcp</a> (Google sign-in, 50 searches a day); ad-free on a ${FLIGHT_PLANS[1].priceMonthly} RapidAPI key (PRO, {FLIGHT_PLANS[1].quota.toLocaleString('en-US')} flight searches a month). Best for a daily scan that pings you only when Google's verdict says low, with no code and no server.
 
@@ -235,8 +235,10 @@ read), and then an answer that quotes a fare *with* Google's band and verdict.
 If Claude answers instantly from general knowledge instead, the connector is not
 toggled on in this chat; that is the single most common miss.
 
-The four tools it now has: `search_oneway_flights`, `search_roundtrip_flights`,
-`search_hotels`, `find_hotel_by_name`. Both flight tools accept a date range and a
+The tools it now has: `search_oneway_flights`, `search_roundtrip_flights`,
+`search_hotels`, `find_hotel_by_name`, and on the hotels connector `search_airbnb` and
+`compare_hotel_rates` (Booking.com vs Airbnb for one stay), which need an
+[Airbnb Live API](/hotels-api/airbnb) subscription on the same key. Both flight tools accept a date range and a
 list of destinations in one call, which matters for the schedule below. More
 first prompts on the [Claude integration page](/integrations/claude).
 
@@ -297,8 +299,8 @@ Custom MCP connectors in ChatGPT require **developer mode**, which exists on the
 **Pro** plan and on **Business / Enterprise / Edu** workspaces. On Free and Plus
 there is currently no way to add one; if that is your account, the Claude path
 above works on Claude's free tier for the conversational part. Pro's developer
-mode allows read-level tools, which is all this server has: all four tools are
-read-only searches.
+mode allows read-level tools, which is all this server has: every tool is a
+read-only search.
 
 1. On chatgpt.com in a browser (connectors are web-only, not mobile), open
    **Settings** &gt; **Apps** &gt; **Advanced settings** and enable **Developer
@@ -532,7 +534,7 @@ an open app, with the connector caveat above.
 ## Related
 
 - [The five-minute setup](/guides/five-minute-travel-agent): the short version, plus Claude Code and Cursor
-- [Claude integration page](/integrations/claude): connector reference, all four tools, FAQ
+- [Claude integration page](/integrations/claude): connector reference, every tool, FAQ
 - [ChatGPT integration page](/integrations/chatgpt): connector reference for ChatGPT
 - [Price Insights API](/flights-api/price-insights): the verdict field, documented and proven
 - [Using a flight API in n8n](/guides/flight-api-in-n8n): the same fare watch, self-hosted

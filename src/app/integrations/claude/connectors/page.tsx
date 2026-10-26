@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { AddToClientButtons } from '@/components/AddToClientButtons';
 import { Breadcrumbs, Container, FaqSection, FieldRow, JsonLd, Section, SectionHead, type Faq } from '@/components/ui';
-import { FLIGHT_PLANS, HOTEL_PLANS } from '@/lib/pricing';
+import { AIRBNB_PLANS, FLIGHT_PLANS, HOTEL_PLANS } from '@/lib/pricing';
 import { LINKS, SITE, installLinks } from '@/lib/site';
 
 export const dynamic = 'force-static';
@@ -34,6 +34,7 @@ export const metadata: Metadata = {
 
 const flightsPro = FLIGHT_PLANS.find((p) => p.name === 'PRO')!;
 const hotelsPro = HOTEL_PLANS.find((p) => p.name === 'PRO')!;
+const airbnbPro = AIRBNB_PLANS.find((p) => p.name === 'PRO')!;
 
 const CONNECTORS = [
   {
@@ -47,7 +48,7 @@ const CONNECTORS = [
   {
     server: 'hotels' as const,
     name: 'FlightPowers Hotels',
-    what: 'Live Booking.com rates: a city over a range of check-in days, a nightly budget and Booking.com’s filters, or one named hotel, priced as a shopper in another country sees it.',
+    what: 'Live Booking.com rates: a city over a range of check-in days, a nightly budget and Booking.com’s filters, or one named hotel, priced as a shopper in another country sees it. With an Airbnb subscription on the same key, live Airbnb stays too, and the same stay compared on both.',
     connect: LINKS.mcpConnectHotels,
     pro: hotelsPro,
     unit: 'hotel',
@@ -114,6 +115,16 @@ const TOOLS = [
     type: 'FlightPowers Hotels',
     note: 'One hotel by the name you would type, no property ID. Over a range of dates it gives a rate calendar; price_as_seen_from prices it as a shopper in another country sees it.',
   },
+  {
+    name: 'search_airbnb',
+    type: 'FlightPowers Hotels',
+    note: 'Live Airbnb stays for a city and dates: stay total, price per night, rating out of 5, room type, bedrooms, beds, baths and an Airbnb link. Needs its own Airbnb Live API subscription on your key; the free daily searches do not cover it.',
+  },
+  {
+    name: 'compare_hotel_rates',
+    type: 'FlightPowers Hotels',
+    note: 'One stay priced on Booking.com and Airbnb: a row per source with the cheapest total, the median total and how many places were priced. A source you have no subscription for is listed as skipped.',
+  },
 ];
 
 const faq: Faq[] = [
@@ -127,7 +138,7 @@ const faq: Faq[] = [
   },
   {
     q: 'How do I get the full scans?',
-    a: `Subscribe to a plan on RapidAPI (PRO is $${flightsPro.priceMonthly} a month for ${flightsPro.quota.toLocaleString('en-US')} flight searches, or $${hotelsPro.priceMonthly} for ${hotelsPro.quota.toLocaleString('en-US')} hotel searches) and paste the key once at ${LINKS.mcpConnectFlights} or ${LINKS.mcpConnectHotels}. The daily limit then no longer applies. Each key covers its own product.`,
+    a: `Subscribe to a plan on RapidAPI (PRO is $${flightsPro.priceMonthly} a month for ${flightsPro.quota.toLocaleString('en-US')} flight searches, or $${hotelsPro.priceMonthly} for ${hotelsPro.quota.toLocaleString('en-US')} hotel searches) and paste the key once at ${LINKS.mcpConnectFlights} or ${LINKS.mcpConnectHotels}. The daily limit then no longer applies. Each subscription covers its own product: Airbnb searches on the Hotels connector need an Airbnb Live API subscription on the same key (PRO is $${airbnbPro.priceMonthly} for ${airbnbPro.quota.toLocaleString('en-US')}).`,
   },
   {
     q: 'Does Claude see my key?',
@@ -135,11 +146,11 @@ const faq: Faq[] = [
   },
   {
     q: 'Can these connectors book anything?',
-    a: 'No. Every tool is a read-only search. Results carry a link to book on Google Flights or Booking.com yourself.',
+    a: 'No. Every tool is a read-only search. Results carry a link to book on Google Flights, Booking.com or Airbnb yourself.',
   },
   {
     q: 'Where do the prices come from?',
-    a: 'They are read live from Google Flights and Booking.com when you ask. FlightPowers is an independent service and is not affiliated with Google or Booking.com.',
+    a: 'They are read live from Google Flights, Booking.com and Airbnb when you ask. FlightPowers is an independent service and is not affiliated with Google, Booking.com or Airbnb.',
   },
 ];
 

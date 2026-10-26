@@ -22,7 +22,7 @@ import { rapidApiPricingUrl } from '@/lib/site';
       'Connect live Google Flights and Booking.com data to ChatGPT using developer-mode MCP connectors. Real-time flight and hotel prices in conversations.',
     url: `https://flightpowers.com/guides/google-flights-mcp-chatgpt`,
     datePublished: '2026-09-01',
-    dateModified: '2026-09-01',
+    dateModified: '2026-10-26',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -30,16 +30,16 @@ import { rapidApiPricingUrl } from '@/lib/site';
 
 # Using the Google Flights MCP in ChatGPT
 
-<GuideDates published="2026-09-01" updated="2026-09-01" />
+<GuideDates published="2026-09-01" updated="2026-10-26" />
 
 **Short answer:** Add the FlightPowers flights and hotels MCP server URLs as developer-mode
-connectors in ChatGPT, sign in with Google, and it gains four tools: live Google Flights
-pricing, Booking.com hotel search, plus date-range and destination-list expansion, so one
+connectors in ChatGPT, sign in with Google, and it gains six tools: live Google Flights
+pricing, Booking.com hotel search, Airbnb search on an Airbnb subscription, plus date-range and destination-list expansion, so one
 question can become a multi-day scan. No REST code, just the two connector URLs.
 
 ChatGPT can search live flight and hotel data mid-conversation when you connect the
 FlightPowers MCP servers through developer-mode connectors. Two URLs (flights and
-hotels) unlock four tools: live Google Flights pricing, Booking.com hotel searches, and
+hotels) unlock six tools: live Google Flights pricing, Booking.com hotel searches, Airbnb searches on an Airbnb subscription, and
 the date-range and destination-list expansions that turn a single question into a
 multi-day scan.
 
@@ -101,7 +101,7 @@ Replace `YOUR_RAPIDAPI_KEY` with your actual key. The key rides on the connector
 your settings and ChatGPT never sees it in the chat itself, but treat that URL as a
 secret: anyone who has it can spend your quota.
 
-## The four tools
+## The six tools
 
 **search_oneway_flights**: Live one-way flight prices from Google Flights. Pass a
 single date or a date range (`departure_date_from` / `departure_date_to`) and the
@@ -124,6 +124,17 @@ human would type (add the city to disambiguate a chain) and resolves the propert
 internally. Supports `price_as_seen_from`, a two-letter country code that prices the
 stay as a shopper in that market would see it, the field rate-parity checks are built
 on.
+
+**search_airbnb**: Live Airbnb stays for a destination and dates, read from Airbnb's
+public search page when you ask. Each stay has a stay total, a per-night price, a rating
+out of 5, room type, bedrooms, beds, baths and an Airbnb link. It needs its own
+[Airbnb Live API](/hotels-api/airbnb) subscription on the same RapidAPI key; the free
+sign-in searches do not cover it.
+
+**compare_hotel_rates**: Prices the same stay on Booking.com and Airbnb and returns one
+row per source: the cheapest total, the median total and how many places were priced.
+Booking.com rates out of 10 and Airbnb out of 5, and `taxes_included` is null on Airbnb.
+Each source is one billed request on its own subscription.
 
 ## Example prompts
 

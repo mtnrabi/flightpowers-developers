@@ -48,6 +48,16 @@ const tools: ToolLine[] = [
     type: 'hotels server',
     note: 'One property by the name a human would type. price_as_seen_from prices it from any market, the rate-parity tool.',
   },
+  {
+    name: 'search_airbnb',
+    type: 'hotels server',
+    note: 'Live Airbnb stays for a destination and dates, with the stay total and the price per night. Needs an Airbnb Live API subscription on the same key.',
+  },
+  {
+    name: 'compare_hotel_rates',
+    type: 'hotels server',
+    note: 'The same stay priced on Booking.com and Airbnb: the cheapest and median total from each, one billed request per source.',
+  },
 ];
 
 const faq: Faq[] = [
