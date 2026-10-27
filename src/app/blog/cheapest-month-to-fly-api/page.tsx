@@ -235,7 +235,7 @@ const grid = results.map((res, i) => ({
         <CtaBand
           medium="blog"
           title="The full grid, every day, on your own key"
-          body="One request per date in one parallel burst, with the price band and verdict judging each fare. Free tier on RapidAPI, no card to try."
+          body="One request per date in one parallel burst, with the price band and verdict judging each fare when Google shows one. Free tier on RapidAPI, no card to try."
         />
       </Section>
     </>

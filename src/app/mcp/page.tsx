@@ -195,7 +195,7 @@ export default function McpPage() {
                     <>Live Google Flights fares and Booking.com rates inside the assistant you already use</>,
                     <>
                       Every fare comes back with Google&apos;s own price band and a{' '}
-                      <strong className="text-ink-100">low | typical | high</strong> verdict, so your agent knows cheap when it
+                      <strong className="text-ink-100">low | typical | high</strong> verdict when Google shows one, so your agent knows cheap when it
                       sees it
                     </>,
                     <>

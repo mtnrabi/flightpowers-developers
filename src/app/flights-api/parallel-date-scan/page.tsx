@@ -379,7 +379,7 @@ export default function ParallelDateScanPage() {
         <CtaBand
           medium="endpoint"
           title="Scan the month, find the day"
-          body="Rate limits sized for parallel date scans, with a price verdict on every fare that comes back."
+          body="Rate limits sized for parallel date scans, with a price verdict on every fare where Google shows one."
         />
       </Section>
     </>

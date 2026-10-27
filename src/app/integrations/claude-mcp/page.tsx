@@ -106,7 +106,7 @@ export default function ClaudeMcpPage() {
                   items={[
                     <>Live Google Flights fares and Booking.com rates, asked for in plain English</>,
                     <>
-                      Google\'s price verdict on every fare: <code className="font-mono text-[13px] text-signal-400">low | typical | high</code>
+                      Google\'s price verdict when Google shows one: <code className="font-mono text-[13px] text-signal-400">low | typical | high</code>
                     </>,
                     <>A date range and a list of destinations in one call, and a round trip priced as one request</>,
                     <>Hosted, so nothing runs on your machine. Searches bill to your own RapidAPI plan</>,
@@ -246,7 +246,7 @@ export default function ClaudeMcpPage() {
           <div className="rounded-2xl border rule bg-ink-900/60 p-6">
             <p className="font-mono text-[12px] text-ink-400 mb-3">{LINKS.mcpFlights.replace('https://', '')}</p>
             <Feature title="search_oneway_flights">
-              One-way fares with Google\'s price band, a low | typical | high verdict, and a buy_link on every result. Accepts a
+              One-way fares with Google\'s price band and a low | typical | high verdict (when Google shows one), and a buy_link on every result. Accepts a
               single date or a range (departure_date_from / departure_date_to), expanded server-side.
             </Feature>
             <div className="mt-4" />

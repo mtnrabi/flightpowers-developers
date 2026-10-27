@@ -44,7 +44,7 @@ export function ApiUpsellCard({
   pricingHref,
   docsHref,
   headline = 'Get this exact result from your own code',
-  body = 'The same data you are looking at, as JSON, with price_insights_low/high and the low | typical | high verdict on every row.',
+  body = 'The same data you are looking at, as JSON, with price_insights_low/high and the low | typical | high verdict where Google shows one.',
 }: {
   snippets: Snippets | SnippetPair;
   tool: string;

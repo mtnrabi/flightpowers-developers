@@ -48,7 +48,7 @@ const SHORT_ANSWERS: { q: string; a: string }[] = [
   },
   {
     q: 'Is there an MCP for Google Flights?',
-    a: `Google has offered no public flights API since QPX Express closed in 2018, so a Google Flights MCP reads the live public results. This one hands them to the assistant with a booking link on every fare and Google's own low / typical / high price band for the route.`,
+    a: `Google has offered no public flights API since QPX Express closed in 2018, so a Google Flights MCP reads the live public results. This one hands them to the assistant with a booking link on every fare and Google's own low / typical / high price band for the route when Google shows one.`,
   },
   {
     q: 'What is an MCP server for?',

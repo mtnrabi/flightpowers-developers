@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   ...withOg({
     title: 'Google Flights connector for Claude: live fares in claude.ai',
     description:
-      "Google Flights connector for Claude: two connector URLs in claude.ai, Google sign-in, every fare with Google's price band and a low/typical/high verdict.",
+      "Google Flights connector for Claude: two connector URLs in claude.ai, Google sign-in, every fare with Google's price band and a low/typical/high verdict when Google shows one.",
     alternates: { canonical: '/integrations/claude' },
   }),
   title: { absolute: 'Google Flights connector for Claude: live fares in claude.ai' },
@@ -56,7 +56,7 @@ const tools: ToolLine[] = [
   {
     name: 'search_oneway_flights',
     type: 'flights server',
-    note: 'One-way fares with Google’s price band, the low | typical | high verdict, and a buy_link on every result. Takes a single date or a date range, expanded server-side.',
+    note: 'One-way fares with Google’s price band and the low | typical | high verdict (when Google shows one), and a buy_link on every result. Takes a single date or a date range, expanded server-side.',
   },
   {
     name: 'search_roundtrip_flights',

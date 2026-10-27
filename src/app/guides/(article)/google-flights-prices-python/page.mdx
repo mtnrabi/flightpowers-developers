@@ -3,7 +3,7 @@ import { withOg } from '@/lib/meta';
 export const metadata = withOg({
   title: 'How to get Google Flights prices with Python',
   description:
-    'Twelve lines of requests, a real captured response, and the three price-insight fields that come back with every fare. No Playwright, no browser pool, no tfs= encoding. Includes the limits worth knowing before you build on it.',
+    'Twelve lines of requests, a real captured response, and the three price-insight fields that come back with a fare when Google shows them. No Playwright, no browser pool, no tfs= encoding. Includes the limits worth knowing before you build on it.',
   alternates: { canonical: '/guides/google-flights-prices-python' },
 });
 
@@ -36,7 +36,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 `google-flights-live-api.p.rapidapi.com/api/google_flights/oneway/v1` using Python's
 `requests` library, about twelve lines total, no Playwright or browser pool. Every fare
 in the JSON list already carries `price_insights_low`, `price_insights_high`, and a low,
-typical, or high verdict, so you get price context on the first call.
+typical, or high verdict when Google shows one, so you get price context on the first call.
 
 One POST to a JSON endpoint. Twelve lines, no browser.
 
@@ -143,7 +143,7 @@ different product.
 <CtaBand
   medium="guide"
   title="Twelve lines instead of a browser pool"
-  body="Live Google Flights fares as JSON, with Google's own price band on every result. Free tier on RapidAPI, no card to try it."
+  body="Live Google Flights fares as JSON, with Google's own price band when Google shows one. Free tier on RapidAPI, no card to try it."
 />
 
 ## Related

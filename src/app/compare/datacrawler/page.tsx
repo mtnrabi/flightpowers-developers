@@ -261,7 +261,7 @@ export default function CompareDataCrawlerPage() {
                   Their documentation and APIHiver mention returning Google Flights data, but we have not verified whether their response includes Google <code className="font-mono text-[12px]">price_insights</code> band or the price context field. Treat this as "we do not know," not "they lack it."
                 </>,
                 <>
-                  Every result carries <code className="font-mono text-[12px]">price_insights_low/high</code> (the historical band Google shows) plus <code className="font-mono text-[12px]">price_insights_verdict</code> (price context: low, typical, or high), which is the fare-alert trigger condition.{' '}
+                  When Google shows a band, every result carries <code className="font-mono text-[12px]">price_insights_low/high</code> (the historical band Google shows) plus <code className="font-mono text-[12px]">price_insights_verdict</code> (price context: low, typical, or high), which is the fare-alert trigger condition.{' '}
                   <Link href="/flights-api/price-insights" className="text-signal-400 underline underline-offset-4">Proven here →</Link>
                 </>,
               ],
@@ -318,7 +318,7 @@ export default function CompareDataCrawlerPage() {
               <li>One-way and round-trip cover your use case and you do not need multi-city.</li>
               <li>You are running 2,500–10,000 searches/month and unit economics matter: our $10 or $25 plans beat theirs on total cost.</li>
               <li>You scan date ranges in bursts and want published per-minute rate limits (150 to 500/min).</li>
-              <li>You need Google price verdict (price context) on every result for alerting logic.</li>
+              <li>You need Google price verdict (price context) on results for alerting logic.</li>
               <li>You are wiring the data into an AI agent over MCP.</li>
             </ul>
           </div>
@@ -380,7 +380,7 @@ export default function CompareDataCrawlerPage() {
         <CtaBand
           medium="compare"
           title="Specialist unit economics for the high-volume path"
-          body="Live Google Flights data with the price band and verdict on every result, built for scanning and monitoring."
+          body="Live Google Flights data with the price band and verdict when Google shows one, built for scanning and monitoring."
         />
       </Section>
     </>

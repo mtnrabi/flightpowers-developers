@@ -31,7 +31,7 @@ const tools: ToolLine[] = [
   {
     name: 'search_oneway_flights',
     type: 'flights server',
-    note: 'One-way fares with Google’s price band, the low | typical | high verdict, and a buy_link on every result. Takes a single date or a date range, expanded server-side.',
+    note: 'One-way fares with Google’s price band and the low | typical | high verdict (when Google shows one), and a buy_link on every result. Takes a single date or a date range, expanded server-side.',
   },
   {
     name: 'search_roundtrip_flights',

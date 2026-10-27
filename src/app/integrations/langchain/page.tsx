@@ -64,7 +64,7 @@ export default function LangchainIntegrationPage() {
               </h1>
               <p className="lede mt-5">
                 LangChain&apos;s MCP adapters load both hosted FlightPowers servers as ordinary tools. Your agent searches
-                live fares and hotel rates and quotes Google&apos;s verdict on every fare; you write no HTTP code.
+                live fares and hotel rates and quotes Google&apos;s verdict when Google shows one; you write no HTTP code.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Cta href={rapidApiPricingUrl('flights', 'integration')} external variant="primary">

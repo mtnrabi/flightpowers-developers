@@ -56,7 +56,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Do the price-insights fields work on round-trips?',
-    a: 'Yes. Each itinerary carries price_insights_low, price_insights_high, and the low | typical | high verdict for the route and date pair. The captured $112 BER→CDG itinerary on this page came back marked "low" against a $120–$220 band.',
+    a: 'Yes. Each itinerary carries price_insights_low, price_insights_high, and the low | typical | high verdict for the route and date pair when Google shows one. The captured $112 BER→CDG itinerary on this page came back marked "low" against a $120–$220 band.',
   },
   {
     q: 'How many requests does a round-trip search cost?',

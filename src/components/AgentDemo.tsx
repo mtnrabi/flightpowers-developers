@@ -502,7 +502,7 @@ export function AgentDemo({ initialChipPayload }: { initialChipPayload: Record<s
             pricingHref={rapidApiPricingUrl('flights', 'demo-upsell')}
             docsHref="/flights-api"
             headline="The calls that produced this answer"
-            body="Same requests, your code, your key. The price band, the verdict, and X-Search-Status ride on every response."
+            body="Same requests, your code, your key. X-Search-Status rides on every response, plus the price band and verdict when Google shows one."
           />
         ) : null}
 

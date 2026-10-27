@@ -38,7 +38,7 @@ export function FloatingCta() {
         </button>
         <p className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-signal-500">Live travel data</p>
         <p className="mt-2 text-[15px] font-semibold text-ink-100 leading-snug">
-          Fares with Google&apos;s price band and a low | typical | high verdict on every row.
+          Fares with Google&apos;s price band and a low | typical | high verdict where Google shows one.
         </p>
         <p className="mt-2 text-[13px] text-ink-400">One-way, round-trip, and hotel pricing as clean JSON.</p>
         <a

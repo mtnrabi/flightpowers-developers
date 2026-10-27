@@ -54,7 +54,7 @@ const ENDPOINT_PAGES = [
     href: '/flights-api/price-insights',
     method: 'response fields',
     label: 'Price insights',
-    sub: 'Google’s historical price band and its low | typical | high verdict, on every result.',
+    sub: 'Google’s historical price band and its low | typical | high verdict, when Google shows one.',
   },
   {
     href: '/flights-api/search-status',
@@ -77,7 +77,7 @@ const GAPS: { problem: string; answer: string }[] = [
   },
   {
     problem: 'No sense of whether a price is good',
-    answer: 'Google’s own price band and a low | typical | high verdict on every result.',
+    answer: 'Google’s own price band and a low | typical | high verdict when Google shows one.',
   },
   {
     problem: 'You have to bring your own SerpApi key and pay twice',
@@ -177,7 +177,7 @@ export default function FlightsApiHubPage() {
           // @id, name, url, provider and the priced offers from lib/pricing.ts
           ...apiNode('flights'),
           description:
-            'REST API over live Google Flights results: one-way and paired round-trip search, Google\u2019s price_insights band with a low | typical | high verdict on every itinerary, and X-Search-Status headers that make an empty result unambiguous.',
+            'REST API over live Google Flights results: one-way and paired round-trip search, Google\u2019s price_insights band with a low | typical | high verdict when Google shows one, and X-Search-Status headers that make an empty result unambiguous.',
           documentation: `${SITE.url}/flights-api`,
           termsOfService: `${SITE.url}/terms`,
           potentialAction: {
@@ -249,7 +249,7 @@ export default function FlightsApiHubPage() {
                     </>,
                     <>
                       <code className="font-mono text-[13px] text-signal-400">price_insights_low / high</code> + Google&apos;s
-                      verdict on every result, on every plan
+                      verdict when Google shows one, on every plan
                     </>,
                     <>
                       <code className="font-mono text-[13px] text-signal-400">X-Search-Status</code> separates &quot;no
@@ -290,7 +290,7 @@ export default function FlightsApiHubPage() {
             <Mono>/api/google_flights/oneway/v1</Mono> and <Mono>/api/google_flights/roundtrip/v1</Mono> on{' '}
             <Mono>google-flights-live-api.p.rapidapi.com</Mono> with a RapidAPI key. Both take IATA codes and{' '}
             <code className="field">YYYY-MM-DD</code> dates and return flat JSON: live Google Flights fares with a
-            booking link, Google&apos;s own price band, and a low | typical | high verdict on every result.
+            booking link, plus Google&apos;s own price band and a low | typical | high verdict when Google shows one.
           </>
         }
         excerptLabel={`JFK → CUN one-way · first 2 of ${FIXTURES.onewayJfkCun.data.length} results, trimmed · captured ${FIXTURES.onewayJfkCun.captured_at}`}
@@ -612,8 +612,8 @@ export default function FlightsApiHubPage() {
       <Section bordered={false} className="!pt-4">
         <CtaBand
           medium="endpoint"
-          title="Every fare, judged, from one subscription"
-          body="Live Google Flights data with the price band, verdict, and booking link attached to every result."
+          title="Fares with Google's verdict, from one subscription"
+          body="Live Google Flights data: a booking link on every result, plus the price band and verdict when Google shows one."
         />
       </Section>
     </>

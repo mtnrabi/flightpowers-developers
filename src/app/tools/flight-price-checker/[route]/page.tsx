@@ -140,7 +140,7 @@ export default async function Page({ params }: Props) {
         <SectionHead
           eyebrow="The bit other price checkers skip"
           title="A price on its own does not tell you anything"
-          lede="Every fare here carries the context that makes it a decision instead of a number."
+          lede="When Google shows it, every fare here carries the context that makes it a decision instead of a number."
         />
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
           {[

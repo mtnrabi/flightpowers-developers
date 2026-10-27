@@ -207,7 +207,7 @@ export default function CompareHasDataPage() {
                 'Price context',
                 'A priceInsights object with lowestPrice, typicalPriceRange, priceLevel ("low | typical | high right now") and a priceHistory array of timestamped points. Band, verdict and history. This row is theirs on the history column and a tie on the rest.',
                 <>
-                  Google&apos;s own band plus a low, typical or high verdict on every result. No history array, so if you want a series you accumulate it.{' '}
+                  Google&apos;s own band plus a low, typical or high verdict when Google shows one. No history array, so if you want a series you accumulate it.{' '}
                   <Link href="/flights-api/price-insights" className="text-signal-400 underline underline-offset-4">Price Insights →</Link>
                 </>,
               ],
@@ -343,7 +343,7 @@ export default function CompareHasDataPage() {
         <CtaBand
           medium="compare"
           title="Judge the data, not the comparison"
-          body="Live Google Flights fares with Google's own price band and a low, typical or high verdict on every result."
+          body="Live Google Flights fares with Google's own price band and a low, typical or high verdict when Google shows one."
         />
       </Section>
     </>

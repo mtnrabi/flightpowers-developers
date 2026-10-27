@@ -17,7 +17,7 @@ export const DIFFERENTIATORS: Differentiator[] = [
     id: 'price-insights',
     title: "Google's own price band, plus a verdict",
     short:
-      'Every fare carries price_insights_low / price_insights_high (Google\'s historical band for the route and dates) and a low | typical | high verdict. You can tell a user "$112 is a good price," not just "$112."',
+      'Every fare carries price_insights_low / price_insights_high (Google\'s historical band for the route and dates) and a low | typical | high verdict when Google shows one. You can tell a user "$112 is a good price," not just "$112."',
     provenBy: { label: 'Price Insights API', href: '/flights-api/price-insights' },
   },
   {

@@ -420,7 +420,7 @@ export function gridTitleField(title: string): string | { absolute: string } {
  * codes are always three letters, so each family has one fixed length.
  */
 export function cheapestTimeToFlyDescription(r: GridRoute): string {
-  return `The coming year of ${r.from.iata} to ${r.to.iata} fares in one scan: a live Google Flights search per month, charted, each with Google's low, typical or high verdict.`;
+  return `The coming year of ${r.from.iata} to ${r.to.iata} fares in one scan: a live Google Flights search per month, charted, with Google's low, typical or high verdict where shown.`;
 }
 
 export function flightPriceCheckerDescription(r: GridRoute): string {

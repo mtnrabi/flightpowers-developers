@@ -3,7 +3,7 @@ import { withOg } from '@/lib/meta';
 export const metadata = withOg({
   title: 'Cheapest destinations from one airport this month',
   description:
-    'Pass a list of destination airports and a departure date range in one call and get every fare back with Google\'s price band on each row. A real BER run over 5 cities and 3 October dates, the limit that silently drops a destination, the REST fan-out that does the same job, and how this differs from SerpApi\'s deals engine.',
+    'Pass a list of destination airports and a departure date range in one call and get every fare back with Google\'s price band on each row where Google shows one. A real BER run over 5 cities and 3 October dates, the limit that silently drops a destination, the REST fan-out that does the same job, and how this differs from SerpApi\'s deals engine.',
   alternates: { canonical: '/guides/cheapest-destinations-from-one-airport' },
 });
 
@@ -36,7 +36,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 airports in `to_airport` and a **date range** in `departure_date_from` / `departure_date_to`,
 expands every date and destination combination server side, and returns the merged fares in
 one response with Google's `price_insights_low` / `price_insights_high` band and a
-`low | typical | high` verdict on every row. Sorting them into a cheapest-destination ranking
+`low | typical | high` verdict on every row where Google shows one. Sorting them into a cheapest-destination ranking
 is one line of client code. The free server at
 `https://free-trial.flightpowers.com/mcp` runs the same tool after a Google sign-in,
 with no API key, and searches at most 15 combinations per call.
@@ -299,7 +299,7 @@ So the two answer different questions:
 - **"Of these five cities I would actually go to, which is cheapest, on which day, and is
   that price good?"** That is the one-way tool with a list and a range. You choose the
   shortlist, you get every fare on every date rather than one headline deal per destination,
-  and each row carries Google's band and verdict plus a `buy_link` to that exact itinerary.
+  and each row carries Google's band and verdict (when Google shows one) plus a `buy_link` to that exact itinerary.
 
 If your product is a discovery feed with no user shortlist, the deals engine is doing
 something we do not do, and you should use it. If your users already have destinations in
@@ -326,7 +326,7 @@ RapidAPI key, no ads, no daily cap of ours and no 15-combination ceiling.
 <CtaBand
   medium="guide"
   title="One call, a shortlist of cities, a whole date range"
-  body="A list of destinations and a departure window in, every live fare out, each row carrying Google's own price band and a buy link. Free tier on RapidAPI, no card."
+  body="A list of destinations and a departure window in, every live fare out, each row carrying Google's own price band (when Google shows one) and a buy link. Free tier on RapidAPI, no card."
 />
 
 ## Related

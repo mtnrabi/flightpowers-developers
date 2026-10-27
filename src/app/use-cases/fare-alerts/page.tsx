@@ -16,7 +16,7 @@ export const dynamic = 'force-static';
 const faq: Faq[] = [
   {
     q: 'How do I know a fare is “low” without collecting my own price history?',
-    a: 'Every result carries price_insights_low and price_insights_high (Google’s historical price band for that route and date window), plus price_range_in_relation_to_other_periods, Google’s own low | typical | high verdict. Your alert branches on the price_range_in_relation_to_other_periods field; Google’s band is the history you didn’t have to collect.',
+    a: 'When Google shows a band, every result carries price_insights_low and price_insights_high (Google’s historical price band for that route and date window), plus price_range_in_relation_to_other_periods, Google’s own low | typical | high verdict. Your alert branches on the price_range_in_relation_to_other_periods field; Google’s band is the history you didn’t have to collect.',
   },
   {
     q: 'Will my alert misfire when a search fails?',
@@ -129,7 +129,7 @@ export default function FareAlertsPage() {
           medium="use-case"
           api="flights"
           title="Ship the alert, skip the database"
-          body="Google’s price band rides on every result, on every plan, including the free tier you can verify a key with."
+          body="Google’s price band rides on every result where Google shows one, on every plan, including the free tier you can verify a key with."
         />
       </Section>
     </>

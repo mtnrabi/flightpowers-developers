@@ -175,7 +175,7 @@ export default function CheapestMonthPage() {
               </p>
             </div>
             <div>
-              <p className="text-[15px] font-semibold text-ink-100">A verdict on every day</p>
+              <p className="text-[15px] font-semibold text-ink-100">A verdict where Google gives one</p>
               <p className="mt-1.5 text-[14px] text-ink-400 leading-relaxed">
                 Each fare carries Google&apos;s price band and low | typical | high verdict where published. Cheap for the month
                 <em> and</em> cheap for the route are different questions, and a scan answers both.
@@ -217,7 +217,7 @@ export default function CheapestMonthPage() {
         <CtaBand
           medium="tool"
           title="The full grid, every day, on your own key"
-          body="One request per date in one parallel burst, with the price band and verdict judging each fare for you. Free tier on RapidAPI, no card to try."
+          body="One request per date in one parallel burst, with the price band and verdict judging each fare for you when Google shows one. Free tier on RapidAPI, no card to try."
         />
       </Section>
     </>

@@ -8,7 +8,7 @@ import { COUNTS } from '@/lib/site';
 export const metadata: Metadata = withOg({
   title: 'Market Analysis: track fare movement with Google’s own baseline attached',
   description:
-    'Sweep routes and dates on a schedule and chart price_as_number over time, with price_insights_low/high giving every observation a route-level baseline from day one. Rate limits of 150–500 req/min make wide sweeps practical.',
+    'Sweep routes and dates on a schedule and chart price_as_number over time, with price_insights_low/high giving a route-level baseline from day one to every observation where Google shows the band. Rate limits of 150–500 req/min make wide sweeps practical.',
   alternates: { canonical: '/use-cases/market-analysis' },
 });
 
@@ -17,7 +17,7 @@ export const dynamic = 'force-static';
 const faq: Faq[] = [
   {
     q: 'How is this better than collecting prices and computing my own baseline?',
-    a: 'You still collect the time series. But every observation already carries price_insights_low and price_insights_high, Google’s historical band for that route and date window. Your dataset is normalisable from the first day of collection instead of after months of warm-up, and “fare vs. its own route’s usual range” is a column, not a model.',
+    a: 'You still collect the time series. But every observation where Google shows the band already carries price_insights_low and price_insights_high, Google’s historical band for that route and date window. Your dataset is normalisable from the first day of collection instead of after months of warm-up, and “fare vs. its own route’s usual range” is a column, not a model.',
   },
   {
     q: 'How wide a sweep can one plan sustain?',
@@ -43,7 +43,7 @@ export default function MarketAnalysisPage() {
         <h1 className="mt-4 text-hero font-semibold max-w-3xl">
           Fare analysis with a <span className="text-signal-500">baseline included</span>
         </h1>
-        <p className="lede mt-5 max-w-2xl">Track routes over time and judge every observation against Google&apos;s own price band, from day one.</p>
+        <p className="lede mt-5 max-w-2xl">Track routes over time and judge every observation against Google&apos;s own price band where Google shows one, from day one.</p>
         <p className="mt-6 max-w-3xl text-[15px] text-ink-300 leading-relaxed">
           Fare and rate analysis has a cold-start problem: a price observation means little until you have enough history to
           say what normal looks like, and building that history takes months of collection before the first useful chart.
@@ -55,9 +55,9 @@ export default function MarketAnalysisPage() {
       <Section bordered={false} className="!pt-10">
         <SectionHead eyebrow="How FlightPowers helps" title="Analysis-grade fields, sweep-grade limits" />
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
-          <Feature title="Google's band on every observation">
-            price_insights_low/high is a per-route, per-window baseline computed by Google, attached to each result. Your
-            first day of data already knows whether each fare was low, typical, or high for its route.
+          <Feature title="Google's band wherever Google shows it">
+            price_insights_low/high is a per-route, per-window baseline computed by Google, attached to each result when Google shows it. Your
+            first day of data already knows whether a fare was low, typical, or high for its route.
           </Feature>
           <Feature title="Rate limits that fit sweeps">
             {COUNTS.flightsRateLimits} requests/minute across the paid tiers. A daily sweep of hundreds of route-dates runs as

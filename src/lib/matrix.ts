@@ -337,7 +337,7 @@ export const TASKS: TaskDef[] = [
     toolCall: { from_airport: 'JFK', to_airport: 'CUN', departure_date: '2027-04-15', max_stops: 0, limit: 5 },
     fields: ['price', 'price_insights_low', 'price_insights_high', 'price_range_in_relation_to_other_periods', 'buy_link'],
     description:
-      'The agent searches live Google Flights data and answers with fares it can actually judge: every result carries Google’s historical price band and a low | typical | high verdict, so “is the price any good” is a field read, not a guess. The buy_link hands the user a working booking deep link.',
+      'The agent searches live Google Flights data and answers with fares it can actually judge: every result carries Google’s historical price band and a low | typical | high verdict when Google shows one, so “is the price any good” is a field read, not a guess. The buy_link hands the user a working booking deep link.',
     rest: {
       path: '/v1/flights/oneway',
       body: { from_airport: 'JFK', to_airport: 'CUN', departure_date: '2027-04-15', max_stops: 0, limit: 5 },
@@ -387,7 +387,7 @@ export const TASKS: TaskDef[] = [
     rest: {
       path: '/v1/flights/oneway',
       body: { from_airport: 'JFK', to_airport: 'CUN', departure_date: '2027-04-15', limit: 3 },
-      note: 'The band and the verdict ride on every result of the ordinary search. There is no separate insights endpoint to call and nothing extra to enable.',
+      note: 'The band and the verdict ride on every result of the ordinary search when Google shows them. There is no separate insights endpoint to call and nothing extra to enable.',
     },
     apify: {
       actor: 'flights',

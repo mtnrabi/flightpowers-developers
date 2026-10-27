@@ -571,9 +571,9 @@ hotelIds=MCLONGHM&adults=2&checkInDate=2027-04-15\\
         />
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
           <div className="rounded-2xl border rule bg-ink-900/60 p-6">
-            <h3 className="text-[16px] font-semibold text-ink-100">A verdict attached to every price</h3>
+            <h3 className="text-[16px] font-semibold text-ink-100">A verdict attached to the price</h3>
             <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed">
-              Every flight result carries Google’s historical band ({code('price_insights_low')} / {code('price_insights_high')})
+              Flight results carry Google’s historical band ({code('price_insights_low')} / {code('price_insights_high')})
               plus a price context. Rebuilding a fare-alert feature? That field <em>is</em> the trigger condition, and
               you don’t accumulate months of history first. It can be {code('null')} when Google shows no band. Handle that.{' '}
               <Link href="/flights-api/price-insights" className="text-signal-400 underline underline-offset-4">Proven here →</Link>

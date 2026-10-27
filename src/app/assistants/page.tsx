@@ -219,7 +219,7 @@ export default function AssistantsPage() {
           FlightPowers for <span className="text-signal-500">assistant products</span>
         </h1>
         <p className="lede mt-5 max-w-2xl">
-          Live Google Flights fares and Booking.com rates your assistant can call, with Google&apos;s own verdict on the price
+          Live Google Flights fares and Booking.com rates your assistant can call, with Google&apos;s own verdict on the price (when Google shows one)
           and a booking link on every row. I&apos;m Matan, I built this, and I answer the email myself.
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-3">

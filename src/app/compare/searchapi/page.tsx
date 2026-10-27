@@ -133,7 +133,7 @@ export default function CompareSearchApiPage() {
               [
                 'Google price band',
                 'Yes: price_insights with typical_price_range and a price_history series.',
-                'Yes: price_insights_low / price_insights_high and a low / typical / high verdict on every result. No history series.',
+                'Yes: price_insights_low / price_insights_high and a low / typical / high verdict when Google shows one. No history series.',
               ],
               [
                 'A range of dates in one call',
@@ -292,7 +292,7 @@ export default function CompareSearchApiPage() {
         <CtaBand
           medium="compare"
           title="Run the same route on your own key"
-          body="Live Google Flights fares with Google's price band on every result, and a round trip in one request."
+          body="Live Google Flights fares with Google's price band when Google shows one, and a round trip in one request."
         />
       </Section>
     </>

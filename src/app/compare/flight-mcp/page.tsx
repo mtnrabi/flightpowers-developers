@@ -262,7 +262,7 @@ export default function CompareFlightMcpPage() {
             <ul className="mt-3 space-y-2 text-[14.5px] text-ink-400 leading-relaxed list-disc pl-5">
               <li>You are alerting on prices and a stale fare is worse than no fare.</li>
               <li>Your workload is a sweep of unique date pairs, where a cache gives you nothing.</li>
-              <li>You want Google&apos;s price band and verdict on every result rather than a normalized offer alone.</li>
+              <li>You want Google&apos;s price band and verdict where Google shows one rather than a normalized offer alone.</li>
               <li>You want hotels on the same key.</li>
             </ul>
           </div>
@@ -301,7 +301,7 @@ export default function CompareFlightMcpPage() {
         <CtaBand
           medium="compare"
           title="No cache to explain to your users"
-          body="Every call is scanned live against Google Flights at request time, with Google's own price band on every result."
+          body="Every call is scanned live against Google Flights at request time, with Google's own price band when Google shows one."
         />
       </Section>
     </>

@@ -76,7 +76,7 @@ export default function N8nIntegrationPage() {
               </h1>
               <p className="lede mt-5">
                 A community node for live flight and hotel data. Because every fare arrives with Google&apos;s low | typical |
-                high verdict, &ldquo;alert me when it&apos;s cheap&rdquo; is one IF condition: no price-history database to
+                high verdict when Google shows one, &ldquo;alert me when it&apos;s cheap&rdquo; is one IF condition: no price-history database to
                 build first.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
@@ -227,7 +227,7 @@ export default function N8nIntegrationPage() {
         <CtaBand
           medium="integration"
           title="One credential, every workflow"
-          body="Install the node, paste your RapidAPI key once, and every fare your workflows touch arrives already judged: low, typical, or high."
+          body="Install the node, paste your RapidAPI key once, and every fare your workflows touch arrives already judged where Google shows a verdict: low, typical, or high."
         />
       </Section>
     </>

@@ -135,7 +135,7 @@ export default function CompareSkyscannerPage() {
               ['Where fares come from', '“a network of 1,200+ partners and a blend of realtime and cached data”', 'Google Flights, fetched live at request time.'],
               ['Live search shape', 'Two endpoints: /create, then /poll for the rest of the results.', 'One request, one answer.'],
               ['Cached prices for exploring', 'Indicative Prices: “cached and can be up to 4 days old”.', 'None. Every search is live.'],
-              ['Price verdict', 'We did not find a low / typical / high field in the docs we read.', 'Google\'s range for the route and a low / typical / high verdict on every result.'],
+              ['Price verdict', 'We did not find a low / typical / high field in the docs we read.', 'Google\'s range for the route and a low / typical / high verdict when Google shows one.'],
               ['Round trip', '“flexible dates, multi-leg journeys and advanced search filtering”, per their partner page.', 'One POST to /v1/flights/roundtrip, both legs, one total, one booking link.'],
               ['Hotels and cars', 'Hotels (rates, content, reviews) and Car Hire APIs.', `Booking.com hotel rates on their own plan, $${HOTEL_PRO.priceMonthly} for ${HOTEL_PRO.quota.toLocaleString('en-US')}. No car hire.`],
               ['MCP', 'We did not find a first-party MCP server on their developer portal.', 'Hosted MCP servers for flights and hotels on your own key.'],
@@ -240,7 +240,7 @@ export default function CompareSkyscannerPage() {
         <CtaBand
           medium="compare"
           title="A key today, not in two weeks"
-          body="Live Google Flights fares with Google's price band on every result. Free tier on RapidAPI, no card."
+          body="Live Google Flights fares with Google's price band when Google shows one. Free tier on RapidAPI, no card."
         />
       </Section>
     </>

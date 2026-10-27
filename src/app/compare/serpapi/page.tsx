@@ -500,7 +500,7 @@ export default function CompareSerpApiPage() {
         <CtaBand
           medium="compare"
           title="Specialist prices for a specialist job"
-          body="Live Google Flights data with the price band and verdict on every result, and round-trips that cost one request, not two."
+          body="Live Google Flights data with the price band and verdict when Google shows one, and round-trips that cost one request, not two."
         />
       </Section>
     </>

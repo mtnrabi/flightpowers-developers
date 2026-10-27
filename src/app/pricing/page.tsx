@@ -357,7 +357,7 @@ export default function PricingPage() {
                 />
               </div>
               <p className="mt-4 text-[14.5px] text-ink-400 leading-relaxed">
-                Google&apos;s own price band comes back inside every result, so ${LIVE_ONEWAY.price} is not a number
+                Google&apos;s own price band comes back inside every result where Google shows one, so ${LIVE_ONEWAY.price} is not a number
                 floating on its own. It sits near the bottom of a ${LIVE_ONEWAY.low} to ${LIVE_ONEWAY.high} range. A scraper that returns a list of fares makes you build that
                 context yourself, usually by storing history for weeks first.
               </p>
@@ -497,7 +497,7 @@ export default function PricingPage() {
                 <td className="py-4 pr-4 font-mono tabular-nums text-signal-400 whitespace-nowrap">$4.00</td>
                 <td className="py-4 pr-4 text-ink-300 whitespace-nowrap">10 / mo</td>
                 <td className="py-4 text-ink-400 leading-relaxed">
-                  Google Flights. Two endpoints. Price band and verdict in every result, search-status headers on every
+                  Google Flights. Two endpoints. Price band and verdict when Google shows one, search-status headers on every
                   response, 150 to 500 requests/minute.
                 </td>
               </tr>
