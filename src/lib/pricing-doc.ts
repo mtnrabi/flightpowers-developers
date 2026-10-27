@@ -122,7 +122,8 @@ This is the part most cost estimates get wrong.
 - A date range and a destination list expand internally. One call with 7 dates and 3
   destinations spends 7 x 3 = 21 requests, not 1. Every response reports what it spent and
   what is left in \`api_usage\`.
-- A hotel search (Booking.com, Airbnb or Google Hotels) prices one stay at a time. No date range, no destination list.
+- A REST hotel search (Booking.com, Airbnb or Google Hotels) prices one stay at a time. No date range, no destination list.
+  On the hotels MCP server, search_hotels can take a check-in range and nights, and spends one request per stay priced.
 - A 4xx from request validation is refused before the search runs.
 
 ## Free tiers

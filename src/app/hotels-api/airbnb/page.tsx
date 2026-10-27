@@ -249,7 +249,7 @@ export default function AirbnbApiPage() {
             description: `Free tier: ${AIRBNB_BASIC.quota} requests/month on RapidAPI`,
           },
           url: `${SITE.url}/hotels-api/airbnb`,
-          dateModified: '2026-10-23',
+          dateModified: '2026-10-27',
         }}
       />
 

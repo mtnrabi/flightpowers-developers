@@ -21,14 +21,14 @@ export const dynamic = 'force-static';
 export const metadata: Metadata = withOg({
   title: 'Smithery: the three MCP server listings',
   description:
-    'The FlightPowers MCP servers listed on Smithery: mrabi/google-flights, mrabi/booking, and the free ad-supported server. Smithery’s hosted connection ends 31 October 2026; connect at our own URLs.',
+    'FlightPowers MCP servers on Smithery (mrabi/google-flights, mrabi/booking). Smithery’s hosted connection ends 31 Oct 2026: connect at our own /mcp URLs.',
   alternates: { canonical: '/integrations/smithery' },
 });
 
 const faq: Faq[] = [
   {
     q: 'Can I still connect through Smithery?',
-    a: 'Not after 31 October 2026. Smithery’s own notice says its hosted connections (server URLs on run.tools and server.smithery.ai) shut down that day and Smithery stays a public directory. Add our URLs to your client instead: https://flights.flightpowers.com/mcp and https://hotels.flightpowers.com/mcp.',
+    a: 'Not from 31 October 2026. Smithery’s own notice says its hosted connections (server URLs on run.tools and server.smithery.ai) stop working that day and Smithery stays a public directory. Add our URLs to your client instead: https://flights.flightpowers.com/mcp and https://hotels.flightpowers.com/mcp.',
   },
   {
     q: 'How does my key reach the server when I connect directly?',
@@ -70,7 +70,7 @@ export default function SmitheryIntegrationPage() {
             The servers on <span className="text-signal-500">Smithery</span>
           </h1>
           <p className="lede mt-5 max-w-2xl">
-            All three FlightPowers servers are listed in the Smithery directory. Smithery&apos;s hosted connection ends on
+            As of 27 October 2026, all three FlightPowers servers are listed in the Smithery directory. Smithery&apos;s hosted connection ends on
             31 October 2026, so connect at our own URLs: the names, the key mechanics, and where the servers live.
           </p>
         </Container>
@@ -106,7 +106,7 @@ export default function SmitheryIntegrationPage() {
         <SectionHead
           eyebrow="Key mechanics"
           title="Connect directly, one URL per server"
-          lede="Smithery stays a directory, but its hosted connection (run.tools and server.smithery.ai URLs) ends on 31 October 2026, per Smithery’s own notice. Connect to our servers directly; usage meters on your own RapidAPI subscription."
+          lede="Smithery says it stays a directory, but its hosted connection (run.tools and server.smithery.ai URLs) ends on 31 October 2026, per Smithery’s own notice. Connect to our servers directly; usage meters on your own RapidAPI subscription."
         />
         <div className="mt-8 max-w-3xl">
           <p className="text-[15px] text-ink-300 leading-relaxed">

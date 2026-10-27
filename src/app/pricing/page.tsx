@@ -32,7 +32,10 @@ import { apiNode } from '@/lib/schema-offers';
 
 export const metadata: Metadata = withOg({
   title: 'API pricing: flights & hotels, $0 to $75/mo',
-  description: `Flights $0/$10/$25/$50 a month for 10 to 25,000 requests; Booking.com hotels $0/$10/$30/$75 for 10 to 25,000; Airbnb $${AIRBNB_PLANS.map((p) => p.priceMonthly).join('/$')} for ${AIRBNB_PLANS[0].quota} to ${AIRBNB_PLANS[AIRBNB_PLANS.length - 1].quota.toLocaleString('en-US')}; Google Hotels $${GOOGLE_HOTELS_PLANS.map((p) => p.priceMonthly).join('/$')} for ${GOOGLE_HOTELS_PLANS[0].quota} to ${GOOGLE_HOTELS_PLANS[GOOGLE_HOTELS_PLANS.length - 1].quota.toLocaleString('en-US')}. Free tier, no card. Billed on RapidAPI.`,
+  // <=160 chars so the snippet is not cut; numbers from lib/pricing.ts.
+  description: `Four travel data APIs on RapidAPI (flights, Booking.com, Airbnb, Google Hotels): free tier, no card, PRO from $${Math.min(
+    ...[FLIGHT_PLANS, HOTEL_PLANS, AIRBNB_PLANS, GOOGLE_HOTELS_PLANS].map((ps) => ps.find((x) => x.name === 'PRO')!.priceMonthly),
+  )} a month, plans up to $${Math.max(...[FLIGHT_PLANS, HOTEL_PLANS, AIRBNB_PLANS, GOOGLE_HOTELS_PLANS].flat().map((x) => x.priceMonthly))}.`,
   alternates: { canonical: '/pricing' },
 });
 
@@ -171,7 +174,7 @@ const RIVALS = [
     entry: 'Pro $15 / 15,000',
     perK: '$1.00',
     free: '50 / mo',
-    note: '54 endpoints across Skyscanner, Booking.com and Google Flights routes; its page names Skyscanner 15 times.',
+    note: '54 endpoints across Skyscanner, Booking.com and Google Flights routes, including a price calendar, a date grid and multi-city, which we do not have; its page names Skyscanner 15 times.',
   },
   {
     name: 'sky-scrapper',
@@ -179,7 +182,7 @@ const RIVALS = [
     entry: 'Pro $9.99 / 10,600',
     perK: '$0.94',
     free: '20 / mo',
-    note: 'Describes itself as reproducing skyscanner.com and booking.com data. Again, a different source.',
+    note: 'Describes itself as reproducing skyscanner.com and booking.com data, a different source. Includes a price calendar and multi-stop search, which we do not have.',
   },
 ];
 
@@ -289,13 +292,13 @@ export default function PricingPage() {
         <h1 className="mt-4 text-hero font-semibold max-w-3xl">
           Free to start.{' '}
           {OPENER_PRO_PRICES.length === 1 ? (
-            <span className="text-signal-500">PRO is ${OPENER_PRO_PRICES[0]} a month on every API.</span>
+            <span className="text-signal-500">PRO is ${OPENER_PRO_PRICES[0]} a month on each of the four APIs.</span>
           ) : (
             <span className="text-signal-500">Paid plans from ${Math.min(...OPENER_PRO_PRICES)} a month.</span>
           )}
         </h1>
         <p className="lede mt-5 max-w-2xl">
-          Every API has a free BASIC plan and a PRO plan: {OPENER_LINE}. On flights, PRO is about a sixth of SerpApi&apos;s
+          Each of the four RapidAPI listings has a free BASIC plan and a PRO plan: {OPENER_LINE}. On flights, PRO is about a sixth of SerpApi&apos;s
           price per search (their cheapest plan is $25 for 1,000).
         </p>
         <p className="mt-4 max-w-2xl text-[15px] text-ink-400 leading-relaxed">
@@ -421,8 +424,8 @@ export default function PricingPage() {
             <PricingTable api="airbnb" plans={AIRBNB_PLANS} medium="pricing" readOn={AIRBNB_READ_ON} />
             <p className="mt-3 text-[13.5px] text-ink-400 leading-relaxed max-w-3xl">
               Live Airbnb listings with the stay total and the price per night as numbers. One search is one page of Airbnb&apos;s
-              results. On this same subscription, the hotels MCP server adds search_airbnb and compare_hotel_rates, which
-              prices one stay on Booking.com and Airbnb.{' '}
+              results. On this same subscription, the hotels MCP server adds search_airbnb, and compare_hotel_rates prices one
+              stay on Booking.com and Airbnb (one request on each, each on its own subscription).{' '}
               <Link href="/hotels-api/airbnb" className="text-signal-400 underline underline-offset-4">
                 Airbnb API reference
               </Link>
@@ -447,8 +450,8 @@ export default function PricingPage() {
         </div>
         <div className="mt-8 max-w-4xl rounded-xl border rule bg-ink-900/40 px-5 py-3.5">
           <p className="text-[13px] text-ink-300 leading-relaxed">
-            <strong className="text-ink-100">Live on RapidAPI:</strong> Google Flights Live API, 9.9 popularity, 100%
-            service level, ~1189ms latency. Booking Live API, 9.7 popularity, 99% service level, ~12376ms latency.
+            <strong className="text-ink-100">Live on RapidAPI:</strong> Google Flights Live API, 9.9 popularity. Booking
+            Live API, 9.7 popularity.
           </p>
           <p className="mt-1 font-mono text-[10px] text-ink-500">Metrics retrieved from rapidapi.com/mtnrabi listings on 2026-10-27</p>
         </div>
@@ -517,8 +520,8 @@ export default function PricingPage() {
             <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed">
               We read their listings. We did not buy a plan or call their APIs, so this is a claim about their published
               docs on one day, not about their servers. They are genuinely cheaper per request, their free tiers are
-              genuinely bigger than our 10, and all three ship endpoints we do not have at all: price calendars, date grids,
-              multi-city. If
+              genuinely bigger than our 10, and all three ship endpoints our REST API does not have: price calendars, date
+              grids, multi-city. If
               those are what you need, buy theirs. We would rather say that than pretend.
             </p>
           </div>

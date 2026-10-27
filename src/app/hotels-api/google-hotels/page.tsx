@@ -150,7 +150,7 @@ const STATUSES: { status: string; http: string; reason: string; means: string; t
 const faq: Faq[] = [
   {
     q: 'Which booking sites does it return?',
-    a: "The sites Google Hotels lists for that hotel on those dates: often Booking.com, Expedia, Agoda, Hotels.com, Trip.com and the hotel's own site, among others. Which sites appear is Google's choice and changes by hotel and dates, and Booking.com is not always one of them. The Rome call on this page returned 29 sites, 27 of them with a total.",
+    a: "The sites Google Hotels lists for that hotel on those dates. In the Rome call on this page that was 29 sites, 27 of them with a total, Agoda, Expedia and Booking.com among them. Which sites appear is Google's choice and changes by hotel and dates, and Booking.com is not always one of them.",
   },
   {
     q: 'Do I need a Google hotel id?',

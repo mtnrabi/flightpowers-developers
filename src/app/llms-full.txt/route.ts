@@ -141,7 +141,7 @@ export function GET(): Response {
 
   const body = `# FlightPowers: complete reference (llms-full.txt)
 
-> ${SITE.tagline} Real-time Google Flights, Booking.com, Airbnb and Google Hotels data as clean JSON, for developers and AI agents. The hotels MCP server's compare_hotel_rates prices the same stay on Booking.com and Airbnb in one call; the Google Hotels Live API (${SITE.url}/hotels-api/google-hotels) returns one hotel's rate on each site Google lists for it and is not on the MCP servers. This file is the whole API reference in one place; the shorter index is at ${SITE.url}/llms.txt and the OpenAPI 3.1 spec at ${SITE.url}/openapi.json.
+> ${SITE.tagline} Real-time Google Flights, Booking.com, Airbnb and Google Hotels data as clean JSON, for developers and AI agents. The hotels MCP server adds Airbnb on an Airbnb Live API subscription, and its compare_hotel_rates prices the same stay on Booking.com and Airbnb in one call; the Google Hotels Live API (${SITE.url}/hotels-api/google-hotels) returns one hotel's rate on each site Google lists for it and is not on the MCP servers. This file is the whole API reference in one place; the shorter index is at ${SITE.url}/llms.txt and the OpenAPI 3.1 spec at ${SITE.url}/openapi.json.
 
 Last-Updated: ${LLMS_LAST_UPDATED}
 

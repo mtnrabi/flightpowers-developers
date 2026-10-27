@@ -258,7 +258,7 @@ function faqFor(agent: AgentDef, task: TaskDef): Faq[] {
     billing =
       'Yes. The MCP server is bring-your-own-key: connect your client directly to flights.flightpowers.com/mcp or hotels.flightpowers.com/mcp, sign in with Google, and paste your RapidAPI key once on the /connect page. Usage meters against your own subscription on RapidAPI. There is no FlightPowers account and no second bill.';
     server =
-      'No. The MCP servers are hosted at flights.flightpowers.com and hotels.flightpowers.com. Smithery lists them in its directory, but its hosted connection ends on 31 October 2026, so you add our URL to your client, not a deployment.';
+      'No. The MCP servers are hosted at flights.flightpowers.com and hotels.flightpowers.com. Smithery listed them in its directory as of 27 October 2026, but its hosted connection ends on 31 October 2026, so you add our URL to your client, not a deployment.';
   }
 
   let cost =

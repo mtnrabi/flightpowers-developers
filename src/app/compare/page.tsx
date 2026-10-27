@@ -15,7 +15,7 @@ const PRO = FLIGHT_PLANS.find((p) => p.name === 'PRO')!;
 const ULTRA = FLIGHT_PLANS.find((p) => p.name === 'ULTRA')!;
 const HOTEL_PRO = HOTEL_PLANS.find((p) => p.name === 'PRO')!;
 
-const TITLE = 'Flight API alternatives: SerpApi, Amadeus, Kiwi access and price';
+const TITLE = 'Flight API alternatives (SerpApi, Amadeus, Kiwi), by price';
 
 export const metadata: Metadata = {
   ...withOg({

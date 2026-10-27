@@ -201,7 +201,7 @@ Add the URL, sign in with Google, paste your RapidAPI key once on the /connect p
 Add the URL, sign in with Google, paste your RapidAPI key once on the /connect page.`,
     },
     connectNote:
-      'Smithery lists the servers as mrabi/google-flights and mrabi/booking (qualified names verified on 2026-08-26). Smithery stays a directory, but its hosted connection (server URLs on run.tools and server.smithery.ai) ends on 31 October 2026, per its own notice, so add https://flights.flightpowers.com/mcp and https://hotels.flightpowers.com/mcp to your client directly. Usage meters on your own RapidAPI subscription.',
+      'Smithery lists the servers as mrabi/google-flights and mrabi/booking (qualified names verified on 2026-08-26, still listed on 2026-10-27). Smithery says it stays a directory, but its hosted connection (server URLs on run.tools and server.smithery.ai) ends on 31 October 2026, per its own notice, so add https://flights.flightpowers.com/mcp and https://hotels.flightpowers.com/mcp to your client directly. Usage meters on your own RapidAPI subscription.',
   },
   {
     slug: 'langchain',

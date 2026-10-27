@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   ...withOg({
     title: TITLE,
     description:
-      'Hotel MCP server for Claude, Cursor and ChatGPT: live Booking.com and Airbnb rates, and compare_hotel_rates prices the same stay on both in one call.',
+      'Hotel MCP for Claude, Cursor and ChatGPT: live Booking.com rates, plus Airbnb on an Airbnb Live API subscription; compare_hotel_rates prices a stay on both.',
     alternates: { canonical: '/mcp/booking-hotels' },
   }),
   title: { absolute: TITLE },
