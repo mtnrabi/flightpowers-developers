@@ -8,7 +8,7 @@ import { COUNTS } from '@/lib/site';
 export const metadata: Metadata = withOg({
   title: 'Market Analysis: track fare movement with Google’s own baseline attached',
   description:
-    'Sweep routes and dates on a schedule and chart price_as_number over time, with price_insights_low/high giving every observation where Google shows the band a route-level baseline from day one. Rate limits of 150–500 req/min make wide sweeps practical.',
+    'Sweep routes and dates on a schedule and chart price_as_number over time, with price_insights_low/high giving a route-level baseline from day one to every observation where Google shows the band. Rate limits of 150–500 req/min make wide sweeps practical.',
   alternates: { canonical: '/use-cases/market-analysis' },
 });
 

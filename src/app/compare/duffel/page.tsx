@@ -318,7 +318,7 @@ export default function CompareDuffelPage() {
                 'Price context',
                 'Returns offers: the price you can transact at through their channels.',
                 <>
-                  Returns the market: when Google shows one, every result carries Google’s historical band (
+                  Returns the market: when Google shows a band, every result carries Google’s historical band (
                   <code className="font-mono text-[12px]">price_insights_low/high</code>) and a price context, so a
                   fare-alert product knows whether a $291 JFK–LHR fare is a good price (it is not: that run came back{' '}
                   <code className="font-mono text-[12px]">high</code> against a $170–$285 band on {JFK_LHR_RUN_ON}) without

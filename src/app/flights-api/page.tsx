@@ -290,7 +290,7 @@ export default function FlightsApiHubPage() {
             <Mono>/api/google_flights/oneway/v1</Mono> and <Mono>/api/google_flights/roundtrip/v1</Mono> on{' '}
             <Mono>google-flights-live-api.p.rapidapi.com</Mono> with a RapidAPI key. Both take IATA codes and{' '}
             <code className="field">YYYY-MM-DD</code> dates and return flat JSON: live Google Flights fares with a
-            booking link, Google&apos;s own price band, and a low | typical | high verdict when Google shows one.
+            booking link, plus Google&apos;s own price band and a low | typical | high verdict when Google shows one.
           </>
         }
         excerptLabel={`JFK → CUN one-way · first 2 of ${FIXTURES.onewayJfkCun.data.length} results, trimmed · captured ${FIXTURES.onewayJfkCun.captured_at}`}
@@ -613,7 +613,7 @@ export default function FlightsApiHubPage() {
         <CtaBand
           medium="endpoint"
           title="Fares with Google's verdict, from one subscription"
-          body="Live Google Flights data with the price band and verdict (when Google shows one) and booking link attached to every result."
+          body="Live Google Flights data: a booking link on every result, plus the price band and verdict when Google shows one."
         />
       </Section>
     </>

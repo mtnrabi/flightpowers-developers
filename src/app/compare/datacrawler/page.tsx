@@ -261,7 +261,7 @@ export default function CompareDataCrawlerPage() {
                   Their documentation and APIHiver mention returning Google Flights data, but we have not verified whether their response includes Google <code className="font-mono text-[12px]">price_insights</code> band or the price context field. Treat this as "we do not know," not "they lack it."
                 </>,
                 <>
-                  When Google shows one, every result carries <code className="font-mono text-[12px]">price_insights_low/high</code> (the historical band Google shows) plus <code className="font-mono text-[12px]">price_insights_verdict</code> (price context: low, typical, or high), which is the fare-alert trigger condition.{' '}
+                  When Google shows a band, every result carries <code className="font-mono text-[12px]">price_insights_low/high</code> (the historical band Google shows) plus <code className="font-mono text-[12px]">price_insights_verdict</code> (price context: low, typical, or high), which is the fare-alert trigger condition.{' '}
                   <Link href="/flights-api/price-insights" className="text-signal-400 underline underline-offset-4">Proven here →</Link>
                 </>,
               ],

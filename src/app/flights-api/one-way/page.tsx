@@ -61,7 +61,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Do I pay extra for the price-insights fields?',
-    a: 'No. The band and verdict ride on every one-way result on every plan, including the free tier, when Google shows one.',
+    a: 'No. When Google shows them, the band and verdict ride on every one-way result on every plan, including the free tier.',
   },
 ];
 
