@@ -28,7 +28,7 @@ export function GET(): Response {
 
   const body = `# FlightPowers
 
-> ${SITE.tagline} Real-time Google Flights and Booking.com data as clean JSON, for developers and AI agents. Every fare carries Google's own price band (price_insights_low/high) and a low|typical|high verdict.
+> ${SITE.tagline} Real-time Google Flights and Booking.com data as clean JSON, for developers and AI agents. Fares carry Google's own price band (price_insights_low/high) and a low|typical|high verdict when Google shows one.
 
 Last-Updated: ${LLMS_LAST_UPDATED}
 

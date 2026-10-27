@@ -19,6 +19,8 @@ import {
   AIRBNB_READ_ON,
   APIFY,
   FLIGHT_PLANS,
+  GOOGLE_HOTELS_PLANS,
+  GOOGLE_HOTELS_READ_ON,
   HOTEL_PLANS,
   READ_ON,
   type Plan,
@@ -71,14 +73,15 @@ Human version: ${SITE.url}/pricing
 
 ## What you are buying
 
-Three REST APIs sold on RapidAPI (flights, Booking.com hotels, Airbnb), and two remote MCP
-servers that call them with your own key (the hotels server calls Booking.com and Airbnb). Billing happens on
-RapidAPI. We never see your card. Each API is a separate subscription; one RapidAPI account
-key works for all three once you subscribe to each.
+Four REST APIs sold on RapidAPI (flights, Booking.com hotels, Airbnb, Google Hotels), and two remote MCP
+servers that call them with your own key (the hotels server calls Booking.com and Airbnb; Google Hotels is not on
+the MCP servers). Billing happens on RapidAPI. We never see your card. Each API is a separate subscription; one
+RapidAPI account key works for all four once you subscribe to each.
 
 - Flights listing: ${LINKS.rapidapiFlights}
 - Hotels (Booking.com) listing: ${LINKS.rapidapiHotels}
 - Airbnb listing: ${LINKS.rapidapiAirbnb}
+- Google Hotels listing: ${LINKS.rapidapiGoogleHotels}
 - Flights MCP server: ${LINKS.mcpFlights}
 - Hotels MCP server: ${LINKS.mcpHotels}
 
@@ -101,6 +104,14 @@ Airbnb's results (20 to 30 listings in our tests). The hotels MCP server's searc
 compare_hotel_rates spend this subscription; the free Google sign-in searches on the MCP servers do not cover Airbnb.
 compare_hotel_rates spends one request on each source it searches, each on that source's own subscription.
 
+## Google Hotels Live API
+
+${planTable(GOOGLE_HOTELS_PLANS)}
+
+${GOOGLE_HOTELS_READ_ON ? `Google Hotels plans read from the live listing on ${GOOGLE_HOTELS_READ_ON}.` : ''} Every endpoint costs one
+request: a city search (one page of Google's results, about 18 to 20 hotels) and one hotel's rate on each site Google
+lists for it are the same price. Not on the MCP servers.
+
 ## How a request is counted
 
 This is the part most cost estimates get wrong.
@@ -111,13 +122,14 @@ This is the part most cost estimates get wrong.
 - A date range and a destination list expand internally. One call with 7 dates and 3
   destinations spends 7 x 3 = 21 requests, not 1. Every response reports what it spent and
   what is left in \`api_usage\`.
-- A hotel search (Booking.com or Airbnb) prices one stay at a time. No date range, no destination list.
+- A REST hotel search (Booking.com, Airbnb or Google Hotels) prices one stay at a time. No date range, no destination list.
+  On the hotels MCP server, search_hotels can take a check-in range and nights, and spends one request per stay priced.
 - A 4xx from request validation is refused before the search runs.
 
 ## Free tiers
 
 - RapidAPI BASIC: $0, hard cap, no card, no approval step. ${FLIGHT_PLANS[0].quota} requests a month on flights,
-  ${HOTEL_PLANS[0].quota} on Booking.com hotels, ${AIRBNB_PLANS[0].quota} on Airbnb.
+  ${HOTEL_PLANS[0].quota} on Booking.com hotels, ${AIRBNB_PLANS[0].quota} on Airbnb, ${GOOGLE_HOTELS_PLANS[0].quota} on Google Hotels.
 - The free MCP server, ${LINKS.mcpFree}, is $0, needs a Google
   sign-in, carries a sponsored card in results, and allows 50 backend searches per user per
   day and 250 per calendar month. The paid servers carry no ads.
@@ -138,10 +150,10 @@ Steady monthly volume is cheaper on RapidAPI. Occasional batch jobs with no base
 ## Questions an agent usually has to ask
 
 **Is there a free trial?** BASIC is free forever: ${FLIGHT_PLANS[0].quota} requests a month on flights,
-${HOTEL_PLANS[0].quota} on Booking.com hotels, ${AIRBNB_PLANS[0].quota} on Airbnb. No card, no approval. On the paid MCP
+${HOTEL_PLANS[0].quota} on Booking.com hotels, ${AIRBNB_PLANS[0].quota} on Airbnb, ${GOOGLE_HOTELS_PLANS[0].quota} on Google Hotels. No card, no approval. On the paid MCP
 servers, a Google sign-in gives 10 free searches a day before any key, shared by the flights and hotels servers.
 
-**Do flights, hotels and Airbnb share a plan?** No. Three listings, three subscriptions, one account key.
+**Do flights, hotels, Airbnb and Google Hotels share a plan?** No. Four listings, four subscriptions, one account key.
 
 **Who bills me?** RapidAPI. Their invoice is your invoice.
 

@@ -249,7 +249,7 @@ export default function AirbnbApiPage() {
             description: `Free tier: ${AIRBNB_BASIC.quota} requests/month on RapidAPI`,
           },
           url: `${SITE.url}/hotels-api/airbnb`,
-          dateModified: '2026-10-23',
+          dateModified: '2026-10-27',
         }}
       />
 
@@ -273,7 +273,7 @@ export default function AirbnbApiPage() {
                 Live Airbnb listings, <span className="text-signal-500">with real numbers</span>
               </h1>
               <p className="lede mt-5">
-                Send a place and two dates to{' '}
+                FlightPowers&apos; Airbnb Live API: send a place and two dates to{' '}
                 <code className="font-mono text-[0.85em] text-signal-400">POST /search</code> and you get the listings Airbnb
                 is showing right now, with the stay total and the price per night as numbers in your currency (USD if you do
                 not say). Free BASIC plan with {fmt(AIRBNB_BASIC.quota)} requests a month, then ${AIRBNB_PRO.priceMonthly}{' '}

@@ -55,6 +55,8 @@ const RAPIDAPI = {
   hotels: 'https://rapidapi.com/mtnrabi/api/booking-live-api',
   /** Its own listing and subscription (host airbnb-live-api.p.rapidapi.com). */
   airbnb: 'https://rapidapi.com/mtnrabi/api/airbnb-live-api',
+  /** Its own listing and subscription (host google-hotels-live-api.p.rapidapi.com). */
+  googleHotels: 'https://rapidapi.com/mtnrabi/api/google-hotels-live-api',
 } as const;
 
 export type RapidApiListing = keyof typeof RAPIDAPI;
@@ -77,6 +79,7 @@ export const LINKS = {
   rapidapiFlights: RAPIDAPI.flights,
   rapidapiHotels: RAPIDAPI.hotels,
   rapidapiAirbnb: RAPIDAPI.airbnb,
+  rapidapiGoogleHotels: RAPIDAPI.googleHotels,
   apifyFlights: 'https://apify.com/mtnrabi/google-flights-real-time-api',
   apifyHotels: 'https://apify.com/mtnrabi/booking-real-time-api',
   /** One-click console deep links (actor pre-added after signup). */

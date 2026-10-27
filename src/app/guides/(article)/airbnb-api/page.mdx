@@ -106,7 +106,7 @@ export const AIRBNB_FAQ = [
       "What Airbnb's own API covers, and how to get live Airbnb listings and nightly prices as JSON with a captured request and response, the filters, the limits and dated alternatives.",
     url: `${SITE.url}/guides/airbnb-api`,
     datePublished: '2026-10-23',
-    dateModified: '2026-10-26',
+    dateModified: '2026-10-27',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -126,13 +126,13 @@ export const AIRBNB_FAQ = [
 
 # Airbnb API in 2026: is there a public one, and a key you can buy
 
-<GuideDates published="2026-10-23" updated="2026-10-26" />
+<GuideDates published="2026-10-23" updated="2026-10-27" />
 
 **Short answer:** Airbnb has an API, but it is for software that serves hosts (property
 managers, channel managers and the like), accepted into one of its partner programs. It
 has no endpoint for searching listings the way a guest does. If what you want is live
 Airbnb listings with prices as JSON, a hosted API has to read Airbnb's search for you.
-Mine is the [Airbnb Live API](/hotels-api/airbnb) on RapidAPI: a place and two dates in,
+Mine is FlightPowers' [Airbnb Live API](/hotels-api/airbnb) on RapidAPI: a place and two dates in,
 the listings Airbnb is showing right now out, with the stay total and the price per night
 as numbers. BASIC is free for {BASIC.quota} requests a month, PRO is ${PRO.priceMonthly} for{' '}
 {fmt(PRO.quota)}. It is an independent API, not Airbnb's.

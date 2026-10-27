@@ -21,18 +21,18 @@ export const dynamic = 'force-static';
 export const metadata: Metadata = withOg({
   title: 'Smithery: the three MCP server listings',
   description:
-    'The FlightPowers MCP servers on Smithery: mrabi/google-flights, mrabi/booking, and the free ad-supported server. Qualified names, how the gateway passes your key, and the canonical self-hosted URLs.',
+    'FlightPowers MCP servers on Smithery (mrabi/google-flights, mrabi/booking). Smithery’s hosted connection ends 31 Oct 2026: connect at our own /mcp URLs.',
   alternates: { canonical: '/integrations/smithery' },
 });
 
 const faq: Faq[] = [
   {
-    q: 'How does my key reach the server through Smithery?',
-    a: 'Smithery’s gateway proxies the MCP connection to the same servers this site documents, so you connect on Smithery, sign in with Google, and paste your RapidAPI key once on the page that opens. Usage still meters against your own RapidAPI subscription.',
+    q: 'Can I still connect through Smithery?',
+    a: 'Not from 31 October 2026. Smithery’s own notice says its hosted connections (server URLs on run.tools and server.smithery.ai) stop working that day and Smithery stays a public directory. Add our URLs to your client instead: https://flights.flightpowers.com/mcp and https://hotels.flightpowers.com/mcp.',
   },
   {
-    q: 'Should I connect via Smithery or directly?',
-    a: 'Both work. Direct (flights.flightpowers.com/mcp and hotels.flightpowers.com/mcp) is one hop shorter and what the rest of this site documents. Smithery is convenient if your client already installs servers from its registry.',
+    q: 'How does my key reach the server when I connect directly?',
+    a: 'Add the URL and sign in with Google. When you want more than the free searches, paste your RapidAPI key once on the /connect page that opens (flights.flightpowers.com/connect). A script with no browser sends the key on the same URL in an x-rapidapi-key header. Usage meters against your own RapidAPI subscription.',
   },
   {
     q: 'What is the freemium listing?',
@@ -70,8 +70,8 @@ export default function SmitheryIntegrationPage() {
             The servers on <span className="text-signal-500">Smithery</span>
           </h1>
           <p className="lede mt-5 max-w-2xl">
-            If your MCP client installs from the Smithery registry, all three FlightPowers servers are listed there. Short
-            page on purpose: the names, the key mechanics, and where the canonical servers live.
+            As of 27 October 2026, all three FlightPowers servers are listed in the Smithery directory. Smithery&apos;s hosted connection ends on
+            31 October 2026, so connect at our own URLs: the names, the key mechanics, and where the servers live.
           </p>
         </Container>
       </div>
@@ -105,13 +105,14 @@ export default function SmitheryIntegrationPage() {
       <Section>
         <SectionHead
           eyebrow="Key mechanics"
-          title="One sign-in, through the gateway or not"
-          lede="Smithery’s gateway proxies the connection to the same servers: you connect, sign in with Google, and paste your RapidAPI key once. Usage meters on your own subscription either way."
+          title="Connect directly, one URL per server"
+          lede="Smithery says it stays a directory, but its hosted connection (run.tools and server.smithery.ai URLs) ends on 31 October 2026, per Smithery’s own notice. Connect to our servers directly; usage meters on your own RapidAPI subscription."
         />
         <div className="mt-8 max-w-3xl">
           <p className="text-[15px] text-ink-300 leading-relaxed">
-            Prefer to skip the gateway? Add the canonical hosts to your client yourself. One URL per server, then the same
-            Google sign-in; a script with no browser sends the key on that same URL instead:
+            Add the URL to your client and sign in with Google. When you want more than the free searches, paste your
+            RapidAPI key once on the /connect page that opens. A script with no browser sends the key on that same URL
+            instead:
           </p>
           <div className="mt-5">
             <Code label="canonical hosts: direct connection">{`${LINKS.mcpFlights}

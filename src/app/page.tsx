@@ -290,6 +290,23 @@ export default function HomePage() {
           </span>
           <span className="w-full sm:w-auto text-[13px] text-ink-500">queried in real time on every request.</span>
         </div>
+        <p className="mt-4 max-w-3xl text-[14.5px] text-ink-400 leading-relaxed">
+          Also live: the{' '}
+          <Link href="/hotels-api/airbnb" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+            Airbnb Live API
+          </Link>
+          , the{' '}
+          <Link href="/hotels-api/google-hotels" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+            Google Hotels Live API
+          </Link>{' '}
+          (one hotel&apos;s rate on each site Google lists for it), and{' '}
+          <Link href="/mcp/booking-hotels" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+            our hotels server for Claude and Cursor
+          </Link>
+          , which adds Airbnb on an Airbnb Live API subscription; its{' '}
+          <code className="font-mono text-[13px] text-signal-400">compare_hotel_rates</code> prices the same stay on
+          Booking.com and Airbnb in one call.
+        </p>
       </Section>
 
       {/* ====================== GETTING STARTED ======================= */}
@@ -413,10 +430,10 @@ export default function HomePage() {
             <div>
               <p className="text-[14px] font-semibold text-ink-100">Production-ready performance</p>
               <p className="mt-1 text-[13px] text-ink-300 leading-relaxed">
-                Google Flights Live API: <strong className="text-ink-100">9.9/10 popularity</strong>, 99% service level, ~1.1s avg response · 
-                Booking Live API: <strong className="text-ink-100">9.7/10 popularity</strong>, 94% service level
+                Google Flights Live API: <strong className="text-ink-100">9.9/10 popularity</strong> · Booking Live API:{' '}
+                <strong className="text-ink-100">9.7/10 popularity</strong>
               </p>
-              <p className="mt-1.5 font-mono text-[10px] text-ink-500">RapidAPI marketplace metrics, captured 2026-09-07</p>
+              <p className="mt-1.5 font-mono text-[10px] text-ink-500">RapidAPI marketplace popularity score, read 2026-10-27</p>
             </div>
           </div>
         </div>

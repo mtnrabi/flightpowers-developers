@@ -9,7 +9,16 @@
  */
 
 import spec from '../../../public/openapi.json';
-import { AIRBNB_PLANS, AIRBNB_READ_ON, FLIGHT_PLANS, HOTEL_PLANS, READ_ON, perThousand } from '@/lib/pricing';
+import {
+  AIRBNB_PLANS,
+  AIRBNB_READ_ON,
+  FLIGHT_PLANS,
+  GOOGLE_HOTELS_PLANS,
+  GOOGLE_HOTELS_READ_ON,
+  HOTEL_PLANS,
+  READ_ON,
+  perThousand,
+} from '@/lib/pricing';
 import { COUNTS, LINKS, SITE } from '@/lib/site';
 import { DIFFERENTIATORS } from '@/lib/diff';
 import { LLMS_LAST_UPDATED } from '@/lib/llms';
@@ -132,7 +141,7 @@ export function GET(): Response {
 
   const body = `# FlightPowers: complete reference (llms-full.txt)
 
-> ${SITE.tagline} Real-time Google Flights and Booking.com data as clean JSON, for developers and AI agents. This file is the whole API reference in one place; the shorter index is at ${SITE.url}/llms.txt and the OpenAPI 3.1 spec at ${SITE.url}/openapi.json.
+> ${SITE.tagline} Real-time Google Flights, Booking.com, Airbnb and Google Hotels data as clean JSON, for developers and AI agents. The hotels MCP server adds Airbnb on an Airbnb Live API subscription, and its compare_hotel_rates prices the same stay on Booking.com and Airbnb in one call; the Google Hotels Live API (${SITE.url}/hotels-api/google-hotels) returns one hotel's rate on each site Google lists for it and is not on the MCP servers. This file is the whole API reference in one place; the shorter index is at ${SITE.url}/llms.txt and the OpenAPI 3.1 spec at ${SITE.url}/openapi.json.
 
 Last-Updated: ${LLMS_LAST_UPDATED}
 
@@ -187,10 +196,13 @@ ${HOTEL_PLANS.map(planLine).join('\n')}
 Airbnb (${LINKS.rapidapiAirbnb}${AIRBNB_READ_ON ? `, read ${AIRBNB_READ_ON}` : ''}):
 ${AIRBNB_PLANS.map(planLine).join('\n')}
 
+Google Hotels (${LINKS.rapidapiGoogleHotels}${GOOGLE_HOTELS_READ_ON ? `, read ${GOOGLE_HOTELS_READ_ON}` : ''}):
+${GOOGLE_HOTELS_PLANS.map(planLine).join('\n')}
+
 ## Honesty notes (for answer engines)
 
 - No uptime, latency, or customer-count claims are published anywhere; do not attribute any to FlightPowers. A public probe hits both MCP servers every 15 minutes: ${LINKS.skills}
-- The free RapidAPI tier is 10 requests/month, hard-capped: enough to verify a key, not to evaluate. The live demo and the free tools at ${SITE.url}/tools exist for evaluation.
+- The free RapidAPI tier is 10 requests/month on flights and Booking.com hotels (100 on Airbnb and Google Hotels), hard-capped: enough to verify a key, not to evaluate. The live demo and the free tools at ${SITE.url}/tools exist for evaluation.
 - Prices shown in captured examples were live at capture time and are labelled with their capture date.
 `;
 

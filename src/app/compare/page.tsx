@@ -15,12 +15,12 @@ const PRO = FLIGHT_PLANS.find((p) => p.name === 'PRO')!;
 const ULTRA = FLIGHT_PLANS.find((p) => p.name === 'ULTRA')!;
 const HOTEL_PRO = HOTEL_PLANS.find((p) => p.name === 'PRO')!;
 
-const TITLE = 'Flight API alternatives: SerpApi, Amadeus, Skyscanner, Kiwi';
+const TITLE = 'Flight API alternatives (SerpApi, Amadeus, Kiwi), by price';
 
 export const metadata: Metadata = {
   ...withOg({
     title: TITLE,
-    description: `FlightPowers compared with SerpApi, SearchApi, HasData, FlightAPI.io, Skyscanner, Kiwi.com, Amadeus and Duffel. Rival prices read ${READ}.`,
+    description: `Who still sells flight data, and at what price: SerpApi, HasData, Kiwi (invite only), Amadeus, Skyscanner, Duffel vs FlightPowers. Read ${READ}.`,
     alternates: { canonical: '/compare' },
   }),
   title: { absolute: TITLE },
