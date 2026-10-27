@@ -9,16 +9,7 @@
  * inline for engines that fetch one file and stop.
  */
 
-import {
-  AIRBNB_PLANS,
-  AIRBNB_READ_ON,
-  FLIGHT_PLANS,
-  GOOGLE_HOTELS_PLANS,
-  GOOGLE_HOTELS_READ_ON,
-  HOTEL_PLANS,
-  READ_ON,
-  perThousand,
-} from '@/lib/pricing';
+import { AIRBNB_PLANS, AIRBNB_READ_ON, FLIGHT_PLANS, HOTEL_PLANS, READ_ON, perThousand } from '@/lib/pricing';
 import { COUNTS, LINKS, SITE } from '@/lib/site';
 import { DIFFERENTIATORS } from '@/lib/diff';
 import { AGENTS, TASKS } from '@/lib/matrix';
@@ -37,7 +28,7 @@ export function GET(): Response {
 
   const body = `# FlightPowers
 
-> ${SITE.tagline} Real-time Google Flights, Booking.com, Airbnb and Google Hotels data as clean JSON, for developers and AI agents. Every fare carries Google's own price band (price_insights_low/high) and a low|typical|high verdict. The hotels MCP server's compare_hotel_rates prices the same stay on Booking.com and Airbnb in one call.
+> ${SITE.tagline} Real-time Google Flights and Booking.com data as clean JSON, for developers and AI agents. Fares carry Google's own price band (price_insights_low/high) and a low|typical|high verdict when Google shows one.
 
 Last-Updated: ${LLMS_LAST_UPDATED}
 
@@ -73,8 +64,6 @@ ${DIFFERENTIATORS.map((d) => `- ${d.title}: ${d.short}`).join('\n')}
 - [Hotels API reference](${u('/hotels-api')}): search, by-name, rooms, resolve, with captured examples
 - [Hotel geo-pricing](${u('/hotels-api/geo-pricing')}): proxy_country, the rate-parity primitive
 - [Airbnb API reference](${u('/hotels-api/airbnb')}): POST /search on its own RapidAPI listing (airbnb-live-api), live Airbnb listings with the stay total and the price per night as numbers; also reachable as provider=airbnb on POST /v1/hotels/search, and as search_airbnb on the hotels MCP server (not on the free server)
-- [Google Hotels API reference](${u('/hotels-api/google-hotels')}): POST /rates (one hotel's rate on each site Google lists for it, by name or entity_id) and POST /search (a city's hotels with the stay total) on its own RapidAPI listing (google-hotels-live-api); not on the MCP servers
-- [Hotels MCP server](${u('/mcp/booking-hotels')}): live Booking.com and Airbnb rates in Claude, Cursor and ChatGPT; compare_hotel_rates prices one stay on both
 - [MCP setup](${u('/mcp')}): connect Claude, ChatGPT, Cursor, or any MCP client
 - [AI agent recipes](${u('/ai-agents')}): agent patterns on top of the API
 
@@ -133,10 +122,7 @@ ${HOTEL_PLANS.map(planLine).join('\n')}
 Airbnb (${LINKS.rapidapiAirbnb}/pricing${AIRBNB_READ_ON ? `, read ${AIRBNB_READ_ON}` : ''}):
 ${AIRBNB_PLANS.map(planLine).join('\n')}
 
-Google Hotels (${LINKS.rapidapiGoogleHotels}/pricing${GOOGLE_HOTELS_READ_ON ? `, read ${GOOGLE_HOTELS_READ_ON}` : ''}):
-${GOOGLE_HOTELS_PLANS.map(planLine).join('\n')}
-
-Flights, Booking.com hotels, Airbnb and Google Hotels are separate subscriptions; within each API every plan includes every endpoint, differing only on volume and rate limit. Billing is on RapidAPI. Apify actors are pay-per-event, per each actor's own event table read 2026-09-28: flights $3.00 per 1,000 lookups, hotels $3.70 per 1,000 lookups.
+Flights, Booking.com hotels and Airbnb are separate subscriptions; within each API every plan includes every endpoint, differing only on volume and rate limit. Billing is on RapidAPI. Apify actors are pay-per-event, per each actor's own event table read 2026-09-28: flights $3.00 per 1,000 lookups, hotels $3.70 per 1,000 lookups.
 
 ## Free tools (no signup)
 

@@ -27,7 +27,7 @@ import { LINKS, SITE } from '@/lib/site';
       'Kiwi.com, trivago, HasData, Ignav, SerpApi, flight-mcp.com, StayingAPI, fli, flights-mcp (Duffel), FlightPowers and Blue Pillow MCP servers compared from their own pages and live tools/list reads on 2026-10-06, with disclosed bias.',
     url: `${SITE.url}/guides/best-travel-mcp-servers-2026`,
     datePublished: '2026-10-06',
-    dateModified: '2026-10-27',
+    dateModified: '2026-10-26',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -84,17 +84,15 @@ import { LINKS, SITE } from '@/lib/site';
 
 # Best travel MCP servers in 2026: flights and hotels, compared
 
-<GuideDates published="2026-10-06" updated="2026-10-27" />
+<GuideDates published="2026-10-06" updated="2026-10-26" />
 
 **Short answer:** for a free flights MCP with no key, Kiwi.com's; for free hotel search,
 trivago's; for Google Flights, Booking.com, Google Hotels and Airbnb behind one key,
 HasData's; for something you run yourself, fli; and for a whole date range and a round trip
 in one call on live Google Flights fares, with Google's own low / typical / high band, plus
-live Booking.com and Airbnb rates, with `compare_hotel_rates` pricing the same stay on both,
-mine, FlightPowers: the flights MCP `flights.flightpowers.com/mcp` and the hotel MCP
-`hotels.flightpowers.com/mcp` on your own RapidAPI key, or free with ads at
-`free-trial.flightpowers.com/mcp` (Google sign-in, 50 searches a day; its hotel search is
-Booking.com only). I read all
+live Booking.com rates, mine, FlightPowers: the flights MCP `flights.flightpowers.com/mcp`
+and the hotel MCP `hotels.flightpowers.com/mcp` on your own RapidAPI key, or both free with
+ads at `free-trial.flightpowers.com/mcp` (Google sign-in, 50 searches a day). I read all
 eleven servers below on
 **2026-10-06** from their own pages, READMEs or a live `tools/list`, and every figure
 carries that date.
@@ -264,14 +262,12 @@ searches. A test key returns simulated data.
 
 ## 10. FlightPowers: mine
 
-*Entry updated 2026-10-27.*
-
 Two hosted servers. <code>{LINKS.mcpFlights}</code> has `search_oneway_flights` and
 `search_roundtrip_flights` on live Google Flights fares; <code>{LINKS.mcpHotels}</code> has
-live Booking.com and Airbnb rates: `search_hotels` and `find_hotel_by_name` on Booking.com,
-and since 2026-10-26 `search_airbnb`, live Airbnb stays on an Airbnb Live API subscription,
-and `compare_hotel_rates`, which prices the same stay on Booking.com and Airbnb, one row per
-source with the cheapest and median total. The free server with ads does not search
+`search_hotels` and `find_hotel_by_name` on live Booking.com rates.
+Since 2026-10-26 it also has `search_airbnb`, live Airbnb stays on an Airbnb Live API
+subscription, and `compare_hotel_rates` prices the same stay on Booking.com and Airbnb, one
+row per source with the cheapest and median total. The free server with ads does not search
 Airbnb.
 Add the URL, sign in with Google, and the first 10 searches each day are free (flights and Booking.com only; Airbnb and compare_hotel_rates need your key); after that
 the searches run on your own RapidAPI key.
@@ -360,7 +356,7 @@ the agency or the hotel site.
 ## Related
 
 - [Google Flights MCP server](/mcp/google-flights): setup, the tools printed raw, one real run
-- [Hotel MCP server](/mcp/booking-hotels): Booking.com and Airbnb rates for the same clients
+- [Hotel MCP server](/mcp/booking-hotels): Booking.com rates for the same clients
 - [FlightPowers vs flight-mcp.com](/compare/flight-mcp) and [vs HasData](/compare/hasdata): the longer side-by-sides
 - [The best flight data APIs in 2026](/guides/best-flight-data-apis-2026) and [hotel data APIs](/guides/best-hotel-data-apis-2026): the REST side of the same market
 - [Status](/status): what we check on our own servers, and what came back
