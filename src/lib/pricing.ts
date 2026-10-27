@@ -59,6 +59,21 @@ export const AIRBNB_PLANS: Plan[] = [
   { name: 'MEGA', priceMonthly: 50, quota: 100000, overagePerRequest: 0.0005, ratePerMinute: 300, hardLimit: false },
 ];
 
+/**
+ * Google Hotels Live API (rapidapi.com/mtnrabi/api/google-hotels-live-api), its
+ * own listing and subscription, public since 2026-10-23. Read from the live
+ * /pricing page payload (PUBLIC billingPlans) on 2026-10-27: three public
+ * plans; a fourth, higher tier is not public yet, so it is not here.
+ * scripts/check-pricing.mjs reads this listing like the other three.
+ */
+export const GOOGLE_HOTELS_READ_ON: string | null = '2026-10-27';
+
+export const GOOGLE_HOTELS_PLANS: Plan[] = [
+  { name: 'BASIC', priceMonthly: 0, quota: 100, overagePerRequest: null, ratePerMinute: 10, hardLimit: true },
+  { name: 'PRO', priceMonthly: 10, quota: 2500, overagePerRequest: 0.004, ratePerMinute: 60, hardLimit: false, recommended: true },
+  { name: 'ULTRA', priceMonthly: 25, quota: 10000, overagePerRequest: 0.003, ratePerMinute: 120, hardLimit: false },
+];
+
 /** "$ per 1k requests" — the number a developer actually compares on. */
 export function perThousand(plan: Plan): string {
   if (plan.priceMonthly === 0) return '—';

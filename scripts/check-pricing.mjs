@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Pricing drift check — fetches the three RapidAPI listing pages anonymously,
+ * Pricing drift check — fetches the four RapidAPI listing pages anonymously,
  * extracts the billing plans from the RSC payload, filters to PUBLIC, and
  * compares against the committed data in src/lib/pricing.ts.
  *
@@ -28,6 +28,7 @@ const LISTINGS = {
   flights: 'https://rapidapi.com/mtnrabi/api/google-flights-live-api',
   hotels: 'https://rapidapi.com/mtnrabi/api/booking-live-api',
   airbnb: 'https://rapidapi.com/mtnrabi/api/airbnb-live-api',
+  google_hotels: 'https://rapidapi.com/mtnrabi/api/google-hotels-live-api',
 };
 
 /** Pull every {"id":"billingplan_... object out of the RSC payload by brace-matching. */
@@ -97,18 +98,27 @@ function normalizeLive(plan) {
 async function main() {
   const here = dirname(fileURLToPath(import.meta.url));
   const fullSrc = readFileSync(join(here, '..', 'src', 'lib', 'pricing.ts'), 'utf8');
-  // Scope the comparison per API: FLIGHT_PLANS, HOTEL_PLANS and AIRBNB_PLANS share plan names.
+  // Scope the comparison per API: FLIGHT_PLANS, HOTEL_PLANS, AIRBNB_PLANS and GOOGLE_HOTELS_PLANS share plan names.
   const hotelStart = fullSrc.indexOf('export const HOTEL_PLANS');
   const airbnbStart = fullSrc.indexOf('export const AIRBNB_READ_ON');
-  if (hotelStart === -1 || airbnbStart === -1 || airbnbStart < hotelStart) {
-    console.error('[check-pricing] PARSE FAILURE: pricing.ts no longer has HOTEL_PLANS followed by AIRBNB_READ_ON.');
+  const googleStart = fullSrc.indexOf('export const GOOGLE_HOTELS_READ_ON');
+  const helpersStart = fullSrc.indexOf('export function perThousand');
+  if (
+    hotelStart === -1 ||
+    airbnbStart === -1 ||
+    googleStart === -1 ||
+    helpersStart === -1 ||
+    !(hotelStart < airbnbStart && airbnbStart < googleStart && googleStart < helpersStart)
+  ) {
+    console.error('[check-pricing] PARSE FAILURE: pricing.ts no longer has HOTEL_PLANS, AIRBNB_READ_ON, GOOGLE_HOTELS_READ_ON, perThousand in that order.');
     process.exitCode = 2;
     return;
   }
   const sections = {
     flights: fullSrc.slice(0, hotelStart),
     hotels: fullSrc.slice(hotelStart, airbnbStart),
-    airbnb: fullSrc.slice(airbnbStart),
+    airbnb: fullSrc.slice(airbnbStart, googleStart),
+    google_hotels: fullSrc.slice(googleStart, helpersStart),
   };
 
   let drift = false;

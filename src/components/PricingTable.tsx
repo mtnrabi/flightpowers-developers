@@ -79,7 +79,9 @@ export function PricingTable({
         Every plan on this API includes all of its endpoints;{' '}
         {api === 'airbnb'
           ? 'Airbnb, Booking.com hotels and flights are separate subscriptions.'
-          : 'flights and hotels are separate subscriptions.'}{' '}
+          : api === 'googleHotels'
+            ? 'Google Hotels, Airbnb, Booking.com hotels and flights are separate subscriptions.'
+            : 'flights and hotels are separate subscriptions.'}{' '}
         {readOn ? `Read from the live listing on ${readOn}; the listing is authoritative.` : 'The listing is authoritative.'}
       </p>
     </div>
