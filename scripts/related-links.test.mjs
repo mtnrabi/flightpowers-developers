@@ -18,8 +18,10 @@ function pageFile(p) {
 }
 
 /**
- * Pages under review in site PRs #106, #107, #108 and #116 (2026-10-27): no
- * block on them, no links to them, until those reviews close.
+ * Pages changed by site PRs #106, #107, #108 and #116. Those PRs are merged;
+ * the pages stay untouched (no block on them, no links to them) until their
+ * post-merge reads on 2026-11-02 (#106-#108) and 2026-11-06 (#116). After
+ * those reads this set can be emptied and the pages added to the map.
  */
 const HOLD_PATHS = new Set([
   '/compare/duffel',
@@ -83,8 +85,21 @@ test('the block does not repeat a link the page body already has', () => {
   for (const [from, links] of Object.entries(RELATED)) {
     const src = fs.readFileSync(pageFile(from), 'utf8');
     for (const l of links) {
-      const re = new RegExp(`(\\]\\(|href=["{]?\`?["']?)${l.href.replace(/[/-]/g, '\\$&')}[)"'#?\`}]`);
+      // Matches a relative link in markdown, JSX or an object literal
+      // (`](/x)`, `href="/x"`, `href: '/x'`) and an absolute flightpowers.com one.
+      const esc = l.href.replace(/[.*+?^${}()|[\]\\/-]/g, '\\$&');
+      const re = new RegExp(`(flightpowers\\.com|['"(\`])${esc}(?![a-z0-9-])`);
       assert.ok(!re.test(src), `${from} already links ${l.href} in its body`);
+    }
+  }
+});
+
+test('no anchor text is used twice in the map', () => {
+  const seen = new Map();
+  for (const [from, links] of Object.entries(RELATED)) {
+    for (const l of links) {
+      assert.ok(!seen.has(l.label), `"${l.label}" is used on ${seen.get(l.label)} and ${from}`);
+      seen.set(l.label, from);
     }
   }
 });

@@ -6,9 +6,11 @@
  * Rules for this map (scripts/related-links.test.mjs checks them):
  * - 3-4 links per page, chosen by topic, never a link to the page itself.
  * - Anchor = the target page's own title, its h1, or a plain description of
- *   it; no keyword-only anchors.
- * - Pages under review in other site PRs are left out on both sides (no block
- *   on them, no links to them); see HOLD_PATHS in the test.
+ *   it; no keyword-only anchors. No anchor text is used twice in the map, so
+ *   a page's own title appears as an anchor at most once.
+ * - Pages changed by site PRs #106-#108 and #116 are left out on both sides
+ *   (no block on them, no links to them) until their post-merge reads on
+ *   2026-11-02 and 2026-11-06; see HOLD_PATHS in the test.
  * - Every target must be a page that exists on this site.
  */
 export type RelatedLink = { href: string; label: string };
@@ -39,7 +41,7 @@ export const RELATED: Record<string, RelatedLink[]> = {
   ],
   '/guides/scrape-booking-com-prices': [
     { href: '/guides/booking-api-make', label: 'Pulling Booking.com rates into a scheduled Make scenario' },
-    { href: '/guides/hotel-rates-api-benchmark-2026', label: 'Hotel rates API benchmark 2026: seven APIs, one hotel' },
+    { href: '/guides/hotel-rates-api-benchmark-2026', label: 'Seven hotel price APIs tested on the same searches, three runs each' },
     { href: '/guides/hotel-prices-by-hotel-name-api', label: 'Hotel rates API: every room price for one hotel by name' },
     { href: '/guides/scrape-google-flights-puppeteer', label: 'How to scrape Google Flights with Puppeteer' },
   ],
@@ -48,7 +50,7 @@ export const RELATED: Record<string, RelatedLink[]> = {
     { href: '/guides/scrape-booking-com-prices', label: 'The Booking.com version: scraping hotel prices with Python' },
     {
       href: '/guides/amadeus-flight-offers-vs-google-flights',
-      label: 'Amadeus flight offers or live Google Flights fares: which one for a price tracker',
+      label: 'Amadeus Flight Offers Search vs an extraction API, for price trackers',
     },
   ],
   '/guides/google-flights-prices-python': [
@@ -67,13 +69,13 @@ export const RELATED: Record<string, RelatedLink[]> = {
     { href: '/use-cases/ai-travel-agents', label: 'What an AI travel agent needs from live flight and hotel data' },
   ],
   '/use-cases/ai-travel-agents': [
-    { href: '/guides/google-flights-mcp-cline', label: 'Setting up the flights and hotels MCP server in Cline' },
+    { href: '/guides/google-flights-mcp-cline', label: 'Setting up the flights and hotels MCP servers in Cline' },
     { href: '/blog/chatgpt-flight-api', label: 'Connecting ChatGPT to live flight data through MCP' },
     { href: '/use-cases/fare-alerts', label: 'Price alerts backed by real-time data' },
   ],
   '/use-cases/trip-planning-bots': [
     { href: '/blog/chatgpt-flight-api', label: 'Live flight data inside ChatGPT, through an MCP connector' },
-    { href: '/guides/google-flights-mcp-cline', label: 'Using the Google Flights MCP in Cline' },
+    { href: '/guides/google-flights-mcp-cline', label: 'Giving Cline live flight and hotel prices while it codes' },
     { href: '/use-cases/metasearch', label: 'Metasearch: live fares with a booking link on every result' },
   ],
   '/use-cases/metasearch': [
@@ -103,7 +105,7 @@ export const RELATED: Record<string, RelatedLink[]> = {
   ],
   '/use-cases/market-analysis': [
     { href: '/guides/overpaying-for-flights', label: 'Checking whether your company is overpaying for flights' },
-    { href: '/use-cases/fare-alerts', label: 'Fare Alerts: flight price alerts without a price-history database' },
+    { href: '/use-cases/fare-alerts', label: 'Price alerts that branch on Google’s price context' },
     {
       href: '/guides/amadeus-flight-offers-vs-google-flights',
       label: 'Which source a price tracker should read: Amadeus offers or Google Flights fares',
@@ -112,25 +114,25 @@ export const RELATED: Record<string, RelatedLink[]> = {
   '/guides/amadeus-flight-offers-vs-google-flights': [
     { href: '/use-cases/fare-alerts', label: 'Flight price alerts without a price-history database' },
     { href: '/use-cases/market-analysis', label: 'Fare analysis with a baseline included' },
-    { href: '/guides/overpaying-for-flights', label: 'How to check if your company is overpaying for flights' },
+    { href: '/guides/overpaying-for-flights', label: 'Grading company flight bookings against Google’s usual price band' },
   ],
   '/guides/overpaying-for-flights': [
     { href: '/use-cases/market-analysis', label: 'Tracking fare movement with Google’s own baseline attached' },
     {
       href: '/guides/amadeus-flight-offers-vs-google-flights',
-      label: 'Amadeus flight offers or live Google Flights fares: which one for a price tracker',
+      label: 'What Amadeus Flight Offers returns next to a live Google Flights fare',
     },
-    { href: '/blog/cheapest-month-to-fly-api', label: 'Cheapest month to fly API: scan a whole month in one parallel burst' },
+    { href: '/blog/cheapest-month-to-fly-api', label: 'How a month-wide fare scan works, one request per date' },
   ],
   '/blog/cheapest-month-to-fly-api': [
-    { href: '/use-cases/fare-calendars', label: 'Fare Calendars: price a whole month of dates in one burst' },
-    { href: '/guides/google-flights-prices-python', label: 'How to get Google Flights prices with Python' },
+    { href: '/use-cases/fare-calendars', label: 'Fare calendars and heatmaps built from one search per date' },
+    { href: '/guides/google-flights-prices-python', label: 'Google Flights prices in Python with requests, no browser' },
     { href: '/blog/rebuilding-flightpowers-com', label: 'Rebuilding flightpowers.com' },
   ],
   '/blog/rebuilding-flightpowers-com': [
     { href: '/blog/chatgpt-flight-api', label: 'Connecting ChatGPT to live Google Flights data' },
-    { href: '/blog/cheapest-month-to-fly-api', label: 'Cheapest month to fly API: scan a whole month in one parallel burst' },
-    { href: '/use-cases/metasearch', label: 'Metasearch: live fares with a booking link on every result' },
+    { href: '/blog/cheapest-month-to-fly-api', label: 'A month of flight dates as a price grid, in one parallel scan' },
+    { href: '/use-cases/metasearch', label: 'Flight metasearch on live Google Flights data, with a buy link per result' },
   ],
 };
 
