@@ -143,7 +143,7 @@ export default function RestApiIntegrationPage() {
         />
         <div className="mt-8 max-w-3xl">
           <FieldRow name="POST /v1/flights/oneway" type="flights">
-            One-way fares with Google&apos;s price band, the low | typical | high verdict, and a buy_link on every result.
+            One-way fares with Google&apos;s price band and the low | typical | high verdict (when Google shows one), and a buy_link on every result.
           </FieldRow>
           <FieldRow name="POST /v1/flights/roundtrip" type="flights">
             Paired-leg round-trip itineraries: one object per option with both legs matched and a combined total_price.

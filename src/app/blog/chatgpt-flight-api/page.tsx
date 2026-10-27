@@ -10,7 +10,7 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 export const metadata: Metadata = withOg({
   title: 'ChatGPT flight API: connect live Google Flights data via MCP',
   description:
-    "How to connect ChatGPT to live Google Flights data through MCP developer-mode connectors: one URL, your RapidAPI key, and Google's price verdict on every result. Pro and Business plans only.",
+    "How to connect ChatGPT to live Google Flights data through MCP developer-mode connectors: one URL, your RapidAPI key, and Google's price verdict when Google shows one. Pro and Business plans only.",
   alternates: { canonical: '/blog/chatgpt-flight-api' },
 });
 
@@ -90,8 +90,8 @@ Hotels:  ${LINKS.mcpHotels}?rapidapi_key=YOUR_RAPIDAPI_KEY`}</Code>
           <p>Once connected, these tools appear in conversations:</p>
           <ul>
             <li>
-              <strong>search_oneway_flights</strong> (flights server): One-way fares with Google&apos;s price band, the low |
-              typical | high verdict, and a buy_link on every result. Takes a single date or a date range, expanded server-side.
+              <strong>search_oneway_flights</strong> (flights server): One-way fares with Google&apos;s price band and the low |
+              typical | high verdict (when Google shows one), and a buy_link on every result. Takes a single date or a date range, expanded server-side.
             </li>
             <li>
               <strong>search_roundtrip_flights</strong> (flights server): Paired-leg round-trip itineraries with a combined
@@ -197,7 +197,7 @@ Hotels:  ${LINKS.mcpHotels}?rapidapi_key=YOUR_RAPIDAPI_KEY`}</Code>
         <CtaBand
           medium="blog"
           title="Live travel data in ChatGPT conversations"
-          body="Two MCP connectors, your own key, and Google's price verdict on every result. Pro and Business plans only."
+          body="Two MCP connectors, your own key, and Google's price verdict when Google shows one. Pro and Business plans only."
         />
       </Section>
     </>

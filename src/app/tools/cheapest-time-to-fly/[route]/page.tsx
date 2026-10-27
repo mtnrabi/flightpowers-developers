@@ -99,7 +99,7 @@ export default async function Page({ params }: Props) {
           featureList: [
             `A year of ${routeArrow(r)} fares as one chart, live from Google Flights`,
             'One real mid-month search per coming month',
-            'Google’s low, typical or high verdict on each fare',
+            'Google’s low, typical or high verdict on each fare, where published',
             'A booking link on every priced month',
           ],
         }}
@@ -133,7 +133,7 @@ export default async function Page({ params }: Props) {
         </h1>
         <p className="lede mt-5 max-w-2xl">
           {routeArrow(r)}, every coming month priced side by side from one real search each, with Google&apos;s own verdict on
-          every fare. Run it now and the cheap months jump out of the chart.
+          every fare where Google shows one. Run it now and the cheap months jump out of the chart.
         </p>
       </Container>
 
@@ -193,7 +193,7 @@ export default async function Page({ params }: Props) {
             <div>
               <p className="text-[15px] font-semibold text-ink-100">Same data either way</p>
               <p className="mt-1.5 text-[14px] text-ink-400 leading-relaxed">
-                price_insights_low and price_insights_high, the verdict, and a bookable buy_link on every fare. What you see here
+                price_insights_low and price_insights_high, the verdict (when Google shows them), and a bookable buy_link on every fare. What you see here
                 is the API response, not a mock of one.
               </p>
             </div>

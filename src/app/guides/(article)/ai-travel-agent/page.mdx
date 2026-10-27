@@ -96,7 +96,7 @@ answers come from current fares rather than from training-data memory. Building
 one takes two pieces: a data connection the assistant can search, and a schedule
 so the checking happens without being asked. The agent in this guide connects
 Claude or ChatGPT to live flight prices through one URL, judges every fare
-against Google's own price history, and runs a daily scan that flags the cheap
+against Google's own price history when Google shows one, and runs a daily scan that flags the cheap
 ones: a flight price alert with judgment attached.
 
 This is one of three ways people use the same data. The other two are
@@ -545,5 +545,5 @@ an open app, with the connector caveat above.
   medium="guide"
   showBoth
   title="The alerting brain is one string comparison"
-  body="Google's price band and verdict ship in every response, so your agent knows cheap when it sees it. Free tier on RapidAPI verifies your key; the $10 plan runs the daily scan."
+  body="Google's price band and verdict ship in every response where Google shows one, so your agent knows cheap when it sees it. Free tier on RapidAPI verifies your key; the $10 plan runs the daily scan."
 />

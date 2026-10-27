@@ -190,7 +190,7 @@ export function CheapestMonthTool({
         pricingHref={rapidApiPricingUrl('flights', 'tool')}
         docsHref="/flights-api/parallel-date-scan"
         headline="Run the full every-day scan from your own code"
-        body="One request per date, fired in parallel: the grid you are looking at, at full resolution, with Google’s price band and verdict on every fare."
+        body="One request per date, fired in parallel: the grid you are looking at, at full resolution, with Google’s price band and verdict when Google shows one."
       />
 
       <EmailCapture tool="cheapest-month" source="tool:cheapest-month" />

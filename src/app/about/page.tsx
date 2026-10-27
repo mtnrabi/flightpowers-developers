@@ -70,7 +70,7 @@ export default function AboutPage() {
           <p>
             So the data layer became the product. The APIs you can buy today are that same infrastructure, sold directly,
             with the failure handling exposed as response headers instead of hidden behind a UI, and Google&apos;s own price
-            context attached to every fare.
+            context attached to every fare where Google shows it.
           </p>
         </div>
       </Section>

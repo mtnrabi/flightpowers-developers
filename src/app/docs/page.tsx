@@ -173,7 +173,7 @@ export default function DocsPage() {
         <SectionHead
           eyebrow="Google Flights API"
           title="Flights: live prices with price context"
-          lede="Two endpoints over live Google Flights results. Round-trips come back as paired itineraries, and every result carries price context from Google Flights and a booking link."
+          lede="Two endpoints over live Google Flights results. Round-trips come back as paired itineraries, and every result carries a booking link, plus price context from Google Flights when Google shows one."
         />
         <EndpointGrid pages={FLIGHTS_PAGES} />
         <p className="mt-5 text-[14px] text-ink-400">

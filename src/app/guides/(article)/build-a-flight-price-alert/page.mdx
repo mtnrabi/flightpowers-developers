@@ -192,7 +192,7 @@ project, and reconstructed links break quietly.
 
 Everything above assumes the baseline is yours to build. It does not have to be.
 
-Every fare our API returns carries Google's own historical band for that route and those
+When Google shows one, every fare our API returns carries Google's own historical band for that route and those
 dates, `price_insights_low` and `price_insights_high`, plus Google's verdict on the
 current fare in `price_range_in_relation_to_other_periods`, one of `low`, `typical` or
 `high`. Those are Google's values, surfaced as-is. Nothing is modelled on our side.
@@ -300,5 +300,5 @@ free tier included.
 <CtaBand
   medium="guide"
   title="Alert on day one, not in week six"
-  body="Every fare comes back with Google's historical band and a low | typical | high verdict, so the alert condition is a field comparison instead of a database you have to fill first."
+  body="Every fare comes back with Google's historical band and a low | typical | high verdict when Google shows one, so the alert condition is a field comparison instead of a database you have to fill first."
 />

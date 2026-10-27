@@ -273,7 +273,7 @@ export default function CompareKiwiTequilaPage() {
         <CtaBand
           medium="compare"
           title="No invitation needed"
-          body="Subscribe on RapidAPI and the key works on the next request: live Google Flights fares with the price band on every result."
+          body="Subscribe on RapidAPI and the key works on the next request: live Google Flights fares with the price band when Google shows one."
         />
       </Section>
     </>

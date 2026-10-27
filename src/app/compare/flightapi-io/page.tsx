@@ -150,7 +150,7 @@ export default function CompareFlightApiIoPage() {
               ['Per 1,000 searches, entry plan', `${FA_PER_1K} (15,000 searches for $49)`, `${perThousand(PRO)} on PRO, ${perThousand(ULTRA)} on ULTRA`],
               ['Free to try', '"Start with 20 free API calls"', '10 requests a month on BASIC'],
               ['Round trip', 'One GET to /roundtrip, 2 credits, both legs in each itinerary.', 'One POST to /v1/flights/roundtrip, both legs, one total, one booking link.'],
-              ['Price verdict', 'We did not find a price band or verdict in their round-trip docs.', 'Google\'s low / typical / high verdict and range on every result.'],
+              ['Price verdict', 'We did not find a price band or verdict in their round-trip docs.', 'Google\'s low / typical / high verdict and range when Google shows one.'],
               ['Sellers per itinerary', 'Several, each with its own price and quote age.', 'One: the price Google Flights shows.'],
               ['Market', '"region": "Check local prices of any country by passing the ISO code of that country."', 'Flights: currency only. Hotels: proxy_country prices a stay as seen from another country.'],
               ['Other data', 'Multi-city, flight tracking, airport schedules, and a separate hotel price API (Makcorps).', `Booking.com hotel rates on their own plan, $${HOTEL_PRO.priceMonthly} for ${HOTEL_PRO.quota.toLocaleString('en-US')}. No tracking or schedules.`],
@@ -250,7 +250,7 @@ export default function CompareFlightApiIoPage() {
         <CtaBand
           medium="compare"
           title="Check the Google price on your route"
-          body="Live Google Flights fares with the price band and verdict on every result. Free tier on RapidAPI, no card."
+          body="Live Google Flights fares with the price band and verdict when Google shows one. Free tier on RapidAPI, no card."
         />
       </Section>
     </>

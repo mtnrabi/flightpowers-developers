@@ -202,7 +202,7 @@ export default function AiAgentsPage() {
                 <CheckBullets
                   items={[
                     <>Live Google Flights fares and Booking.com rates, in whatever your agent already speaks</>,
-                    <>Every flight carries Google&apos;s price band, a low | typical | high verdict, and a working buy_link</>,
+                    <>Every flight carries Google&apos;s price band and a low | typical | high verdict (when Google shows one), and a working buy_link</>,
                     <>A date range and a list of destinations in one call, and a round trip priced as one request</>,
                     <>Hotels price per market (price_as_seen_from over MCP, proxy_country over REST): rate-parity checks from a single API</>,
                     <>

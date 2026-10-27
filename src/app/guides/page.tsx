@@ -36,7 +36,7 @@ const GUIDES = [
   {
     href: '/guides/google-flights-prices-python',
     title: 'How to get Google Flights prices with Python',
-    sub: 'Twelve lines of requests, a real captured response, and the three price-insight fields that arrive with every fare. No browser pool, no tfs= encoding, and the limits stated up front.',
+    sub: 'Twelve lines of requests, a real captured response, and the three price-insight fields that arrive with a fare when Google shows them. No browser pool, no tfs= encoding, and the limits stated up front.',
     tag: 'start here',
   },
   {
@@ -120,7 +120,7 @@ const GUIDES = [
   {
     href: '/guides/fare-verdict-in-one-call',
     title: 'Is this flight price good? One API call answers it',
-    sub: 'Google’s price band and its low | typical | high verdict ride on every search, so you can judge a fare on the first call instead of polling a route for weeks. Three live captures, one per verdict, and the two request settings that silently remove the band.',
+    sub: 'Google’s price band and its low | typical | high verdict ride on every search where Google shows them, so you can judge a fare on the first call instead of polling a route for weeks. Three live captures, one per verdict, and the two request settings that silently remove the band.',
     tag: 'start here',
   },
   {

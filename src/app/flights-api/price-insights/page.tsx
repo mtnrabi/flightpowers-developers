@@ -27,7 +27,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 export const metadata: Metadata = withOg({
   title: 'Flight Price Insights API: Google’s price band & low/typical/high verdict',
   description:
-    'Every fare returns with price_insights_low, price_insights_high, and Google’s own low | typical | high verdict for the route and dates. Build price alerts and “book now” recommendations without maintaining your own fare history.',
+    'Every fare returns with price_insights_low, price_insights_high, and Google’s own low | typical | high verdict for the route and dates, when Google shows one. Build price alerts and “book now” recommendations without maintaining your own fare history.',
   alternates: { canonical: '/flights-api/price-insights' },
 });
 
@@ -121,7 +121,7 @@ export default function PriceInsightsPage() {
                 Fares with a <span className="text-signal-500">verdict</span> attached to the number
               </h1>
               <p className="lede mt-5">
-                Send a route and a date; get live fares with Google&apos;s own price band and a low | typical | high call on each.
+                Send a route and a date; get live fares with Google&apos;s own price band and a low | typical | high call on each when Google shows one.
               </p>
               <div className="mt-7">
                 <CheckBullets
@@ -165,7 +165,7 @@ export default function PriceInsightsPage() {
         title="What a price insights response looks like"
         answer={
           <>
-            Every fare FlightPowers returns carries Google&apos;s own price band. One POST to{' '}
+            Every fare FlightPowers returns carries Google&apos;s own price band when Google shows one. One POST to{' '}
             <Mono>/v1/flights/oneway</Mono> on <Mono>api.flightpowers.com</Mono> (or to{' '}
             <Mono>google-flights-live-api.p.rapidapi.com</Mono> with a RapidAPI key) returns{' '}
             <Mono>price_insights_low</Mono>, <Mono>price_insights_high</Mono> and{' '}

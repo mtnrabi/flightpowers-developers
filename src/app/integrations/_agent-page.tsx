@@ -149,7 +149,7 @@ export function AgentIntegrationPage({
                 <CheckBullets
                   items={[
                     <>Live Google Flights fares and Booking.com rates, asked for in plain English</>,
-                    <>Google&apos;s own price band and a low | typical | high verdict on every fare</>,
+                    <>Google&apos;s own price band and a low | typical | high verdict when Google shows one</>,
                     <>A date range and a list of destinations in one call, and a round trip priced as one request</>,
                     <>Hotel rates as a shopper in any country sees them, for rate-parity checks.{install ? null : ' Searches bill to your own RapidAPI plan'}</>,
                   ]}

@@ -200,7 +200,7 @@ export function CheapestTimeTool({
         pricingHref={rapidApiPricingUrl('flights', 'tool')}
         docsHref="/flights-api/parallel-date-scan"
         headline="Run the full scan from your own code"
-        body="One request per date, fired in parallel: every month, as many sample dates as you want, with Google's price band and verdict on every fare."
+        body="One request per date, fired in parallel: every month, as many sample dates as you want, with Google's price band and verdict when Google shows one."
       />
 
       <EmailCapture tool="cheapest-time" source="tool:cheapest-time" />

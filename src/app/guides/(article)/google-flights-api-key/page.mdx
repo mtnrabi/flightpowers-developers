@@ -110,7 +110,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
         name: 'What makes this API different from other flight APIs?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'FlightPowers returns Google\'s own price context on every fare: price_insights_low and price_insights_high define the historical band, and price_range_in_relation_to_other_periods is "low", "typical", or "high". It also returns an X-Search-Status header that distinguishes "no flights found" from "search failed".',
+          text: 'FlightPowers returns Google\'s own price context on every fare where Google shows one: price_insights_low and price_insights_high define the historical band, and price_range_in_relation_to_other_periods is "low", "typical", or "high". It also returns an X-Search-Status header that distinguishes "no flights found" from "search failed".',
         },
       },
     ],
@@ -123,7 +123,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
 **Short answer:** How do I get a Google Flights API key? Google has none to give: it has had no public flights API since QPX Express closed in 2018. You get a key from FlightPowers' [Google Flights Live API](/flights-api) on RapidAPI: subscribe, copy the key, and the first {FLIGHT_PLANS[0].quota} searches a month are free; PRO is ${FLIGHT_PLANS[1].priceMonthly} for {FLIGHT_PLANS[1].quota.toLocaleString('en-US')}. Every result is a live fare with Google's own price context. No key at all? The free MCP server with ads gives 50 searches a day after a Google sign-in.
 
-Google shut down **QPX Express**, its public flight-search API, in **April 2018** and offers no public flights API today. Every "Google Flights API key" you can get in 2026 comes from a third-party service that extracts data from the public Google Flights website. This guide walks you through getting a key for the **Google Flights Live API** on RapidAPI, the extraction API that returns Google's own price context with every fare.
+Google shut down **QPX Express**, its public flight-search API, in **April 2018** and offers no public flights API today. Every "Google Flights API key" you can get in 2026 comes from a third-party service that extracts data from the public Google Flights website. This guide walks you through getting a key for the **Google Flights Live API** on RapidAPI, the extraction API that returns Google's own price context with every fare when Google shows one.
 
 The process takes under 2 minutes. You'll have a working API key, a free tier to test with, and paste-ready code examples.
 
@@ -133,7 +133,7 @@ When you "get a Google Flights API key" today, you're subscribing to a hosted se
 
 1. Runs live searches against Google Flights on your behalf
 2. Returns structured JSON instead of HTML
-3. Includes fields the official API never had: Google's historical price band and a low | typical | high verdict on every fare
+3. Includes fields the official API never had: Google's historical price band and a low | typical | high verdict when Google shows one
 4. Reports search status explicitly (`X-Search-Status` header) so you know the difference between "no flights found" and "the search failed"
 
 This is not a workaround. What Google still offers is partner access for airlines and OTAs under contract, so for everyone else Google Flights data reaches code through a hosted extraction API like this one, or through a scraper you run and maintain yourself.

@@ -92,7 +92,7 @@ const PLAYS: { href: string; label: string; line: string }[] = [
   {
     href: '/guides/cheapest-destinations-from-one-airport',
     label: 'Scan for deals',
-    line: 'One MCP call takes a date range and a list of airports and returns every fare, each with Google\u2019s low, typical or high verdict.',
+    line: 'One MCP call takes a date range and a list of airports and returns every fare, each with Google\u2019s low, typical or high verdict when Google shows one.',
   },
   {
     href: '/docs',

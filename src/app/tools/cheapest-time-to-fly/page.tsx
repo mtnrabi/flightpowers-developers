@@ -10,7 +10,7 @@ import { ROUTES, routeArrow } from '@/lib/grid';
 export const metadata: Metadata = withOg({
   title: 'Cheapest Time to Fly: a year of fares as one chart',
   description:
-    'Pick a route and see the cheapest month to fly it: one real Google Flights search per coming month, charted side by side with Google’s own low | typical | high verdict on each fare. Free, no signup; live scans are rate-limited.',
+    'Pick a route and see the cheapest month to fly it: one real Google Flights search per coming month, charted side by side with Google’s own low | typical | high verdict on each fare where Google publishes it. Free, no signup; live scans are rate-limited.',
   alternates: { canonical: '/tools/cheapest-time-to-fly' },
 });
 
@@ -70,7 +70,7 @@ export default function CheapestTimePage() {
           featureList: [
             'The coming months priced as one chart, live from Google Flights',
             'One real mid-month search per month',
-            'Google’s low | typical | high verdict on each month’s fare',
+            'Google’s low | typical | high verdict on each month’s fare, where published',
             'A booking link on every priced month',
             'Per-month empty-vs-failed search signalling',
           ],
@@ -84,7 +84,7 @@ export default function CheapestTimePage() {
         </h1>
         <p className="lede mt-5 max-w-2xl">
           Which month is actually cheapest for your route? One real search per coming month, priced side by side, with
-          Google&apos;s own verdict on every fare. The cheap months jump out.
+          Google&apos;s own verdict where Google shows one. The cheap months jump out.
         </p>
       </Container>
 
@@ -169,7 +169,7 @@ export default function CheapestTimePage() {
             <div>
               <p className="text-[15px] font-semibold text-ink-100">Same data, either way</p>
               <p className="mt-1.5 text-[14px] text-ink-400 leading-relaxed">
-                Every fare carries price_insights_low/high and the verdict, plus a bookable buy_link. What you see here is the
+                Every fare carries price_insights_low/high and the verdict (when Google shows them), plus a bookable buy_link. What you see here is the
                 API response, not a mock.
               </p>
             </div>
