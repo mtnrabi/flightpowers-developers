@@ -107,7 +107,7 @@ export const INTEGRATIONS: Integration[] = [
     slug: 'smithery',
     name: 'Smithery',
     href: '/integrations/smithery',
-    line: 'The MCP registry listings, key via config',
+    line: 'Directory listings; connect at our own URLs',
     tag: 'MCP registry',
   },
   {
