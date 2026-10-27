@@ -1,5 +1,6 @@
 import { Breadcrumbs, Container, JsonLd } from '@/components/ui';
 import { FloatingCta } from '@/components/FloatingCta';
+import { RelatedLinks } from '@/components/RelatedLinks';
 import { SITE } from '@/lib/site';
 
 /**
@@ -27,6 +28,7 @@ export default function GuideLayout({ children }: { children: React.ReactNode })
         <Breadcrumbs trail={[{ href: '/', label: 'Home' }, { href: '/guides', label: 'guides' }]} />
         <p className="eyebrow mt-8">Guide</p>
         <article className="prose-fp mt-4 max-w-3xl">{children}</article>
+        <RelatedLinks />
       </Container>
       <FloatingCta />
     </>
