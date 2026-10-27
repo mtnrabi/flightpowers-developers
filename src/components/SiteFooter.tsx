@@ -37,12 +37,16 @@ const columns: { heading: string; links: FooterLink[] }[] = [
       { href: '/hotels-api/search', label: 'Hotel search' },
       { href: '/hotels-api/by-name', label: 'Hotel by name' },
       { href: '/hotels-api/geo-pricing', label: 'Geo-pricing' },
+      { href: '/hotels-api/airbnb', label: 'Airbnb Live API' },
+      { href: '/hotels-api/google-hotels', label: 'Google Hotels Live API' },
     ],
   },
   {
     heading: 'For AI agents',
     links: [
       { href: '/mcp', label: 'MCP servers' },
+      { href: '/mcp/google-flights', label: 'Flights server for Claude and Cursor' },
+      { href: '/mcp/booking-hotels', label: 'Hotels server for Claude and Cursor' },
       { href: '/ai-agents', label: 'AI agents' },
       { href: '/assistants', label: 'Assistant products' },
       { href: '/skills', label: 'Agent skills' },
