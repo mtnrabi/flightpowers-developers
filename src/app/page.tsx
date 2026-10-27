@@ -290,6 +290,22 @@ export default function HomePage() {
           </span>
           <span className="w-full sm:w-auto text-[13px] text-ink-500">queried in real time on every request.</span>
         </div>
+        <p className="mt-4 max-w-3xl text-[14.5px] text-ink-400 leading-relaxed">
+          Also live: the{' '}
+          <Link href="/hotels-api/airbnb" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+            Airbnb API
+          </Link>
+          , the{' '}
+          <Link href="/hotels-api/google-hotels" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+            Google Hotels API
+          </Link>{' '}
+          (one hotel&apos;s rate on each site Google lists for it), and a{' '}
+          <Link href="/mcp/booking-hotels" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+            hotels MCP server
+          </Link>{' '}
+          whose <code className="font-mono text-[13px] text-signal-400">compare_hotel_rates</code> prices the same stay on
+          Booking.com and Airbnb in one call.
+        </p>
       </Section>
 
       {/* ====================== GETTING STARTED ======================= */}

@@ -11,13 +11,13 @@ import TOOLS from './tools-2026-10-26.json';
 // W2-5: the "hotel mcp" / "booking.com mcp" page. Before this, the only page
 // with the phrase was the 3.6 KB shell on hotels.flightpowers.com (audit C §4).
 // title.absolute keeps the " · FlightPowers" suffix off.
-const TITLE = 'Hotel MCP server: live Booking.com room rates for Claude';
+const TITLE = 'Hotel MCP server: live Booking.com and Airbnb rates for Claude';
 
 export const metadata: Metadata = {
   ...withOg({
     title: TITLE,
     description:
-      'Hotel MCP server for Claude, Cursor and ChatGPT: live Booking.com rates by destination or hotel name, priced as seen from another country if you ask, plus live Airbnb stays and a Booking.com vs Airbnb comparison on an Airbnb subscription.',
+      'Hotel MCP server for Claude, Cursor and ChatGPT: live Booking.com and Airbnb rates, and compare_hotel_rates prices the same stay on both in one call.',
     alternates: { canonical: '/mcp/booking-hotels' },
   }),
   title: { absolute: TITLE },
@@ -206,7 +206,7 @@ export default function BookingHotelsMcpPage() {
             <div>
               <p className="eyebrow">Hotel MCP</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
-                Hotel MCP server: live Booking.com rates in <span className="text-signal-500">Claude, Cursor and ChatGPT</span>
+                Hotel MCP server: live Booking.com and Airbnb rates in <span className="text-signal-500">Claude, Cursor and ChatGPT</span>
               </h1>
               {/* The citation sentence, hotels-MCP variant (plan "The one citation sentence").
                   Numbers from lib/pricing.ts and the free server's published caps. */}
