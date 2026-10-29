@@ -329,7 +329,11 @@ export default function OneWayPage() {
             </FieldRow>
             <FieldRow name="passengers" type="int[]">
               Per-passenger codes: <code className="field">1</code> adult, <code className="field">2</code> child,{' '}
-              <code className="field">3</code> infant on lap, <code className="field">4</code> infant in seat.
+              <code className="field">3</code> infant on lap, <code className="field">4</code> infant in seat. A list with a
+              child or infant is searched through a different Google call and can take up to about a minute. If that call does
+              not complete, the answer is a 503 with <code className="field">X-Search-Reason: upstream_no_render</code>: resend
+              once (the 503 is not counted against your plan), and as a backup price the legs separately with the same{' '}
+              <code className="field">passengers</code> list.
             </FieldRow>
             <FieldRow name="limit" type="int">
               Maximum results returned. Defaults to <code className="field">10</code>.

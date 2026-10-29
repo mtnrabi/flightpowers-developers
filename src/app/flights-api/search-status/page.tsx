@@ -63,7 +63,7 @@ const STATUSES: { value: string; cls: string; meaning: string }[] = [
   },
 ];
 
-const REASONS = ['blocked_page', 'unrecognized_page', 'unreadable_prices', 'upstream_timeout', 'search_truncated', 'upstream_status_<code>'];
+const REASONS = ['blocked_page', 'unrecognized_page', 'unreadable_prices', 'upstream_timeout', 'upstream_no_render', 'search_truncated', 'upstream_status_<code>'];
 
 const faq: Faq[] = [
   {
@@ -159,7 +159,7 @@ export default function SearchStatusPage() {
                       <span className="text-verdict-typical font-mono text-[13px]">partial</span> ·{' '}
                       <span className="text-verdict-high font-mono text-[13px]">degraded</span>
                     </>,
-                    <>Unreadable pages are retried automatically. Degraded means retry, empty means believe it</>,
+                    <>Unreadable pages are retried automatically. Degraded: the 503 body's retry says whether resending can help. Empty means believe it</>,
                     <>
                       Opt-in <code className="font-mono text-[13px] text-signal-400">strict: true</code> turns a degraded search
                       into an HTTP 503

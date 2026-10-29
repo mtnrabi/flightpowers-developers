@@ -378,6 +378,14 @@ export default function RoundTripPage() {
               </Link>
               , applied to the paired search as a whole.
             </FieldRow>
+            <FieldRow name="passengers with a child or infant">
+              Searched through a different Google call, which can take up to about a minute (a round trip more than a one-way).
+              If it does not complete, the answer is a 503 with{' '}
+              <code className="field">X-Search-Reason: upstream_no_render</code>. Resend once (the 503 is not counted against
+              your plan), or use a smaller <code className="field">limit</code> such as <code className="field">5</code>, which
+              prices fewer return legs and can answer sooner. As a backup, price the two one-way legs with the same{' '}
+              <code className="field">passengers</code> list; two separate fares can cost more together than the round trip.
+            </FieldRow>
             <FieldRow name="returns_per_outbound" type="int 1–5">
               How many return flights to pair with each outbound flight, 1 to 5. Defaults to{' '}
               <code className="field">2</code>. The paired itineraries are ranked together and{' '}
