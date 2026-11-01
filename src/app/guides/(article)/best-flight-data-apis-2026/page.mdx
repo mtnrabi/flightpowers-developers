@@ -4,7 +4,7 @@ export const metadata = {
   ...withOg({
     title: 'The best flight data APIs in 2026, compared honestly',
     description:
-      'FlightPowers’ Google Flights Live API (mine: free to start, then $10 for 2,500), Air Scraper, SerpApi ($25 for 1,000) and Duffel ($3 per order), quoted from their own pages.',
+      'FlightPowers’ flights API (mine: free, then $10 for 2,500), Air Scraper, SerpApi ($25 for 1,000), SearchApi ($40 for 10,000) and Duffel, quoted from their own pages.',
     alternates: { canonical: '/guides/best-flight-data-apis-2026' },
   }),
   // The layout template appends " · FlightPowers"; the title is 52 chars without it.
@@ -18,16 +18,23 @@ import { CtaBand } from '@/components/bands';
 import { FLIGHT_PLANS } from '@/lib/pricing';
 import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
+export const MEGA = FLIGHT_PLANS[3];
+export const usd = (x) => {
+  const r = Math.round(x * 100) / 100;
+  return `$${r.toLocaleString('en-US', { minimumFractionDigits: r % 1 ? 2 : 0, maximumFractionDigits: 2 })}`;
+};
+export const megaAt = (n) => usd(MEGA.priceMonthly + (n - MEGA.quota) * MEGA.overagePerRequest);
+
 <JsonLd
   data={{
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
     headline: 'The best flight data APIs in 2026, compared honestly',
     description:
-      'Google Flights Live API, Air Scraper, SerpApi and Duffel compared with quoted, dated prices and disclosed bias.',
+      'Google Flights Live API, Air Scraper, SerpApi, SearchApi and Duffel compared with quoted, dated prices and disclosed bias.',
     url: `${SITE.url}/guides/best-flight-data-apis-2026`,
     datePublished: '2026-08-26',
-    dateModified: '2026-10-07',
+    dateModified: '2026-11-01',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -35,7 +42,7 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 # The best flight data APIs in 2026, compared
 
-<GuideDates published="2026-08-26" updated="2026-10-07" />
+<GuideDates published="2026-08-26" updated="2026-11-01" />
 
 **Short answer:** FlightPowers' [Google Flights Live API](/flights-api) (mine) returns live
 Google Flights fares with Google's own low / typical / high price band and a round trip
@@ -46,7 +53,8 @@ Google). Past that, PRO is ${FLIGHT_PLANS[1].priceMonthly} for
 {FLIGHT_PLANS[1].quota.toLocaleString('en-US')} searches, about a sixth of SerpApi's price
 per search (their cheapest plan is $25 for 1,000). Best for price tracking, date scans and
 AI agents; it does not book. Air Scraper (cheaper per request, Skyscanner data), SerpApi
-(a Google scraping platform) and Duffel (a booking API) are the other three people
+(a Google scraping platform), SearchApi (another search-scraping platform, the same $4.00
+per 1,000 as mine at entry) and Duffel (a booking API) are the other four people
 actually shortlist in 2026, each quoted from its own live page below, including the one
 that beats mine on raw requests per dollar.
 
@@ -56,10 +64,11 @@ ones people actually shortlist.
 
 I'll be honest: **I'm starting with my own API.** I run FlightPowers, so read the
 first entry as a vendor describing his product. Everything I say about the others is
-quoted from their own live pages, re-read on **2026-09-07**, with the caveats
+quoted from their own live pages, re-read on **2026-09-07** (SearchApi, added
+later, read on **2026-11-01**), with the caveats
 stated inline, including the finding that is not flattering to me: on raw requests
-per dollar, one competitor is cheaper than I am at every tier. Nothing any of them
-charges changed between 2026-08-24 and this re-read; the one thing that did change
+per dollar, one competitor is cheaper than I am at every tier. Nothing the other three
+charge changed between 2026-08-24 and this re-read; the one thing that did change
 is a SerpApi parameter, noted in its section.
 
 ## 1. Google Flights Live API (FlightPowers): mine
@@ -88,8 +97,9 @@ for {FLIGHT_PLANS[2].quota.toLocaleString('en-US')} and MEGA ${FLIGHT_PLANS[3].p
 for {FLIGHT_PLANS[3].quota.toLocaleString('en-US')}.
 
 Being fair about the cons, because everyone else on this page gets their pros: no
-multi-city or open-jaw itineraries (one-way and round-trip only), no car rentals, and
-the top public tier caps at 25,000 requests a month. All four cabins are covered:
+multi-city or open-jaw itineraries (one-way and round-trip only) and no car rentals.
+Volume has no ceiling: MEGA includes {MEGA.quota.toLocaleString('en-US')} requests a month and
+each request past that is ${MEGA.overagePerRequest} ({usd(MEGA.overagePerRequest * 1000)} per 1,000). All four cabins are covered:
 `seat_type` 1 economy, 2 premium economy, 3 business, 4 first. Current plan prices live on [/pricing](/pricing); the
 companion [Booking.com hotels API](/hotels-api) is a separate listing on the same
 account.
@@ -129,7 +139,7 @@ end); flights, hotels
 *and* rental cars on one key; a price-calendar endpoint and an "everywhere" search
 as first-class endpoints (on mine you build those by scanning in parallel);
 multi-stop search, which I do not have at all; and a 140,000-request top tier
-against my 25,000. Against: rate limits are not published on its listing (its plan
+against the {MEGA.quota.toLocaleString('en-US')} included in my MEGA. Against: rate limits are not published on its listing (its plan
 payloads carry no rate-limit value at all, checked 2026-09-07), and the data is
 Skyscanner's, which is not interchangeable with Google Flights coverage.
 
@@ -167,7 +177,49 @@ and dated, is at [/compare/serpapi](/compare/serpapi).
 Search, Maps or Shopping data; if you want price history without accumulating it;
 or if your legal team wants the indemnity.
 
-## 4. Duffel: the one that can actually sell a ticket
+## 4. SearchApi: the same Google data, and a date grid in one request
+
+**Source: Google Flights (and many other Google surfaces). Best for: price grids, multi-city,
+and a million searches a month or more.**
+
+SearchApi is a search-scraping platform like SerpApi, with Google Flights as one engine of many
+on one key. In our [side-by-side benchmark](/guides/flight-api-benchmark-2026) of 2026-10-07 it
+returned the same cheapest fare as mine on all nine price points, and the fastest first price on
+the round trip (1.98 s against my 3.27 s). From its own pages (re-read 2026-11-01): 100 free
+requests at sign-up with no card, then the Developer plan at $40/month for 10,000 searches, which
+is **$4.00 per 1,000, the same as mine at entry**. Its bigger plans go down to $3 per 1,000 on
+Production ($100 for 35,000), $2 on Scale ($500 for 250,000) and $1 on its largest plan ($5,000
+for 5,000,000). Mine stays cheaper for most of that range, because past MEGA's
+{MEGA.quota.toLocaleString('en-US')} included searches each extra one is ${MEGA.overagePerRequest}
+({usd(MEGA.overagePerRequest * 1000)} per 1,000): 35,000 searches a month cost {megaAt(35000)} with me against
+$100 on Production, and 250,000 cost {megaAt(250000)} against $500 on Scale. SearchApi only drops
+below my price at about a million searches a month ($1,500 on its Octo 1M plan against
+{megaAt(1000000)} with me) and up. Those are its standard-speed prices; an
+"enhanced speed" option doubles each one. You are billed only for successful searches, and a
+plan can use at most 20% of its credits in any hour.
+
+Round trips work like SerpApi's: the first answer lists the outbound options, each priced as a
+round-trip total, and the return flight takes a second request (their docs: a `departure_token`
+is used *"to select the outbound flight before obtaining a booking_token for the return
+flight"*). So a round trip with both legs costs two searches, $8.00 per 1,000 at entry against my
+$4.00.
+
+Where it beats me, plainly: its `price_insights` carries Google's range and price level plus a
+`price_history` series, where I return the range and verdict only; a separate Google Flights
+Calendar engine returns the lowest price for each date pair in a range, up to 200 date pairs
+per request (prices only), and in our benchmark a 7-date-pair request was billed as one search, which
+makes it cheaper than my parallel scan if a price grid is all you need; it supports multi-city
+(I do not) and up to 10 airports per side in one search; it returns per-itinerary carbon
+emissions; and its Production plan and up list a legal protection guarantee (backed by up to
+$2 million in coverage, per its pricing page).
+
+The full side-by-side, with everything quoted and dated, is at
+[/compare/searchapi](/compare/searchapi).
+
+**Consider SearchApi if** you want a fare calendar in one request, multi-city, price history
+without storing it yourself, or you run about a million searches a month or more.
+
+## 5. Duffel: the one that can actually sell a ticket
 
 **Source: airline inventory (NDC and their own IATAs). Best for: products where the
 purchase happens inside your product.**
@@ -205,7 +257,7 @@ its access gate, is in [Amadeus Self-Service alternatives](/guides/amadeus-self-
 ## What are the best APIs for tracking flight status and prices?
 
 Flight status (delays, positions, schedules) and flight prices are two different
-products: for prices, the four APIs on this page; for status, a reference feed such as
+products: for prices, the five APIs on this page; for status, a reference feed such as
 aviationstack or FlightAware AeroAPI, both listed with their quoted plans in
 [the travel data API category map](/guides/best-travel-data-apis-2026#3-reference-and-static-data);
 FlightPowers does prices, not status.
@@ -243,6 +295,7 @@ your key, doesn't evaluate).
 
 - [Flight API benchmark 2026](/guides/flight-api-benchmark-2026): four Google Flights APIs on the same three searches, timed, with raw numbers
 - [FlightPowers vs SerpApi](/compare/serpapi): the full quoted side-by-side
+- [FlightPowers vs SearchApi](/compare/searchapi): the full quoted side-by-side
 - [FlightPowers vs Duffel](/compare/duffel): data API vs booking platform
 - [Amadeus Self-Service vs FlightPowers](/compare/amadeus): the migration path
 - [Price Insights API](/flights-api/price-insights): the field this whole ranking hinges on, proven with a captured run
