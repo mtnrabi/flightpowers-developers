@@ -109,7 +109,7 @@ npm run build
 
 ## Pricing Verification
 
-All pricing accurate as of 2026-09-28 (re-read from the live RapidAPI pricing pages):
+All pricing accurate as of 2026-11-01 (re-read from the live RapidAPI pricing pages; Booking ULTRA/MEGA changed that day, new subscribers only):
 
 **Google Flights Live API**:
 - BASIC: $0/mo, 10 requests
@@ -120,8 +120,8 @@ All pricing accurate as of 2026-09-28 (re-read from the live RapidAPI pricing pa
 **Booking Live API**:
 - BASIC: $0/mo, 10 requests
 - PRO: $10/mo, 2,000 requests
-- ULTRA: $30/mo, 6,500 requests
-- MEGA: $75/mo, 25,000 requests
+- ULTRA: $30/mo, 6,000 requests, then $0.006 each
+- MEGA: $75/mo, 15,000 requests, then $0.005 each
 
 ---
 
