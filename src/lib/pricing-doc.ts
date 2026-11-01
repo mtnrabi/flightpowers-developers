@@ -145,7 +145,8 @@ The same data is sold as Apify actors, metered per event with no subscription:
 
 Apify event rates read on ${APIFY.read_on}.
 
-Steady monthly volume is cheaper on RapidAPI. Occasional batch jobs with no baseline fit Apify.
+Used in full, the flights ULTRA and MEGA plans cost less per search than the flights actor; the hotels actor costs less per lookup
+than any paid hotels plan. RapidAPI fits steady calls from your own code on a monthly bill. Occasional batch jobs with no baseline fit Apify.
 
 ## Questions an agent usually has to ask
 

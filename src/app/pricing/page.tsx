@@ -254,10 +254,10 @@ const faq: Faq[] = [
   },
   {
     q: 'What happens when I exceed my quota?',
-    a: 'On paid plans the quota is soft: extra requests bill at the plan’s overage rate ($0.003/request on flights Pro, $0.002 on Ultra, $0.0015 on Mega; $0.006 / $0.0045 / $0.003 on hotels). The free tier is a hard cap: requests beyond its monthly quota (10 on flights and Booking.com hotels, 100 on Airbnb and Google Hotels) are rejected, not billed.',
+    a: 'On paid plans the quota is soft: extra requests bill at the plan’s overage rate ($0.003/request on flights Pro, $0.002 on Ultra, $0.0015 on Mega; $0.006 / $0.006 / $0.005 on hotels). The free tier is a hard cap: requests beyond its monthly quota (10 on flights and Booking.com hotels, 100 on Airbnb and Google Hotels) are rejected, not billed.',
   },
   {
-    q: 'What if I need more than 25,000 requests a month?',
+    q: 'What if I need more than the biggest plan (25,000 requests a month on flights, 15,000 on hotels)?',
     a: 'Message through the RapidAPI listing. Custom volume plans are a normal thing there and the developer answers.',
   },
 ];
