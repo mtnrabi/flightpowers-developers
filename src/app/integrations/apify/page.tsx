@@ -20,7 +20,7 @@ import { AgentRecipes } from '../_recipes';
 export const dynamic = 'force-static';
 
 const [, F_PRO, F_ULTRA] = FLIGHT_PLANS;
-const [, H_PRO, , H_MEGA] = HOTEL_PLANS;
+const [, H_PRO] = HOTEL_PLANS;
 const n = (x: number) => x.toLocaleString('en-US');
 
 export const metadata: Metadata = withOg({
@@ -57,7 +57,7 @@ const faq: Faq[] = [
   },
   {
     q: 'When is RapidAPI the better fit?',
-    a: `When you run lookups regularly or on a schedule from your own code. It’s one synchronous HTTP request per search instead of starting a run, the bill is a fixed monthly plan, and flights takes ${COUNTS.flightsRateLimits} requests a minute by plan. PRO is $${F_PRO.priceMonthly} for ${n(F_PRO.quota)} flight searches (hotels PRO is $${H_PRO.priceMonthly} for ${n(H_PRO.quota)}). If you use the whole quota, the bigger plans cost less per search than the actors: flights ULTRA is $${F_ULTRA.priceMonthly} for ${n(F_ULTRA.quota)} (${perThousand(F_ULTRA)} per 1,000) and hotels MEGA is $${H_MEGA.priceMonthly} for ${n(H_MEGA.quota)} (${perThousand(H_MEGA)} per 1,000).`,
+    a: `When you run lookups regularly or on a schedule from your own code. It’s one synchronous HTTP request per search instead of starting a run, the bill is a fixed monthly plan, and flights takes ${COUNTS.flightsRateLimits} requests a minute by plan. PRO is $${F_PRO.priceMonthly} for ${n(F_PRO.quota)} flight searches (hotels PRO is $${H_PRO.priceMonthly} for ${n(H_PRO.quota)}). If you use the whole quota, the bigger flights plans cost less per search than the flights actor: flights ULTRA is $${F_ULTRA.priceMonthly} for ${n(F_ULTRA.quota)} (${perThousand(F_ULTRA)} per 1,000).`,
   },
 ];
 
