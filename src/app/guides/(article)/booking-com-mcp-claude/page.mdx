@@ -86,7 +86,7 @@ export const RUN_TIME = RUN.captured_at.slice(11, 16);
 **Short answer:** Add `https://hotels.flightpowers.com/mcp` to Claude as a custom connector,
 sign in with Google, and ask for a hotel. Claude gets four tools that read live Booking.com
 availability and rates when you ask: search a destination, price one hotel by name, search
-Airbnb, and compare the two. Your first 10 searches each day are free on the two Booking.com tools, with no key and no card.
+Airbnb, and compare the two. Your first 10 searches each day are free on the two Booking.com tools after you sign in with Google, with no key and no card.
 For more, paste your own RapidAPI key once: PRO is ${PRO.priceMonthly} a month for{' '}
 {PRO.quota.toLocaleString('en-US')} hotel searches.
 
@@ -150,7 +150,8 @@ returned:
 <Code label={`response, 2 of ${RUN.result.result_count} rows`}>{EXCERPT}</Code>
 
 The search returned {RUN.result.results_total} properties; the call asked for{' '}
-{RUN.arguments.limit}, and the cheapest is always among them. Here that was {CHEAPEST.name}:{' '}
+{RUN.arguments.limit}, so the server kept the first {RUN.arguments.limit} in Booking.com's own order
+and, when the cheapest falls past them, swaps it into the last slot. Here the cheapest was {CHEAPEST.name}:{' '}
 {CHEAPEST.price_string} for the {CHEAPEST.nights} nights, about US${Math.round(CHEAPEST.price_per_night)}{' '}
 a night, review score {CHEAPEST.review_score} from {CHEAPEST.review_count.toLocaleString('en-US')}{' '}
 reviews. The whole call was {RUN.result.api_usage.requests_used_by_this_call} request on the
@@ -160,7 +161,8 @@ plan. Rates move within minutes, so these are a record of one call, not today's 
 
 **search_hotels**: Live Booking.com search for a destination written the way a person would
 write it ("Rome", "Tokyo Shibuya") and a check-in and check-out date. Returns 10 properties by
-default with the cheapest always among them; `limit` asks for more or fewer. Filters:
+default, the first 10 in Booking.com's own order, with the cheapest swapped into the last slot
+when it falls past them; `limit` asks for more or fewer. Filters:
 `budget_per_night`, `adults`, `children`, `currency`, and `filters` such as
 `free_cancellation` or `breakfast_included` (an unknown filter name is refused with the list of
 valid ones, never silently ignored).
