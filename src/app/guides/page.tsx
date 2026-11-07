@@ -173,8 +173,14 @@ const GUIDES = [
   },
   {
     href: '/guides/google-flights-mcp-claude',
-    title: 'Using the Google Flights MCP in Claude',
-    sub: 'Connect live flight and hotel data to Claude Desktop and Claude Code with one block in your MCP config. Real-time pricing from Google Flights and Booking.com mid-conversation.',
+    title: 'The Google Flights MCP in Claude',
+    sub: 'Add the Google Flights MCP to Claude or Claude Code, sign in with Google, and ask for a fare: 10 free searches a day, live Google Flights prices mid-conversation.',
+    tag: 'AI agents',
+  },
+  {
+    href: '/guides/booking-com-mcp-claude',
+    title: 'Booking.com MCP in Claude',
+    sub: 'Add the hotels MCP to Claude, sign in with Google, and ask for a hotel: live Booking.com rates by destination or by name, with one real search shown.',
     tag: 'AI agents',
   },
   {
