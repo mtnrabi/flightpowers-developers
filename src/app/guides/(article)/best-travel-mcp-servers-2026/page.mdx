@@ -14,7 +14,8 @@ export const metadata = {
 export const dynamic = 'force-static';
 
 import { GuideDates, JsonLd } from '@/components/ui';
-import { CtaBand, TwoStepCta } from '@/components/bands';
+import { TwoStepCta } from '@/components/bands';
+import { PlanBox } from '@/components/PlanBox';
 import { FLIGHT_PLANS, HOTEL_PLANS } from '@/lib/pricing';
 import { LINKS, SITE } from '@/lib/site';
 
@@ -361,9 +362,10 @@ the agency or the hotel site.
 - [The best flight data APIs in 2026](/guides/best-flight-data-apis-2026) and [hotel data APIs](/guides/best-hotel-data-apis-2026): the REST side of the same market
 - [Status](/status): what we check on our own servers, and what came back
 
-<CtaBand
+<PlanBox
+  page="/guides/best-travel-mcp-servers-2026"
+  listings={['flights', 'hotels']}
   medium="guide"
-  showBoth
-  title="Try two of them on the same question"
-  body="Ask the same fare question through two servers and compare what comes back: the dates covered, the verdict, the cost of the call. Mine is free to try with a Google sign-in."
+  title="Try mine on the same question"
+  mcp
 />

@@ -16,7 +16,7 @@ export const metadata = {
 export const dynamic = 'force-static';
 
 import { GuideDates, JsonLd } from '@/components/ui';
-import { CtaBand } from '@/components/bands';
+import { PlanBox } from '@/components/PlanBox';
 import { AIRBNB_PLANS, HOTEL_PLANS, perThousand } from '@/lib/pricing';
 import { COUNTS, LINKS, SITE } from '@/lib/site';
 
@@ -569,9 +569,9 @@ Then price your own job, in your own units, on both.
 - [Amadeus Self-Service alternatives](/guides/amadeus-self-service-alternatives): the
   same quoted-price treatment on the flights side, including HasData and SearchApi
 
-<CtaBand
-  api="hotels"
+<PlanBox
+  page="/guides/best-hotel-data-apis-2026"
+  listings={['hotels', 'airbnb']}
   medium="guide"
   title="Test it on a property you already know the price of"
-  body="Live Booking.com rates as JSON, with proxy_country on every endpoint. Free tier on RapidAPI, no card to try."
 />

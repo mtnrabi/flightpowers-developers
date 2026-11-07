@@ -2,7 +2,7 @@ import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
-import { CtaBand } from '@/components/bands';
+import { PlanBox } from '@/components/PlanBox';
 import { PricingTable } from '@/components/PricingTable';
 import {
   Breadcrumbs,
@@ -438,11 +438,7 @@ export default function CompareDuffelPage() {
       </Section>
 
       <Section bordered={false} className="!pt-4">
-        <CtaBand
-          medium="compare"
-          title="Telling people about travel, not selling it?"
-          body="Live market prices with Google's band and verdict when Google shows one: the answer a checkout API isn't built to give."
-        />
+        <PlanBox page="/compare/duffel" listings={['flights']} medium="compare" title="Telling people about travel, not selling it?" />
       </Section>
     </>
   );

@@ -1,7 +1,7 @@
 import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { CtaBand } from '@/components/bands';
+import { PlanBox } from '@/components/PlanBox';
 import { Breadcrumbs, Container, JsonLd, Section, SectionHead } from '@/components/ui';
 import { FLIGHT_PLANS, HOTEL_PLANS, perThousand } from '@/lib/pricing';
 import { SITE } from '@/lib/site';
@@ -246,12 +246,7 @@ export default function CompareIndexPage() {
       </Section>
 
       <Section bordered={false} className="!pt-4">
-        <CtaBand
-          medium="compare"
-          showBoth
-          title="Or skip the comparison and run it"
-          body="Live Google Flights fares and Booking.com rates on one RapidAPI key. Judge the data, not the copy."
-        />
+        <PlanBox page="/compare" listings={['flights', 'hotels']} medium="compare" title="Or skip the comparison and run it" />
       </Section>
     </>
   );
