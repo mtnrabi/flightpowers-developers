@@ -5,6 +5,14 @@ schedule.
 
 ---
 
+## 2026-11-07: multi-airport search for families and long stays
+
+The two multi-airport endpoints now take a party with a child or an infant (`passengers` codes
+`2`, `3`, `4`) and, on the round trip, stays over 32 nights. Both used to be a `422`. They are
+searched pair by pair on Google's own search call, as on the single-airport endpoints, so the
+answer carries `X-Search-Notes: via_rpc` and those rows carry no price range. Still one request.
+Reference: [multi-airport search](/flights-api/multi-airport).
+
 ## 2026-11-06: several airports in one flight search
 
 Two new flights endpoints on the RapidAPI host: `POST /api/google_flights/oneway_multi_airport/v1`

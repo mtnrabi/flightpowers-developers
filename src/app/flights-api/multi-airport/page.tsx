@@ -120,7 +120,7 @@ const CITY_CODE_422 = JSON.stringify(
       'to_airport: LON is a city code; the multi-airport round trip takes airport codes, list the ones you want (up to 4), for example LHR,LGW (all of LON: LHR,LGW,STN,LTN,LCY,SEN)',
     help: 'https://flightpowers.com/docs/quickstart#errors',
     hint:
-      'from_airport and to_airport each take 1 to 4 IATA codes, as a list or a comma-separated string, with at most 8 origin x destination pairs and no code on both sides; passengers must be adults only (1); limit is 1 to 20; a round trip takes airport codes, not city codes (LHR,LGW, not LON), and covers stays up to 32 nights',
+      'from_airport and to_airport each take 1 to 4 IATA codes, as a list or a comma-separated string, with at most 8 origin x destination pairs and no code on both sides; limit is 1 to 20; a round trip takes airport codes, not city codes (LHR,LGW, not LON)',
     field: 'to_airport',
   },
   null,
@@ -131,11 +131,9 @@ const REFUSALS: { when: string; field: string; detail: string }[] = [
   { when: 'More than 4 airports on one side', field: 'from_airport / to_airport', detail: 'to_airport names 5 airports; at most 4 are allowed per side' },
   { when: 'More than 8 airport pairs (3 x 3 is 9)', field: 'to_airport', detail: 'to_airport: 3 origins x 3 destinations is 9 airport pairs; at most 8 pairs are searched in one request' },
   { when: 'The same airport on both sides', field: 'to_airport', detail: 'to_airport: ATH is on both sides; an airport can be an origin or a destination, not both' },
-  { when: 'A child or infant in passengers', field: 'passengers', detail: 'passengers: the multi-airport endpoints search adults only (passenger code 1); for a child or an infant, search each airport pair on the single-airport endpoint' },
   { when: 'limit outside 1 to 20', field: 'limit', detail: 'limit: limit is 50; the multi-airport endpoints take a limit of 1 to 20' },
   { when: 'use_fallback: true', field: 'use_fallback', detail: 'use_fallback: the multi-airport endpoints use no fallback source; send false or omit it' },
   { when: 'Round trip only: a city code (LON, NYC, PAR …)', field: 'from_airport / to_airport', detail: 'to_airport: LON is a city code; … for example LHR,LGW (all of LON: LHR,LGW,STN,LTN,LCY,SEN)' },
-  { when: 'Round trip only: a stay longer than 32 nights', field: 'return_date', detail: 'return_date: a stay of 40 nights is longer than the 32 nights the multi-airport round trip covers; for a longer stay search each pair on /api/google_flights/roundtrip/v1' },
 ];
 
 const faq: Faq[] = [
@@ -153,11 +151,11 @@ const faq: Faq[] = [
   },
   {
     q: 'Does every result carry Google’s price range?',
-    a: 'On the round trip, yes when Google shows one: each airport pair is searched on its own page, so each row carries its own pair’s price_insights_low / price_insights_high and verdict. On the one-way the range is only filled when all the airports on each side are in one city (GRU,VCP to HND,NRT); across cities it is null.',
+    a: 'On the round trip, yes when Google shows one: each airport pair is searched on its own page, so each row carries its own pair’s price_insights_low / price_insights_high and verdict. On the one-way the range is only filled when all the airports on each side are in one city (GRU,VCP to HND,NRT); across cities it is null. Rows from Google’s own search call (a party with a child or an infant, a round trip over 32 nights; X-Search-Notes: via_rpc) carry no range.',
   },
   {
     q: 'Can I search for a family?',
-    a: 'Not on these two endpoints: they take adults only (passenger code 1, so [1, 1] is two adults). For a party with a child or infant, search each airport pair on the single-airport one-way or round-trip endpoint.',
+    a: 'Yes. Send the party in passengers (1 adult, 2 child, 3 infant on lap, 4 infant in seat, so [1, 1, 2] is two adults and a child). A party with a child or an infant is searched pair by pair on Google’s own search call, as on the single-airport endpoints, so the answer carries X-Search-Notes: via_rpc, the rows carry no price range, and it can take up to about a minute. It is still one request.',
   },
 ];
 
@@ -346,15 +344,21 @@ export default function MultiAirportPage() {
             How many results come back, ranked across all pairs. Defaults to <code className="field">10</code>.
           </FieldRow>
           <FieldRow name="passengers" type="int[]">
-            Adults only: one <code className="field">1</code> per adult, so <code className="field">[1, 1]</code> is two
-            adults. Omit it for one adult.
+            One code per traveller: <code className="field">1</code> adult, <code className="field">2</code> child,{' '}
+            <code className="field">3</code> infant on lap, <code className="field">4</code> infant in seat, so{' '}
+            <code className="field">[1, 1, 2]</code> is two adults and a child. Omit it for one adult. A party with a child or
+            an infant is searched pair by pair on Google&apos;s own search call, as on the single-airport endpoints (
+            <code className="field">X-Search-Notes: via_rpc</code>, no price range on those rows).
           </FieldRow>
           <FieldRow name="return_date" type="string">
-            Round trip only, <code className="field">YYYY-MM-DD</code>. Stays up to 32 nights; for a longer stay use the
-            single-airport round-trip endpoint, which handles long stays.
+            Round trip only, <code className="field">YYYY-MM-DD</code>. A stay over 32 nights is searched too: Google&apos;s
+            page lists nothing that long, so each pair goes to Google&apos;s own search call, as on the single-airport
+            round-trip endpoint (<code className="field">X-Search-Notes: via_rpc</code>).
           </FieldRow>
           <FieldRow name="use_fallback" type="bool">
-            Not used here: send <code className="field">false</code> or leave it out.
+            Leave it out. <code className="field">true</code> is refused. On the round trip,{' '}
+            <code className="field">false</code> keeps an adults&apos; stay over 32 nights on Google&apos;s page only, which
+            on many routes lists nothing for it (a 503 with <code className="field">upstream_no_render</code>).
           </FieldRow>
         </div>
       </Section>
