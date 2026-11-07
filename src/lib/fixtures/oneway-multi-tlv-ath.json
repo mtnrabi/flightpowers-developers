@@ -1,0 +1,212 @@
+{
+ "captured_at": "2026-11-07",
+ "captured_from": "google-flights-live-api.p.rapidapi.com",
+ "note": "Real response captured from a live request through the RapidAPI host (the multi-airport endpoints are not on api.flightpowers.com). Prices were live at capture time.",
+ "request": {
+  "endpoint": "/api/google_flights/oneway_multi_airport/v1",
+  "body": {
+   "from_airport": "TLV,ATH",
+   "to_airport": [
+    "LHR",
+    "CDG"
+   ],
+   "departure_date": "2027-02-04",
+   "limit": 10
+  }
+ },
+ "headers": {
+  "x-search-attempts": "1",
+  "x-search-combinations": "1",
+  "x-search-results": "9",
+  "x-search-status": "ok"
+ },
+ "data": [
+  {
+   "price_range_in_relation_to_other_periods": "",
+   "price_insights_low": null,
+   "price_insights_high": null,
+   "from_airport": "Athens (ATH)",
+   "to_airport": "London (LHR)",
+   "departure_date": "2027-02-04",
+   "price": "$94",
+   "price_as_number": 94,
+   "duration": "4 hr 5 min",
+   "duration_seconds": 14700,
+   "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMDQiHwoDQVRIEgoyMDI3LTAyLTA0GgNMSFIqAkEzMgM2MDhqBRIDQVRIcgUSA0xIUkIBAUgBmAEC&curr=usd",
+   "airline": "Aegean",
+   "stops": 0,
+   "stops_info": [],
+   "departure_description": "7:10 PM on Thu, Feb 4",
+   "arrival_description": "9:15 PM on Thu, Feb 4"
+  },
+  {
+   "price_range_in_relation_to_other_periods": "",
+   "price_insights_low": null,
+   "price_insights_high": null,
+   "from_airport": "Athens (ATH)",
+   "to_airport": "London (LHR)",
+   "departure_date": "2027-02-04",
+   "price": "$106",
+   "price_as_number": 106,
+   "duration": "4 hr",
+   "duration_seconds": 14400,
+   "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMDQiHwoDQVRIEgoyMDI3LTAyLTA0GgNMSFIqAkJBMgM2MzFqBRIDQVRIcgUSA0xIUkIBAUgBmAEC&curr=usd",
+   "airline": "British Airways",
+   "stops": 0,
+   "stops_info": [],
+   "departure_description": "2:20 PM on Thu, Feb 4",
+   "arrival_description": "4:20 PM on Thu, Feb 4"
+  },
+  {
+   "price_range_in_relation_to_other_periods": "",
+   "price_insights_low": null,
+   "price_insights_high": null,
+   "from_airport": "Athens (ATH)",
+   "to_airport": "London (LHR)",
+   "departure_date": "2027-02-04",
+   "price": "$113",
+   "price_as_number": 113,
+   "duration": "4 hr",
+   "duration_seconds": 14400,
+   "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMDQiHwoDQVRIEgoyMDI3LTAyLTA0GgNMSFIqAkJBMgM2MzNqBRIDQVRIcgUSA0xIUkIBAUgBmAEC&curr=usd",
+   "airline": "British Airways",
+   "stops": 0,
+   "stops_info": [],
+   "departure_description": "4:25 PM on Thu, Feb 4",
+   "arrival_description": "6:25 PM on Thu, Feb 4"
+  },
+  {
+   "price_range_in_relation_to_other_periods": "",
+   "price_insights_low": null,
+   "price_insights_high": null,
+   "from_airport": "Athens (ATH)",
+   "to_airport": "Paris (CDG)",
+   "departure_date": "2027-02-04",
+   "price": "$160",
+   "price_as_number": 160,
+   "duration": "3 hr 35 min",
+   "duration_seconds": 12900,
+   "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMDQiHwoDQVRIEgoyMDI3LTAyLTA0GgNDREcqAkdRMgM5MDBqBRIDQVRIcgUSA0NER0IBAUgBmAEC&curr=usd",
+   "airline": "SKY express",
+   "stops": 0,
+   "stops_info": [],
+   "departure_description": "10:40 AM on Thu, Feb 4",
+   "arrival_description": "1:15 PM on Thu, Feb 4"
+  },
+  {
+   "price_range_in_relation_to_other_periods": "",
+   "price_insights_low": null,
+   "price_insights_high": null,
+   "from_airport": "Athens (ATH)",
+   "to_airport": "London (LHR)",
+   "departure_date": "2027-02-04",
+   "price": "$92",
+   "price_as_number": 92,
+   "duration": "21 hr 45 min",
+   "duration_seconds": 78300,
+   "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMDQiHwoDQVRIEgoyMDI3LTAyLTA0GgNCRUcqAkpVMgM1MzMiHwoDQkVHEgoyMDI3LTAyLTA1GgNMSFIqAkpVMgMyMTBqBRIDQVRIcgUSA0xIUkIBAUgBmAEC&curr=usd",
+   "airline": "Air Serbia",
+   "stops": 1,
+   "stops_info": [
+    {
+     "stop_airport": "BEG",
+     "stop_duration_seconds": 60900
+    }
+   ],
+   "departure_description": "4:35 PM on Thu, Feb 4",
+   "arrival_description": "12:20 PM on Fri, Feb 5"
+  },
+  {
+   "price_range_in_relation_to_other_periods": "",
+   "price_insights_low": null,
+   "price_insights_high": null,
+   "from_airport": "Athens (ATH)",
+   "to_airport": "Paris (CDG)",
+   "departure_date": "2027-02-04",
+   "price": "$101",
+   "price_as_number": 101,
+   "duration": "5 hr 10 min",
+   "duration_seconds": 18600,
+   "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMDQiHwoDQVRIEgoyMDI3LTAyLTA0GgNCRUcqAkpVMgM1MzMiHwoDQkVHEgoyMDI3LTAyLTA0GgNDREcqAkpVMgMyNDJqBRIDQVRIcgUSA0NER0IBAUgBmAEC&curr=usd",
+   "airline": "Air Serbia",
+   "stops": 1,
+   "stops_info": [
+    {
+     "stop_airport": "BEG",
+     "stop_duration_seconds": 3000
+    }
+   ],
+   "departure_description": "4:35 PM on Thu, Feb 4",
+   "arrival_description": "8:45 PM on Thu, Feb 4"
+  },
+  {
+   "price_range_in_relation_to_other_periods": "",
+   "price_insights_low": null,
+   "price_insights_high": null,
+   "from_airport": "Athens (ATH)",
+   "to_airport": "London (LHR)",
+   "departure_date": "2027-02-04",
+   "price": "$101",
+   "price_as_number": 101,
+   "duration": "6 hr 35 min",
+   "duration_seconds": 23700,
+   "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDItMDQiIAoDQVRIEgoyMDI3LTAyLTA0GgNBTVMqAktMMgQxOTUyIiAKA0FNUxIKMjAyNy0wMi0wNBoDTEhSKgJLTDIEMTAwNWoFEgNBVEhyBRIDTEhSQgEBSAGYAQI&curr=usd",
+   "airline": "KLM",
+   "stops": 1,
+   "stops_info": [
+    {
+     "stop_airport": "AMS",
+     "stop_duration_seconds": 6000
+    }
+   ],
+   "departure_description": "6:10 AM on Thu, Feb 4",
+   "arrival_description": "10:45 AM on Thu, Feb 4"
+  },
+  {
+   "price_range_in_relation_to_other_periods": "",
+   "price_insights_low": null,
+   "price_insights_high": null,
+   "from_airport": "Athens (ATH)",
+   "to_airport": "London (LHR)",
+   "departure_date": "2027-02-04",
+   "price": "$101",
+   "price_as_number": 101,
+   "duration": "9 hr 40 min",
+   "duration_seconds": 34800,
+   "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDItMDQiIAoDQVRIEgoyMDI3LTAyLTA0GgNBTVMqAktMMgQxOTUyIiAKA0FNUxIKMjAyNy0wMi0wNBoDTEhSKgJLTDIEMTAwOWoFEgNBVEhyBRIDTEhSQgEBSAGYAQI&curr=usd",
+   "airline": "KLMOperated by KLM Cityhopper",
+   "stops": 1,
+   "stops_info": [
+    {
+     "stop_airport": "AMS",
+     "stop_duration_seconds": 17400
+    }
+   ],
+   "departure_description": "6:10 AM on Thu, Feb 4",
+   "arrival_description": "1:50 PM on Thu, Feb 4"
+  },
+  {
+   "price_range_in_relation_to_other_periods": "",
+   "price_insights_low": null,
+   "price_insights_high": null,
+   "from_airport": "Athens (ATH)",
+   "to_airport": "London (LHR)",
+   "departure_date": "2027-02-04",
+   "price": "$101",
+   "price_as_number": 101,
+   "duration": "11 hr 55 min",
+   "duration_seconds": 42900,
+   "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDItMDQiIAoDQVRIEgoyMDI3LTAyLTA0GgNBTVMqAktMMgQxOTUyIiAKA0FNUxIKMjAyNy0wMi0wNBoDTEhSKgJLTDIEMTAxMWoFEgNBVEhyBRIDTEhSQgEBSAGYAQI&curr=usd",
+   "airline": "KLMOperated by KLM Cityhopper",
+   "stops": 1,
+   "stops_info": [
+    {
+     "stop_airport": "AMS",
+     "stop_duration_seconds": 25500
+    }
+   ],
+   "departure_description": "6:10 AM on Thu, Feb 4",
+   "arrival_description": "4:05 PM on Thu, Feb 4"
+  }
+ ]
+}

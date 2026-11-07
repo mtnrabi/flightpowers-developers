@@ -5,6 +5,15 @@ schedule.
 
 ---
 
+## 2026-11-06: several airports in one flight search
+
+Two new flights endpoints on the RapidAPI host: `POST /api/google_flights/oneway_multi_airport/v1`
+and `POST /api/google_flights/roundtrip_multi_airport/v1`. `from_airport` and `to_airport` each
+take 1 to 4 airports (`"TLV,ATH"` or a list), up to 8 airport pairs, and every pair comes back
+in one ranked list for one request. Each row names the airports it flies. Adults only, `limit`
+1 to 20; the round trip wants airport codes, not city codes, and covers stays up to 32 nights.
+Reference: [multi-airport search](/flights-api/multi-airport).
+
 ## 2026-10-06: hotel coordinates
 
 The property rows from `POST /v1/hotels/search` and the `POST /v1/hotels/by-name` answer now

@@ -159,6 +159,18 @@ ${DIFFERENTIATORS.map((d) => `- ${d.title}: ${d.short}`).join('\n')}
 
 ${endpointDocs}
 
+## Multi-airport flight search (RapidAPI host only)
+
+Host: google-flights-live-api.p.rapidapi.com (RapidAPI key in x-rapidapi-key, x-rapidapi-host set to the host). Not on https://${SITE.apiHost}. Reference: ${SITE.url}/flights-api/multi-airport
+
+- POST /api/google_flights/oneway_multi_airport/v1: the one-way request and rows, with 1 to 4 airports a side.
+- POST /api/google_flights/roundtrip_multi_airport/v1: the round-trip request and rows (both legs, one total per row), with 1 to 4 airports a side.
+- from_airport / to_airport: 1 to 4 IATA codes each, as a list (["TLV", "ATH"]) or a comma-separated string ("TLV,ATH"); duplicates dropped; at most 8 origin x destination pairs; no code on both sides. City codes (LON, NYC) are taken on the one-way only.
+- Every other field is the same as on the single-airport endpoint. Differences: limit is 1 to 20 (default 10), passengers adults only (code 1), use_fallback must be false or absent, and a round trip covers stays up to 32 nights.
+- One call is ONE billed request however many pairs it covers. All pairs come back in one list ranked by sort_type and cut to limit; from_airport / to_airport on each row are the airports that itinerary flies ("Athens (ATH)").
+- Price range: on the one-way, price_insights_low/high are only filled when all the airports on each side are in one city (else null); on the round trip each pair is searched on its own, so each row carries its own pair's range.
+- Every refusal is a 422 with detail, help, hint and field, before any search runs. Example, round trip TLV -> LON: detail "to_airport: LON is a city code; the multi-airport round trip takes airport codes, list the ones you want (up to 4), for example LHR,LGW (all of LON: LHR,LGW,STN,LTN,LCY,SEN)", field "to_airport". A child or infant, a limit outside 1-20, more than 4 airports a side, more than 8 pairs, the same airport on both sides, use_fallback true, and (round trip) a stay over 32 nights are refused the same way.
+
 ## Reading an empty flights result (the honesty contract)
 
 An empty array is never ambiguous here. Read the X-Search-Status response header:

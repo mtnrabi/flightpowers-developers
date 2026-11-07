@@ -2,7 +2,8 @@
  * Typed access to the captured fixtures in ./fixtures/*.json.
  *
  * Every fixture is a REAL response captured from a live request to
- * api.flightpowers.com on the date stamped in the file. Nothing is invented,
+ * api.flightpowers.com (or the RapidAPI host, as its captured_from says) on
+ * the date stamped in the file. Nothing is invented,
  * and anything rendered from a fixture must be labelled as a captured run
  * (the UI components do this). Prices were live at capture time.
  */
@@ -22,6 +23,8 @@ import onewayJfkCun from './fixtures/oneway-jfk-cun.json';
 import onewayLaxSfoLow from './fixtures/oneway-lax-sfo-low.json';
 import airbnbSearchRome from './fixtures/airbnb-search-rome.json';
 import airbnbSearchLisbonFront from './fixtures/airbnb-search-lisbon-front.json';
+import onewayMultiTlvAth from './fixtures/oneway-multi-tlv-ath.json';
+import roundtripMultiTlvLhrCdg from './fixtures/roundtrip-multi-tlv-lhr-cdg.json';
 
 export type OnewayFlight = {
   price_range_in_relation_to_other_periods: 'low' | 'typical' | 'high' | null;
@@ -225,6 +228,8 @@ export const FIXTURES = {
   dealHuntLgw: dealHuntLgw as unknown as Fixture<DealHuntRow[]>,
   onewayJfkCun: onewayJfkCun as unknown as Fixture<OnewayFlight[]>,
   onewayLaxSfoLow: onewayLaxSfoLow as unknown as Fixture<OnewayFlight[]>,
+  onewayMultiTlvAth: onewayMultiTlvAth as unknown as Fixture<OnewayFlight[]>,
+  roundtripMultiTlvLhrCdg: roundtripMultiTlvLhrCdg as unknown as Fixture<RoundtripItinerary[]>,
   airbnbSearchRome: airbnbSearchRome as unknown as Fixture<AirbnbSearch>,
   airbnbSearchLisbonFront: airbnbSearchLisbonFront as unknown as Fixture<AirbnbSearch>,
   hotelSearchLisbon: hotelSearchLisbon as unknown as Fixture<{
