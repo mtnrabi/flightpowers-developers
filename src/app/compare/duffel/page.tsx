@@ -2,7 +2,7 @@ import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
-import { CtaBand } from '@/components/bands';
+import { PlanBox } from '@/components/PlanBox';
 import { PricingTable } from '@/components/PricingTable';
 import {
   Breadcrumbs,
@@ -34,8 +34,8 @@ const PRO = FLIGHT_PLANS.find((p) => p.name === 'PRO')!;
 
 export const metadata: Metadata = {
   ...withOg({
-    title: 'Duffel API pricing: $3.00 per order, $0.005 per search',
-    description: `Duffel API pricing (duffel.com/pricing, read ${RETRIEVED}): $3.00 per order, 1,500 free searches per order, then $0.005 a search. FlightPowers: $${PRO.priceMonthly} for ${PRO.quota.toLocaleString('en-US')} flight searches.`,
+    title: 'Duffel API pricing: from $3.00 an order, $0.005 a search past 1,500 per order',
+    description: `Duffel charges from $3.00 an order and $0.005 a search past 1,500 per order (read ${RETRIEVED}). Pricing flights only? $${PRO.priceMonthly} for ${PRO.quota.toLocaleString('en-US')}, with Google's price range when shown.`,
     alternates: { canonical: '/compare/duffel' },
   }),
   // The layout template appends " · FlightPowers"; the title is 54 chars without it.
@@ -43,7 +43,10 @@ export const metadata: Metadata = {
   // 'duffel pricing' (5.8) at a 0.6% page CTR, so the title now IS the pricing answer,
   // quoted from duffel.com/pricing. 2026-10-06 (W2-4) title was "Duffel API pricing vs
   // FlightPowers: booking vs flight data".
-  title: { absolute: 'Duffel API pricing: $3.00 per order, $0.005 per search' },
+  // Retitled 2026-11-07 (growth push, funnel.md lever 5): 2,697 impressions at 0.8% CTR,
+  // position 5.3. Same quoted prices, now with what a pricing-only team gets instead;
+  // 2026-11-07 r2: scoped as 'from $3.00' and 'past 1,500 per order'.
+  title: { absolute: 'Duffel API pricing: from $3.00 an order, $0.005 a search past 1,500 per order' },
 };
 
 export const dynamic = 'force-static';
@@ -129,7 +132,7 @@ export default function CompareDuffelPage() {
         data={{
           '@context': 'https://schema.org',
           '@type': 'WebPage',
-          name: 'Duffel API pricing: $3.00 per order, $0.005 per search',
+          name: 'Duffel API pricing: from $3.00 per order, $0.005 per search past 1,500 per order',
           url: `${SITE.url}/compare/duffel`,
           dateModified: RETRIEVED,
         }}
@@ -435,11 +438,7 @@ export default function CompareDuffelPage() {
       </Section>
 
       <Section bordered={false} className="!pt-4">
-        <CtaBand
-          medium="compare"
-          title="Telling people about travel, not selling it?"
-          body="Live market prices with Google's band and verdict when Google shows one: the answer a checkout API isn't built to give."
-        />
+        <PlanBox page="/compare/duffel" listings={['flights']} medium="compare" title="Telling people about travel, not selling it?" />
       </Section>
     </>
   );

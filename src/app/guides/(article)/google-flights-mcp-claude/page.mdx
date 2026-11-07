@@ -1,95 +1,93 @@
 import { withOg } from '@/lib/meta';
 
-export const metadata = withOg({
-  title: 'Using the Google Flights MCP in Claude',
-  description:
-    'Connect live Google Flights and Booking.com data to Claude Desktop and Claude Code with one block in your MCP config. Real-time flight and hotel prices from Google Flights & Booking.com, with the agent calling live data mid-conversation.',
-  alternates: { canonical: '/guides/google-flights-mcp-claude' },
-});
+export const metadata = {
+  ...withOg({
+    title: 'Google Flights MCP in Claude: setup, six tools and prompts',
+    description:
+      'The Google Flights MCP for Claude: add flights.flightpowers.com/mcp, sign in with Google, 10 free searches a day. Live fares with Google’s price range, in chat.',
+    alternates: { canonical: '/guides/google-flights-mcp-claude' },
+  }),
+  // Retitled 2026-11-07 (growth push, funnel.md lever 3): the page converts at 51% and
+  // Google already shows the site for "google flights mcp" (52 @ 7.4), "google flight mcp"
+  // (55 @ 7.5) and "flights mcp" (84 @ 5.0), so the title leads with the query instead of
+  // a new page competing for it. 58 chars; the layout suffix is kept off.
+  title: { absolute: 'Google Flights MCP in Claude: setup, six tools and prompts' },
+};
 
 export const dynamic = 'force-static';
 
 import { GuideDates, JsonLd } from '@/components/ui';
 import { CtaBand } from '@/components/bands';
-import { rapidApiPricingUrl } from '@/lib/site';
+import { AddToClientButtons } from '@/components/AddToClientButtons';
+import { CLAUDE_AUTH_HINT, rapidApiPricingUrl } from '@/lib/site';
+import { PAID_TRIAL_LINE } from '@/lib/install-copy';
+import { FLIGHT_PLANS, HOTEL_PLANS } from '@/lib/pricing';
+
+export const PRO = FLIGHT_PLANS.find((p) => p.name === 'PRO');
+export const HOTEL_PRO = HOTEL_PLANS.find((p) => p.name === 'PRO');
 
 <JsonLd
   data={{
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
-    headline: 'Using the Google Flights MCP in Claude',
+    headline: 'The Google Flights MCP in Claude',
     description:
-      'Connect live Google Flights and Booking.com data to Claude Desktop and Claude Code using MCP servers. Real-time flight and hotel prices mid-conversation.',
+      'Connect a Google Flights MCP server to Claude, Claude Desktop and Claude Code: live Google Flights fares and Booking.com hotel rates mid-conversation, 10 free searches a day after a Google sign-in.',
     url: `https://flightpowers.com/guides/google-flights-mcp-claude`,
     datePublished: '2026-09-01',
-    dateModified: '2026-10-26',
+    dateModified: '2026-11-07',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
 />
 
-# Using the Google Flights MCP in Claude
+# The Google Flights MCP in Claude
 
-<GuideDates published="2026-09-01" updated="2026-10-26" />
+<GuideDates published="2026-09-01" updated="2026-11-07" />
 
-**Short answer:** Add two URLs to Claude Desktop or Claude Code, sign in with Google,
-and you get six tools mid-conversation: live Google Flights pricing, Booking.com hotel
-search, Airbnb search on an Airbnb subscription, plus date-range and destination-list expansion that turn a single question into a
-multi-day scan. No REST code, and no key pasted into your client.
+**Short answer:** Add `https://flights.flightpowers.com/mcp` to Claude as a custom connector
+(and `https://hotels.flightpowers.com/mcp` for hotels), sign in with Google, and Claude can
+search live Google Flights fares mid-conversation. Your first 10 searches each day are free,
+with no RapidAPI key and no card. For more, paste your own key once: PRO is
+${PRO.priceMonthly} a month for {PRO.quota.toLocaleString('en-US')} flight searches.
 
-Claude Desktop and Claude Code can search live flight and hotel data mid-conversation
-when you connect the FlightPowers MCP servers. One config block unlocks six tools:
-live Google Flights pricing, Booking.com hotel searches, Airbnb searches on an Airbnb subscription, and the date-range and
-destination-list expansions that turn a single question into a multi-day scan.
+## What is the Google Flights MCP?
+
+Google has had no public flights API since QPX Express closed in April 2018, so a "Google
+Flights MCP" is a server someone else runs that reads Google Flights for your assistant. This guide sets up mine, FlightPowers: a hosted server, so
+nothing runs on your machine. Its two flight tools return each fare's price, airline, stops, a
+booking link and Google's own price range for the route when Google shows one. Other travel MCP
+servers exist, open source and hosted; [the travel MCP roundup](/guides/best-travel-mcp-servers-2026)
+compares eleven of them, several of them hotel-only or not built on Google Flights.
 
 ## What you need
 
-- <a href="https://claude.ai/" rel="noopener">Claude Desktop</a> or Claude Code
-- A RapidAPI key for the
-  <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">
-    Google Flights Live API
-  </a>
-  and the
-  <a href={rapidApiPricingUrl('hotels', 'guide')} rel="noopener">
-    Booking Live API
-  </a>
-  . One key covers both once you subscribe to each listing. The free tier (10
-  requests/month) verifies your config works; the $10 PRO plan (2,500 requests/month) is
-  the realistic floor for a conversational assistant you actually use.
+- <a href="https://claude.ai/" rel="noopener">Claude</a> on the web or the desktop app, or Claude Code
+- A Google account for the sign-in
+- Optional: a RapidAPI key for the <a href={rapidApiPricingUrl('flights', 'guide', 'mcp-claude-needs')} rel="noopener">Google Flights Live API</a> and the <a href={rapidApiPricingUrl('hotels', 'guide', 'mcp-claude-needs')} rel="noopener">Booking Live API</a>, once 10 searches a day is not enough. One key covers both once you subscribe to each
+  listing. Flights PRO is ${PRO.priceMonthly} for {PRO.quota.toLocaleString('en-US')} searches a
+  month, hotels PRO ${HOTEL_PRO.priceMonthly} for {HOTEL_PRO.quota.toLocaleString('en-US')}; the
+  free BASIC tier (10 requests a month) only checks your key works.
 
-## Add it as a Claude connector
+## Add it to Claude
 
-In claude.ai the same two servers are custom connectors: Customize → Connectors → + Add → Add
-custom connector, paste `https://flights.flightpowers.com/mcp` (and again for
+One click opens Claude's "Add custom connector" screen with the name and the URL filled in:
+
+<AddToClientButtons server="flights" clients={['claude']} claudeLabel="Add flights to Claude" claudeHint={false} />
+
+<AddToClientButtons server="hotels" clients={['claude']} claudeLabel="Add hotels to Claude" claudeVariant="ghost" claudeHint={false} />
+
+{CLAUDE_AUTH_HINT} {PAID_TRIAL_LINE}
+
+By hand, in Claude on the web or the desktop app: Customize → Connectors → + Add → Add custom
+connector, paste `https://flights.flightpowers.com/mcp` (and again for
 `https://hotels.flightpowers.com/mcp`), press Continue, choose ‘Sign in when needed’ (not the
 pre-selected ‘No sign-in’), then Add, and sign in with Google when Claude asks. The
-[Claude connector page](/integrations/claude) has the step list and the five prompts to try.
+[Claude connector page](/integrations/claude) has the step list and five prompts to try.
 
-## How do you set up the MCP servers?
+## Add it to Claude Code
 
-### For Claude Desktop
-
-On Mac, open `~/Library/Application Support/Claude/claude_desktop_config.json`. On
-Windows, open `%APPDATA%/Claude/claude_desktop_config.json`. Add this block:
-
-```json
-{
-  "mcpServers": {
-    "flights": { "url": "https://flights.flightpowers.com/mcp" },
-    "hotels": { "url": "https://hotels.flightpowers.com/mcp" }
-  }
-}
-```
-
-If the file already has an `mcpServers` section, add `flights` and `hotels` inside it.
-Restart Claude Desktop, click **Sign in**, sign in with Google, and paste your RapidAPI
-key once on the page that opens. That is the only time the key is typed anywhere. Both
-servers sit behind the same sign-in, and one key covers both once you subscribe to each
-listing on RapidAPI.
-
-### For Claude Code
-
-One line, from any directory:
+One line each, from any directory:
 
 ```bash
 claude mcp add --transport http flights https://flights.flightpowers.com/mcp
@@ -114,7 +112,16 @@ it):
 For user-wide config (applies to all projects), add the same block to `~/.claude.json`
 on Mac/Linux or `%USERPROFILE%\.claude.json` on Windows.
 
-### Second option: the key, for scripts, CI and clients without a sign-in button
+## Going past 10 searches a day
+
+The free searches run on our key and are shared by the flights and hotels servers. To go past
+them, paste your RapidAPI key once: on the page that opens when you sign in, or later at
+`https://flights.flightpowers.com/connect` with the same Google account. That is the only time
+the key is typed anywhere: it is encrypted before it is stored, only its last four characters
+are ever shown again, and searches then meter against your own subscription. Disconnect on the
+connect page deletes it.
+
+### The key in a header, for scripts, CI and clients without a sign-in button
 
 A headless run cannot open a browser, so `claude -p` in a cron job, a CI step, or any
 client with no sign-in button sends the key in a header. Same two URLs as above, no
@@ -144,8 +151,8 @@ setup keeps working untouched.
 ## The six tools
 
 **search_oneway_flights**: Live one-way flight prices from Google Flights. Pass a
-single date or a date range (`departure_date_from` / `departure_date_to`) and the
-server expands it internally. Each result includes `price`, `price_as_number`,
+single date or a date range (`departure_date_from` / `departure_date_to`), and one
+destination or several, and the server expands it internally. Each result includes `price`, `price_as_number`,
 `price_range_in_relation_to_other_periods` (the context field), and a `buy_link` that
 opens the itinerary on Google Flights ready to book.
 
@@ -179,39 +186,43 @@ Each source is one billed request on its own subscription.
 
 ## Example prompts
 
-**Ask about a specific date.** "Find me a nonstop LHR to JFK flight on October 13 and
+**Ask about a specific date.** "Find me a nonstop LHR to JFK flight on March 12 and
 tell me if the price is any good."
 
 **Scan a whole month.** "What is the cheapest day to fly Lisbon to New York in
-November?"
+February?"
 
-**Plan a trip.** "I need a round trip JFK to Paris, out October 6, back October 13.
+**Compare trip lengths.** "Round trip from JFK to Lisbon, leaving any day in February,
+5 to 7 nights. Which dates are cheapest?" That is 28 departure days at three trip lengths,
+84 searches in one call, so it runs on your own key, not on the 10 free a day.
+
+**Plan a trip.** "I need a round trip JFK to Paris, out April 6, back April 13.
 What are my best-value options?"
 
-**Search hotels.** "Find a hotel in Lisbon, October 9 to 12, 2 adults, review score 8+,
+**Search hotels.** "Find a hotel in Lisbon, March 9 to 12, 2 adults, review score 8+,
 free cancellation."
 
-**Check rate parity.** "Price the Rixos Sungate in Antalya for October 5 to 10 as seen
+**Check rate parity.** "Price the Rixos Sungate in Antalya for May 5 to 10 as seen
 from the US, Germany, and Israel."
 
 ## How it works
 
 The servers are hosted at `https://flights.flightpowers.com/mcp` and
-`https://hotels.flightpowers.com/mcp`. Nothing runs on your machine. On the sign-in
-path your RapidAPI key is stored on our side, encrypted, and used on each call; on the
-key path Claude sends it in the `x-rapidapi-key` header. Either way usage meters against
-your own subscription. Disconnect on the connect page deletes a stored key and cuts off
-every client using it. The free BASIC tier (10 requests/month, hard cap, no card)
-verifies the config works. A conversational assistant you use daily fits the $10 PRO
-plan.
+`https://hotels.flightpowers.com/mcp`. Nothing runs on your machine. After the Google
+sign-in, the first 10 searches each day run on our key; once you paste your RapidAPI key on
+the connect page it is stored on our side, encrypted, and used on each call. On the
+header path Claude sends the key in `x-rapidapi-key`. Either way, past the free searches,
+usage meters against your own subscription. Disconnect on the connect page deletes a
+stored key and cuts off every client using it.
 
 ## Date ranges and destination lists
 
 Both flight tools accept a date range (`departure_date_from` / `departure_date_to`) and
-a list of airports in `from_airport` and `to_airport` (comma-separated strings like
-`"JFK,EWR,LGA"`). The server expands them internally, so a flexible search is one call
-where the REST API would be a client-side fan-out of one request per date and
-destination combination.
+several destinations in `to_airport` (a comma-separated string like `"BCN,LIS,ATH"` or a
+list). The origin is one airport per search. The server expands the range and the
+destinations internally, so a flexible search is one call where the REST API would be a
+client-side fan-out of one request per date and destination combination. Each combination
+is one search, and the count comes back in `api_usage`.
 
 ## When to use this
 
@@ -221,6 +232,7 @@ The response shape Claude sees is the one production will see. Use the <a href="
 ## Related
 
 - [FlightPowers on Claude Desktop](https://flightpowers.com/integrations/claude-mcp): the full integration overview
+- [Booking.com MCP in Claude](/guides/booking-com-mcp-claude): the hotels server on its own, with a real search
 - [MCP Servers](https://flightpowers.com/mcp): setup for Cursor, ChatGPT, and other MCP clients
 - [Open-source agent skills](https://flightpowers.com/skills): the same workflows as MIT-licensed skills
 
@@ -228,5 +240,5 @@ The response shape Claude sees is the one production will see. Use the <a href="
   medium="guide"
   showBoth
   title="Ask Claude for a live price"
-  body="Add the URL, sign in with Google, and ask for a fare. The free tier verifies your key works; the paid tiers are sized for conversational assistants you use daily."
+  body="Add the URL, sign in with Google, and ask for a fare: 10 searches a day are free. The paid tiers on your own key are sized for an assistant you use every day."
 />

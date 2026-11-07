@@ -61,9 +61,14 @@ const RAPIDAPI = {
 
 export type RapidApiListing = keyof typeof RAPIDAPI;
 
-/** UTM-tagged deep link straight to the /pricing tab — the only real deep link RapidAPI has. */
-export function rapidApiPricingUrl(api: RapidApiListing, medium: UtmMedium): string {
-  return `${RAPIDAPI[api]}/pricing?utm_source=flightpowers&utm_medium=${medium}&utm_campaign=${api}-${CAMPAIGN_MONTH}`;
+/**
+ * UTM-tagged deep link straight to the /pricing tab — the only real deep link RapidAPI has.
+ * `content` (optional) becomes utm_content, a per-page label such as
+ * "planbox-compare-duffel", so one button on one page can be told apart.
+ */
+export function rapidApiPricingUrl(api: RapidApiListing, medium: UtmMedium, content?: string): string {
+  const base = `${RAPIDAPI[api]}/pricing?utm_source=flightpowers&utm_medium=${medium}&utm_campaign=${api}-${CAMPAIGN_MONTH}`;
+  return content ? `${base}&utm_content=${encodeURIComponent(content)}` : base;
 }
 
 /** Bare listing link (for "view the listing" references, not CTAs). */

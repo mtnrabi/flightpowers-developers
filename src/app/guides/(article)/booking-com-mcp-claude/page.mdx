@@ -1,0 +1,245 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = {
+  ...withOg({
+    title: 'Booking.com MCP in Claude: live hotel rates, setup, prompts',
+    description:
+      'Add hotels.flightpowers.com/mcp to Claude, sign in with Google and ask for a hotel: live Booking.com rates, 10 free searches a day, then PRO $10 for 2,000.',
+    alternates: { canonical: '/guides/booking-com-mcp-claude' },
+  }),
+  // The hotels twin of /guides/google-flights-mcp-claude (growth push 2026-11-07,
+  // funnel.md lever 3: that guide turns 51% of its visitors into a RapidAPI click,
+  // and no hotels page had its "add it, sign in, here is the plan" shape).
+  // 59 chars; the layout suffix is kept off.
+  title: { absolute: 'Booking.com MCP in Claude: live hotel rates, setup, prompts' },
+};
+
+export const dynamic = 'force-static';
+
+import { Code, GuideDates, JsonLd } from '@/components/ui';
+import { CtaBand } from '@/components/bands';
+import { AddToClientButtons } from '@/components/AddToClientButtons';
+import { CLAUDE_AUTH_HINT, LINKS, rapidApiPricingUrl } from '@/lib/site';
+import { AIRBNB_PLANS, HOTEL_PLANS } from '@/lib/pricing';
+import { ladderLine } from '@/lib/plan-box';
+import RUN from './run-2026-11-07.json';
+
+{/*
+  The tools below are the server's own tools/list, read 2026-11-07 ~17:00 UTC
+  (search_hotels, find_hotel_by_name, search_airbnb, compare_hotel_rates).
+  RUN is one real search_hotels call made on 2026-11-07 through
+  hotels.flightpowers.com/mcp with a RapidAPI key header; the raw rows (trimmed of
+  the account's plan counters) are in ./run-2026-11-07.json.
+*/}
+
+export const PRO = HOTEL_PLANS.find((p) => p.name === 'PRO');
+export const BASIC = HOTEL_PLANS.find((p) => p.name === 'BASIC');
+export const AIRBNB_PRO = AIRBNB_PLANS.find((p) => p.name === 'PRO');
+export const ROWS = RUN.result.results;
+export const CHEAPEST = ROWS.reduce((a, b) => (b.price < a.price ? b : a));
+export const CALL = JSON.stringify({ name: RUN.tool, arguments: RUN.arguments }, null, 2);
+export const EXCERPT = JSON.stringify(
+  {
+    results: [ROWS[0], CHEAPEST].map((r) => ({
+      name: r.name,
+      price: r.price,
+      price_string: r.price_string,
+      price_per_night: r.price_per_night,
+      review_score: r.review_score,
+      review_count: r.review_count,
+      room_type: r.room_type,
+      location: r.location,
+      nights: r.nights,
+      latitude: r.latitude,
+      longitude: r.longitude,
+      link: r.link.split('&highlighted_blocks')[0],
+    })),
+    result_count: RUN.result.result_count,
+    results_total: RUN.result.results_total,
+    api_usage: RUN.result.api_usage,
+  },
+  null,
+  2
+);
+export const RUN_DAY = RUN.captured_at.slice(0, 10);
+export const RUN_TIME = RUN.captured_at.slice(11, 16);
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'Booking.com MCP in Claude',
+    description:
+      'Connect a hosted Booking.com MCP server to Claude and Claude Code: live Booking.com hotel rates by destination or by hotel name, mid-conversation, with one real search shown.',
+    url: `https://flightpowers.com/guides/booking-com-mcp-claude`,
+    datePublished: '2026-11-07',
+    dateModified: '2026-11-07',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# Booking.com MCP in Claude
+
+<GuideDates published="2026-11-07" updated="2026-11-07" />
+
+**Short answer:** Add `https://hotels.flightpowers.com/mcp` to Claude as a custom connector,
+sign in with Google, and ask for a hotel. Claude gets four tools that read live Booking.com
+availability and rates when you ask: search a destination, price one hotel by name, search
+Airbnb, and compare the two. Your first 10 searches each day are free on the two Booking.com tools, with no key and no card.
+For more, paste your own RapidAPI key once: PRO is ${PRO.priceMonthly} a month for{' '}
+{PRO.quota.toLocaleString('en-US')} hotel searches.
+
+## What this server is
+
+It is mine: FlightPowers runs a hosted MCP server, so nothing installs on your machine. Its
+tools read Booking.com's live availability and rates at the moment Claude asks and return each
+property's stay total, price per night, review score, room type, location, coordinates and a
+Booking.com link. It reads rates; it does not make reservations, and FlightPowers is not
+affiliated with Booking.com. The same server is behind the [hotel MCP page](/mcp/booking-hotels),
+which has the full parameter list.
+
+## What you need
+
+- <a href="https://claude.ai/" rel="noopener">Claude</a> on the web or the desktop app, or Claude Code
+- A Google account for the sign-in
+- Optional, past 10 searches a day: a RapidAPI key subscribed to the <a href={rapidApiPricingUrl('hotels', 'guide', 'booking-mcp-claude-needs')} rel="noopener">Booking Live API</a>. BASIC is free for {BASIC.quota} searches a month (enough to check the key works), PRO is ${PRO.priceMonthly} for {PRO.quota.toLocaleString('en-US')}.
+
+## Add it to Claude
+
+One click opens Claude's "Add custom connector" screen with the name and the URL filled in:
+
+<AddToClientButtons server="hotels" clients={['claude']} claudeLabel="Add hotels to Claude" claudeHint={false} />
+
+{CLAUDE_AUTH_HINT}
+
+By hand: in Claude on the web or the desktop app, open Customize → Connectors → + Add → Add
+custom connector. Paste `https://hotels.flightpowers.com/mcp`, press Continue, choose ‘Sign in
+when needed’ (not the pre-selected ‘No sign-in’), then Add, and sign in with Google when Claude
+asks. Flights are a second connector, `https://flights.flightpowers.com/mcp`, set up the same
+way ([the Google Flights MCP guide](/guides/google-flights-mcp-claude)); the 10 free searches a
+day cover the two Booking.com tools and are shared with the flights connector.
+
+## Add it to Claude Code
+
+```bash
+claude mcp add --transport http hotels https://hotels.flightpowers.com/mcp
+```
+
+Then open `/mcp` in a session and sign in. `claude mcp list` prints `✔ Connected` when it
+worked and `! Needs authentication` when the sign-in has not happened yet. To share it with a
+project, put it in `.mcp.json` at the project root (nothing secret in it):
+
+```json
+{
+  "mcpServers": {
+    "hotels": { "type": "http", "url": "https://hotels.flightpowers.com/mcp" }
+  }
+}
+```
+
+## A real search
+
+Ask something like "Find a hotel in Barcelona for February 12 to 15, two adults, prices in US
+dollars, show me five." Claude answers it with `search_hotels`. Below is that call, sent to the
+server on {RUN_DAY} at {RUN_TIME} UTC with the same arguments Claude sends, and two of the five rows it
+returned:
+
+<Code label="the tool call">{CALL}</Code>
+
+<Code label={`response, 2 of ${RUN.result.result_count} rows`}>{EXCERPT}</Code>
+
+The search returned {RUN.result.results_total} properties; the call asked for{' '}
+{RUN.arguments.limit}, and the cheapest is always among them. Here that was {CHEAPEST.name}:{' '}
+{CHEAPEST.price_string} for the {CHEAPEST.nights} nights, about US${Math.round(CHEAPEST.price_per_night)}{' '}
+a night, review score {CHEAPEST.review_score} from {CHEAPEST.review_count.toLocaleString('en-US')}{' '}
+reviews. The whole call was {RUN.result.api_usage.requests_used_by_this_call} request on the
+plan. Rates move within minutes, so these are a record of one call, not today's prices.
+
+## The four tools
+
+**search_hotels**: Live Booking.com search for a destination written the way a person would
+write it ("Rome", "Tokyo Shibuya") and a check-in and check-out date. Returns 10 properties by
+default with the cheapest always among them; `limit` asks for more or fewer. Filters:
+`budget_per_night`, `adults`, `children`, `currency`, and `filters` such as
+`free_cancellation` or `breakfast_included` (an unknown filter name is refused with the list of
+valid ones, never silently ignored).
+
+**find_hotel_by_name**: One named property, the way a person would type it (add the city when a
+chain has many). No property id needed; the server resolves the name. Good for "is my hotel
+cheaper next week" and for a rate calendar of one hotel.
+
+**search_airbnb**: Live Airbnb stays for a destination and dates, read from Airbnb's public
+search page: stay total, price per night, rating out of 5, room type, bedrooms, beds, baths and
+an Airbnb link. It needs its own Airbnb Live API subscription on the same RapidAPI key (PRO is
+${AIRBNB_PRO.priceMonthly} for {AIRBNB_PRO.quota.toLocaleString('en-US')}); the 10 free sign-in
+searches do not cover it.
+
+**compare_hotel_rates**: The same stay on Booking.com and Airbnb, one row per source: the
+cheapest and the median stay total and how many places were found. Ratings are out of 10 on
+Booking.com and out of 5 on Airbnb, and `taxes_included` is null on Airbnb because its page does
+not say. It runs on your own key, one request per source on that source's subscription.
+
+## More prompts to try
+
+**A rate calendar for one hotel.** "Price Hotel Artemide in Rome for 3 nights, for every
+check-in date in April." `find_hotel_by_name` takes `checkin_date_from`, `checkin_date_to` and
+`nights` and prices one stay per date in a single call. Each stay is one search, so a month of
+dates runs on your own key, not on the 10 free a day.
+
+**The rate a shopper in another country sees.** "Price the Rixos Sungate in Antalya for May 5
+to 10 as seen from the US, Germany and Israel." `price_as_seen_from` takes a two-letter country
+code. Gaps between countries are real but usually modest and depend on the property, so call
+each country a few times before you call it a gap.
+
+**A budget and filters.** "Hotels in Lisbon, March 9 to 12, two adults, under 150 euros a
+night, free cancellation."
+
+**Booking.com against Airbnb.** "Compare Booking.com and Airbnb for Lisbon, March 5 to 8, two
+adults, in dollars." (Needs both subscriptions on your key.)
+
+## Going past 10 searches a day
+
+Paste your RapidAPI key once: on the page that opens when you sign in, or later at
+`https://hotels.flightpowers.com/connect` with the same Google account. It is encrypted before it
+is stored, only its last four characters are ever shown again, and searches then meter against
+your own subscription. Disconnect on the connect page deletes it.
+
+For `claude -p` in a cron job, CI, or a client with no sign-in button, send the key in a header
+instead, same URL:
+
+```json
+{
+  "mcpServers": {
+    "hotels": {
+      "type": "http",
+      "url": "https://hotels.flightpowers.com/mcp",
+      "headers": { "x-rapidapi-key": "YOUR_RAPIDAPI_KEY" }
+    }
+  }
+}
+```
+
+## What it costs
+
+One stay is one request on your plan; a date range is one request per check-in date.
+
+- {ladderLine('Booking Live API', HOTEL_PLANS)}
+- {ladderLine('Airbnb Live API', AIRBNB_PLANS)} (only for `search_airbnb` and the Airbnb row of
+  `compare_hotel_rates`)
+
+Every plan, overage price and rate limit is on [the pricing page](/pricing).
+
+## Related
+
+- [Hotel MCP server](/mcp/booking-hotels): every parameter, and an earlier captured run
+- [The Google Flights MCP in Claude](/guides/google-flights-mcp-claude): the flights connector, set up the same way
+- [Hotel prices by country](/guides/hotel-prices-by-country-api): what `price_as_seen_from` is for
+- [Booking.com API key](/guides/booking-com-api-key): the same rates over plain REST
+
+<CtaBand
+  api="hotels"
+  medium="guide"
+  title="Ask Claude for a hotel price"
+  body="Add the URL, sign in with Google and ask: 10 searches a day are free. PRO on your own key is sized for an assistant you use every day."
+/>

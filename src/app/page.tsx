@@ -200,6 +200,13 @@ export default function HomePage() {
                 <Cta href="#demo" variant="primary">
                   Try the live demo ↓
                 </Cta>
+                {/* Growth push 2026-11-07: home -> RapidAPI clicks fell from ~15-20 to 7 a
+                    week after the 10-18 hero lost its key buttons; /pricing turns 42% of its
+                    visitors into a RapidAPI click. A test: roll back if home clicks are not
+                    back near 15 a week by 2026-11-21. */}
+                <Cta href="/pricing" variant="ghost">
+                  See plans
+                </Cta>
                 <AddToClientButtons server="flights" clients={['claude']} claudeLabel="Add to Claude" claudeVariant="ghost" claudeHint={false} />
               </div>
               <p className="mt-3 text-[14px] text-ink-300 leading-relaxed">{PAID_TRIAL_LINE}</p>

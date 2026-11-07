@@ -130,6 +130,7 @@ const RELATED = [
   { href: '/guides/best-travel-mcp-servers-2026', label: 'Travel MCP servers compared', sub: '11 servers, read on the same day' },
   { href: '/hotels-api/geo-pricing', label: 'Pricing by country', sub: 'A repeat-sampled run across markets' },
   { href: '/hotels-api', label: 'Hotels API (REST)', sub: 'The same data over plain HTTP' },
+  { href: '/guides/booking-com-mcp-claude', label: 'Setup: Claude', sub: 'Add it, sign in, one real search' },
   { href: '/integrations/claude-mcp/hotel-search', label: 'Hotel search in Claude', sub: 'The prompt and the tool it calls' },
   { href: '/guides/hotel-api-in-n8n', label: 'Hotels in n8n', sub: 'The same rates in a workflow' },
   { href: '/status', label: 'Status', sub: 'The uptime probe and nightly tests' },

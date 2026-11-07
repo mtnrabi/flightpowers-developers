@@ -14,7 +14,7 @@ export const metadata = {
 export const dynamic = 'force-static';
 
 import { GuideDates, JsonLd } from '@/components/ui';
-import { CtaBand } from '@/components/bands';
+import { PlanBox } from '@/components/PlanBox';
 import { FLIGHT_PLANS } from '@/lib/pricing';
 import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
@@ -300,8 +300,9 @@ your key, doesn't evaluate).
 - [Amadeus Self-Service vs FlightPowers](/compare/amadeus): the migration path
 - [Price Insights API](/flights-api/price-insights): the field this whole ranking hinges on, proven with a captured run
 
-<CtaBand
+<PlanBox
+  page="/guides/best-flight-data-apis-2026"
+  listings={['flights']}
   medium="guide"
   title="Decide on your routes, not my copy"
-  body="Run your three hardest routes and check the response for a price band and a verdict. Free tier on RapidAPI, no card to try."
 />

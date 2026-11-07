@@ -1,7 +1,7 @@
 import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { CtaBand } from '@/components/bands';
+import { PlanBox } from '@/components/PlanBox';
 import { Breadcrumbs, Code, Container, FaqSection, JsonLd, Section, SectionHead, type Faq } from '@/components/ui';
 import { FLIGHT_PLANS, HOTEL_PLANS } from '@/lib/pricing';
 import { SITE } from '@/lib/site';
@@ -237,11 +237,7 @@ export default function CompareSkyscannerPage() {
       </Section>
 
       <Section bordered={false} className="!pt-4">
-        <CtaBand
-          medium="compare"
-          title="A key today, not in two weeks"
-          body="Live Google Flights fares with Google's price band when Google shows one. Free tier on RapidAPI, no card."
-        />
+        <PlanBox page="/compare/skyscanner" listings={['flights']} medium="compare" title="A key today, not in two weeks" />
       </Section>
     </>
   );

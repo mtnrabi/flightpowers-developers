@@ -14,7 +14,7 @@ export const metadata = {
 export const dynamic = 'force-static';
 
 import { GuideDates, JsonLd } from '@/components/ui';
-import { CtaBand } from '@/components/bands';
+import { PlanBox } from '@/components/PlanBox';
 import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 
 <JsonLd
@@ -258,10 +258,11 @@ curl -X POST https://api.flightpowers.com/v1/flights/roundtrip \
   -d '{"from_airport":"JFK","to_airport":"LHR","departure_date":"2027-04-15","return_date":"2027-04-22","currency":"USD"}'
 ```
 
-<CtaBand
+<PlanBox
+  page="/guides/flight-api-benchmark-2026"
+  listings={['flights']}
   medium="guide"
   title="Same fares, one request per round trip"
-  body="Both legs priced together, Google's own price band when Google shows one, and a booking link per itinerary. Free tier on RapidAPI, no card."
 />
 
 ## Related

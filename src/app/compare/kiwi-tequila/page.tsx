@@ -1,7 +1,7 @@
 import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { CtaBand } from '@/components/bands';
+import { PlanBox } from '@/components/PlanBox';
 import { Breadcrumbs, Code, Container, FaqSection, JsonLd, Section, SectionHead, type Faq } from '@/components/ui';
 import { FLIGHT_PLANS, HOTEL_PLANS } from '@/lib/pricing';
 import { LINKS, SITE } from '@/lib/site';
@@ -270,11 +270,7 @@ export default function CompareKiwiTequilaPage() {
       </Section>
 
       <Section bordered={false} className="!pt-4">
-        <CtaBand
-          medium="compare"
-          title="No invitation needed"
-          body="Subscribe on RapidAPI and the key works on the next request: live Google Flights fares with the price band when Google shows one."
-        />
+        <PlanBox page="/compare/kiwi-tequila" listings={['flights']} medium="compare" title="No invitation needed" />
       </Section>
     </>
   );

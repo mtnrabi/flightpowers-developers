@@ -1,0 +1,106 @@
+{
+  "captured_at": "2026-11-07T17:01:22Z",
+  "finished_at": "2026-11-07T17:01:35Z",
+  "server": "https://hotels.flightpowers.com/mcp",
+  "client": "a plain MCP client over HTTP with a RapidAPI key header (the tools Claude sees)",
+  "tool": "search_hotels",
+  "arguments": {
+    "destination": "Barcelona",
+    "checkin_date": "2027-02-12",
+    "checkout_date": "2027-02-15",
+    "adults": 2,
+    "currency": "usd",
+    "limit": 5
+  },
+  "result": {
+    "results": [
+      {
+        "name": "Lamaro Hotel Barcelona - Preferred Hotels & Resorts - Lifestyle Collection",
+        "price": 931,
+        "price_string": "US$931",
+        "price_per_night": 310.33,
+        "review_score": 8.8,
+        "review_count": 2959,
+        "room_type": "Elegance",
+        "location": "Ciutat Vella, Barcelona",
+        "nights": 3,
+        "adults": 2,
+        "latitude": 41.38501069513764,
+        "longitude": 2.175924628973007,
+        "link": "https://www.booking.com/hotel/es/colon-barcelona.html?checkin=2027-02-12&checkout=2027-02-15&group_adults=2&no_rooms=1&group_children=0&highlighted_blocks=9336518_0_2_0_0",
+        "retrieved_at": "2026-11-07T17:01:34.525Z"
+      },
+      {
+        "name": "Catalonia Boulevard 4 Sup",
+        "price": 731,
+        "price_string": "US$731",
+        "price_per_night": 243.67,
+        "review_score": 8.9,
+        "review_count": 1539,
+        "room_type": "Superior Room",
+        "location": "Eixample, Barcelona",
+        "nights": 3,
+        "adults": 2,
+        "latitude": 41.39496838622462,
+        "longitude": 2.159384787082672,
+        "link": "https://www.booking.com/hotel/es/cataloniaboulevard.html?checkin=2027-02-12&checkout=2027-02-15&group_adults=2&no_rooms=1&group_children=0&highlighted_blocks=9241102_426918726_0_2_0_548229",
+        "retrieved_at": "2026-11-07T17:01:34.525Z"
+      },
+      {
+        "name": "Catalonia Catedral",
+        "price": 786,
+        "price_string": "US$786",
+        "price_per_night": 262.0,
+        "review_score": 8.9,
+        "review_count": 1804,
+        "room_type": "Double or Twin Room",
+        "location": "Ciutat Vella, Barcelona",
+        "nights": 3,
+        "adults": 2,
+        "latitude": 41.38469373842826,
+        "longitude": 2.1744541078805923,
+        "link": "https://www.booking.com/hotel/es/catalonia-catedral.html?checkin=2027-02-12&checkout=2027-02-15&group_adults=2&no_rooms=1&group_children=0&highlighted_blocks=18950005_194582652_0_2_0",
+        "retrieved_at": "2026-11-07T17:01:34.525Z"
+      },
+      {
+        "name": "Hotel Sant Agustí",
+        "price": 483,
+        "price_string": "US$483",
+        "price_per_night": 161.0,
+        "review_score": 8.1,
+        "review_count": 4465,
+        "room_type": "Interior Comfort Double or Twin Room",
+        "location": "Ciutat Vella, Barcelona",
+        "nights": 3,
+        "adults": 2,
+        "latitude": 41.380487626927646,
+        "longitude": 2.1715962141752243,
+        "link": "https://www.booking.com/hotel/es/san-agustin.html?checkin=2027-02-12&checkout=2027-02-15&group_adults=2&no_rooms=1&group_children=0&highlighted_blocks=9750237_0_2_0_0",
+        "retrieved_at": "2026-11-07T17:01:34.525Z"
+      },
+      {
+        "name": "Hotel El Palace Barcelona",
+        "price": 1562,
+        "price_string": "US$1562",
+        "price_per_night": 520.67,
+        "review_score": 9.3,
+        "review_count": 1174,
+        "room_type": "Standard Room",
+        "location": "Eixample, Barcelona",
+        "nights": 3,
+        "adults": 2,
+        "latitude": 41.391439048710915,
+        "longitude": 2.171449363231659,
+        "link": "https://www.booking.com/hotel/es/ritzbcn.html?checkin=2027-02-12&checkout=2027-02-15&group_adults=2&no_rooms=1&group_children=0&highlighted_blocks=0_0_2_0_0",
+        "retrieved_at": "2026-11-07T17:01:34.525Z"
+      }
+    ],
+    "result_count": 5,
+    "results_total": 15,
+    "results_note": "15 properties were found; `results` holds 5: the first in the order Booking.com returned them, with the cheapest always included. A `limit` up to 15 returns more.",
+    "api_usage": {
+      "requests_used_by_this_call": 1,
+      "hub_requests_billed": 1
+    }
+  }
+}

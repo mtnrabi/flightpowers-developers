@@ -302,6 +302,15 @@
   .prose-fp ol { list-style: decimal; padding-left: 1.25rem; margin-bottom: 1.125rem; }
   .prose-fp ol li { margin-bottom: 0.5rem; }
   .prose-fp a { color: var(--color-signal-400); text-underline-offset: 3px; text-decoration: underline; }
+  /* A button inside a guide keeps its button look: `.prose-fp a` outranks
+     `.btn-primary` in this layer, which painted the CTA pills' labels amber
+     and underlined them. */
+  .prose-fp a.btn { text-decoration: none; }
+  .prose-fp a.btn-primary, .prose-fp a.btn-primary:hover, .prose-fp a.btn-accent { color: var(--color-ink-950); }
+  .prose-fp a.btn-ghost { color: var(--color-ink-200); }
+  .prose-fp a.btn-ghost:hover { color: var(--color-ink-100); }
+  .prose-fp .not-prose ul li { padding-left: 0; }
+  .prose-fp .not-prose ul li::before { content: none; }
   .prose-fp strong { color: var(--color-ink-100); }
   .prose-fp blockquote {
     border-left: 2px solid var(--color-signal-600);
