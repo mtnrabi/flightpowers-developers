@@ -2,16 +2,19 @@ import { withOg } from '@/lib/meta';
 
 export const metadata = {
   ...withOg({
-    title: 'Booking.com API key: how to get one, and the price',
+    title: 'Booking.com API key with no partner contract: $10 for 2,000',
     description:
-      'Booking.com API keys go to partners under contract. A key for live Booking.com rates on RapidAPI: free for 10 requests, PRO $10 for 2,000, no approval.',
+      'Booking.com gives API keys to contracted partners only. A RapidAPI key reads live Booking.com rates today: 10 free searches, PRO $10 for 2,000, no approval.',
     alternates: { canonical: '/guides/booking-com-api-key' },
   }),
   // The layout template appends " · FlightPowers"; the title is 50 chars without it.
   // Retitled 2026-10-18 (double-down plan item 2): 1,306 impressions at 1.0% CTR,
   // position 6.3; 'booking api key' at position 6.5 with 1 click. The buyer asks for
   // the price, so the title promises it. Numbers match HOTEL_PLANS (BASIC 10, PRO $10/2,000).
-  title: { absolute: 'Booking.com API key: how to get one, and the price' },
+  // Retitled 2026-11-07 (growth push, funnel.md lever 5): 2,239 impressions at 0.8% CTR,
+  // position 7.5. The title now names the price AND the edge (no partner contract);
+  // 59 chars without the suffix.
+  title: { absolute: 'Booking.com API key with no partner contract: $10 for 2,000' },
 };
 
 export const dynamic = 'force-static';
