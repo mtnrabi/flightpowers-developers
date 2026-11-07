@@ -246,7 +246,7 @@ const faq: Faq[] = [
   },
   {
     q: 'What counts as a request?',
-    a: 'A call to any endpoint is one request. The listings state this per plan. A round-trip search is one request. A 30-day flexible-date scan over REST is 30 requests (one per date), which is why the rate limits are sized the way they are.',
+    a: 'A call to any endpoint is one request. The listings state this per plan. A round-trip search is one request, and so is a multi-airport search (up to 8 airport pairs). A 30-day flexible-date scan over REST is 30 requests (one per date), which is why the rate limits are sized the way they are.',
   },
   {
     q: 'Do the plans differ in features?',
@@ -497,7 +497,7 @@ export default function PricingPage() {
                 <td className="py-4 pr-4 font-mono tabular-nums text-signal-400 whitespace-nowrap">$4.00</td>
                 <td className="py-4 pr-4 text-ink-300 whitespace-nowrap">10 / mo</td>
                 <td className="py-4 text-ink-400 leading-relaxed">
-                  Google Flights. Two endpoints. Price band and verdict when Google shows one, search-status headers on every
+                  Google Flights. Four endpoints. Price band and verdict when Google shows one, search-status headers on every
                   response, 150 to 500 requests/minute.
                 </td>
               </tr>

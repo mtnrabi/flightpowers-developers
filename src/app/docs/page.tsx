@@ -48,6 +48,12 @@ const FLIGHTS_PAGES = [
     sub: 'Paired-leg itineraries with combined totals; every one-way filter, per leg.',
   },
   {
+    href: '/flights-api/multi-airport',
+    method: 'POST /*_multi_airport',
+    label: 'Multi-airport search',
+    sub: 'Up to 4 airports a side and 8 airport pairs in one request, one ranked list back.',
+  },
+  {
     href: '/flights-api/price-insights',
     method: 'response fields',
     label: 'Price insights',
@@ -173,7 +179,7 @@ export default function DocsPage() {
         <SectionHead
           eyebrow="Google Flights API"
           title="Flights: live prices with price context"
-          lede="Two endpoints over live Google Flights results. Round-trips come back as paired itineraries, and every result carries a booking link, plus price context from Google Flights when Google shows one."
+          lede="One-way and round-trip search over live Google Flights results, for one airport a side or up to four. Round-trips come back as paired itineraries, and every result carries a booking link, plus price context from Google Flights when Google shows one."
         />
         <EndpointGrid pages={FLIGHTS_PAGES} />
         <p className="mt-5 text-[14px] text-ink-400">

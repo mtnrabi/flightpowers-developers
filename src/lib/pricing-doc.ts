@@ -119,6 +119,9 @@ This is the part most cost estimates get wrong.
 - One search is one request. A 30-date scan is 30 requests.
 - A round trip is ONE request. Both legs come back priced together in one itinerary with a
   \`total_price\`. You do not pay for two one-way searches and add them up.
+- A multi-airport search is ONE request. The REST endpoints oneway_multi_airport and
+  roundtrip_multi_airport (RapidAPI host only) take 1 to 4 airports a side, up to 8 airport
+  pairs, and bill one request per call.
 - A date range and a destination list expand internally. One call with 7 dates and 3
   destinations spends 7 x 3 = 21 requests, not 1. Every response reports what it spent and
   what is left in \`api_usage\`.

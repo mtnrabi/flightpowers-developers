@@ -51,6 +51,12 @@ const ENDPOINT_PAGES = [
     sub: 'One object per itinerary, both legs pre-paired, with combined price, duration, and stops.',
   },
   {
+    href: '/flights-api/multi-airport',
+    method: 'POST /*_multi_airport',
+    label: 'Multi-airport search',
+    sub: 'Up to 4 airports a side and 8 airport pairs in one request, one ranked list back.',
+  },
+  {
     href: '/flights-api/price-insights',
     method: 'response fields',
     label: 'Price insights',
@@ -567,7 +573,7 @@ export default function FlightsApiHubPage() {
       </Section>
 
       <Section>
-        <SectionHead eyebrow="Pricing" title="Every plan gets both endpoints" />
+        <SectionHead eyebrow="Pricing" title="Every plan gets every endpoint" />
         <div className="mt-8">
           <PricingTable api="flights" plans={FLIGHT_PLANS} medium="endpoint" />
         </div>

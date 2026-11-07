@@ -41,6 +41,7 @@ Last-Updated: ${LLMS_LAST_UPDATED}
 ## Quick facts
 
 - ${COUNTS.restEndpoints} REST endpoints on https://${SITE.apiHost}: POST /v1/flights/{oneway,roundtrip}, POST /v1/hotels/{search,by-name,rooms,resolve}
+- Multi-airport flight search on the RapidAPI host only (google-flights-live-api.p.rapidapi.com, not ${SITE.apiHost}): POST /api/google_flights/oneway_multi_airport/v1 and /api/google_flights/roundtrip_multi_airport/v1 take 1 to 4 airports a side (a list or "TLV,ATH"), up to 8 airport pairs, adults only, limit 1-20, and return every pair in one ranked list, billed as ONE request. The round trip refuses city codes (LON) with a 422 naming the airports, and covers stays up to 32 nights
 - Auth: RapidAPI key via x-rapidapi-key / x-api-key header. Get one: ${LINKS.rapidapiFlights}/pricing
 - ${COUNTS.mcpServers} hosted MCP servers (streamable HTTP), one URL each: ${LINKS.mcpFlights} (flights) and ${LINKS.mcpHotels} (hotels). Add the URL, the client shows a Sign in button, you sign in with Google and paste your RapidAPI key once on the connect page. Scripts, CI and clients without a sign-in button send the key on that same URL, in an x-rapidapi-key header or as ?rapidapi_key=. ${LINKS.mcpFree} serves the two flight tools and the two Booking.com hotel tools (no Airbnb) with no RapidAPI key at all: sign in with Google, 50 searches a day and 250 a month per person, ad-supported
 - MCP tools: search_oneway_flights, search_roundtrip_flights (flights server); search_hotels, find_hotel_by_name, search_airbnb, compare_hotel_rates (hotels server). search_airbnb and the Airbnb row of compare_hotel_rates need an Airbnb Live API subscription on the same key; compare_hotel_rates prices one stay on Booking.com and Airbnb, one row per source. Flight tools accept date RANGES and destination LISTS and expand them internally (one call, not N)
@@ -58,6 +59,7 @@ ${DIFFERENTIATORS.map((d) => `- ${d.title}: ${d.short}`).join('\n')}
 - [Flights API reference](${u('/flights-api')}): POST /oneway and /roundtrip with captured example responses
 - [One-way search](${u('/flights-api/one-way')}): the base endpoint, full filter set
 - [Round-trip search](${u('/flights-api/round-trip')}): paired-leg itineraries priced together, not two stapled one-ways
+- [Multi-airport search](${u('/flights-api/multi-airport')}): 1 to 4 airports a side and up to 8 airport pairs in one request (one-way or round trip), one ranked list, each row naming the airports it flies; every 422 it can answer
 - [Price insights](${u('/flights-api/price-insights')}): Google's historical band and the low|typical|high verdict
 - [Search status](${u('/flights-api/search-status')}): X-Search-Status header semantics; how to tell "no flights" from "search failed"
 - [Parallel date scans](${u('/flights-api/parallel-date-scan')}): scanning a month of dates inside the per-minute rate limit
