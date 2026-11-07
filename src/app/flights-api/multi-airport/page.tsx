@@ -81,6 +81,19 @@ const ONEWAY_EXCERPT = JSON.stringify(
 );
 
 const RT_ROWS = firstPerPair(rt.data);
+
+/** The first row of the pair that lands at `code` (to_airport reads like "Paris (CDG)"). */
+function rtRowTo(code: string) {
+  const row = RT_ROWS.find((r) => String(r.to_airport).includes(`(${code})`));
+  if (!row) throw new Error(`round-trip fixture has no row to ${code}`);
+  return row;
+}
+/** The city name from the row's own airport label, "Paris (CDG)" -> "Paris". */
+function cityOf(row: { to_airport: unknown }) {
+  return String(row.to_airport).replace(/\s*\([A-Z]{3}\)\s*$/, '');
+}
+const RT_CDG = rtRowTo('CDG');
+const RT_LHR = rtRowTo('LHR');
 const ROUNDTRIP_EXCERPT = JSON.stringify(
   RT_ROWS.map((r) => ({
     from_airport: r.from_airport,
@@ -302,10 +315,11 @@ export default function MultiAirportPage() {
           </Code>
         </div>
         <p className="mt-6 max-w-3xl text-[15px] text-ink-300 leading-relaxed">
-          In the capture, Paris read <VerdictBadge verdict={RT_ROWS[0]!.price_range_in_relation_to_other_periods} /> against
-          its own range (${RT_ROWS[0]!.price_insights_low} to ${RT_ROWS[0]!.price_insights_high}) and London read{' '}
-          <VerdictBadge verdict={RT_ROWS[1]?.price_range_in_relation_to_other_periods ?? null} /> against its own{' '}
-          {`($${RT_ROWS[1]?.price_insights_low} to $${RT_ROWS[1]?.price_insights_high})`}, in the same response. Every field on a
+          Google marked {cityOf(RT_CDG)} <VerdictBadge verdict={RT_CDG.price_range_in_relation_to_other_periods} /> for
+          these dates (range ${RT_CDG.price_insights_low} to ${RT_CDG.price_insights_high}) and {cityOf(RT_LHR)}{' '}
+          <VerdictBadge verdict={RT_LHR.price_range_in_relation_to_other_periods} />{' '}
+          {`(range $${RT_LHR.price_insights_low} to $${RT_LHR.price_insights_high})`}, each verdict for its own airport pair,{' '}
+          in the same response. Every field on a
           row is documented on the{' '}
           <Link href="/flights-api/round-trip" className="text-signal-400 underline underline-offset-4">
             round-trip page
