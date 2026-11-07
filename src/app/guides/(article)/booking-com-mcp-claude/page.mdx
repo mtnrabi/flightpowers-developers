@@ -86,7 +86,7 @@ export const RUN_TIME = RUN.captured_at.slice(11, 16);
 **Short answer:** Add `https://hotels.flightpowers.com/mcp` to Claude as a custom connector,
 sign in with Google, and ask for a hotel. Claude gets four tools that read live Booking.com
 availability and rates when you ask: search a destination, price one hotel by name, search
-Airbnb, and compare the two. Your first 10 searches each day are free, with no key and no card.
+Airbnb, and compare the two. Your first 10 searches each day are free on the two Booking.com tools, with no key and no card.
 For more, paste your own RapidAPI key once: PRO is ${PRO.priceMonthly} a month for{' '}
 {PRO.quota.toLocaleString('en-US')} hotel searches.
 
@@ -118,7 +118,7 @@ custom connector. Paste `https://hotels.flightpowers.com/mcp`, press Continue, c
 when needed’ (not the pre-selected ‘No sign-in’), then Add, and sign in with Google when Claude
 asks. Flights are a second connector, `https://flights.flightpowers.com/mcp`, set up the same
 way ([the Google Flights MCP guide](/guides/google-flights-mcp-claude)); the 10 free searches a
-day are shared by both.
+day cover the two Booking.com tools and are shared with the flights connector.
 
 ## Add it to Claude Code
 
@@ -142,14 +142,14 @@ project, put it in `.mcp.json` at the project root (nothing secret in it):
 
 Ask something like "Find a hotel in Barcelona for February 12 to 15, two adults, prices in US
 dollars, show me five." Claude answers it with `search_hotels`. Below is that call, sent to the
-server on {RUN_DAY} at {RUN_TIME} UTC the way Claude sends it, and two of the five rows it
+server on {RUN_DAY} at {RUN_TIME} UTC with the same arguments Claude sends, and two of the five rows it
 returned:
 
 <Code label="the tool call">{CALL}</Code>
 
 <Code label={`response, 2 of ${RUN.result.result_count} rows`}>{EXCERPT}</Code>
 
-Booking.com had {RUN.result.results_total} properties for those dates; the call asked for{' '}
+The search returned {RUN.result.results_total} properties; the call asked for{' '}
 {RUN.arguments.limit}, and the cheapest is always among them. Here that was {CHEAPEST.name}:{' '}
 {CHEAPEST.price_string} for the {CHEAPEST.nights} nights, about US${Math.round(CHEAPEST.price_per_night)}{' '}
 a night, review score {CHEAPEST.review_score} from {CHEAPEST.review_count.toLocaleString('en-US')}{' '}

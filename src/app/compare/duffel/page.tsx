@@ -34,8 +34,8 @@ const PRO = FLIGHT_PLANS.find((p) => p.name === 'PRO')!;
 
 export const metadata: Metadata = {
   ...withOg({
-    title: 'Duffel API pricing: $0.005 a search, $3 an order, compared',
-    description: `Duffel charges $3.00 an order and $0.005 a search past 1,500 per order (read ${RETRIEVED}). Pricing flights only? $${PRO.priceMonthly} for ${PRO.quota.toLocaleString('en-US')}, with Google's price range when shown.`,
+    title: 'Duffel API pricing: from $3.00 an order, $0.005 a search past 1,500 per order',
+    description: `Duffel charges from $3.00 an order and $0.005 a search past 1,500 per order (read ${RETRIEVED}). Pricing flights only? $${PRO.priceMonthly} for ${PRO.quota.toLocaleString('en-US')}, with Google's price range when shown.`,
     alternates: { canonical: '/compare/duffel' },
   }),
   // The layout template appends " · FlightPowers"; the title is 54 chars without it.
@@ -45,8 +45,8 @@ export const metadata: Metadata = {
   // FlightPowers: booking vs flight data".
   // Retitled 2026-11-07 (growth push, funnel.md lever 5): 2,697 impressions at 0.8% CTR,
   // position 5.3. Same quoted prices, now with what a pricing-only team gets instead;
-  // 58 chars without the suffix.
-  title: { absolute: 'Duffel API pricing: $0.005 a search, $3 an order, compared' },
+  // 2026-11-07 r2: scoped as 'from $3.00' and 'past 1,500 per order'.
+  title: { absolute: 'Duffel API pricing: from $3.00 an order, $0.005 a search past 1,500 per order' },
 };
 
 export const dynamic = 'force-static';
@@ -132,7 +132,7 @@ export default function CompareDuffelPage() {
         data={{
           '@context': 'https://schema.org',
           '@type': 'WebPage',
-          name: 'Duffel API pricing: $3.00 per order, $0.005 per search',
+          name: 'Duffel API pricing: from $3.00 per order, $0.005 per search past 1,500 per order',
           url: `${SITE.url}/compare/duffel`,
           dateModified: RETRIEVED,
         }}
