@@ -99,17 +99,18 @@ export function fmtRate(plan: Plan): string {
 /**
  * Apify actors — pay-per-event pricing. Both figures read from the actors'
  * own pricingInfos (api.apify.com/v2/acts/mtnrabi~<actor>) on 2026-09-28,
- * re-read unchanged on 2026-10-14:
- * hotels `hotel_search` is $0.0037 per lookup ($3.70 per 1,000) and flights
+ * re-read on 2026-11-08:
+ * hotels `hotel_search` is $0.005 per lookup ($5.00 per 1,000, in force since
+ * 2026-11-08 07:28Z; it was $0.0037 before) and flights
  * `flight_search` is $0.003 per lookup ($3.00 per 1,000, in force since
  * 2026-09-19; it was $0.00185 before). Apify's auto-computed
  * "$0.01/1,000 results" badge badly understates real cost and must never be
  * quoted.
  */
 export const APIFY = {
-  read_on: '2026-10-14',
-  hotelsPer1kSearches: '$3.70 per 1,000 hotel lookups',
-  hotelsSearchEvent: '$0.0037 per lookup',
+  read_on: '2026-11-08',
+  hotelsPer1kSearches: '$5.00 per 1,000 hotel lookups',
+  hotelsSearchEvent: '$0.005 per lookup',
   hotelsResultEvent: '$0.00001 per result',
   hotelsStartEvent: '$0.00005 per run',
   flightsPer1kSearches: '$3.00 per 1,000 flight lookups',
