@@ -130,7 +130,7 @@ export default function ParallelDateScanPage() {
           name: 'FlightPowers Parallel Date Scans',
           applicationCategory: 'DeveloperApplication',
           operatingSystem: 'Any',
-          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Free tier: 10 requests/month on RapidAPI' },
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Free tier: 50 requests/month on RapidAPI' },
           url: `${SITE.url}/flights-api/parallel-date-scan`,
           dateModified: '2026-09-07',
         }}

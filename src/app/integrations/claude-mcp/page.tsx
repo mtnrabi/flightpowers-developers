@@ -41,7 +41,7 @@ const faq: Faq[] = [
   },
   {
     q: 'What happens if I exceed my quota?',
-    a: 'On paid plans, requests beyond your monthly quota bill at the plan\'s overage rate. The free tier (10 requests/month) is hard-capped: requests beyond 10 are rejected, not billed. The MCP server returns api_usage in every response showing your remaining quota.',
+    a: 'On paid plans, requests beyond your monthly quota bill at the plan\'s overage rate. The free tier (50 requests/month on flights, 10 on hotels) is hard-capped: requests past the cap are rejected, not billed. The MCP server returns api_usage in every response showing your remaining quota.',
   },
   {
     q: 'Can I use this with the free server?',
@@ -125,7 +125,7 @@ export default function ClaudeMcpPage() {
                 </Cta>
               </div>
               <p className="mt-4 font-mono text-[12px] text-ink-500">
-                Free tier: 10 requests/month, no credit card
+                Free tier: 50 requests/month on flights, 10 on hotels, no credit card
               </p>
             </div>
 
@@ -191,7 +191,7 @@ export default function ClaudeMcpPage() {
                 <a href={rapidApiPricingUrl('hotels', 'mcp')} rel="noopener" className="text-signal-400 underline underline-offset-4">
                   Booking Live API
                 </a>{' '}
-                on RapidAPI. The free BASIC tier is 10 requests/month with no credit card required. One key works for both APIs once
+                on RapidAPI. The free BASIC tier is 50 requests/month on flights and 10 on hotels, with no credit card required. One key works for both APIs once
                 subscribed.
               </p>
             </div>

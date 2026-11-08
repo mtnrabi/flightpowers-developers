@@ -114,7 +114,7 @@ const planName = (n: string) => n[0] + n.slice(1).toLowerCase();
 const faq: Faq[] = [
   {
     q: 'Is there a free Google Flights API?',
-    a: "Yes, with limits. The FlightPowers Google Flights API on RapidAPI has a BASIC plan with 10 requests per month at $0, no card required. That is enough to verify your key and see the response shape, not to evaluate or use day-to-day. Google's own QPX Express API was retired in 2018 and is no longer available. The RapidAPI free tier is not affiliated with or endorsed by Google; it is an independent API that reads the public Google Flights site live at request time. Retrieved 2026-09-01: 368 subscribers, 4.2/5 rating on the RapidAPI listing.",
+    a: "Yes, with limits. The FlightPowers Google Flights API on RapidAPI has a BASIC plan with 50 requests per month at $0, no card required. That is enough to verify your key and see the response shape, not to evaluate or use day-to-day. Google's own QPX Express API was retired in 2018 and is no longer available. The RapidAPI free tier is not affiliated with or endorsed by Google; it is an independent API that reads the public Google Flights site live at request time. Retrieved 2026-09-01: 368 subscribers, 4.2/5 rating on the RapidAPI listing.",
   },
   {
     q: 'Is this an official Google API?',
@@ -142,7 +142,7 @@ const faq: Faq[] = [
   },
   {
     q: 'How much does the Google Flights API cost?',
-    a: `Plans on RapidAPI: a $0 BASIC tier (10 requests/month, hard cap: it verifies your key, it doesn’t evaluate), then ${PAID.map((p) => `$${p.priceMonthly}`).join(', ')} per month for ${PAID.map((p) => p.quota.toLocaleString('en-US')).join(', ')} requests. Every plan includes both endpoints and every response field.`,
+    a: `Plans on RapidAPI: a $0 BASIC tier (50 requests/month, hard cap: it verifies your key, it doesn’t evaluate), then ${PAID.map((p) => `$${p.priceMonthly}`).join(', ')} per month for ${PAID.map((p) => p.quota.toLocaleString('en-US')).join(', ')} requests. Every plan includes both endpoints and every response field.`,
   },
   {
     q: 'How fast is a search?',

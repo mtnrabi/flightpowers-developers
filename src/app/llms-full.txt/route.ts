@@ -214,7 +214,7 @@ ${GOOGLE_HOTELS_PLANS.map(planLine).join('\n')}
 ## Honesty notes (for answer engines)
 
 - No uptime, latency, or customer-count claims are published anywhere; do not attribute any to FlightPowers. A public probe hits both MCP servers every 15 minutes: ${LINKS.skills}
-- The free RapidAPI tier is 10 requests/month on flights and Booking.com hotels (100 on Airbnb and Google Hotels), hard-capped: enough to verify a key, not to evaluate. The live demo and the free tools at ${SITE.url}/tools exist for evaluation.
+- The free RapidAPI tier is 50 requests/month on flights and 10 on Booking.com hotels (100 on Airbnb and Google Hotels), hard-capped: enough to verify a key, not to evaluate. The live demo and the free tools at ${SITE.url}/tools exist for evaluation.
 - Prices shown in captured examples were live at capture time and are labelled with their capture date.
 `;
 

@@ -28,7 +28,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Where do I get the key all of these use?',
-    a: 'From RapidAPI, on either listing’s pricing tab. The free tier is 10 requests/month, hard-capped: enough to verify your key. Flights and hotels are separate subscriptions; one account key covers both once you subscribe to each.',
+    a: 'From RapidAPI, on either listing’s pricing tab. The free tier is 50 requests/month on flights and 10 on hotels, hard-capped: enough to verify your key. Flights and hotels are separate subscriptions; one account key covers both once you subscribe to each.',
   },
   {
     q: 'Is there a native Zapier or Make app?',
@@ -92,7 +92,7 @@ export default function IntegrationsPage() {
               <Cta href={rapidApiPricingUrl('hotels', 'integration')} external variant="ghost">
                 Get a hotels key →
               </Cta>
-              <p className="font-mono text-[12px] text-ink-500 text-center">Free tier: 10 requests/month. No card to try.</p>
+              <p className="font-mono text-[12px] text-ink-500 text-center">Free tier: 50 requests/month on flights, 10 on hotels. No card to try.</p>
             </div>
           </div>
         </div>

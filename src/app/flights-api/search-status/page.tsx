@@ -125,7 +125,7 @@ export default function SearchStatusPage() {
           name: 'FlightPowers Search Status Headers',
           applicationCategory: 'DeveloperApplication',
           operatingSystem: 'Any',
-          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Free tier: 10 requests/month on RapidAPI' },
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Free tier: 50 requests/month on RapidAPI' },
           url: `${SITE.url}/flights-api/search-status`,
           dateModified: '2026-09-07',
         }}

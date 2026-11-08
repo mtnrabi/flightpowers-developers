@@ -24,7 +24,7 @@ test('every ladder line carries each plan price and quota from pricing.ts', () =
 test('the flights and Booking lines read as the per-product PRO prices', () => {
   assert.equal(
     ladderLine('Google Flights Live API', FLIGHT_PLANS),
-    'Google Flights Live API: free for 10 searches a month, then PRO $10 a month for 2,500, ULTRA $25 for 10,000, MEGA $50 for 25,000.'
+    'Google Flights Live API: free for 50 searches a month, then PRO $10 a month for 2,500, ULTRA $25 for 10,000, MEGA $50 for 25,000.'
   );
   assert.ok(ladderLine('Booking Live API', HOTEL_PLANS).includes('PRO $10 a month for 2,000'));
   assert.ok(ladderLine('Airbnb Live API', AIRBNB_PLANS).includes('PRO $10 a month for 10,000'));

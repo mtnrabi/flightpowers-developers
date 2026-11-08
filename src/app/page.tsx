@@ -33,7 +33,7 @@ const faq: Faq[] = [
     q: 'How quickly can I start building?',
     a: (
       <>
-        Free tier signup takes under 2 minutes on RapidAPI - no credit card required. You get your API key instantly and can make your first request within 5 minutes. Test with the free tier ({FLIGHT_PLANS[0]!.quota} requests/month on flights and Booking.com, {AIRBNB_PLANS[0]!.quota} on Airbnb and Google Hotels) to verify integration, then upgrade when ready. Step-by-step guides:{' '}
+        Free tier signup takes under 2 minutes on RapidAPI - no credit card required. You get your API key instantly and can make your first request within 5 minutes. Test with the free tier ({FLIGHT_PLANS[0]!.quota} requests/month on flights, {HOTEL_PLANS[0]!.quota} on Booking.com, {AIRBNB_PLANS[0]!.quota} on Airbnb and Google Hotels) to verify integration, then upgrade when ready. Step-by-step guides:{' '}
         <Link href="/guides/google-flights-api-key" className="text-signal-400 underline underline-offset-4">
           How to get a Google Flights API key
         </Link>{' '}
@@ -47,7 +47,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Is there a free tier?',
-    a: `Yes. BASIC is $0 on RapidAPI, no card, with a hard cap: ${FLIGHT_PLANS[0]!.quota} requests per month on flights and Booking.com, ${AIRBNB_PLANS[0]!.quota} on Airbnb and ${GOOGLE_HOTELS_PLANS[0]!.quota} on Google Hotels. Enough to verify your key and see the response shape. The live demo above runs real requests on our key if you want a quick look first. And if you want your own assistant to try it, add flights.flightpowers.com/mcp, sign in with Google, and your first 10 searches each day are free and ad-free on our key, with no RapidAPI key at all.`,
+    a: `Yes. BASIC is $0 on RapidAPI, no card, with a hard cap: ${FLIGHT_PLANS[0]!.quota} requests per month on flights, ${HOTEL_PLANS[0]!.quota} on Booking.com, ${AIRBNB_PLANS[0]!.quota} on Airbnb and ${GOOGLE_HOTELS_PLANS[0]!.quota} on Google Hotels. Enough to verify your key and see the response shape. The live demo above runs real requests on our key if you want a quick look first. And if you want your own assistant to try it, add flights.flightpowers.com/mcp, sign in with Google, and your first 10 searches each day are free and ad-free on our key, with no RapidAPI key at all.`,
   },
   {
     q: 'Do flights and hotels share one plan?',
@@ -253,7 +253,7 @@ export default function HomePage() {
                   <svg className="w-4 h-4 text-signal-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span className="text-ink-300">Free tier: <strong className="text-ink-100">10 requests/month</strong>, no credit card required</span>
+                  <span className="text-ink-300">Free tier: <strong className="text-ink-100">50 requests/month on flights, 10 on hotels</strong>, no credit card required</span>
                 </div>
                 <div className="flex items-center gap-2 font-mono text-[12px]">
                   <svg className="w-4 h-4 text-signal-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

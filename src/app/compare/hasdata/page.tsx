@@ -48,7 +48,7 @@ const CAPTURED = '19:54 UTC on 2026-10-06';
 const faq: Faq[] = [
   {
     q: 'How big is the HasData free tier compared to this one?',
-    a: 'Bigger, and it is not close. HasData\'s free plan "renews 1,000 credits every month, enough for up to 66 flight requests", at 15 credits a route search. Our free BASIC plan is 10 requests a month. If your question is "how much can I try before paying", HasData wins that row outright. Read on 2026-10-06.',
+    a: 'Bigger, though not by much. HasData\'s free plan "renews 1,000 credits every month, enough for up to 66 flight requests", at 15 credits a route search. Our free BASIC plan is 50 requests a month. If your question is "how much can I try before paying", HasData still wins that row. Read on 2026-10-06.',
   },
   {
     q: 'Which is cheaper per search once you are paying?',
@@ -146,7 +146,7 @@ export default function CompareHasDataPage() {
         <p className="mt-6 max-w-3xl text-[15.5px] text-ink-300 leading-relaxed">
           If you have not decided yet and you want to test properly before paying anyone,{' '}
           <strong className="text-ink-100">start on HasData</strong>: 1,000 free credits a month, which their page calls 66 flight
-          searches, is a real evaluation and our 10 requests is not. If you already know the workload and you are pricing a
+          searches, is a bit more than our 50 requests a month. If you already know the workload and you are pricing a
           production line item at the entry tier, run the arithmetic below, because their Startup plan works out dearer per search
           than our PRO. At their larger plans the unit price falls and that advantage goes away.
         </p>
@@ -184,8 +184,8 @@ export default function CompareHasDataPage() {
             <h3 className="text-[16px] font-semibold text-ink-100 mb-3">FlightPowers (Google Flights Live API)</h3>
             <PricingTable api="flights" plans={FLIGHT_PLANS} medium="compare" compact />
             <p className="mt-4 text-[14px] text-ink-400 leading-relaxed max-w-2xl">
-              Per thousand requests: PRO is {perThousand(pro)}, MEGA is {perThousand(mega)}. Our free plan is 10 requests a month and
-              is a hard cap, so request 11 is refused rather than billed.
+              Per thousand requests: PRO is {perThousand(pro)}, MEGA is {perThousand(mega)}. Our free plan is 50 requests a month and
+              is a hard cap, so request 51 is refused rather than billed.
             </p>
           </div>
         </div>
@@ -201,7 +201,7 @@ export default function CompareHasDataPage() {
               [
                 'Free tier',
                 '1,000 credits a month, no card. Their page calls that 66 flight searches. This row is theirs.',
-                <>10 requests a month, hard cap, every endpoint and every field included. Smaller by design, and smaller than most of the field.</>,
+                <>50 requests a month, hard cap, every endpoint and every field included. Smaller than theirs.</>,
               ],
               [
                 'Price context',

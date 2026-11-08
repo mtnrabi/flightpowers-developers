@@ -124,7 +124,7 @@ export default function CompareSearchApiPage() {
             rows={[
               ['Smallest paid plan', '$40 a month, 10,000 searches', `$${PRO.priceMonthly} a month, ${PRO.quota.toLocaleString('en-US')} searches (PRO)`],
               ['Per 1,000 searches, entry plan', '$4 ("$4 per 1,000 searches")', `${perThousand(PRO)} on PRO, ${perThousand(ULTRA)} on ULTRA ($${ULTRA.priceMonthly} for ${ULTRA.quota.toLocaleString('en-US')})`],
-              ['Free to try', '"Sign up for 100 free requests"', '10 requests a month on BASIC, no card'],
+              ['Free to try', '"Sign up for 100 free requests"', '50 requests a month on BASIC, no card'],
               [
                 'Round trip with the return flight',
                 'Two calls: the search, then a second call with the departure_token of the outbound you picked. $8 per 1,000 priced round trips on Developer.',

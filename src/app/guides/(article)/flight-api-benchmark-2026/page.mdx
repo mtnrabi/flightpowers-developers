@@ -109,7 +109,7 @@ All times are medians of 3 runs, measured from a server in Iowa (GCP us-central1
 | Q3 as one call | MCP server: 3.24 s, bills 7 requests | no | Calendar engine: 4.22 s, **bills 1 search**, prices only | no |
 | A link per itinerary in the answer | yes, `buy_link` | `booking_token`, one more request | `booking_token`, one more request | `bookingToken`, one more request |
 | Price history series | no | yes | yes | yes |
-| Free tier | 10 requests a month; 50 searches a day on the ad-supported MCP | **250 searches a month** | 100 requests, once | 67 flight requests a month |
+| Free tier | 50 requests a month; 50 searches a day on the ad-supported MCP | **250 searches a month** | 100 requests, once | 67 flight requests a month |
 | Entry plan | $10 a month, 2,500 requests | $25 a month, 1,000 searches | $40 a month, 10,000 searches | $59 a month, 13,333 flight requests |
 | Per 1,000 searches at entry | **$4.00** | $25.00 | **$4.00** | $4.43 ($3.69 billed annually) |
 | Per 1,000 round trips with both legs | **$4.00** | $50.00 | $8.00 | $8.85 |
@@ -197,7 +197,7 @@ This is the part a benchmark written by a vendor usually leaves out.
   1.56 s. If you only ever need the total, they are quicker.
 - **Asking for every itinerary is slow.** With `limit: 100` our round trip took 15.68 s, because
   each extra outbound needs its own return-leg page, and one scan call in the first run took 59 s.
-- **The free tier is small.** Ten requests a month on the API key, against SerpApi's 250 a month
+- **The free tier is small.** Fifty requests a month on the API key, against SerpApi's 250 a month
   and HasData's 67. Our bigger free path is the ad-supported MCP server (50 searches a day), which
   needs a Google sign-in and an MCP client such as Claude or Cursor.
 - **No price history.** The other three return a `price_history` series. We return Google's band
@@ -248,7 +248,7 @@ shows the new date. If you run it yourself and get something different, the
 request that shows it is welcome at [our contact page](/contact).
 
 To try the paired round trip on your own routes: a key from <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">the
-RapidAPI listing</a> (10 free requests a month, then $10 for 2,500), or the free
+RapidAPI listing</a> (50 free requests a month, then $10 for 2,500), or the free
 ad-supported MCP server at <a href={LINKS.mcpFree} rel="noopener">free-trial.flightpowers.com/mcp</a> with a Google sign-in.
 
 ```bash

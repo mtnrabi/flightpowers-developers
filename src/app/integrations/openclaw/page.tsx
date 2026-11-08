@@ -56,7 +56,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Which plan do I need?',
-    a: 'The free tier is 10 requests/month with a hard cap: enough to verify your key, not to run an agent on. The $10 PRO plan (2,500 requests/month on flights) is the realistic floor; every plan includes every endpoint.',
+    a: 'The free tier is 50 requests/month on flights (10 on hotels) with a hard cap: enough to verify your key, not to run an agent on. The $10 PRO plan (2,500 requests/month on flights) is the realistic floor; every plan includes every endpoint.',
   },
 ];
 

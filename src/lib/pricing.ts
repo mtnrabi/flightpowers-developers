@@ -5,7 +5,8 @@
  * 50,000 @ 0.001 -> 25,000 @ 0.0015, hotels ULTRA $20 @ 0.003 -> $30 @
  * 0.0045, hotels MEGA $50 @ 0.002 -> $75 @ 0.003. Re-read 2026-11-01: hotels
  * ULTRA 6,500 @ 0.0045 -> 6,000 @ 0.006, hotels MEGA 25,000 @ 0.003 -> 15,000
- * @ 0.005 (new subscribers; existing ones keep their plan). Originally parsed 2026-08-26
+ * @ 0.005 (new subscribers; existing ones keep their plan). 2026-11-08: flights
+ * BASIC 10 -> 50 requests a month (a two-week test to 2026-11-22). Originally parsed 2026-08-26
  * (the `billingplan_` objects in the anonymous page HTML, filtered to
  * visibility === "PUBLIC" — the payload also contains private plans which
  * must NEVER render).
@@ -15,7 +16,7 @@
  * scripts/check-pricing.mjs re-parses the live listings and fails the build
  * loudly on drift or on any non-public plan reaching this file.
  */
-export const READ_ON = '2026-11-01';
+export const READ_ON = '2026-11-08';
 
 export type Plan = {
   name: string;
@@ -30,7 +31,7 @@ export type Plan = {
 };
 
 export const FLIGHT_PLANS: Plan[] = [
-  { name: 'BASIC', priceMonthly: 0, quota: 10, overagePerRequest: null, ratePerMinute: null, hardLimit: true },
+  { name: 'BASIC', priceMonthly: 0, quota: 50, overagePerRequest: null, ratePerMinute: null, hardLimit: true },
   { name: 'PRO', priceMonthly: 10, quota: 2500, overagePerRequest: 0.003, ratePerMinute: 150, hardLimit: false },
   { name: 'ULTRA', priceMonthly: 25, quota: 10000, overagePerRequest: 0.002, ratePerMinute: 250, hardLimit: false, recommended: true },
   { name: 'MEGA', priceMonthly: 50, quota: 25000, overagePerRequest: 0.0015, ratePerMinute: 500, hardLimit: false },

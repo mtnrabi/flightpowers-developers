@@ -92,7 +92,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Whose API key does the server use, and who gets billed?',
-    a: 'Yours. The server forwards the RapidAPI key you configure, so every search is metered on your own RapidAPI plan. We never sit between you and your bill. The free BASIC tier (10 requests/month, hard cap, no card) is enough to verify the connection works.',
+    a: 'Yours. The server forwards the RapidAPI key you configure, so every search is metered on your own RapidAPI plan. We never sit between you and your bill. The free BASIC tier (50 requests/month on flights, 10 on hotels, hard cap, no card) is enough to verify the connection works.',
   },
   {
     q: 'Which clients does this work with?',

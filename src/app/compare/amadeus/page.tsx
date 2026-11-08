@@ -391,7 +391,7 @@ curl -sS -o /dev/null -w "%{http_code}\\n" \\
               Get the key by subscribing on{' '}
               <a href={rapidApiPricingUrl('flights', 'compare')} rel="noopener" className="text-signal-400 underline underline-offset-4">
                 RapidAPI
-              </a>. There is a free tier (10 requests/month, hard cap). You can delete your token-refresh code and its cache. Confirm a
+              </a>. There is a free tier (50 requests/month, hard cap). You can delete your token-refresh code and its cache. Confirm a
               key authenticates with <code className="font-mono text-[13px]">GET /v1/verify</code> before running real searches.
             </p>
           </div>
@@ -644,7 +644,7 @@ hotelIds=MCLONGHM&adults=2&checkInDate=2027-04-15\\
         <CtaBand
           medium="compare"
           title="Self-serve, like Self-Service was"
-          body="Subscribe, get a key, make a call. No account manager, no accreditation. Free tier: 10 requests/month, hard cap."
+          body="Subscribe, get a key, make a call. No account manager, no accreditation. Free tier: 50 requests/month, hard cap."
         />
       </Section>
     </>

@@ -68,7 +68,7 @@ export const q = (p) => p.quota.toLocaleString('en-US');
         name: 'Is there a free Google Flights API?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Not from Google. FlightPowers has two free ways in: 10 searches a month on the BASIC plan of its RapidAPI listing, which verifies a key, and a free MCP server with ads at free-trial.flightpowers.com/mcp, 50 searches a day after a Google sign-in. Open-source scrapers are free to run, and you pay for them in maintenance every time the page changes.',
+          text: 'Not from Google. FlightPowers has two free ways in: 50 searches a month on the BASIC plan of its RapidAPI listing, which verifies a key, and a free MCP server with ads at free-trial.flightpowers.com/mcp, 50 searches a day after a Google sign-in. Open-source scrapers are free to run, and you pay for them in maintenance every time the page changes.',
         },
       },
       {
@@ -328,7 +328,7 @@ The machine-readable contract is public: [OpenAPI spec](/openapi.json),
 - [Handling empty flight search results](/guides/handle-empty-flight-search-results): why `200 []` is dangerous
 - [Amadeus Self-Service alternatives you can get into](/guides/amadeus-self-service-alternatives): what replaced the self-serve GDS door
 - [MCP servers](/mcp): the same data as tools for Claude, ChatGPT, Cursor, or any MCP client
-- <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">Get a key on RapidAPI</a>: free tier included (10 requests/month, hard cap: verifies your key, doesn't evaluate)
+- <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">Get a key on RapidAPI</a>: free tier included (50 requests/month, hard cap: verifies your key, doesn't evaluate)
 
 <CtaBand
   medium="guide"

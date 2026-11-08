@@ -211,7 +211,7 @@ export default function DocsPage() {
         <SectionHead
           eyebrow="Auth"
           title="One key scheme for both APIs"
-          lede="Each API is a RapidAPI listing with a $0 tier (10 requests/month, hard cap) to verify your integration. Subscribe, then send your key on every request:"
+          lede="Each API is a RapidAPI listing with a $0 tier (50 requests/month on flights, 10 on hotels, hard cap) to verify your integration. Subscribe, then send your key on every request:"
         />
         <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-start">
           <div>

@@ -36,7 +36,7 @@ const ULTRA_PER_SEARCH = `$${(ULTRA.priceMonthly / ULTRA.quota).toFixed(4)}`;
 const faq: Faq[] = [
   {
     q: 'Is DataCrawler free tier more generous than FlightPowers?',
-    a: `Yes, honestly: DataCrawler BASIC plan offers 150 requests per month at $0, against our 10 requests per month. If you need a free tier large enough to validate an integration or run light monitoring, their 150-request cap is genuinely more useful than ours. Our free tier is sized to verify your key; theirs is sized to prototype.`,
+    a: `Yes, honestly: DataCrawler BASIC plan offers 150 requests per month at $0, against our 50 requests per month. If you need a free tier large enough to validate an integration or run light monitoring, their 150-request cap is genuinely more useful than ours. Our free tier is sized to verify your key; theirs is sized to prototype.`,
   },
   {
     q: 'Which API is cheaper per search at paid tiers?',
@@ -171,7 +171,7 @@ export default function CompareDataCrawlerPage() {
       <Section className="!pt-12">
         <SectionHead eyebrow="The one-paragraph version" title="Comprehensive platform vs specialist pricing" />
         <p className="mt-6 max-w-3xl text-[15.5px] text-ink-300 leading-relaxed">
-          DataCrawler exposes <strong className="text-ink-100">12 endpoints</strong> that mirror every Google Flights surface: search, multi-city, pagination, calendar pickers, 2-D grids, price graphs, booking details, partner redirect URLs, airport autocomplete, and metadata lookups for countries, currencies, and languages. If your product needs that full toolkit, it is a comprehensive answer. FlightPowers is a <strong className="text-ink-100">narrower, cheaper-per-search specialist</strong>: flights and hotels only, with unit economics built for high-volume monitoring and scanning. Their free tier (150 requests) is more generous than ours (10 requests), and that generosity is worth stating plainly.
+          DataCrawler exposes <strong className="text-ink-100">12 endpoints</strong> that mirror every Google Flights surface: search, multi-city, pagination, calendar pickers, 2-D grids, price graphs, booking details, partner redirect URLs, airport autocomplete, and metadata lookups for countries, currencies, and languages. If your product needs that full toolkit, it is a comprehensive answer. FlightPowers is a <strong className="text-ink-100">narrower, cheaper-per-search specialist</strong>: flights and hotels only, with unit economics built for high-volume monitoring and scanning. Their free tier (150 requests) is more generous than ours (50 requests), and that generosity is worth stating plainly.
         </p>
       </Section>
 
@@ -195,7 +195,7 @@ export default function CompareDataCrawlerPage() {
               ]}
             />
             <p className="mt-4 text-[14px] text-ink-400 leading-relaxed max-w-2xl">
-              <strong className="text-ink-200">Their free tier is more generous than ours.</strong> 150 requests per month is enough to prototype a working integration or run light monitoring. Our BASIC plan offers 10 requests: enough to verify your key, not to evaluate the data. If free-tier volume matters to your proof-of-concept, DataCrawler wins this row, honestly.
+              <strong className="text-ink-200">Their free tier is more generous than ours.</strong> 150 requests per month is enough to prototype a working integration or run light monitoring. Our BASIC plan offers 50 requests a month: enough to verify your key, not to evaluate the data. If free-tier volume matters to your proof-of-concept, DataCrawler wins this row, honestly.
             </p>
           </div>
           <div>
