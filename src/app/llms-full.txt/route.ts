@@ -192,6 +192,7 @@ An empty array is never ambiguous here. Read the X-Search-Status response header
 
 ## Other surfaces
 
+- Official SDKs, MIT (${LINKS.sdkRepo}): npm install flightpowers (JavaScript/TypeScript, ${LINKS.npmSdk}) and pip install flightpowers (Python, ${LINKS.pypiSdk}). One client, namespaces flights, booking, airbnb and googleHotels (Python: google_hotels), one method per endpoint, on your own RapidAPI key; meta.searchStatus (Python: meta.search_status) reads X-Search-Status. Install and quickstart: ${SITE.url}/docs/sdks
 - n8n community node: n8n-nodes-flightpowers (${LINKS.npmNode})
 - Apify actors: ${LINKS.apifyFlights} and ${LINKS.apifyHotels}
 - ${COUNTS.skills} open-source agent skills, MIT: ${LINKS.skills}

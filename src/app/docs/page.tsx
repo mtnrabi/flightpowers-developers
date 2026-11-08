@@ -128,6 +128,7 @@ export default function DocsPage() {
           hasPart: [
             { '@type': 'WebPage', name: 'Google Flights API', url: `${SITE.url}/flights-api` },
             { '@type': 'WebPage', name: 'Booking.com Hotels API', url: `${SITE.url}/hotels-api` },
+            { '@type': 'WebPage', name: 'SDKs', url: `${SITE.url}/docs/sdks` },
           ],
         }}
       />
@@ -167,10 +168,19 @@ export default function DocsPage() {
             <Cta href="/hotels-api" variant="ghost">
               Hotels API docs
             </Cta>
+            <Cta href="/docs/sdks" variant="ghost">
+              SDKs: JavaScript and Python
+            </Cta>
           </div>
           <p className="mt-4 text-[14px] text-ink-400">
             New here? The quickstart is five pastes from nothing to a live price, and it names the two field-name
-            mistakes that cost most people their first calls.
+            mistakes that cost most people their first calls. Calling it from code? The official clients are{' '}
+            <code className="field">npm install flightpowers</code> and <code className="field">pip install flightpowers</code>{' '}
+            (
+            <Link href="/docs/sdks" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+              SDK docs
+            </Link>
+            ).
           </p>
         </Container>
       </div>
