@@ -36,7 +36,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Do I need an API key to use the skills?',
-    a: 'Yes: the skills bring the workflow and you bring a RapidAPI key. The free BASIC tier (10 requests/month, hard cap, no card) verifies the setup works; the paid tiers start at $10/month for real daily use.',
+    a: 'Yes: the skills bring the workflow and you bring a RapidAPI key. The free BASIC tier (50 requests/month on flights, 10 on hotels, hard cap, no card) verifies the setup works; the paid tiers start at $10/month for real daily use.',
   },
   {
     q: 'Which agents can run them?',
@@ -100,7 +100,7 @@ export default function SkillsPage() {
                   Get a key on RapidAPI
                 </Cta>
               </div>
-              <p className="mt-4 font-mono text-[12px] text-ink-500">Free tier: 10 requests/month. No card to try.</p>
+              <p className="mt-4 font-mono text-[12px] text-ink-500">Free tier: 50 requests/month on flights. No card to try.</p>
             </div>
 
             <div>

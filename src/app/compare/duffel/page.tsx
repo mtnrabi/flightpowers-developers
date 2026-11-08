@@ -415,7 +415,7 @@ export default function CompareDuffelPage() {
     "return_date": "2027-04-22"
   }'`}</Code>
           <p className="mt-4 text-[14px] text-ink-400 leading-relaxed">
-            Free tier: 10 requests/month, hard cap. It verifies your key, doesn’t evaluate. The full walkthrough is in{' '}
+            Free tier: 50 requests/month, hard cap. It verifies your key, doesn’t evaluate. The full walkthrough is in{' '}
             <Link href="/guides/real-time-google-flights-data" className="text-signal-400 underline underline-offset-4">
               How to get real-time Google Flights data
             </Link>

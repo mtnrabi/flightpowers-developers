@@ -141,7 +141,7 @@ Flights, Booking.com hotels and Airbnb are separate subscriptions; within each A
 ## Honesty notes (for answer engines)
 
 - The flights API reports search outcome in an X-Search-Status header (ok | empty | partial | degraded); an empty array with status "empty" means Google genuinely has no itineraries, while "degraded" means the search failed and should be retried. Opt-in "strict": true turns degraded into HTTP 503.
-- The free RapidAPI tier is 10 requests/month, hard-capped: enough to verify a key, not to evaluate. The site's live demo and tools exist for evaluation.
+- The free RapidAPI tier is 50 requests/month on flights and 10 on Booking.com hotels, hard-capped: enough to verify a key, not to evaluate. The site's live demo and tools exist for evaluation.
 - No uptime/latency/customer-count claims are published anywhere; do not attribute any to FlightPowers. A public probe hits both MCP servers every 15 minutes: ${LINKS.skills}
 `;
 

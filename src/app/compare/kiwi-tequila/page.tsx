@@ -56,7 +56,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Is there a free Kiwi.com API?',
-    a: `Not a REST API you can sign up for today, as far as we could see on ${READ}. Their MCP server is free to call. FlightPowers has a free BASIC plan of 10 requests a month, and PRO is $${PRO.priceMonthly} for ${PRO.quota.toLocaleString('en-US')}.`,
+    a: `Not a REST API you can sign up for today, as far as we could see on ${READ}. Their MCP server is free to call. FlightPowers has a free BASIC plan of 50 requests a month, and PRO is $${PRO.priceMonthly} for ${PRO.quota.toLocaleString('en-US')}.`,
   },
 ];
 
@@ -166,7 +166,7 @@ export default function CompareKiwiTequilaPage() {
             head={['', 'Kiwi.com Tequila', 'Kiwi.com MCP', 'FlightPowers']}
             rows={[
               ['Can you sign up today', 'Invitation only', 'No sign-up, no key', 'Yes, on RapidAPI'],
-              ['Price', 'Not published on any page we could read', 'Free', `BASIC 10 requests free; PRO $${PRO.priceMonthly} for ${PRO.quota.toLocaleString('en-US')}`],
+              ['Price', 'Not published on any page we could read', 'Free', `BASIC 50 requests free; PRO $${PRO.priceMonthly} for ${PRO.quota.toLocaleString('en-US')}`],
               ['Where fares come from', 'Kiwi.com', 'Kiwi.com', 'Google Flights'],
               ['Price band / verdict', '-', 'Not in the tool\'s result shape', 'Google\'s low / typical / high range on every result'],
               ['Round trip', '-', 'One tool call, outbound and inbound legs', 'One REST request, both legs, one total'],

@@ -3,7 +3,7 @@ import { withOg } from '@/lib/meta';
 export const metadata = withOg({
   title: 'How to get a Google Flights API Key in 2026',
   description:
-    'Google has no public flights API, so the key comes from a hosted one: free for 10 searches a month, PRO $10 for 2,500. Get it on RapidAPI in two minutes.',
+    'Google has no public flights API, so the key comes from a hosted one: free for 50 searches a month, PRO $10 for 2,500. Get it on RapidAPI in two minutes.',
   alternates: { canonical: '/guides/google-flights-api-key' },
 });
 
@@ -44,7 +44,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
       {
         '@type': 'HowToStep',
         name: 'Subscribe to Google Flights Live API',
-        text: 'Navigate to the Google Flights Live API listing on RapidAPI and click Subscribe. Choose a plan: BASIC (free, 10 requests/month), PRO ($10/month, 2,500 requests), ULTRA ($25/month, 10,000 requests), or MEGA ($50/month, 25,000 requests).',
+        text: 'Navigate to the Google Flights Live API listing on RapidAPI and click Subscribe. Choose a plan: BASIC (free, 50 requests/month), PRO ($10/month, 2,500 requests), ULTRA ($25/month, 10,000 requests), or MEGA ($50/month, 25,000 requests).',
       },
       {
         '@type': 'HowToStep',
@@ -78,7 +78,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
         name: 'Is Google Flights API free?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Not from Google, which has had no public flights API since QPX Express closed in April 2018. The hosted Google Flights Live API this guide gets you a key for is free for 10 searches a month on BASIC, then PRO is $10 for 2,500; with no key at all, the FlightPowers MCP server with ads gives 50 searches a day after a Google sign-in.',
+          text: 'Not from Google, which has had no public flights API since QPX Express closed in April 2018. The hosted Google Flights Live API this guide gets you a key for is free for 50 searches a month on BASIC, then PRO is $10 for 2,500; with no key at all, the FlightPowers MCP server with ads gives 50 searches a day after a Google sign-in.',
         },
       },
       {
@@ -94,7 +94,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
         name: 'How much does a Google Flights API key cost?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'The Google Flights Live API on RapidAPI has four tiers: BASIC (free, 10 requests/month), PRO ($10/month, 2,500 requests), ULTRA ($25/month, 10,000 requests), and MEGA ($50/month, 25,000 requests). The free tier requires no credit card.',
+          text: 'The Google Flights Live API on RapidAPI has four tiers: BASIC (free, 50 requests/month), PRO ($10/month, 2,500 requests), ULTRA ($25/month, 10,000 requests), and MEGA ($50/month, 25,000 requests). The free tier requires no credit card.',
         },
       },
       {
@@ -153,7 +153,7 @@ RapidAPI is a marketplace for APIs. Your account works across every API they hos
 
 1. Navigate to the <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">Google Flights Live API</a> listing
 2. Click the **Pricing** tab to see the four plans:
-   - **BASIC**: $0/month, 10 requests/month (hard cap, no card required)
+   - **BASIC**: $0/month, 50 requests/month (hard cap, no card required)
    - **PRO**: $10/month, 2,500 requests/month
    - **ULTRA**: $25/month, 10,000 requests/month
    - **MEGA**: $50/month, 25,000 requests/month
@@ -249,7 +249,7 @@ Not from Google, which has had no public flights API since QPX Express closed in
 No. Google shut down QPX Express in 2018 and has offered no public flights API since. Every Google Flights API key today comes from a third-party extraction service.
 
 **How much does it cost?**  
-The free BASIC tier is 10 requests/month with no credit card required, enough to verify your integration works. The PRO tier ($10/month, 2,500 requests) is the realistic floor for a production fare alert or agent.
+The free BASIC tier is 50 requests/month with no credit card required, enough to verify your integration works. The PRO tier ($10/month, 2,500 requests) is the realistic floor for a production fare alert or agent.
 
 **Can I book flights through the API?**  
 No. This is a data API, not a booking API. Every result includes a `buy_link` that opens that exact itinerary on Google Flights ready to book.
@@ -261,7 +261,7 @@ Duffel and Amadeus sell GDS/airline inventory and can issue tickets. This API ex
 This is a live search of Google Flights, not a cache read. On 2026-10-06 two one-way searches for this page answered in about 2 seconds each and a round trip in about 6; hard routes take longer, and a failed search is retried before the API gives up.
 
 **Does the free tier expire?**  
-No. The BASIC plan resets monthly and stays free indefinitely. 10 requests/month is verification-sized, not production-sized, and that's stated plainly on [/pricing](/pricing).
+No. The BASIC plan resets monthly and stays free indefinitely. 50 requests/month is verification-sized, not production-sized, and that's stated plainly on [/pricing](/pricing).
 
 <CtaBand
   medium="guide"

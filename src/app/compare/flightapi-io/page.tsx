@@ -49,7 +49,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Is there a free tier?',
-    a: `FlightAPI.io: "Start with 20 free API calls". FlightPowers: 10 requests a month on the BASIC plan, no card. Neither is enough to evaluate a production workload; both are enough to see the response shape.`,
+    a: `FlightAPI.io: "Start with 20 free API calls". FlightPowers: 50 requests a month on the BASIC plan, no card. Neither is enough to evaluate a production workload; both are enough to see the response shape.`,
   },
   {
     q: 'Can I book flights with either API?',
@@ -148,7 +148,7 @@ export default function CompareFlightApiIoPage() {
               ['Smallest paid plan', '$49 a month, 30,000 credits (LITE)', `$${PRO.priceMonthly} a month, ${PRO.quota.toLocaleString('en-US')} searches (PRO)`],
               ['Cost of one search', '"Each successful request will cost you 2 credits."', '1 request'],
               ['Per 1,000 searches, entry plan', `${FA_PER_1K} (15,000 searches for $49)`, `${perThousand(PRO)} on PRO, ${perThousand(ULTRA)} on ULTRA`],
-              ['Free to try', '"Start with 20 free API calls"', '10 requests a month on BASIC'],
+              ['Free to try', '"Start with 20 free API calls"', '50 requests a month on BASIC'],
               ['Round trip', 'One GET to /roundtrip, 2 credits, both legs in each itinerary.', 'One POST to /v1/flights/roundtrip, both legs, one total, one booking link.'],
               ['Price verdict', 'We did not find a price band or verdict in their round-trip docs.', 'Google\'s low / typical / high verdict and range when Google shows one.'],
               ['Sellers per itinerary', 'Several, each with its own price and quote age.', 'One: the price Google Flights shows.'],

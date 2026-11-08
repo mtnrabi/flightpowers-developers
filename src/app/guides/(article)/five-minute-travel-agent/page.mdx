@@ -72,7 +72,7 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
         name: 'What does the agent cost to run every day?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Each destination and date combination is one billed request. A 30-destination scan on one departure date is 30 requests, so a daily run is about 900 a month, which fits inside the $10 PRO plan (2,500 requests a month on flights). The free BASIC tier is 10 requests a month and exists to prove your key works.',
+          text: 'Each destination and date combination is one billed request. A 30-destination scan on one departure date is 30 requests, so a daily run is about 900 a month, which fits inside the $10 PRO plan (2,500 requests a month on flights). The free BASIC tier is 50 requests a month and exists to prove your key works.',
         },
       },
     ],
@@ -120,7 +120,7 @@ scan at.
 a RapidAPI key once on the page it opens, and after that your client just works. No ads, no
 daily ceiling, and the only limit is your own plan. Subscribe on the
 <a href={rapidApiPricingUrl('flights', 'guide')} rel="noopener">Google Flights Live API</a>
-listing: BASIC is free with 10 requests a month, PRO is $10 a month with 2,500. Hotels are a
+listing: BASIC is free with 50 requests a month, PRO is $10 a month with 2,500. Hotels are a
 separate listing, the
 <a href={rapidApiPricingUrl('hotels', 'guide')} rel="noopener">Booking Live API</a>, on the
 same key. The honest read: BASIC proves your key works and nothing more, a daily scan of 30

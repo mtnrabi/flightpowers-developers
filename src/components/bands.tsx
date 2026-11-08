@@ -111,7 +111,12 @@ export function CtaBand({
           See pricing
         </Cta>
       </div>
-      <p className="mt-4 font-mono text-[12px] text-ink-500">Free tier: 10 requests/month. No card to try.</p>
+      <p className="mt-4 font-mono text-[12px] text-ink-500">
+        {showBoth
+          ? `Free tier: ${FLIGHT_PLANS[0]!.quota} requests/month on flights, ${HOTEL_PLANS[0]!.quota} on hotels.`
+          : `Free tier: ${(api === 'hotels' ? HOTEL_PLANS : FLIGHT_PLANS)[0]!.quota} requests/month.`}{' '}
+        No card to try.
+      </p>
       <p className="mt-5 text-[14px] text-ink-400">
         Docs:{' '}
         {showBoth || api === 'flights' ? (

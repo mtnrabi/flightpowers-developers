@@ -11,7 +11,7 @@ const fmt = (n: number) => n.toLocaleString('en-US');
 
 /**
  * One listing's public ladder as one sentence, e.g.
- * "Google Flights Live API: free for 10 searches a month, then PRO $10 a month
+ * "Google Flights Live API: free for 50 searches a month, then PRO $10 a month
  * for 2,500, ULTRA $25 for 10,000, MEGA $50 for 25,000."
  * The free plan is named by its quota; paid plans in the listing's own order.
  */

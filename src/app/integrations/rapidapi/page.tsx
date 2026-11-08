@@ -39,7 +39,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Is the free tier enough to evaluate?',
-    a: 'Honestly, no. BASIC is 10 requests/month with a hard cap: enough to verify your key and see the response shape. Evaluate with the live demo and free tools on this site; they run real requests on our key.',
+    a: 'Honestly, no. BASIC is 50 requests/month on flights and 10 on Booking.com, with a hard cap: enough to verify your key and see the response shape. Evaluate with the live demo and free tools on this site; they run real requests on our key.',
   },
   {
     q: 'Is there an approval step?',
@@ -51,7 +51,7 @@ const faq: Faq[] = [
   },
   {
     q: 'What happens when I hit my quota?',
-    a: 'On paid plans, overage billing per request at the rate shown in the tables above. On the free tier the cap is hard: request 11 is rejected, not billed.',
+    a: 'On paid plans, overage billing per request at the rate shown in the tables above. On the free tier the cap is hard: the first request past it is rejected, not billed.',
   },
 ];
 
@@ -92,7 +92,7 @@ export default function RapidApiIntegrationPage() {
               Hotels pricing tab →
             </Cta>
           </div>
-          <p className="mt-4 font-mono text-[12px] text-ink-500">Free tier on both listings: 10 requests/month. No card to try.</p>
+          <p className="mt-4 font-mono text-[12px] text-ink-500">Free tier: 50 requests/month on flights, 10 on hotels. No card to try.</p>
         </Container>
       </div>
 

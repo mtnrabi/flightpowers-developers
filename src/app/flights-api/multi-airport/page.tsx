@@ -180,7 +180,7 @@ export default function MultiAirportPage() {
           name: 'FlightPowers Multi-Airport Flight Search API',
           applicationCategory: 'DeveloperApplication',
           operatingSystem: 'Any',
-          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Free tier: 10 requests/month on RapidAPI' },
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', description: 'Free tier: 50 requests/month on RapidAPI' },
           url: `${SITE.url}/flights-api/multi-airport`,
           dateModified: '2026-11-07',
         }}

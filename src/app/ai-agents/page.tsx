@@ -223,7 +223,7 @@ export default function AiAgentsPage() {
                   The MCP config
                 </Cta>
               </div>
-              <p className="mt-4 font-mono text-[12px] text-ink-500">Free tier: 10 requests/month. No card to try.</p>
+              <p className="mt-4 font-mono text-[12px] text-ink-500">Free tier: 50 requests/month on flights, 10 on hotels. No card to try.</p>
             </div>
 
             <div>

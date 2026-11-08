@@ -19,7 +19,7 @@ export const dynamic = 'force-static';
 const faq: Faq[] = [
   {
     q: 'Is there a free Google Flights API?',
-    a: "Yes, with limits. The FlightPowers Google Flights API on RapidAPI has a BASIC plan with 10 requests per month at $0, no card required. That is enough to verify your key and see the response shape, not to evaluate or use day-to-day. Google's own QPX Express API was retired in 2018 and is no longer available. The RapidAPI free tier is not affiliated with or endorsed by Google; it is an independent API that reads the public Google Flights site live at request time.",
+    a: "Yes, with limits. The FlightPowers Google Flights API on RapidAPI has a BASIC plan with 50 requests per month at $0, no card required. That is enough to verify your key and see the response shape, not to evaluate or use day-to-day. Google's own QPX Express API was retired in 2018 and is no longer available. The RapidAPI free tier is not affiliated with or endorsed by Google; it is an independent API that reads the public Google Flights site live at request time.",
   },
   {
     q: 'Is this scanner really free?',

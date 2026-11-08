@@ -67,7 +67,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Which plan do I need?',
-    a: 'The free tier is 10 requests/month with a hard cap: enough to verify your key, not to work with. A daily fare watch alone is about 30 requests a month, so the $10 PRO plan (2,500 requests/month on flights) is the realistic floor.',
+    a: 'The free tier is 50 requests/month on flights (10 on hotels) with a hard cap: enough to verify your key, not to work with. A daily fare watch on two routes is about 60 requests a month, so the $10 PRO plan (2,500 requests/month on flights) is the realistic floor.',
   },
 ];
 

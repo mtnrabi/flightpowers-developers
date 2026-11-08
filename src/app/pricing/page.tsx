@@ -196,11 +196,12 @@ const faq: Faq[] = [
     a: 'On RapidAPI. You subscribe to a plan on the listing’s pricing tab, RapidAPI issues the key and meters usage, and their invoice is your invoice. We never see your card. If your company already uses RapidAPI, there is no new vendor to onboard.',
   },
   {
-    q: 'The free tier is only 10 calls. What can I do with that?',
+    q: 'The flights free tier is only 50 calls (10 on Booking.com). What can I do with that?',
     a: (
       <>
-        Enough to see the shape of the thing and not much else. Ten calls buys you a couple of one-way searches with the
-        price band in the response, one round trip as a paired itinerary, and a look at the search-status headers. It will
+        Enough to see the shape of the thing and try one small scan. Fifty calls buys you a few one-way searches with the
+        price band in the response, a few round trips as paired itineraries, a look at the search-status headers, and a
+        short date scan on one route. It will
         not survive a load test, and we are not going to pretend otherwise. Evaluate on the{' '}
         <Link href="/#demo" className="text-signal-400 underline underline-offset-4">
           live demo
@@ -209,7 +210,7 @@ const faq: Faq[] = [
         <Link href="/tools" className="text-signal-400 underline underline-offset-4">
           free tools
         </Link>{' '}
-        here first, because those run real requests on our key and leave your 10 alone, then follow the{' '}
+        here first, because those run real requests on our key and leave your free calls alone, then follow the{' '}
         <Link href="/docs/quickstart" className="text-signal-400 underline underline-offset-4">
           quickstart
         </Link>{' '}
@@ -557,7 +558,7 @@ export default function PricingPage() {
               ))}
               <div className="flex items-baseline justify-between gap-4 py-2.5">
                 <dt className="font-mono text-[12.5px] text-ink-300">BASIC · $0</dt>
-                <dd className="font-mono text-[12.5px] text-ink-500">no per-minute limit set; the 10/mo cap binds first</dd>
+                <dd className="font-mono text-[12.5px] text-ink-500">no per-minute limit set; the {FLIGHT_PLANS[0]!.quota}/mo cap binds first</dd>
               </div>
             </dl>
             <p className="mt-4 text-[13.5px] text-ink-500 leading-relaxed">

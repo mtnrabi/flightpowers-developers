@@ -63,7 +63,7 @@ import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
         name: 'What does a 24/7 AI travel agent cost?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Two subscriptions. Data: RapidAPI\u2019s free tier is 10 requests/month, hard-capped, enough to verify the setup; a real daily scan fits the $10 PRO plan (2,500 requests/month on flights). Assistant: any paid Claude plan for scheduling, or ChatGPT Pro or Business for the connector.',
+          text: 'Two subscriptions. Data: RapidAPI\u2019s free tier is 50 requests/month on flights, hard-capped, enough to verify the setup; a real daily scan fits the $10 PRO plan (2,500 requests/month on flights). Assistant: any paid Claude plan for scheduling, or ChatGPT Pro or Business for the connector.',
         },
       },
       {
@@ -150,7 +150,7 @@ The prerequisites, in full:
   (and, if you want hotels too, the
   <a href={rapidApiPricingUrl('hotels', 'guide')} rel="noopener">Booking Live API</a>;
   they are separate listings, one key covers both once subscribed). The free BASIC
-  tier is 10 requests per month, hard-capped: enough to verify the setup works,
+  tier is 50 requests per month on flights (10 on hotels), hard-capped: enough to verify the setup works,
   not enough to run it. The honest cost math is in [its own section](#what-this-costs-honestly)
   below; the short version is that a real daily scan lands on the $10 PRO plan.
 - **A Claude or ChatGPT account.** On Claude, the conversational agent works even
@@ -425,8 +425,8 @@ The math for the example scan above:
 
 - 3 destinations, 1 departure date, daily: **~90 requests/month**.
 - Add a second candidate weekend to each morning: **~180 requests/month**.
-- The free tier (10/month, hard cap) is exhausted on day four of even the small
-  version. It exists to verify your key, and it is honest to say so.
+- The free tier (50/month on flights, hard cap) is exhausted on day 17 of even the
+  small version. It exists to verify your key, and it is honest to say so.
 - The $10 PRO plan on flights is 2,500 requests/month, which fits either version
   with room for the questions you ask by hand. That plan is the realistic floor
   for an agent you actually use. Current numbers for every tier are on
@@ -522,7 +522,7 @@ hire is not covered: the API has no rental-car data, so pair it with a car-hire
 source if you need all three.
 
 **What does a 24/7 AI travel agent cost?** Two subscriptions. The data side:
-RapidAPI's free tier is 10 requests/month, hard-capped, enough to verify the
+RapidAPI's free tier is 50 requests/month on flights, hard-capped, enough to verify the
 setup; a real daily scan fits the $10 PRO plan (2,500 requests/month on flights).
 The assistant side: any paid Claude plan for scheduling, or ChatGPT Pro or
 Business for the connector.

@@ -49,7 +49,7 @@ const faq: Faq[] = [
   },
   {
     q: 'What is the alternative to the Skyscanner API for a small project?',
-    a: `An API you can subscribe to without an application. FlightPowers returns live Google Flights fares with Google's price band; BASIC is 10 free requests a month and PRO is $${PRO.priceMonthly} for ${PRO.quota.toLocaleString('en-US')}. You give up Skyscanner's commission and its car hire and hotel content; you gain a key the same day.`,
+    a: `An API you can subscribe to without an application. FlightPowers returns live Google Flights fares with Google's price band; BASIC is 50 free requests a month and PRO is $${PRO.priceMonthly} for ${PRO.quota.toLocaleString('en-US')}. You give up Skyscanner's commission and its car hire and hotel content; you gain a key the same day.`,
   },
 ];
 
@@ -131,7 +131,7 @@ export default function CompareSkyscannerPage() {
             head={['', 'Skyscanner Travel API', 'FlightPowers']}
             rows={[
               ['Access', 'Apply; reviewed within two weeks; for established businesses with a large audience.', 'Subscribe on RapidAPI; the key works on the next request.'],
-              ['Money', 'You earn commission on the traffic you send.', `You pay: BASIC 10 requests free, PRO $${PRO.priceMonthly} for ${PRO.quota.toLocaleString('en-US')}.`],
+              ['Money', 'You earn commission on the traffic you send.', `You pay: BASIC 50 requests free, PRO $${PRO.priceMonthly} for ${PRO.quota.toLocaleString('en-US')}.`],
               ['Where fares come from', '“a network of 1,200+ partners and a blend of realtime and cached data”', 'Google Flights, fetched live at request time.'],
               ['Live search shape', 'Two endpoints: /create, then /poll for the rest of the results.', 'One request, one answer.'],
               ['Cached prices for exploring', 'Indicative Prices: “cached and can be up to 4 days old”.', 'None. Every search is live.'],

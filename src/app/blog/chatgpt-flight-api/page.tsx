@@ -131,7 +131,7 @@ Hotels:  ${LINKS.mcpHotels}?rapidapi_key=YOUR_RAPIDAPI_KEY`}</Code>
 
           <h2>Which plan do you need?</h2>
           <p>
-            The free tier is 10 requests/month with a hard cap: enough to verify the connector works, not to use it. For
+            The free tier is 50 requests/month on flights (10 on hotels) with a hard cap: enough to verify the connector works, not to use it. For
             day-to-day use, the <strong className="text-ink-100">$10 PRO plan</strong> (2,500 requests/month on flights) is the
             realistic floor. Every plan includes all of its API&apos;s endpoints.
           </p>
