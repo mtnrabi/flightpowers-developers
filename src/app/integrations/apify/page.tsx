@@ -37,7 +37,7 @@ const faq: Faq[] = [
   },
   {
     q: 'What does the hotels actor cost in practice?',
-    a: `By its own event table (${APIFY.hotelsSearchEvent} plus ${APIFY.hotelsResultEvent} and ${APIFY.hotelsStartEvent}), a search returning 25 properties costs about $0.004 all in. The lookup event alone is ${APIFY.hotelsPer1kSearches}. The unit is the search, not the result row, so a listing badge that divides by result rows looks cheaper than a search really is.`,
+    a: `By its own event table (${APIFY.hotelsSearchEvent} plus ${APIFY.hotelsResultEvent} and ${APIFY.hotelsStartEvent}), a search returning 25 properties costs about $0.0053 all in. The lookup event alone is ${APIFY.hotelsPer1kSearches}. The unit is the search, not the result row, so a listing badge that divides by result rows looks cheaper than a search really is.`,
   },
   {
     q: 'What does the flights actor cost?',
@@ -123,7 +123,7 @@ export default function ApifyIntegrationPage() {
             <h3 className="text-[16px] font-semibold text-ink-100">Booking.com Scraper</h3>
             <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed">
               Live rates, availability, review scores and room types. By the actor&apos;s own event table (
-              {APIFY.hotelsSearchEvent}, {APIFY.hotelsResultEvent}), a 25-property search costs about $0.004 all in, and the lookup event alone is{' '}
+              {APIFY.hotelsSearchEvent}, {APIFY.hotelsResultEvent}), a 25-property search costs about $0.0053 all in, and the lookup event alone is{' '}
               <strong className="text-ink-100">{APIFY.hotelsPer1kSearches}</strong>. The unit is the <em>search</em>, not the
               result row.
             </p>

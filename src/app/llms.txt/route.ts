@@ -124,7 +124,7 @@ ${HOTEL_PLANS.map(planLine).join('\n')}
 Airbnb (${LINKS.rapidapiAirbnb}/pricing${AIRBNB_READ_ON ? `, read ${AIRBNB_READ_ON}` : ''}):
 ${AIRBNB_PLANS.map(planLine).join('\n')}
 
-Flights, Booking.com hotels and Airbnb are separate subscriptions; within each API every plan includes every endpoint, differing only on volume and rate limit. Billing is on RapidAPI. Apify actors are pay-per-event, per each actor's own event table read 2026-09-28: flights $3.00 per 1,000 lookups, hotels $3.70 per 1,000 lookups.
+Flights, Booking.com hotels and Airbnb are separate subscriptions; within each API every plan includes every endpoint, differing only on volume and rate limit. Billing is on RapidAPI. Apify actors are pay-per-event, per each actor's own event table read 2026-11-08: flights $3.00 per 1,000 lookups, hotels $5.00 per 1,000 lookups.
 
 ## Free tools (no signup)
 

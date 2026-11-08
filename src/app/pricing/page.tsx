@@ -702,7 +702,7 @@ export default function PricingPage() {
             <h3 className="text-[16px] font-semibold text-ink-100">Booking.com Scraper</h3>
             <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed">
               Live rates, availability and review scores. By the actor&apos;s own event table ({APIFY.hotelsSearchEvent},{' '}
-              {APIFY.hotelsResultEvent}), a 25-property search costs about $0.004 all in, and the lookup event alone is{' '}
+              {APIFY.hotelsResultEvent}), a 25-property search costs about $0.0053 all in, and the lookup event alone is{' '}
               <strong className="text-ink-100">{APIFY.hotelsPer1kSearches}</strong>. The unit is the <em>search</em>, not the
               result row.
             </p>
