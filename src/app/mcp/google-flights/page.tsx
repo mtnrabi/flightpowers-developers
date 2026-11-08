@@ -2,6 +2,8 @@ import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
+import { AddToClientButtons } from '@/components/AddToClientButtons';
+import { PlanBox } from '@/components/PlanBox';
 import {
   Breadcrumbs,
   CapturedBadge,
@@ -59,7 +61,7 @@ const SHORT_ANSWERS: { q: string; a: string }[] = [
 const MORE_FAQ: { q: string; a: string }[] = [
   {
     q: 'Is there a free flights MCP?',
-    a: `Yes, ${FREE_HOST}: sign in with Google and you get the same flight and hotel tools with no key, 50 searches a day and 250 a month, with one labelled sponsored card on each result. It is the place to try the tools. For anything you ship, use the ad-free server on this page with your own RapidAPI key.`,
+    a: `Yes. This server gives 10 free searches a day after a Google sign-in, with no key, no card and no ads, shared with the hotels server. Past that you paste your own RapidAPI key once. There is also a separate free server with ads, ${FREE_HOST}, with 50 searches a day.`,
   },
   {
     q: 'What does a search cost on my key?',
@@ -82,6 +84,12 @@ const CLAUDE_CODE = `claude mcp add --transport http flights ${LINKS.mcpFlights}
 const MCP_JSON = `{
   "mcpServers": {
     "flights": { "url": "${LINKS.mcpFlights}" }
+  }
+}`;
+
+const VSCODE_JSON = `{
+  "servers": {
+    "flights": { "type": "http", "url": "${LINKS.mcpFlights}" }
   }
 }`;
 
@@ -137,9 +145,9 @@ const RELATED = [
   { href: '/guides/best-travel-mcp-servers-2026', label: 'Travel MCP servers compared', sub: '11 servers, read on the same day' },
   { href: '/guides/google-flights-mcp-claude', label: 'Setup: Claude', sub: 'Desktop, Code and claude.ai' },
   { href: '/guides/google-flights-mcp-cursor', label: 'Setup: Cursor', sub: 'One block in .cursor/mcp.json' },
+  { href: '/guides/google-flights-mcp-vscode', label: 'Setup: VS Code', sub: 'One click or .vscode/mcp.json' },
   { href: '/guides/google-flights-mcp-chatgpt', label: 'Setup: ChatGPT', sub: 'Developer-mode connectors' },
   { href: '/flights-api', label: 'Flights API (REST)', sub: 'The same data over plain HTTP' },
-  { href: '/status', label: 'Status', sub: 'The uptime probe and nightly tests' },
 ];
 
 export default function GoogleFlightsMcpPage() {
@@ -221,9 +229,8 @@ export default function GoogleFlightsMcpPage() {
               <p className="lede mt-5">
                 FlightPowers&apos; Google Flights MCP server gives Claude, Cursor and ChatGPT live Google Flights fares with
                 Google&apos;s own low / typical / high price band, a date range and a list of destinations in one call, and a
-                round trip priced as one request with one booking link. Free with ads at{' '}
-                <code className="font-mono text-[0.85em] text-signal-400">{FREE_HOST}</code> (Google sign-in, 50 searches a
-                day); ad-free on your own RapidAPI key, where PRO is ${PRO.priceMonthly} for{' '}
+                round trip priced as one request with one booking link. Sign in with Google for 10 free searches a day, no
+                card; past that it runs on your own RapidAPI key, where PRO is ${PRO.priceMonthly} for{' '}
                 {PRO.quota.toLocaleString('en-US')} searches. Best for fare tracking, date scans and AI agents; it does not book.
               </p>
               <p className="mt-3 text-[15px] text-ink-400 leading-relaxed">
@@ -246,6 +253,9 @@ export default function GoogleFlightsMcpPage() {
                 10 searches each day run free and ad-free with nothing pasted, and you paste your RapidAPI key once on the page
                 that opens when you want more.
               </p>
+              <div className="mt-5">
+                <AddToClientButtons server="flights" clients={['claude', 'cursor', 'vscode', 'claude-code']} />
+              </div>
             </div>
           </div>
         </Container>
@@ -361,6 +371,17 @@ export default function GoogleFlightsMcpPage() {
             <div className="mt-2">
               <Code label=".cursor/mcp.json">{MCP_JSON}</Code>
             </div>
+            <h3 className="mt-6 text-[16px] font-semibold text-ink-100">VS Code</h3>
+            <div className="mt-2">
+              <Code label=".vscode/mcp.json">{VSCODE_JSON}</Code>
+            </div>
+            <p className="mt-2 text-[14px] text-ink-500">
+              VS Code uses <code className="field">servers</code>, not <code className="field">mcpServers</code>.{' '}
+              <Link href="/guides/google-flights-mcp-vscode" className="text-signal-400 underline underline-offset-4">
+                VS Code and Cursor steps
+              </Link>
+              .
+            </p>
             <h3 className="mt-6 text-[16px] font-semibold text-ink-100">Scripts, CI and clients with no sign-in button</h3>
             <div className="mt-2">
               <Code label="same URL, key in a header">{KEY_JSON}</Code>
@@ -419,8 +440,8 @@ export default function GoogleFlightsMcpPage() {
           <div className="rounded-2xl border rule bg-ink-900/60 p-6">
             <h3 className="text-[16px] font-semibold text-ink-100">Try it free</h3>
             <p className="mt-2 text-[15px] text-ink-400 leading-relaxed">
-              <code className="field">{FREE_HOST}</code>: Google sign-in, no key, 50 searches a day and 250 a month, one
-              sponsored card per result.
+              <code className="field">{HOST}</code>: Google sign-in, no key, no card, 10 searches a day shared with the hotels
+              server.
             </p>
           </div>
           <div className="rounded-2xl border rule bg-ink-900/60 p-6">
@@ -443,6 +464,10 @@ export default function GoogleFlightsMcpPage() {
           </div>
         </div>
       </Section>
+
+      <Container>
+        <PlanBox page="/mcp/google-flights" listings={['flights']} medium="mcp" mcp />
+      </Container>
 
       {/* ============================== MORE QUESTIONS ============================== */}
       <Section>
