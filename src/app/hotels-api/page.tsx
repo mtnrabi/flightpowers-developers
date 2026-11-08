@@ -446,6 +446,15 @@ export default function HotelsApiHubPage() {
           </Link>{' '}
           are documented to the same depth: one-way, round-trip, price insights and search status.
         </p>
+        <p className="mt-3 text-[14.5px] text-ink-400">
+          Calling it from code? The official clients wrap every endpoint here:{' '}
+          <code className="field">npm install flightpowers</code> or <code className="field">pip install flightpowers</code>,
+          documented on the{' '}
+          <Link href="/docs/sdks" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+            SDKs page
+          </Link>
+          .
+        </p>
       </Section>
 
       <Section>

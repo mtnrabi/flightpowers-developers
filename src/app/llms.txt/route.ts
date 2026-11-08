@@ -47,6 +47,7 @@ Last-Updated: ${LLMS_LAST_UPDATED}
 - MCP tools: search_oneway_flights, search_roundtrip_flights (flights server); search_hotels, find_hotel_by_name, search_airbnb, compare_hotel_rates (hotels server). search_airbnb and the Airbnb row of compare_hotel_rates need an Airbnb Live API subscription on the same key; compare_hotel_rates prices one stay on Booking.com and Airbnb, one row per source. Flight tools accept date RANGES and destination LISTS and expand them internally (one call, not N)
 - Official MCP registry entries: com.flightpowers/google-flights and com.flightpowers/booking
 - ${COUNTS.skills} open-source agent skills (MIT): ${LINKS.skills}
+- Official SDKs (MIT, ${LINKS.sdkRepo}): npm install flightpowers (JavaScript/TypeScript) and pip install flightpowers (Python), one client for flights, Booking.com, Airbnb and Google Hotels on your own RapidAPI key: ${u('/docs/sdks')}
 - n8n community node: n8n-nodes-flightpowers (npm)
 - Apify actors: ${LINKS.apifyFlights} and ${LINKS.apifyHotels}
 
@@ -66,6 +67,7 @@ ${DIFFERENTIATORS.map((d) => `- ${d.title}: ${d.short}`).join('\n')}
 - [Hotels API reference](${u('/hotels-api')}): search, by-name, rooms, resolve, with captured examples
 - [Hotel geo-pricing](${u('/hotels-api/geo-pricing')}): proxy_country, the rate-parity primitive
 - [Airbnb API reference](${u('/hotels-api/airbnb')}): POST /search on its own RapidAPI listing (airbnb-live-api), live Airbnb listings with the stay total and the price per night as numbers; also reachable as provider=airbnb on POST /v1/hotels/search, and as search_airbnb on the hotels MCP server (not on the free server)
+- [SDKs](${u('/docs/sdks')}): the official JavaScript/TypeScript (npm flightpowers) and Python (PyPI flightpowers) clients, install and quickstart
 - [MCP setup](${u('/mcp')}): connect Claude, ChatGPT, Cursor, or any MCP client
 - [AI agent recipes](${u('/ai-agents')}): agent patterns on top of the API
 

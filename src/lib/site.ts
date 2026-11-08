@@ -117,6 +117,10 @@ export const LINKS = {
   smitheryHotels: 'https://smithery.ai/server/mrabi/booking',
   smitheryFree: 'https://smithery.ai/server/mrabi/freemium-google-flights-and-booking-mcp',
   npmNode: 'https://www.npmjs.com/package/n8n-nodes-flightpowers',
+  /** Official client libraries (MIT), live on npm and PyPI since 2026-11-08. */
+  sdkRepo: 'https://github.com/mtnrabi/flightpowers-sdk',
+  npmSdk: 'https://www.npmjs.com/package/flightpowers',
+  pypiSdk: 'https://pypi.org/project/flightpowers/',
   skills: 'https://github.com/mtnrabi/travel-agent-skills',
   clawhubFlights: 'https://clawhub.ai/mtnrabi/google-flights-realtime-api',
   clawhubHotels: 'https://clawhub.ai/mtnrabi/booking-hotel-search',
