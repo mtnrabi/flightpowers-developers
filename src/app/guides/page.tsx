@@ -172,6 +172,12 @@ const GUIDES = [
     tag: 'AI agents',
   },
   {
+    href: '/guides/google-flights-mcp-vscode',
+    title: 'The Google Flights MCP in VS Code and Cursor',
+    sub: 'Install the flights and hotels MCP servers in VS Code or Cursor with one click or one mcp.json block, sign in with Google, and the agent reads live fares and Booking.com rates while it codes.',
+    tag: 'AI agents',
+  },
+  {
     href: '/guides/google-flights-mcp-claude',
     title: 'The Google Flights MCP in Claude',
     sub: 'Add the Google Flights MCP to Claude or Claude Code, sign in with Google, and ask for a fare: 10 free searches a day, live Google Flights prices mid-conversation.',

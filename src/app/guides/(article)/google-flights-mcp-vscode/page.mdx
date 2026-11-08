@@ -1,0 +1,185 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = {
+  ...withOg({
+    title: 'Google Flights MCP in VS Code and Cursor: install',
+    description:
+      'Install the Google Flights and Booking.com MCP servers in VS Code or Cursor: one click or one mcp.json block, sign in with Google, 10 free searches a day.',
+    alternates: { canonical: '/guides/google-flights-mcp-vscode' },
+  }),
+  title: { absolute: 'Google Flights MCP in VS Code and Cursor: install' },
+};
+
+export const dynamic = 'force-static';
+
+import { GuideDates, JsonLd } from '@/components/ui';
+import { AddToClientButtons } from '@/components/AddToClientButtons';
+import { PlanBox } from '@/components/PlanBox';
+import { rapidApiPricingUrl } from '@/lib/site';
+import { PAID_TRIAL_LINE, FREE_SERVER_LINE } from '@/lib/install-copy';
+import { FLIGHT_PLANS, HOTEL_PLANS } from '@/lib/pricing';
+
+export const PRO = FLIGHT_PLANS.find((p) => p.name === 'PRO');
+export const BASIC = FLIGHT_PLANS.find((p) => p.name === 'BASIC');
+export const HOTEL_PRO = HOTEL_PLANS.find((p) => p.name === 'PRO');
+export const HOTEL_BASIC = HOTEL_PLANS.find((p) => p.name === 'BASIC');
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'The Google Flights MCP in VS Code and Cursor',
+    description:
+      'Install the FlightPowers flights and hotels MCP servers in VS Code (GitHub Copilot Chat) or Cursor: one click or one mcp.json block, a Google sign-in, 10 free searches a day, then your own RapidAPI key.',
+    url: `https://flightpowers.com/guides/google-flights-mcp-vscode`,
+    datePublished: '2026-11-08',
+    dateModified: '2026-11-08',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# The Google Flights MCP in VS Code and Cursor
+
+<GuideDates published="2026-11-08" updated="2026-11-08" />
+
+**Short answer:** Click Install in VS Code (or Add to Cursor) below for
+`https://flights.flightpowers.com/mcp` and `https://hotels.flightpowers.com/mcp`, sign in
+with Google when the editor asks, and the agent can read live Google Flights fares and
+Booking.com rates while it codes. The first 10 searches each day are free, with no key and no
+card. For more, paste your own RapidAPI key once: flights PRO is ${PRO.priceMonthly} a month
+for {PRO.quota.toLocaleString('en-US')} searches.
+
+Both servers are hosted, so nothing runs on your machine and there is nothing to install
+but the URL. Google has had no public flights API since QPX Express closed in April 2018;
+these servers read Google Flights and Booking.com when the agent asks and hand back JSON.
+They are mine (FlightPowers).
+
+## What you need
+
+- <a href="https://code.visualstudio.com/" rel="noopener">VS Code</a> with GitHub Copilot Chat, or <a href="https://www.cursor.com/" rel="noopener">Cursor</a>
+- A Google account for the sign-in
+- Optional: a RapidAPI key for the <a href={rapidApiPricingUrl('flights', 'guide', 'mcp-vscode-needs')} rel="noopener">Google Flights Live API</a> and the <a href={rapidApiPricingUrl('hotels', 'guide', 'mcp-vscode-needs')} rel="noopener">Booking Live API</a>, once 10 searches a day is not enough. One key covers both once you subscribe to each listing. Flights PRO is ${PRO.priceMonthly} for {PRO.quota.toLocaleString('en-US')} searches a month, hotels PRO ${HOTEL_PRO.priceMonthly} for {HOTEL_PRO.quota.toLocaleString('en-US')}; the free BASIC tier ({BASIC.quota} requests a month on flights, {HOTEL_BASIC.quota} on Booking.com) only checks your key works.
+
+## Install in VS Code
+
+One click each opens VS Code's MCP install screen with the name and the URL filled in:
+
+<div className="not-prose my-4 flex flex-wrap items-center gap-4"><span className="w-44 text-[14px] font-semibold text-ink-100">Flights</span><AddToClientButtons server="flights" clients={['vscode']} /></div>
+
+<div className="not-prose my-4 flex flex-wrap items-center gap-4"><span className="w-44 text-[14px] font-semibold text-ink-100">Hotels (Booking.com)</span><AddToClientButtons server="hotels" clients={['vscode']} /></div>
+
+{PAID_TRIAL_LINE}
+
+By hand: create `.vscode/mcp.json` in your project (or run **MCP: Open User Configuration**
+from the Command Palette for every project) and add the two servers. VS Code's own format
+uses a `servers` object:
+
+```json
+{
+  "servers": {
+    "flightpowers-flights": { "type": "http", "url": "https://flights.flightpowers.com/mcp" },
+    "flightpowers-hotels": { "type": "http", "url": "https://hotels.flightpowers.com/mcp" }
+  }
+}
+```
+
+Start the servers, and when VS Code says a server wants you to sign in, allow it and sign in
+with Google in the browser window it opens. Nothing secret goes in this file, so you can
+commit it. Then ask Copilot Chat for a fare; the tools are listed under Configure Tools in
+the chat input.
+
+### The key in a header, for VS Code without a sign-in
+
+If you would rather not sign in, send your RapidAPI key in a header. VS Code asks for it
+once and keeps it in its secret storage, so the key never sits in the file:
+
+```json
+{
+  "inputs": [
+    { "type": "promptString", "id": "rapidapi-key", "description": "RapidAPI key", "password": true }
+  ],
+  "servers": {
+    "flightpowers-flights": {
+      "type": "http",
+      "url": "https://flights.flightpowers.com/mcp",
+      "headers": { "x-rapidapi-key": "${input:rapidapi-key}" }
+    },
+    "flightpowers-hotels": {
+      "type": "http",
+      "url": "https://hotels.flightpowers.com/mcp",
+      "headers": { "x-rapidapi-key": "${input:rapidapi-key}" }
+    }
+  }
+}
+```
+
+## Install in Cursor
+
+One click each opens Cursor's install screen:
+
+<div className="not-prose my-4 flex flex-wrap items-center gap-4"><span className="w-44 text-[14px] font-semibold text-ink-100">Flights</span><AddToClientButtons server="flights" clients={['cursor']} /></div>
+
+<div className="not-prose my-4 flex flex-wrap items-center gap-4"><span className="w-44 text-[14px] font-semibold text-ink-100">Hotels (Booking.com)</span><AddToClientButtons server="hotels" clients={['cursor']} /></div>
+
+By hand: add this block to `.cursor/mcp.json` in your project root (Cursor uses
+`mcpServers`, not `servers`):
+
+```json
+{
+  "mcpServers": {
+    "flightpowers-flights": { "url": "https://flights.flightpowers.com/mcp" },
+    "flightpowers-hotels": { "url": "https://hotels.flightpowers.com/mcp" }
+  }
+}
+```
+
+Restart Cursor, sign in with Google when it offers the sign-in, and the tools appear in the
+agent's toolbox. For CI or a machine with no browser, keep the same URLs and add
+`"headers": { "x-rapidapi-key": "YOUR_RAPIDAPI_KEY" }` to each server, and keep that copy
+of the file out of a shared repository. The [Cursor guide](/guides/google-flights-mcp-cursor)
+has prompts for writing and testing travel features against live data.
+
+## Going past 10 searches a day
+
+The free searches run on our key and are shared by the flights and hotels servers. To go past
+them, paste your RapidAPI key once: on the page that opens when you sign in, or later at
+`https://flights.flightpowers.com/connect` with the same Google account. It is encrypted
+before it is stored, only its last four characters are shown again, and searches then meter
+against your own subscription. Disconnect on the connect page deletes it.
+
+## The tools
+
+The flights server has two: **search_oneway_flights** and **search_roundtrip_flights**. Both
+take a date range (`departure_date_from` / `departure_date_to`) and several destinations in
+`to_airport`, and expand them on the server, so a whole month is one tool call. Each fare
+comes with the airline, stops, a `buy_link` to Google Flights and, when Google shows one, its
+price range for the route. A round trip comes back paired, both legs with one `total_price`.
+
+The hotels server has **search_hotels** (Booking.com by destination, with filters such as
+`review_score_8` and `free_cancellation`) and **find_hotel_by_name** (one property by the name
+a person would type, with `price_as_seen_from` to price it as a shopper in another country
+sees it), plus two Airbnb tools that need their own [Airbnb Live API](/hotels-api/airbnb)
+subscription. The [MCP servers page](/mcp) prints every parameter.
+
+## Prompts to try
+
+**Write a parser from a real response.** "Call search_oneway_flights for LHR to JFK on the
+first Tuesday of next month and show the raw JSON so we can type it."
+
+**Build a fixture.** "Find the five cheapest days to fly Lisbon to New York next month and
+save them as a test fixture."
+
+**Hotels.** "Find a hotel in Lisbon for three nights next month, 2 adults, review score 8+,
+free cancellation."
+
+A month of dates at one trip length is about 30 searches in a single call, so scans like that
+run on your own key, not on the 10 free a day. {FREE_SERVER_LINE}.
+
+## Related
+
+- [The Google Flights MCP server](/mcp/google-flights): one real search, every tool parameter
+- [The Google Flights MCP in Claude](/guides/google-flights-mcp-claude): Claude, Claude Desktop and Claude Code
+- [The Google Flights MCP in Cline](/guides/google-flights-mcp-cline): the VS Code extension's own settings file
+
+<PlanBox page="/guides/google-flights-mcp-vscode" listings={['flights', 'hotels']} medium="guide" mcp />
