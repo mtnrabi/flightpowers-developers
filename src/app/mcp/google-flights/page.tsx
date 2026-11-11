@@ -142,7 +142,7 @@ const CHEAPEST = RUN.result.results[0]!;
 const RELATED = [
   { href: '/mcp', label: 'Both MCP servers', sub: 'The hub: flights and hotels, every way to connect' },
   { href: '/mcp/booking-hotels', label: 'Hotel MCP server', sub: 'Live Booking.com rates for the same clients' },
-  { href: '/guides/best-travel-mcp-servers-2026', label: 'Travel MCP servers compared', sub: '11 servers, read on the same day' },
+  { href: '/guides/best-travel-mcp-servers-2026', label: 'Travel MCP servers compared', sub: '12 servers, each read and dated' },
   { href: '/guides/google-flights-mcp-claude', label: 'Setup: Claude', sub: 'Desktop, Code and claude.ai' },
   { href: '/guides/google-flights-mcp-cursor', label: 'Setup: Cursor', sub: 'One block in .cursor/mcp.json' },
   { href: '/guides/google-flights-mcp-vscode', label: 'Setup: VS Code', sub: 'One click or .vscode/mcp.json' },

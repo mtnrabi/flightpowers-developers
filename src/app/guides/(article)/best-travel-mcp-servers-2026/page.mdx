@@ -4,7 +4,7 @@ export const metadata = {
   ...withOg({
     title: 'Best travel MCP servers in 2026: flights, hotels, compared',
     description:
-      'Eleven travel MCP servers for Claude, Cursor and ChatGPT, read on 2026-10-06 with prices: Kiwi.com, trivago, HasData, Ignav, SerpApi, fli, mine and more.',
+      'Twelve travel MCP servers for Claude, Cursor and ChatGPT, each read and dated with prices: Kiwi.com, trivago, HasData, Ignav, SerpApi, fli, Doorfarer, mine and more.',
     alternates: { canonical: '/guides/best-travel-mcp-servers-2026' },
   }),
   // The layout template appends " · FlightPowers"; the title is 57 chars without it.
@@ -25,10 +25,10 @@ import { LINKS, SITE } from '@/lib/site';
     '@type': 'TechArticle',
     headline: 'Best travel MCP servers in 2026: flights, hotels, compared',
     description:
-      'Kiwi.com, trivago, HasData, Ignav, SerpApi, flight-mcp.com, StayingAPI, fli, flights-mcp (Duffel), FlightPowers and Blue Pillow MCP servers compared from their own pages and live tools/list reads on 2026-10-06, with disclosed bias.',
+      'Kiwi.com, trivago, HasData, Ignav, SerpApi, flight-mcp.com, StayingAPI, fli, flights-mcp (Duffel), FlightPowers, Blue Pillow and Doorfarer MCP servers compared from their own pages and live tools/list reads (2026-10-06; Doorfarer 2026-11-11), with disclosed bias.',
     url: `${SITE.url}/guides/best-travel-mcp-servers-2026`,
     datePublished: '2026-10-06',
-    dateModified: '2026-10-26',
+    dateModified: '2026-11-11',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -44,7 +44,7 @@ import { LINKS, SITE } from '@/lib/site';
         name: 'Is there an MCP for flights?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes, several. Kiwi.com runs a free one at mcp.kiwi.com with no key; HasData, Ignav, SerpApi and flight-mcp.com run hosted ones that need an account for live searches; fli and flights-mcp are open source servers you run yourself; FlightPowers runs one on live Google Flights fares, free with ads or ad-free on your own RapidAPI key.',
+          text: 'Yes, several. Kiwi.com runs a free one at mcp.kiwi.com with no key, and so does Doorfarer, which adds the train or bus to each airport; HasData, Ignav, SerpApi and flight-mcp.com run hosted ones that need an account for live searches; fli and flights-mcp are open source servers you run yourself; FlightPowers runs one on live Google Flights fares, free with ads or ad-free on your own RapidAPI key.',
         },
       },
       {
@@ -52,7 +52,7 @@ import { LINKS, SITE } from '@/lib/site';
         name: 'Is there a free travel MCP server?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes. Kiwi.com (flights) and trivago (hotels) asked for no key on 2026-10-06, Blue Pillow issues a free anonymous key, fli is free to run yourself, and FlightPowers has a free ad-supported server with Google sign-in and 50 searches a day.',
+          text: 'Yes. Kiwi.com (flights) and trivago (hotels) asked for no key on 2026-10-06, Doorfarer (flights, door to door) asked for none on 2026-11-11, Blue Pillow issues a free anonymous key, fli is free to run yourself, and FlightPowers has a free ad-supported server with Google sign-in and 50 searches a day.',
         },
       },
       {
@@ -68,7 +68,7 @@ import { LINKS, SITE } from '@/lib/site';
         name: 'Which travel MCP covers both flights and hotels?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Of the eleven read here: HasData (Google Flights, Booking.com, Google Hotels and Airbnb on one key), SerpApi (its Google Flights and Google Hotels engines through one search tool) and FlightPowers (Google Flights on one server; Booking.com, and Airbnb since 2026-10-26, on the other).',
+          text: 'Of the twelve read here: HasData (Google Flights, Booking.com, Google Hotels and Airbnb on one key), SerpApi (its Google Flights and Google Hotels engines through one search tool) and FlightPowers (Google Flights on one server; Booking.com, and Airbnb since 2026-10-26, on the other).',
         },
       },
       {
@@ -76,7 +76,7 @@ import { LINKS, SITE } from '@/lib/site';
         name: 'Can a travel MCP book a flight or a hotel?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'None of the eleven read here books. They return prices and a link to book on the airline, the agency or the hotel site.',
+          text: 'None of the twelve read here books. They return prices and a link to book on the airline, the agency or the hotel site.',
         },
       },
     ],
@@ -85,7 +85,7 @@ import { LINKS, SITE } from '@/lib/site';
 
 # Best travel MCP servers in 2026: flights and hotels, compared
 
-<GuideDates published="2026-10-06" updated="2026-10-26" />
+<GuideDates published="2026-10-06" updated="2026-11-11" />
 
 **Short answer:** for a free flights MCP with no key, Kiwi.com's; for free hotel search,
 trivago's; for Google Flights, Booking.com, Google Hotels and Airbnb behind one key,
@@ -93,10 +93,10 @@ HasData's; for something you run yourself, fli; and for a whole date range and a
 in one call on live Google Flights fares, with Google's own low / typical / high band, plus
 live Booking.com rates, mine, FlightPowers: the flights MCP `flights.flightpowers.com/mcp`
 and the hotel MCP `hotels.flightpowers.com/mcp` on your own RapidAPI key, or both free with
-ads at `free-trial.flightpowers.com/mcp` (Google sign-in, 50 searches a day). I read all
-eleven servers below on
-**2026-10-06** from their own pages, READMEs or a live `tools/list`, and every figure
-carries that date.
+ads at `free-trial.flightpowers.com/mcp` (Google sign-in, 50 searches a day). I read the
+first eleven servers below on
+**2026-10-06** and Doorfarer on **2026-11-11**, from their own pages, READMEs or a live
+`tools/list`, and every figure carries its date.
 
 I build FlightPowers, so read entry 10 as a vendor describing his own product. The order is
 not a ranking: the two free, no-key servers from big travel brands come first because they
@@ -104,7 +104,7 @@ are the fastest way to see what a travel MCP does, and the table is the comparis
 
 ## The table
 
-Read 2026-10-06, 19:45 to 20:00 UTC. "Not documented" means I did not find it on the pages
+Rows 1 to 11 read 2026-10-06, 19:45 to 20:00 UTC; row 12 read 2026-11-11, 07:01 UTC. "Not documented" means I did not find it on the pages
 I read, not that it cannot exist.
 
 | # | Server | Covers | Data from | Sign-in | Free path | Paid entry | Date range in one call | Round trip | Price band |
@@ -120,6 +120,7 @@ I read, not that it cannot exist.
 | 9 | flights-mcp | flights | Duffel | you run it, Duffel key | code free, MIT | Duffel's own pricing | yes, slower | one call | not documented |
 | 10 | FlightPowers (mine) | flights, hotels, Airbnb (since 2026-10-26) | Google Flights, Booking.com, Airbnb (keyed hotels server only) | Google sign-in or RapidAPI key | free with ads, 50 searches a day | ${FLIGHT_PLANS[1].priceMonthly} for {FLIGHT_PLANS[1].quota.toLocaleString('en-US')} flight searches | yes, flights and hotels | one call | yes |
 | 11 | Blue Pillow | hotels and stays | "16+ booking sites" | free anonymous key | free, no signup | none published | not documented | n/a | n/a |
+| 12 | Doorfarer | flights, door to door (train or bus to the airport included) | recent Aviasales searches, cached | none asked | free, no key (affiliate links) | none published | yes | one call | its own month calendar, not Google's |
 
 "Price band" means Google's own historical range for the route with a low / typical / high
 verdict, the field that tells you whether a fare is a good one. "Round trip: two calls" means
@@ -305,6 +306,24 @@ and 60,000 a day. No price is published on the pages I read.
 
 **Best for:** free hotel price comparison across many sites for an agent.
 
+## 12. Doorfarer: door to door, the train or bus to the airport included
+
+Doorfarer runs `https://doorfarer.com/mcp` with no sign-in and no key. Its maker pointed me
+to it after reading this guide, and on 2026-11-11 `tools/list` returned five tools:
+`find_trips` (round trips ranked door to door, by price, total travel time or a balance),
+`find_group_trips` (people from different towns meeting in one place), `price_calendar`
+(the cheapest month for each airport within reach), `trip_details` (the trip step by step
+with local times, a booking link and a calendar file) and `send_feedback`.
+
+What sets it apart: it starts from your home town, not an airport, adds the train or bus to
+every airport in reach and ranks whole trips. Its site says prices "come from recent
+Aviasales searches" and that the answer says how old each fare is; its privacy page says
+fare data is cached by airport and month and refreshed after 12 hours. It is free and earns
+through labelled affiliate links.
+
+**Best for:** "which airport should I fly from" when you live between several, with the
+ground trip counted.
+
 ## Pick by what you need
 
 - **Free, nothing to set up:** Kiwi.com for flights, trivago for hotels.
@@ -313,26 +332,31 @@ and 60,000 a day. No price is published on the pages I read.
 - **Flights and hotels together:** HasData, SerpApi or FlightPowers.
 - **Vacation rentals:** StayingAPI, HasData or FlightPowers (Airbnb).
 - **Run it yourself:** fli, or flights-mcp if you are on Duffel.
+- **Flights from your home town, ground trip included:** Doorfarer.
 
 ## How I checked
 
-Every entry was read on 2026-10-06 between 19:45 and 20:00 UTC: the vendor's own MCP page,
-pricing page or README, GitHub's API for stars and last commit, and, for Kiwi.com and
-trivago, an MCP `initialize` plus `tools/list` against the live server. I made no paid
+Entries 1 to 11 were read on 2026-10-06 between 19:45 and 20:00 UTC: the vendor's own MCP
+page, pricing page or README, GitHub's API for stars and last commit, and, for Kiwi.com and
+trivago, an MCP `initialize` plus `tools/list` against the live server. Doorfarer was read
+on 2026-11-11 at 07:01 UTC the same way: its home and privacy pages plus `initialize` and
+`tools/list` against the live server. I made no paid
 calls to anyone else's server. My own run is on [the flights MCP page](/mcp/google-flights)
 with its timestamp. If something here is out of date, the date on each line is the day it
 was true.
 
 ## Is there an MCP for flights?
 
-Yes, several: Kiwi.com's is free with no key; HasData, Ignav, SerpApi and flight-mcp.com
+Yes, several: Kiwi.com's is free with no key, and so is Doorfarer's, which adds the train
+or bus to each airport; HasData, Ignav, SerpApi and flight-mcp.com
 run hosted ones that need an account for live searches; fli and flights-mcp are open source servers you run
 yourself; and FlightPowers runs one on live Google Flights fares, free with ads or
 ad-free on your own key.
 
 ## Is there a free travel MCP server?
 
-Yes. Kiwi.com and trivago asked for no key on 2026-10-06, Blue Pillow issues a free
+Yes. Kiwi.com and trivago asked for no key on 2026-10-06, Doorfarer asked for none on
+2026-11-11, Blue Pillow issues a free
 anonymous key, fli is free to run yourself, and FlightPowers has a free ad-supported
 server with Google sign-in and 50 searches a day.
 
@@ -344,14 +368,14 @@ guessing from training data.
 
 ## Which travel MCP covers both flights and hotels?
 
-Of the eleven here: HasData (Google Flights, Booking.com, Google Hotels and Airbnb on one
+Of the twelve here: HasData (Google Flights, Booking.com, Google Hotels and Airbnb on one
 key), SerpApi (its Google Flights and Google Hotels engines through one tool) and
 FlightPowers (Google Flights on one server; Booking.com, and Airbnb since 2026-10-26, on the
 other).
 
 ## Can a travel MCP book a flight or a hotel?
 
-None of the eleven read here books. They return prices and a link to book on the airline,
+None of the twelve read here books. They return prices and a link to book on the airline,
 the agency or the hotel site.
 
 ## Related
