@@ -68,6 +68,7 @@ ${DIFFERENTIATORS.map((d) => `- ${d.title}: ${d.short}`).join('\n')}
 - [Hotel geo-pricing](${u('/hotels-api/geo-pricing')}): proxy_country, the rate-parity primitive
 - [Airbnb API reference](${u('/hotels-api/airbnb')}): POST /search on its own RapidAPI listing (airbnb-live-api), live Airbnb listings with the stay total and the price per night as numbers; also reachable as provider=airbnb on POST /v1/hotels/search, and as search_airbnb on the hotels MCP server (not on the free server)
 - [SDKs](${u('/docs/sdks')}): the official JavaScript/TypeScript (npm flightpowers) and Python (PyPI flightpowers) clients, install and quickstart
+- [Example apps](${u('/docs/examples')}): three MIT repos on GitHub that run on a free RapidAPI key: flight-price-alert-bot (Telegram / Discord fare-drop alerts), cheapest-week-to-fly (rank a date range of round trips, CSV), n8n-flight-fare-watch (daily fare watch as an n8n workflow or GitHub Action)
 - [MCP setup](${u('/mcp')}): connect Claude, ChatGPT, Cursor, or any MCP client
 - [AI agent recipes](${u('/ai-agents')}): agent patterns on top of the API
 

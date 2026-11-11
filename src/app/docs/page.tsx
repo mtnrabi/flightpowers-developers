@@ -171,6 +171,9 @@ export default function DocsPage() {
             <Cta href="/docs/sdks" variant="ghost">
               SDKs: JavaScript and Python
             </Cta>
+            <Cta href="/docs/examples" variant="ghost">
+              Example apps on GitHub
+            </Cta>
           </div>
           <p className="mt-4 text-[14px] text-ink-400">
             New here? The quickstart is five pastes from nothing to a live price, and it names the two field-name
