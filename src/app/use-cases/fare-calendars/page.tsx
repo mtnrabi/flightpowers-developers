@@ -69,6 +69,13 @@ export default function FareCalendarsPage() {
             &ldquo;degraded&rdquo; cells, and mark &ldquo;partial&rdquo; ones: the calendar stays honest at the cell level.
           </Feature>
         </div>
+        <p className="mt-8 text-[14.5px] text-ink-300">
+          See the result on real routes:{' '}
+          <Link href="/flights" className="text-signal-400 underline underline-offset-4">
+            flight prices by route
+          </Link>
+          , each a season of weekly departures fetched through this API.
+        </p>
       </Section>
 
       <Section>

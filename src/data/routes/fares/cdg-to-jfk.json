@@ -1,0 +1,423 @@
+{
+ "slug": "cdg-to-jfk",
+ "from": "CDG",
+ "to": "JFK",
+ "currency": "usd",
+ "trip": "one-way, 1 adult, economy",
+ "points": [
+  {
+   "date": "2026-11-25",
+   "status": "ok",
+   "fare": {
+    "price": 449,
+    "price_text": "$449",
+    "airline": "JetBlue",
+    "stops": 0,
+    "duration": "8 hr 50 min",
+    "departure_description": "11:20 AM on Wed, Nov 25",
+    "verdict": "typical",
+    "band_low": 380,
+    "band_high": 640,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTEtMjUiIAoDQ0RHEgoyMDI2LTExLTI1GgNKRksqAkI2MgQxNDA4agUSA0NER3IFEgNKRktCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-02",
+   "status": "ok",
+   "fare": {
+    "price": 528,
+    "price_text": "$528",
+    "airline": "Air Serbia",
+    "stops": 1,
+    "duration": "31 hr 45 min",
+    "departure_description": "10:00 AM on Wed, Dec 2",
+    "verdict": "typical",
+    "band_low": 425,
+    "band_high": 780,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDIiHwoDQ0RHEgoyMDI2LTEyLTAyGgNCRUcqAkpVMgMyNDEiHwoDQkVHEgoyMDI2LTEyLTAzGgNKRksqAkpVMgM1MDBqBRIDQ0RHcgUSA0pGS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-09",
+   "status": "ok",
+   "fare": {
+    "price": 436,
+    "price_text": "$436",
+    "airline": "Vueling, LEVEL",
+    "stops": 1,
+    "duration": "33 hr 40 min",
+    "departure_description": "6:20 PM on Wed, Dec 9",
+    "verdict": "typical",
+    "band_low": 425,
+    "band_high": 780,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTItMDkiIAoDQ0RHEgoyMDI2LTEyLTA5GgNCQ04qAlZZMgQ4MDYzIiAKA0JDThIKMjAyNi0xMi0xMBoDSkZLKgJMTDIEMjYyN2oFEgNDREdyBRIDSkZLQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-16",
+   "status": "ok",
+   "fare": {
+    "price": 605,
+    "price_text": "$605",
+    "airline": "Air France, Air Europa | Operated by HOP!",
+    "stops": 1,
+    "duration": "16 hr 55 min",
+    "departure_description": "6:55 AM on Wed, Dec 16",
+    "verdict": "typical",
+    "band_low": 425,
+    "band_high": 780,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMTYiIAoDQ0RHEgoyMDI2LTEyLTE2GgNNQUQqAkFGMgQxMDAwIh4KA01BRBIKMjAyNi0xMi0xNhoDSkZLKgJVWDICOTFqBRIDQ0RHcgUSA0pGS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-23",
+   "status": "ok",
+   "fare": {
+    "price": 691,
+    "price_text": "$691",
+    "airline": "Air Serbia",
+    "stops": 1,
+    "duration": "21 hr 15 min",
+    "departure_description": "8:30 PM on Wed, Dec 23",
+    "verdict": "typical",
+    "band_low": 425,
+    "band_high": 780,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMjMiHwoDQ0RHEgoyMDI2LTEyLTIzGgNCRUcqAkpVMgMyNDMiHwoDQkVHEgoyMDI2LTEyLTI0GgNKRksqAkpVMgM1MDBqBRIDQ0RHcgUSA0pGS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-30",
+   "status": "ok",
+   "fare": {
+    "price": 528,
+    "price_text": "$528",
+    "airline": "Air Serbia",
+    "stops": 1,
+    "duration": "21 hr 15 min",
+    "departure_description": "8:30 PM on Wed, Dec 30",
+    "verdict": "typical",
+    "band_low": 425,
+    "band_high": 780,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMzAiHwoDQ0RHEgoyMDI2LTEyLTMwGgNCRUcqAkpVMgMyNDMiHwoDQkVHEgoyMDI2LTEyLTMxGgNKRksqAkpVMgM1MDBqBRIDQ0RHcgUSA0pGS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-06",
+   "status": "ok",
+   "fare": {
+    "price": 444,
+    "price_text": "$444",
+    "airline": "British Airways | Finnair, Iberia",
+    "stops": 1,
+    "duration": "10 hr 45 min",
+    "departure_description": "4:25 PM on Wed, Jan 6",
+    "verdict": "typical",
+    "band_low": 340,
+    "band_high": 970,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMDYiHwoDQ0RHEgoyMDI3LTAxLTA2GgNMSFIqAkJBMgMzMTEiHwoDTEhSEgoyMDI3LTAxLTA2GgNKRksqAkJBMgMxNzlqBRIDQ0RHcgUSA0pGS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-13",
+   "status": "ok",
+   "fare": {
+    "price": 364,
+    "price_text": "$364",
+    "airline": "Vueling, LEVEL",
+    "stops": 1,
+    "duration": "33 hr 40 min",
+    "departure_description": "6:20 PM on Wed, Jan 13",
+    "verdict": "typical",
+    "band_low": 340,
+    "band_high": 970,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDEtMTMiIAoDQ0RHEgoyMDI3LTAxLTEzGgNCQ04qAlZZMgQ4MDYzIiAKA0JDThIKMjAyNy0wMS0xNBoDSkZLKgJMTDIEMjYyN2oFEgNDREdyBRIDSkZLQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-20",
+   "status": "ok",
+   "fare": {
+    "price": 399,
+    "price_text": "$399",
+    "airline": "Aer Lingus",
+    "stops": 1,
+    "duration": "15 hr 14 min",
+    "departure_description": "10:15 AM on Wed, Jan 20",
+    "verdict": "typical",
+    "band_low": 340,
+    "band_high": 970,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMjAiHwoDQ0RHEgoyMDI3LTAxLTIwGgNEVUIqAkVJMgM1MjEiHwoDRFVCEgoyMDI3LTAxLTIwGgNKRksqAkVJMgMxMDdqBRIDQ0RHcgUSA0pGS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-27",
+   "status": "ok",
+   "fare": {
+    "price": 399,
+    "price_text": "$399",
+    "airline": "Aer Lingus",
+    "stops": 1,
+    "duration": "15 hr 14 min",
+    "departure_description": "10:15 AM on Wed, Jan 27",
+    "verdict": "typical",
+    "band_low": 340,
+    "band_high": 970,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMjciHwoDQ0RHEgoyMDI3LTAxLTI3GgNEVUIqAkVJMgM1MjEiHwoDRFVCEgoyMDI3LTAxLTI3GgNKRksqAkVJMgMxMDdqBRIDQ0RHcgUSA0pGS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-03",
+   "status": "ok",
+   "fare": {
+    "price": 399,
+    "price_text": "$399",
+    "airline": "Aer Lingus",
+    "stops": 1,
+    "duration": "15 hr 14 min",
+    "departure_description": "10:15 AM on Wed, Feb 3",
+    "verdict": "typical",
+    "band_low": 330,
+    "band_high": 540,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMDMiHwoDQ0RHEgoyMDI3LTAyLTAzGgNEVUIqAkVJMgM1MjEiHwoDRFVCEgoyMDI3LTAyLTAzGgNKRksqAkVJMgMxMDdqBRIDQ0RHcgUSA0pGS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-10",
+   "status": "ok",
+   "fare": {
+    "price": 399,
+    "price_text": "$399",
+    "airline": "Aer Lingus",
+    "stops": 1,
+    "duration": "15 hr 14 min",
+    "departure_description": "10:15 AM on Wed, Feb 10",
+    "verdict": "typical",
+    "band_low": 330,
+    "band_high": 540,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMTAiHwoDQ0RHEgoyMDI3LTAyLTEwGgNEVUIqAkVJMgM1MjEiHwoDRFVCEgoyMDI3LTAyLTEwGgNKRksqAkVJMgMxMDdqBRIDQ0RHcgUSA0pGS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-17",
+   "status": "ok",
+   "fare": {
+    "price": 407,
+    "price_text": "$407",
+    "airline": "Aer Lingus",
+    "stops": 1,
+    "duration": "15 hr 14 min",
+    "departure_description": "10:15 AM on Wed, Feb 17",
+    "verdict": "typical",
+    "band_low": 330,
+    "band_high": 540,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMTciHwoDQ0RHEgoyMDI3LTAyLTE3GgNEVUIqAkVJMgM1MjEiHwoDRFVCEgoyMDI3LTAyLTE3GgNKRksqAkVJMgMxMDdqBRIDQ0RHcgUSA0pGS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-24",
+   "status": "ok",
+   "fare": {
+    "price": 399,
+    "price_text": "$399",
+    "airline": "Aer Lingus",
+    "stops": 1,
+    "duration": "15 hr 14 min",
+    "departure_description": "10:15 AM on Wed, Feb 24",
+    "verdict": "typical",
+    "band_low": 330,
+    "band_high": 540,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMjQiHwoDQ0RHEgoyMDI3LTAyLTI0GgNEVUIqAkVJMgM1MjEiHwoDRFVCEgoyMDI3LTAyLTI0GgNKRksqAkVJMgMxMDdqBRIDQ0RHcgUSA0pGS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-03",
+   "status": "ok",
+   "fare": {
+    "price": 407,
+    "price_text": "$407",
+    "airline": "Aer Lingus",
+    "stops": 1,
+    "duration": "12 hr 14 min",
+    "departure_description": "10:15 AM on Wed, Mar 3",
+    "verdict": "typical",
+    "band_low": 335,
+    "band_high": 540,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMDMiHwoDQ0RHEgoyMDI3LTAzLTAzGgNEVUIqAkVJMgM1MjEiHwoDRFVCEgoyMDI3LTAzLTAzGgNKRksqAkVJMgMxMDlqBRIDQ0RHcgUSA0pGS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-10",
+   "status": "ok",
+   "fare": {
+    "price": 407,
+    "price_text": "$407",
+    "airline": "Aer Lingus",
+    "stops": 1,
+    "duration": "12 hr 14 min",
+    "departure_description": "10:15 AM on Wed, Mar 10",
+    "verdict": "typical",
+    "band_low": 335,
+    "band_high": 540,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTAiHwoDQ0RHEgoyMDI3LTAzLTEwGgNEVUIqAkVJMgM1MjEiHwoDRFVCEgoyMDI3LTAzLTEwGgNKRksqAkVJMgMxMDlqBRIDQ0RHcgUSA0pGS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-17",
+   "status": "ok",
+   "fare": {
+    "price": 407,
+    "price_text": "$407",
+    "airline": "Aer Lingus",
+    "stops": 1,
+    "duration": "12 hr 14 min",
+    "departure_description": "10:15 AM on Wed, Mar 17",
+    "verdict": "typical",
+    "band_low": 335,
+    "band_high": 540,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTciHwoDQ0RHEgoyMDI3LTAzLTE3GgNEVUIqAkVJMgM1MjEiHwoDRFVCEgoyMDI3LTAzLTE3GgNKRksqAkVJMgMxMDlqBRIDQ0RHcgUSA0pGS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-24",
+   "status": "ok",
+   "fare": {
+    "price": 407,
+    "price_text": "$407",
+    "airline": "Aer Lingus",
+    "stops": 1,
+    "duration": "12 hr 14 min",
+    "departure_description": "10:15 AM on Wed, Mar 24",
+    "verdict": "typical",
+    "band_low": 335,
+    "band_high": 540,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMjQiHwoDQ0RHEgoyMDI3LTAzLTI0GgNEVUIqAkVJMgM1MjEiHwoDRFVCEgoyMDI3LTAzLTI0GgNKRksqAkVJMgMxMDlqBRIDQ0RHcgUSA0pGS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-31",
+   "status": "ok",
+   "fare": {
+    "price": 400,
+    "price_text": "$400",
+    "airline": "Aer Lingus",
+    "stops": 1,
+    "duration": "14 hr 55 min",
+    "departure_description": "10:20 AM on Wed, Mar 31",
+    "verdict": "typical",
+    "band_low": 335,
+    "band_high": 540,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMzEiHwoDQ0RHEgoyMDI3LTAzLTMxGgNEVUIqAkVJMgM1MjEiHwoDRFVCEgoyMDI3LTAzLTMxGgNKRksqAkVJMgMxMDdqBRIDQ0RHcgUSA0pGS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-07",
+   "status": "ok",
+   "fare": {
+    "price": 437,
+    "price_text": "$437",
+    "airline": "Aer Lingus",
+    "stops": 1,
+    "duration": "14 hr 55 min",
+    "departure_description": "10:20 AM on Wed, Apr 7",
+    "verdict": "typical",
+    "band_low": 400,
+    "band_high": 680,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMDciHwoDQ0RHEgoyMDI3LTA0LTA3GgNEVUIqAkVJMgM1MjEiHwoDRFVCEgoyMDI3LTA0LTA3GgNKRksqAkVJMgMxMDdqBRIDQ0RHcgUSA0pGS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-14",
+   "status": "ok",
+   "fare": {
+    "price": 428,
+    "price_text": "$428",
+    "airline": "Aer Lingus",
+    "stops": 1,
+    "duration": "14 hr 55 min",
+    "departure_description": "10:20 AM on Wed, Apr 14",
+    "verdict": "typical",
+    "band_low": 400,
+    "band_high": 680,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMTQiHwoDQ0RHEgoyMDI3LTA0LTE0GgNEVUIqAkVJMgM1MjEiHwoDRFVCEgoyMDI3LTA0LTE0GgNKRksqAkVJMgMxMDdqBRIDQ0RHcgUSA0pGS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-21",
+   "status": "ok",
+   "fare": {
+    "price": 428,
+    "price_text": "$428",
+    "airline": "Aer Lingus",
+    "stops": 1,
+    "duration": "14 hr 55 min",
+    "departure_description": "10:20 AM on Wed, Apr 21",
+    "verdict": "typical",
+    "band_low": 400,
+    "band_high": 680,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjEiHwoDQ0RHEgoyMDI3LTA0LTIxGgNEVUIqAkVJMgM1MjEiHwoDRFVCEgoyMDI3LTA0LTIxGgNKRksqAkVJMgMxMDdqBRIDQ0RHcgUSA0pGS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-28",
+   "status": "ok",
+   "fare": {
+    "price": 428,
+    "price_text": "$428",
+    "airline": "Aer Lingus",
+    "stops": 1,
+    "duration": "14 hr 55 min",
+    "departure_description": "10:20 AM on Wed, Apr 28",
+    "verdict": "typical",
+    "band_low": 400,
+    "band_high": 680,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjgiHwoDQ0RHEgoyMDI3LTA0LTI4GgNEVUIqAkVJMgM1MjEiHwoDRFVCEgoyMDI3LTA0LTI4GgNKRksqAkVJMgMxMDdqBRIDQ0RHcgUSA0pGS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  }
+ ]
+}

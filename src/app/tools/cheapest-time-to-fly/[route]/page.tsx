@@ -17,6 +17,7 @@ import {
   type GridRoute,
 } from '@/lib/grid';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
+import { dayLabel, findRouteFares, money } from '@/lib/route-fares';
 
 export const dynamic = 'force-static';
 export const dynamicParams = false;
@@ -139,6 +140,19 @@ export default async function Page({ params }: Props) {
 
       <Container className="pb-16">
         <CheapestTimeTool initial={{ from: r.from.iata, to: r.to.iata }} />
+        {(() => {
+          // When the route has a fetched-fares page, point to it: the dated run lives there.
+          const f = findRouteFares(`${r.from.iata.toLowerCase()}-to-${r.to.iata.toLowerCase()}`);
+          return f ? (
+            <p className="mt-5 text-[14px] text-ink-300">
+              Want the season without running a scan? Our fetched fares for {r.from.iata} to {r.to.iata}: from{' '}
+              {money(f.cheapest.fare.price)} on {dayLabel(f.cheapest.date)}, charted over {f.points.length} departure dates.{' '}
+              <Link href={`/flights/${f.slug}`} className="text-signal-400 underline underline-offset-4">
+                See the {r.from.iata} to {r.to.iata} fare chart →
+              </Link>
+            </p>
+          ) : null;
+        })()}
       </Container>
 
       <RouteFacts route={r} />

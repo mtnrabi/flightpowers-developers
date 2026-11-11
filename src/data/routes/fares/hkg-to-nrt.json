@@ -1,0 +1,423 @@
+{
+ "slug": "hkg-to-nrt",
+ "from": "HKG",
+ "to": "NRT",
+ "currency": "usd",
+ "trip": "one-way, 1 adult, economy",
+ "points": [
+  {
+   "date": "2026-11-25",
+   "status": "ok",
+   "fare": {
+    "price": 127,
+    "price_text": "$127",
+    "airline": "Hong Kong Express",
+    "stops": 0,
+    "duration": "4 hr 5 min",
+    "departure_description": "2:00 PM on Wed, Nov 25",
+    "verdict": "typical",
+    "band_low": 125,
+    "band_high": 160,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTEtMjUiHwoDSEtHEgoyMDI2LTExLTI1GgNOUlQqAlVPMgM2NTBqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T21:58:24.520Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-02",
+   "status": "ok",
+   "fare": {
+    "price": 127,
+    "price_text": "$127",
+    "airline": "Hong Kong Express",
+    "stops": 0,
+    "duration": "4 hr 5 min",
+    "departure_description": "1:00 PM on Wed, Dec 2",
+    "verdict": "typical",
+    "band_low": 110,
+    "band_high": 240,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDIiHwoDSEtHEgoyMDI2LTEyLTAyGgNOUlQqAlVPMgM2NDZqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T21:58:24.520Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-09",
+   "status": "ok",
+   "fare": {
+    "price": 127,
+    "price_text": "$127",
+    "airline": "Hong Kong Express",
+    "stops": 0,
+    "duration": "4 hr 5 min",
+    "departure_description": "1:00 PM on Wed, Dec 9",
+    "verdict": "typical",
+    "band_low": 110,
+    "band_high": 240,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDkiHwoDSEtHEgoyMDI2LTEyLTA5GgNOUlQqAlVPMgM2NDZqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T21:58:24.520Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-16",
+   "status": "ok",
+   "fare": {
+    "price": 127,
+    "price_text": "$127",
+    "airline": "Hong Kong Express",
+    "stops": 0,
+    "duration": "4 hr 5 min",
+    "departure_description": "2:00 PM on Wed, Dec 16",
+    "verdict": "typical",
+    "band_low": 110,
+    "band_high": 240,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMTYiHwoDSEtHEgoyMDI2LTEyLTE2GgNOUlQqAlVPMgM2NTBqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T21:58:24.520Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-23",
+   "status": "ok",
+   "fare": {
+    "price": 277,
+    "price_text": "$277",
+    "airline": "Hong Kong Express",
+    "stops": 0,
+    "duration": "4 hr 5 min",
+    "departure_description": "2:00 PM on Wed, Dec 23",
+    "verdict": "high",
+    "band_low": 110,
+    "band_high": 240,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMjMiHwoDSEtHEgoyMDI2LTEyLTIzGgNOUlQqAlVPMgM2NTBqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T21:58:24.520Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-30",
+   "status": "ok",
+   "fare": {
+    "price": 184,
+    "price_text": "$184",
+    "airline": "Hong Kong Express",
+    "stops": 0,
+    "duration": "4 hr 5 min",
+    "departure_description": "2:00 PM on Wed, Dec 30",
+    "verdict": "typical",
+    "band_low": 110,
+    "band_high": 240,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMzAiHwoDSEtHEgoyMDI2LTEyLTMwGgNOUlQqAlVPMgM2NTBqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T21:58:24.520Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-06",
+   "status": "ok",
+   "fare": {
+    "price": 169,
+    "price_text": "$169",
+    "airline": "Jetstar",
+    "stops": 0,
+    "duration": "4 hr 10 min",
+    "departure_description": "1:10 AM on Wed, Jan 6",
+    "verdict": "typical",
+    "band_low": 100,
+    "band_high": 205,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDEtMDYiHgoDSEtHEgoyMDI3LTAxLTA2GgNOUlQqAkdLMgIyOGoFEgNIS0dyBRIDTlJUQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T21:58:24.520Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-13",
+   "status": "ok",
+   "fare": {
+    "price": 127,
+    "price_text": "$127",
+    "airline": "Jetstar",
+    "stops": 0,
+    "duration": "4 hr 10 min",
+    "departure_description": "1:10 AM on Wed, Jan 13",
+    "verdict": "typical",
+    "band_low": 100,
+    "band_high": 205,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDEtMTMiHgoDSEtHEgoyMDI3LTAxLTEzGgNOUlQqAkdLMgIyOGoFEgNIS0dyBRIDTlJUQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T21:58:24.520Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-20",
+   "status": "ok",
+   "fare": {
+    "price": 146,
+    "price_text": "$146",
+    "airline": "Hong Kong Express",
+    "stops": 0,
+    "duration": "4 hr 5 min",
+    "departure_description": "9:20 AM on Wed, Jan 20",
+    "verdict": "typical",
+    "band_low": 100,
+    "band_high": 205,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMjAiHwoDSEtHEgoyMDI3LTAxLTIwGgNOUlQqAlVPMgM4NDhqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T21:58:14.878Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-27",
+   "status": "ok",
+   "fare": {
+    "price": 127,
+    "price_text": "$127",
+    "airline": "Hong Kong Express",
+    "stops": 0,
+    "duration": "4 hr 5 min",
+    "departure_description": "9:20 AM on Wed, Jan 27",
+    "verdict": "typical",
+    "band_low": 100,
+    "band_high": 205,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMjciHwoDSEtHEgoyMDI3LTAxLTI3GgNOUlQqAlVPMgM4NDhqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T21:58:14.878Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-03",
+   "status": "ok",
+   "fare": {
+    "price": 225,
+    "price_text": "$225",
+    "airline": "Cebu Pacific",
+    "stops": 1,
+    "duration": "23 hr 20 min",
+    "departure_description": "10:00 AM on Wed, Feb 3",
+    "verdict": "typical",
+    "band_low": 100,
+    "band_high": 255,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDItMDMiHwoDSEtHEgoyMDI3LTAyLTAzGgNDUksqAjVKMgMxNDkiIAoDQ1JLEgoyMDI3LTAyLTA0GgNOUlQqAjVKMgQ1MDY4agUSA0hLR3IFEgNOUlRCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T21:58:14.878Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-10",
+   "status": "ok",
+   "fare": {
+    "price": 210,
+    "price_text": "$210",
+    "airline": "Cebu Pacific",
+    "stops": 1,
+    "duration": "10 hr 45 min",
+    "departure_description": "10:35 PM on Wed, Feb 10",
+    "verdict": "typical",
+    "band_low": 100,
+    "band_high": 255,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDItMTAiHwoDSEtHEgoyMDI3LTAyLTEwGgNDUksqAjVKMgMxMjEiIAoDQ1JLEgoyMDI3LTAyLTExGgNOUlQqAjVKMgQ1MDY4agUSA0hLR3IFEgNOUlRCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T21:58:14.878Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-17",
+   "status": "ok",
+   "fare": {
+    "price": 139,
+    "price_text": "$139",
+    "airline": "Jetstar",
+    "stops": 0,
+    "duration": "4 hr 10 min",
+    "departure_description": "1:10 AM on Wed, Feb 17",
+    "verdict": "typical",
+    "band_low": 100,
+    "band_high": 255,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDItMTciHgoDSEtHEgoyMDI3LTAyLTE3GgNOUlQqAkdLMgIyOGoFEgNIS0dyBRIDTlJUQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T21:58:14.878Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-24",
+   "status": "ok",
+   "fare": {
+    "price": 146,
+    "price_text": "$146",
+    "airline": "Hong Kong Express",
+    "stops": 0,
+    "duration": "4 hr 5 min",
+    "departure_description": "10:50 AM on Wed, Feb 24",
+    "verdict": "typical",
+    "band_low": 100,
+    "band_high": 255,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMjQiHwoDSEtHEgoyMDI3LTAyLTI0GgNOUlQqAlVPMgM4NzBqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T21:58:14.878Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-03",
+   "status": "ok",
+   "fare": {
+    "price": 127,
+    "price_text": "$127",
+    "airline": "Hong Kong Express",
+    "stops": 0,
+    "duration": "4 hr 5 min",
+    "departure_description": "10:50 AM on Wed, Mar 3",
+    "verdict": "typical",
+    "band_low": 110,
+    "band_high": 300,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMDMiHwoDSEtHEgoyMDI3LTAzLTAzGgNOUlQqAlVPMgM4NzBqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T21:58:14.878Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-10",
+   "status": "ok",
+   "fare": {
+    "price": 127,
+    "price_text": "$127",
+    "airline": "Hong Kong Express",
+    "stops": 0,
+    "duration": "4 hr 5 min",
+    "departure_description": "9:20 AM on Wed, Mar 10",
+    "verdict": "typical",
+    "band_low": 110,
+    "band_high": 300,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMTAiHwoDSEtHEgoyMDI3LTAzLTEwGgNOUlQqAlVPMgM4NDhqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T21:58:14.878Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-17",
+   "status": "ok",
+   "fare": {
+    "price": 127,
+    "price_text": "$127",
+    "airline": "Hong Kong Express",
+    "stops": 0,
+    "duration": "4 hr 5 min",
+    "departure_description": "1:00 PM on Wed, Mar 17",
+    "verdict": "typical",
+    "band_low": 110,
+    "band_high": 300,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMTciHwoDSEtHEgoyMDI3LTAzLTE3GgNOUlQqAlVPMgM2NDZqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T21:58:15.668Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-24",
+   "status": "ok",
+   "fare": {
+    "price": 227,
+    "price_text": "$227",
+    "airline": "EVA Air",
+    "stops": 1,
+    "duration": "7 hr",
+    "departure_description": "11:20 AM on Wed, Mar 24",
+    "verdict": "typical",
+    "band_low": 110,
+    "band_high": 300,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMjQiHwoDSEtHEgoyMDI3LTAzLTI0GgNUUEUqAkJSMgM4NTIiHwoDVFBFEgoyMDI3LTAzLTI0GgNOUlQqAkJSMgMxOTZqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T21:58:15.668Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-31",
+   "status": "ok",
+   "fare": {
+    "price": 159,
+    "price_text": "$159",
+    "airline": "Hong Kong Express",
+    "stops": 0,
+    "duration": "4 hr 30 min",
+    "departure_description": "10:35 AM on Wed, Mar 31",
+    "verdict": "typical",
+    "band_low": 110,
+    "band_high": 300,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMzEiHwoDSEtHEgoyMDI3LTAzLTMxGgNOUlQqAlVPMgM4NzBqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T21:58:15.668Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-07",
+   "status": "ok",
+   "fare": {
+    "price": 159,
+    "price_text": "$159",
+    "airline": "Hong Kong Express",
+    "stops": 0,
+    "duration": "4 hr 30 min",
+    "departure_description": "9:15 AM on Wed, Apr 7",
+    "verdict": "typical",
+    "band_low": 110,
+    "band_high": 280,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMDciHwoDSEtHEgoyMDI3LTA0LTA3GgNOUlQqAlVPMgM4NDhqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T21:58:15.668Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-14",
+   "status": "ok",
+   "fare": {
+    "price": 159,
+    "price_text": "$159",
+    "airline": "Hong Kong Express",
+    "stops": 0,
+    "duration": "4 hr 30 min",
+    "departure_description": "9:15 AM on Wed, Apr 14",
+    "verdict": "typical",
+    "band_low": 110,
+    "band_high": 280,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMTQiHwoDSEtHEgoyMDI3LTA0LTE0GgNOUlQqAlVPMgM4NDhqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T21:58:15.668Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-21",
+   "status": "ok",
+   "fare": {
+    "price": 159,
+    "price_text": "$159",
+    "airline": "Hong Kong Express",
+    "stops": 0,
+    "duration": "4 hr 30 min",
+    "departure_description": "10:35 AM on Wed, Apr 21",
+    "verdict": "typical",
+    "band_low": 110,
+    "band_high": 280,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMjEiHwoDSEtHEgoyMDI3LTA0LTIxGgNOUlQqAlVPMgM4NzBqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T21:58:15.668Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-28",
+   "status": "ok",
+   "fare": {
+    "price": 159,
+    "price_text": "$159",
+    "airline": "Hong Kong Express",
+    "stops": 0,
+    "duration": "4 hr 30 min",
+    "departure_description": "9:15 AM on Wed, Apr 28",
+    "verdict": "typical",
+    "band_low": 110,
+    "band_high": 280,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMjgiHwoDSEtHEgoyMDI3LTA0LTI4GgNOUlQqAlVPMgM4NDhqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T21:58:15.668Z",
+   "source": "claude-mcp"
+  }
+ ]
+}

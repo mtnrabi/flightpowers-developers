@@ -1,0 +1,423 @@
+{
+ "slug": "sfo-to-icn",
+ "from": "SFO",
+ "to": "ICN",
+ "currency": "usd",
+ "trip": "one-way, 1 adult, economy",
+ "points": [
+  {
+   "date": "2026-11-25",
+   "status": "ok",
+   "fare": {
+    "price": 619,
+    "price_text": "$619",
+    "airline": "Air Premia",
+    "stops": 0,
+    "duration": "13 hr",
+    "departure_description": "3:20 PM on Wed, Nov 25",
+    "verdict": "typical",
+    "band_low": 345,
+    "band_high": 690,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTEtMjUiHwoDU0ZPEgoyMDI2LTExLTI1GgNJQ04qAllQMgMxMTJqBRIDU0ZPcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:04:05.385Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-02",
+   "status": "ok",
+   "fare": {
+    "price": 369,
+    "price_text": "$369",
+    "airline": "Air Premia",
+    "stops": 0,
+    "duration": "13 hr",
+    "departure_description": "3:20 PM on Wed, Dec 2",
+    "verdict": "low",
+    "band_low": 540,
+    "band_high": 1300,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDIiHwoDU0ZPEgoyMDI2LTEyLTAyGgNJQ04qAllQMgMxMTJqBRIDU0ZPcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:04:05.385Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-09",
+   "status": "ok",
+   "fare": {
+    "price": 669,
+    "price_text": "$669",
+    "airline": "Air Premia",
+    "stops": 0,
+    "duration": "13 hr",
+    "departure_description": "3:20 PM on Wed, Dec 9",
+    "verdict": "typical",
+    "band_low": 540,
+    "band_high": 1300,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDkiHwoDU0ZPEgoyMDI2LTEyLTA5GgNJQ04qAllQMgMxMTJqBRIDU0ZPcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:04:05.385Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-16",
+   "status": "ok",
+   "fare": {
+    "price": 1229,
+    "price_text": "$1229",
+    "airline": "Alaska, Korean Air",
+    "stops": 1,
+    "duration": "17 hr 6 min",
+    "departure_description": "7:04 PM on Wed, Dec 16",
+    "verdict": "typical",
+    "band_low": 540,
+    "band_high": 1300,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjYtMTItMTYiIAoDU0ZPEgoyMDI2LTEyLTE2GgNMQVMqAkFTMgQxMzYyIh0KA0xBUxIKMjAyNi0xMi0xNhoDSUNOKgJLRTIBNmoFEgNTRk9yBRIDSUNOQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:04:05.385Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-23",
+   "status": "ok",
+   "fare": {
+    "price": 1012,
+    "price_text": "$1012",
+    "airline": "Alaska, Korean Air",
+    "stops": 1,
+    "duration": "26 hr 38 min",
+    "departure_description": "8:42 AM on Wed, Dec 23",
+    "verdict": "typical",
+    "band_low": 540,
+    "band_high": 1300,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjYtMTItMjMiHwoDU0ZPEgoyMDI2LTEyLTIzGgNMQVgqAkFTMgM0MTIiHgoDTEFYEgoyMDI2LTEyLTIzGgNJQ04qAktFMgIxMmoFEgNTRk9yBRIDSUNOQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:04:05.385Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-30",
+   "status": "ok",
+   "fare": {
+    "price": 619,
+    "price_text": "$619",
+    "airline": "Air Premia",
+    "stops": 0,
+    "duration": "13 hr",
+    "departure_description": "3:20 PM on Wed, Dec 30",
+    "verdict": "typical",
+    "band_low": 540,
+    "band_high": 1300,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMzAiHwoDU0ZPEgoyMDI2LTEyLTMwGgNJQ04qAllQMgMxMTJqBRIDU0ZPcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:04:05.385Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-06",
+   "status": "ok",
+   "fare": {
+    "price": 353,
+    "price_text": "$353",
+    "airline": "United",
+    "stops": 1,
+    "duration": "24 hr 20 min",
+    "departure_description": "11:05 PM on Wed, Jan 6",
+    "verdict": "low",
+    "band_low": 365,
+    "band_high": 475,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMDYiHwoDU0ZPEgoyMDI3LTAxLTA2GgNFV1IqAlVBMgM2NDkiHwoDRVdSEgoyMDI3LTAxLTA3GgNJQ04qAlVBMgMyODVqBRIDU0ZPcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:04:05.385Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-13",
+   "status": "ok",
+   "fare": {
+    "price": 349,
+    "price_text": "$349",
+    "airline": "United",
+    "stops": 0,
+    "duration": "12 hr 55 min",
+    "departure_description": "10:20 AM on Wed, Jan 13",
+    "verdict": "low",
+    "band_low": 365,
+    "band_high": 475,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMTMiHwoDU0ZPEgoyMDI3LTAxLTEzGgNJQ04qAlVBMgM4OTNqBRIDU0ZPcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:04:05.385Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-20",
+   "status": "ok",
+   "fare": {
+    "price": 349,
+    "price_text": "$349",
+    "airline": "Air Premia",
+    "stops": 0,
+    "duration": "13 hr",
+    "departure_description": "3:20 PM on Wed, Jan 20",
+    "verdict": "low",
+    "band_low": 365,
+    "band_high": 475,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMjAiHwoDU0ZPEgoyMDI3LTAxLTIwGgNJQ04qAllQMgMxMTJqBRIDU0ZPcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:04:08.572Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-27",
+   "status": "ok",
+   "fare": {
+    "price": 349,
+    "price_text": "$349",
+    "airline": "Air Premia",
+    "stops": 0,
+    "duration": "13 hr",
+    "departure_description": "3:20 PM on Wed, Jan 27",
+    "verdict": "low",
+    "band_low": 365,
+    "band_high": 475,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMjciHwoDU0ZPEgoyMDI3LTAxLTI3GgNJQ04qAllQMgMxMTJqBRIDU0ZPcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:04:08.572Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-03",
+   "status": "ok",
+   "fare": {
+    "price": 349,
+    "price_text": "$349",
+    "airline": "Air Premia",
+    "stops": 0,
+    "duration": "13 hr",
+    "departure_description": "3:20 PM on Wed, Feb 3",
+    "verdict": "low",
+    "band_low": 365,
+    "band_high": 540,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMDMiHwoDU0ZPEgoyMDI3LTAyLTAzGgNJQ04qAllQMgMxMTJqBRIDU0ZPcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:04:08.572Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-10",
+   "status": "ok",
+   "fare": {
+    "price": 489,
+    "price_text": "$489",
+    "airline": "Korean Air | Delta",
+    "stops": 0,
+    "duration": "12 hr 55 min",
+    "departure_description": "11:45 AM on Wed, Feb 10",
+    "verdict": "typical",
+    "band_low": 365,
+    "band_high": 540,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDItMTAiHgoDU0ZPEgoyMDI3LTAyLTEwGgNJQ04qAktFMgIyNGoFEgNTRk9yBRIDSUNOQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:04:08.572Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-17",
+   "status": "ok",
+   "fare": {
+    "price": 349,
+    "price_text": "$349",
+    "airline": "United",
+    "stops": 0,
+    "duration": "12 hr 45 min",
+    "departure_description": "10:30 AM on Wed, Feb 17",
+    "verdict": "low",
+    "band_low": 365,
+    "band_high": 540,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMTciHwoDU0ZPEgoyMDI3LTAyLTE3GgNJQ04qAlVBMgM4OTNqBRIDU0ZPcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:04:08.572Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-24",
+   "status": "ok",
+   "fare": {
+    "price": 349,
+    "price_text": "$349",
+    "airline": "United",
+    "stops": 0,
+    "duration": "12 hr 45 min",
+    "departure_description": "10:30 AM on Wed, Feb 24",
+    "verdict": "low",
+    "band_low": 365,
+    "band_high": 540,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMjQiHwoDU0ZPEgoyMDI3LTAyLTI0GgNJQ04qAlVBMgM4OTNqBRIDU0ZPcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:04:08.572Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-03",
+   "status": "ok",
+   "fare": {
+    "price": 349,
+    "price_text": "$349",
+    "airline": "United",
+    "stops": 0,
+    "duration": "12 hr 45 min",
+    "departure_description": "10:30 AM on Wed, Mar 3",
+    "verdict": "low",
+    "band_low": 365,
+    "band_high": 670,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMDMiHwoDU0ZPEgoyMDI3LTAzLTAzGgNJQ04qAlVBMgM4OTNqBRIDU0ZPcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:04:08.572Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-10",
+   "status": "ok",
+   "fare": {
+    "price": 424,
+    "price_text": "$424",
+    "airline": "Philippine Airlines",
+    "stops": 1,
+    "duration": "27 hr 30 min",
+    "departure_description": "10:40 PM on Wed, Mar 10",
+    "verdict": "typical",
+    "band_low": 365,
+    "band_high": 670,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTAiHwoDU0ZPEgoyMDI3LTAzLTEwGgNNTkwqAlBSMgMxMDUiHwoDTU5MEgoyMDI3LTAzLTEyGgNJQ04qAlBSMgM0MDJqBRIDU0ZPcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:04:08.572Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-17",
+   "status": "ok",
+   "fare": {
+    "price": 424,
+    "price_text": "$424",
+    "airline": "Philippine Airlines",
+    "stops": 1,
+    "duration": "27 hr 30 min",
+    "departure_description": "11:40 PM on Wed, Mar 17",
+    "verdict": "typical",
+    "band_low": 365,
+    "band_high": 670,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTciHwoDU0ZPEgoyMDI3LTAzLTE3GgNNTkwqAlBSMgMxMDUiHwoDTU5MEgoyMDI3LTAzLTE5GgNJQ04qAlBSMgM0MDJqBRIDU0ZPcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:04:07.732Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-24",
+   "status": "ok",
+   "fare": {
+    "price": 356,
+    "price_text": "$356",
+    "airline": "Philippine Airlines",
+    "stops": 1,
+    "duration": "27 hr 30 min",
+    "departure_description": "11:40 PM on Wed, Mar 24",
+    "verdict": "low",
+    "band_low": 365,
+    "band_high": 670,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMjQiHwoDU0ZPEgoyMDI3LTAzLTI0GgNNTkwqAlBSMgMxMDUiHwoDTU5MEgoyMDI3LTAzLTI2GgNJQ04qAlBSMgM0MDJqBRIDU0ZPcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:04:07.732Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-31",
+   "status": "ok",
+   "fare": {
+    "price": 475,
+    "price_text": "$475",
+    "airline": "Cathay Pacific",
+    "stops": 1,
+    "duration": "26 hr 45 min",
+    "departure_description": "12:20 AM on Wed, Mar 31",
+    "verdict": "typical",
+    "band_low": 365,
+    "band_high": 670,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMzEiHwoDU0ZPEgoyMDI3LTAzLTMxGgNIS0cqAkNYMgM4NzMiHwoDSEtHEgoyMDI3LTA0LTAxGgNJQ04qAkNYMgM0MThqBRIDU0ZPcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:04:07.732Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-07",
+   "status": "ok",
+   "fare": {
+    "price": 349,
+    "price_text": "$349",
+    "airline": "United",
+    "stops": 0,
+    "duration": "12 hr 40 min",
+    "departure_description": "11:40 PM on Wed, Apr 7",
+    "verdict": "low",
+    "band_low": 365,
+    "band_high": 580,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMDciHwoDU0ZPEgoyMDI3LTA0LTA3GgNJQ04qAlVBMgM4MDVqBRIDU0ZPcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:04:07.732Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-14",
+   "status": "ok",
+   "fare": {
+    "price": 349,
+    "price_text": "$349",
+    "airline": "United",
+    "stops": 0,
+    "duration": "12 hr 40 min",
+    "departure_description": "10:20 AM on Wed, Apr 14",
+    "verdict": "low",
+    "band_low": 365,
+    "band_high": 580,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMTQiHwoDU0ZPEgoyMDI3LTA0LTE0GgNJQ04qAlVBMgM4OTNqBRIDU0ZPcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:04:07.732Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-21",
+   "status": "ok",
+   "fare": {
+    "price": 349,
+    "price_text": "$349",
+    "airline": "United",
+    "stops": 0,
+    "duration": "12 hr 40 min",
+    "departure_description": "10:20 AM on Wed, Apr 21",
+    "verdict": "low",
+    "band_low": 365,
+    "band_high": 580,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMjEiHwoDU0ZPEgoyMDI3LTA0LTIxGgNJQ04qAlVBMgM4OTNqBRIDU0ZPcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:04:07.732Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-28",
+   "status": "ok",
+   "fare": {
+    "price": 349,
+    "price_text": "$349",
+    "airline": "United",
+    "stops": 0,
+    "duration": "12 hr 40 min",
+    "departure_description": "10:20 AM on Wed, Apr 28",
+    "verdict": "low",
+    "band_low": 365,
+    "band_high": 580,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMjgiHwoDU0ZPEgoyMDI3LTA0LTI4GgNJQ04qAlVBMgM4OTNqBRIDU0ZPcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:04:07.732Z",
+   "source": "claude-mcp"
+  }
+ ]
+}

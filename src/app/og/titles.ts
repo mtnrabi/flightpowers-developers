@@ -3,6 +3,7 @@ import path from 'node:path';
 import { discoverRoutes } from '@/lib/routes';
 import { gridTitles } from '@/lib/grid';
 import { matrixTitles } from '@/lib/matrix';
+import { routeFareTitles } from '@/lib/route-fares';
 import { COUNTS } from '@/lib/site';
 import { DEFAULT_TITLE } from './card-url';
 
@@ -134,5 +135,6 @@ export function allCardTitles(): string[] {
   }
   for (const title of gridTitles()) titles.add(title);
   for (const title of matrixTitles()) titles.add(title);
+  for (const title of routeFareTitles()) titles.add(title);
   return [...titles];
 }

@@ -1,0 +1,423 @@
+{
+ "slug": "dxb-to-bom",
+ "from": "DXB",
+ "to": "BOM",
+ "currency": "usd",
+ "trip": "one-way, 1 adult, economy",
+ "points": [
+  {
+   "date": "2026-11-25",
+   "status": "ok",
+   "fare": {
+    "price": 213,
+    "price_text": "$213",
+    "airline": "IndiGo",
+    "stops": 0,
+    "duration": "3 hr 15 min",
+    "departure_description": "8:55 PM on Wed, Nov 25",
+    "verdict": "typical",
+    "band_low": 125,
+    "band_high": 225,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTEtMjUiIAoDRFhCEgoyMDI2LTExLTI1GgNCT00qAjZFMgQxNDU2agUSA0RYQnIFEgNCT01CAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:14:09.459Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-02",
+   "status": "ok",
+   "fare": {
+    "price": 214,
+    "price_text": "$214",
+    "airline": "SpiceJet",
+    "stops": 0,
+    "duration": "3 hr 10 min",
+    "departure_description": "12:20 PM on Wed, Dec 2",
+    "verdict": "typical",
+    "band_low": 145,
+    "band_high": 250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMDIiIAoDRFhCEgoyMDI2LTEyLTAyGgNCT00qAlNHMgQ1MDIzagUSA0RYQnIFEgNCT01CAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:14:09.459Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-09",
+   "status": "ok",
+   "fare": {
+    "price": 214,
+    "price_text": "$214",
+    "airline": "SpiceJet",
+    "stops": 0,
+    "duration": "3 hr 10 min",
+    "departure_description": "12:20 PM on Wed, Dec 9",
+    "verdict": "typical",
+    "band_low": 145,
+    "band_high": 250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMDkiIAoDRFhCEgoyMDI2LTEyLTA5GgNCT00qAlNHMgQ1MDIzagUSA0RYQnIFEgNCT01CAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:14:09.459Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-16",
+   "status": "ok",
+   "fare": {
+    "price": 247,
+    "price_text": "$247",
+    "airline": "IndiGo",
+    "stops": 0,
+    "duration": "3 hr 20 min",
+    "departure_description": "6:20 PM on Wed, Dec 16",
+    "verdict": "typical",
+    "band_low": 145,
+    "band_high": 250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMTYiIAoDRFhCEgoyMDI2LTEyLTE2GgNCT00qAjZFMgQxNDU0agUSA0RYQnIFEgNCT01CAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:14:09.459Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-23",
+   "status": "ok",
+   "fare": {
+    "price": 191,
+    "price_text": "$191",
+    "airline": "IndiGo",
+    "stops": 0,
+    "duration": "3 hr 15 min",
+    "departure_description": "12:15 PM on Wed, Dec 23",
+    "verdict": "typical",
+    "band_low": 145,
+    "band_high": 250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMjMiIAoDRFhCEgoyMDI2LTEyLTIzGgNCT00qAjZFMgQxNDUyagUSA0RYQnIFEgNCT01CAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:14:09.459Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-30",
+   "status": "ok",
+   "fare": {
+    "price": 174,
+    "price_text": "$174",
+    "airline": "IndiGo",
+    "stops": 0,
+    "duration": "3 hr 15 min",
+    "departure_description": "12:15 PM on Wed, Dec 30",
+    "verdict": "typical",
+    "band_low": 145,
+    "band_high": 250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMzAiIAoDRFhCEgoyMDI2LTEyLTMwGgNCT00qAjZFMgQxNDUyagUSA0RYQnIFEgNCT01CAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:14:09.459Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-06",
+   "status": "ok",
+   "fare": {
+    "price": 163,
+    "price_text": "$163",
+    "airline": "Gulf Air",
+    "stops": 1,
+    "duration": "11 hr 15 min",
+    "departure_description": "7:45 AM on Wed, Jan 6",
+    "verdict": "high",
+    "band_low": 105,
+    "band_high": 150,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjctMDEtMDYiHwoDRFhCEgoyMDI3LTAxLTA2GgNCQUgqAkdGMgM1MDEiHgoDQkFIEgoyMDI3LTAxLTA2GgNCT00qAkdGMgI2NGoFEgNEWEJyBRIDQk9NQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:14:09.459Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-13",
+   "status": "ok",
+   "fare": {
+    "price": 146,
+    "price_text": "$146",
+    "airline": "Royal Jordanian",
+    "stops": 1,
+    "duration": "23 hr 30 min",
+    "departure_description": "6:45 AM on Wed, Jan 13",
+    "verdict": "typical",
+    "band_low": 105,
+    "band_high": 150,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMTMiHwoDRFhCEgoyMDI3LTAxLTEzGgNBTU0qAlJKMgM2MTMiHwoDQU1NEgoyMDI3LTAxLTE0GgNCT00qAlJKMgMxOTJqBRIDRFhCcgUSA0JPTUIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:14:09.459Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-20",
+   "status": "ok",
+   "fare": {
+    "price": 148,
+    "price_text": "$148",
+    "airline": "IndiGo",
+    "stops": 0,
+    "duration": "3 hr 15 min",
+    "departure_description": "12:15 PM on Wed, Jan 20",
+    "verdict": "typical",
+    "band_low": 105,
+    "band_high": 150,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMjAiIAoDRFhCEgoyMDI3LTAxLTIwGgNCT00qAjZFMgQxNDUyagUSA0RYQnIFEgNCT01CAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:14:06.024Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-27",
+   "status": "ok",
+   "fare": {
+    "price": 148,
+    "price_text": "$148",
+    "airline": "IndiGo",
+    "stops": 0,
+    "duration": "3 hr 15 min",
+    "departure_description": "12:15 PM on Wed, Jan 27",
+    "verdict": "typical",
+    "band_low": 105,
+    "band_high": 150,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMjciIAoDRFhCEgoyMDI3LTAxLTI3GgNCT00qAjZFMgQxNDUyagUSA0RYQnIFEgNCT01CAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:14:06.024Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-03",
+   "status": "ok",
+   "fare": {
+    "price": 146,
+    "price_text": "$146",
+    "airline": "Royal Jordanian",
+    "stops": 1,
+    "duration": "23 hr 30 min",
+    "departure_description": "6:45 AM on Wed, Feb 3",
+    "verdict": "high",
+    "band_low": 105,
+    "band_high": 115,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMDMiHwoDRFhCEgoyMDI3LTAyLTAzGgNBTU0qAlJKMgM2MTMiHwoDQU1NEgoyMDI3LTAyLTA0GgNCT00qAlJKMgMxOTJqBRIDRFhCcgUSA0JPTUIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:14:06.024Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-10",
+   "status": "ok",
+   "fare": {
+    "price": 146,
+    "price_text": "$146",
+    "airline": "Royal Jordanian",
+    "stops": 1,
+    "duration": "23 hr 30 min",
+    "departure_description": "6:45 AM on Wed, Feb 10",
+    "verdict": "high",
+    "band_low": 105,
+    "band_high": 115,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMTAiHwoDRFhCEgoyMDI3LTAyLTEwGgNBTU0qAlJKMgM2MTMiHwoDQU1NEgoyMDI3LTAyLTExGgNCT00qAlJKMgMxOTJqBRIDRFhCcgUSA0JPTUIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:14:06.024Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-17",
+   "status": "ok",
+   "fare": {
+    "price": 146,
+    "price_text": "$146",
+    "airline": "Royal Jordanian",
+    "stops": 1,
+    "duration": "23 hr 30 min",
+    "departure_description": "6:45 AM on Wed, Feb 17",
+    "verdict": "high",
+    "band_low": 105,
+    "band_high": 115,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMTciHwoDRFhCEgoyMDI3LTAyLTE3GgNBTU0qAlJKMgM2MTMiHwoDQU1NEgoyMDI3LTAyLTE4GgNCT00qAlJKMgMxOTJqBRIDRFhCcgUSA0JPTUIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:14:06.024Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-24",
+   "status": "ok",
+   "fare": {
+    "price": 148,
+    "price_text": "$148",
+    "airline": "IndiGo",
+    "stops": 0,
+    "duration": "3 hr 15 min",
+    "departure_description": "12:15 PM on Wed, Feb 24",
+    "verdict": "high",
+    "band_low": 105,
+    "band_high": 115,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDItMjQiIAoDRFhCEgoyMDI3LTAyLTI0GgNCT00qAjZFMgQxNDUyagUSA0RYQnIFEgNCT01CAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:14:06.024Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-03",
+   "status": "ok",
+   "fare": {
+    "price": 163,
+    "price_text": "$163",
+    "airline": "Gulf Air",
+    "stops": 1,
+    "duration": "11 hr 15 min",
+    "departure_description": "7:45 AM on Wed, Mar 3",
+    "verdict": "typical",
+    "band_low": 105,
+    "band_high": 195,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjctMDMtMDMiHwoDRFhCEgoyMDI3LTAzLTAzGgNCQUgqAkdGMgM1MDEiHgoDQkFIEgoyMDI3LTAzLTAzGgNCT00qAkdGMgI2NGoFEgNEWEJyBRIDQk9NQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:14:06.024Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-10",
+   "status": "ok",
+   "fare": {
+    "price": 173,
+    "price_text": "$173",
+    "airline": "IndiGo",
+    "stops": 0,
+    "duration": "3 hr 15 min",
+    "departure_description": "12:15 PM on Wed, Mar 10",
+    "verdict": "typical",
+    "band_low": 105,
+    "band_high": 195,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDMtMTAiIAoDRFhCEgoyMDI3LTAzLTEwGgNCT00qAjZFMgQxNDUyagUSA0RYQnIFEgNCT01CAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:14:06.024Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-17",
+   "status": "ok",
+   "fare": {
+    "price": 146,
+    "price_text": "$146",
+    "airline": "Royal Jordanian",
+    "stops": 1,
+    "duration": "23 hr 30 min",
+    "departure_description": "6:45 AM on Wed, Mar 17",
+    "verdict": "typical",
+    "band_low": 105,
+    "band_high": 195,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTciHwoDRFhCEgoyMDI3LTAzLTE3GgNBTU0qAlJKMgM2MTMiHwoDQU1NEgoyMDI3LTAzLTE4GgNCT00qAlJKMgMxOTJqBRIDRFhCcgUSA0JPTUIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:14:09.103Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-24",
+   "status": "ok",
+   "fare": {
+    "price": 146,
+    "price_text": "$146",
+    "airline": "Royal Jordanian",
+    "stops": 1,
+    "duration": "23 hr 30 min",
+    "departure_description": "6:45 AM on Wed, Mar 24",
+    "verdict": "typical",
+    "band_low": 105,
+    "band_high": 195,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMjQiHwoDRFhCEgoyMDI3LTAzLTI0GgNBTU0qAlJKMgM2MTMiHwoDQU1NEgoyMDI3LTAzLTI1GgNCT00qAlJKMgMxOTJqBRIDRFhCcgUSA0JPTUIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:14:09.103Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-31",
+   "status": "ok",
+   "fare": {
+    "price": 146,
+    "price_text": "$146",
+    "airline": "Royal Jordanian",
+    "stops": 1,
+    "duration": "24 hr 10 min",
+    "departure_description": "6:30 AM on Wed, Mar 31",
+    "verdict": "typical",
+    "band_low": 105,
+    "band_high": 195,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMzEiHwoDRFhCEgoyMDI3LTAzLTMxGgNBTU0qAlJKMgM2MTMiHwoDQU1NEgoyMDI3LTA0LTAxGgNCT00qAlJKMgMxOTJqBRIDRFhCcgUSA0JPTUIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:14:09.103Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-07",
+   "status": "ok",
+   "fare": {
+    "price": 146,
+    "price_text": "$146",
+    "airline": "Royal Jordanian",
+    "stops": 1,
+    "duration": "24 hr 10 min",
+    "departure_description": "6:30 AM on Wed, Apr 7",
+    "verdict": "typical",
+    "band_low": 105,
+    "band_high": 180,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMDciHwoDRFhCEgoyMDI3LTA0LTA3GgNBTU0qAlJKMgM2MTMiHwoDQU1NEgoyMDI3LTA0LTA4GgNCT00qAlJKMgMxOTJqBRIDRFhCcgUSA0JPTUIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:14:09.103Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-14",
+   "status": "ok",
+   "fare": {
+    "price": 146,
+    "price_text": "$146",
+    "airline": "Royal Jordanian",
+    "stops": 1,
+    "duration": "24 hr 10 min",
+    "departure_description": "6:30 AM on Wed, Apr 14",
+    "verdict": "typical",
+    "band_low": 105,
+    "band_high": 180,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMTQiHwoDRFhCEgoyMDI3LTA0LTE0GgNBTU0qAlJKMgM2MTMiHwoDQU1NEgoyMDI3LTA0LTE1GgNCT00qAlJKMgMxOTJqBRIDRFhCcgUSA0JPTUIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:14:09.103Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-21",
+   "status": "ok",
+   "fare": {
+    "price": 146,
+    "price_text": "$146",
+    "airline": "Royal Jordanian",
+    "stops": 1,
+    "duration": "24 hr 10 min",
+    "departure_description": "6:30 AM on Wed, Apr 21",
+    "verdict": "typical",
+    "band_low": 105,
+    "band_high": 180,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjEiHwoDRFhCEgoyMDI3LTA0LTIxGgNBTU0qAlJKMgM2MTMiHwoDQU1NEgoyMDI3LTA0LTIyGgNCT00qAlJKMgMxOTJqBRIDRFhCcgUSA0JPTUIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:14:09.103Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-28",
+   "status": "ok",
+   "fare": {
+    "price": 146,
+    "price_text": "$146",
+    "airline": "Royal Jordanian",
+    "stops": 1,
+    "duration": "24 hr 10 min",
+    "departure_description": "6:30 AM on Wed, Apr 28",
+    "verdict": "typical",
+    "band_low": 105,
+    "band_high": 180,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjgiHwoDRFhCEgoyMDI3LTA0LTI4GgNBTU0qAlJKMgM2MTMiHwoDQU1NEgoyMDI3LTA0LTI5GgNCT00qAlJKMgMxOTJqBRIDRFhCcgUSA0JPTUIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:14:09.103Z",
+   "source": "claude-mcp"
+  }
+ ]
+}

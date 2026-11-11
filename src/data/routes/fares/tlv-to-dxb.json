@@ -1,0 +1,423 @@
+{
+ "slug": "tlv-to-dxb",
+ "from": "TLV",
+ "to": "DXB",
+ "currency": "usd",
+ "trip": "one-way, 1 adult, economy",
+ "points": [
+  {
+   "date": "2026-11-25",
+   "status": "ok",
+   "fare": {
+    "price": 434,
+    "price_text": "$434",
+    "airline": "Cyprus Airways",
+    "stops": 1,
+    "duration": "22 hr 55 min",
+    "departure_description": "4:05 PM on Wed, Nov 25",
+    "verdict": "typical",
+    "band_low": 165,
+    "band_high": 440,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTEtMjUiHwoDVExWEgoyMDI2LTExLTI1GgNMQ0EqAkNZMgMxMTEiHwoDTENBEgoyMDI2LTExLTI2GgNEWEIqAkNZMgMxMDZqBRIDVExWcgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-02",
+   "status": "ok",
+   "fare": {
+    "price": 440,
+    "price_text": "$440",
+    "airline": "Aegean",
+    "stops": 1,
+    "duration": "18 hr 50 min",
+    "departure_description": "7:10 PM on Wed, Dec 2",
+    "verdict": "high",
+    "band_low": 150,
+    "band_high": 415,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDIiHwoDVExWEgoyMDI2LTEyLTAyGgNBVEgqAkEzMgM5MjciHwoDQVRIEgoyMDI2LTEyLTAzGgNEWEIqAkEzMgM5NThqBRIDVExWcgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-09",
+   "status": "ok",
+   "fare": {
+    "price": 426,
+    "price_text": "$426",
+    "airline": "Cyprus Airways",
+    "stops": 1,
+    "duration": "22 hr 55 min",
+    "departure_description": "4:05 PM on Wed, Dec 9",
+    "verdict": "high",
+    "band_low": 150,
+    "band_high": 415,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDkiHwoDVExWEgoyMDI2LTEyLTA5GgNMQ0EqAkNZMgMxMTEiHwoDTENBEgoyMDI2LTEyLTEwGgNEWEIqAkNZMgMxMDZqBRIDVExWcgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-16",
+   "status": "ok",
+   "fare": {
+    "price": 249,
+    "price_text": "$249",
+    "airline": "Israir Airlines",
+    "stops": 0,
+    "duration": "3 hr 25 min",
+    "departure_description": "10:15 AM on Wed, Dec 16",
+    "verdict": "typical",
+    "band_low": 150,
+    "band_high": 415,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMTYiHwoDVExWEgoyMDI2LTEyLTE2GgNEWEIqAjZIMgM2NjNqBRIDVExWcgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-23",
+   "status": "ok",
+   "fare": {
+    "price": 205,
+    "price_text": "$205",
+    "airline": "El Al",
+    "stops": 0,
+    "duration": "3 hr 15 min",
+    "departure_description": "2:00 PM on Wed, Dec 23",
+    "verdict": "typical",
+    "band_low": 150,
+    "band_high": 415,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMjMiHwoDVExWEgoyMDI2LTEyLTIzGgNEWEIqAkxZMgM5NzNqBRIDVExWcgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-30",
+   "status": "ok",
+   "fare": {
+    "price": 245,
+    "price_text": "$245",
+    "airline": "El Al",
+    "stops": 0,
+    "duration": "3 hr 15 min",
+    "departure_description": "2:00 PM on Wed, Dec 30",
+    "verdict": "typical",
+    "band_low": 150,
+    "band_high": 415,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMzAiHwoDVExWEgoyMDI2LTEyLTMwGgNEWEIqAkxZMgM5NzNqBRIDVExWcgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-06",
+   "status": "ok",
+   "fare": {
+    "price": 187,
+    "price_text": "$187",
+    "airline": "Israir Airlines",
+    "stops": 0,
+    "duration": "3 hr 25 min",
+    "departure_description": "10:15 AM on Wed, Jan 6",
+    "verdict": "typical",
+    "band_low": 150,
+    "band_high": 235,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMDYiHwoDVExWEgoyMDI3LTAxLTA2GgNEWEIqAjZIMgM2NjNqBRIDVExWcgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-13",
+   "status": "ok",
+   "fare": {
+    "price": 198,
+    "price_text": "$198",
+    "airline": "Israir Airlines",
+    "stops": 0,
+    "duration": "3 hr 25 min",
+    "departure_description": "10:15 AM on Wed, Jan 13",
+    "verdict": "typical",
+    "band_low": 150,
+    "band_high": 235,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMTMiHwoDVExWEgoyMDI3LTAxLTEzGgNEWEIqAjZIMgM2NjNqBRIDVExWcgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-20",
+   "status": "ok",
+   "fare": {
+    "price": 170,
+    "price_text": "$170",
+    "airline": "Israir Airlines",
+    "stops": 0,
+    "duration": "3 hr 25 min",
+    "departure_description": "10:15 AM on Wed, Jan 20",
+    "verdict": "typical",
+    "band_low": 150,
+    "band_high": 235,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMjAiHwoDVExWEgoyMDI3LTAxLTIwGgNEWEIqAjZIMgM2NjNqBRIDVExWcgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-27",
+   "status": "ok",
+   "fare": {
+    "price": 160,
+    "price_text": "$160",
+    "airline": "Israir Airlines",
+    "stops": 0,
+    "duration": "3 hr 25 min",
+    "departure_description": "7:20 AM on Wed, Jan 27",
+    "verdict": "typical",
+    "band_low": 150,
+    "band_high": 235,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMjciHwoDVExWEgoyMDI3LTAxLTI3GgNEWEIqAjZIMgM2NjFqBRIDVExWcgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-03",
+   "status": "ok",
+   "fare": {
+    "price": 160,
+    "price_text": "$160",
+    "airline": "Israir Airlines",
+    "stops": 0,
+    "duration": "3 hr 25 min",
+    "departure_description": "7:20 AM on Wed, Feb 3",
+    "verdict": "typical",
+    "band_low": 150,
+    "band_high": 235,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMDMiHwoDVExWEgoyMDI3LTAyLTAzGgNEWEIqAjZIMgM2NjFqBRIDVExWcgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-10",
+   "status": "ok",
+   "fare": {
+    "price": 188,
+    "price_text": "$188",
+    "airline": "Israir Airlines",
+    "stops": 0,
+    "duration": "3 hr 25 min",
+    "departure_description": "7:20 AM on Wed, Feb 10",
+    "verdict": "typical",
+    "band_low": 150,
+    "band_high": 235,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMTAiHwoDVExWEgoyMDI3LTAyLTEwGgNEWEIqAjZIMgM2NjFqBRIDVExWcgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-17",
+   "status": "ok",
+   "fare": {
+    "price": 179,
+    "price_text": "$179",
+    "airline": "Israir Airlines",
+    "stops": 0,
+    "duration": "3 hr 25 min",
+    "departure_description": "10:15 AM on Wed, Feb 17",
+    "verdict": "typical",
+    "band_low": 150,
+    "band_high": 235,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMTciHwoDVExWEgoyMDI3LTAyLTE3GgNEWEIqAjZIMgM2NjNqBRIDVExWcgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-24",
+   "status": "ok",
+   "fare": {
+    "price": 171,
+    "price_text": "$171",
+    "airline": "Israir Airlines",
+    "stops": 0,
+    "duration": "3 hr 25 min",
+    "departure_description": "7:20 AM on Wed, Feb 24",
+    "verdict": "typical",
+    "band_low": 150,
+    "band_high": 235,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMjQiHwoDVExWEgoyMDI3LTAyLTI0GgNEWEIqAjZIMgM2NjFqBRIDVExWcgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-03",
+   "status": "ok",
+   "fare": {
+    "price": 160,
+    "price_text": "$160",
+    "airline": "Israir Airlines",
+    "stops": 0,
+    "duration": "3 hr 25 min",
+    "departure_description": "7:20 AM on Wed, Mar 3",
+    "verdict": "typical",
+    "band_low": 155,
+    "band_high": 435,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMDMiHwoDVExWEgoyMDI3LTAzLTAzGgNEWEIqAjZIMgM2NjFqBRIDVExWcgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-10",
+   "status": "ok",
+   "fare": {
+    "price": 170,
+    "price_text": "$170",
+    "airline": "Israir Airlines",
+    "stops": 0,
+    "duration": "3 hr 25 min",
+    "departure_description": "10:15 AM on Wed, Mar 10",
+    "verdict": "typical",
+    "band_low": 155,
+    "band_high": 435,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMTAiHwoDVExWEgoyMDI3LTAzLTEwGgNEWEIqAjZIMgM2NjNqBRIDVExWcgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-17",
+   "status": "ok",
+   "fare": {
+    "price": 208,
+    "price_text": "$208",
+    "airline": "Israir Airlines",
+    "stops": 0,
+    "duration": "3 hr 25 min",
+    "departure_description": "7:20 AM on Wed, Mar 17",
+    "verdict": "typical",
+    "band_low": 155,
+    "band_high": 435,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMTciHwoDVExWEgoyMDI3LTAzLTE3GgNEWEIqAjZIMgM2NjFqBRIDVExWcgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-24",
+   "status": "ok",
+   "fare": {
+    "price": 194,
+    "price_text": "$194",
+    "airline": "El Al",
+    "stops": 0,
+    "duration": "3 hr 15 min",
+    "departure_description": "2:00 PM on Wed, Mar 24",
+    "verdict": "typical",
+    "band_low": 155,
+    "band_high": 435,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMjQiHwoDVExWEgoyMDI3LTAzLTI0GgNEWEIqAkxZMgM5NzNqBRIDVExWcgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-31",
+   "status": "ok",
+   "fare": {
+    "price": 229,
+    "price_text": "$229",
+    "airline": "El Al",
+    "stops": 0,
+    "duration": "3 hr 30 min",
+    "departure_description": "6:40 AM on Wed, Mar 31",
+    "verdict": "typical",
+    "band_low": 155,
+    "band_high": 435,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMzEiHwoDVExWEgoyMDI3LTAzLTMxGgNEWEIqAkxZMgM5NzFqBRIDVExWcgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-07",
+   "status": "ok",
+   "fare": {
+    "price": 229,
+    "price_text": "$229",
+    "airline": "El Al",
+    "stops": 0,
+    "duration": "3 hr 30 min",
+    "departure_description": "6:40 AM on Wed, Apr 7",
+    "verdict": "typical",
+    "band_low": 205,
+    "band_high": 560,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMDciHwoDVExWEgoyMDI3LTA0LTA3GgNEWEIqAkxZMgM5NzFqBRIDVExWcgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-14",
+   "status": "ok",
+   "fare": {
+    "price": 364,
+    "price_text": "$364",
+    "airline": "El Al",
+    "stops": 0,
+    "duration": "3 hr 30 min",
+    "departure_description": "6:40 AM on Wed, Apr 14",
+    "verdict": "typical",
+    "band_low": 205,
+    "band_high": 560,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMTQiHwoDVExWEgoyMDI3LTA0LTE0GgNEWEIqAkxZMgM5NzFqBRIDVExWcgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-21",
+   "status": "ok",
+   "fare": {
+    "price": 501,
+    "price_text": "$501",
+    "airline": "Cyprus Airways",
+    "stops": 1,
+    "duration": "20 hr 10 min",
+    "departure_description": "3:35 PM on Wed, Apr 21",
+    "verdict": "typical",
+    "band_low": 205,
+    "band_high": 560,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjEiHwoDVExWEgoyMDI3LTA0LTIxGgNMQ0EqAkNZMgMxMTEiHwoDTENBEgoyMDI3LTA0LTIyGgNEWEIqAkNZMgMxMDZqBRIDVExWcgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-28",
+   "status": "ok",
+   "fare": {
+    "price": 475,
+    "price_text": "$475",
+    "airline": "Aegean",
+    "stops": 1,
+    "duration": "7 hr 50 min",
+    "departure_description": "5:00 AM on Wed, Apr 28",
+    "verdict": "typical",
+    "band_low": 205,
+    "band_high": 560,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjgiHwoDVExWEgoyMDI3LTA0LTI4GgNBVEgqAkEzMgM5MjkiHwoDQVRIEgoyMDI3LTA0LTI4GgNEWEIqAkEzMgM5NThqBRIDVExWcgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  }
+ ]
+}

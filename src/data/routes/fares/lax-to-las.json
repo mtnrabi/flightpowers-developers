@@ -1,0 +1,423 @@
+{
+ "slug": "lax-to-las",
+ "from": "LAX",
+ "to": "LAS",
+ "currency": "usd",
+ "trip": "one-way, 1 adult, economy",
+ "points": [
+  {
+   "date": "2026-11-25",
+   "status": "ok",
+   "fare": {
+    "price": 131,
+    "price_text": "$131",
+    "airline": "Frontier",
+    "stops": 1,
+    "duration": "26 hr 57 min",
+    "departure_description": "2:12 PM on Wed, Nov 25",
+    "verdict": "high",
+    "band_low": 20,
+    "band_high": 115,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTEtMjUiIAoDTEFYEgoyMDI2LTExLTI1GgNTRk8qAkY5MgQyODU3IiAKA1NGTxIKMjAyNi0xMS0yNhoDTEFTKgJGOTIEMjQ4NmoFEgNMQVhyBRIDTEFTQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:12.025Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-02",
+   "status": "ok",
+   "fare": {
+    "price": 29,
+    "price_text": "$29",
+    "airline": "Frontier",
+    "stops": 0,
+    "duration": "1 hr 16 min",
+    "departure_description": "7:00 AM on Wed, Dec 2",
+    "verdict": "typical",
+    "band_low": 20,
+    "band_high": 60,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMDIiIAoDTEFYEgoyMDI2LTEyLTAyGgNMQVMqAkY5MgQxMTg0agUSA0xBWHIFEgNMQVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:12.025Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-09",
+   "status": "ok",
+   "fare": {
+    "price": 19,
+    "price_text": "$19",
+    "airline": "Frontier",
+    "stops": 0,
+    "duration": "1 hr 16 min",
+    "departure_description": "7:00 AM on Wed, Dec 9",
+    "verdict": "low",
+    "band_low": 20,
+    "band_high": 60,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMDkiIAoDTEFYEgoyMDI2LTEyLTA5GgNMQVMqAkY5MgQxMTg0agUSA0xBWHIFEgNMQVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:12.025Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-16",
+   "status": "ok",
+   "fare": {
+    "price": 19,
+    "price_text": "$19",
+    "airline": "Frontier",
+    "stops": 0,
+    "duration": "1 hr 16 min",
+    "departure_description": "7:00 AM on Wed, Dec 16",
+    "verdict": "low",
+    "band_low": 20,
+    "band_high": 60,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMTYiIAoDTEFYEgoyMDI2LTEyLTE2GgNMQVMqAkY5MgQxMTg0agUSA0xBWHIFEgNMQVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:12.025Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-23",
+   "status": "ok",
+   "fare": {
+    "price": 19,
+    "price_text": "$19",
+    "airline": "Frontier",
+    "stops": 0,
+    "duration": "1 hr 16 min",
+    "departure_description": "1:16 PM on Wed, Dec 23",
+    "verdict": "low",
+    "band_low": 20,
+    "band_high": 60,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMjMiIAoDTEFYEgoyMDI2LTEyLTIzGgNMQVMqAkY5MgQzMjkyagUSA0xBWHIFEgNMQVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:12.025Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-30",
+   "status": "ok",
+   "fare": {
+    "price": 44,
+    "price_text": "$44",
+    "airline": "Frontier",
+    "stops": 0,
+    "duration": "1 hr 24 min",
+    "departure_description": "8:58 AM on Wed, Dec 30",
+    "verdict": "typical",
+    "band_low": 20,
+    "band_high": 60,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMzAiIAoDTEFYEgoyMDI2LTEyLTMwGgNMQVMqAkY5MgQxMTg0agUSA0xBWHIFEgNMQVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:12.025Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-06",
+   "status": "ok",
+   "fare": {
+    "price": 19,
+    "price_text": "$19",
+    "airline": "Frontier",
+    "stops": 0,
+    "duration": "1 hr 13 min",
+    "departure_description": "12:13 PM on Wed, Jan 6",
+    "verdict": "low",
+    "band_low": 25,
+    "band_high": 50,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMDYiIAoDTEFYEgoyMDI3LTAxLTA2GgNMQVMqAkY5MgQzMjkyagUSA0xBWHIFEgNMQVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:12.025Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-13",
+   "status": "ok",
+   "fare": {
+    "price": 19,
+    "price_text": "$19",
+    "airline": "Frontier",
+    "stops": 0,
+    "duration": "1 hr 16 min",
+    "departure_description": "11:02 AM on Wed, Jan 13",
+    "verdict": "low",
+    "band_low": 25,
+    "band_high": 50,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMTMiIAoDTEFYEgoyMDI3LTAxLTEzGgNMQVMqAkY5MgQzMjkyagUSA0xBWHIFEgNMQVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:12.025Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-20",
+   "status": "ok",
+   "fare": {
+    "price": 19,
+    "price_text": "$19",
+    "airline": "Frontier",
+    "stops": 0,
+    "duration": "1 hr 17 min",
+    "departure_description": "7:00 AM on Wed, Jan 20",
+    "verdict": "low",
+    "band_low": 25,
+    "band_high": 50,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMjAiIAoDTEFYEgoyMDI3LTAxLTIwGgNMQVMqAkY5MgQ0NjQyagUSA0xBWHIFEgNMQVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:00.169Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-27",
+   "status": "ok",
+   "fare": {
+    "price": 19,
+    "price_text": "$19",
+    "airline": "Frontier",
+    "stops": 0,
+    "duration": "1 hr 17 min",
+    "departure_description": "7:00 AM on Wed, Jan 27",
+    "verdict": "low",
+    "band_low": 25,
+    "band_high": 50,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMjciIAoDTEFYEgoyMDI3LTAxLTI3GgNMQVMqAkY5MgQ0NjQyagUSA0xBWHIFEgNMQVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:00.169Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-03",
+   "status": "ok",
+   "fare": {
+    "price": 19,
+    "price_text": "$19",
+    "airline": "Frontier",
+    "stops": 0,
+    "duration": "1 hr 17 min",
+    "departure_description": "7:00 AM on Wed, Feb 3",
+    "verdict": "low",
+    "band_low": 25,
+    "band_high": 40,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDItMDMiIAoDTEFYEgoyMDI3LTAyLTAzGgNMQVMqAkY5MgQ0NjQyagUSA0xBWHIFEgNMQVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:00.169Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-10",
+   "status": "ok",
+   "fare": {
+    "price": 19,
+    "price_text": "$19",
+    "airline": "Frontier",
+    "stops": 0,
+    "duration": "1 hr 17 min",
+    "departure_description": "7:00 AM on Wed, Feb 10",
+    "verdict": "low",
+    "band_low": 25,
+    "band_high": 40,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDItMTAiIAoDTEFYEgoyMDI3LTAyLTEwGgNMQVMqAkY5MgQ0NjQyagUSA0xBWHIFEgNMQVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:00.169Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-17",
+   "status": "ok",
+   "fare": {
+    "price": 19,
+    "price_text": "$19",
+    "airline": "Frontier",
+    "stops": 0,
+    "duration": "1 hr 15 min",
+    "departure_description": "7:00 AM on Wed, Feb 17",
+    "verdict": "low",
+    "band_low": 25,
+    "band_high": 40,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDItMTciIAoDTEFYEgoyMDI3LTAyLTE3GgNMQVMqAkY5MgQxMTg0agUSA0xBWHIFEgNMQVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:00.169Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-24",
+   "status": "ok",
+   "fare": {
+    "price": 19,
+    "price_text": "$19",
+    "airline": "Frontier",
+    "stops": 0,
+    "duration": "1 hr 15 min",
+    "departure_description": "7:00 AM on Wed, Feb 24",
+    "verdict": "low",
+    "band_low": 25,
+    "band_high": 40,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDItMjQiIAoDTEFYEgoyMDI3LTAyLTI0GgNMQVMqAkY5MgQxMTg0agUSA0xBWHIFEgNMQVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:00.169Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-03",
+   "status": "ok",
+   "fare": {
+    "price": 19,
+    "price_text": "$19",
+    "airline": "Frontier",
+    "stops": 0,
+    "duration": "1 hr 16 min",
+    "departure_description": "11:09 AM on Wed, Mar 3",
+    "verdict": "low",
+    "band_low": 25,
+    "band_high": 45,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDMtMDMiIAoDTEFYEgoyMDI3LTAzLTAzGgNMQVMqAkY5MgQzMjkyagUSA0xBWHIFEgNMQVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:00.169Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-10",
+   "status": "ok",
+   "fare": {
+    "price": 59,
+    "price_text": "$59",
+    "airline": "United",
+    "stops": 0,
+    "duration": "1 hr 20 min",
+    "departure_description": "12:43 PM on Wed, Mar 10",
+    "verdict": "high",
+    "band_low": 25,
+    "band_high": 45,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDMtMTAiIAoDTEFYEgoyMDI3LTAzLTEwGgNMQVMqAlVBMgQyNzQxagUSA0xBWHIFEgNMQVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:00.169Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-17",
+   "status": "ok",
+   "fare": {
+    "price": 116,
+    "price_text": "$116",
+    "airline": "Frontier",
+    "stops": 0,
+    "duration": "1 hr 16 min",
+    "departure_description": "11:09 AM on Wed, Mar 17",
+    "verdict": "high",
+    "band_low": 25,
+    "band_high": 45,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDMtMTciIAoDTEFYEgoyMDI3LTAzLTE3GgNMQVMqAkY5MgQzMjkyagUSA0xBWHIFEgNMQVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:02:55.473Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-24",
+   "status": "ok",
+   "fare": {
+    "price": 116,
+    "price_text": "$116",
+    "airline": "Frontier",
+    "stops": 0,
+    "duration": "1 hr 16 min",
+    "departure_description": "11:09 AM on Wed, Mar 24",
+    "verdict": "high",
+    "band_low": 25,
+    "band_high": 45,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDMtMjQiIAoDTEFYEgoyMDI3LTAzLTI0GgNMQVMqAkY5MgQzMjkyagUSA0xBWHIFEgNMQVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:02:55.473Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-31",
+   "status": "ok",
+   "fare": {
+    "price": 116,
+    "price_text": "$116",
+    "airline": "Frontier",
+    "stops": 0,
+    "duration": "1 hr 16 min",
+    "departure_description": "11:09 AM on Wed, Mar 31",
+    "verdict": "high",
+    "band_low": 25,
+    "band_high": 45,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDMtMzEiIAoDTEFYEgoyMDI3LTAzLTMxGgNMQVMqAkY5MgQzMjkyagUSA0xBWHIFEgNMQVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:02:55.473Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-07",
+   "status": "ok",
+   "fare": {
+    "price": 110,
+    "price_text": "$110",
+    "airline": "Contour Airlines | Operated by Contour Airlines as Public Charter, Contour Airlines as Public Charter",
+    "stops": 1,
+    "duration": "3 hr 55 min",
+    "departure_description": "11:55 AM on Wed, Apr 7",
+    "verdict": "high",
+    "band_low": 25,
+    "band_high": 55,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDQtMDciIAoDTEFYEgoyMDI3LTA0LTA3GgNNQ0UqAkxGMgQzNjAyIiAKA01DRRIKMjAyNy0wNC0wNxoDTEFTKgJMRjIEMzYwM2oFEgNMQVhyBRIDTEFTQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:02:55.473Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-14",
+   "status": "ok",
+   "fare": {
+    "price": 110,
+    "price_text": "$110",
+    "airline": "Contour Airlines | Operated by Contour Airlines as Public Charter, Contour Airlines as Public Charter",
+    "stops": 1,
+    "duration": "3 hr 55 min",
+    "departure_description": "11:55 AM on Wed, Apr 14",
+    "verdict": "high",
+    "band_low": 25,
+    "band_high": 55,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDQtMTQiIAoDTEFYEgoyMDI3LTA0LTE0GgNNQ0UqAkxGMgQzNjAyIiAKA01DRRIKMjAyNy0wNC0xNBoDTEFTKgJMRjIEMzYwM2oFEgNMQVhyBRIDTEFTQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:02:55.473Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-21",
+   "status": "ok",
+   "fare": {
+    "price": 110,
+    "price_text": "$110",
+    "airline": "Contour Airlines | Operated by Contour Airlines as Public Charter, Contour Airlines as Public Charter",
+    "stops": 1,
+    "duration": "3 hr 55 min",
+    "departure_description": "11:55 AM on Wed, Apr 21",
+    "verdict": "high",
+    "band_low": 25,
+    "band_high": 55,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDQtMjEiIAoDTEFYEgoyMDI3LTA0LTIxGgNNQ0UqAkxGMgQzNjAyIiAKA01DRRIKMjAyNy0wNC0yMRoDTEFTKgJMRjIEMzYwM2oFEgNMQVhyBRIDTEFTQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:02:55.473Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-28",
+   "status": "ok",
+   "fare": {
+    "price": 110,
+    "price_text": "$110",
+    "airline": "Contour Airlines | Operated by Contour Airlines as Public Charter, Contour Airlines as Public Charter",
+    "stops": 1,
+    "duration": "3 hr 55 min",
+    "departure_description": "11:55 AM on Wed, Apr 28",
+    "verdict": "high",
+    "band_low": 25,
+    "band_high": 55,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDQtMjgiIAoDTEFYEgoyMDI3LTA0LTI4GgNNQ0UqAkxGMgQzNjAyIiAKA01DRRIKMjAyNy0wNC0yOBoDTEFTKgJMRjIEMzYwM2oFEgNMQVhyBRIDTEFTQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:02:55.473Z",
+   "source": "claude-mcp"
+  }
+ ]
+}

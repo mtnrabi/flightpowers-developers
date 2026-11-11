@@ -1,0 +1,423 @@
+{
+ "slug": "cdg-to-nrt",
+ "from": "CDG",
+ "to": "NRT",
+ "currency": "usd",
+ "trip": "one-way, 1 adult, economy",
+ "points": [
+  {
+   "date": "2026-11-25",
+   "status": "ok",
+   "fare": {
+    "price": 456,
+    "price_text": "$456",
+    "airline": "Etihad",
+    "stops": 1,
+    "duration": "19 hr 20 min",
+    "departure_description": "9:55 AM on Wed, Nov 25",
+    "verdict": "low",
+    "band_low": 485,
+    "band_high": 790,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjYtMTEtMjUiHgoDQ0RHEgoyMDI2LTExLTI1GgNBVUgqAkVZMgIzMiIfCgNBVUgSCjIwMjYtMTEtMjUaA05SVCoCRVkyAzgwMGoFEgNDREdyBRIDTlJUQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-02",
+   "status": "ok",
+   "fare": {
+    "price": 456,
+    "price_text": "$456",
+    "airline": "Etihad",
+    "stops": 1,
+    "duration": "17 hr 45 min",
+    "departure_description": "9:55 AM on Wed, Dec 2",
+    "verdict": "low",
+    "band_low": 540,
+    "band_high": 880,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjYtMTItMDIiHgoDQ0RHEgoyMDI2LTEyLTAyGgNBVUgqAkVZMgIzMiIfCgNBVUgSCjIwMjYtMTItMDIaA05SVCoCRVkyAzgwMGoFEgNDREdyBRIDTlJUQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-09",
+   "status": "ok",
+   "fare": {
+    "price": 456,
+    "price_text": "$456",
+    "airline": "Etihad",
+    "stops": 1,
+    "duration": "17 hr 45 min",
+    "departure_description": "9:55 AM on Wed, Dec 9",
+    "verdict": "low",
+    "band_low": 540,
+    "band_high": 880,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjYtMTItMDkiHgoDQ0RHEgoyMDI2LTEyLTA5GgNBVUgqAkVZMgIzMiIfCgNBVUgSCjIwMjYtMTItMDkaA05SVCoCRVkyAzgwMGoFEgNDREdyBRIDTlJUQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-16",
+   "status": "ok",
+   "fare": {
+    "price": 683,
+    "price_text": "$683",
+    "airline": "China Southern",
+    "stops": 1,
+    "duration": "42 hr 35 min",
+    "departure_description": "10:40 AM on Wed, Dec 16",
+    "verdict": "typical",
+    "band_low": 540,
+    "band_high": 880,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTItMTYiHwoDQ0RHEgoyMDI2LTEyLTE2GgNDQU4qAkNaMgMzNDgiIAoDQ0FOEgoyMDI2LTEyLTE4GgNOUlQqAkNaMgQ4MTAxagUSA0NER3IFEgNOUlRCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-23",
+   "status": "ok",
+   "fare": {
+    "price": 651,
+    "price_text": "$651",
+    "airline": "Trinity Airways",
+    "stops": 1,
+    "duration": "38 hr 25 min",
+    "departure_description": "7:30 PM on Wed, Dec 23",
+    "verdict": "typical",
+    "band_low": 540,
+    "band_high": 880,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMjMiHwoDQ0RHEgoyMDI2LTEyLTIzGgNJQ04qAlRXMgM0MDIiHwoDSUNOEgoyMDI2LTEyLTI1GgNOUlQqAlRXMgMyNDVqBRIDQ0RHcgUSA05SVEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-30",
+   "status": "ok",
+   "fare": {
+    "price": 796,
+    "price_text": "$796",
+    "airline": "EVA Air",
+    "stops": 1,
+    "duration": "17 hr 35 min",
+    "departure_description": "11:20 AM on Wed, Dec 30",
+    "verdict": "typical",
+    "band_low": 540,
+    "band_high": 880,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjYtMTItMzAiHgoDQ0RHEgoyMDI2LTEyLTMwGgNUUEUqAkJSMgI4OCIfCgNUUEUSCjIwMjYtMTItMzEaA05SVCoCQlIyAzE5OGoFEgNDREdyBRIDTlJUQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-06",
+   "status": "ok",
+   "fare": {
+    "price": 683,
+    "price_text": "$683",
+    "airline": "China Southern",
+    "stops": 1,
+    "duration": "42 hr 35 min",
+    "departure_description": "10:40 AM on Wed, Jan 6",
+    "verdict": "typical",
+    "band_low": 380,
+    "band_high": 750,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDEtMDYiHwoDQ0RHEgoyMDI3LTAxLTA2GgNDQU4qAkNaMgMzNDgiIAoDQ0FOEgoyMDI3LTAxLTA4GgNOUlQqAkNaMgQ4MTAxagUSA0NER3IFEgNOUlRCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-13",
+   "status": "ok",
+   "fare": {
+    "price": 683,
+    "price_text": "$683",
+    "airline": "China Southern",
+    "stops": 1,
+    "duration": "42 hr 35 min",
+    "departure_description": "10:40 AM on Wed, Jan 13",
+    "verdict": "typical",
+    "band_low": 380,
+    "band_high": 750,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDEtMTMiHwoDQ0RHEgoyMDI3LTAxLTEzGgNDQU4qAkNaMgMzNDgiIAoDQ0FOEgoyMDI3LTAxLTE1GgNOUlQqAkNaMgQ4MTAxagUSA0NER3IFEgNOUlRCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-20",
+   "status": "ok",
+   "fare": {
+    "price": 683,
+    "price_text": "$683",
+    "airline": "China Southern",
+    "stops": 1,
+    "duration": "42 hr 35 min",
+    "departure_description": "10:40 AM on Wed, Jan 20",
+    "verdict": "typical",
+    "band_low": 380,
+    "band_high": 750,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDEtMjAiHwoDQ0RHEgoyMDI3LTAxLTIwGgNDQU4qAkNaMgMzNDgiIAoDQ0FOEgoyMDI3LTAxLTIyGgNOUlQqAkNaMgQ4MTAxagUSA0NER3IFEgNOUlRCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-27",
+   "status": "ok",
+   "fare": {
+    "price": 737,
+    "price_text": "$737",
+    "airline": "Air France, China Airlines",
+    "stops": 2,
+    "duration": "21 hr 30 min",
+    "departure_description": "8:00 AM on Wed, Jan 27",
+    "verdict": "typical",
+    "band_low": 380,
+    "band_high": 750,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gn0SCjIwMjctMDEtMjciIAoDQ0RHEgoyMDI3LTAxLTI3GgNBTVMqAkFGMgQxMzQwIh4KA0FNUxIKMjAyNy0wMS0yNxoDVFBFKgJDSTICNzQiHwoDVFBFEgoyMDI3LTAxLTI4GgNOUlQqAkNJMgMxMDBqBRIDQ0RHcgUSA05SVEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-03",
+   "status": "ok",
+   "fare": {
+    "price": 754,
+    "price_text": "$754",
+    "airline": "Turkish Airlines",
+    "stops": 1,
+    "duration": "16 hr 15 min",
+    "departure_description": "6:55 PM on Wed, Feb 3",
+    "verdict": "typical",
+    "band_low": 530,
+    "band_high": 780,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDItMDMiIAoDQ0RHEgoyMDI3LTAyLTAzGgNJU1QqAlRLMgQxODI4Ih8KA0lTVBIKMjAyNy0wMi0wNBoDTlJUKgJUSzIDMzAwagUSA0NER3IFEgNOUlRCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-10",
+   "status": "ok",
+   "fare": {
+    "price": 683,
+    "price_text": "$683",
+    "airline": "China Southern",
+    "stops": 1,
+    "duration": "42 hr 35 min",
+    "departure_description": "10:40 AM on Wed, Feb 10",
+    "verdict": "typical",
+    "band_low": 530,
+    "band_high": 780,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDItMTAiHwoDQ0RHEgoyMDI3LTAyLTEwGgNDQU4qAkNaMgMzNDgiIAoDQ0FOEgoyMDI3LTAyLTEyGgNOUlQqAkNaMgQ4MTAxagUSA0NER3IFEgNOUlRCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-17",
+   "status": "ok",
+   "fare": {
+    "price": 683,
+    "price_text": "$683",
+    "airline": "China Southern",
+    "stops": 1,
+    "duration": "42 hr 35 min",
+    "departure_description": "10:40 AM on Wed, Feb 17",
+    "verdict": "typical",
+    "band_low": 530,
+    "band_high": 780,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDItMTciHwoDQ0RHEgoyMDI3LTAyLTE3GgNDQU4qAkNaMgMzNDgiIAoDQ0FOEgoyMDI3LTAyLTE5GgNOUlQqAkNaMgQ4MTAxagUSA0NER3IFEgNOUlRCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-24",
+   "status": "ok",
+   "fare": {
+    "price": 683,
+    "price_text": "$683",
+    "airline": "China Southern",
+    "stops": 1,
+    "duration": "42 hr 35 min",
+    "departure_description": "10:40 AM on Wed, Feb 24",
+    "verdict": "typical",
+    "band_low": 530,
+    "band_high": 780,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDItMjQiHwoDQ0RHEgoyMDI3LTAyLTI0GgNDQU4qAkNaMgMzNDgiIAoDQ0FOEgoyMDI3LTAyLTI2GgNOUlQqAkNaMgQ4MTAxagUSA0NER3IFEgNOUlRCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-03",
+   "status": "ok",
+   "fare": {
+    "price": 683,
+    "price_text": "$683",
+    "airline": "China Southern",
+    "stops": 1,
+    "duration": "42 hr 35 min",
+    "departure_description": "10:40 AM on Wed, Mar 3",
+    "verdict": "typical",
+    "band_low": 570,
+    "band_high": 910,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMDMiHwoDQ0RHEgoyMDI3LTAzLTAzGgNDQU4qAkNaMgMzNDgiIAoDQ0FOEgoyMDI3LTAzLTA1GgNOUlQqAkNaMgQ4MTAxagUSA0NER3IFEgNOUlRCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-10",
+   "status": "ok",
+   "fare": {
+    "price": 683,
+    "price_text": "$683",
+    "airline": "China Southern",
+    "stops": 1,
+    "duration": "42 hr 35 min",
+    "departure_description": "10:40 AM on Wed, Mar 10",
+    "verdict": "typical",
+    "band_low": 570,
+    "band_high": 910,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMTAiHwoDQ0RHEgoyMDI3LTAzLTEwGgNDQU4qAkNaMgMzNDgiIAoDQ0FOEgoyMDI3LTAzLTEyGgNOUlQqAkNaMgQ4MTAxagUSA0NER3IFEgNOUlRCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-17",
+   "status": "ok",
+   "fare": {
+    "price": 792,
+    "price_text": "$792",
+    "airline": "Air France, China Airlines",
+    "stops": 2,
+    "duration": "21 hr 30 min",
+    "departure_description": "8:00 AM on Wed, Mar 17",
+    "verdict": "typical",
+    "band_low": 570,
+    "band_high": 910,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gn0SCjIwMjctMDMtMTciIAoDQ0RHEgoyMDI3LTAzLTE3GgNBTVMqAkFGMgQxMzQwIh4KA0FNUxIKMjAyNy0wMy0xNxoDVFBFKgJDSTICNzQiHwoDVFBFEgoyMDI3LTAzLTE4GgNOUlQqAkNJMgMxMDBqBRIDQ0RHcgUSA05SVEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-24",
+   "status": "ok",
+   "fare": {
+    "price": 796,
+    "price_text": "$796",
+    "airline": "EVA Air",
+    "stops": 1,
+    "duration": "17 hr 35 min",
+    "departure_description": "11:20 AM on Wed, Mar 24",
+    "verdict": "typical",
+    "band_low": 570,
+    "band_high": 910,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjctMDMtMjQiHgoDQ0RHEgoyMDI3LTAzLTI0GgNUUEUqAkJSMgI4OCIfCgNUUEUSCjIwMjctMDMtMjUaA05SVCoCQlIyAzE5OGoFEgNDREdyBRIDTlJUQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-31",
+   "status": "ok",
+   "fare": {
+    "price": 683,
+    "price_text": "$683",
+    "airline": "China Southern",
+    "stops": 1,
+    "duration": "42 hr 30 min",
+    "departure_description": "12:10 PM on Wed, Mar 31",
+    "verdict": "typical",
+    "band_low": 570,
+    "band_high": 910,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMzEiHwoDQ0RHEgoyMDI3LTAzLTMxGgNDQU4qAkNaMgMzNDgiIAoDQ0FOEgoyMDI3LTA0LTAyGgNOUlQqAkNaMgQ4MTAxagUSA0NER3IFEgNOUlRCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-07",
+   "status": "ok",
+   "fare": {
+    "price": 683,
+    "price_text": "$683",
+    "airline": "China Southern",
+    "stops": 1,
+    "duration": "42 hr 30 min",
+    "departure_description": "12:10 PM on Wed, Apr 7",
+    "verdict": "typical",
+    "band_low": 540,
+    "band_high": 750,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDQtMDciHwoDQ0RHEgoyMDI3LTA0LTA3GgNDQU4qAkNaMgMzNDgiIAoDQ0FOEgoyMDI3LTA0LTA5GgNOUlQqAkNaMgQ4MTAxagUSA0NER3IFEgNOUlRCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-14",
+   "status": "ok",
+   "fare": {
+    "price": 683,
+    "price_text": "$683",
+    "airline": "China Southern",
+    "stops": 1,
+    "duration": "42 hr 30 min",
+    "departure_description": "12:10 PM on Wed, Apr 14",
+    "verdict": "typical",
+    "band_low": 540,
+    "band_high": 750,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDQtMTQiHwoDQ0RHEgoyMDI3LTA0LTE0GgNDQU4qAkNaMgMzNDgiIAoDQ0FOEgoyMDI3LTA0LTE2GgNOUlQqAkNaMgQ4MTAxagUSA0NER3IFEgNOUlRCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-21",
+   "status": "ok",
+   "fare": {
+    "price": 683,
+    "price_text": "$683",
+    "airline": "China Southern",
+    "stops": 1,
+    "duration": "42 hr 30 min",
+    "departure_description": "12:10 PM on Wed, Apr 21",
+    "verdict": "typical",
+    "band_low": 540,
+    "band_high": 750,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDQtMjEiHwoDQ0RHEgoyMDI3LTA0LTIxGgNDQU4qAkNaMgMzNDgiIAoDQ0FOEgoyMDI3LTA0LTIzGgNOUlQqAkNaMgQ4MTAxagUSA0NER3IFEgNOUlRCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-28",
+   "status": "ok",
+   "fare": {
+    "price": 763,
+    "price_text": "$763",
+    "airline": "British Airways, Royal Brunei",
+    "stops": 3,
+    "duration": "37 hr 50 min",
+    "departure_description": "10:40 AM on Wed, Apr 28",
+    "verdict": "high",
+    "band_low": 540,
+    "band_high": 750,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GpwBEgoyMDI3LTA0LTI4Ih8KA0NERxIKMjAyNy0wNC0yOBoDTEhSKgJCQTIDMzAxIh4KA0xIUhIKMjAyNy0wNC0yOBoDRFhCKgJCSTICOTgiHgoDRFhCEgoyMDI3LTA0LTI5GgNCV04qAkJJMgI5OCIfCgNCV04SCjIwMjctMDQtMzAaA05SVCoCQkkyAzY5NWoFEgNDREdyBRIDTlJUQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  }
+ ]
+}

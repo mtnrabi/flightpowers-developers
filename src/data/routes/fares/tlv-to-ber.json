@@ -1,0 +1,423 @@
+{
+ "slug": "tlv-to-ber",
+ "from": "TLV",
+ "to": "BER",
+ "currency": "usd",
+ "trip": "one-way, 1 adult, economy",
+ "points": [
+  {
+   "date": "2026-11-25",
+   "status": "ok",
+   "fare": {
+    "price": 194,
+    "price_text": "$194",
+    "airline": "Condor",
+    "stops": 1,
+    "duration": "10 hr 55 min",
+    "departure_description": "5:40 AM on Wed, Nov 25",
+    "verdict": "typical",
+    "band_low": 150,
+    "band_high": 235,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTEtMjUiIAoDVExWEgoyMDI2LTExLTI1GgNGUkEqAkRFMgQ0MzA5IiAKA0ZSQRIKMjAyNi0xMS0yNRoDQkVSKgJERTIENDAwNGoFEgNUTFZyBRIDQkVSQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-02",
+   "status": "ok",
+   "fare": {
+    "price": 218,
+    "price_text": "$218",
+    "airline": "Aegean",
+    "stops": 1,
+    "duration": "16 hr 15 min",
+    "departure_description": "7:10 PM on Wed, Dec 2",
+    "verdict": "typical",
+    "band_low": 150,
+    "band_high": 220,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDIiHwoDVExWEgoyMDI2LTEyLTAyGgNBVEgqAkEzMgM5MjciHwoDQVRIEgoyMDI2LTEyLTAzGgNCRVIqAkEzMgM4MjBqBRIDVExWcgUSA0JFUkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-09",
+   "status": "ok",
+   "fare": {
+    "price": 184,
+    "price_text": "$184",
+    "airline": "SKY express",
+    "stops": 1,
+    "duration": "15 hr 25 min",
+    "departure_description": "11:30 PM on Wed, Dec 9",
+    "verdict": "typical",
+    "band_low": 150,
+    "band_high": 220,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDkiHwoDVExWEgoyMDI2LTEyLTA5GgNBVEgqAkdRMgM3MjEiHwoDQVRIEgoyMDI2LTEyLTEwGgNCRVIqAkdRMgM4NzRqBRIDVExWcgUSA0JFUkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-16",
+   "status": "ok",
+   "fare": {
+    "price": 194,
+    "price_text": "$194",
+    "airline": "Aegean",
+    "stops": 1,
+    "duration": "14 hr",
+    "departure_description": "5:20 AM on Wed, Dec 16",
+    "verdict": "typical",
+    "band_low": 150,
+    "band_high": 220,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMTYiHwoDVExWEgoyMDI2LTEyLTE2GgNBVEgqAkEzMgM5MjkiHwoDQVRIEgoyMDI2LTEyLTE2GgNCRVIqAkEzMgM4MjJqBRIDVExWcgUSA0JFUkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-23",
+   "status": "ok",
+   "fare": {
+    "price": 177,
+    "price_text": "$177",
+    "airline": "Bluebird Airways",
+    "stops": 0,
+    "duration": "4 hr 30 min",
+    "departure_description": "10:20 AM on Wed, Dec 23",
+    "verdict": "typical",
+    "band_low": 150,
+    "band_high": 220,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMjMiHwoDVExWEgoyMDI2LTEyLTIzGgNCRVIqAkJaMgMyNzJqBRIDVExWcgUSA0JFUkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-30",
+   "status": "ok",
+   "fare": {
+    "price": 207,
+    "price_text": "$207",
+    "airline": "Bluebird Airways",
+    "stops": 0,
+    "duration": "4 hr 30 min",
+    "departure_description": "10:20 AM on Wed, Dec 30",
+    "verdict": "typical",
+    "band_low": 150,
+    "band_high": 220,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMzAiHwoDVExWEgoyMDI2LTEyLTMwGgNCRVIqAkJaMgMyNzJqBRIDVExWcgUSA0JFUkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-06",
+   "status": "ok",
+   "fare": {
+    "price": 197,
+    "price_text": "$197",
+    "airline": "Bluebird Airways",
+    "stops": 0,
+    "duration": "4 hr 30 min",
+    "departure_description": "10:20 AM on Wed, Jan 6",
+    "verdict": "typical",
+    "band_low": 135,
+    "band_high": 240,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMDYiHwoDVExWEgoyMDI3LTAxLTA2GgNCRVIqAkJaMgMyNzJqBRIDVExWcgUSA0JFUkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-13",
+   "status": "ok",
+   "fare": {
+    "price": 149,
+    "price_text": "$149",
+    "airline": "SKY express",
+    "stops": 1,
+    "duration": "15 hr 25 min",
+    "departure_description": "11:30 PM on Wed, Jan 13",
+    "verdict": "typical",
+    "band_low": 135,
+    "band_high": 240,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMTMiHwoDVExWEgoyMDI3LTAxLTEzGgNBVEgqAkdRMgM3MjEiHwoDQVRIEgoyMDI3LTAxLTE0GgNCRVIqAkdRMgM4NzRqBRIDVExWcgUSA0JFUkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-20",
+   "status": "ok",
+   "fare": {
+    "price": 158,
+    "price_text": "$158",
+    "airline": "Israir Airlines",
+    "stops": 0,
+    "duration": "4 hr 25 min",
+    "departure_description": "12:05 PM on Wed, Jan 20",
+    "verdict": "typical",
+    "band_low": 135,
+    "band_high": 240,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMjAiHwoDVExWEgoyMDI3LTAxLTIwGgNCRVIqAjZIMgMyNTVqBRIDVExWcgUSA0JFUkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-27",
+   "status": "ok",
+   "fare": {
+    "price": 150,
+    "price_text": "$150",
+    "airline": "SKY express",
+    "stops": 1,
+    "duration": "15 hr 25 min",
+    "departure_description": "11:30 PM on Wed, Jan 27",
+    "verdict": "typical",
+    "band_low": 135,
+    "band_high": 240,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMjciHwoDVExWEgoyMDI3LTAxLTI3GgNBVEgqAkdRMgM3MjEiHwoDQVRIEgoyMDI3LTAxLTI4GgNCRVIqAkdRMgM4NzRqBRIDVExWcgUSA0JFUkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-03",
+   "status": "ok",
+   "fare": {
+    "price": 129,
+    "price_text": "$129",
+    "airline": "Israir Airlines",
+    "stops": 0,
+    "duration": "4 hr 25 min",
+    "departure_description": "12:05 PM on Wed, Feb 3",
+    "verdict": "low",
+    "band_low": 140,
+    "band_high": 225,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMDMiHwoDVExWEgoyMDI3LTAyLTAzGgNCRVIqAjZIMgMyNTVqBRIDVExWcgUSA0JFUkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-10",
+   "status": "ok",
+   "fare": {
+    "price": 123,
+    "price_text": "$123",
+    "airline": "SKY express",
+    "stops": 1,
+    "duration": "15 hr 25 min",
+    "departure_description": "11:30 PM on Wed, Feb 10",
+    "verdict": "low",
+    "band_low": 140,
+    "band_high": 225,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMTAiHwoDVExWEgoyMDI3LTAyLTEwGgNBVEgqAkdRMgM3MjEiHwoDQVRIEgoyMDI3LTAyLTExGgNCRVIqAkdRMgM4NzRqBRIDVExWcgUSA0JFUkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-17",
+   "status": "ok",
+   "fare": {
+    "price": 129,
+    "price_text": "$129",
+    "airline": "Israir Airlines",
+    "stops": 0,
+    "duration": "4 hr 25 min",
+    "departure_description": "12:05 PM on Wed, Feb 17",
+    "verdict": "low",
+    "band_low": 140,
+    "band_high": 225,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMTciHwoDVExWEgoyMDI3LTAyLTE3GgNCRVIqAjZIMgMyNTVqBRIDVExWcgUSA0JFUkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-24",
+   "status": "ok",
+   "fare": {
+    "price": 123,
+    "price_text": "$123",
+    "airline": "SKY express",
+    "stops": 1,
+    "duration": "15 hr 25 min",
+    "departure_description": "11:30 PM on Wed, Feb 24",
+    "verdict": "low",
+    "band_low": 140,
+    "band_high": 225,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMjQiHwoDVExWEgoyMDI3LTAyLTI0GgNBVEgqAkdRMgM3MjEiHwoDQVRIEgoyMDI3LTAyLTI1GgNCRVIqAkdRMgM4NzRqBRIDVExWcgUSA0JFUkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-03",
+   "status": "ok",
+   "fare": {
+    "price": 129,
+    "price_text": "$129",
+    "airline": "Israir Airlines",
+    "stops": 0,
+    "duration": "4 hr 25 min",
+    "departure_description": "12:05 PM on Wed, Mar 3",
+    "verdict": "low",
+    "band_low": 135,
+    "band_high": 260,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMDMiHwoDVExWEgoyMDI3LTAzLTAzGgNCRVIqAjZIMgMyNTVqBRIDVExWcgUSA0JFUkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-10",
+   "status": "ok",
+   "fare": {
+    "price": 129,
+    "price_text": "$129",
+    "airline": "Israir Airlines",
+    "stops": 0,
+    "duration": "4 hr 25 min",
+    "departure_description": "12:05 PM on Wed, Mar 10",
+    "verdict": "low",
+    "band_low": 135,
+    "band_high": 260,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMTAiHwoDVExWEgoyMDI3LTAzLTEwGgNCRVIqAjZIMgMyNTVqBRIDVExWcgUSA0JFUkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-17",
+   "status": "ok",
+   "fare": {
+    "price": 123,
+    "price_text": "$123",
+    "airline": "SKY express",
+    "stops": 1,
+    "duration": "15 hr 25 min",
+    "departure_description": "11:30 PM on Wed, Mar 17",
+    "verdict": "low",
+    "band_low": 135,
+    "band_high": 260,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTciHwoDVExWEgoyMDI3LTAzLTE3GgNBVEgqAkdRMgM3MjEiHwoDQVRIEgoyMDI3LTAzLTE4GgNCRVIqAkdRMgM4NzRqBRIDVExWcgUSA0JFUkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-24",
+   "status": "ok",
+   "fare": {
+    "price": 183,
+    "price_text": "$183",
+    "airline": "SKY express",
+    "stops": 1,
+    "duration": "15 hr 25 min",
+    "departure_description": "11:30 PM on Wed, Mar 24",
+    "verdict": "typical",
+    "band_low": 135,
+    "band_high": 260,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMjQiHwoDVExWEgoyMDI3LTAzLTI0GgNBVEgqAkdRMgM3MjEiHwoDQVRIEgoyMDI3LTAzLTI1GgNCRVIqAkdRMgM4NzRqBRIDVExWcgUSA0JFUkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-31",
+   "status": "ok",
+   "fare": {
+    "price": 236,
+    "price_text": "$236",
+    "airline": "Iberia | Operated by Iberia Express",
+    "stops": 1,
+    "duration": "10 hr 15 min",
+    "departure_description": "5:30 AM on Wed, Mar 31",
+    "verdict": "typical",
+    "band_low": 135,
+    "band_high": 260,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMzEiIAoDVExWEgoyMDI3LTAzLTMxGgNNQUQqAklCMgQxODc0Ih8KA01BRBIKMjAyNy0wMy0zMRoDQkVSKgJJQjIDNzgzagUSA1RMVnIFEgNCRVJCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-07",
+   "status": "ok",
+   "fare": {
+    "price": 185,
+    "price_text": "$185",
+    "airline": "SKY express",
+    "stops": 1,
+    "duration": "15 hr 25 min",
+    "departure_description": "11:30 PM on Wed, Apr 7",
+    "verdict": "typical",
+    "band_low": 165,
+    "band_high": 330,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMDciHwoDVExWEgoyMDI3LTA0LTA3GgNBVEgqAkdRMgM3MjEiHwoDQVRIEgoyMDI3LTA0LTA4GgNCRVIqAkdRMgM4NzRqBRIDVExWcgUSA0JFUkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-14",
+   "status": "ok",
+   "fare": {
+    "price": 150,
+    "price_text": "$150",
+    "airline": "SKY express",
+    "stops": 1,
+    "duration": "15 hr 25 min",
+    "departure_description": "11:30 PM on Wed, Apr 14",
+    "verdict": "low",
+    "band_low": 165,
+    "band_high": 330,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMTQiHwoDVExWEgoyMDI3LTA0LTE0GgNBVEgqAkdRMgM3MjEiHwoDQVRIEgoyMDI3LTA0LTE1GgNCRVIqAkdRMgM4NzRqBRIDVExWcgUSA0JFUkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-21",
+   "status": "ok",
+   "fare": {
+    "price": 261,
+    "price_text": "$261",
+    "airline": "Aegean",
+    "stops": 1,
+    "duration": "24 hr 50 min",
+    "departure_description": "7:55 PM on Wed, Apr 21",
+    "verdict": "typical",
+    "band_low": 165,
+    "band_high": 330,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjEiHwoDVExWEgoyMDI3LTA0LTIxGgNBVEgqAkEzMgM5MjciHwoDQVRIEgoyMDI3LTA0LTIyGgNCRVIqAkEzMgM4MjJqBRIDVExWcgUSA0JFUkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-28",
+   "status": "ok",
+   "fare": {
+    "price": 236,
+    "price_text": "$236",
+    "airline": "Iberia | Operated by Iberia Express",
+    "stops": 1,
+    "duration": "10 hr 15 min",
+    "departure_description": "5:30 AM on Wed, Apr 28",
+    "verdict": "typical",
+    "band_low": 165,
+    "band_high": 330,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDQtMjgiIAoDVExWEgoyMDI3LTA0LTI4GgNNQUQqAklCMgQxODc0Ih8KA01BRBIKMjAyNy0wNC0yOBoDQkVSKgJJQjIDNzgzagUSA1RMVnIFEgNCRVJCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  }
+ ]
+}

@@ -1,0 +1,423 @@
+{
+ "slug": "lax-to-icn",
+ "from": "LAX",
+ "to": "ICN",
+ "currency": "usd",
+ "trip": "one-way, 1 adult, economy",
+ "points": [
+  {
+   "date": "2026-11-25",
+   "status": "ok",
+   "fare": {
+    "price": 437,
+    "price_text": "$437",
+    "airline": "Cathay Pacific",
+    "stops": 1,
+    "duration": "31 hr 5 min",
+    "departure_description": "9:20 PM on Wed, Nov 25",
+    "verdict": "typical",
+    "band_low": 435,
+    "band_high": 540,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTEtMjUiHwoDTEFYEgoyMDI2LTExLTI1GgNIS0cqAkNYMgM4ODMiHwoDSEtHEgoyMDI2LTExLTI3GgNJQ04qAkNYMgM0MTZqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:12.025Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-02",
+   "status": "ok",
+   "fare": {
+    "price": 454,
+    "price_text": "$454",
+    "airline": "Air Premia",
+    "stops": 0,
+    "duration": "13 hr 30 min",
+    "departure_description": "9:50 AM on Wed, Dec 2",
+    "verdict": "typical",
+    "band_low": 450,
+    "band_high": 1250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDIiHwoDTEFYEgoyMDI2LTEyLTAyGgNJQ04qAllQMgMxMDJqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:12.025Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-09",
+   "status": "ok",
+   "fare": {
+    "price": 724,
+    "price_text": "$724",
+    "airline": "Air Premia",
+    "stops": 0,
+    "duration": "13 hr 30 min",
+    "departure_description": "9:50 AM on Wed, Dec 9",
+    "verdict": "typical",
+    "band_low": 450,
+    "band_high": 1250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDkiHwoDTEFYEgoyMDI2LTEyLTA5GgNJQ04qAllQMgMxMDJqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:12.025Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-16",
+   "status": "ok",
+   "fare": {
+    "price": 1250,
+    "price_text": "$1250",
+    "airline": "United",
+    "stops": 1,
+    "duration": "15 hr 50 min",
+    "departure_description": "7:25 AM on Wed, Dec 16",
+    "verdict": "typical",
+    "band_low": 450,
+    "band_high": 1250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMTYiHwoDTEFYEgoyMDI2LTEyLTE2GgNTRk8qAlVBMgMzMzYiHwoDU0ZPEgoyMDI2LTEyLTE2GgNJQ04qAlVBMgM4OTNqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:12.025Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-23",
+   "status": "ok",
+   "fare": {
+    "price": 965,
+    "price_text": "$965",
+    "airline": "Alaska, Delta | Korean Air",
+    "stops": 1,
+    "duration": "28 hr",
+    "departure_description": "8:45 PM on Wed, Dec 23",
+    "verdict": "typical",
+    "band_low": 450,
+    "band_high": 1250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTItMjMiIAoDTEFYEgoyMDI2LTEyLTIzGgNTRUEqAkFTMgQxNDg0Ih8KA1NFQRIKMjAyNi0xMi0yNBoDSUNOKgJETDIDMTk3agUSA0xBWHIFEgNJQ05CAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:12.025Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-30",
+   "status": "ok",
+   "fare": {
+    "price": 509,
+    "price_text": "$509",
+    "airline": "Cathay Pacific",
+    "stops": 1,
+    "duration": "20 hr 35 min",
+    "departure_description": "11:05 AM on Wed, Dec 30",
+    "verdict": "typical",
+    "band_low": 450,
+    "band_high": 1250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMzAiHwoDTEFYEgoyMDI2LTEyLTMwGgNIS0cqAkNYMgM4ODUiHwoDSEtHEgoyMDI2LTEyLTMxGgNJQ04qAkNYMgM0MjZqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:12.025Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-06",
+   "status": "ok",
+   "fare": {
+    "price": 437,
+    "price_text": "$437",
+    "airline": "Cathay Pacific",
+    "stops": 1,
+    "duration": "20 hr 35 min",
+    "departure_description": "11:05 AM on Wed, Jan 6",
+    "verdict": "typical",
+    "band_low": 430,
+    "band_high": 540,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMDYiHwoDTEFYEgoyMDI3LTAxLTA2GgNIS0cqAkNYMgM4ODUiHwoDSEtHEgoyMDI3LTAxLTA3GgNJQ04qAkNYMgM0MjZqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:12.025Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-13",
+   "status": "ok",
+   "fare": {
+    "price": 437,
+    "price_text": "$437",
+    "airline": "Cathay Pacific",
+    "stops": 1,
+    "duration": "20 hr 35 min",
+    "departure_description": "11:05 AM on Wed, Jan 13",
+    "verdict": "typical",
+    "band_low": 430,
+    "band_high": 540,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMTMiHwoDTEFYEgoyMDI3LTAxLTEzGgNIS0cqAkNYMgM4ODUiHwoDSEtHEgoyMDI3LTAxLTE0GgNJQ04qAkNYMgM0MjZqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:12.025Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-20",
+   "status": "ok",
+   "fare": {
+    "price": 437,
+    "price_text": "$437",
+    "airline": "Cathay Pacific",
+    "stops": 1,
+    "duration": "20 hr 35 min",
+    "departure_description": "11:05 AM on Wed, Jan 20",
+    "verdict": "typical",
+    "band_low": 430,
+    "band_high": 540,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMjAiHwoDTEFYEgoyMDI3LTAxLTIwGgNIS0cqAkNYMgM4ODUiHwoDSEtHEgoyMDI3LTAxLTIxGgNJQ04qAkNYMgM0MjZqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:00.169Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-27",
+   "status": "ok",
+   "fare": {
+    "price": 437,
+    "price_text": "$437",
+    "airline": "Cathay Pacific",
+    "stops": 1,
+    "duration": "20 hr 35 min",
+    "departure_description": "11:05 AM on Wed, Jan 27",
+    "verdict": "typical",
+    "band_low": 430,
+    "band_high": 540,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMjciHwoDTEFYEgoyMDI3LTAxLTI3GgNIS0cqAkNYMgM4ODUiHwoDSEtHEgoyMDI3LTAxLTI4GgNJQ04qAkNYMgM0MjZqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:00.169Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-03",
+   "status": "ok",
+   "fare": {
+    "price": 437,
+    "price_text": "$437",
+    "airline": "Cathay Pacific",
+    "stops": 1,
+    "duration": "20 hr 35 min",
+    "departure_description": "11:05 AM on Wed, Feb 3",
+    "verdict": "low",
+    "band_low": 450,
+    "band_high": 560,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMDMiHwoDTEFYEgoyMDI3LTAyLTAzGgNIS0cqAkNYMgM4ODUiHwoDSEtHEgoyMDI3LTAyLTA0GgNJQ04qAkNYMgM0MjZqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:00.169Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-10",
+   "status": "ok",
+   "fare": {
+    "price": 437,
+    "price_text": "$437",
+    "airline": "Cathay Pacific",
+    "stops": 1,
+    "duration": "20 hr 35 min",
+    "departure_description": "11:05 AM on Wed, Feb 10",
+    "verdict": "low",
+    "band_low": 450,
+    "band_high": 560,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMTAiHwoDTEFYEgoyMDI3LTAyLTEwGgNIS0cqAkNYMgM4ODUiHwoDSEtHEgoyMDI3LTAyLTExGgNJQ04qAkNYMgM0MjZqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:00.169Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-17",
+   "status": "ok",
+   "fare": {
+    "price": 437,
+    "price_text": "$437",
+    "airline": "Cathay Pacific",
+    "stops": 1,
+    "duration": "20 hr 35 min",
+    "departure_description": "11:05 AM on Wed, Feb 17",
+    "verdict": "low",
+    "band_low": 450,
+    "band_high": 560,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMTciHwoDTEFYEgoyMDI3LTAyLTE3GgNIS0cqAkNYMgM4ODUiHwoDSEtHEgoyMDI3LTAyLTE4GgNJQ04qAkNYMgM0MjZqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:00.169Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-24",
+   "status": "ok",
+   "fare": {
+    "price": 437,
+    "price_text": "$437",
+    "airline": "Cathay Pacific",
+    "stops": 1,
+    "duration": "22 hr 25 min",
+    "departure_description": "9:20 PM on Wed, Feb 24",
+    "verdict": "low",
+    "band_low": 450,
+    "band_high": 560,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMjQiHwoDTEFYEgoyMDI3LTAyLTI0GgNIS0cqAkNYMgM4ODMiHwoDSEtHEgoyMDI3LTAyLTI2GgNJQ04qAkNYMgM0MzRqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:00.169Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-03",
+   "status": "ok",
+   "fare": {
+    "price": 437,
+    "price_text": "$437",
+    "airline": "Cathay Pacific",
+    "stops": 1,
+    "duration": "20 hr 35 min",
+    "departure_description": "11:05 AM on Wed, Mar 3",
+    "verdict": "typical",
+    "band_low": 435,
+    "band_high": 740,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMDMiHwoDTEFYEgoyMDI3LTAzLTAzGgNIS0cqAkNYMgM4ODUiHwoDSEtHEgoyMDI3LTAzLTA0GgNJQ04qAkNYMgM0MjZqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:00.169Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-10",
+   "status": "ok",
+   "fare": {
+    "price": 437,
+    "price_text": "$437",
+    "airline": "Cathay Pacific",
+    "stops": 1,
+    "duration": "20 hr 35 min",
+    "departure_description": "11:05 AM on Wed, Mar 10",
+    "verdict": "typical",
+    "band_low": 435,
+    "band_high": 740,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTAiHwoDTEFYEgoyMDI3LTAzLTEwGgNIS0cqAkNYMgM4ODUiHwoDSEtHEgoyMDI3LTAzLTExGgNJQ04qAkNYMgM0MjZqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:00.169Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-17",
+   "status": "ok",
+   "fare": {
+    "price": 437,
+    "price_text": "$437",
+    "airline": "Cathay Pacific",
+    "stops": 1,
+    "duration": "22 hr 25 min",
+    "departure_description": "10:20 PM on Wed, Mar 17",
+    "verdict": "typical",
+    "band_low": 435,
+    "band_high": 740,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTciHwoDTEFYEgoyMDI3LTAzLTE3GgNIS0cqAkNYMgM4ODMiHwoDSEtHEgoyMDI3LTAzLTE5GgNJQ04qAkNYMgM0MzRqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:02:55.473Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-24",
+   "status": "ok",
+   "fare": {
+    "price": 437,
+    "price_text": "$437",
+    "airline": "Cathay Pacific",
+    "stops": 1,
+    "duration": "22 hr 25 min",
+    "departure_description": "10:20 PM on Wed, Mar 24",
+    "verdict": "typical",
+    "band_low": 435,
+    "band_high": 740,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMjQiHwoDTEFYEgoyMDI3LTAzLTI0GgNIS0cqAkNYMgM4ODMiHwoDSEtHEgoyMDI3LTAzLTI2GgNJQ04qAkNYMgM0MzRqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:02:55.473Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-31",
+   "status": "ok",
+   "fare": {
+    "price": 437,
+    "price_text": "$437",
+    "airline": "Cathay Pacific",
+    "stops": 1,
+    "duration": "32 hr 15 min",
+    "departure_description": "12:25 PM on Wed, Mar 31",
+    "verdict": "typical",
+    "band_low": 435,
+    "band_high": 740,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMzEiHwoDTEFYEgoyMDI3LTAzLTMxGgNIS0cqAkNYMgM4ODUiHwoDSEtHEgoyMDI3LTA0LTAyGgNJQ04qAkNYMgM0MzRqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:02:55.473Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-07",
+   "status": "ok",
+   "fare": {
+    "price": 437,
+    "price_text": "$437",
+    "airline": "Cathay Pacific",
+    "stops": 1,
+    "duration": "32 hr 15 min",
+    "departure_description": "12:25 PM on Wed, Apr 7",
+    "verdict": "low",
+    "band_low": 490,
+    "band_high": 560,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMDciHwoDTEFYEgoyMDI3LTA0LTA3GgNIS0cqAkNYMgM4ODUiHwoDSEtHEgoyMDI3LTA0LTA5GgNJQ04qAkNYMgM0MzRqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:02:55.473Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-14",
+   "status": "ok",
+   "fare": {
+    "price": 437,
+    "price_text": "$437",
+    "airline": "Cathay Pacific",
+    "stops": 1,
+    "duration": "30 hr 55 min",
+    "departure_description": "11:30 PM on Wed, Apr 14",
+    "verdict": "low",
+    "band_low": 490,
+    "band_high": 560,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMTQiHwoDTEFYEgoyMDI3LTA0LTE0GgNIS0cqAkNYMgM4ODMiHwoDSEtHEgoyMDI3LTA0LTE2GgNJQ04qAkNYMgM0MzBqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:02:55.473Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-21",
+   "status": "ok",
+   "fare": {
+    "price": 437,
+    "price_text": "$437",
+    "airline": "Cathay Pacific",
+    "stops": 1,
+    "duration": "32 hr 15 min",
+    "departure_description": "12:25 PM on Wed, Apr 21",
+    "verdict": "low",
+    "band_low": 490,
+    "band_high": 560,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjEiHwoDTEFYEgoyMDI3LTA0LTIxGgNIS0cqAkNYMgM4ODUiHwoDSEtHEgoyMDI3LTA0LTIzGgNJQ04qAkNYMgM0MzRqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:02:55.473Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-28",
+   "status": "ok",
+   "fare": {
+    "price": 438,
+    "price_text": "$438",
+    "airline": "Philippine Airlines",
+    "stops": 1,
+    "duration": "21 hr",
+    "departure_description": "4:55 PM on Wed, Apr 28",
+    "verdict": "low",
+    "band_low": 490,
+    "band_high": 560,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjgiHwoDTEFYEgoyMDI3LTA0LTI4GgNNTkwqAlBSMgMxMjMiHwoDTU5MEgoyMDI3LTA0LTMwGgNJQ04qAlBSMgM0MDBqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:02:55.473Z",
+   "source": "claude-mcp"
+  }
+ ]
+}

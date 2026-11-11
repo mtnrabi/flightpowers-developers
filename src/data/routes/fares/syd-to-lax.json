@@ -1,0 +1,423 @@
+{
+ "slug": "syd-to-lax",
+ "from": "SYD",
+ "to": "LAX",
+ "currency": "usd",
+ "trip": "one-way, 1 adult, economy",
+ "points": [
+  {
+   "date": "2026-11-25",
+   "status": "ok",
+   "fare": {
+    "price": 467,
+    "price_text": "$467",
+    "airline": "United | Virgin Australia",
+    "stops": 0,
+    "duration": "13 hr 45 min",
+    "departure_description": "11:20 AM on Wed, Nov 25",
+    "verdict": "typical",
+    "band_low": 360,
+    "band_high": 600,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTEtMjUiHwoDU1lEEgoyMDI2LTExLTI1GgNMQVgqAlVBMgM4NDJqBRIDU1lEcgUSA0xBWEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:53.686Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-02",
+   "status": "ok",
+   "fare": {
+    "price": 467,
+    "price_text": "$467",
+    "airline": "United | Virgin Australia",
+    "stops": 0,
+    "duration": "13 hr 45 min",
+    "departure_description": "11:20 AM on Wed, Dec 2",
+    "verdict": "low",
+    "band_low": 570,
+    "band_high": 980,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDIiHwoDU1lEEgoyMDI2LTEyLTAyGgNMQVgqAlVBMgM4NDJqBRIDU1lEcgUSA0xBWEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:53.686Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-09",
+   "status": "ok",
+   "fare": {
+    "price": 473,
+    "price_text": "$473",
+    "airline": "United | Virgin Australia",
+    "stops": 1,
+    "duration": "17 hr 31 min",
+    "departure_description": "11:50 AM on Wed, Dec 9",
+    "verdict": "low",
+    "band_low": 570,
+    "band_high": 980,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTItMDkiHwoDU1lEEgoyMDI2LTEyLTA5GgNTRk8qAlVBMgM4NzAiIAoDU0ZPEgoyMDI2LTEyLTA5GgNMQVgqAlVBMgQxNDU3agUSA1NZRHIFEgNMQVhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:53.686Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-16",
+   "status": "ok",
+   "fare": {
+    "price": 968,
+    "price_text": "$968",
+    "airline": "Delta",
+    "stops": 0,
+    "duration": "13 hr 55 min",
+    "departure_description": "10:40 AM on Wed, Dec 16",
+    "verdict": "typical",
+    "band_low": 570,
+    "band_high": 980,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjYtMTItMTYiHgoDU1lEEgoyMDI2LTEyLTE2GgNMQVgqAkRMMgI0MGoFEgNTWURyBRIDTEFYQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:53.686Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-23",
+   "status": "ok",
+   "fare": {
+    "price": 935,
+    "price_text": "$935",
+    "airline": "United | Virgin Australia",
+    "stops": 0,
+    "duration": "13 hr 45 min",
+    "departure_description": "11:20 AM on Wed, Dec 23",
+    "verdict": "typical",
+    "band_low": 570,
+    "band_high": 980,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMjMiHwoDU1lEEgoyMDI2LTEyLTIzGgNMQVgqAlVBMgM4NDJqBRIDU1lEcgUSA0xBWEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:53.686Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-30",
+   "status": "ok",
+   "fare": {
+    "price": 907,
+    "price_text": "$907",
+    "airline": "United | Virgin Australia",
+    "stops": 0,
+    "duration": "13 hr 45 min",
+    "departure_description": "11:20 AM on Wed, Dec 30",
+    "verdict": "typical",
+    "band_low": 570,
+    "band_high": 980,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMzAiHwoDU1lEEgoyMDI2LTEyLTMwGgNMQVgqAlVBMgM4NDJqBRIDU1lEcgUSA0xBWEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:53.686Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-06",
+   "status": "ok",
+   "fare": {
+    "price": 1439,
+    "price_text": "$1439",
+    "airline": "JAL, American",
+    "stops": 1,
+    "duration": "21 hr",
+    "departure_description": "9:25 AM on Wed, Jan 6",
+    "verdict": "typical",
+    "band_low": 540,
+    "band_high": 1450,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GloSCjIwMjctMDEtMDYiHgoDU1lEEgoyMDI3LTAxLTA2GgNITkQqAkpMMgI1MiIeCgNITkQSCjIwMjctMDEtMDYaA0xBWCoCQUEyAjI2agUSA1NZRHIFEgNMQVhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:53.686Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-13",
+   "status": "ok",
+   "fare": {
+    "price": 763,
+    "price_text": "$763",
+    "airline": "Delta",
+    "stops": 0,
+    "duration": "13 hr 55 min",
+    "departure_description": "10:40 AM on Wed, Jan 13",
+    "verdict": "typical",
+    "band_low": 540,
+    "band_high": 1450,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDEtMTMiHgoDU1lEEgoyMDI3LTAxLTEzGgNMQVgqAkRMMgI0MGoFEgNTWURyBRIDTEFYQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:53.686Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-20",
+   "status": "ok",
+   "fare": {
+    "price": 467,
+    "price_text": "$467",
+    "airline": "United | Virgin Australia",
+    "stops": 0,
+    "duration": "13 hr 45 min",
+    "departure_description": "11:20 AM on Wed, Jan 20",
+    "verdict": "low",
+    "band_low": 540,
+    "band_high": 1450,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMjAiHwoDU1lEEgoyMDI3LTAxLTIwGgNMQVgqAlVBMgM4NDJqBRIDU1lEcgUSA0xBWEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:48.964Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-27",
+   "status": "ok",
+   "fare": {
+    "price": 467,
+    "price_text": "$467",
+    "airline": "United | Virgin Australia",
+    "stops": 0,
+    "duration": "13 hr 45 min",
+    "departure_description": "11:20 AM on Wed, Jan 27",
+    "verdict": "low",
+    "band_low": 540,
+    "band_high": 1450,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMjciHwoDU1lEEgoyMDI3LTAxLTI3GgNMQVgqAlVBMgM4NDJqBRIDU1lEcgUSA0xBWEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:48.964Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-03",
+   "status": "ok",
+   "fare": {
+    "price": 467,
+    "price_text": "$467",
+    "airline": "United | Virgin Australia",
+    "stops": 0,
+    "duration": "13 hr 45 min",
+    "departure_description": "11:20 AM on Wed, Feb 3",
+    "verdict": "typical",
+    "band_low": 395,
+    "band_high": 600,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMDMiHwoDU1lEEgoyMDI3LTAyLTAzGgNMQVgqAlVBMgM4NDJqBRIDU1lEcgUSA0xBWEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:48.964Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-10",
+   "status": "ok",
+   "fare": {
+    "price": 467,
+    "price_text": "$467",
+    "airline": "United | Virgin Australia",
+    "stops": 0,
+    "duration": "13 hr 45 min",
+    "departure_description": "11:20 AM on Wed, Feb 10",
+    "verdict": "typical",
+    "band_low": 395,
+    "band_high": 600,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMTAiHwoDU1lEEgoyMDI3LTAyLTEwGgNMQVgqAlVBMgM4NDJqBRIDU1lEcgUSA0xBWEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:48.964Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-17",
+   "status": "ok",
+   "fare": {
+    "price": 467,
+    "price_text": "$467",
+    "airline": "United | Virgin Australia",
+    "stops": 0,
+    "duration": "13 hr 40 min",
+    "departure_description": "11:20 AM on Wed, Feb 17",
+    "verdict": "typical",
+    "band_low": 395,
+    "band_high": 600,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMTciHwoDU1lEEgoyMDI3LTAyLTE3GgNMQVgqAlVBMgM4NDJqBRIDU1lEcgUSA0xBWEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:48.964Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-24",
+   "status": "ok",
+   "fare": {
+    "price": 530,
+    "price_text": "$530",
+    "airline": "Qantas, American",
+    "stops": 1,
+    "duration": "18 hr 55 min",
+    "departure_description": "7:05 AM on Wed, Feb 24",
+    "verdict": "typical",
+    "band_low": 395,
+    "band_high": 600,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjctMDItMjQiHwoDU1lEEgoyMDI3LTAyLTI0GgNBS0wqAlFGMgMxNDEiHgoDQUtMEgoyMDI3LTAyLTI0GgNMQVgqAkFBMgI4MmoFEgNTWURyBRIDTEFYQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:48.964Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-03",
+   "status": "ok",
+   "fare": {
+    "price": 467,
+    "price_text": "$467",
+    "airline": "United | Virgin Australia",
+    "stops": 0,
+    "duration": "13 hr 40 min",
+    "departure_description": "11:20 AM on Wed, Mar 3",
+    "verdict": "typical",
+    "band_low": 395,
+    "band_high": 830,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMDMiHwoDU1lEEgoyMDI3LTAzLTAzGgNMQVgqAlVBMgM4NDJqBRIDU1lEcgUSA0xBWEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:48.964Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-10",
+   "status": "ok",
+   "fare": {
+    "price": 467,
+    "price_text": "$467",
+    "airline": "United | Virgin Australia",
+    "stops": 0,
+    "duration": "13 hr 40 min",
+    "departure_description": "11:20 AM on Wed, Mar 10",
+    "verdict": "typical",
+    "band_low": 395,
+    "band_high": 830,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMTAiHwoDU1lEEgoyMDI3LTAzLTEwGgNMQVgqAlVBMgM4NDJqBRIDU1lEcgUSA0xBWEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:48.964Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-17",
+   "status": "ok",
+   "fare": {
+    "price": 467,
+    "price_text": "$467",
+    "airline": "United | Virgin Australia",
+    "stops": 0,
+    "duration": "13 hr 40 min",
+    "departure_description": "10:20 AM on Wed, Mar 17",
+    "verdict": "typical",
+    "band_low": 395,
+    "band_high": 830,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMTciHwoDU1lEEgoyMDI3LTAzLTE3GgNMQVgqAlVBMgM4NDJqBRIDU1lEcgUSA0xBWEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:50.296Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-24",
+   "status": "ok",
+   "fare": {
+    "price": 467,
+    "price_text": "$467",
+    "airline": "Delta",
+    "stops": 0,
+    "duration": "13 hr 54 min",
+    "departure_description": "9:40 AM on Wed, Mar 24",
+    "verdict": "typical",
+    "band_low": 395,
+    "band_high": 830,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDMtMjQiHgoDU1lEEgoyMDI3LTAzLTI0GgNMQVgqAkRMMgI0MGoFEgNTWURyBRIDTEFYQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:50.296Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-31",
+   "status": "ok",
+   "fare": {
+    "price": 467,
+    "price_text": "$467",
+    "airline": "United | Virgin Australia",
+    "stops": 0,
+    "duration": "13 hr 40 min",
+    "departure_description": "10:30 AM on Wed, Mar 31",
+    "verdict": "typical",
+    "band_low": 395,
+    "band_high": 830,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMzEiHwoDU1lEEgoyMDI3LTAzLTMxGgNMQVgqAlVBMgM4NDJqBRIDU1lEcgUSA0xBWEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:50.296Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-07",
+   "status": "ok",
+   "fare": {
+    "price": 467,
+    "price_text": "$467",
+    "airline": "United | Virgin Australia",
+    "stops": 0,
+    "duration": "13 hr 40 min",
+    "departure_description": "9:30 AM on Wed, Apr 7",
+    "verdict": "low",
+    "band_low": 530,
+    "band_high": 1200,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMDciHwoDU1lEEgoyMDI3LTA0LTA3GgNMQVgqAlVBMgM4NDJqBRIDU1lEcgUSA0xBWEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:50.296Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-14",
+   "status": "ok",
+   "fare": {
+    "price": 467,
+    "price_text": "$467",
+    "airline": "United | Virgin Australia",
+    "stops": 0,
+    "duration": "13 hr 40 min",
+    "departure_description": "9:30 AM on Wed, Apr 14",
+    "verdict": "low",
+    "band_low": 530,
+    "band_high": 1200,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMTQiHwoDU1lEEgoyMDI3LTA0LTE0GgNMQVgqAlVBMgM4NDJqBRIDU1lEcgUSA0xBWEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:50.296Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-21",
+   "status": "ok",
+   "fare": {
+    "price": 490,
+    "price_text": "$490",
+    "airline": "American | Qantas, Alaska",
+    "stops": 0,
+    "duration": "13 hr 50 min",
+    "departure_description": "9:10 AM on Wed, Apr 21",
+    "verdict": "low",
+    "band_low": 530,
+    "band_high": 1200,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDQtMjEiHgoDU1lEEgoyMDI3LTA0LTIxGgNMQVgqAkFBMgI3MmoFEgNTWURyBRIDTEFYQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:50.296Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-28",
+   "status": "ok",
+   "fare": {
+    "price": 467,
+    "price_text": "$467",
+    "airline": "Delta",
+    "stops": 0,
+    "duration": "13 hr 50 min",
+    "departure_description": "9:15 AM on Wed, Apr 28",
+    "verdict": "low",
+    "band_low": 530,
+    "band_high": 1200,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDQtMjgiHgoDU1lEEgoyMDI3LTA0LTI4GgNMQVgqAkRMMgI0MGoFEgNTWURyBRIDTEFYQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:50.296Z",
+   "source": "claude-mcp"
+  }
+ ]
+}

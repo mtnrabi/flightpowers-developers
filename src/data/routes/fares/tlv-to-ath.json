@@ -1,0 +1,423 @@
+{
+ "slug": "tlv-to-ath",
+ "from": "TLV",
+ "to": "ATH",
+ "currency": "usd",
+ "trip": "one-way, 1 adult, economy",
+ "points": [
+  {
+   "date": "2026-11-25",
+   "status": "ok",
+   "fare": {
+    "price": 134,
+    "price_text": "$134",
+    "airline": "Wizz Air",
+    "stops": 0,
+    "duration": "2 hr 20 min",
+    "departure_description": "12:50 PM on Wed, Nov 25",
+    "verdict": "high",
+    "band_low": 55,
+    "band_high": 85,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTEtMjUiIAoDVExWEgoyMDI2LTExLTI1GgNBVEgqAlc0MgQ4NDAxagUSA1RMVnIFEgNBVEhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-02",
+   "status": "ok",
+   "fare": {
+    "price": 124,
+    "price_text": "$124",
+    "airline": "Cyprus Airways",
+    "stops": 1,
+    "duration": "3 hr 55 min",
+    "departure_description": "4:05 PM on Wed, Dec 2",
+    "verdict": "typical",
+    "band_low": 60,
+    "band_high": 150,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDIiHwoDVExWEgoyMDI2LTEyLTAyGgNMQ0EqAkNZMgMxMTEiHwoDTENBEgoyMDI2LTEyLTAyGgNBVEgqAkNZMgMzMTJqBRIDVExWcgUSA0FUSEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-09",
+   "status": "ok",
+   "fare": {
+    "price": 85,
+    "price_text": "$85",
+    "airline": "Wizz Air",
+    "stops": 0,
+    "duration": "2 hr 20 min",
+    "departure_description": "12:50 PM on Wed, Dec 9",
+    "verdict": "typical",
+    "band_low": 60,
+    "band_high": 150,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMDkiIAoDVExWEgoyMDI2LTEyLTA5GgNBVEgqAlc0MgQ4NDAxagUSA1RMVnIFEgNBVEhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-16",
+   "status": "ok",
+   "fare": {
+    "price": 98,
+    "price_text": "$98",
+    "airline": "Bluebird Airways",
+    "stops": 0,
+    "duration": "2 hr 10 min",
+    "departure_description": "2:30 PM on Wed, Dec 16",
+    "verdict": "typical",
+    "band_low": 60,
+    "band_high": 150,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMTYiHwoDVExWEgoyMDI2LTEyLTE2GgNBVEgqAkJaMgM3MDRqBRIDVExWcgUSA0FUSEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-23",
+   "status": "ok",
+   "fare": {
+    "price": 85,
+    "price_text": "$85",
+    "airline": "Wizz Air",
+    "stops": 0,
+    "duration": "2 hr 20 min",
+    "departure_description": "12:50 PM on Wed, Dec 23",
+    "verdict": "typical",
+    "band_low": 60,
+    "band_high": 150,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMjMiIAoDVExWEgoyMDI2LTEyLTIzGgNBVEgqAlc0MgQ4NDAxagUSA1RMVnIFEgNBVEhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-30",
+   "status": "ok",
+   "fare": {
+    "price": 96,
+    "price_text": "$96",
+    "airline": "Wizz Air",
+    "stops": 0,
+    "duration": "2 hr 20 min",
+    "departure_description": "12:50 PM on Wed, Dec 30",
+    "verdict": "typical",
+    "band_low": 60,
+    "band_high": 150,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMzAiIAoDVExWEgoyMDI2LTEyLTMwGgNBVEgqAlc0MgQ4NDAxagUSA1RMVnIFEgNBVEhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-06",
+   "status": "ok",
+   "fare": {
+    "price": 78,
+    "price_text": "$78",
+    "airline": "Wizz Air",
+    "stops": 0,
+    "duration": "2 hr 20 min",
+    "departure_description": "12:50 PM on Wed, Jan 6",
+    "verdict": "typical",
+    "band_low": 55,
+    "band_high": 95,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMDYiIAoDVExWEgoyMDI3LTAxLTA2GgNBVEgqAlc0MgQ4NDAxagUSA1RMVnIFEgNBVEhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-13",
+   "status": "ok",
+   "fare": {
+    "price": 82,
+    "price_text": "$82",
+    "airline": "SKY express",
+    "stops": 0,
+    "duration": "2 hr 15 min",
+    "departure_description": "11:30 PM on Wed, Jan 13",
+    "verdict": "typical",
+    "band_low": 55,
+    "band_high": 95,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMTMiHwoDVExWEgoyMDI3LTAxLTEzGgNBVEgqAkdRMgM3MjFqBRIDVExWcgUSA0FUSEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-20",
+   "status": "ok",
+   "fare": {
+    "price": 78,
+    "price_text": "$78",
+    "airline": "Wizz Air",
+    "stops": 0,
+    "duration": "2 hr 20 min",
+    "departure_description": "12:50 PM on Wed, Jan 20",
+    "verdict": "typical",
+    "band_low": 55,
+    "band_high": 95,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMjAiIAoDVExWEgoyMDI3LTAxLTIwGgNBVEgqAlc0MgQ4NDAxagUSA1RMVnIFEgNBVEhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-27",
+   "status": "ok",
+   "fare": {
+    "price": 67,
+    "price_text": "$67",
+    "airline": "Wizz Air",
+    "stops": 0,
+    "duration": "2 hr 20 min",
+    "departure_description": "12:50 PM on Wed, Jan 27",
+    "verdict": "typical",
+    "band_low": 55,
+    "band_high": 95,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMjciIAoDVExWEgoyMDI3LTAxLTI3GgNBVEgqAlc0MgQ4NDAxagUSA1RMVnIFEgNBVEhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-03",
+   "status": "ok",
+   "fare": {
+    "price": 74,
+    "price_text": "$74",
+    "airline": "Wizz Air",
+    "stops": 0,
+    "duration": "2 hr 20 min",
+    "departure_description": "12:50 PM on Wed, Feb 3",
+    "verdict": "typical",
+    "band_low": 50,
+    "band_high": 95,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDItMDMiIAoDVExWEgoyMDI3LTAyLTAzGgNBVEgqAlc0MgQ4NDAxagUSA1RMVnIFEgNBVEhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-10",
+   "status": "ok",
+   "fare": {
+    "price": 67,
+    "price_text": "$67",
+    "airline": "Wizz Air",
+    "stops": 0,
+    "duration": "2 hr 20 min",
+    "departure_description": "12:50 PM on Wed, Feb 10",
+    "verdict": "typical",
+    "band_low": 50,
+    "band_high": 95,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDItMTAiIAoDVExWEgoyMDI3LTAyLTEwGgNBVEgqAlc0MgQ4NDAxagUSA1RMVnIFEgNBVEhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-17",
+   "status": "ok",
+   "fare": {
+    "price": 66,
+    "price_text": "$66",
+    "airline": "Aegean",
+    "stops": 0,
+    "duration": "2 hr 10 min",
+    "departure_description": "7:10 PM on Wed, Feb 17",
+    "verdict": "typical",
+    "band_low": 50,
+    "band_high": 95,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMTciHwoDVExWEgoyMDI3LTAyLTE3GgNBVEgqAkEzMgM5MjdqBRIDVExWcgUSA0FUSEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-24",
+   "status": "ok",
+   "fare": {
+    "price": 66,
+    "price_text": "$66",
+    "airline": "Aegean",
+    "stops": 0,
+    "duration": "2 hr 10 min",
+    "departure_description": "7:10 PM on Wed, Feb 24",
+    "verdict": "typical",
+    "band_low": 50,
+    "band_high": 95,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMjQiHwoDVExWEgoyMDI3LTAyLTI0GgNBVEgqAkEzMgM5MjdqBRIDVExWcgUSA0FUSEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-03",
+   "status": "ok",
+   "fare": {
+    "price": 66,
+    "price_text": "$66",
+    "airline": "Aegean",
+    "stops": 0,
+    "duration": "2 hr 10 min",
+    "departure_description": "7:10 PM on Wed, Mar 3",
+    "verdict": "typical",
+    "band_low": 60,
+    "band_high": 140,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMDMiHwoDVExWEgoyMDI3LTAzLTAzGgNBVEgqAkEzMgM5MjdqBRIDVExWcgUSA0FUSEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-10",
+   "status": "ok",
+   "fare": {
+    "price": 66,
+    "price_text": "$66",
+    "airline": "Aegean",
+    "stops": 0,
+    "duration": "2 hr 10 min",
+    "departure_description": "7:10 PM on Wed, Mar 10",
+    "verdict": "typical",
+    "band_low": 60,
+    "band_high": 140,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMTAiHwoDVExWEgoyMDI3LTAzLTEwGgNBVEgqAkEzMgM5MjdqBRIDVExWcgUSA0FUSEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-17",
+   "status": "ok",
+   "fare": {
+    "price": 66,
+    "price_text": "$66",
+    "airline": "Aegean",
+    "stops": 0,
+    "duration": "2 hr 10 min",
+    "departure_description": "7:10 PM on Wed, Mar 17",
+    "verdict": "typical",
+    "band_low": 60,
+    "band_high": 140,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMTciHwoDVExWEgoyMDI3LTAzLTE3GgNBVEgqAkEzMgM5MjdqBRIDVExWcgUSA0FUSEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-24",
+   "status": "ok",
+   "fare": {
+    "price": 78,
+    "price_text": "$78",
+    "airline": "Wizz Air",
+    "stops": 0,
+    "duration": "2 hr 20 min",
+    "departure_description": "12:50 PM on Wed, Mar 24",
+    "verdict": "typical",
+    "band_low": 60,
+    "band_high": 140,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDMtMjQiIAoDVExWEgoyMDI3LTAzLTI0GgNBVEgqAlc0MgQ4NDAxagUSA1RMVnIFEgNBVEhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-31",
+   "status": "ok",
+   "fare": {
+    "price": 82,
+    "price_text": "$82",
+    "airline": "SKY express",
+    "stops": 0,
+    "duration": "2 hr 15 min",
+    "departure_description": "11:30 PM on Wed, Mar 31",
+    "verdict": "typical",
+    "band_low": 60,
+    "band_high": 140,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMzEiHwoDVExWEgoyMDI3LTAzLTMxGgNBVEgqAkdRMgM3MjFqBRIDVExWcgUSA0FUSEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-07",
+   "status": "ok",
+   "fare": {
+    "price": 107,
+    "price_text": "$107",
+    "airline": "SKY express",
+    "stops": 0,
+    "duration": "2 hr 15 min",
+    "departure_description": "11:30 PM on Wed, Apr 7",
+    "verdict": "typical",
+    "band_low": 65,
+    "band_high": 170,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMDciHwoDVExWEgoyMDI3LTA0LTA3GgNBVEgqAkdRMgM3MjFqBRIDVExWcgUSA0FUSEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-14",
+   "status": "ok",
+   "fare": {
+    "price": 107,
+    "price_text": "$107",
+    "airline": "SKY express",
+    "stops": 0,
+    "duration": "2 hr 15 min",
+    "departure_description": "11:30 PM on Wed, Apr 14",
+    "verdict": "typical",
+    "band_low": 65,
+    "band_high": 170,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMTQiHwoDVExWEgoyMDI3LTA0LTE0GgNBVEgqAkdRMgM3MjFqBRIDVExWcgUSA0FUSEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-21",
+   "status": "ok",
+   "fare": {
+    "price": 159,
+    "price_text": "$159",
+    "airline": "SKY express",
+    "stops": 0,
+    "duration": "2 hr 15 min",
+    "departure_description": "11:30 PM on Wed, Apr 21",
+    "verdict": "typical",
+    "band_low": 65,
+    "band_high": 170,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMjEiHwoDVExWEgoyMDI3LTA0LTIxGgNBVEgqAkdRMgM3MjFqBRIDVExWcgUSA0FUSEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-28",
+   "status": "ok",
+   "fare": {
+    "price": 100,
+    "price_text": "$100",
+    "airline": "Wizz Air",
+    "stops": 0,
+    "duration": "2 hr 20 min",
+    "departure_description": "12:55 PM on Wed, Apr 28",
+    "verdict": "typical",
+    "band_low": 65,
+    "band_high": 170,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDQtMjgiIAoDVExWEgoyMDI3LTA0LTI4GgNBVEgqAlc0MgQ4NDAxagUSA1RMVnIFEgNBVEhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  }
+ ]
+}
