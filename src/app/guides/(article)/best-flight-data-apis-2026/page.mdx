@@ -34,7 +34,7 @@ export const megaAt = (n) => usd(MEGA.priceMonthly + (n - MEGA.quota) * MEGA.ove
       'Google Flights Live API, Air Scraper, SerpApi, SearchApi and Duffel compared with quoted, dated prices and disclosed bias.',
     url: `${SITE.url}/guides/best-flight-data-apis-2026`,
     datePublished: '2026-08-26',
-    dateModified: '2026-11-01',
+    dateModified: '2026-11-11',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -42,7 +42,7 @@ export const megaAt = (n) => usd(MEGA.priceMonthly + (n - MEGA.quota) * MEGA.ove
 
 # The best flight data APIs in 2026, compared
 
-<GuideDates published="2026-08-26" updated="2026-11-01" />
+<GuideDates published="2026-08-26" updated="2026-11-11" />
 
 **Short answer:** FlightPowers' [Google Flights Live API](/flights-api) (mine) returns live
 Google Flights fares with Google's own low / typical / high price band and a round trip
@@ -65,7 +65,7 @@ ones people actually shortlist.
 I'll be honest: **I'm starting with my own API.** I run FlightPowers, so read the
 first entry as a vendor describing his product. Everything I say about the others is
 quoted from their own live pages, re-read on **2026-09-07** (SearchApi, added
-later, read on **2026-11-01**), with the caveats
+later, re-read on **2026-11-11**), with the caveats
 stated inline, including the finding that is not flattering to me: on raw requests
 per dollar, one competitor is cheaper than I am at every tier. Nothing the other three
 charge changed between 2026-08-24 and this re-read; the one thing that did change
@@ -177,7 +177,7 @@ and dated, is at [/compare/serpapi](/compare/serpapi).
 Search, Maps or Shopping data; if you want price history without accumulating it;
 or if your legal team wants the indemnity.
 
-## 4. SearchApi: the same Google data, and a date grid in one request
+## 4. SearchApi: another Google scraping platform, strong on grids, uneven on scans
 
 **Source: Google Flights (and many other Google surfaces). Best for: price grids, multi-city,
 and a million searches a month or more.**
@@ -185,7 +185,7 @@ and a million searches a month or more.**
 SearchApi is a search-scraping platform like SerpApi, with Google Flights as one engine of many
 on one key. In our [side-by-side benchmark](/guides/flight-api-benchmark-2026) of 2026-10-07 it
 returned the same cheapest fare as mine on all nine price points, and the fastest first price on
-the round trip (1.98 s against my 3.27 s). From its own pages (re-read 2026-11-01): 100 free
+the round trip (1.98 s against my 3.27 s). From its own pages (re-read 2026-11-11): 100 free
 requests at sign-up with no card, then the Developer plan at $40/month for 10,000 searches, which
 is **$4.00 per 1,000, the same as mine at entry**. Its bigger plans go down to $3 per 1,000 on
 Production ($100 for 35,000), $2 on Scale ($500 for 250,000) and $1 on its largest plan ($5,000
@@ -216,6 +216,15 @@ $2 million in coverage, per its pricing page).
 The full side-by-side, with everything quoted and dated, is at
 [/compare/searchapi](/compare/searchapi).
 
+Against it, from the same run and the same pages: the 100 free requests come once at sign-up,
+not every month. The hourly cap (*"you can utilize only up to 20% of your plan's credits each
+hour"*) means 2,000 searches an hour on the Developer plan, so a big scan has to be paced over
+hours. Its date scans had a slow tail: seven calls in parallel took 28.37 s, because one call
+took about 28 seconds in two of our three runs (the median call was 1.9 s). And its
+`price_level` read "high" on two of the seven dates where the other three APIs said "typical",
+on the same fare, so a deal feature that triggers on that label would have fired differently.
+The calendar engine returns prices only, no itineraries or booking links.
+
 **Consider SearchApi if** you want a fare calendar in one request, multi-city, price history
 without storing it yourself, or you run about a million searches a month or more.
 
@@ -236,6 +245,16 @@ selling flights. The full comparison is at [/compare/duffel](/compare/duffel).
 **Consider Duffel if** you are an OTA, corporate booking tool, agency or marketplace
 and the transaction happens inside your product. None of the data APIs on this page,
 mine included, can issue a ticket.
+
+## How an API gets on this page
+
+It has to return live fares on a key anyone can get today, without an application or an
+accreditation gate; its prices have to be on a public page I can read and quote with a date;
+and it has to hold up in a real run on the same searches as the others (same fares, a usable
+round trip, no hidden per-request multiplier), or, for a different category like Duffel, be
+the thing people actually compare it with. Each entry gets its trade-offs written next to its
+strengths, from its own docs. Vendors sometimes ask to be added: asking does not put an API
+here, and an API that passes is listed whether or not it asked.
 
 ## What is not on this list, and why
 
