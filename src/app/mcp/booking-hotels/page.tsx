@@ -127,7 +127,7 @@ const perNight = (price: number, nights: number) => `US$${Math.round(price / nig
 const RELATED = [
   { href: '/mcp', label: 'Both MCP servers', sub: 'The hub: flights and hotels, every way to connect' },
   { href: '/mcp/google-flights', label: 'Google Flights MCP server', sub: 'Live fares for the same clients' },
-  { href: '/guides/best-travel-mcp-servers-2026', label: 'Travel MCP servers compared', sub: '11 servers, read on the same day' },
+  { href: '/guides/best-travel-mcp-servers-2026', label: 'Travel MCP servers compared', sub: '12 servers, each read and dated' },
   { href: '/hotels-api/geo-pricing', label: 'Pricing by country', sub: 'A repeat-sampled run across markets' },
   { href: '/hotels-api', label: 'Hotels API (REST)', sub: 'The same data over plain HTTP' },
   { href: '/guides/booking-com-mcp-claude', label: 'Setup: Claude', sub: 'Add it, sign in, one real search' },

@@ -294,7 +294,7 @@ export default function McpPage() {
           </div>
         </div>
         <p className="mt-6 text-[14px] text-ink-400 leading-relaxed">
-          How these compare with ten other travel MCP servers:{' '}
+          How these compare with eleven other travel MCP servers:{' '}
           <Link href="/guides/best-travel-mcp-servers-2026" className="text-signal-400 underline underline-offset-4">
             best travel MCP servers in 2026
           </Link>
