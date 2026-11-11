@@ -1,0 +1,423 @@
+{
+ "slug": "cdg-to-fco",
+ "from": "CDG",
+ "to": "FCO",
+ "currency": "usd",
+ "trip": "one-way, 1 adult, economy",
+ "points": [
+  {
+   "date": "2026-11-25",
+   "status": "ok",
+   "fare": {
+    "price": 119,
+    "price_text": "$119",
+    "airline": "Iberia",
+    "stops": 1,
+    "duration": "11 hr 35 min",
+    "departure_description": "12:40 PM on Wed, Nov 25",
+    "verdict": "typical",
+    "band_low": 105,
+    "band_high": 155,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTEtMjUiHwoDQ0RHEgoyMDI2LTExLTI1GgNNQUQqAklCMgM1ODYiHwoDTUFEEgoyMDI2LTExLTI1GgNGQ08qAklCMgM2NTdqBRIDQ0RHcgUSA0ZDT0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-02",
+   "status": "ok",
+   "fare": {
+    "price": 95,
+    "price_text": "$95",
+    "airline": "Vueling",
+    "stops": 1,
+    "duration": "12 hr 15 min",
+    "departure_description": "9:55 AM on Wed, Dec 2",
+    "verdict": "low",
+    "band_low": 110,
+    "band_high": 185,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTItMDIiIAoDQ0RHEgoyMDI2LTEyLTAyGgNCQ04qAlZZMgQ4MDYxIiAKA0JDThIKMjAyNi0xMi0wMhoDRkNPKgJWWTIENjAxOGoFEgNDREdyBRIDRkNPQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-09",
+   "status": "ok",
+   "fare": {
+    "price": 156,
+    "price_text": "$156",
+    "airline": "ITA",
+    "stops": 0,
+    "duration": "2 hr 5 min",
+    "departure_description": "6:10 AM on Wed, Dec 9",
+    "verdict": "typical",
+    "band_low": 110,
+    "band_high": 185,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDkiHwoDQ0RHEgoyMDI2LTEyLTA5GgNGQ08qAkFaMgMzMTdqBRIDQ0RHcgUSA0ZDT0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-16",
+   "status": "ok",
+   "fare": {
+    "price": 106,
+    "price_text": "$106",
+    "airline": "Vueling | Iberia",
+    "stops": 1,
+    "duration": "12 hr 20 min",
+    "departure_description": "9:50 AM on Wed, Dec 16",
+    "verdict": "low",
+    "band_low": 110,
+    "band_high": 185,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTItMTYiIAoDQ0RHEgoyMDI2LTEyLTE2GgNCQ04qAlZZMgQ4MDYxIiAKA0JDThIKMjAyNi0xMi0xNhoDRkNPKgJWWTIENjAxOGoFEgNDREdyBRIDRkNPQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-23",
+   "status": "ok",
+   "fare": {
+    "price": 157,
+    "price_text": "$157",
+    "airline": "ITA",
+    "stops": 1,
+    "duration": "23 hr 5 min",
+    "departure_description": "9:35 AM on Wed, Dec 23",
+    "verdict": "typical",
+    "band_low": 110,
+    "band_high": 185,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTItMjMiHwoDQ0RHEgoyMDI2LTEyLTIzGgNMSU4qAkFaMgMzMDUiIAoDTElOEgoyMDI2LTEyLTI0GgNGQ08qAkFaMgQyMDU1agUSA0NER3IFEgNGQ09CAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-30",
+   "status": "ok",
+   "fare": {
+    "price": 154,
+    "price_text": "$154",
+    "airline": "Air France, KLM",
+    "stops": 1,
+    "duration": "5 hr 5 min",
+    "departure_description": "6:10 PM on Wed, Dec 30",
+    "verdict": "typical",
+    "band_low": 110,
+    "band_high": 185,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTItMzAiIAoDQ0RHEgoyMDI2LTEyLTMwGgNBTVMqAkFGMgQxNDQwIiAKA0FNUxIKMjAyNi0xMi0zMBoDRkNPKgJLTDIEMTYwOWoFEgNDREdyBRIDRkNPQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-06",
+   "status": "ok",
+   "fare": {
+    "price": 133,
+    "price_text": "$133",
+    "airline": "ITA",
+    "stops": 0,
+    "duration": "2 hr 5 min",
+    "departure_description": "6:10 AM on Wed, Jan 6",
+    "verdict": "typical",
+    "band_low": 95,
+    "band_high": 145,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMDYiHwoDQ0RHEgoyMDI3LTAxLTA2GgNGQ08qAkFaMgMzMTdqBRIDQ0RHcgUSA0ZDT0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-13",
+   "status": "ok",
+   "fare": {
+    "price": 98,
+    "price_text": "$98",
+    "airline": "Vueling | Iberia",
+    "stops": 1,
+    "duration": "9 hr 15 min",
+    "departure_description": "9:50 AM on Wed, Jan 13",
+    "verdict": "typical",
+    "band_low": 95,
+    "band_high": 145,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDEtMTMiIAoDQ0RHEgoyMDI3LTAxLTEzGgNCQ04qAlZZMgQ4MDYxIiAKA0JDThIKMjAyNy0wMS0xMxoDRkNPKgJWWTIENjAxNGoFEgNDREdyBRIDRkNPQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-20",
+   "status": "ok",
+   "fare": {
+    "price": 113,
+    "price_text": "$113",
+    "airline": "Air France, KLM",
+    "stops": 1,
+    "duration": "5 hr",
+    "departure_description": "6:55 AM on Wed, Jan 20",
+    "verdict": "typical",
+    "band_low": 95,
+    "band_high": 145,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDEtMjAiIAoDQ0RHEgoyMDI3LTAxLTIwGgNBTVMqAkFGMgQxMjQwIiAKA0FNUxIKMjAyNy0wMS0yMBoDRkNPKgJLTDIEMTYwM2oFEgNDREdyBRIDRkNPQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-27",
+   "status": "ok",
+   "fare": {
+    "price": 115,
+    "price_text": "$115",
+    "airline": "KLM",
+    "stops": 1,
+    "duration": "5 hr",
+    "departure_description": "2:30 PM on Wed, Jan 27",
+    "verdict": "typical",
+    "band_low": 95,
+    "band_high": 145,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDEtMjciIAoDQ0RHEgoyMDI3LTAxLTI3GgNBTVMqAktMMgQxNDA4IiAKA0FNUxIKMjAyNy0wMS0yNxoDRkNPKgJLTDIEMTYwN2oFEgNDREdyBRIDRkNPQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-03",
+   "status": "ok",
+   "fare": {
+    "price": 96,
+    "price_text": "$96",
+    "airline": "Vueling | Iberia",
+    "stops": 1,
+    "duration": "9 hr 15 min",
+    "departure_description": "9:50 AM on Wed, Feb 3",
+    "verdict": "typical",
+    "band_low": 90,
+    "band_high": 155,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDItMDMiIAoDQ0RHEgoyMDI3LTAyLTAzGgNCQ04qAlZZMgQ4MDYxIiAKA0JDThIKMjAyNy0wMi0wMxoDRkNPKgJWWTIENjAxNGoFEgNDREdyBRIDRkNPQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-10",
+   "status": "ok",
+   "fare": {
+    "price": 116,
+    "price_text": "$116",
+    "airline": "KLM",
+    "stops": 1,
+    "duration": "13 hr 30 min",
+    "departure_description": "9:45 AM on Wed, Feb 10",
+    "verdict": "typical",
+    "band_low": 90,
+    "band_high": 155,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDItMTAiIAoDQ0RHEgoyMDI3LTAyLTEwGgNBTVMqAktMMgQxNDA0IiAKA0FNUxIKMjAyNy0wMi0xMBoDRkNPKgJLTDIEMTYwOWoFEgNDREdyBRIDRkNPQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-17",
+   "status": "ok",
+   "fare": {
+    "price": 113,
+    "price_text": "$113",
+    "airline": "Air France, KLM",
+    "stops": 1,
+    "duration": "5 hr",
+    "departure_description": "6:55 AM on Wed, Feb 17",
+    "verdict": "typical",
+    "band_low": 90,
+    "band_high": 155,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDItMTciIAoDQ0RHEgoyMDI3LTAyLTE3GgNBTVMqAkFGMgQxMjQwIiAKA0FNUxIKMjAyNy0wMi0xNxoDRkNPKgJLTDIEMTYwM2oFEgNDREdyBRIDRkNPQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-24",
+   "status": "ok",
+   "fare": {
+    "price": 105,
+    "price_text": "$105",
+    "airline": "Vueling | Iberia",
+    "stops": 1,
+    "duration": "9 hr 15 min",
+    "departure_description": "9:50 AM on Wed, Feb 24",
+    "verdict": "typical",
+    "band_low": 90,
+    "band_high": 155,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDItMjQiIAoDQ0RHEgoyMDI3LTAyLTI0GgNCQ04qAlZZMgQ4MDYxIiAKA0JDThIKMjAyNy0wMi0yNBoDRkNPKgJWWTIENjAxNGoFEgNDREdyBRIDRkNPQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-03",
+   "status": "ok",
+   "fare": {
+    "price": 97,
+    "price_text": "$97",
+    "airline": "Vueling",
+    "stops": 1,
+    "duration": "9 hr 15 min",
+    "departure_description": "9:50 AM on Wed, Mar 3",
+    "verdict": "low",
+    "band_low": 100,
+    "band_high": 170,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDMtMDMiIAoDQ0RHEgoyMDI3LTAzLTAzGgNCQ04qAlZZMgQ4MDYxIiAKA0JDThIKMjAyNy0wMy0wMxoDRkNPKgJWWTIENjAxNGoFEgNDREdyBRIDRkNPQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-10",
+   "status": "ok",
+   "fare": {
+    "price": 99,
+    "price_text": "$99",
+    "airline": "Vueling | Iberia",
+    "stops": 1,
+    "duration": "9 hr 15 min",
+    "departure_description": "9:50 AM on Wed, Mar 10",
+    "verdict": "low",
+    "band_low": 100,
+    "band_high": 170,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDMtMTAiIAoDQ0RHEgoyMDI3LTAzLTEwGgNCQ04qAlZZMgQ4MDYxIiAKA0JDThIKMjAyNy0wMy0xMBoDRkNPKgJWWTIENjAxNGoFEgNDREdyBRIDRkNPQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-17",
+   "status": "ok",
+   "fare": {
+    "price": 94,
+    "price_text": "$94",
+    "airline": "Vueling | Iberia",
+    "stops": 1,
+    "duration": "9 hr 15 min",
+    "departure_description": "9:50 AM on Wed, Mar 17",
+    "verdict": "low",
+    "band_low": 100,
+    "band_high": 170,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDMtMTciIAoDQ0RHEgoyMDI3LTAzLTE3GgNCQ04qAlZZMgQ4MDYxIiAKA0JDThIKMjAyNy0wMy0xNxoDRkNPKgJWWTIENjAxNGoFEgNDREdyBRIDRkNPQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-24",
+   "status": "ok",
+   "fare": {
+    "price": 119,
+    "price_text": "$119",
+    "airline": "Iberia",
+    "stops": 1,
+    "duration": "11 hr 35 min",
+    "departure_description": "12:40 PM on Wed, Mar 24",
+    "verdict": "typical",
+    "band_low": 100,
+    "band_high": 170,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMjQiHwoDQ0RHEgoyMDI3LTAzLTI0GgNNQUQqAklCMgM1ODYiHwoDTUFEEgoyMDI3LTAzLTI0GgNGQ08qAklCMgM2NTdqBRIDQ0RHcgUSA0ZDT0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-31",
+   "status": "ok",
+   "fare": {
+    "price": 127,
+    "price_text": "$127",
+    "airline": "Vueling | Iberia",
+    "stops": 1,
+    "duration": "6 hr 55 min",
+    "departure_description": "10:10 AM on Wed, Mar 31",
+    "verdict": "typical",
+    "band_low": 100,
+    "band_high": 170,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDMtMzEiIAoDQ0RHEgoyMDI3LTAzLTMxGgNCQ04qAlZZMgQ4MDYxIiAKA0JDThIKMjAyNy0wMy0zMRoDRkNPKgJWWTIENjAxMGoFEgNDREdyBRIDRkNPQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-07",
+   "status": "ok",
+   "fare": {
+    "price": 135,
+    "price_text": "$135",
+    "airline": "Air France",
+    "stops": 0,
+    "duration": "2 hr 5 min",
+    "departure_description": "6:50 AM on Wed, Apr 7",
+    "verdict": "typical",
+    "band_low": 120,
+    "band_high": 195,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDQtMDciIAoDQ0RHEgoyMDI3LTA0LTA3GgNGQ08qAkFGMgQxMjA0agUSA0NER3IFEgNGQ09CAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-14",
+   "status": "ok",
+   "fare": {
+    "price": 117,
+    "price_text": "$117",
+    "airline": "Vueling",
+    "stops": 1,
+    "duration": "6 hr 55 min",
+    "departure_description": "10:10 AM on Wed, Apr 14",
+    "verdict": "low",
+    "band_low": 120,
+    "band_high": 195,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDQtMTQiIAoDQ0RHEgoyMDI3LTA0LTE0GgNCQ04qAlZZMgQ4MDYxIiAKA0JDThIKMjAyNy0wNC0xNBoDRkNPKgJWWTIENjAxMGoFEgNDREdyBRIDRkNPQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-21",
+   "status": "ok",
+   "fare": {
+    "price": 88,
+    "price_text": "$88",
+    "airline": "Vueling | Iberia",
+    "stops": 1,
+    "duration": "6 hr 55 min",
+    "departure_description": "10:10 AM on Wed, Apr 21",
+    "verdict": "low",
+    "band_low": 120,
+    "band_high": 195,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDQtMjEiIAoDQ0RHEgoyMDI3LTA0LTIxGgNCQ04qAlZZMgQ4MDYxIiAKA0JDThIKMjAyNy0wNC0yMRoDRkNPKgJWWTIENjAxMGoFEgNDREdyBRIDRkNPQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-28",
+   "status": "ok",
+   "fare": {
+    "price": 113,
+    "price_text": "$113",
+    "airline": "Vueling | Iberia",
+    "stops": 1,
+    "duration": "6 hr 55 min",
+    "departure_description": "10:10 AM on Wed, Apr 28",
+    "verdict": "low",
+    "band_low": 120,
+    "band_high": 195,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDQtMjgiIAoDQ0RHEgoyMDI3LTA0LTI4GgNCQ04qAlZZMgQ4MDYxIiAKA0JDThIKMjAyNy0wNC0yOBoDRkNPKgJWWTIENjAxMGoFEgNDREdyBRIDRkNPQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  }
+ ]
+}

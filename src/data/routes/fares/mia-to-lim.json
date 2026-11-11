@@ -1,0 +1,423 @@
+{
+ "slug": "mia-to-lim",
+ "from": "MIA",
+ "to": "LIM",
+ "currency": "usd",
+ "trip": "one-way, 1 adult, economy",
+ "points": [
+  {
+   "date": "2026-11-25",
+   "status": "ok",
+   "fare": {
+    "price": 263,
+    "price_text": "$263",
+    "airline": "Arajet",
+    "stops": 1,
+    "duration": "9 hr 15 min",
+    "departure_description": "4:45 PM on Wed, Nov 25",
+    "verdict": "typical",
+    "band_low": 200,
+    "band_high": 475,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTEtMjUiIAoDTUlBEgoyMDI2LTExLTI1GgNQVUoqAkRNMgQ1MTAzIiAKA1BVShIKMjAyNi0xMS0yNRoDTElNKgJETTIENjc3MGoFEgNNSUFyBRIDTElNQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:06:31.203Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-02",
+   "status": "ok",
+   "fare": {
+    "price": 166,
+    "price_text": "$166",
+    "airline": "Arajet",
+    "stops": 1,
+    "duration": "11 hr 6 min",
+    "departure_description": "1:09 PM on Wed, Dec 2",
+    "verdict": "low",
+    "band_low": 205,
+    "band_high": 495,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTItMDIiIAoDTUlBEgoyMDI2LTEyLTAyGgNTRFEqAkRNMgQyMTAxIiAKA1NEURIKMjAyNi0xMi0wMhoDTElNKgJETTIEMzc2MGoFEgNNSUFyBRIDTElNQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:06:31.203Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-09",
+   "status": "ok",
+   "fare": {
+    "price": 195,
+    "price_text": "$195",
+    "airline": "Arajet",
+    "stops": 1,
+    "duration": "11 hr 6 min",
+    "departure_description": "1:09 PM on Wed, Dec 9",
+    "verdict": "low",
+    "band_low": 205,
+    "band_high": 495,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTItMDkiIAoDTUlBEgoyMDI2LTEyLTA5GgNTRFEqAkRNMgQyMTAxIiAKA1NEURIKMjAyNi0xMi0wORoDTElNKgJETTIEMzc2MGoFEgNNSUFyBRIDTElNQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:06:31.203Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-16",
+   "status": "ok",
+   "fare": {
+    "price": 489,
+    "price_text": "$489",
+    "airline": "Arajet",
+    "stops": 1,
+    "duration": "11 hr 6 min",
+    "departure_description": "1:09 PM on Wed, Dec 16",
+    "verdict": "typical",
+    "band_low": 205,
+    "band_high": 495,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTItMTYiIAoDTUlBEgoyMDI2LTEyLTE2GgNTRFEqAkRNMgQyMTAxIiAKA1NEURIKMjAyNi0xMi0xNhoDTElNKgJETTIEMzc2MGoFEgNNSUFyBRIDTElNQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:06:31.203Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-23",
+   "status": "ok",
+   "fare": {
+    "price": 489,
+    "price_text": "$489",
+    "airline": "Arajet",
+    "stops": 1,
+    "duration": "9 hr 15 min",
+    "departure_description": "4:45 PM on Wed, Dec 23",
+    "verdict": "typical",
+    "band_low": 205,
+    "band_high": 495,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTItMjMiIAoDTUlBEgoyMDI2LTEyLTIzGgNQVUoqAkRNMgQ1MTAzIiAKA1BVShIKMjAyNi0xMi0yMxoDTElNKgJETTIENjc3MGoFEgNNSUFyBRIDTElNQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:06:31.203Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-30",
+   "status": "ok",
+   "fare": {
+    "price": 297,
+    "price_text": "$297",
+    "airline": "Arajet",
+    "stops": 1,
+    "duration": "9 hr 15 min",
+    "departure_description": "4:45 PM on Wed, Dec 30",
+    "verdict": "typical",
+    "band_low": 205,
+    "band_high": 495,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTItMzAiIAoDTUlBEgoyMDI2LTEyLTMwGgNQVUoqAkRNMgQ1MTAzIiAKA1BVShIKMjAyNi0xMi0zMBoDTElNKgJETTIENjc3MGoFEgNNSUFyBRIDTElNQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:06:31.203Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-06",
+   "status": "ok",
+   "fare": {
+    "price": 404,
+    "price_text": "$404",
+    "airline": "Arajet",
+    "stops": 1,
+    "duration": "9 hr 15 min",
+    "departure_description": "4:45 PM on Wed, Jan 6",
+    "verdict": "high",
+    "band_low": 160,
+    "band_high": 270,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDEtMDYiIAoDTUlBEgoyMDI3LTAxLTA2GgNQVUoqAkRNMgQ1MTAzIiAKA1BVShIKMjAyNy0wMS0wNhoDTElNKgJETTIENjc3MGoFEgNNSUFyBRIDTElNQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:06:31.203Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-13",
+   "status": "ok",
+   "fare": {
+    "price": 263,
+    "price_text": "$263",
+    "airline": "Arajet",
+    "stops": 1,
+    "duration": "11 hr 6 min",
+    "departure_description": "1:09 PM on Wed, Jan 13",
+    "verdict": "typical",
+    "band_low": 160,
+    "band_high": 270,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDEtMTMiIAoDTUlBEgoyMDI3LTAxLTEzGgNTRFEqAkRNMgQyMTAxIiAKA1NEURIKMjAyNy0wMS0xMxoDTElNKgJETTIEMzc2MGoFEgNNSUFyBRIDTElNQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:06:31.203Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-20",
+   "status": "ok",
+   "fare": {
+    "price": 212,
+    "price_text": "$212",
+    "airline": "Arajet",
+    "stops": 1,
+    "duration": "9 hr 15 min",
+    "departure_description": "4:45 PM on Wed, Jan 20",
+    "verdict": "typical",
+    "band_low": 160,
+    "band_high": 270,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDEtMjAiIAoDTUlBEgoyMDI3LTAxLTIwGgNQVUoqAkRNMgQ1MTAzIiAKA1BVShIKMjAyNy0wMS0yMBoDTElNKgJETTIENjc3MGoFEgNNSUFyBRIDTElNQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:06:12.239Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-27",
+   "status": "ok",
+   "fare": {
+    "price": 166,
+    "price_text": "$166",
+    "airline": "Arajet",
+    "stops": 1,
+    "duration": "11 hr 6 min",
+    "departure_description": "1:09 PM on Wed, Jan 27",
+    "verdict": "typical",
+    "band_low": 160,
+    "band_high": 270,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDEtMjciIAoDTUlBEgoyMDI3LTAxLTI3GgNTRFEqAkRNMgQyMTAxIiAKA1NEURIKMjAyNy0wMS0yNxoDTElNKgJETTIEMzc2MGoFEgNNSUFyBRIDTElNQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:06:12.239Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-03",
+   "status": "ok",
+   "fare": {
+    "price": 166,
+    "price_text": "$166",
+    "airline": "Arajet",
+    "stops": 1,
+    "duration": "11 hr 6 min",
+    "departure_description": "1:09 PM on Wed, Feb 3",
+    "verdict": "low",
+    "band_low": 205,
+    "band_high": 245,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDItMDMiIAoDTUlBEgoyMDI3LTAyLTAzGgNTRFEqAkRNMgQyMTAxIiAKA1NEURIKMjAyNy0wMi0wMxoDTElNKgJETTIEMzc2MGoFEgNNSUFyBRIDTElNQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:06:12.239Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-10",
+   "status": "ok",
+   "fare": {
+    "price": 212,
+    "price_text": "$212",
+    "airline": "Arajet",
+    "stops": 1,
+    "duration": "9 hr 15 min",
+    "departure_description": "4:45 PM on Wed, Feb 10",
+    "verdict": "typical",
+    "band_low": 205,
+    "band_high": 245,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDItMTAiIAoDTUlBEgoyMDI3LTAyLTEwGgNQVUoqAkRNMgQ1MTAzIiAKA1BVShIKMjAyNy0wMi0xMBoDTElNKgJETTIENjc3MGoFEgNNSUFyBRIDTElNQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:06:12.239Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-17",
+   "status": "ok",
+   "fare": {
+    "price": 212,
+    "price_text": "$212",
+    "airline": "Arajet",
+    "stops": 1,
+    "duration": "9 hr 15 min",
+    "departure_description": "4:45 PM on Wed, Feb 17",
+    "verdict": "typical",
+    "band_low": 205,
+    "band_high": 245,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDItMTciIAoDTUlBEgoyMDI3LTAyLTE3GgNQVUoqAkRNMgQ1MTAzIiAKA1BVShIKMjAyNy0wMi0xNxoDTElNKgJETTIENjc3MGoFEgNNSUFyBRIDTElNQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:06:12.239Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-24",
+   "status": "ok",
+   "fare": {
+    "price": 236,
+    "price_text": "$236",
+    "airline": "Arajet",
+    "stops": 1,
+    "duration": "11 hr 6 min",
+    "departure_description": "1:09 PM on Wed, Feb 24",
+    "verdict": "typical",
+    "band_low": 205,
+    "band_high": 245,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDItMjQiIAoDTUlBEgoyMDI3LTAyLTI0GgNTRFEqAkRNMgQyMTAxIiAKA1NEURIKMjAyNy0wMi0yNBoDTElNKgJETTIEMzc2MGoFEgNNSUFyBRIDTElNQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:06:12.239Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-03",
+   "status": "ok",
+   "fare": {
+    "price": 236,
+    "price_text": "$236",
+    "airline": "Arajet",
+    "stops": 1,
+    "duration": "11 hr 6 min",
+    "departure_description": "1:09 PM on Wed, Mar 3",
+    "verdict": "typical",
+    "band_low": 145,
+    "band_high": 250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDMtMDMiIAoDTUlBEgoyMDI3LTAzLTAzGgNTRFEqAkRNMgQyMTAxIiAKA1NEURIKMjAyNy0wMy0wMxoDTElNKgJETTIEMzc2MGoFEgNNSUFyBRIDTElNQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:06:12.239Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-10",
+   "status": "ok",
+   "fare": {
+    "price": 224,
+    "price_text": "$224",
+    "airline": "Arajet",
+    "stops": 1,
+    "duration": "11 hr 6 min",
+    "departure_description": "1:09 PM on Wed, Mar 10",
+    "verdict": "typical",
+    "band_low": 145,
+    "band_high": 250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDMtMTAiIAoDTUlBEgoyMDI3LTAzLTEwGgNTRFEqAkRNMgQyMTAxIiAKA1NEURIKMjAyNy0wMy0xMBoDTElNKgJETTIEMzc2MGoFEgNNSUFyBRIDTElNQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:06:12.239Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-17",
+   "status": "ok",
+   "fare": {
+    "price": 224,
+    "price_text": "$224",
+    "airline": "Arajet",
+    "stops": 1,
+    "duration": "11 hr 6 min",
+    "departure_description": "2:09 PM on Wed, Mar 17",
+    "verdict": "typical",
+    "band_low": 145,
+    "band_high": 250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDMtMTciIAoDTUlBEgoyMDI3LTAzLTE3GgNTRFEqAkRNMgQyMTAxIiAKA1NEURIKMjAyNy0wMy0xNxoDTElNKgJETTIEMzc2MGoFEgNNSUFyBRIDTElNQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:06:14.314Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-24",
+   "status": "ok",
+   "fare": {
+    "price": 351,
+    "price_text": "$351",
+    "airline": "COPA",
+    "stops": 1,
+    "duration": "7 hr 18 min",
+    "departure_description": "2:52 AM on Wed, Mar 24",
+    "verdict": "high",
+    "band_low": 145,
+    "band_high": 250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMjQiHwoDTUlBEgoyMDI3LTAzLTI0GgNQVFkqAkNNMgM2NjAiHwoDUFRZEgoyMDI3LTAzLTI0GgNMSU0qAkNNMgM2NjJqBRIDTUlBcgUSA0xJTUIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:06:14.314Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-31",
+   "status": "ok",
+   "fare": {
+    "price": 351,
+    "price_text": "$351",
+    "airline": "COPA",
+    "stops": 1,
+    "duration": "7 hr 38 min",
+    "departure_description": "2:52 AM on Wed, Mar 31",
+    "verdict": "high",
+    "band_low": 145,
+    "band_high": 250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMzEiHwoDTUlBEgoyMDI3LTAzLTMxGgNQVFkqAkNNMgM2NjAiHwoDUFRZEgoyMDI3LTAzLTMxGgNMSU0qAkNNMgM2NjJqBRIDTUlBcgUSA0xJTUIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:06:14.314Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-07",
+   "status": "ok",
+   "fare": {
+    "price": 351,
+    "price_text": "$351",
+    "airline": "COPA",
+    "stops": 1,
+    "duration": "7 hr 38 min",
+    "departure_description": "2:52 AM on Wed, Apr 7",
+    "verdict": "high",
+    "band_low": 125,
+    "band_high": 250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMDciHwoDTUlBEgoyMDI3LTA0LTA3GgNQVFkqAkNNMgM2NjAiHwoDUFRZEgoyMDI3LTA0LTA3GgNMSU0qAkNNMgM2NjJqBRIDTUlBcgUSA0xJTUIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:06:14.314Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-14",
+   "status": "ok",
+   "fare": {
+    "price": 351,
+    "price_text": "$351",
+    "airline": "COPA",
+    "stops": 1,
+    "duration": "7 hr 37 min",
+    "departure_description": "6:18 PM on Wed, Apr 14",
+    "verdict": "high",
+    "band_low": 125,
+    "band_high": 250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMTQiHwoDTUlBEgoyMDI3LTA0LTE0GgNQVFkqAkNNMgMyMjciHwoDUFRZEgoyMDI3LTA0LTE0GgNMSU0qAkNNMgMzMzdqBRIDTUlBcgUSA0xJTUIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:06:14.314Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-21",
+   "status": "ok",
+   "fare": {
+    "price": 351,
+    "price_text": "$351",
+    "airline": "COPA",
+    "stops": 1,
+    "duration": "7 hr 37 min",
+    "departure_description": "6:18 PM on Wed, Apr 21",
+    "verdict": "high",
+    "band_low": 125,
+    "band_high": 250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjEiHwoDTUlBEgoyMDI3LTA0LTIxGgNQVFkqAkNNMgMyMjciHwoDUFRZEgoyMDI3LTA0LTIxGgNMSU0qAkNNMgMzMzdqBRIDTUlBcgUSA0xJTUIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:06:14.314Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-28",
+   "status": "ok",
+   "fare": {
+    "price": 351,
+    "price_text": "$351",
+    "airline": "COPA",
+    "stops": 1,
+    "duration": "7 hr 37 min",
+    "departure_description": "6:18 PM on Wed, Apr 28",
+    "verdict": "high",
+    "band_low": 125,
+    "band_high": 250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjgiHwoDTUlBEgoyMDI3LTA0LTI4GgNQVFkqAkNNMgMyMjciHwoDUFRZEgoyMDI3LTA0LTI4GgNMSU0qAkNNMgMzMzdqBRIDTUlBcgUSA0xJTUIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:06:14.314Z",
+   "source": "claude-mcp"
+  }
+ ]
+}

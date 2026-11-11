@@ -1,0 +1,423 @@
+{
+ "slug": "sin-to-bkk",
+ "from": "SIN",
+ "to": "BKK",
+ "currency": "usd",
+ "trip": "one-way, 1 adult, economy",
+ "points": [
+  {
+   "date": "2026-11-25",
+   "status": "ok",
+   "fare": {
+    "price": 114,
+    "price_text": "$114",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 35 min",
+    "departure_description": "7:40 PM on Wed, Nov 25",
+    "verdict": "typical",
+    "band_low": 95,
+    "band_high": 180,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTEtMjUiHwoDU0lOEgoyMDI2LTExLTI1GgNCS0sqAlRSMgM2MjBqBRIDU0lOcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:18.324Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-02",
+   "status": "ok",
+   "fare": {
+    "price": 157,
+    "price_text": "$157",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 35 min",
+    "departure_description": "4:00 PM on Wed, Dec 2",
+    "verdict": "typical",
+    "band_low": 120,
+    "band_high": 220,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDIiHwoDU0lOEgoyMDI2LTEyLTAyGgNCS0sqAlRSMgM2MTBqBRIDU0lOcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:18.324Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-09",
+   "status": "ok",
+   "fare": {
+    "price": 176,
+    "price_text": "$176",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 35 min",
+    "departure_description": "2:25 PM on Wed, Dec 9",
+    "verdict": "typical",
+    "band_low": 120,
+    "band_high": 220,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDkiHwoDU0lOEgoyMDI2LTEyLTA5GgNCS0sqAlRSMgM2ODhqBRIDU0lOcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:18.324Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-16",
+   "status": "ok",
+   "fare": {
+    "price": 157,
+    "price_text": "$157",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 35 min",
+    "departure_description": "5:40 PM on Wed, Dec 16",
+    "verdict": "typical",
+    "band_low": 120,
+    "band_high": 220,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMTYiHwoDU0lOEgoyMDI2LTEyLTE2GgNCS0sqAlRSMgM2MzZqBRIDU0lOcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:18.324Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-23",
+   "status": "ok",
+   "fare": {
+    "price": 223,
+    "price_text": "$223",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 35 min",
+    "departure_description": "2:25 PM on Wed, Dec 23",
+    "verdict": "high",
+    "band_low": 120,
+    "band_high": 220,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMjMiHwoDU0lOEgoyMDI2LTEyLTIzGgNCS0sqAlRSMgM2ODhqBRIDU0lOcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:18.324Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-30",
+   "status": "ok",
+   "fare": {
+    "price": 129,
+    "price_text": "$129",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 35 min",
+    "departure_description": "4:00 PM on Wed, Dec 30",
+    "verdict": "typical",
+    "band_low": 120,
+    "band_high": 220,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMzAiHwoDU0lOEgoyMDI2LTEyLTMwGgNCS0sqAlRSMgM2MTBqBRIDU0lOcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:18.324Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-06",
+   "status": "ok",
+   "fare": {
+    "price": 87,
+    "price_text": "$87",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 35 min",
+    "departure_description": "5:40 PM on Wed, Jan 6",
+    "verdict": "typical",
+    "band_low": 75,
+    "band_high": 115,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMDYiHwoDU0lOEgoyMDI3LTAxLTA2GgNCS0sqAlRSMgM2MzZqBRIDU0lOcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:18.324Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-13",
+   "status": "ok",
+   "fare": {
+    "price": 99,
+    "price_text": "$99",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 35 min",
+    "departure_description": "2:25 PM on Wed, Jan 13",
+    "verdict": "typical",
+    "band_low": 75,
+    "band_high": 115,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMTMiHwoDU0lOEgoyMDI3LTAxLTEzGgNCS0sqAlRSMgM2ODhqBRIDU0lOcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:18.324Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-20",
+   "status": "ok",
+   "fare": {
+    "price": 87,
+    "price_text": "$87",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 35 min",
+    "departure_description": "4:00 PM on Wed, Jan 20",
+    "verdict": "typical",
+    "band_low": 75,
+    "band_high": 115,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMjAiHwoDU0lOEgoyMDI3LTAxLTIwGgNCS0sqAlRSMgM2MTBqBRIDU0lOcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:17.771Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-27",
+   "status": "ok",
+   "fare": {
+    "price": 99,
+    "price_text": "$99",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 35 min",
+    "departure_description": "2:25 PM on Wed, Jan 27",
+    "verdict": "typical",
+    "band_low": 75,
+    "band_high": 115,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMjciHwoDU0lOEgoyMDI3LTAxLTI3GgNCS0sqAlRSMgM2ODhqBRIDU0lOcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:17.771Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-03",
+   "status": "ok",
+   "fare": {
+    "price": 99,
+    "price_text": "$99",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 35 min",
+    "departure_description": "4:00 PM on Wed, Feb 3",
+    "verdict": "typical",
+    "band_low": 70,
+    "band_high": 200,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMDMiHwoDU0lOEgoyMDI3LTAyLTAzGgNCS0sqAlRSMgM2MTBqBRIDU0lOcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:17.771Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-10",
+   "status": "ok",
+   "fare": {
+    "price": 87,
+    "price_text": "$87",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 35 min",
+    "departure_description": "5:40 PM on Wed, Feb 10",
+    "verdict": "typical",
+    "band_low": 70,
+    "band_high": 200,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMTAiHwoDU0lOEgoyMDI3LTAyLTEwGgNCS0sqAlRSMgM2MzZqBRIDU0lOcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:17.771Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-17",
+   "status": "ok",
+   "fare": {
+    "price": 87,
+    "price_text": "$87",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 35 min",
+    "departure_description": "5:40 PM on Wed, Feb 17",
+    "verdict": "typical",
+    "band_low": 70,
+    "band_high": 200,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMTciHwoDU0lOEgoyMDI3LTAyLTE3GgNCS0sqAlRSMgM2MzZqBRIDU0lOcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:17.771Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-24",
+   "status": "ok",
+   "fare": {
+    "price": 87,
+    "price_text": "$87",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 35 min",
+    "departure_description": "5:40 PM on Wed, Feb 24",
+    "verdict": "typical",
+    "band_low": 70,
+    "band_high": 200,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMjQiHwoDU0lOEgoyMDI3LTAyLTI0GgNCS0sqAlRSMgM2MzZqBRIDU0lOcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:17.771Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-03",
+   "status": "ok",
+   "fare": {
+    "price": 87,
+    "price_text": "$87",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 35 min",
+    "departure_description": "4:00 PM on Wed, Mar 3",
+    "verdict": "typical",
+    "band_low": 70,
+    "band_high": 150,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMDMiHwoDU0lOEgoyMDI3LTAzLTAzGgNCS0sqAlRSMgM2MTBqBRIDU0lOcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:17.771Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-10",
+   "status": "ok",
+   "fare": {
+    "price": 200,
+    "price_text": "$200",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 35 min",
+    "departure_description": "2:25 PM on Wed, Mar 10",
+    "verdict": "high",
+    "band_low": 70,
+    "band_high": 150,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMTAiHwoDU0lOEgoyMDI3LTAzLTEwGgNCS0sqAlRSMgM2ODhqBRIDU0lOcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:17.771Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-17",
+   "status": "ok",
+   "fare": {
+    "price": 157,
+    "price_text": "$157",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 35 min",
+    "departure_description": "2:25 PM on Wed, Mar 17",
+    "verdict": "high",
+    "band_low": 70,
+    "band_high": 150,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMTciHwoDU0lOEgoyMDI3LTAzLTE3GgNCS0sqAlRSMgM2ODhqBRIDU0lOcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:16.996Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-24",
+   "status": "ok",
+   "fare": {
+    "price": 87,
+    "price_text": "$87",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 35 min",
+    "departure_description": "5:40 PM on Wed, Mar 24",
+    "verdict": "typical",
+    "band_low": 70,
+    "band_high": 150,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMjQiHwoDU0lOEgoyMDI3LTAzLTI0GgNCS0sqAlRSMgM2MzZqBRIDU0lOcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:16.996Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-31",
+   "status": "ok",
+   "fare": {
+    "price": 115,
+    "price_text": "$115",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 35 min",
+    "departure_description": "2:15 PM on Wed, Mar 31",
+    "verdict": "typical",
+    "band_low": 70,
+    "band_high": 150,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMzEiHwoDU0lOEgoyMDI3LTAzLTMxGgNCS0sqAlRSMgM2MTBqBRIDU0lOcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:16.996Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-07",
+   "status": "ok",
+   "fare": {
+    "price": 134,
+    "price_text": "$134",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 35 min",
+    "departure_description": "2:15 PM on Wed, Apr 7",
+    "verdict": "typical",
+    "band_low": 85,
+    "band_high": 185,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMDciHwoDU0lOEgoyMDI3LTA0LTA3GgNCS0sqAlRSMgM2MTBqBRIDU0lOcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:16.996Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-14",
+   "status": "ok",
+   "fare": {
+    "price": 134,
+    "price_text": "$134",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 35 min",
+    "departure_description": "2:15 PM on Wed, Apr 14",
+    "verdict": "typical",
+    "band_low": 85,
+    "band_high": 185,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMTQiHwoDU0lOEgoyMDI3LTA0LTE0GgNCS0sqAlRSMgM2MTBqBRIDU0lOcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:16.996Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-21",
+   "status": "ok",
+   "fare": {
+    "price": 134,
+    "price_text": "$134",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 35 min",
+    "departure_description": "2:15 PM on Wed, Apr 21",
+    "verdict": "typical",
+    "band_low": 85,
+    "band_high": 185,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMjEiHwoDU0lOEgoyMDI3LTA0LTIxGgNCS0sqAlRSMgM2MTBqBRIDU0lOcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:16.996Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-28",
+   "status": "ok",
+   "fare": {
+    "price": 118,
+    "price_text": "$118",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 35 min",
+    "departure_description": "6:00 PM on Wed, Apr 28",
+    "verdict": "typical",
+    "band_low": 85,
+    "band_high": 185,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMjgiHwoDU0lOEgoyMDI3LTA0LTI4GgNCS0sqAlRSMgM2MjZqBRIDU0lOcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:16.996Z",
+   "source": "claude-mcp"
+  }
+ ]
+}

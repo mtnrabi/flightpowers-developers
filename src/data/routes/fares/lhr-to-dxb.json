@@ -1,0 +1,423 @@
+{
+ "slug": "lhr-to-dxb",
+ "from": "LHR",
+ "to": "DXB",
+ "currency": "usd",
+ "trip": "one-way, 1 adult, economy",
+ "points": [
+  {
+   "date": "2026-11-25",
+   "status": "ok",
+   "fare": {
+    "price": 346,
+    "price_text": "$346",
+    "airline": "Eurowings",
+    "stops": 1,
+    "duration": "17 hr 55 min",
+    "departure_description": "6:35 PM on Wed, Nov 25",
+    "verdict": "low",
+    "band_low": 375,
+    "band_high": 470,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTEtMjUiIAoDTEhSEgoyMDI2LTExLTI1GgNCRVIqAkVXMgQ4NDY1IiAKA0JFUhIKMjAyNi0xMS0yNhoDRFhCKgJFVzIEMTE1MGoFEgNMSFJyBRIDRFhCQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.866Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-02",
+   "status": "ok",
+   "fare": {
+    "price": 306,
+    "price_text": "$306",
+    "airline": "Eurowings",
+    "stops": 1,
+    "duration": "17 hr 55 min",
+    "departure_description": "6:35 PM on Wed, Dec 2",
+    "verdict": "low",
+    "band_low": 410,
+    "band_high": 700,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTItMDIiIAoDTEhSEgoyMDI2LTEyLTAyGgNCRVIqAkVXMgQ4NDY1IiAKA0JFUhIKMjAyNi0xMi0wMxoDRFhCKgJFVzIEMTE1MGoFEgNMSFJyBRIDRFhCQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.866Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-09",
+   "status": "ok",
+   "fare": {
+    "price": 286,
+    "price_text": "$286",
+    "airline": "Eurowings",
+    "stops": 1,
+    "duration": "17 hr 55 min",
+    "departure_description": "6:35 PM on Wed, Dec 9",
+    "verdict": "low",
+    "band_low": 410,
+    "band_high": 700,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTItMDkiIAoDTEhSEgoyMDI2LTEyLTA5GgNCRVIqAkVXMgQ4NDY1IiAKA0JFUhIKMjAyNi0xMi0xMBoDRFhCKgJFVzIEMTE1MGoFEgNMSFJyBRIDRFhCQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.866Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-16",
+   "status": "ok",
+   "fare": {
+    "price": 585,
+    "price_text": "$585",
+    "airline": "Eurowings",
+    "stops": 1,
+    "duration": "17 hr 55 min",
+    "departure_description": "6:35 PM on Wed, Dec 16",
+    "verdict": "typical",
+    "band_low": 410,
+    "band_high": 700,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTItMTYiIAoDTEhSEgoyMDI2LTEyLTE2GgNCRVIqAkVXMgQ4NDY1IiAKA0JFUhIKMjAyNi0xMi0xNxoDRFhCKgJFVzIEMTE1MGoFEgNMSFJyBRIDRFhCQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.866Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-23",
+   "status": "ok",
+   "fare": {
+    "price": 585,
+    "price_text": "$585",
+    "airline": "Eurowings",
+    "stops": 1,
+    "duration": "17 hr 55 min",
+    "departure_description": "6:35 PM on Wed, Dec 23",
+    "verdict": "typical",
+    "band_low": 410,
+    "band_high": 700,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTItMjMiIAoDTEhSEgoyMDI2LTEyLTIzGgNCRVIqAkVXMgQ4NDY1IiAKA0JFUhIKMjAyNi0xMi0yNBoDRFhCKgJFVzIEMTE1MGoFEgNMSFJyBRIDRFhCQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.866Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-30",
+   "status": "ok",
+   "fare": {
+    "price": 379,
+    "price_text": "$379",
+    "airline": "Eurowings",
+    "stops": 1,
+    "duration": "17 hr 55 min",
+    "departure_description": "6:35 PM on Wed, Dec 30",
+    "verdict": "low",
+    "band_low": 410,
+    "band_high": 700,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTItMzAiIAoDTEhSEgoyMDI2LTEyLTMwGgNCRVIqAkVXMgQ4NDY1IiAKA0JFUhIKMjAyNi0xMi0zMRoDRFhCKgJFVzIEMTE1MGoFEgNMSFJyBRIDRFhCQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.866Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-06",
+   "status": "ok",
+   "fare": {
+    "price": 266,
+    "price_text": "$266",
+    "airline": "Eurowings",
+    "stops": 1,
+    "duration": "17 hr 55 min",
+    "departure_description": "6:35 PM on Wed, Jan 6",
+    "verdict": "low",
+    "band_low": 330,
+    "band_high": 415,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDEtMDYiIAoDTEhSEgoyMDI3LTAxLTA2GgNCRVIqAkVXMgQ4NDY1IiAKA0JFUhIKMjAyNy0wMS0wNxoDRFhCKgJFVzIEMTE1MGoFEgNMSFJyBRIDRFhCQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.866Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-13",
+   "status": "ok",
+   "fare": {
+    "price": 266,
+    "price_text": "$266",
+    "airline": "Eurowings",
+    "stops": 1,
+    "duration": "17 hr 55 min",
+    "departure_description": "6:35 PM on Wed, Jan 13",
+    "verdict": "low",
+    "band_low": 330,
+    "band_high": 415,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDEtMTMiIAoDTEhSEgoyMDI3LTAxLTEzGgNCRVIqAkVXMgQ4NDY1IiAKA0JFUhIKMjAyNy0wMS0xNBoDRFhCKgJFVzIEMTE1MGoFEgNMSFJyBRIDRFhCQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.866Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-20",
+   "status": "ok",
+   "fare": {
+    "price": 266,
+    "price_text": "$266",
+    "airline": "Eurowings",
+    "stops": 1,
+    "duration": "17 hr 55 min",
+    "departure_description": "6:35 PM on Wed, Jan 20",
+    "verdict": "low",
+    "band_low": 330,
+    "band_high": 415,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDEtMjAiIAoDTEhSEgoyMDI3LTAxLTIwGgNCRVIqAkVXMgQ4NDY1IiAKA0JFUhIKMjAyNy0wMS0yMRoDRFhCKgJFVzIEMTE1MGoFEgNMSFJyBRIDRFhCQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:33.090Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-27",
+   "status": "ok",
+   "fare": {
+    "price": 306,
+    "price_text": "$306",
+    "airline": "Eurowings",
+    "stops": 1,
+    "duration": "17 hr 55 min",
+    "departure_description": "6:35 PM on Wed, Jan 27",
+    "verdict": "low",
+    "band_low": 330,
+    "band_high": 415,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDEtMjciIAoDTEhSEgoyMDI3LTAxLTI3GgNCRVIqAkVXMgQ4NDY1IiAKA0JFUhIKMjAyNy0wMS0yOBoDRFhCKgJFVzIEMTE1MGoFEgNMSFJyBRIDRFhCQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:33.090Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-03",
+   "status": "ok",
+   "fare": {
+    "price": 306,
+    "price_text": "$306",
+    "airline": "Eurowings",
+    "stops": 1,
+    "duration": "17 hr 55 min",
+    "departure_description": "6:35 PM on Wed, Feb 3",
+    "verdict": "low",
+    "band_low": 315,
+    "band_high": 450,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDItMDMiIAoDTEhSEgoyMDI3LTAyLTAzGgNCRVIqAkVXMgQ4NDY1IiAKA0JFUhIKMjAyNy0wMi0wNBoDRFhCKgJFVzIEMTE1MGoFEgNMSFJyBRIDRFhCQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:33.090Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-10",
+   "status": "ok",
+   "fare": {
+    "price": 306,
+    "price_text": "$306",
+    "airline": "Eurowings",
+    "stops": 1,
+    "duration": "17 hr 55 min",
+    "departure_description": "6:35 PM on Wed, Feb 10",
+    "verdict": "low",
+    "band_low": 315,
+    "band_high": 450,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDItMTAiIAoDTEhSEgoyMDI3LTAyLTEwGgNCRVIqAkVXMgQ4NDY1IiAKA0JFUhIKMjAyNy0wMi0xMRoDRFhCKgJFVzIEMTE1MGoFEgNMSFJyBRIDRFhCQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:33.090Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-17",
+   "status": "ok",
+   "fare": {
+    "price": 306,
+    "price_text": "$306",
+    "airline": "Eurowings",
+    "stops": 1,
+    "duration": "17 hr 55 min",
+    "departure_description": "6:35 PM on Wed, Feb 17",
+    "verdict": "low",
+    "band_low": 315,
+    "band_high": 450,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDItMTciIAoDTEhSEgoyMDI3LTAyLTE3GgNCRVIqAkVXMgQ4NDY1IiAKA0JFUhIKMjAyNy0wMi0xOBoDRFhCKgJFVzIEMTE1MGoFEgNMSFJyBRIDRFhCQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:33.090Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-24",
+   "status": "ok",
+   "fare": {
+    "price": 306,
+    "price_text": "$306",
+    "airline": "Eurowings",
+    "stops": 1,
+    "duration": "17 hr 55 min",
+    "departure_description": "6:35 PM on Wed, Feb 24",
+    "verdict": "low",
+    "band_low": 315,
+    "band_high": 450,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDItMjQiIAoDTEhSEgoyMDI3LTAyLTI0GgNCRVIqAkVXMgQ4NDY1IiAKA0JFUhIKMjAyNy0wMi0yNRoDRFhCKgJFVzIEMTE1MGoFEgNMSFJyBRIDRFhCQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:33.090Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-03",
+   "status": "ok",
+   "fare": {
+    "price": 306,
+    "price_text": "$306",
+    "airline": "Eurowings",
+    "stops": 1,
+    "duration": "17 hr 55 min",
+    "departure_description": "6:35 PM on Wed, Mar 3",
+    "verdict": "low",
+    "band_low": 340,
+    "band_high": 670,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDMtMDMiIAoDTEhSEgoyMDI3LTAzLTAzGgNCRVIqAkVXMgQ4NDY1IiAKA0JFUhIKMjAyNy0wMy0wNBoDRFhCKgJFVzIEMTE1MGoFEgNMSFJyBRIDRFhCQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:33.090Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-10",
+   "status": "ok",
+   "fare": {
+    "price": 306,
+    "price_text": "$306",
+    "airline": "Eurowings",
+    "stops": 1,
+    "duration": "17 hr 55 min",
+    "departure_description": "6:35 PM on Wed, Mar 10",
+    "verdict": "low",
+    "band_low": 340,
+    "band_high": 670,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDMtMTAiIAoDTEhSEgoyMDI3LTAzLTEwGgNCRVIqAkVXMgQ4NDY1IiAKA0JFUhIKMjAyNy0wMy0xMRoDRFhCKgJFVzIEMTE1MGoFEgNMSFJyBRIDRFhCQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:33.090Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-17",
+   "status": "ok",
+   "fare": {
+    "price": 412,
+    "price_text": "$412",
+    "airline": "Eurowings",
+    "stops": 1,
+    "duration": "17 hr 55 min",
+    "departure_description": "6:35 PM on Wed, Mar 17",
+    "verdict": "typical",
+    "band_low": 340,
+    "band_high": 670,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDMtMTciIAoDTEhSEgoyMDI3LTAzLTE3GgNCRVIqAkVXMgQ4NDY1IiAKA0JFUhIKMjAyNy0wMy0xOBoDRFhCKgJFVzIEMTE1MGoFEgNMSFJyBRIDRFhCQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.678Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-24",
+   "status": "ok",
+   "fare": {
+    "price": 379,
+    "price_text": "$379",
+    "airline": "Eurowings",
+    "stops": 1,
+    "duration": "17 hr 55 min",
+    "departure_description": "6:35 PM on Wed, Mar 24",
+    "verdict": "typical",
+    "band_low": 340,
+    "band_high": 670,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDMtMjQiIAoDTEhSEgoyMDI3LTAzLTI0GgNCRVIqAkVXMgQ4NDY1IiAKA0JFUhIKMjAyNy0wMy0yNRoDRFhCKgJFVzIEMTE1MGoFEgNMSFJyBRIDRFhCQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.678Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-31",
+   "status": "ok",
+   "fare": {
+    "price": 380,
+    "price_text": "$380",
+    "airline": "ITA",
+    "stops": 1,
+    "duration": "23 hr 50 min",
+    "departure_description": "4:30 PM on Wed, Mar 31",
+    "verdict": "typical",
+    "band_low": 340,
+    "band_high": 670,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMzEiHwoDTEhSEgoyMDI3LTAzLTMxGgNGQ08qAkFaMgMyMDciHwoDRkNPEgoyMDI3LTA0LTAxGgNEWEIqAkFaMgM4NTZqBRIDTEhScgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.678Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-07",
+   "status": "ok",
+   "fare": {
+    "price": 384,
+    "price_text": "$384",
+    "airline": "ITA",
+    "stops": 1,
+    "duration": "29 hr 50 min",
+    "departure_description": "10:30 AM on Wed, Apr 7",
+    "verdict": "typical",
+    "band_low": 375,
+    "band_high": 500,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMDciHwoDTEhSEgoyMDI3LTA0LTA3GgNGQ08qAkFaMgMyMDMiHwoDRkNPEgoyMDI3LTA0LTA4GgNEWEIqAkFaMgM4NTZqBRIDTEhScgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.678Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-14",
+   "status": "ok",
+   "fare": {
+    "price": 384,
+    "price_text": "$384",
+    "airline": "ITA",
+    "stops": 1,
+    "duration": "29 hr 50 min",
+    "departure_description": "10:30 AM on Wed, Apr 14",
+    "verdict": "typical",
+    "band_low": 375,
+    "band_high": 500,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMTQiHwoDTEhSEgoyMDI3LTA0LTE0GgNGQ08qAkFaMgMyMDMiHwoDRkNPEgoyMDI3LTA0LTE1GgNEWEIqAkFaMgM4NTZqBRIDTEhScgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.678Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-21",
+   "status": "ok",
+   "fare": {
+    "price": 384,
+    "price_text": "$384",
+    "airline": "ITA",
+    "stops": 1,
+    "duration": "23 hr 50 min",
+    "departure_description": "4:30 PM on Wed, Apr 21",
+    "verdict": "typical",
+    "band_low": 375,
+    "band_high": 500,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjEiHwoDTEhSEgoyMDI3LTA0LTIxGgNGQ08qAkFaMgMyMDciHwoDRkNPEgoyMDI3LTA0LTIyGgNEWEIqAkFaMgM4NTZqBRIDTEhScgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.678Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-28",
+   "status": "ok",
+   "fare": {
+    "price": 384,
+    "price_text": "$384",
+    "airline": "ITA",
+    "stops": 1,
+    "duration": "23 hr 50 min",
+    "departure_description": "4:30 PM on Wed, Apr 28",
+    "verdict": "typical",
+    "band_low": 375,
+    "band_high": 500,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjgiHwoDTEhSEgoyMDI3LTA0LTI4GgNGQ08qAkFaMgMyMDciHwoDRkNPEgoyMDI3LTA0LTI5GgNEWEIqAkFaMgM4NTZqBRIDTEhScgUSA0RYQkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.678Z",
+   "source": "claude-mcp"
+  }
+ ]
+}

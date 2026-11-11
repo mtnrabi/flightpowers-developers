@@ -1,0 +1,423 @@
+{
+ "slug": "lax-to-mex",
+ "from": "LAX",
+ "to": "MEX",
+ "currency": "usd",
+ "trip": "one-way, 1 adult, economy",
+ "points": [
+  {
+   "date": "2026-11-25",
+   "status": "ok",
+   "fare": {
+    "price": 246,
+    "price_text": "$246",
+    "airline": "Viva",
+    "stops": 0,
+    "duration": "3 hr 40 min",
+    "departure_description": "11:15 PM on Wed, Nov 25",
+    "verdict": "typical",
+    "band_low": 135,
+    "band_high": 275,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTEtMjUiHwoDTEFYEgoyMDI2LTExLTI1GgNNRVgqAlZCMgMxNDdqBRIDTEFYcgUSA01FWEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:12.025Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-02",
+   "status": "ok",
+   "fare": {
+    "price": 292,
+    "price_text": "$292",
+    "airline": "Viva",
+    "stops": 1,
+    "duration": "7 hr 45 min",
+    "departure_description": "9:55 AM on Wed, Dec 2",
+    "verdict": "typical",
+    "band_low": 185,
+    "band_high": 390,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTItMDIiHwoDTEFYEgoyMDI2LTEyLTAyGgNHREwqAlZCMgM1MTEiIAoDR0RMEgoyMDI2LTEyLTAyGgNNRVgqAlZCMgQxMzk5agUSA0xBWHIFEgNNRVhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:12.025Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-09",
+   "status": "ok",
+   "fare": {
+    "price": 264,
+    "price_text": "$264",
+    "airline": "United",
+    "stops": 1,
+    "duration": "7 hr 6 min",
+    "departure_description": "12:59 AM on Wed, Dec 9",
+    "verdict": "typical",
+    "band_low": 185,
+    "band_high": 390,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTItMDkiHwoDTEFYEgoyMDI2LTEyLTA5GgNJQUgqAlVBMgM2NjIiIAoDSUFIEgoyMDI2LTEyLTA5GgNNRVgqAlVBMgQxMDI0agUSA0xBWHIFEgNNRVhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:12.025Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-16",
+   "status": "ok",
+   "fare": {
+    "price": 302,
+    "price_text": "$302",
+    "airline": "Volaris | Frontier",
+    "stops": 0,
+    "duration": "3 hr 41 min",
+    "departure_description": "12:24 AM on Wed, Dec 16",
+    "verdict": "typical",
+    "band_low": 185,
+    "band_high": 390,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMTYiHwoDTEFYEgoyMDI2LTEyLTE2GgNNRVgqAlk0MgM3MTFqBRIDTEFYcgUSA01FWEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:12.025Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-23",
+   "status": "ok",
+   "fare": {
+    "price": 337,
+    "price_text": "$337",
+    "airline": "Volaris | Frontier",
+    "stops": 0,
+    "duration": "3 hr 41 min",
+    "departure_description": "6:24 PM on Wed, Dec 23",
+    "verdict": "typical",
+    "band_low": 185,
+    "band_high": 390,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMjMiHwoDTEFYEgoyMDI2LTEyLTIzGgNNRVgqAlk0MgM3MTNqBRIDTEFYcgUSA01FWEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:12.025Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-30",
+   "status": "ok",
+   "fare": {
+    "price": 256,
+    "price_text": "$256",
+    "airline": "Viva",
+    "stops": 1,
+    "duration": "7 hr 45 min",
+    "departure_description": "12:15 AM on Wed, Dec 30",
+    "verdict": "typical",
+    "band_low": 185,
+    "band_high": 390,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTItMzAiHwoDTEFYEgoyMDI2LTEyLTMwGgNHREwqAlZCMgM1MTkiIAoDR0RMEgoyMDI2LTEyLTMwGgNNRVgqAlZCMgQxMzkzagUSA0xBWHIFEgNNRVhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:12.025Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-06",
+   "status": "ok",
+   "fare": {
+    "price": 164,
+    "price_text": "$164",
+    "airline": "Viva",
+    "stops": 1,
+    "duration": "7 hr 50 min",
+    "departure_description": "12:10 AM on Wed, Jan 6",
+    "verdict": "typical",
+    "band_low": 95,
+    "band_high": 185,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDEtMDYiHwoDTEFYEgoyMDI3LTAxLTA2GgNHREwqAlZCMgM1MTkiIAoDR0RMEgoyMDI3LTAxLTA2GgNNRVgqAlZCMgQxMzkzagUSA0xBWHIFEgNNRVhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:12.025Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-13",
+   "status": "ok",
+   "fare": {
+    "price": 118,
+    "price_text": "$118",
+    "airline": "Viva",
+    "stops": 1,
+    "duration": "6 hr 15 min",
+    "departure_description": "1:55 PM on Wed, Jan 13",
+    "verdict": "typical",
+    "band_low": 95,
+    "band_high": 185,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDEtMTMiHwoDTEFYEgoyMDI3LTAxLTEzGgNNVFkqAlZCMgM2MjMiIAoDTVRZEgoyMDI3LTAxLTEzGgNNRVgqAlZCMgQxMTQzagUSA0xBWHIFEgNNRVhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:12.025Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-20",
+   "status": "ok",
+   "fare": {
+    "price": 118,
+    "price_text": "$118",
+    "airline": "Viva",
+    "stops": 1,
+    "duration": "6 hr 15 min",
+    "departure_description": "1:55 PM on Wed, Jan 20",
+    "verdict": "typical",
+    "band_low": 95,
+    "band_high": 185,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDEtMjAiHwoDTEFYEgoyMDI3LTAxLTIwGgNNVFkqAlZCMgM2MjMiIAoDTVRZEgoyMDI3LTAxLTIwGgNNRVgqAlZCMgQxMTQzagUSA0xBWHIFEgNNRVhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:00.169Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-27",
+   "status": "ok",
+   "fare": {
+    "price": 118,
+    "price_text": "$118",
+    "airline": "Viva",
+    "stops": 1,
+    "duration": "6 hr 15 min",
+    "departure_description": "1:55 PM on Wed, Jan 27",
+    "verdict": "typical",
+    "band_low": 95,
+    "band_high": 185,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDEtMjciHwoDTEFYEgoyMDI3LTAxLTI3GgNNVFkqAlZCMgM2MjMiIAoDTVRZEgoyMDI3LTAxLTI3GgNNRVgqAlZCMgQxMTQzagUSA0xBWHIFEgNNRVhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:00.169Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-03",
+   "status": "ok",
+   "fare": {
+    "price": 118,
+    "price_text": "$118",
+    "airline": "Viva",
+    "stops": 1,
+    "duration": "6 hr 10 min",
+    "departure_description": "2:00 PM on Wed, Feb 3",
+    "verdict": "typical",
+    "band_low": 95,
+    "band_high": 145,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDItMDMiHwoDTEFYEgoyMDI3LTAyLTAzGgNNVFkqAlZCMgM2MjMiIAoDTVRZEgoyMDI3LTAyLTAzGgNNRVgqAlZCMgQxMTQzagUSA0xBWHIFEgNNRVhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:00.169Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-10",
+   "status": "ok",
+   "fare": {
+    "price": 118,
+    "price_text": "$118",
+    "airline": "Viva",
+    "stops": 1,
+    "duration": "6 hr 10 min",
+    "departure_description": "2:00 PM on Wed, Feb 10",
+    "verdict": "typical",
+    "band_low": 95,
+    "band_high": 145,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDItMTAiHwoDTEFYEgoyMDI3LTAyLTEwGgNNVFkqAlZCMgM2MjMiIAoDTVRZEgoyMDI3LTAyLTEwGgNNRVgqAlZCMgQxMTQzagUSA0xBWHIFEgNNRVhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:00.169Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-17",
+   "status": "ok",
+   "fare": {
+    "price": 118,
+    "price_text": "$118",
+    "airline": "Viva",
+    "stops": 1,
+    "duration": "6 hr 10 min",
+    "departure_description": "2:00 PM on Wed, Feb 17",
+    "verdict": "typical",
+    "band_low": 95,
+    "band_high": 145,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDItMTciHwoDTEFYEgoyMDI3LTAyLTE3GgNNVFkqAlZCMgM2MjMiIAoDTVRZEgoyMDI3LTAyLTE3GgNNRVgqAlZCMgQxMTQzagUSA0xBWHIFEgNNRVhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:00.169Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-24",
+   "status": "ok",
+   "fare": {
+    "price": 118,
+    "price_text": "$118",
+    "airline": "Viva",
+    "stops": 1,
+    "duration": "6 hr 10 min",
+    "departure_description": "2:00 PM on Wed, Feb 24",
+    "verdict": "typical",
+    "band_low": 95,
+    "band_high": 145,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDItMjQiHwoDTEFYEgoyMDI3LTAyLTI0GgNNVFkqAlZCMgM2MjMiIAoDTVRZEgoyMDI3LTAyLTI0GgNNRVgqAlZCMgQxMTQzagUSA0xBWHIFEgNNRVhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:00.169Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-03",
+   "status": "ok",
+   "fare": {
+    "price": 118,
+    "price_text": "$118",
+    "airline": "Viva",
+    "stops": 1,
+    "duration": "6 hr 10 min",
+    "departure_description": "2:00 PM on Wed, Mar 3",
+    "verdict": "typical",
+    "band_low": 95,
+    "band_high": 160,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMDMiHwoDTEFYEgoyMDI3LTAzLTAzGgNNVFkqAlZCMgM2MjMiIAoDTVRZEgoyMDI3LTAzLTAzGgNNRVgqAlZCMgQxMTQzagUSA0xBWHIFEgNNRVhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:00.169Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-10",
+   "status": "ok",
+   "fare": {
+    "price": 118,
+    "price_text": "$118",
+    "airline": "Viva",
+    "stops": 1,
+    "duration": "6 hr 10 min",
+    "departure_description": "2:00 PM on Wed, Mar 10",
+    "verdict": "typical",
+    "band_low": 95,
+    "band_high": 160,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMTAiHwoDTEFYEgoyMDI3LTAzLTEwGgNNVFkqAlZCMgM2MjMiIAoDTVRZEgoyMDI3LTAzLTEwGgNNRVgqAlZCMgQxMTQzagUSA0xBWHIFEgNNRVhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:03:00.169Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-17",
+   "status": "ok",
+   "fare": {
+    "price": 118,
+    "price_text": "$118",
+    "airline": "Viva",
+    "stops": 1,
+    "duration": "6 hr 10 min",
+    "departure_description": "3:00 PM on Wed, Mar 17",
+    "verdict": "typical",
+    "band_low": 95,
+    "band_high": 160,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMTciHwoDTEFYEgoyMDI3LTAzLTE3GgNNVFkqAlZCMgM2MjMiIAoDTVRZEgoyMDI3LTAzLTE3GgNNRVgqAlZCMgQxMTQzagUSA0xBWHIFEgNNRVhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:02:55.473Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-24",
+   "status": "ok",
+   "fare": {
+    "price": 118,
+    "price_text": "$118",
+    "airline": "Viva",
+    "stops": 1,
+    "duration": "6 hr 10 min",
+    "departure_description": "3:00 PM on Wed, Mar 24",
+    "verdict": "typical",
+    "band_low": 95,
+    "band_high": 160,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMjQiHwoDTEFYEgoyMDI3LTAzLTI0GgNNVFkqAlZCMgM2MjMiIAoDTVRZEgoyMDI3LTAzLTI0GgNNRVgqAlZCMgQxMTQzagUSA0xBWHIFEgNNRVhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:02:55.473Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-31",
+   "status": "ok",
+   "fare": {
+    "price": 118,
+    "price_text": "$118",
+    "airline": "Viva",
+    "stops": 1,
+    "duration": "6 hr 10 min",
+    "departure_description": "3:00 PM on Wed, Mar 31",
+    "verdict": "typical",
+    "band_low": 95,
+    "band_high": 160,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMzEiHwoDTEFYEgoyMDI3LTAzLTMxGgNNVFkqAlZCMgM2MjMiIAoDTVRZEgoyMDI3LTAzLTMxGgNNRVgqAlZCMgQxMTQzagUSA0xBWHIFEgNNRVhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:02:55.473Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-07",
+   "status": "ok",
+   "fare": {
+    "price": 128,
+    "price_text": "$128",
+    "airline": "Viva",
+    "stops": 1,
+    "duration": "8 hr 15 min",
+    "departure_description": "12:40 AM on Wed, Apr 7",
+    "verdict": "typical",
+    "band_low": 125,
+    "band_high": 180,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDQtMDciHwoDTEFYEgoyMDI3LTA0LTA3GgNHREwqAlZCMgM1MTkiIAoDR0RMEgoyMDI3LTA0LTA3GgNNRVgqAlZCMgQxMzkzagUSA0xBWHIFEgNNRVhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:02:55.473Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-14",
+   "status": "ok",
+   "fare": {
+    "price": 128,
+    "price_text": "$128",
+    "airline": "Viva",
+    "stops": 1,
+    "duration": "8 hr 15 min",
+    "departure_description": "12:40 AM on Wed, Apr 14",
+    "verdict": "typical",
+    "band_low": 125,
+    "band_high": 180,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDQtMTQiHwoDTEFYEgoyMDI3LTA0LTE0GgNHREwqAlZCMgM1MTkiIAoDR0RMEgoyMDI3LTA0LTE0GgNNRVgqAlZCMgQxMzkzagUSA0xBWHIFEgNNRVhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:02:55.473Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-21",
+   "status": "ok",
+   "fare": {
+    "price": 128,
+    "price_text": "$128",
+    "airline": "Viva",
+    "stops": 1,
+    "duration": "8 hr 15 min",
+    "departure_description": "12:40 AM on Wed, Apr 21",
+    "verdict": "typical",
+    "band_low": 125,
+    "band_high": 180,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDQtMjEiHwoDTEFYEgoyMDI3LTA0LTIxGgNHREwqAlZCMgM1MTkiIAoDR0RMEgoyMDI3LTA0LTIxGgNNRVgqAlZCMgQxMzkzagUSA0xBWHIFEgNNRVhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:02:55.473Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-28",
+   "status": "ok",
+   "fare": {
+    "price": 128,
+    "price_text": "$128",
+    "airline": "Viva",
+    "stops": 1,
+    "duration": "8 hr 15 min",
+    "departure_description": "12:40 AM on Wed, Apr 28",
+    "verdict": "typical",
+    "band_low": 125,
+    "band_high": 180,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDQtMjgiHwoDTEFYEgoyMDI3LTA0LTI4GgNHREwqAlZCMgM1MTkiIAoDR0RMEgoyMDI3LTA0LTI4GgNNRVgqAlZCMgQxMzkzagUSA0xBWHIFEgNNRVhCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:02:55.473Z",
+   "source": "claude-mcp"
+  }
+ ]
+}

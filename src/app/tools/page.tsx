@@ -38,6 +38,13 @@ const TOOLS: {
     output: 'year price chart',
   },
   {
+    href: '/flights',
+    name: 'Flight Prices by Route',
+    tier: 'fetched data, no scan to run',
+    body: 'A hundred popular routes, each a season of weekly departure dates already searched: the cheapest date, the cheapest month and Google’s verdict on each fare, with the date we fetched it.',
+    output: 'route fare charts',
+  },
+  {
     href: '/tools/cheapest-month-to-fly',
     name: 'Cheapest Month to Fly',
     tier: 'live demo, rate-limited',

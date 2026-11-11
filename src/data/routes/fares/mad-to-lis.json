@@ -1,0 +1,423 @@
+{
+ "slug": "mad-to-lis",
+ "from": "MAD",
+ "to": "LIS",
+ "currency": "usd",
+ "trip": "one-way, 1 adult, economy",
+ "points": [
+  {
+   "date": "2026-11-25",
+   "status": "ok",
+   "fare": {
+    "price": 34,
+    "price_text": "$34",
+    "airline": "Air Europa",
+    "stops": 0,
+    "duration": "1 hr 20 min",
+    "departure_description": "6:30 AM on Wed, Nov 25",
+    "verdict": "typical",
+    "band_low": 20,
+    "band_high": 50,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTEtMjUiIAoDTUFEEgoyMDI2LTExLTI1GgNMSVMqAlVYMgQxMTU5agUSA01BRHIFEgNMSVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:11:15.491Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-02",
+   "status": "ok",
+   "fare": {
+    "price": 45,
+    "price_text": "$45",
+    "airline": "easyJet",
+    "stops": 0,
+    "duration": "1 hr 25 min",
+    "departure_description": "9:50 AM on Wed, Dec 2",
+    "verdict": "typical",
+    "band_low": 25,
+    "band_high": 65,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMDIiIAoDTUFEEgoyMDI2LTEyLTAyGgNMSVMqAlUyMgQ3NjQwagUSA01BRHIFEgNMSVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:11:15.491Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-09",
+   "status": "ok",
+   "fare": {
+    "price": 29,
+    "price_text": "$29",
+    "airline": "easyJet",
+    "stops": 0,
+    "duration": "1 hr 25 min",
+    "departure_description": "5:25 PM on Wed, Dec 9",
+    "verdict": "typical",
+    "band_low": 25,
+    "band_high": 65,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMDkiIAoDTUFEEgoyMDI2LTEyLTA5GgNMSVMqAlUyMgQ3NjQ2agUSA01BRHIFEgNMSVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:11:15.491Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-16",
+   "status": "ok",
+   "fare": {
+    "price": 29,
+    "price_text": "$29",
+    "airline": "easyJet",
+    "stops": 0,
+    "duration": "1 hr 25 min",
+    "departure_description": "9:50 AM on Wed, Dec 16",
+    "verdict": "typical",
+    "band_low": 25,
+    "band_high": 65,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMTYiIAoDTUFEEgoyMDI2LTEyLTE2GgNMSVMqAlUyMgQ3NjQwagUSA01BRHIFEgNMSVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:11:15.491Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-23",
+   "status": "ok",
+   "fare": {
+    "price": 68,
+    "price_text": "$68",
+    "airline": "Iberia",
+    "stops": 0,
+    "duration": "1 hr 25 min",
+    "departure_description": "7:15 AM on Wed, Dec 23",
+    "verdict": "high",
+    "band_low": 25,
+    "band_high": 65,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMjMiHwoDTUFEEgoyMDI2LTEyLTIzGgNMSVMqAklCMgM1MjlqBRIDTUFEcgUSA0xJU0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:11:15.491Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-30",
+   "status": "ok",
+   "fare": {
+    "price": 49,
+    "price_text": "$49",
+    "airline": "easyJet",
+    "stops": 0,
+    "duration": "1 hr 25 min",
+    "departure_description": "10:05 PM on Wed, Dec 30",
+    "verdict": "typical",
+    "band_low": 25,
+    "band_high": 65,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMzAiIAoDTUFEEgoyMDI2LTEyLTMwGgNMSVMqAlUyMgQ3NjUyagUSA01BRHIFEgNMSVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:11:15.491Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-06",
+   "status": "ok",
+   "fare": {
+    "price": 34,
+    "price_text": "$34",
+    "airline": "Air Europa | Operated by Air Europa Express",
+    "stops": 0,
+    "duration": "1 hr 20 min",
+    "departure_description": "6:30 AM on Wed, Jan 6",
+    "verdict": "typical",
+    "band_low": 20,
+    "band_high": 50,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMDYiIAoDTUFEEgoyMDI3LTAxLTA2GgNMSVMqAlVYMgQxMTU5agUSA01BRHIFEgNMSVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:11:15.491Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-13",
+   "status": "ok",
+   "fare": {
+    "price": 34,
+    "price_text": "$34",
+    "airline": "Air Europa",
+    "stops": 0,
+    "duration": "1 hr 20 min",
+    "departure_description": "6:30 AM on Wed, Jan 13",
+    "verdict": "typical",
+    "band_low": 20,
+    "band_high": 50,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMTMiIAoDTUFEEgoyMDI3LTAxLTEzGgNMSVMqAlVYMgQxMTU5agUSA01BRHIFEgNMSVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:11:15.491Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-20",
+   "status": "ok",
+   "fare": {
+    "price": 34,
+    "price_text": "$34",
+    "airline": "Air Europa | Operated by Air Europa Express",
+    "stops": 0,
+    "duration": "1 hr 20 min",
+    "departure_description": "6:30 AM on Wed, Jan 20",
+    "verdict": "typical",
+    "band_low": 20,
+    "band_high": 50,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMjAiIAoDTUFEEgoyMDI3LTAxLTIwGgNMSVMqAlVYMgQxMTU5agUSA01BRHIFEgNMSVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:11:14.492Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-27",
+   "status": "ok",
+   "fare": {
+    "price": 34,
+    "price_text": "$34",
+    "airline": "Air Europa",
+    "stops": 0,
+    "duration": "1 hr 20 min",
+    "departure_description": "6:30 AM on Wed, Jan 27",
+    "verdict": "typical",
+    "band_low": 20,
+    "band_high": 50,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMjciIAoDTUFEEgoyMDI3LTAxLTI3GgNMSVMqAlVYMgQxMTU5agUSA01BRHIFEgNMSVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:11:14.492Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-03",
+   "status": "ok",
+   "fare": {
+    "price": 30,
+    "price_text": "$30",
+    "airline": "easyJet",
+    "stops": 0,
+    "duration": "1 hr 25 min",
+    "departure_description": "5:25 PM on Wed, Feb 3",
+    "verdict": "typical",
+    "band_low": 20,
+    "band_high": 55,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDItMDMiIAoDTUFEEgoyMDI3LTAyLTAzGgNMSVMqAlUyMgQ3NjQ2agUSA01BRHIFEgNMSVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:11:14.492Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-10",
+   "status": "ok",
+   "fare": {
+    "price": 29,
+    "price_text": "$29",
+    "airline": "easyJet",
+    "stops": 0,
+    "duration": "1 hr 25 min",
+    "departure_description": "5:25 PM on Wed, Feb 10",
+    "verdict": "typical",
+    "band_low": 20,
+    "band_high": 55,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDItMTAiIAoDTUFEEgoyMDI3LTAyLTEwGgNMSVMqAlUyMgQ3NjQ2agUSA01BRHIFEgNMSVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:11:14.492Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-17",
+   "status": "ok",
+   "fare": {
+    "price": 29,
+    "price_text": "$29",
+    "airline": "easyJet",
+    "stops": 0,
+    "duration": "1 hr 25 min",
+    "departure_description": "9:50 AM on Wed, Feb 17",
+    "verdict": "typical",
+    "band_low": 20,
+    "band_high": 55,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDItMTciIAoDTUFEEgoyMDI3LTAyLTE3GgNMSVMqAlUyMgQ3NjQwagUSA01BRHIFEgNMSVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:11:14.492Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-24",
+   "status": "ok",
+   "fare": {
+    "price": 29,
+    "price_text": "$29",
+    "airline": "easyJet",
+    "stops": 0,
+    "duration": "1 hr 25 min",
+    "departure_description": "9:50 AM on Wed, Feb 24",
+    "verdict": "typical",
+    "band_low": 20,
+    "band_high": 55,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDItMjQiIAoDTUFEEgoyMDI3LTAyLTI0GgNMSVMqAlUyMgQ3NjQwagUSA01BRHIFEgNMSVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:11:14.492Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-03",
+   "status": "ok",
+   "fare": {
+    "price": 29,
+    "price_text": "$29",
+    "airline": "easyJet",
+    "stops": 0,
+    "duration": "1 hr 25 min",
+    "departure_description": "5:25 PM on Wed, Mar 3",
+    "verdict": "typical",
+    "band_low": 20,
+    "band_high": 65,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDMtMDMiIAoDTUFEEgoyMDI3LTAzLTAzGgNMSVMqAlUyMgQ3NjQ2agUSA01BRHIFEgNMSVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:11:14.492Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-10",
+   "status": "ok",
+   "fare": {
+    "price": 29,
+    "price_text": "$29",
+    "airline": "easyJet",
+    "stops": 0,
+    "duration": "1 hr 25 min",
+    "departure_description": "5:25 PM on Wed, Mar 10",
+    "verdict": "typical",
+    "band_low": 20,
+    "band_high": 65,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDMtMTAiIAoDTUFEEgoyMDI3LTAzLTEwGgNMSVMqAlUyMgQ3NjQ2agUSA01BRHIFEgNMSVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:11:14.492Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-17",
+   "status": "ok",
+   "fare": {
+    "price": 29,
+    "price_text": "$29",
+    "airline": "easyJet",
+    "stops": 0,
+    "duration": "1 hr 25 min",
+    "departure_description": "9:50 AM on Wed, Mar 17",
+    "verdict": "typical",
+    "band_low": 20,
+    "band_high": 65,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDMtMTciIAoDTUFEEgoyMDI3LTAzLTE3GgNMSVMqAlUyMgQ3NjQwagUSA01BRHIFEgNMSVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:11:13.793Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-24",
+   "status": "ok",
+   "fare": {
+    "price": 43,
+    "price_text": "$43",
+    "airline": "Tap Air Portugal",
+    "stops": 0,
+    "duration": "1 hr 25 min",
+    "departure_description": "12:10 PM on Wed, Mar 24",
+    "verdict": "typical",
+    "band_low": 20,
+    "band_high": 65,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDMtMjQiIAoDTUFEEgoyMDI3LTAzLTI0GgNMSVMqAlRQMgQxMDEzagUSA01BRHIFEgNMSVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:11:13.793Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-31",
+   "status": "ok",
+   "fare": {
+    "price": 29,
+    "price_text": "$29",
+    "airline": "easyJet",
+    "stops": 0,
+    "duration": "1 hr 25 min",
+    "departure_description": "9:55 AM on Wed, Mar 31",
+    "verdict": "typical",
+    "band_low": 20,
+    "band_high": 65,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDMtMzEiIAoDTUFEEgoyMDI3LTAzLTMxGgNMSVMqAlUyMgQ3NjUyagUSA01BRHIFEgNMSVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:11:13.793Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-07",
+   "status": "ok",
+   "fare": {
+    "price": 34,
+    "price_text": "$34",
+    "airline": "Air Europa",
+    "stops": 0,
+    "duration": "1 hr 20 min",
+    "departure_description": "6:30 AM on Wed, Apr 7",
+    "verdict": "typical",
+    "band_low": 19,
+    "band_high": 70,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDQtMDciIAoDTUFEEgoyMDI3LTA0LTA3GgNMSVMqAlVYMgQxMTU5agUSA01BRHIFEgNMSVNCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:11:13.793Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-14",
+   "status": "ok",
+   "fare": {
+    "price": 34,
+    "price_text": "$34",
+    "airline": "Iberia",
+    "stops": 0,
+    "duration": "1 hr 25 min",
+    "departure_description": "11:00 PM on Wed, Apr 14",
+    "verdict": "typical",
+    "band_low": 19,
+    "band_high": 70,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMTQiHwoDTUFEEgoyMDI3LTA0LTE0GgNMSVMqAklCMgM1MzlqBRIDTUFEcgUSA0xJU0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:11:13.793Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-21",
+   "status": "ok",
+   "fare": {
+    "price": 34,
+    "price_text": "$34",
+    "airline": "Iberia",
+    "stops": 0,
+    "duration": "1 hr 25 min",
+    "departure_description": "11:00 PM on Wed, Apr 21",
+    "verdict": "typical",
+    "band_low": 19,
+    "band_high": 70,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMjEiHwoDTUFEEgoyMDI3LTA0LTIxGgNMSVMqAklCMgM1MzlqBRIDTUFEcgUSA0xJU0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:11:13.793Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-28",
+   "status": "ok",
+   "fare": {
+    "price": 34,
+    "price_text": "$34",
+    "airline": "Iberia",
+    "stops": 0,
+    "duration": "1 hr 25 min",
+    "departure_description": "11:00 PM on Wed, Apr 28",
+    "verdict": "typical",
+    "band_low": 19,
+    "band_high": 70,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMjgiHwoDTUFEEgoyMDI3LTA0LTI4GgNMSVMqAklCMgM1MzlqBRIDTUFEcgUSA0xJU0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:11:13.793Z",
+   "source": "claude-mcp"
+  }
+ ]
+}

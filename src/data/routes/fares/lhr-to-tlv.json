@@ -1,0 +1,423 @@
+{
+ "slug": "lhr-to-tlv",
+ "from": "LHR",
+ "to": "TLV",
+ "currency": "usd",
+ "trip": "one-way, 1 adult, economy",
+ "points": [
+  {
+   "date": "2026-11-25",
+   "status": "ok",
+   "fare": {
+    "price": 279,
+    "price_text": "$279",
+    "airline": "ITA",
+    "stops": 1,
+    "duration": "8 hr 40 min",
+    "departure_description": "4:30 PM on Wed, Nov 25",
+    "verdict": "typical",
+    "band_low": 275,
+    "band_high": 320,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTEtMjUiHwoDTEhSEgoyMDI2LTExLTI1GgNGQ08qAkFaMgMyMDciHwoDRkNPEgoyMDI2LTExLTI1GgNUTFYqAkFaMgM4MTBqBRIDTEhScgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.866Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-02",
+   "status": "ok",
+   "fare": {
+    "price": 279,
+    "price_text": "$279",
+    "airline": "ITA",
+    "stops": 1,
+    "duration": "8 hr 40 min",
+    "departure_description": "4:30 PM on Wed, Dec 2",
+    "verdict": "typical",
+    "band_low": 275,
+    "band_high": 485,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDIiHwoDTEhSEgoyMDI2LTEyLTAyGgNGQ08qAkFaMgMyMDciHwoDRkNPEgoyMDI2LTEyLTAyGgNUTFYqAkFaMgM4MTBqBRIDTEhScgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.866Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-09",
+   "status": "ok",
+   "fare": {
+    "price": 323,
+    "price_text": "$323",
+    "airline": "Aegean",
+    "stops": 1,
+    "duration": "11 hr 5 min",
+    "departure_description": "10:15 PM on Wed, Dec 9",
+    "verdict": "typical",
+    "band_low": 275,
+    "band_high": 485,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDkiHwoDTEhSEgoyMDI2LTEyLTA5GgNBVEgqAkEzMgM2MDkiHwoDQVRIEgoyMDI2LTEyLTEwGgNUTFYqAkEzMgM5MjRqBRIDTEhScgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.866Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-16",
+   "status": "ok",
+   "fare": {
+    "price": 314,
+    "price_text": "$314",
+    "airline": "LOTOperated by Hello Jets",
+    "stops": 1,
+    "duration": "11 hr 15 min",
+    "departure_description": "6:30 AM on Wed, Dec 16",
+    "verdict": "typical",
+    "band_low": 275,
+    "band_high": 485,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMTYiHwoDTEhSEgoyMDI2LTEyLTE2GgNXQVcqAkxPMgMyODYiHwoDV0FXEgoyMDI2LTEyLTE2GgNUTFYqAkxPMgMxNTVqBRIDTEhScgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.866Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-23",
+   "status": "ok",
+   "fare": {
+    "price": 360,
+    "price_text": "$360",
+    "airline": "LOT",
+    "stops": 1,
+    "duration": "7 hr 25 min",
+    "departure_description": "6:20 PM on Wed, Dec 23",
+    "verdict": "typical",
+    "band_low": 275,
+    "band_high": 485,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMjMiHwoDTEhSEgoyMDI2LTEyLTIzGgNXQVcqAkxPMgMyODAiHwoDV0FXEgoyMDI2LTEyLTIzGgNUTFYqAkxPMgMxNTFqBRIDTEhScgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.866Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-30",
+   "status": "ok",
+   "fare": {
+    "price": 279,
+    "price_text": "$279",
+    "airline": "ITA",
+    "stops": 1,
+    "duration": "7 hr 50 min",
+    "departure_description": "10:30 AM on Wed, Dec 30",
+    "verdict": "typical",
+    "band_low": 275,
+    "band_high": 485,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMzAiHwoDTEhSEgoyMDI2LTEyLTMwGgNGQ08qAkFaMgMyMDMiHwoDRkNPEgoyMDI2LTEyLTMwGgNUTFYqAkFaMgM4MTJqBRIDTEhScgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.866Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-06",
+   "status": "ok",
+   "fare": {
+    "price": 239,
+    "price_text": "$239",
+    "airline": "Eurowings | Lufthansa",
+    "stops": 1,
+    "duration": "14 hr 25 min",
+    "departure_description": "7:30 PM on Wed, Jan 6",
+    "verdict": "low",
+    "band_low": 275,
+    "band_high": 335,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDEtMDYiIAoDTEhSEgoyMDI3LTAxLTA2GgNEVVMqAkVXMgQ5NDY5IiAKA0RVUxIKMjAyNy0wMS0wNxoDVExWKgJFVzIEOTk3NGoFEgNMSFJyBRIDVExWQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.866Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-13",
+   "status": "ok",
+   "fare": {
+    "price": 193,
+    "price_text": "$193",
+    "airline": "Eurowings | Lufthansa",
+    "stops": 1,
+    "duration": "14 hr 25 min",
+    "departure_description": "7:30 PM on Wed, Jan 13",
+    "verdict": "low",
+    "band_low": 275,
+    "band_high": 335,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDEtMTMiIAoDTEhSEgoyMDI3LTAxLTEzGgNEVVMqAkVXMgQ5NDY5IiAKA0RVUxIKMjAyNy0wMS0xNBoDVExWKgJFVzIEOTk3NGoFEgNMSFJyBRIDVExWQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.866Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-20",
+   "status": "ok",
+   "fare": {
+    "price": 239,
+    "price_text": "$239",
+    "airline": "Eurowings | Lufthansa",
+    "stops": 1,
+    "duration": "14 hr 25 min",
+    "departure_description": "7:30 PM on Wed, Jan 20",
+    "verdict": "low",
+    "band_low": 275,
+    "band_high": 335,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDEtMjAiIAoDTEhSEgoyMDI3LTAxLTIwGgNEVVMqAkVXMgQ5NDY5IiAKA0RVUxIKMjAyNy0wMS0yMRoDVExWKgJFVzIEOTk3NGoFEgNMSFJyBRIDVExWQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:33.090Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-27",
+   "status": "ok",
+   "fare": {
+    "price": 226,
+    "price_text": "$226",
+    "airline": "Eurowings | Lufthansa",
+    "stops": 1,
+    "duration": "14 hr 25 min",
+    "departure_description": "7:30 PM on Wed, Jan 27",
+    "verdict": "low",
+    "band_low": 275,
+    "band_high": 335,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDEtMjciIAoDTEhSEgoyMDI3LTAxLTI3GgNEVVMqAkVXMgQ5NDY5IiAKA0RVUxIKMjAyNy0wMS0yOBoDVExWKgJFVzIEOTk3NGoFEgNMSFJyBRIDVExWQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:33.090Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-03",
+   "status": "ok",
+   "fare": {
+    "price": 284,
+    "price_text": "$284",
+    "airline": "ITA",
+    "stops": 1,
+    "duration": "7 hr 50 min",
+    "departure_description": "10:30 AM on Wed, Feb 3",
+    "verdict": "typical",
+    "band_low": 235,
+    "band_high": 305,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMDMiHwoDTEhSEgoyMDI3LTAyLTAzGgNGQ08qAkFaMgMyMDMiHwoDRkNPEgoyMDI3LTAyLTAzGgNUTFYqAkFaMgM4MTJqBRIDTEhScgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:33.090Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-10",
+   "status": "ok",
+   "fare": {
+    "price": 284,
+    "price_text": "$284",
+    "airline": "ITA",
+    "stops": 1,
+    "duration": "7 hr 50 min",
+    "departure_description": "10:30 AM on Wed, Feb 10",
+    "verdict": "typical",
+    "band_low": 235,
+    "band_high": 305,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMTAiHwoDTEhSEgoyMDI3LTAyLTEwGgNGQ08qAkFaMgMyMDMiHwoDRkNPEgoyMDI3LTAyLTEwGgNUTFYqAkFaMgM4MTJqBRIDTEhScgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:33.090Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-17",
+   "status": "ok",
+   "fare": {
+    "price": 284,
+    "price_text": "$284",
+    "airline": "ITA",
+    "stops": 1,
+    "duration": "7 hr 50 min",
+    "departure_description": "10:30 AM on Wed, Feb 17",
+    "verdict": "typical",
+    "band_low": 235,
+    "band_high": 305,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMTciHwoDTEhSEgoyMDI3LTAyLTE3GgNGQ08qAkFaMgMyMDMiHwoDRkNPEgoyMDI3LTAyLTE3GgNUTFYqAkFaMgM4MTJqBRIDTEhScgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:33.090Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-24",
+   "status": "ok",
+   "fare": {
+    "price": 226,
+    "price_text": "$226",
+    "airline": "Eurowings | Lufthansa",
+    "stops": 1,
+    "duration": "14 hr 25 min",
+    "departure_description": "7:30 PM on Wed, Feb 24",
+    "verdict": "low",
+    "band_low": 235,
+    "band_high": 305,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDItMjQiIAoDTEhSEgoyMDI3LTAyLTI0GgNEVVMqAkVXMgQ5NDY5IiAKA0RVUxIKMjAyNy0wMi0yNRoDVExWKgJFVzIEOTk3NGoFEgNMSFJyBRIDVExWQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:33.090Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-03",
+   "status": "ok",
+   "fare": {
+    "price": 284,
+    "price_text": "$284",
+    "airline": "ITA",
+    "stops": 1,
+    "duration": "7 hr 50 min",
+    "departure_description": "10:30 AM on Wed, Mar 3",
+    "verdict": "typical",
+    "band_low": 225,
+    "band_high": 400,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMDMiHwoDTEhSEgoyMDI3LTAzLTAzGgNGQ08qAkFaMgMyMDMiHwoDRkNPEgoyMDI3LTAzLTAzGgNUTFYqAkFaMgM4MTJqBRIDTEhScgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:33.090Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-10",
+   "status": "ok",
+   "fare": {
+    "price": 284,
+    "price_text": "$284",
+    "airline": "ITA",
+    "stops": 1,
+    "duration": "8 hr 40 min",
+    "departure_description": "4:30 PM on Wed, Mar 10",
+    "verdict": "typical",
+    "band_low": 225,
+    "band_high": 400,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTAiHwoDTEhSEgoyMDI3LTAzLTEwGgNGQ08qAkFaMgMyMDciHwoDRkNPEgoyMDI3LTAzLTEwGgNUTFYqAkFaMgM4MTBqBRIDTEhScgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:33.090Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-17",
+   "status": "ok",
+   "fare": {
+    "price": 284,
+    "price_text": "$284",
+    "airline": "ITA",
+    "stops": 1,
+    "duration": "7 hr 50 min",
+    "departure_description": "10:30 AM on Wed, Mar 17",
+    "verdict": "typical",
+    "band_low": 225,
+    "band_high": 400,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTciHwoDTEhSEgoyMDI3LTAzLTE3GgNGQ08qAkFaMgMyMDMiHwoDRkNPEgoyMDI3LTAzLTE3GgNUTFYqAkFaMgM4MTJqBRIDTEhScgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.678Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-24",
+   "status": "ok",
+   "fare": {
+    "price": 293,
+    "price_text": "$293",
+    "airline": "ITA",
+    "stops": 1,
+    "duration": "7 hr 50 min",
+    "departure_description": "10:30 AM on Wed, Mar 24",
+    "verdict": "typical",
+    "band_low": 225,
+    "band_high": 400,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMjQiHwoDTEhSEgoyMDI3LTAzLTI0GgNGQ08qAkFaMgMyMDMiHwoDRkNPEgoyMDI3LTAzLTI0GgNUTFYqAkFaMgM4MTJqBRIDTEhScgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.678Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-31",
+   "status": "ok",
+   "fare": {
+    "price": 293,
+    "price_text": "$293",
+    "airline": "ITA",
+    "stops": 1,
+    "duration": "7 hr 50 min",
+    "departure_description": "10:30 AM on Wed, Mar 31",
+    "verdict": "typical",
+    "band_low": 225,
+    "band_high": 400,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMzEiHwoDTEhSEgoyMDI3LTAzLTMxGgNGQ08qAkFaMgMyMDMiHwoDRkNPEgoyMDI3LTAzLTMxGgNUTFYqAkFaMgM4MTJqBRIDTEhScgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.678Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-07",
+   "status": "ok",
+   "fare": {
+    "price": 279,
+    "price_text": "$279",
+    "airline": "Eurowings | Lufthansa",
+    "stops": 1,
+    "duration": "14 hr 20 min",
+    "departure_description": "7:35 PM on Wed, Apr 7",
+    "verdict": "typical",
+    "band_low": 245,
+    "band_high": 740,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDQtMDciIAoDTEhSEgoyMDI3LTA0LTA3GgNEVVMqAkVXMgQ5NDY5IiAKA0RVUxIKMjAyNy0wNC0wOBoDVExWKgJFVzIEOTk3NGoFEgNMSFJyBRIDVExWQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.678Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-14",
+   "status": "ok",
+   "fare": {
+    "price": 279,
+    "price_text": "$279",
+    "airline": "Eurowings | Lufthansa",
+    "stops": 1,
+    "duration": "14 hr 20 min",
+    "departure_description": "7:35 PM on Wed, Apr 14",
+    "verdict": "typical",
+    "band_low": 245,
+    "band_high": 740,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDQtMTQiIAoDTEhSEgoyMDI3LTA0LTE0GgNEVVMqAkVXMgQ5NDY5IiAKA0RVUxIKMjAyNy0wNC0xNRoDVExWKgJFVzIEOTk3NGoFEgNMSFJyBRIDVExWQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.678Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-21",
+   "status": "ok",
+   "fare": {
+    "price": 336,
+    "price_text": "$336",
+    "airline": "Aegean",
+    "stops": 1,
+    "duration": "8 hr 10 min",
+    "departure_description": "4:35 PM on Wed, Apr 21",
+    "verdict": "typical",
+    "band_low": 245,
+    "band_high": 740,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjEiHwoDTEhSEgoyMDI3LTA0LTIxGgNBVEgqAkEzMgM2MDMiHwoDQVRIEgoyMDI3LTA0LTIyGgNUTFYqAkEzMgM5MjhqBRIDTEhScgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.678Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-28",
+   "status": "ok",
+   "fare": {
+    "price": 452,
+    "price_text": "$452",
+    "airline": "Eurowings | Lufthansa",
+    "stops": 1,
+    "duration": "14 hr 20 min",
+    "departure_description": "7:35 PM on Wed, Apr 28",
+    "verdict": "typical",
+    "band_low": 245,
+    "band_high": 740,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDQtMjgiIAoDTEhSEgoyMDI3LTA0LTI4GgNEVVMqAkVXMgQ5NDY5IiAKA0RVUxIKMjAyNy0wNC0yORoDVExWKgJFVzIEOTk3NGoFEgNMSFJyBRIDVExWQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:08:34.678Z",
+   "source": "claude-mcp"
+  }
+ ]
+}

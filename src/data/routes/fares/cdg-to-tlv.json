@@ -1,0 +1,423 @@
+{
+ "slug": "cdg-to-tlv",
+ "from": "CDG",
+ "to": "TLV",
+ "currency": "usd",
+ "trip": "one-way, 1 adult, economy",
+ "points": [
+  {
+   "date": "2026-11-25",
+   "status": "ok",
+   "fare": {
+    "price": 154,
+    "price_text": "$154",
+    "airline": "TAROM",
+    "stops": 1,
+    "duration": "10 hr 20 min",
+    "departure_description": "12:00 PM on Wed, Nov 25",
+    "verdict": "low",
+    "band_low": 180,
+    "band_high": 205,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTEtMjUiHwoDQ0RHEgoyMDI2LTExLTI1GgNPVFAqAlJPMgMzODIiHwoDT1RQEgoyMDI2LTExLTI1GgNUTFYqAlJPMgMxNTVqBRIDQ0RHcgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-02",
+   "status": "ok",
+   "fare": {
+    "price": 184,
+    "price_text": "$184",
+    "airline": "TAROM",
+    "stops": 1,
+    "duration": "10 hr 20 min",
+    "departure_description": "12:00 PM on Wed, Dec 2",
+    "verdict": "low",
+    "band_low": 185,
+    "band_high": 335,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDIiHwoDQ0RHEgoyMDI2LTEyLTAyGgNPVFAqAlJPMgMzODIiHwoDT1RQEgoyMDI2LTEyLTAyGgNUTFYqAlJPMgMxNTVqBRIDQ0RHcgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-09",
+   "status": "ok",
+   "fare": {
+    "price": 188,
+    "price_text": "$188",
+    "airline": "LOT",
+    "stops": 1,
+    "duration": "7 hr 5 min",
+    "departure_description": "7:40 PM on Wed, Dec 9",
+    "verdict": "typical",
+    "band_low": 185,
+    "band_high": 335,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDkiHwoDQ0RHEgoyMDI2LTEyLTA5GgNXQVcqAkxPMgMzMzYiHwoDV0FXEgoyMDI2LTEyLTA5GgNUTFYqAkxPMgMxNTFqBRIDQ0RHcgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-16",
+   "status": "ok",
+   "fare": {
+    "price": 188,
+    "price_text": "$188",
+    "airline": "LOT",
+    "stops": 1,
+    "duration": "15 hr 55 min",
+    "departure_description": "10:50 AM on Wed, Dec 16",
+    "verdict": "typical",
+    "band_low": 185,
+    "band_high": 335,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMTYiHwoDQ0RHEgoyMDI2LTEyLTE2GgNXQVcqAkxPMgMzMzIiHwoDV0FXEgoyMDI2LTEyLTE2GgNUTFYqAkxPMgMxNTFqBRIDQ0RHcgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-23",
+   "status": "ok",
+   "fare": {
+    "price": 254,
+    "price_text": "$254",
+    "airline": "Iberia | Operated by Iberia Express, Iberia Express",
+    "stops": 2,
+    "duration": "15 hr 20 min",
+    "departure_description": "12:40 PM on Wed, Dec 23",
+    "verdict": "typical",
+    "band_low": 185,
+    "band_high": 335,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gn8SCjIwMjYtMTItMjMiHwoDQ0RHEgoyMDI2LTEyLTIzGgNNQUQqAklCMgM1ODYiIAoDTUFEEgoyMDI2LTEyLTIzGgNBVEgqAklCMgQxODczIiAKA0FUSBIKMjAyNi0xMi0yNBoDVExWKgJJQjIEMTg3M2oFEgNDREdyBRIDVExWQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-30",
+   "status": "ok",
+   "fare": {
+    "price": 154,
+    "price_text": "$154",
+    "airline": "TAROM",
+    "stops": 1,
+    "duration": "10 hr 20 min",
+    "departure_description": "12:00 PM on Wed, Dec 30",
+    "verdict": "low",
+    "band_low": 185,
+    "band_high": 335,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMzAiHwoDQ0RHEgoyMDI2LTEyLTMwGgNPVFAqAlJPMgMzODIiHwoDT1RQEgoyMDI2LTEyLTMwGgNUTFYqAlJPMgMxNTVqBRIDQ0RHcgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-06",
+   "status": "ok",
+   "fare": {
+    "price": 154,
+    "price_text": "$154",
+    "airline": "TAROM",
+    "stops": 1,
+    "duration": "10 hr 20 min",
+    "departure_description": "12:00 PM on Wed, Jan 6",
+    "verdict": "low",
+    "band_low": 155,
+    "band_high": 200,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMDYiHwoDQ0RHEgoyMDI3LTAxLTA2GgNPVFAqAlJPMgMzODIiHwoDT1RQEgoyMDI3LTAxLTA2GgNUTFYqAlJPMgMxNTVqBRIDQ0RHcgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-13",
+   "status": "ok",
+   "fare": {
+    "price": 178,
+    "price_text": "$178",
+    "airline": "SKY express",
+    "stops": 1,
+    "duration": "7 hr 25 min",
+    "departure_description": "2:05 PM on Wed, Jan 13",
+    "verdict": "typical",
+    "band_low": 155,
+    "band_high": 200,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMTMiHwoDQ0RHEgoyMDI3LTAxLTEzGgNBVEgqAkdRMgM5MDEiHwoDQVRIEgoyMDI3LTAxLTEzGgNUTFYqAkdRMgM3MjBqBRIDQ0RHcgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-20",
+   "status": "ok",
+   "fare": {
+    "price": 154,
+    "price_text": "$154",
+    "airline": "TAROM",
+    "stops": 1,
+    "duration": "10 hr 20 min",
+    "departure_description": "12:00 PM on Wed, Jan 20",
+    "verdict": "low",
+    "band_low": 155,
+    "band_high": 200,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMjAiHwoDQ0RHEgoyMDI3LTAxLTIwGgNPVFAqAlJPMgMzODIiHwoDT1RQEgoyMDI3LTAxLTIwGgNUTFYqAlJPMgMxNTVqBRIDQ0RHcgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-27",
+   "status": "ok",
+   "fare": {
+    "price": 154,
+    "price_text": "$154",
+    "airline": "TAROM",
+    "stops": 1,
+    "duration": "10 hr 20 min",
+    "departure_description": "12:00 PM on Wed, Jan 27",
+    "verdict": "low",
+    "band_low": 155,
+    "band_high": 200,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMjciHwoDQ0RHEgoyMDI3LTAxLTI3GgNPVFAqAlJPMgMzODIiHwoDT1RQEgoyMDI3LTAxLTI3GgNUTFYqAlJPMgMxNTVqBRIDQ0RHcgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-03",
+   "status": "ok",
+   "fare": {
+    "price": 154,
+    "price_text": "$154",
+    "airline": "TAROM",
+    "stops": 1,
+    "duration": "10 hr 20 min",
+    "departure_description": "12:00 PM on Wed, Feb 3",
+    "verdict": "low",
+    "band_low": 160,
+    "band_high": 180,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMDMiHwoDQ0RHEgoyMDI3LTAyLTAzGgNPVFAqAlJPMgMzODIiHwoDT1RQEgoyMDI3LTAyLTAzGgNUTFYqAlJPMgMxNTVqBRIDQ0RHcgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-10",
+   "status": "ok",
+   "fare": {
+    "price": 154,
+    "price_text": "$154",
+    "airline": "TAROM",
+    "stops": 1,
+    "duration": "10 hr 20 min",
+    "departure_description": "12:00 PM on Wed, Feb 10",
+    "verdict": "low",
+    "band_low": 160,
+    "band_high": 180,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMTAiHwoDQ0RHEgoyMDI3LTAyLTEwGgNPVFAqAlJPMgMzODIiHwoDT1RQEgoyMDI3LTAyLTEwGgNUTFYqAlJPMgMxNTVqBRIDQ0RHcgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-17",
+   "status": "ok",
+   "fare": {
+    "price": 154,
+    "price_text": "$154",
+    "airline": "TAROM",
+    "stops": 1,
+    "duration": "10 hr 20 min",
+    "departure_description": "12:00 PM on Wed, Feb 17",
+    "verdict": "low",
+    "band_low": 160,
+    "band_high": 180,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMTciHwoDQ0RHEgoyMDI3LTAyLTE3GgNPVFAqAlJPMgMzODIiHwoDT1RQEgoyMDI3LTAyLTE3GgNUTFYqAlJPMgMxNTVqBRIDQ0RHcgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-24",
+   "status": "ok",
+   "fare": {
+    "price": 154,
+    "price_text": "$154",
+    "airline": "TAROM",
+    "stops": 1,
+    "duration": "10 hr 20 min",
+    "departure_description": "12:00 PM on Wed, Feb 24",
+    "verdict": "low",
+    "band_low": 160,
+    "band_high": 180,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMjQiHwoDQ0RHEgoyMDI3LTAyLTI0GgNPVFAqAlJPMgMzODIiHwoDT1RQEgoyMDI3LTAyLTI0GgNUTFYqAlJPMgMxNTVqBRIDQ0RHcgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-03",
+   "status": "ok",
+   "fare": {
+    "price": 154,
+    "price_text": "$154",
+    "airline": "TAROM",
+    "stops": 1,
+    "duration": "10 hr 20 min",
+    "departure_description": "12:00 PM on Wed, Mar 3",
+    "verdict": "low",
+    "band_low": 155,
+    "band_high": 260,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMDMiHwoDQ0RHEgoyMDI3LTAzLTAzGgNPVFAqAlJPMgMzODIiHwoDT1RQEgoyMDI3LTAzLTAzGgNUTFYqAlJPMgMxNTVqBRIDQ0RHcgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-10",
+   "status": "ok",
+   "fare": {
+    "price": 154,
+    "price_text": "$154",
+    "airline": "TAROM",
+    "stops": 1,
+    "duration": "10 hr 20 min",
+    "departure_description": "12:00 PM on Wed, Mar 10",
+    "verdict": "low",
+    "band_low": 155,
+    "band_high": 260,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTAiHwoDQ0RHEgoyMDI3LTAzLTEwGgNPVFAqAlJPMgMzODIiHwoDT1RQEgoyMDI3LTAzLTEwGgNUTFYqAlJPMgMxNTVqBRIDQ0RHcgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-17",
+   "status": "ok",
+   "fare": {
+    "price": 132,
+    "price_text": "$132",
+    "airline": "TAROM",
+    "stops": 1,
+    "duration": "10 hr 20 min",
+    "departure_description": "12:00 PM on Wed, Mar 17",
+    "verdict": "low",
+    "band_low": 155,
+    "band_high": 260,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTciHwoDQ0RHEgoyMDI3LTAzLTE3GgNPVFAqAlJPMgMzODIiHwoDT1RQEgoyMDI3LTAzLTE3GgNUTFYqAlJPMgMxNTVqBRIDQ0RHcgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-24",
+   "status": "ok",
+   "fare": {
+    "price": 132,
+    "price_text": "$132",
+    "airline": "TAROM",
+    "stops": 1,
+    "duration": "10 hr 20 min",
+    "departure_description": "12:00 PM on Wed, Mar 24",
+    "verdict": "low",
+    "band_low": 155,
+    "band_high": 260,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMjQiHwoDQ0RHEgoyMDI3LTAzLTI0GgNPVFAqAlJPMgMzODIiHwoDT1RQEgoyMDI3LTAzLTI0GgNUTFYqAlJPMgMxNTVqBRIDQ0RHcgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-31",
+   "status": "ok",
+   "fare": {
+    "price": 132,
+    "price_text": "$132",
+    "airline": "TAROM",
+    "stops": 1,
+    "duration": "10 hr 20 min",
+    "departure_description": "12:00 PM on Wed, Mar 31",
+    "verdict": "low",
+    "band_low": 155,
+    "band_high": 260,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMzEiHwoDQ0RHEgoyMDI3LTAzLTMxGgNPVFAqAlJPMgMzODIiHwoDT1RQEgoyMDI3LTAzLTMxGgNUTFYqAlJPMgMxNTVqBRIDQ0RHcgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-07",
+   "status": "ok",
+   "fare": {
+    "price": 160,
+    "price_text": "$160",
+    "airline": "TAROM",
+    "stops": 1,
+    "duration": "10 hr 20 min",
+    "departure_description": "12:00 PM on Wed, Apr 7",
+    "verdict": "typical",
+    "band_low": 160,
+    "band_high": 365,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMDciHwoDQ0RHEgoyMDI3LTA0LTA3GgNPVFAqAlJPMgMzODIiHwoDT1RQEgoyMDI3LTA0LTA3GgNUTFYqAlJPMgMxNTVqBRIDQ0RHcgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-14",
+   "status": "ok",
+   "fare": {
+    "price": 160,
+    "price_text": "$160",
+    "airline": "TAROM",
+    "stops": 1,
+    "duration": "10 hr 20 min",
+    "departure_description": "12:00 PM on Wed, Apr 14",
+    "verdict": "typical",
+    "band_low": 160,
+    "band_high": 365,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMTQiHwoDQ0RHEgoyMDI3LTA0LTE0GgNPVFAqAlJPMgMzODIiHwoDT1RQEgoyMDI3LTA0LTE0GgNUTFYqAlJPMgMxNTVqBRIDQ0RHcgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-21",
+   "status": "ok",
+   "fare": {
+    "price": 179,
+    "price_text": "$179",
+    "airline": "TAROM",
+    "stops": 1,
+    "duration": "10 hr 20 min",
+    "departure_description": "12:00 PM on Wed, Apr 21",
+    "verdict": "typical",
+    "band_low": 160,
+    "band_high": 365,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjEiHwoDQ0RHEgoyMDI3LTA0LTIxGgNPVFAqAlJPMgMzODIiHwoDT1RQEgoyMDI3LTA0LTIxGgNUTFYqAlJPMgMxNTVqBRIDQ0RHcgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-28",
+   "status": "ok",
+   "fare": {
+    "price": 382,
+    "price_text": "$382",
+    "airline": "Aegean",
+    "stops": 2,
+    "duration": "10 hr 45 min",
+    "departure_description": "2:05 PM on Wed, Apr 28",
+    "verdict": "high",
+    "band_low": 160,
+    "band_high": 365,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gn0SCjIwMjctMDQtMjgiHwoDQ0RHEgoyMDI3LTA0LTI4GgNBVEgqAkEzMgM2MTciHwoDQVRIEgoyMDI3LTA0LTI4GgNIRVIqAkEzMgMzMjAiHwoDSEVSEgoyMDI3LTA0LTI5GgNUTFYqAkEzMgM0NTZqBRIDQ0RHcgUSA1RMVkIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  }
+ ]
+}

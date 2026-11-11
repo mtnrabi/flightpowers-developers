@@ -1,0 +1,423 @@
+{
+ "slug": "syd-to-akl",
+ "from": "SYD",
+ "to": "AKL",
+ "currency": "usd",
+ "trip": "one-way, 1 adult, economy",
+ "points": [
+  {
+   "date": "2026-11-25",
+   "status": "ok",
+   "fare": {
+    "price": 237,
+    "price_text": "$237",
+    "airline": "Air New Zealand | Virgin Australia",
+    "stops": 0,
+    "duration": "3 hr 15 min",
+    "departure_description": "7:25 PM on Wed, Nov 25",
+    "verdict": "typical",
+    "band_low": 195,
+    "band_high": 315,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTEtMjUiHwoDU1lEEgoyMDI2LTExLTI1GgNBS0wqAk5aMgMxMTJqBRIDU1lEcgUSA0FLTEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:53.686Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-02",
+   "status": "ok",
+   "fare": {
+    "price": 209,
+    "price_text": "$209",
+    "airline": "Jetstar",
+    "stops": 0,
+    "duration": "3 hr 5 min",
+    "departure_description": "11:00 AM on Wed, Dec 2",
+    "verdict": "low",
+    "band_low": 220,
+    "band_high": 440,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDIiHwoDU1lEEgoyMDI2LTEyLTAyGgNBS0wqAkpRMgMyMDdqBRIDU1lEcgUSA0FLTEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:53.686Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-09",
+   "status": "ok",
+   "fare": {
+    "price": 230,
+    "price_text": "$230",
+    "airline": "Jetstar",
+    "stops": 0,
+    "duration": "3 hr 5 min",
+    "departure_description": "11:00 AM on Wed, Dec 9",
+    "verdict": "typical",
+    "band_low": 220,
+    "band_high": 440,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDkiHwoDU1lEEgoyMDI2LTEyLTA5GgNBS0wqAkpRMgMyMDdqBRIDU1lEcgUSA0FLTEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:53.686Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-16",
+   "status": "ok",
+   "fare": {
+    "price": 260,
+    "price_text": "$260",
+    "airline": "Qantas | Emirates, Air Tahiti Nui",
+    "stops": 0,
+    "duration": "3 hr 10 min",
+    "departure_description": "5:50 PM on Wed, Dec 16",
+    "verdict": "typical",
+    "band_low": 220,
+    "band_high": 440,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMTYiHwoDU1lEEgoyMDI2LTEyLTE2GgNBS0wqAlFGMgMxNDdqBRIDU1lEcgUSA0FLTEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:53.686Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-23",
+   "status": "ok",
+   "fare": {
+    "price": 377,
+    "price_text": "$377",
+    "airline": "Qantas",
+    "stops": 0,
+    "duration": "3 hr 10 min",
+    "departure_description": "4:30 PM on Wed, Dec 23",
+    "verdict": "typical",
+    "band_low": 220,
+    "band_high": 440,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMjMiHwoDU1lEEgoyMDI2LTEyLTIzGgNBS0wqAlFGMgMxODFqBRIDU1lEcgUSA0FLTEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:53.686Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-30",
+   "status": "ok",
+   "fare": {
+    "price": 260,
+    "price_text": "$260",
+    "airline": "Qantas | Emirates, Air Tahiti Nui",
+    "stops": 0,
+    "duration": "3 hr 10 min",
+    "departure_description": "7:15 PM on Wed, Dec 30",
+    "verdict": "typical",
+    "band_low": 220,
+    "band_high": 440,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMzAiHwoDU1lEEgoyMDI2LTEyLTMwGgNBS0wqAlFGMgMxNDlqBRIDU1lEcgUSA0FLTEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:53.686Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-06",
+   "status": "ok",
+   "fare": {
+    "price": 260,
+    "price_text": "$260",
+    "airline": "Qantas | Emirates, Air Tahiti Nui",
+    "stops": 0,
+    "duration": "3 hr 10 min",
+    "departure_description": "5:50 PM on Wed, Jan 6",
+    "verdict": "typical",
+    "band_low": 190,
+    "band_high": 335,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMDYiHwoDU1lEEgoyMDI3LTAxLTA2GgNBS0wqAlFGMgMxNDdqBRIDU1lEcgUSA0FLTEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:53.686Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-13",
+   "status": "ok",
+   "fare": {
+    "price": 209,
+    "price_text": "$209",
+    "airline": "Jetstar",
+    "stops": 0,
+    "duration": "3 hr 10 min",
+    "departure_description": "6:30 PM on Wed, Jan 13",
+    "verdict": "typical",
+    "band_low": 190,
+    "band_high": 335,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMTMiHwoDU1lEEgoyMDI3LTAxLTEzGgNBS0wqAkpRMgMyMDlqBRIDU1lEcgUSA0FLTEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:53.686Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-20",
+   "status": "ok",
+   "fare": {
+    "price": 209,
+    "price_text": "$209",
+    "airline": "Jetstar",
+    "stops": 0,
+    "duration": "3 hr 10 min",
+    "departure_description": "6:30 PM on Wed, Jan 20",
+    "verdict": "typical",
+    "band_low": 190,
+    "band_high": 335,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMjAiHwoDU1lEEgoyMDI3LTAxLTIwGgNBS0wqAkpRMgMyMDlqBRIDU1lEcgUSA0FLTEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:48.964Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-27",
+   "status": "ok",
+   "fare": {
+    "price": 223,
+    "price_text": "$223",
+    "airline": "Air New Zealand | Virgin Australia",
+    "stops": 0,
+    "duration": "3 hr 15 min",
+    "departure_description": "9:55 AM on Wed, Jan 27",
+    "verdict": "typical",
+    "band_low": 190,
+    "band_high": 335,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMjciHwoDU1lEEgoyMDI3LTAxLTI3GgNBS0wqAk5aMgMxMDJqBRIDU1lEcgUSA0FLTEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:48.964Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-03",
+   "status": "ok",
+   "fare": {
+    "price": 209,
+    "price_text": "$209",
+    "airline": "Jetstar",
+    "stops": 0,
+    "duration": "3 hr 5 min",
+    "departure_description": "11:00 AM on Wed, Feb 3",
+    "verdict": "typical",
+    "band_low": 165,
+    "band_high": 265,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMDMiHwoDU1lEEgoyMDI3LTAyLTAzGgNBS0wqAkpRMgMyMDdqBRIDU1lEcgUSA0FLTEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:48.964Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-10",
+   "status": "ok",
+   "fare": {
+    "price": 209,
+    "price_text": "$209",
+    "airline": "Jetstar",
+    "stops": 0,
+    "duration": "3 hr 5 min",
+    "departure_description": "11:00 AM on Wed, Feb 10",
+    "verdict": "typical",
+    "band_low": 165,
+    "band_high": 265,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMTAiHwoDU1lEEgoyMDI3LTAyLTEwGgNBS0wqAkpRMgMyMDdqBRIDU1lEcgUSA0FLTEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:48.964Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-17",
+   "status": "ok",
+   "fare": {
+    "price": 195,
+    "price_text": "$195",
+    "airline": "Jetstar",
+    "stops": 0,
+    "duration": "3 hr 10 min",
+    "departure_description": "9:00 AM on Wed, Feb 17",
+    "verdict": "typical",
+    "band_low": 165,
+    "band_high": 265,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMTciHwoDU1lEEgoyMDI3LTAyLTE3GgNBS0wqAkpRMgMyMDFqBRIDU1lEcgUSA0FLTEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:48.964Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-24",
+   "status": "ok",
+   "fare": {
+    "price": 230,
+    "price_text": "$230",
+    "airline": "Jetstar",
+    "stops": 0,
+    "duration": "3 hr 5 min",
+    "departure_description": "11:00 AM on Wed, Feb 24",
+    "verdict": "typical",
+    "band_low": 165,
+    "band_high": 265,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMjQiHwoDU1lEEgoyMDI3LTAyLTI0GgNBS0wqAkpRMgMyMDdqBRIDU1lEcgUSA0FLTEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:48.964Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-03",
+   "status": "ok",
+   "fare": {
+    "price": 230,
+    "price_text": "$230",
+    "airline": "Jetstar",
+    "stops": 0,
+    "duration": "3 hr 10 min",
+    "departure_description": "9:00 AM on Wed, Mar 3",
+    "verdict": "typical",
+    "band_low": 160,
+    "band_high": 265,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMDMiHwoDU1lEEgoyMDI3LTAzLTAzGgNBS0wqAkpRMgMyMDFqBRIDU1lEcgUSA0FLTEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:48.964Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-10",
+   "status": "ok",
+   "fare": {
+    "price": 209,
+    "price_text": "$209",
+    "airline": "Jetstar",
+    "stops": 0,
+    "duration": "3 hr 10 min",
+    "departure_description": "9:00 AM on Wed, Mar 10",
+    "verdict": "typical",
+    "band_low": 160,
+    "band_high": 265,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMTAiHwoDU1lEEgoyMDI3LTAzLTEwGgNBS0wqAkpRMgMyMDFqBRIDU1lEcgUSA0FLTEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:48.964Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-17",
+   "status": "ok",
+   "fare": {
+    "price": 230,
+    "price_text": "$230",
+    "airline": "Jetstar",
+    "stops": 0,
+    "duration": "3 hr 5 min",
+    "departure_description": "11:00 AM on Wed, Mar 17",
+    "verdict": "typical",
+    "band_low": 160,
+    "band_high": 265,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMTciHwoDU1lEEgoyMDI3LTAzLTE3GgNBS0wqAkpRMgMyMDdqBRIDU1lEcgUSA0FLTEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:50.296Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-24",
+   "status": "ok",
+   "fare": {
+    "price": 237,
+    "price_text": "$237",
+    "airline": "Air New Zealand | Virgin Australia",
+    "stops": 0,
+    "duration": "3 hr 15 min",
+    "departure_description": "7:25 PM on Wed, Mar 24",
+    "verdict": "typical",
+    "band_low": 160,
+    "band_high": 265,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMjQiHwoDU1lEEgoyMDI3LTAzLTI0GgNBS0wqAk5aMgMxMTJqBRIDU1lEcgUSA0FLTEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:50.296Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-31",
+   "status": "ok",
+   "fare": {
+    "price": 209,
+    "price_text": "$209",
+    "airline": "Jetstar",
+    "stops": 0,
+    "duration": "3 hr 10 min",
+    "departure_description": "11:00 AM on Wed, Mar 31",
+    "verdict": "typical",
+    "band_low": 160,
+    "band_high": 265,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMzEiHwoDU1lEEgoyMDI3LTAzLTMxGgNBS0wqAkpRMgMyMDVqBRIDU1lEcgUSA0FLTEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:50.296Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-07",
+   "status": "ok",
+   "fare": {
+    "price": 195,
+    "price_text": "$195",
+    "airline": "Jetstar",
+    "stops": 0,
+    "duration": "3 hr 10 min",
+    "departure_description": "11:00 AM on Wed, Apr 7",
+    "verdict": "typical",
+    "band_low": 175,
+    "band_high": 330,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMDciHwoDU1lEEgoyMDI3LTA0LTA3GgNBS0wqAkpRMgMyMDVqBRIDU1lEcgUSA0FLTEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:50.296Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-14",
+   "status": "ok",
+   "fare": {
+    "price": 209,
+    "price_text": "$209",
+    "airline": "Jetstar",
+    "stops": 0,
+    "duration": "3 hr 10 min",
+    "departure_description": "11:00 AM on Wed, Apr 14",
+    "verdict": "typical",
+    "band_low": 175,
+    "band_high": 330,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMTQiHwoDU1lEEgoyMDI3LTA0LTE0GgNBS0wqAkpRMgMyMDVqBRIDU1lEcgUSA0FLTEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:50.296Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-21",
+   "status": "ok",
+   "fare": {
+    "price": 209,
+    "price_text": "$209",
+    "airline": "Jetstar",
+    "stops": 0,
+    "duration": "3 hr 10 min",
+    "departure_description": "11:00 AM on Wed, Apr 21",
+    "verdict": "typical",
+    "band_low": 175,
+    "band_high": 330,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMjEiHwoDU1lEEgoyMDI3LTA0LTIxGgNBS0wqAkpRMgMyMDVqBRIDU1lEcgUSA0FLTEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:50.296Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-28",
+   "status": "ok",
+   "fare": {
+    "price": 209,
+    "price_text": "$209",
+    "airline": "Jetstar",
+    "stops": 0,
+    "duration": "3 hr 10 min",
+    "departure_description": "11:00 AM on Wed, Apr 28",
+    "verdict": "typical",
+    "band_low": 175,
+    "band_high": 330,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMjgiHwoDU1lEEgoyMDI3LTA0LTI4GgNBS0wqAkpRMgMyMDVqBRIDU1lEcgUSA0FLTEIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:16:50.296Z",
+   "source": "claude-mcp"
+  }
+ ]
+}

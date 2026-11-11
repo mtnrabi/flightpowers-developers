@@ -4,6 +4,7 @@ import path from 'node:path';
 import { NOINDEX_ROUTES, REDIRECTED_ROUTES, discoverRoutes, lastModified, newestEdit, priorityFor } from '@/lib/routes';
 import { matrixPairs } from '@/lib/matrix';
 import { indexedGridPaths } from '@/lib/grid';
+import { allRouteFares } from '@/lib/route-fares';
 
 export const dynamic = 'force-static';
 
@@ -71,12 +72,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
+  // The /flights/<from>-to-<to> pages: one per route with enough fetched fares
+  // (src/lib/route-fares.ts). Their lastmod is the day their newest fare was
+  // fetched, which is exactly when the page's content last changed.
+  const routeFareRoutes = allRouteFares().map((r) => ({
+    url: new URL(`/flights/${r.slug}`, SITE.url).toString(),
+    lastModified: r.fetchedLast,
+    changeFrequency: 'weekly' as const,
+    priority: 0.6,
+  }));
+
   // /pricing.md and /pricing.txt are NOT listed: they are text copies of
   // /pricing and answer with `Link: <…/pricing>; rel="canonical"`
   // (next.config.mjs), and a sitemap lists canonical URLs only. Agents find
   // them through /llms.txt, which is where they look.
 
-  return [...staticRoutes, ...matrixRoutes, ...gridRoutes].sort(
+  return [...staticRoutes, ...matrixRoutes, ...gridRoutes, ...routeFareRoutes].sort(
     (a, b) => b.priority - a.priority || a.url.localeCompare(b.url)
   );
 }

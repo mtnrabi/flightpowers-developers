@@ -1,0 +1,423 @@
+{
+ "slug": "cdg-to-mad",
+ "from": "CDG",
+ "to": "MAD",
+ "currency": "usd",
+ "trip": "one-way, 1 adult, economy",
+ "points": [
+  {
+   "date": "2026-11-25",
+   "status": "ok",
+   "fare": {
+    "price": 94,
+    "price_text": "$94",
+    "airline": "Iberia",
+    "stops": 0,
+    "duration": "2 hr 15 min",
+    "departure_description": "12:40 PM on Wed, Nov 25",
+    "verdict": "typical",
+    "band_low": 90,
+    "band_high": 125,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTEtMjUiHwoDQ0RHEgoyMDI2LTExLTI1GgNNQUQqAklCMgM1ODZqBRIDQ0RHcgUSA01BREIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-02",
+   "status": "ok",
+   "fare": {
+    "price": 94,
+    "price_text": "$94",
+    "airline": "Iberia",
+    "stops": 0,
+    "duration": "2 hr 10 min",
+    "departure_description": "10:15 AM on Wed, Dec 2",
+    "verdict": "typical",
+    "band_low": 90,
+    "band_high": 210,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDIiHwoDQ0RHEgoyMDI2LTEyLTAyGgNNQUQqAklCMgM1NzBqBRIDQ0RHcgUSA01BREIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-09",
+   "status": "ok",
+   "fare": {
+    "price": 170,
+    "price_text": "$170",
+    "airline": "Air France | Operated by HOP!",
+    "stops": 0,
+    "duration": "2 hr 15 min",
+    "departure_description": "6:55 AM on Wed, Dec 9",
+    "verdict": "typical",
+    "band_low": 90,
+    "band_high": 210,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMDkiIAoDQ0RHEgoyMDI2LTEyLTA5GgNNQUQqAkFGMgQxMDAwagUSA0NER3IFEgNNQURCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-16",
+   "status": "ok",
+   "fare": {
+    "price": 99,
+    "price_text": "$99",
+    "airline": "Iberia",
+    "stops": 0,
+    "duration": "2 hr 15 min",
+    "departure_description": "6:50 AM on Wed, Dec 16",
+    "verdict": "typical",
+    "band_low": 90,
+    "band_high": 210,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMTYiHwoDQ0RHEgoyMDI2LTEyLTE2GgNNQUQqAklCMgM1OTJqBRIDQ0RHcgUSA01BREIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-23",
+   "status": "ok",
+   "fare": {
+    "price": 128,
+    "price_text": "$128",
+    "airline": "Iberia",
+    "stops": 0,
+    "duration": "2 hr 15 min",
+    "departure_description": "6:50 AM on Wed, Dec 23",
+    "verdict": "typical",
+    "band_low": 90,
+    "band_high": 210,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMjMiHwoDQ0RHEgoyMDI2LTEyLTIzGgNNQUQqAklCMgM1OTJqBRIDQ0RHcgUSA01BREIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-30",
+   "status": "ok",
+   "fare": {
+    "price": 149,
+    "price_text": "$149",
+    "airline": "Air France",
+    "stops": 0,
+    "duration": "2 hr 15 min",
+    "departure_description": "6:55 AM on Wed, Dec 30",
+    "verdict": "typical",
+    "band_low": 90,
+    "band_high": 210,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMzAiIAoDQ0RHEgoyMDI2LTEyLTMwGgNNQUQqAkFGMgQxMDAwagUSA0NER3IFEgNNQURCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-06",
+   "status": "ok",
+   "fare": {
+    "price": 122,
+    "price_text": "$122",
+    "airline": "Iberia",
+    "stops": 0,
+    "duration": "2 hr 15 min",
+    "departure_description": "6:50 AM on Wed, Jan 6",
+    "verdict": "typical",
+    "band_low": 60,
+    "band_high": 125,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMDYiHwoDQ0RHEgoyMDI3LTAxLTA2GgNNQUQqAklCMgM1OTJqBRIDQ0RHcgUSA01BREIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-13",
+   "status": "ok",
+   "fare": {
+    "price": 94,
+    "price_text": "$94",
+    "airline": "Iberia",
+    "stops": 0,
+    "duration": "2 hr 15 min",
+    "departure_description": "12:40 PM on Wed, Jan 13",
+    "verdict": "typical",
+    "band_low": 60,
+    "band_high": 125,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMTMiHwoDQ0RHEgoyMDI3LTAxLTEzGgNNQUQqAklCMgM1ODZqBRIDQ0RHcgUSA01BREIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:01.560Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-20",
+   "status": "ok",
+   "fare": {
+    "price": 94,
+    "price_text": "$94",
+    "airline": "Iberia",
+    "stops": 0,
+    "duration": "2 hr 15 min",
+    "departure_description": "12:40 PM on Wed, Jan 20",
+    "verdict": "typical",
+    "band_low": 60,
+    "band_high": 125,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMjAiHwoDQ0RHEgoyMDI3LTAxLTIwGgNNQUQqAklCMgM1ODZqBRIDQ0RHcgUSA01BREIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-27",
+   "status": "ok",
+   "fare": {
+    "price": 94,
+    "price_text": "$94",
+    "airline": "Iberia",
+    "stops": 0,
+    "duration": "2 hr 15 min",
+    "departure_description": "12:40 PM on Wed, Jan 27",
+    "verdict": "typical",
+    "band_low": 60,
+    "band_high": 125,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMjciHwoDQ0RHEgoyMDI3LTAxLTI3GgNNQUQqAklCMgM1ODZqBRIDQ0RHcgUSA01BREIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-03",
+   "status": "ok",
+   "fare": {
+    "price": 94,
+    "price_text": "$94",
+    "airline": "Iberia",
+    "stops": 0,
+    "duration": "2 hr 15 min",
+    "departure_description": "6:50 AM on Wed, Feb 3",
+    "verdict": "typical",
+    "band_low": 75,
+    "band_high": 155,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMDMiHwoDQ0RHEgoyMDI3LTAyLTAzGgNNQUQqAklCMgM1OTJqBRIDQ0RHcgUSA01BREIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-10",
+   "status": "ok",
+   "fare": {
+    "price": 94,
+    "price_text": "$94",
+    "airline": "Iberia",
+    "stops": 0,
+    "duration": "2 hr 15 min",
+    "departure_description": "6:50 AM on Wed, Feb 10",
+    "verdict": "typical",
+    "band_low": 75,
+    "band_high": 155,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMTAiHwoDQ0RHEgoyMDI3LTAyLTEwGgNNQUQqAklCMgM1OTJqBRIDQ0RHcgUSA01BREIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-17",
+   "status": "ok",
+   "fare": {
+    "price": 94,
+    "price_text": "$94",
+    "airline": "Iberia",
+    "stops": 0,
+    "duration": "2 hr 15 min",
+    "departure_description": "6:50 AM on Wed, Feb 17",
+    "verdict": "typical",
+    "band_low": 75,
+    "band_high": 155,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMTciHwoDQ0RHEgoyMDI3LTAyLTE3GgNNQUQqAklCMgM1OTJqBRIDQ0RHcgUSA01BREIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-24",
+   "status": "ok",
+   "fare": {
+    "price": 94,
+    "price_text": "$94",
+    "airline": "Air France",
+    "stops": 0,
+    "duration": "2 hr 15 min",
+    "departure_description": "6:55 AM on Wed, Feb 24",
+    "verdict": "typical",
+    "band_low": 75,
+    "band_high": 155,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDItMjQiIAoDQ0RHEgoyMDI3LTAyLTI0GgNNQUQqAkFGMgQxMDAwagUSA0NER3IFEgNNQURCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-03",
+   "status": "ok",
+   "fare": {
+    "price": 94,
+    "price_text": "$94",
+    "airline": "Iberia",
+    "stops": 0,
+    "duration": "2 hr 15 min",
+    "departure_description": "12:40 PM on Wed, Mar 3",
+    "verdict": "typical",
+    "band_low": 75,
+    "band_high": 110,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMDMiHwoDQ0RHEgoyMDI3LTAzLTAzGgNNQUQqAklCMgM1ODZqBRIDQ0RHcgUSA01BREIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-10",
+   "status": "ok",
+   "fare": {
+    "price": 94,
+    "price_text": "$94",
+    "airline": "Iberia",
+    "stops": 0,
+    "duration": "2 hr 15 min",
+    "departure_description": "6:50 AM on Wed, Mar 10",
+    "verdict": "typical",
+    "band_low": 75,
+    "band_high": 110,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMTAiHwoDQ0RHEgoyMDI3LTAzLTEwGgNNQUQqAklCMgM1OTJqBRIDQ0RHcgUSA01BREIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:10:03.636Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-17",
+   "status": "ok",
+   "fare": {
+    "price": 94,
+    "price_text": "$94",
+    "airline": "Iberia",
+    "stops": 0,
+    "duration": "2 hr 15 min",
+    "departure_description": "6:50 AM on Wed, Mar 17",
+    "verdict": "typical",
+    "band_low": 75,
+    "band_high": 110,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMTciHwoDQ0RHEgoyMDI3LTAzLTE3GgNNQUQqAklCMgM1OTJqBRIDQ0RHcgUSA01BREIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-24",
+   "status": "ok",
+   "fare": {
+    "price": 99,
+    "price_text": "$99",
+    "airline": "Iberia",
+    "stops": 0,
+    "duration": "2 hr 15 min",
+    "departure_description": "6:50 AM on Wed, Mar 24",
+    "verdict": "typical",
+    "band_low": 75,
+    "band_high": 110,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMjQiHwoDQ0RHEgoyMDI3LTAzLTI0GgNNQUQqAklCMgM1OTJqBRIDQ0RHcgUSA01BREIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-31",
+   "status": "ok",
+   "fare": {
+    "price": 94,
+    "price_text": "$94",
+    "airline": "Iberia",
+    "stops": 0,
+    "duration": "2 hr 10 min",
+    "departure_description": "6:50 AM on Wed, Mar 31",
+    "verdict": "typical",
+    "band_low": 75,
+    "band_high": 110,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMzEiHwoDQ0RHEgoyMDI3LTAzLTMxGgNNQUQqAklCMgM1OTJqBRIDQ0RHcgUSA01BREIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-07",
+   "status": "ok",
+   "fare": {
+    "price": 94,
+    "price_text": "$94",
+    "airline": "Iberia",
+    "stops": 0,
+    "duration": "2 hr 10 min",
+    "departure_description": "6:50 AM on Wed, Apr 7",
+    "verdict": "low",
+    "band_low": 100,
+    "band_high": 250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMDciHwoDQ0RHEgoyMDI3LTA0LTA3GgNNQUQqAklCMgM1OTJqBRIDQ0RHcgUSA01BREIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-14",
+   "status": "ok",
+   "fare": {
+    "price": 94,
+    "price_text": "$94",
+    "airline": "Iberia",
+    "stops": 0,
+    "duration": "2 hr 10 min",
+    "departure_description": "6:50 AM on Wed, Apr 14",
+    "verdict": "low",
+    "band_low": 100,
+    "band_high": 250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMTQiHwoDQ0RHEgoyMDI3LTA0LTE0GgNNQUQqAklCMgM1OTJqBRIDQ0RHcgUSA01BREIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-21",
+   "status": "ok",
+   "fare": {
+    "price": 94,
+    "price_text": "$94",
+    "airline": "Iberia",
+    "stops": 0,
+    "duration": "2 hr 15 min",
+    "departure_description": "12:45 PM on Wed, Apr 21",
+    "verdict": "low",
+    "band_low": 100,
+    "band_high": 250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMjEiHwoDQ0RHEgoyMDI3LTA0LTIxGgNNQUQqAklCMgM1ODZqBRIDQ0RHcgUSA01BREIBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-28",
+   "status": "ok",
+   "fare": {
+    "price": 94,
+    "price_text": "$94",
+    "airline": "Air France",
+    "stops": 0,
+    "duration": "2 hr 10 min",
+    "departure_description": "7:00 AM on Wed, Apr 28",
+    "verdict": "low",
+    "band_low": 100,
+    "band_high": 250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDQtMjgiIAoDQ0RHEgoyMDI3LTA0LTI4GgNNQUQqAkFGMgQxMDAwagUSA0NER3IFEgNNQURCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:09:59.162Z",
+   "source": "claude-mcp"
+  }
+ ]
+}

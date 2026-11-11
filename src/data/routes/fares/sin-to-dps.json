@@ -1,0 +1,423 @@
+{
+ "slug": "sin-to-dps",
+ "from": "SIN",
+ "to": "DPS",
+ "currency": "usd",
+ "trip": "one-way, 1 adult, economy",
+ "points": [
+  {
+   "date": "2026-11-25",
+   "status": "ok",
+   "fare": {
+    "price": 90,
+    "price_text": "$90",
+    "airline": "Jetstar | Qantas",
+    "stops": 0,
+    "duration": "2 hr 50 min",
+    "departure_description": "7:25 PM on Wed, Nov 25",
+    "verdict": "typical",
+    "band_low": 85,
+    "band_high": 115,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjYtMTEtMjUiHgoDU0lOEgoyMDI2LTExLTI1GgNEUFMqAkpRMgI4N2oFEgNTSU5yBRIDRFBTQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:18.324Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-02",
+   "status": "ok",
+   "fare": {
+    "price": 90,
+    "price_text": "$90",
+    "airline": "Jetstar | Qantas",
+    "stops": 0,
+    "duration": "2 hr 50 min",
+    "departure_description": "7:25 PM on Wed, Dec 2",
+    "verdict": "typical",
+    "band_low": 80,
+    "band_high": 105,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjYtMTItMDIiHgoDU0lOEgoyMDI2LTEyLTAyGgNEUFMqAkpRMgI4N2oFEgNTSU5yBRIDRFBTQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:18.324Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-09",
+   "status": "ok",
+   "fare": {
+    "price": 90,
+    "price_text": "$90",
+    "airline": "Jetstar | Qantas",
+    "stops": 0,
+    "duration": "2 hr 50 min",
+    "departure_description": "7:25 PM on Wed, Dec 9",
+    "verdict": "typical",
+    "band_low": 80,
+    "band_high": 105,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjYtMTItMDkiHgoDU0lOEgoyMDI2LTEyLTA5GgNEUFMqAkpRMgI4N2oFEgNTSU5yBRIDRFBTQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:18.324Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-16",
+   "status": "ok",
+   "fare": {
+    "price": 90,
+    "price_text": "$90",
+    "airline": "Jetstar | Qantas",
+    "stops": 0,
+    "duration": "2 hr 50 min",
+    "departure_description": "7:25 PM on Wed, Dec 16",
+    "verdict": "typical",
+    "band_low": 80,
+    "band_high": 105,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjYtMTItMTYiHgoDU0lOEgoyMDI2LTEyLTE2GgNEUFMqAkpRMgI4N2oFEgNTSU5yBRIDRFBTQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:18.324Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-23",
+   "status": "ok",
+   "fare": {
+    "price": 149,
+    "price_text": "$149",
+    "airline": "Saudia",
+    "stops": 0,
+    "duration": "3 hr",
+    "departure_description": "5:10 PM on Wed, Dec 23",
+    "verdict": "high",
+    "band_low": 80,
+    "band_high": 105,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMjMiHwoDU0lOEgoyMDI2LTEyLTIzGgNEUFMqAlNWMgM4NTZqBRIDU0lOcgUSA0RQU0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:18.324Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-30",
+   "status": "ok",
+   "fare": {
+    "price": 93,
+    "price_text": "$93",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 55 min",
+    "departure_description": "4:05 PM on Wed, Dec 30",
+    "verdict": "typical",
+    "band_low": 80,
+    "band_high": 105,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMzAiHwoDU0lOEgoyMDI2LTEyLTMwGgNEUFMqAlRSMgMyODJqBRIDU0lOcgUSA0RQU0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:18.324Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-06",
+   "status": "ok",
+   "fare": {
+    "price": 80,
+    "price_text": "$80",
+    "airline": "Jetstar | Qantas",
+    "stops": 0,
+    "duration": "2 hr 50 min",
+    "departure_description": "7:25 PM on Wed, Jan 6",
+    "verdict": "typical",
+    "band_low": 70,
+    "band_high": 80,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDEtMDYiHgoDU0lOEgoyMDI3LTAxLTA2GgNEUFMqAkpRMgI4N2oFEgNTSU5yBRIDRFBTQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:18.324Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-13",
+   "status": "ok",
+   "fare": {
+    "price": 80,
+    "price_text": "$80",
+    "airline": "Jetstar | Qantas",
+    "stops": 0,
+    "duration": "2 hr 50 min",
+    "departure_description": "7:25 PM on Wed, Jan 13",
+    "verdict": "typical",
+    "band_low": 70,
+    "band_high": 80,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDEtMTMiHgoDU0lOEgoyMDI3LTAxLTEzGgNEUFMqAkpRMgI4N2oFEgNTSU5yBRIDRFBTQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:18.324Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-20",
+   "status": "ok",
+   "fare": {
+    "price": 80,
+    "price_text": "$80",
+    "airline": "Jetstar | Qantas",
+    "stops": 0,
+    "duration": "2 hr 50 min",
+    "departure_description": "7:25 PM on Wed, Jan 20",
+    "verdict": "typical",
+    "band_low": 70,
+    "band_high": 80,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDEtMjAiHgoDU0lOEgoyMDI3LTAxLTIwGgNEUFMqAkpRMgI4N2oFEgNTSU5yBRIDRFBTQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:17.771Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-27",
+   "status": "ok",
+   "fare": {
+    "price": 80,
+    "price_text": "$80",
+    "airline": "Jetstar | Qantas",
+    "stops": 0,
+    "duration": "2 hr 50 min",
+    "departure_description": "7:25 PM on Wed, Jan 27",
+    "verdict": "typical",
+    "band_low": 70,
+    "band_high": 80,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDEtMjciHgoDU0lOEgoyMDI3LTAxLTI3GgNEUFMqAkpRMgI4N2oFEgNTSU5yBRIDRFBTQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:17.771Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-03",
+   "status": "ok",
+   "fare": {
+    "price": 125,
+    "price_text": "$125",
+    "airline": "Jetstar | Qantas",
+    "stops": 0,
+    "duration": "2 hr 50 min",
+    "departure_description": "7:25 PM on Wed, Feb 3",
+    "verdict": "high",
+    "band_low": 70,
+    "band_high": 105,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDItMDMiHgoDU0lOEgoyMDI3LTAyLTAzGgNEUFMqAkpRMgI4N2oFEgNTSU5yBRIDRFBTQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:17.771Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-10",
+   "status": "ok",
+   "fare": {
+    "price": 80,
+    "price_text": "$80",
+    "airline": "Jetstar | Qantas",
+    "stops": 0,
+    "duration": "2 hr 50 min",
+    "departure_description": "7:25 PM on Wed, Feb 10",
+    "verdict": "typical",
+    "band_low": 70,
+    "band_high": 105,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDItMTAiHgoDU0lOEgoyMDI3LTAyLTEwGgNEUFMqAkpRMgI4N2oFEgNTSU5yBRIDRFBTQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:17.771Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-17",
+   "status": "ok",
+   "fare": {
+    "price": 80,
+    "price_text": "$80",
+    "airline": "Jetstar | Qantas",
+    "stops": 0,
+    "duration": "2 hr 50 min",
+    "departure_description": "7:25 PM on Wed, Feb 17",
+    "verdict": "typical",
+    "band_low": 70,
+    "band_high": 105,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDItMTciHgoDU0lOEgoyMDI3LTAyLTE3GgNEUFMqAkpRMgI4N2oFEgNTSU5yBRIDRFBTQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:17.771Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-24",
+   "status": "ok",
+   "fare": {
+    "price": 80,
+    "price_text": "$80",
+    "airline": "Jetstar | Qantas",
+    "stops": 0,
+    "duration": "2 hr 50 min",
+    "departure_description": "7:25 PM on Wed, Feb 24",
+    "verdict": "typical",
+    "band_low": 70,
+    "band_high": 105,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDItMjQiHgoDU0lOEgoyMDI3LTAyLTI0GgNEUFMqAkpRMgI4N2oFEgNTSU5yBRIDRFBTQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:17.771Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-03",
+   "status": "ok",
+   "fare": {
+    "price": 80,
+    "price_text": "$80",
+    "airline": "Jetstar | Qantas",
+    "stops": 0,
+    "duration": "2 hr 50 min",
+    "departure_description": "7:25 PM on Wed, Mar 3",
+    "verdict": "typical",
+    "band_low": 70,
+    "band_high": 90,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDMtMDMiHgoDU0lOEgoyMDI3LTAzLTAzGgNEUFMqAkpRMgI4N2oFEgNTSU5yBRIDRFBTQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:17.771Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-10",
+   "status": "ok",
+   "fare": {
+    "price": 80,
+    "price_text": "$80",
+    "airline": "Jetstar | Qantas",
+    "stops": 0,
+    "duration": "2 hr 50 min",
+    "departure_description": "7:25 PM on Wed, Mar 10",
+    "verdict": "typical",
+    "band_low": 70,
+    "band_high": 90,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDMtMTAiHgoDU0lOEgoyMDI3LTAzLTEwGgNEUFMqAkpRMgI4N2oFEgNTSU5yBRIDRFBTQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:17.771Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-17",
+   "status": "ok",
+   "fare": {
+    "price": 91,
+    "price_text": "$91",
+    "airline": "Jetstar | Qantas",
+    "stops": 0,
+    "duration": "2 hr 50 min",
+    "departure_description": "7:25 PM on Wed, Mar 17",
+    "verdict": "high",
+    "band_low": 70,
+    "band_high": 90,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDMtMTciHgoDU0lOEgoyMDI3LTAzLTE3GgNEUFMqAkpRMgI4N2oFEgNTSU5yBRIDRFBTQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:16.996Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-24",
+   "status": "ok",
+   "fare": {
+    "price": 94,
+    "price_text": "$94",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 55 min",
+    "departure_description": "4:05 PM on Wed, Mar 24",
+    "verdict": "high",
+    "band_low": 70,
+    "band_high": 90,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMjQiHwoDU0lOEgoyMDI3LTAzLTI0GgNEUFMqAlRSMgMyODJqBRIDU0lOcgUSA0RQU0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:16.996Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-31",
+   "status": "ok",
+   "fare": {
+    "price": 94,
+    "price_text": "$94",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 45 min",
+    "departure_description": "3:55 PM on Wed, Mar 31",
+    "verdict": "high",
+    "band_low": 70,
+    "band_high": 90,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMzEiHwoDU0lOEgoyMDI3LTAzLTMxGgNEUFMqAlRSMgMyODJqBRIDU0lOcgUSA0RQU0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:16.996Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-07",
+   "status": "ok",
+   "fare": {
+    "price": 98,
+    "price_text": "$98",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 45 min",
+    "departure_description": "3:55 PM on Wed, Apr 7",
+    "verdict": "high",
+    "band_low": 60,
+    "band_high": 95,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMDciHwoDU0lOEgoyMDI3LTA0LTA3GgNEUFMqAlRSMgMyODJqBRIDU0lOcgUSA0RQU0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:16.996Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-14",
+   "status": "ok",
+   "fare": {
+    "price": 98,
+    "price_text": "$98",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 45 min",
+    "departure_description": "3:55 PM on Wed, Apr 14",
+    "verdict": "high",
+    "band_low": 60,
+    "band_high": 95,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMTQiHwoDU0lOEgoyMDI3LTA0LTE0GgNEUFMqAlRSMgMyODJqBRIDU0lOcgUSA0RQU0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:16.996Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-21",
+   "status": "ok",
+   "fare": {
+    "price": 98,
+    "price_text": "$98",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 45 min",
+    "departure_description": "3:55 PM on Wed, Apr 21",
+    "verdict": "high",
+    "band_low": 60,
+    "band_high": 95,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMjEiHwoDU0lOEgoyMDI3LTA0LTIxGgNEUFMqAlRSMgMyODJqBRIDU0lOcgUSA0RQU0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:16.996Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-28",
+   "status": "ok",
+   "fare": {
+    "price": 98,
+    "price_text": "$98",
+    "airline": "Scoot",
+    "stops": 0,
+    "duration": "2 hr 45 min",
+    "departure_description": "3:55 PM on Wed, Apr 28",
+    "verdict": "high",
+    "band_low": 60,
+    "band_high": 95,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMjgiHwoDU0lOEgoyMDI3LTA0LTI4GgNEUFMqAlRSMgMyODJqBRIDU0lOcgUSA0RQU0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:15:16.996Z",
+   "source": "claude-mcp"
+  }
+ ]
+}

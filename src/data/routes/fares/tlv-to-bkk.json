@@ -1,0 +1,423 @@
+{
+ "slug": "tlv-to-bkk",
+ "from": "TLV",
+ "to": "BKK",
+ "currency": "usd",
+ "trip": "one-way, 1 adult, economy",
+ "points": [
+  {
+   "date": "2026-11-25",
+   "status": "ok",
+   "fare": {
+    "price": 542,
+    "price_text": "$542",
+    "airline": "Ethiopian",
+    "stops": 1,
+    "duration": "22 hr 30 min",
+    "departure_description": "9:00 AM on Wed, Nov 25",
+    "verdict": "typical",
+    "band_low": 445,
+    "band_high": 560,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTEtMjUiHwoDVExWEgoyMDI2LTExLTI1GgNBREQqAkVUMgM0MTUiHwoDQUREEgoyMDI2LTExLTI1GgNCS0sqAkVUMgM2MjhqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-02",
+   "status": "ok",
+   "fare": {
+    "price": 715,
+    "price_text": "$715",
+    "airline": "LOTOperated by Hello Jets",
+    "stops": 1,
+    "duration": "15 hr 20 min",
+    "departure_description": "10:45 AM on Wed, Dec 2",
+    "verdict": "high",
+    "band_low": 445,
+    "band_high": 710,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjYtMTItMDIiHwoDVExWEgoyMDI2LTEyLTAyGgNXQVcqAkxPMgMxNTYiHgoDV0FXEgoyMDI2LTEyLTAyGgNCS0sqAkxPMgI2NWoFEgNUTFZyBRIDQktLQgEBSAGYAQI&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-09",
+   "status": "ok",
+   "fare": {
+    "price": 704,
+    "price_text": "$704",
+    "airline": "Ethiopian",
+    "stops": 1,
+    "duration": "22 hr 30 min",
+    "departure_description": "9:00 AM on Wed, Dec 9",
+    "verdict": "typical",
+    "band_low": 445,
+    "band_high": 710,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDkiHwoDVExWEgoyMDI2LTEyLTA5GgNBREQqAkVUMgM0MTUiHwoDQUREEgoyMDI2LTEyLTA5GgNCS0sqAkVUMgM2MjhqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-16",
+   "status": "ok",
+   "fare": {
+    "price": 808,
+    "price_text": "$808",
+    "airline": "Etihad",
+    "stops": 1,
+    "duration": "12 hr 20 min",
+    "departure_description": "6:20 AM on Wed, Dec 16",
+    "verdict": "high",
+    "band_low": 445,
+    "band_high": 710,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMTYiHwoDVExWEgoyMDI2LTEyLTE2GgNBVUgqAkVZMgM2MTAiHwoDQVVIEgoyMDI2LTEyLTE2GgNCS0sqAkVZMgM0MDBqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-23",
+   "status": "ok",
+   "fare": {
+    "price": 813,
+    "price_text": "$813",
+    "airline": "Ethiopian",
+    "stops": 1,
+    "duration": "40 hr 50 min",
+    "departure_description": "2:40 PM on Wed, Dec 23",
+    "verdict": "high",
+    "band_low": 445,
+    "band_high": 710,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMjMiHwoDVExWEgoyMDI2LTEyLTIzGgNBREQqAkVUMgM0MTkiHwoDQUREEgoyMDI2LTEyLTI0GgNCS0sqAkVUMgM2MDhqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2026-12-30",
+   "status": "ok",
+   "fare": {
+    "price": 568,
+    "price_text": "$568",
+    "airline": "Ethiopian",
+    "stops": 1,
+    "duration": "40 hr 50 min",
+    "departure_description": "2:40 PM on Wed, Dec 30",
+    "verdict": "typical",
+    "band_low": 445,
+    "band_high": 710,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMzAiHwoDVExWEgoyMDI2LTEyLTMwGgNBREQqAkVUMgM0MTkiHwoDQUREEgoyMDI2LTEyLTMxGgNCS0sqAkVUMgM2MDhqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-06",
+   "status": "ok",
+   "fare": {
+    "price": 571,
+    "price_text": "$571",
+    "airline": "Ethiopian",
+    "stops": 1,
+    "duration": "40 hr 50 min",
+    "departure_description": "2:40 PM on Wed, Jan 6",
+    "verdict": "high",
+    "band_low": 400,
+    "band_high": 550,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMDYiHwoDVExWEgoyMDI3LTAxLTA2GgNBREQqAkVUMgM0MTkiHwoDQUREEgoyMDI3LTAxLTA3GgNCS0sqAkVUMgM2MDhqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-13",
+   "status": "ok",
+   "fare": {
+    "price": 571,
+    "price_text": "$571",
+    "airline": "Ethiopian",
+    "stops": 1,
+    "duration": "40 hr 50 min",
+    "departure_description": "2:40 PM on Wed, Jan 13",
+    "verdict": "high",
+    "band_low": 400,
+    "band_high": 550,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMTMiHwoDVExWEgoyMDI3LTAxLTEzGgNBREQqAkVUMgM0MTkiHwoDQUREEgoyMDI3LTAxLTE0GgNCS0sqAkVUMgM2MDhqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:17.044Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-20",
+   "status": "ok",
+   "fare": {
+    "price": 571,
+    "price_text": "$571",
+    "airline": "Ethiopian",
+    "stops": 1,
+    "duration": "40 hr 50 min",
+    "departure_description": "2:40 PM on Wed, Jan 20",
+    "verdict": "high",
+    "band_low": 400,
+    "band_high": 550,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMjAiHwoDVExWEgoyMDI3LTAxLTIwGgNBREQqAkVUMgM0MTkiHwoDQUREEgoyMDI3LTAxLTIxGgNCS0sqAkVUMgM2MDhqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-01-27",
+   "status": "ok",
+   "fare": {
+    "price": 571,
+    "price_text": "$571",
+    "airline": "Ethiopian",
+    "stops": 1,
+    "duration": "40 hr 50 min",
+    "departure_description": "2:40 PM on Wed, Jan 27",
+    "verdict": "high",
+    "band_low": 400,
+    "band_high": 550,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMjciHwoDVExWEgoyMDI3LTAxLTI3GgNBREQqAkVUMgM0MTkiHwoDQUREEgoyMDI3LTAxLTI4GgNCS0sqAkVUMgM2MDhqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-03",
+   "status": "ok",
+   "fare": {
+    "price": 549,
+    "price_text": "$549",
+    "airline": "Ethiopian",
+    "stops": 1,
+    "duration": "40 hr 50 min",
+    "departure_description": "2:40 PM on Wed, Feb 3",
+    "verdict": "high",
+    "band_low": 420,
+    "band_high": 455,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMDMiHwoDVExWEgoyMDI3LTAyLTAzGgNBREQqAkVUMgM0MTkiHwoDQUREEgoyMDI3LTAyLTA0GgNCS0sqAkVUMgM2MDhqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-10",
+   "status": "ok",
+   "fare": {
+    "price": 546,
+    "price_text": "$546",
+    "airline": "Ethiopian",
+    "stops": 1,
+    "duration": "22 hr 30 min",
+    "departure_description": "9:00 AM on Wed, Feb 10",
+    "verdict": "high",
+    "band_low": 420,
+    "band_high": 455,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMTAiHwoDVExWEgoyMDI3LTAyLTEwGgNBREQqAkVUMgM0MTUiHwoDQUREEgoyMDI3LTAyLTEwGgNCS0sqAkVUMgM2MjhqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-17",
+   "status": "ok",
+   "fare": {
+    "price": 571,
+    "price_text": "$571",
+    "airline": "Austrian",
+    "stops": 1,
+    "duration": "15 hr 40 min",
+    "departure_description": "3:40 PM on Wed, Feb 17",
+    "verdict": "high",
+    "band_low": 420,
+    "band_high": 455,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlkSCjIwMjctMDItMTciHgoDVExWEgoyMDI3LTAyLTE3GgNWSUUqAk9TMgI4MCIdCgNWSUUSCjIwMjctMDItMTcaA0JLSyoCT1MyATVqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-02-24",
+   "status": "ok",
+   "fare": {
+    "price": 454,
+    "price_text": "$454",
+    "airline": "Ethiopian",
+    "stops": 1,
+    "duration": "16 hr 50 min",
+    "departure_description": "2:40 PM on Wed, Feb 24",
+    "verdict": "typical",
+    "band_low": 420,
+    "band_high": 455,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMjQiHwoDVExWEgoyMDI3LTAyLTI0GgNBREQqAkVUMgM0MTkiHwoDQUREEgoyMDI3LTAyLTI0GgNCS0sqAkVUMgM2MjhqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-03",
+   "status": "ok",
+   "fare": {
+    "price": 454,
+    "price_text": "$454",
+    "airline": "Ethiopian",
+    "stops": 1,
+    "duration": "16 hr 50 min",
+    "departure_description": "2:40 PM on Wed, Mar 3",
+    "verdict": "typical",
+    "band_low": 435,
+    "band_high": 530,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMDMiHwoDVExWEgoyMDI3LTAzLTAzGgNBREQqAkVUMgM0MTkiHwoDQUREEgoyMDI3LTAzLTAzGgNCS0sqAkVUMgM2MjhqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-10",
+   "status": "ok",
+   "fare": {
+    "price": 454,
+    "price_text": "$454",
+    "airline": "Ethiopian",
+    "stops": 1,
+    "duration": "16 hr 50 min",
+    "departure_description": "2:40 PM on Wed, Mar 10",
+    "verdict": "typical",
+    "band_low": 435,
+    "band_high": 530,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTAiHwoDVExWEgoyMDI3LTAzLTEwGgNBREQqAkVUMgM0MTkiHwoDQUREEgoyMDI3LTAzLTEwGgNCS0sqAkVUMgM2MjhqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:10.174Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-17",
+   "status": "ok",
+   "fare": {
+    "price": 570,
+    "price_text": "$570",
+    "airline": "Austrian",
+    "stops": 1,
+    "duration": "15 hr 40 min",
+    "departure_description": "3:40 PM on Wed, Mar 17",
+    "verdict": "high",
+    "band_low": 435,
+    "band_high": 530,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlkSCjIwMjctMDMtMTciHgoDVExWEgoyMDI3LTAzLTE3GgNWSUUqAk9TMgI4MCIdCgNWSUUSCjIwMjctMDMtMTcaA0JLSyoCT1MyATVqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-24",
+   "status": "ok",
+   "fare": {
+    "price": 546,
+    "price_text": "$546",
+    "airline": "Ethiopian",
+    "stops": 1,
+    "duration": "22 hr 30 min",
+    "departure_description": "9:00 AM on Wed, Mar 24",
+    "verdict": "high",
+    "band_low": 435,
+    "band_high": 530,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMjQiHwoDVExWEgoyMDI3LTAzLTI0GgNBREQqAkVUMgM0MTUiHwoDQUREEgoyMDI3LTAzLTI0GgNCS0sqAkVUMgM2MjhqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-03-31",
+   "status": "ok",
+   "fare": {
+    "price": 546,
+    "price_text": "$546",
+    "airline": "Ethiopian",
+    "stops": 1,
+    "duration": "31 hr 35 min",
+    "departure_description": "1:00 AM on Wed, Mar 31",
+    "verdict": "high",
+    "band_low": 435,
+    "band_high": 530,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMzEiHwoDVExWEgoyMDI3LTAzLTMxGgNBREQqAkVUMgM0MDUiHwoDQUREEgoyMDI3LTAzLTMxGgNCS0sqAkVUMgM2MjhqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-07",
+   "status": "ok",
+   "fare": {
+    "price": 593,
+    "price_text": "$593",
+    "airline": "Lufthansa, Austrian",
+    "stops": 2,
+    "duration": "17 hr 45 min",
+    "departure_description": "5:05 PM on Wed, Apr 7",
+    "verdict": "high",
+    "band_low": 450,
+    "band_high": 530,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GnsSCjIwMjctMDQtMDciHwoDVExWEgoyMDI3LTA0LTA3GgNNVUMqAkxIMgM2ODEiHwoDTVVDEgoyMDI3LTA0LTA3GgNWSUUqAk9TMgMxOTAiHQoDVklFEgoyMDI3LTA0LTA3GgNCS0sqAk9TMgE3agUSA1RMVnIFEgNCS0tCAQFIAZgBAg&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-14",
+   "status": "ok",
+   "fare": {
+    "price": 707,
+    "price_text": "$707",
+    "airline": "ITA",
+    "stops": 1,
+    "duration": "36 hr 55 min",
+    "departure_description": "2:30 PM on Wed, Apr 14",
+    "verdict": "high",
+    "band_low": 450,
+    "band_high": 530,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMTQiHwoDVExWEgoyMDI3LTA0LTE0GgNGQ08qAkFaMgM4MDciHwoDRkNPEgoyMDI3LTA0LTE1GgNCS0sqAkFaMgM3NThqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-21",
+   "status": "ok",
+   "fare": {
+    "price": 609,
+    "price_text": "$609",
+    "airline": "Ethiopian",
+    "stops": 1,
+    "duration": "22 hr 35 min",
+    "departure_description": "10:00 AM on Wed, Apr 21",
+    "verdict": "high",
+    "band_low": 450,
+    "band_high": 530,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjEiHwoDVExWEgoyMDI3LTA0LTIxGgNBREQqAkVUMgM0MTUiHwoDQUREEgoyMDI3LTA0LTIxGgNCS0sqAkVUMgM2MjhqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  },
+  {
+   "date": "2027-04-28",
+   "status": "ok",
+   "fare": {
+    "price": 497,
+    "price_text": "$497",
+    "airline": "ITA",
+    "stops": 1,
+    "duration": "36 hr 55 min",
+    "departure_description": "2:30 PM on Wed, Apr 28",
+    "verdict": "typical",
+    "band_low": 450,
+    "band_high": 530,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjgiHwoDVExWEgoyMDI3LTA0LTI4GgNGQ08qAkFaMgM4MDciHwoDRkNPEgoyMDI3LTA0LTI5GgNCS0sqAkFaMgM3NThqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+   },
+   "fetched_at": "2026-11-11T22:13:12.038Z",
+   "source": "claude-mcp"
+  }
+ ]
+}
