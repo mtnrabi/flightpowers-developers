@@ -201,7 +201,7 @@ export function newestEdit(files: string[]): Date | undefined {
  * /tools/cheapest-month-to-fly sat at 0.6, i.e. the legal boilerplate
  * outranked the money pages. This is the inversion.
  */
-const OBLIGATION_PAGES = new Set(['/terms', '/privacy', '/contact', '/changelog']);
+const OBLIGATION_PAGES = new Set(['/terms', '/privacy', '/data-license', '/contact', '/changelog']);
 
 /**
  * Families whose CHILDREN are the pages a buyer lands on. A child of one of

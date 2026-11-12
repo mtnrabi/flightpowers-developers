@@ -200,3 +200,31 @@ export function spacingText(r: Pick<RouteFares, 'points'>): { cadence: string; w
   const cadence = gaps.every((g) => g === 7) ? 'one a week' : gaps.every((g) => g % 7 === 0) ? 'one every week or two' : 'spread over the season';
   return { cadence, weekday };
 }
+
+/**
+ * The schema.org Dataset for a route page. Google Search Console flagged the route pages
+ * (2026-11-12, "Missing field 'license'"), so every Dataset points at /data-license, the
+ * page that states the terms for these fare tables. Every other field is read from the
+ * route's own files: nothing here is a claim the page cannot back.
+ */
+export const DATA_LICENSE_PATH = '/data-license';
+
+export function routeDatasetJsonLd(r: RouteFares, siteUrl: string): Record<string, unknown> {
+  const first = r.points[0]!.date;
+  const last = r.points[r.points.length - 1]!.date;
+  const place = (a: RouteAirport) => ({ '@type': 'Place', name: `${a.name} (${a.iata}), ${a.city}, ${a.country}` });
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
+    name: `${routeName(r)} one-way fares by departure date (${r.from.iata}-${r.to.iata})`,
+    description: `The cheapest one-way economy fare for one adult on each of ${r.points.length} departure dates from ${dayLabel(first)} to ${dayLabel(last)}, read from Google Flights through the FlightPowers flights API and fetched between ${dayLabel(r.fetchedFirst)} and ${dayLabel(r.fetchedLast)}, in US dollars.`,
+    url: `${siteUrl}/flights/${r.slug}`,
+    license: `${siteUrl}${DATA_LICENSE_PATH}`,
+    isAccessibleForFree: true,
+    temporalCoverage: `${first}/${last}`,
+    spatialCoverage: [place(r.from), place(r.to)],
+    dateModified: r.fetchedLast,
+    creator: { '@type': 'Organization', name: 'FlightPowers', url: siteUrl },
+    variableMeasured: ['departure date', 'one-way fare (USD)', 'airline', 'stops', 'Google price verdict'],
+  };
+}
