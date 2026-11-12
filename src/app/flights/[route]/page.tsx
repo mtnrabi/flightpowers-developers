@@ -16,6 +16,7 @@ import {
   relatedRouteFares,
   routeFareDescription,
   routeFareTitle,
+  routeDatasetJsonLd,
   routeName,
   spacingText,
   type RouteFares,
@@ -110,20 +111,7 @@ export default async function Page({ params }: Props) {
           ],
         }}
       />
-      <JsonLd
-        data={{
-          '@context': 'https://schema.org',
-          '@type': 'Dataset',
-          name: `${routeName(r)} one-way fares by departure date (${r.from.iata}-${r.to.iata})`,
-          description: `The cheapest one-way economy fare for one adult on each of ${r.points.length} departure dates from ${dayLabel(first)} to ${dayLabel(last)}, read from Google Flights through the FlightPowers flights API and fetched between ${dayLabel(r.fetchedFirst)} and ${dayLabel(r.fetchedLast)}, in US dollars.`,
-          url,
-          isAccessibleForFree: true,
-          temporalCoverage: `${first}/${last}`,
-          dateModified: r.fetchedLast,
-          creator: { '@type': 'Organization', name: 'FlightPowers', url: SITE.url },
-          variableMeasured: ['departure date', 'one-way fare (USD)', 'airline', 'stops', 'Google price verdict'],
-        }}
-      />
+      <JsonLd data={routeDatasetJsonLd(r, SITE.url)} />
 
       <Container className="pt-14 sm:pt-20 pb-8">
         <Breadcrumbs
