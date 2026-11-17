@@ -48,6 +48,12 @@ const FLIGHTS_PAGES = [
     sub: 'Paired-leg itineraries with combined totals; every one-way filter, per leg.',
   },
   {
+    href: '/flights-api/cheapest-dates',
+    method: 'POST /cheapest_dates',
+    label: 'Cheapest dates',
+    sub: 'Google’s lowest fare for every date of a month (or up to 61 days) in one request.',
+  },
+  {
     href: '/flights-api/multi-airport',
     method: 'POST /*_multi_airport',
     label: 'Multi-airport search',

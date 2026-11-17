@@ -1,0 +1,190 @@
+{
+  "captured_at": "2026-11-17T09:06:07Z",
+  "captured_from": "the flights backend behind google-flights-live-api (POST /api/google_flights/cheapest_dates/v1), 2026-11-17 post-merge check",
+  "request": {
+    "method": "POST",
+    "path": "/api/google_flights/cheapest_dates/v1",
+    "body": {
+      "from_airport": "JFK",
+      "to_airport": "LAX",
+      "month": "2027-01",
+      "nights": 7,
+      "currency": "USD",
+      "adults": 1
+    }
+  },
+  "data": {
+    "from_airport": "JFK",
+    "to_airport": "LAX",
+    "trip_type": "roundtrip",
+    "nights": 7,
+    "adults": 1,
+    "currency": "USD",
+    "fetched_at": "2026-11-17T09:06:07Z",
+    "dates_searched": 31,
+    "dates_with_price": 31,
+    "cheapest": {
+      "departure_date": "2027-01-06",
+      "return_date": "2027-01-13",
+      "price": 357
+    },
+    "dates": [
+      {
+        "departure_date": "2027-01-01",
+        "return_date": "2027-01-08",
+        "price": 457
+      },
+      {
+        "departure_date": "2027-01-02",
+        "return_date": "2027-01-09",
+        "price": 543
+      },
+      {
+        "departure_date": "2027-01-03",
+        "return_date": "2027-01-10",
+        "price": 525
+      },
+      {
+        "departure_date": "2027-01-04",
+        "return_date": "2027-01-11",
+        "price": 383
+      },
+      {
+        "departure_date": "2027-01-05",
+        "return_date": "2027-01-12",
+        "price": 378
+      },
+      {
+        "departure_date": "2027-01-06",
+        "return_date": "2027-01-13",
+        "price": 357
+      },
+      {
+        "departure_date": "2027-01-07",
+        "return_date": "2027-01-14",
+        "price": 357
+      },
+      {
+        "departure_date": "2027-01-08",
+        "return_date": "2027-01-15",
+        "price": 357
+      },
+      {
+        "departure_date": "2027-01-09",
+        "return_date": "2027-01-16",
+        "price": 357
+      },
+      {
+        "departure_date": "2027-01-10",
+        "return_date": "2027-01-17",
+        "price": 357
+      },
+      {
+        "departure_date": "2027-01-11",
+        "return_date": "2027-01-18",
+        "price": 357
+      },
+      {
+        "departure_date": "2027-01-12",
+        "return_date": "2027-01-19",
+        "price": 357
+      },
+      {
+        "departure_date": "2027-01-13",
+        "return_date": "2027-01-20",
+        "price": 357
+      },
+      {
+        "departure_date": "2027-01-14",
+        "return_date": "2027-01-21",
+        "price": 357
+      },
+      {
+        "departure_date": "2027-01-15",
+        "return_date": "2027-01-22",
+        "price": 357
+      },
+      {
+        "departure_date": "2027-01-16",
+        "return_date": "2027-01-23",
+        "price": 357
+      },
+      {
+        "departure_date": "2027-01-17",
+        "return_date": "2027-01-24",
+        "price": 357
+      },
+      {
+        "departure_date": "2027-01-18",
+        "return_date": "2027-01-25",
+        "price": 357
+      },
+      {
+        "departure_date": "2027-01-19",
+        "return_date": "2027-01-26",
+        "price": 357
+      },
+      {
+        "departure_date": "2027-01-20",
+        "return_date": "2027-01-27",
+        "price": 357
+      },
+      {
+        "departure_date": "2027-01-21",
+        "return_date": "2027-01-28",
+        "price": 357
+      },
+      {
+        "departure_date": "2027-01-22",
+        "return_date": "2027-01-29",
+        "price": 357
+      },
+      {
+        "departure_date": "2027-01-23",
+        "return_date": "2027-01-30",
+        "price": 357
+      },
+      {
+        "departure_date": "2027-01-24",
+        "return_date": "2027-01-31",
+        "price": 357
+      },
+      {
+        "departure_date": "2027-01-25",
+        "return_date": "2027-02-01",
+        "price": 357
+      },
+      {
+        "departure_date": "2027-01-26",
+        "return_date": "2027-02-02",
+        "price": 357
+      },
+      {
+        "departure_date": "2027-01-27",
+        "return_date": "2027-02-03",
+        "price": 357
+      },
+      {
+        "departure_date": "2027-01-28",
+        "return_date": "2027-02-04",
+        "price": 357
+      },
+      {
+        "departure_date": "2027-01-29",
+        "return_date": "2027-02-05",
+        "price": 357
+      },
+      {
+        "departure_date": "2027-01-30",
+        "return_date": "2027-02-06",
+        "price": 357
+      },
+      {
+        "departure_date": "2027-01-31",
+        "return_date": "2027-02-07",
+        "price": 357
+      }
+    ],
+    "source_note": "Prices are Google Flights' calendar estimates: the lowest fare Google shows for each date, for all passengers together, without airline or flight details. A full search for a date can return a different price; confirm the date you pick with the one-way or round-trip search before booking."
+  }
+}
