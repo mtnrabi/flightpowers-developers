@@ -707,25 +707,25 @@
             "type": "integer",
             "minimum": 0,
             "maximum": 23,
-            "description": "Earliest departure hour (0-23)."
+            "description": "Earliest departure hour (0-23), local time at the airport: 8 means 08:00. A clock time on the hour such as \"08:00\" is accepted too; minutes other than :00 are rejected."
           },
           "departure_time_max": {
             "type": "integer",
             "minimum": 0,
             "maximum": 23,
-            "description": "Latest departure hour (0-23)."
+            "description": "Latest departure hour (0-23), local time at the airport: 8 means 08:00. A clock time on the hour such as \"08:00\" is accepted too; minutes other than :00 are rejected."
           },
-          "departure_arrival_time_min": {
+          "arrival_time_min": {
             "type": "integer",
             "minimum": 0,
             "maximum": 23,
-            "description": "Earliest arrival hour (0-23)."
+            "description": "Earliest arrival hour (0-23), local time at the airport: 8 means 08:00. A clock time on the hour such as \"08:00\" is accepted too; minutes other than :00 are rejected."
           },
-          "departure_arrival_time_max": {
+          "arrival_time_max": {
             "type": "integer",
             "minimum": 0,
             "maximum": 23,
-            "description": "Latest arrival hour (0-23)."
+            "description": "Latest arrival hour (0-23), local time at the airport: 8 means 08:00. A clock time on the hour such as \"08:00\" is accepted too; minutes other than :00 are rejected."
           },
           "sort_type": {
             "type": "string",
@@ -863,49 +863,49 @@
             "type": "integer",
             "minimum": 0,
             "maximum": 23,
-            "description": "Outbound leg: earliest departure hour."
+            "description": "Outbound leg: earliest departure hour (0-23), 8 means 08:00. A clock time on the hour such as \"08:00\" is accepted too. The one-way names (departure_time_min ...) are rejected on a round trip."
           },
           "departure_departure_time_max": {
             "type": "integer",
             "minimum": 0,
             "maximum": 23,
-            "description": "Outbound leg: latest departure hour."
+            "description": "Outbound leg: latest departure hour (0-23), 8 means 08:00; \"08:00\" is accepted too."
           },
           "departure_arrival_time_min": {
             "type": "integer",
             "minimum": 0,
             "maximum": 23,
-            "description": "Outbound leg: earliest arrival hour."
+            "description": "Outbound leg: earliest arrival hour (0-23), 8 means 08:00; \"08:00\" is accepted too."
           },
           "departure_arrival_time_max": {
             "type": "integer",
             "minimum": 0,
             "maximum": 23,
-            "description": "Outbound leg: latest arrival hour."
+            "description": "Outbound leg: latest arrival hour (0-23), 8 means 08:00; \"08:00\" is accepted too."
           },
           "return_departure_time_min": {
             "type": "integer",
             "minimum": 0,
             "maximum": 23,
-            "description": "Return leg: earliest departure hour."
+            "description": "Return leg: earliest departure hour (0-23), 8 means 08:00; \"08:00\" is accepted too."
           },
           "return_departure_time_max": {
             "type": "integer",
             "minimum": 0,
             "maximum": 23,
-            "description": "Return leg: latest departure hour."
+            "description": "Return leg: latest departure hour (0-23), 8 means 08:00; \"08:00\" is accepted too."
           },
           "return_arrival_time_min": {
             "type": "integer",
             "minimum": 0,
             "maximum": 23,
-            "description": "Return leg: earliest arrival hour."
+            "description": "Return leg: earliest arrival hour (0-23), 8 means 08:00; \"08:00\" is accepted too."
           },
           "return_arrival_time_max": {
             "type": "integer",
             "minimum": 0,
             "maximum": 23,
-            "description": "Return leg: latest arrival hour."
+            "description": "Return leg: latest arrival hour (0-23), 8 means 08:00; \"08:00\" is accepted too."
           },
           "sort_type": {
             "type": "string",

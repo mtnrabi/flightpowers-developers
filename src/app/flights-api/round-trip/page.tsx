@@ -356,7 +356,9 @@ export default function RoundTripPage() {
               arrival.
             </FieldRow>
             <FieldRow name="return_departure_time_min / _max" type="int 0–23">
-              The same pair of windows for the return leg.
+              The same pair of windows for the return leg, with <code className="field">return_arrival_time_min / _max</code>.
+              Whole hours: <code className="field">8</code> or <code className="field">&quot;08:00&quot;</code>. The one-way name{' '}
+              <code className="field">departure_time_min</code> is a 422 here; each leg has its own.
             </FieldRow>
           </div>
           <p className="mt-4 text-[13.5px] text-ink-500">
