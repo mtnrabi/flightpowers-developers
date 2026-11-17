@@ -23,16 +23,24 @@ import { FLIGHT_PLANS } from '@/lib/pricing';
 import { COUNTS, SITE, rapidApiPricingUrl } from '@/lib/site';
 import { apiNode } from '@/lib/schema-offers';
 
-// The head term first ("flights API"), the source second; title.absolute keeps
-// the template's " · FlightPowers" suffix off so the tag stays under 60 chars.
+// The head term first, the source second; title.absolute keeps the template's
+// " · FlightPowers" suffix off so the tag stays under 60 chars.
+// Retitled 2026-11-17 (SEO quick wins, GSC 28 days to 11-17): the page sits at
+// position 13.6 on 2,069 impressions, and its buyer queries are 'google flight api'
+// (336 impressions, position 21), 'google flights api' (280, 27.9), 'flight price api'
+// (125, 37.3) and 'google flights api pricing' (12, 3.6). The title now leads with
+// "Google Flights API", names "flight prices" and carries the PRO price from
+// lib/pricing.ts. The og card keeps a literal title (src/app/og/titles.ts).
+const FLIGHTS_PRO = FLIGHT_PLANS.find((p) => p.name === 'PRO')!;
 export const metadata: Metadata = {
   ...withOg({
-    title: 'Flights API: live Google Flights fares with a price verdict',
-    description:
-      "Flights API over live Google Flights: one-way and round-trip fares as JSON with Google's low/typical/high price band and a booking link. PRO $10 for 2,500.",
+    title: 'Google Flights API: live flight prices as JSON',
+    description: `Google Flights API for live flight prices: one-way, round-trip and cheapest-dates fares as JSON, with Google's low/typical/high price band. Free tier; PRO $${FLIGHTS_PRO.priceMonthly} for ${FLIGHTS_PRO.quota.toLocaleString('en-US')}.`,
     alternates: { canonical: '/flights-api' },
   }),
-  title: { absolute: 'Flights API: live Google Flights fares with a price verdict' },
+  title: {
+    absolute: `Google Flights API: live flight prices as JSON, PRO $${FLIGHTS_PRO.priceMonthly}/mo`,
+  },
 };
 
 export const dynamic = 'force-static';
@@ -140,7 +148,11 @@ const faq: Faq[] = [
   },
   {
     q: 'How do I search flexible dates?',
-    a: `One request per date, fired in parallel. “3 to 5 nights, JFK to Paris or Prague, anywhere in May” is 31 dates × 3 durations × 2 destinations = 186 requests. The per-minute rate limits (${PAID.map((p) => `${p.ratePerMinute} on ${planName(p.name)}`).join(', ')}) are sized so that finishes in a burst or two, not a serial loop.`,
+    a: `Two ways. To find the cheapest day, POST /cheapest_dates returns Google Flights' lowest fare for every departure date of a month (or any range up to 61 days), one-way or a round trip of N nights, as one request. For full fares on every date (airlines, stops, booking links), send one request per date in parallel: “3 to 5 nights, JFK to Paris or Prague, anywhere in May” is 31 dates × 3 durations × 2 destinations = 186 requests, and the per-minute rate limits (${PAID.map((p) => `${p.ratePerMinute} on ${planName(p.name)}`).join(', ')}) are sized so that finishes in a burst or two, not a serial loop.`,
+  },
+  {
+    q: 'Is there a flight price calendar API?',
+    a: 'Yes: POST /cheapest_dates is a price calendar. Send a route and a month and you get one row per departure date with the lowest fare Google Flights shows for it, plus the cheapest date, billed as one request. The prices are Google’s calendar estimates without flight details, so confirm the date you pick with the one-way or round-trip endpoint.',
   },
   {
     q: 'Do I need a SerpApi key or another scraping subscription?',
@@ -206,7 +218,7 @@ export default function FlightsApiHubPage() {
           url: `${SITE.url}/flights-api`,
           description:
             'Live Google Flights fares as flat JSON: one-way and round-trip search with price insights, honest search-status headers, and parallel date scans.',
-          dateModified: '2026-09-07',
+          dateModified: '2026-11-17',
           hasPart: ENDPOINT_PAGES.map((p) => ({
             '@type': 'WebPage',
             name: p.label,
@@ -236,7 +248,7 @@ export default function FlightsApiHubPage() {
             <div>
               <p className="eyebrow">Google Flights API</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
-                Flights API for live <span className="text-signal-500">Google Flights fares</span>
+                Google Flights API for live <span className="text-signal-500">flight prices</span>
               </h1>
               {/* The citation chunk: name, what it returns, the price, best for. Every
                   number is from lib/pricing.ts; the SerpApi line is the sanctioned one. */}
@@ -278,7 +290,12 @@ export default function FlightsApiHubPage() {
                   Try it for free
                 </Cta>
               </div>
-              <p className="mt-4 font-mono text-[12px] text-ink-500">Free tier on RapidAPI. No card to try.</p>
+              <p className="mt-4 font-mono text-[12px] text-ink-500">
+                Free tier on RapidAPI. No card to try.{' '}
+                <Link href="/pricing" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+                  See every plan
+                </Link>
+              </p>
             </div>
 
             <ExecuteWidget
@@ -593,6 +610,13 @@ export default function FlightsApiHubPage() {
         <div className="mt-8">
           <PricingTable api="flights" plans={FLIGHT_PLANS} medium="endpoint" />
         </div>
+        <p className="mt-6 text-[14.5px] text-ink-400">
+          Need hotels too? The{' '}
+          <Link href="/pricing" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+            pricing page
+          </Link>{' '}
+          puts the flights, Booking.com, Airbnb and Google Hotels plans side by side.
+        </p>
       </Section>
 
       <Section>

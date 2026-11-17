@@ -31,16 +31,20 @@ import { apiNode } from '@/lib/schema-offers';
 // clicks in 28 days and ranks for "booking.com api pricing", so the <title> now
 // carries the PRO price (from lib/pricing.ts). The og card keeps the literal
 // title so the share card stays prerendered (src/app/og/titles.ts).
+// 2026-11-17 (SEO quick wins, GSC 28 days to 11-17): position 12.1 on 773
+// impressions; the buyer queries are 'hotel price api' (84 impressions, position
+// 26.5), 'booking api' (71, 36.1), 'hotel search api' (43, 41.5), 'hotel prices api'
+// (39, 28.2) and 'booking.com api' (25, 28.3). Title and H1 now say "hotel price
+// API" next to Booking.com.
 const HOTELS_PRO = HOTEL_PLANS.find((p) => p.name === 'PRO')!;
 export const metadata: Metadata = {
   ...withOg({
-    title: 'Hotels API: live Booking.com rates by destination or name',
-    description:
-      'Hotels API over live Booking.com: rates by destination or hotel name, proxy_country to price a stay from any country, 24 filters. PRO $10 for 2,000.',
+    title: 'Booking.com hotel price API: live rates by destination or name',
+    description: `Hotel price API over live Booking.com: rates by destination or hotel name, proxy_country to price a stay from any country, 24 filters. PRO $${HOTELS_PRO.priceMonthly} for ${HOTELS_PRO.quota.toLocaleString('en-US')}.`,
     alternates: { canonical: '/hotels-api' },
   }),
   title: {
-    absolute: `Hotels API: live Booking.com rates, $${HOTELS_PRO.priceMonthly} for ${HOTELS_PRO.quota.toLocaleString('en-US')} searches`,
+    absolute: `Booking.com hotel price API: live rates, $${HOTELS_PRO.priceMonthly} for ${HOTELS_PRO.quota.toLocaleString('en-US')}`,
   },
 };
 
@@ -138,6 +142,10 @@ const faq: Faq[] = [
     a: 'FlightPowers /hotel_by_name returns a sold-out or unknown hotel in the same response shape, with "available": false and nulls in the price fields, so your parser never has to branch on an error format.',
   },
   {
+    q: 'Is there an official Booking.com API?',
+    a: 'Yes, but behind an agreement: Booking.com’s Demand API is for Managed Affiliate Partners, and its Connectivity APIs are for software that manages properties on Booking.com. FlightPowers is not affiliated with Booking.com; it reads live Booking.com rates at request time and returns them as JSON on a RapidAPI key, with no partner contract. It is a hotel price API, not a booking engine: it cannot make reservations.',
+  },
+  {
     q: 'What does the free tier include?',
     a: `The FlightPowers free BASIC plan includes every endpoint, ${HOTEL_PLANS[0]!.quota} requests per month, hard cap. That verifies your key and your integration, not data quality at volume; for more free searches, the free MCP server with ads gives 50 a day after a Google sign-in (no proxy_country there). PRO is $${HOTEL_PLANS[1]!.priceMonthly} for ${HOTEL_PLANS[1]!.quota.toLocaleString('en-US')} a month on RapidAPI.`,
   },
@@ -209,7 +217,7 @@ export default function HotelsApiHubPage() {
           description:
             'Live Booking.com hotel prices over REST: destination search, name-based lookup, room-level pricing, and per-market pricing via proxy_country.',
           url: `${SITE.url}/hotels-api`,
-          dateModified: '2026-10-12',
+          dateModified: '2026-11-17',
           hasPart: ENDPOINTS.map((e) => ({
             '@type': 'WebPage',
             name: e.label,
@@ -229,7 +237,7 @@ export default function HotelsApiHubPage() {
             <div>
               <p className="eyebrow">Booking.com Hotels API</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
-                Hotels API for live <span className="text-signal-500">Booking.com rates</span>
+                Hotel price API for live <span className="text-signal-500">Booking.com rates</span>
               </h1>
               {/* The citation chunk: name, what it returns, the price, best for. Every
                   number is from lib/pricing.ts. A data API, not a booking engine: the
@@ -266,7 +274,10 @@ export default function HotelsApiHubPage() {
               </div>
               <p className="mt-4 font-mono text-[12px] text-ink-500">
                 PRO ${HOTELS_PRO.priceMonthly} a month for {HOTELS_PRO.quota.toLocaleString('en-US')} searches. {HOTEL_PLANS[0]!.quota} free
-                searches a month on RapidAPI, no card to try.
+                searches a month on RapidAPI, no card to try.{' '}
+                <Link href="/pricing" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+                  See every plan
+                </Link>
               </p>
               <p className="mt-3 text-[14px] text-ink-400 leading-relaxed">
                 Not a Booking.com partner?{' '}
