@@ -27,19 +27,19 @@
    "date": "2026-12-02",
    "status": "ok",
    "fare": {
-    "price": 316,
-    "price_text": "$316",
-    "airline": "Gulf Air",
+    "price": 269,
+    "price_text": "$269",
+    "airline": "Oman Air",
     "stops": 1,
-    "duration": "6 hr 55 min",
-    "departure_description": "11:35 PM on Wed, Dec 2",
-    "verdict": "high",
-    "band_low": 185,
-    "band_high": 240,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjYtMTItMDIiHwoDRFhCEgoyMDI2LTEyLTAyGgNCQUgqAkdGMgM1MTMiHgoDQkFIEgoyMDI2LTEyLTAzGgNJU1QqAkdGMgI0NWoFEgNEWEJyBRIDSVNUQgEBSAGYAQI&curr=usd"
+    "duration": "25 hr 40 min",
+    "departure_description": "5:00 PM on Wed, Dec 2",
+    "verdict": "typical",
+    "band_low": 210,
+    "band_high": 275,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDIiHwoDRFhCEgoyMDI2LTEyLTAyGgNNQ1QqAldZMgM2MTAiHwoDTUNUEgoyMDI2LTEyLTAzGgNJU1QqAldZMgMxNjVqBRIDRFhCcgUSA0lTVEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.459Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:56.684Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-09",
@@ -70,12 +70,12 @@
     "duration": "7 hr 20 min",
     "departure_description": "6:45 AM on Wed, Dec 16",
     "verdict": "typical",
-    "band_low": 185,
-    "band_high": 240,
+    "band_low": 210,
+    "band_high": 275,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMTYiHwoDRFhCEgoyMDI2LTEyLTE2GgNBTU0qAlJKMgM2MTMiHwoDQU1NEgoyMDI2LTEyLTE2GgNJU1QqAlJKMgMxNjVqBRIDRFhCcgUSA0lTVEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.459Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:56.684Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-23",
@@ -99,19 +99,19 @@
    "date": "2026-12-30",
    "status": "ok",
    "fare": {
-    "price": 301,
-    "price_text": "$301",
+    "price": 277,
+    "price_text": "$277",
     "airline": "Oman Air",
     "stops": 1,
     "duration": "7 hr 40 min",
     "departure_description": "11:00 AM on Wed, Dec 30",
     "verdict": "high",
-    "band_low": 185,
-    "band_high": 240,
+    "band_low": 210,
+    "band_high": 275,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMzAiHwoDRFhCEgoyMDI2LTEyLTMwGgNNQ1QqAldZMgM2MDQiHwoDTUNUEgoyMDI2LTEyLTMwGgNJU1QqAldZMgMxNjVqBRIDRFhCcgUSA0lTVEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.459Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:56.684Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-06",
@@ -135,19 +135,19 @@
    "date": "2027-01-13",
    "status": "ok",
    "fare": {
-    "price": 301,
-    "price_text": "$301",
+    "price": 277,
+    "price_text": "$277",
     "airline": "Oman Air",
     "stops": 1,
     "duration": "7 hr 40 min",
     "departure_description": "11:00 AM on Wed, Jan 13",
-    "verdict": "high",
+    "verdict": "typical",
     "band_low": 205,
-    "band_high": 240,
+    "band_high": 280,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMTMiHwoDRFhCEgoyMDI3LTAxLTEzGgNNQ1QqAldZMgM2MDQiHwoDTUNUEgoyMDI3LTAxLTEzGgNJU1QqAldZMgMxNjVqBRIDRFhCcgUSA0lTVEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.459Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:56.684Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-20",
@@ -171,19 +171,19 @@
    "date": "2027-01-27",
    "status": "ok",
    "fare": {
-    "price": 301,
-    "price_text": "$301",
+    "price": 277,
+    "price_text": "$277",
     "airline": "Oman Air",
     "stops": 1,
     "duration": "7 hr 40 min",
     "departure_description": "11:00 AM on Wed, Jan 27",
-    "verdict": "high",
+    "verdict": "typical",
     "band_low": 205,
-    "band_high": 240,
+    "band_high": 280,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMjciHwoDRFhCEgoyMDI3LTAxLTI3GgNNQ1QqAldZMgM2MDQiHwoDTUNUEgoyMDI3LTAxLTI3GgNJU1QqAldZMgMxNjVqBRIDRFhCcgUSA0lTVEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:06.024Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:56.684Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-03",
@@ -218,8 +218,8 @@
     "band_high": 215,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMTAiHwoDRFhCEgoyMDI3LTAyLTEwGgNJU1QqAkZaMgM3MjdqBRIDRFhCcgUSA0lTVEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:06.024Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:56.684Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-17",
@@ -254,8 +254,8 @@
     "band_high": 215,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMjQiHwoDRFhCEgoyMDI3LTAyLTI0GgNJU1QqAkZaMgM3MjdqBRIDRFhCcgUSA0lTVEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:06.024Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:56.684Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-03",
@@ -290,8 +290,8 @@
     "band_high": 305,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTAiHwoDRFhCEgoyMDI3LTAzLTEwGgNBTU0qAlJKMgM2MTMiHwoDQU1NEgoyMDI3LTAzLTEwGgNJU1QqAlJKMgMxNjVqBRIDRFhCcgUSA0lTVEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:06.024Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:56.684Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-17",
@@ -326,8 +326,8 @@
     "band_high": 305,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMjQiHwoDRFhCEgoyMDI3LTAzLTI0GgNJU1QqAkZaMgM3MjdqBRIDRFhCcgUSA0lTVEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.103Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:44.280Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-31",
@@ -362,8 +362,8 @@
     "band_high": 385,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMDciHwoDRFhCEgoyMDI3LTA0LTA3GgNLV0kqAktVMgM2NzgiHwoDS1dJEgoyMDI3LTA0LTA3GgNJU1QqAktVMgMxNTVqBRIDRFhCcgUSA0lTVEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.103Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:44.280Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-14",
@@ -398,8 +398,8 @@
     "band_high": 385,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjEiHwoDRFhCEgoyMDI3LTA0LTIxGgNLV0kqAktVMgM2NzgiHwoDS1dJEgoyMDI3LTA0LTIxGgNJU1QqAktVMgMxNTVqBRIDRFhCcgUSA0lTVEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.103Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:44.280Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-28",

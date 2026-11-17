@@ -27,19 +27,19 @@
    "date": "2026-12-02",
    "status": "ok",
    "fare": {
-    "price": 553,
-    "price_text": "$553",
+    "price": 599,
+    "price_text": "$599",
     "airline": "Royal Air Maroc",
     "stops": 1,
     "duration": "29 hr 45 min",
     "departure_description": "5:10 PM on Wed, Dec 2",
     "verdict": "typical",
-    "band_low": 400,
+    "band_low": 395,
     "band_high": 710,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDIiHwoDTEhSEgoyMDI2LTEyLTAyGgNDTU4qAkFUMgM4MDEiHwoDQ01OEgoyMDI2LTEyLTAzGgNKRksqAkFUMgMyMDBqBRIDTEhScgUSA0pGS0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.866Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-09",
@@ -63,19 +63,19 @@
    "date": "2026-12-16",
    "status": "ok",
    "fare": {
-    "price": 562,
-    "price_text": "$562",
+    "price": 655,
+    "price_text": "$655",
     "airline": "Tap Air Portugal",
     "stops": 1,
     "duration": "16 hr 50 min",
     "departure_description": "8:15 AM on Wed, Dec 16",
     "verdict": "typical",
-    "band_low": 400,
+    "band_low": 395,
     "band_high": 710,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTItMTYiIAoDTEhSEgoyMDI2LTEyLTE2GgNMSVMqAlRQMgQxMzUxIh8KA0xJUxIKMjAyNi0xMi0xNhoDSkZLKgJUUDIDMjA5agUSA0xIUnIFEgNKRktCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.866Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-23",
@@ -99,19 +99,19 @@
    "date": "2026-12-30",
    "status": "ok",
    "fare": {
-    "price": 629,
-    "price_text": "$629",
-    "airline": "SWISS",
+    "price": 837,
+    "price_text": "$837",
+    "airline": "Royal Air Maroc",
     "stops": 1,
-    "duration": "12 hr 15 min",
-    "departure_description": "6:00 AM on Wed, Dec 30",
-    "verdict": "typical",
-    "band_low": 400,
+    "duration": "20 hr 5 min",
+    "departure_description": "5:10 PM on Wed, Dec 30",
+    "verdict": "high",
+    "band_low": 395,
     "band_high": 710,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjYtMTItMzAiHwoDTEhSEgoyMDI2LTEyLTMwGgNaUkgqAkxYMgMzNDUiHgoDWlJIEgoyMDI2LTEyLTMwGgNKRksqAkxYMgIxNmoFEgNMSFJyBRIDSkZLQgEBSAGYAQI&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMzAiHwoDTEhSEgoyMDI2LTEyLTMwGgNDTU4qAkFUMgM4MDEiHwoDQ01OEgoyMDI2LTEyLTMxGgNKRksqAkFUMgMyMDJqBRIDTEhScgUSA0pGS0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.866Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-06",
@@ -135,19 +135,19 @@
    "date": "2027-01-13",
    "status": "ok",
    "fare": {
-    "price": 369,
-    "price_text": "$369",
+    "price": 367,
+    "price_text": "$367",
     "airline": "Vueling, LEVEL",
     "stops": 1,
     "duration": "30 hr 10 min",
     "departure_description": "8:50 PM on Wed, Jan 13",
     "verdict": "low",
     "band_low": 370,
-    "band_high": 730,
+    "band_high": 750,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDEtMTMiIAoDTEhSEgoyMDI3LTAxLTEzGgNCQ04qAlZZMgQ3NjQzIiAKA0JDThIKMjAyNy0wMS0xNBoDSkZLKgJMTDIEMjYyN2oFEgNMSFJyBRIDSkZLQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.866Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-20",
@@ -171,19 +171,19 @@
    "date": "2027-01-27",
    "status": "ok",
    "fare": {
-    "price": 407,
-    "price_text": "$407",
+    "price": 406,
+    "price_text": "$406",
     "airline": "Tap Air Portugal",
     "stops": 1,
-    "duration": "19 hr 5 min",
-    "departure_description": "6:00 AM on Wed, Jan 27",
+    "duration": "16 hr 50 min",
+    "departure_description": "8:15 AM on Wed, Jan 27",
     "verdict": "typical",
     "band_low": 370,
-    "band_high": 730,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDEtMjciIAoDTEhSEgoyMDI3LTAxLTI3GgNMSVMqAlRQMgQxMzYzIh8KA0xJUxIKMjAyNy0wMS0yNxoDSkZLKgJUUDIDMjA5agUSA0xIUnIFEgNKRktCAQFIAZgBAg&curr=usd"
+    "band_high": 750,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDEtMjciIAoDTEhSEgoyMDI3LTAxLTI3GgNMSVMqAlRQMgQxMzUxIh8KA0xJUxIKMjAyNy0wMS0yNxoDSkZLKgJUUDIDMjA5agUSA0xIUnIFEgNKRktCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:33.090Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-03",
@@ -207,19 +207,19 @@
    "date": "2027-02-10",
    "status": "ok",
    "fare": {
-    "price": 407,
-    "price_text": "$407",
+    "price": 406,
+    "price_text": "$406",
     "airline": "Tap Air Portugal",
     "stops": 1,
-    "duration": "19 hr 5 min",
-    "departure_description": "6:00 AM on Wed, Feb 10",
+    "duration": "16 hr 50 min",
+    "departure_description": "8:15 AM on Wed, Feb 10",
     "verdict": "typical",
     "band_low": 360,
-    "band_high": 520,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDItMTAiIAoDTEhSEgoyMDI3LTAyLTEwGgNMSVMqAlRQMgQxMzYzIh8KA0xJUxIKMjAyNy0wMi0xMBoDSkZLKgJUUDIDMjA5agUSA0xIUnIFEgNKRktCAQFIAZgBAg&curr=usd"
+    "band_high": 510,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDItMTAiIAoDTEhSEgoyMDI3LTAyLTEwGgNMSVMqAlRQMgQxMzUxIh8KA0xJUxIKMjAyNy0wMi0xMBoDSkZLKgJUUDIDMjA5agUSA0xIUnIFEgNKRktCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:33.090Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-17",
@@ -243,19 +243,19 @@
    "date": "2027-02-24",
    "status": "ok",
    "fare": {
-    "price": 407,
-    "price_text": "$407",
+    "price": 406,
+    "price_text": "$406",
     "airline": "Tap Air Portugal",
     "stops": 1,
-    "duration": "19 hr 5 min",
-    "departure_description": "6:00 AM on Wed, Feb 24",
+    "duration": "16 hr 50 min",
+    "departure_description": "8:15 AM on Wed, Feb 24",
     "verdict": "typical",
     "band_low": 360,
-    "band_high": 520,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDItMjQiIAoDTEhSEgoyMDI3LTAyLTI0GgNMSVMqAlRQMgQxMzYzIh8KA0xJUxIKMjAyNy0wMi0yNBoDSkZLKgJUUDIDMjA5agUSA0xIUnIFEgNKRktCAQFIAZgBAg&curr=usd"
+    "band_high": 510,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDItMjQiIAoDTEhSEgoyMDI3LTAyLTI0GgNMSVMqAlRQMgQxMzUxIh8KA0xJUxIKMjAyNy0wMi0yNBoDSkZLKgJUUDIDMjA5agUSA0xIUnIFEgNKRktCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:33.090Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-03",
@@ -279,19 +279,19 @@
    "date": "2027-03-10",
    "status": "ok",
    "fare": {
-    "price": 407,
-    "price_text": "$407",
+    "price": 406,
+    "price_text": "$406",
     "airline": "Tap Air Portugal",
     "stops": 1,
-    "duration": "19 hr 5 min",
-    "departure_description": "6:00 AM on Wed, Mar 10",
+    "duration": "16 hr 50 min",
+    "departure_description": "8:15 AM on Wed, Mar 10",
     "verdict": "typical",
     "band_low": 365,
     "band_high": 770,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMTAiIAoDTEhSEgoyMDI3LTAzLTEwGgNMSVMqAlRQMgQxMzYzIh8KA0xJUxIKMjAyNy0wMy0xMBoDSkZLKgJUUDIDMjA5agUSA0xIUnIFEgNKRktCAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMTAiIAoDTEhSEgoyMDI3LTAzLTEwGgNMSVMqAlRQMgQxMzUxIh8KA0xJUxIKMjAyNy0wMy0xMBoDSkZLKgJUUDIDMjA5agUSA0xIUnIFEgNKRktCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:33.090Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-17",
@@ -315,19 +315,19 @@
    "date": "2027-03-24",
    "status": "ok",
    "fare": {
-    "price": 462,
-    "price_text": "$462",
-    "airline": "Brussels Airlines | United",
-    "stops": 1,
-    "duration": "31 hr 15 min",
-    "departure_description": "11:05 AM on Wed, Mar 24",
+    "price": 480,
+    "price_text": "$480",
+    "airline": "JetBlue",
+    "stops": 0,
+    "duration": "8 hr 4 min",
+    "departure_description": "7:25 AM on Wed, Mar 24",
     "verdict": "typical",
     "band_low": 365,
     "band_high": 770,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMjQiIAoDTEhSEgoyMDI3LTAzLTI0GgNCUlUqAlNOMgQyMDk0Ih8KA0JSVRIKMjAyNy0wMy0yNRoDSkZLKgJTTjIDNTAxagUSA0xIUnIFEgNKRktCAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDMtMjQiIAoDTEhSEgoyMDI3LTAzLTI0GgNKRksqAkI2MgQyMjIwagUSA0xIUnIFEgNKRktCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.678Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:11.769Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-31",
@@ -351,8 +351,8 @@
    "date": "2027-04-07",
    "status": "ok",
    "fare": {
-    "price": 411,
-    "price_text": "$411",
+    "price": 410,
+    "price_text": "$410",
     "airline": "Tap Air Portugal",
     "stops": 1,
     "duration": "13 hr 45 min",
@@ -362,8 +362,8 @@
     "band_high": 770,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDQtMDciIAoDTEhSEgoyMDI3LTA0LTA3GgNMSVMqAlRQMgQxMzY3Ih8KA0xJUxIKMjAyNy0wNC0wNxoDSkZLKgJUUDIDMjA5agUSA0xIUnIFEgNKRktCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.678Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:11.769Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-14",
@@ -387,8 +387,8 @@
    "date": "2027-04-21",
    "status": "ok",
    "fare": {
-    "price": 406,
-    "price_text": "$406",
+    "price": 404,
+    "price_text": "$404",
     "airline": "Icelandair",
     "stops": 1,
     "duration": "38 hr",
@@ -398,8 +398,8 @@
     "band_high": 770,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjEiHwoDTEhSEgoyMDI3LTA0LTIxGgNLRUYqAkZJMgM0NTEiHwoDS0VGEgoyMDI3LTA0LTIyGgNKRksqAkZJMgM2MTlqBRIDTEhScgUSA0pGS0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.678Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:11.769Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-28",

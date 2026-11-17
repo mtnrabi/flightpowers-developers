@@ -27,19 +27,19 @@
    "date": "2026-12-02",
    "status": "ok",
    "fare": {
-    "price": 355,
-    "price_text": "$355",
-    "airline": "Hainan",
+    "price": 489,
+    "price_text": "$489",
+    "airline": "Gulf Air",
     "stops": 1,
-    "duration": "38 hr 20 min",
-    "departure_description": "9:05 PM on Wed, Dec 2",
-    "verdict": "low",
-    "band_low": 455,
+    "duration": "28 hr 40 min",
+    "departure_description": "9:40 PM on Wed, Dec 2",
+    "verdict": "typical",
+    "band_low": 470,
     "band_high": 1000,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTItMDIiIAoDTEhSEgoyMDI2LTEyLTAyGgNIQUsqAkhVMgQ3OTEyIh8KA0hBSxIKMjAyNi0xMi0wNBoDQktLKgJIVTIDNzIxagUSA0xIUnIFEgNCS0tCAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GloSCjIwMjYtMTItMDIiHQoDTEhSEgoyMDI2LTEyLTAyGgNCQUgqAkdGMgE2Ih8KA0JBSBIKMjAyNi0xMi0wMxoDQktLKgJHRjIDMTUyagUSA0xIUnIFEgNCS0tCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.866Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-09",
@@ -63,19 +63,19 @@
    "date": "2026-12-16",
    "status": "ok",
    "fare": {
-    "price": 989,
-    "price_text": "$989",
+    "price": 1122,
+    "price_text": "$1122",
     "airline": "ITA",
     "stops": 1,
-    "duration": "32 hr 40 min",
-    "departure_description": "4:30 PM on Wed, Dec 16",
-    "verdict": "typical",
-    "band_low": 455,
+    "duration": "14 hr 40 min",
+    "departure_description": "10:30 AM on Wed, Dec 16",
+    "verdict": "high",
+    "band_low": 470,
     "band_high": 1000,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMTYiHwoDTEhSEgoyMDI2LTEyLTE2GgNGQ08qAkFaMgMyMDciHwoDRkNPEgoyMDI2LTEyLTE3GgNCS0sqAkFaMgM3NThqBRIDTEhScgUSA0JLS0IBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMTYiHwoDTEhSEgoyMDI2LTEyLTE2GgNGQ08qAkFaMgMyMDMiHwoDRkNPEgoyMDI2LTEyLTE2GgNCS0sqAkFaMgM3NThqBRIDTEhScgUSA0JLS0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.866Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-23",
@@ -99,19 +99,19 @@
    "date": "2026-12-30",
    "status": "ok",
    "fare": {
-    "price": 392,
-    "price_text": "$392",
-    "airline": "Hainan",
+    "price": 672,
+    "price_text": "$672",
+    "airline": "Gulf Air",
     "stops": 1,
-    "duration": "38 hr 20 min",
-    "departure_description": "9:05 PM on Wed, Dec 30",
-    "verdict": "low",
-    "band_low": 455,
+    "duration": "28 hr 40 min",
+    "departure_description": "9:40 PM on Wed, Dec 30",
+    "verdict": "typical",
+    "band_low": 470,
     "band_high": 1000,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTItMzAiIAoDTEhSEgoyMDI2LTEyLTMwGgNIQUsqAkhVMgQ3OTEyIh8KA0hBSxIKMjAyNy0wMS0wMRoDQktLKgJIVTIDNzIxagUSA0xIUnIFEgNCS0tCAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GloSCjIwMjYtMTItMzAiHQoDTEhSEgoyMDI2LTEyLTMwGgNCQUgqAkdGMgE2Ih8KA0JBSBIKMjAyNi0xMi0zMRoDQktLKgJHRjIDMTUyagUSA0xIUnIFEgNCS0tCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.866Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-06",
@@ -135,19 +135,19 @@
    "date": "2027-01-13",
    "status": "ok",
    "fare": {
-    "price": 392,
-    "price_text": "$392",
+    "price": 391,
+    "price_text": "$391",
     "airline": "Hainan",
     "stops": 1,
     "duration": "38 hr 20 min",
     "departure_description": "9:05 PM on Wed, Jan 13",
     "verdict": "typical",
-    "band_low": 380,
-    "band_high": 550,
+    "band_low": 375,
+    "band_high": 540,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDEtMTMiIAoDTEhSEgoyMDI3LTAxLTEzGgNIQUsqAkhVMgQ3OTEyIh8KA0hBSxIKMjAyNy0wMS0xNRoDQktLKgJIVTIDNzIxagUSA0xIUnIFEgNCS0tCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.866Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-20",
@@ -171,19 +171,19 @@
    "date": "2027-01-27",
    "status": "ok",
    "fare": {
-    "price": 392,
-    "price_text": "$392",
+    "price": 391,
+    "price_text": "$391",
     "airline": "Hainan",
     "stops": 1,
     "duration": "38 hr 20 min",
     "departure_description": "9:05 PM on Wed, Jan 27",
     "verdict": "typical",
-    "band_low": 380,
-    "band_high": 550,
+    "band_low": 375,
+    "band_high": 540,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDEtMjciIAoDTEhSEgoyMDI3LTAxLTI3GgNIQUsqAkhVMgQ3OTEyIh8KA0hBSxIKMjAyNy0wMS0yORoDQktLKgJIVTIDNzIxagUSA0xIUnIFEgNCS0tCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:33.090Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-03",
@@ -207,19 +207,19 @@
    "date": "2027-02-10",
    "status": "ok",
    "fare": {
-    "price": 522,
-    "price_text": "$522",
-    "airline": "Shenzhen",
+    "price": 508,
+    "price_text": "$508",
+    "airline": "ITA",
     "stops": 1,
-    "duration": "21 hr 10 min",
-    "departure_description": "9:10 PM on Wed, Feb 10",
+    "duration": "32 hr 40 min",
+    "departure_description": "4:30 PM on Wed, Feb 10",
     "verdict": "typical",
-    "band_low": 385,
-    "band_high": 530,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMTAiHwoDTEhSEgoyMDI3LTAyLTEwGgNTWlgqAlpIMgM4ODgiHwoDU1pYEgoyMDI3LTAyLTExGgNCS0sqAlpIMgMzMDVqBRIDTEhScgUSA0JLS0IBAUgBmAEC&curr=usd"
+    "band_low": 380,
+    "band_high": 520,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMTAiHwoDTEhSEgoyMDI3LTAyLTEwGgNGQ08qAkFaMgMyMDciHwoDRkNPEgoyMDI3LTAyLTExGgNCS0sqAkFaMgM3NThqBRIDTEhScgUSA0JLS0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:33.090Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-17",
@@ -243,19 +243,19 @@
    "date": "2027-02-24",
    "status": "ok",
    "fare": {
-    "price": 355,
-    "price_text": "$355",
+    "price": 354,
+    "price_text": "$354",
     "airline": "Hainan",
     "stops": 1,
     "duration": "38 hr 20 min",
     "departure_description": "9:05 PM on Wed, Feb 24",
     "verdict": "low",
-    "band_low": 385,
-    "band_high": 530,
+    "band_low": 380,
+    "band_high": 520,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDItMjQiIAoDTEhSEgoyMDI3LTAyLTI0GgNIQUsqAkhVMgQ3OTEyIh8KA0hBSxIKMjAyNy0wMi0yNhoDQktLKgJIVTIDNzIxagUSA0xIUnIFEgNCS0tCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:33.090Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-03",
@@ -279,8 +279,8 @@
    "date": "2027-03-10",
    "status": "ok",
    "fare": {
-    "price": 355,
-    "price_text": "$355",
+    "price": 354,
+    "price_text": "$354",
     "airline": "Hainan",
     "stops": 1,
     "duration": "38 hr 20 min",
@@ -290,8 +290,8 @@
     "band_high": 700,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMTAiIAoDTEhSEgoyMDI3LTAzLTEwGgNIQUsqAkhVMgQ3OTEyIh8KA0hBSxIKMjAyNy0wMy0xMhoDQktLKgJIVTIDNzIxagUSA0xIUnIFEgNCS0tCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:33.090Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-17",
@@ -315,8 +315,8 @@
    "date": "2027-03-24",
    "status": "ok",
    "fare": {
-    "price": 615,
-    "price_text": "$615",
+    "price": 612,
+    "price_text": "$612",
     "airline": "Austrian",
     "stops": 1,
     "duration": "23 hr 20 min",
@@ -326,8 +326,8 @@
     "band_high": 700,
     "buy_link": "https://www.google.com/travel/flights?tfs=GloSCjIwMjctMDMtMjQiHwoDTEhSEgoyMDI3LTAzLTI0GgNWSUUqAk9TMgMzNDAiHQoDVklFEgoyMDI3LTAzLTI0GgNCS0sqAk9TMgE1agUSA0xIUnIFEgNCS0tCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.678Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:11.769Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-31",
@@ -351,19 +351,19 @@
    "date": "2027-04-07",
    "status": "ok",
    "fare": {
-    "price": 489,
-    "price_text": "$489",
+    "price": 487,
+    "price_text": "$487",
     "airline": "Gulf Air",
     "stops": 1,
     "duration": "29 hr 40 min",
     "departure_description": "10:05 PM on Wed, Apr 7",
     "verdict": "typical",
     "band_low": 405,
-    "band_high": 500,
+    "band_high": 495,
     "buy_link": "https://www.google.com/travel/flights?tfs=GloSCjIwMjctMDQtMDciHQoDTEhSEgoyMDI3LTA0LTA3GgNCQUgqAkdGMgE2Ih8KA0JBSBIKMjAyNy0wNC0wOBoDQktLKgJHRjIDMTUyagUSA0xIUnIFEgNCS0tCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.678Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:11.769Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-14",
@@ -387,19 +387,19 @@
    "date": "2027-04-21",
    "status": "ok",
    "fare": {
-    "price": 489,
-    "price_text": "$489",
+    "price": 487,
+    "price_text": "$487",
     "airline": "Gulf Air",
     "stops": 1,
     "duration": "29 hr 40 min",
     "departure_description": "10:05 PM on Wed, Apr 21",
     "verdict": "typical",
     "band_low": 405,
-    "band_high": 500,
+    "band_high": 495,
     "buy_link": "https://www.google.com/travel/flights?tfs=GloSCjIwMjctMDQtMjEiHQoDTEhSEgoyMDI3LTA0LTIxGgNCQUgqAkdGMgE2Ih8KA0JBSBIKMjAyNy0wNC0yMhoDQktLKgJHRjIDMTUyagUSA0xIUnIFEgNCS0tCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.678Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:11.769Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-28",

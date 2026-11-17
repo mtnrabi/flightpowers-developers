@@ -27,19 +27,19 @@
    "date": "2026-12-02",
    "status": "ok",
    "fare": {
-    "price": 181,
-    "price_text": "$181",
-    "airline": "China Southern",
+    "price": 180,
+    "price_text": "$180",
+    "airline": "Sun Phu | Quoc Airways",
     "stops": 1,
-    "duration": "7 hr 25 min",
-    "departure_description": "12:25 PM on Wed, Dec 2",
+    "duration": "18 hr 40 min",
+    "departure_description": "1:15 PM on Wed, Dec 2",
     "verdict": "typical",
     "band_low": 130,
     "band_high": 205,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTItMDIiIAoDQktLEgoyMDI2LTEyLTAyGgNDQU4qAkNaMgQ4MDgwIh8KA0NBThIKMjAyNi0xMi0wMhoDSUNOKgJDWjIDMzM5agUSA0JLS3IFEgNJQ05CAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDIiHwoDQktLEgoyMDI2LTEyLTAyGgNQUUMqAjlHMgM3MDIiHwoDUFFDEgoyMDI2LTEyLTAzGgNJQ04qAjlHMgM0NTBqBRIDQktLcgUSA0lDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:16:13.731Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:41.986Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-09",
@@ -63,19 +63,19 @@
    "date": "2026-12-16",
    "status": "ok",
    "fare": {
-    "price": 181,
-    "price_text": "$181",
-    "airline": "China Southern",
+    "price": 180,
+    "price_text": "$180",
+    "airline": "Sun Phu | Quoc Airways",
     "stops": 1,
-    "duration": "9 hr 5 min",
-    "departure_description": "2:10 AM on Wed, Dec 16",
+    "duration": "18 hr 40 min",
+    "departure_description": "1:15 PM on Wed, Dec 16",
     "verdict": "typical",
     "band_low": 130,
     "band_high": 205,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTItMTYiIAoDQktLEgoyMDI2LTEyLTE2GgNDQU4qAkNaMgQzMDM2Ih8KA0NBThIKMjAyNi0xMi0xNhoDSUNOKgJDWjIDMzM3agUSA0JLS3IFEgNJQ05CAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMTYiHwoDQktLEgoyMDI2LTEyLTE2GgNQUUMqAjlHMgM3MDIiHwoDUFFDEgoyMDI2LTEyLTE3GgNJQ04qAjlHMgM0NTBqBRIDQktLcgUSA0lDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:16:13.731Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:41.986Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-23",
@@ -99,19 +99,19 @@
    "date": "2026-12-30",
    "status": "ok",
    "fare": {
-    "price": 221,
-    "price_text": "$221",
-    "airline": "Hong Kong Express",
+    "price": 208,
+    "price_text": "$208",
+    "airline": "Shandong",
     "stops": 1,
-    "duration": "9 hr 5 min",
-    "departure_description": "12:35 AM on Wed, Dec 30",
+    "duration": "15 hr 5 min",
+    "departure_description": "3:05 AM on Wed, Dec 30",
     "verdict": "high",
     "band_low": 130,
     "band_high": 205,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMzAiHwoDQktLEgoyMDI2LTEyLTMwGgNIS0cqAlVPMgM3MzUiHwoDSEtHEgoyMDI2LTEyLTMwGgNJQ04qAlVPMgM2MThqBRIDQktLcgUSA0lDTkIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTItMzAiIAoDQktLEgoyMDI2LTEyLTMwGgNUTkEqAlNDMgQ4MDc2IiAKA1ROQRIKMjAyNi0xMi0zMBoDSUNOKgJTQzIEODAwOWoFEgNCS0tyBRIDSUNOQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:16:13.731Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:41.986Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-06",
@@ -146,8 +146,8 @@
     "band_high": 185,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMTMiHwoDQktLEgoyMDI3LTAxLTEzGgNIS0cqAlVPMgM3MzUiHwoDSEtHEgoyMDI3LTAxLTEzGgNJQ04qAlVPMgM2MThqBRIDQktLcgUSA0lDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:16:13.731Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:41.986Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-20",
@@ -182,8 +182,8 @@
     "band_high": 185,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMjciHwoDQktLEgoyMDI3LTAxLTI3GgNIS0cqAlVPMgM3MzUiHwoDSEtHEgoyMDI3LTAxLTI3GgNJQ04qAlVPMgM2MThqBRIDQktLcgUSA0lDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:16:12.678Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:41.986Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-03",
@@ -207,19 +207,19 @@
    "date": "2027-02-10",
    "status": "ok",
    "fare": {
-    "price": 258,
-    "price_text": "$258",
-    "airline": "Hong Kong Express",
+    "price": 320,
+    "price_text": "$320",
+    "airline": "Sun Phu | Quoc Airways",
     "stops": 1,
-    "duration": "12 hr 50 min",
-    "departure_description": "10:40 AM on Wed, Feb 10",
+    "duration": "18 hr 40 min",
+    "departure_description": "1:15 PM on Wed, Feb 10",
     "verdict": "high",
     "band_low": 120,
     "band_high": 255,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMTAiHwoDQktLEgoyMDI3LTAyLTEwGgNIS0cqAlVPMgM3MDUiHwoDSEtHEgoyMDI3LTAyLTEwGgNJQ04qAlVPMgM2MTRqBRIDQktLcgUSA0lDTkIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMTAiHwoDQktLEgoyMDI3LTAyLTEwGgNQUUMqAjlHMgM3MDIiHwoDUFFDEgoyMDI3LTAyLTExGgNJQ04qAjlHMgM0NTBqBRIDQktLcgUSA0lDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:16:12.678Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:41.986Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-17",
@@ -247,15 +247,15 @@
     "price_text": "$183",
     "airline": "Hong Kong Express",
     "stops": 1,
-    "duration": "9 hr 5 min",
-    "departure_description": "12:35 AM on Wed, Feb 24",
+    "duration": "8 hr 25 min",
+    "departure_description": "10:40 AM on Wed, Feb 24",
     "verdict": "typical",
     "band_low": 120,
     "band_high": 255,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMjQiHwoDQktLEgoyMDI3LTAyLTI0GgNIS0cqAlVPMgM3MzUiHwoDSEtHEgoyMDI3LTAyLTI0GgNJQ04qAlVPMgM2MThqBRIDQktLcgUSA0lDTkIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMjQiHwoDQktLEgoyMDI3LTAyLTI0GgNIS0cqAlVPMgM3MDUiHwoDSEtHEgoyMDI3LTAyLTI0GgNJQ04qAlVPMgM2MjZqBRIDQktLcgUSA0lDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:16:12.678Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:41.986Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-03",
@@ -290,8 +290,8 @@
     "band_high": 245,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTAiHwoDQktLEgoyMDI3LTAzLTEwGgNIS0cqAlVPMgM3MzUiHwoDSEtHEgoyMDI3LTAzLTEwGgNJQ04qAlVPMgM2MThqBRIDQktLcgUSA0lDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:16:12.678Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:41.986Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-17",
@@ -315,19 +315,19 @@
    "date": "2027-03-24",
    "status": "ok",
    "fare": {
-    "price": 191,
-    "price_text": "$191",
-    "airline": "Shandong",
+    "price": 183,
+    "price_text": "$183",
+    "airline": "Hong Kong Express",
     "stops": 1,
-    "duration": "10 hr",
-    "departure_description": "2:25 AM on Wed, Mar 24",
+    "duration": "8 hr 25 min",
+    "departure_description": "10:40 AM on Wed, Mar 24",
     "verdict": "typical",
     "band_low": 120,
     "band_high": 245,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDMtMjQiIAoDQktLEgoyMDI3LTAzLTI0GgNUQU8qAlNDMgQ0MDgwIiAKA1RBTxIKMjAyNy0wMy0yNBoDSUNOKgJTQzIENDYxM2oFEgNCS0tyBRIDSUNOQgEBSAGYAQI&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMjQiHwoDQktLEgoyMDI3LTAzLTI0GgNIS0cqAlVPMgM3MDUiHwoDSEtHEgoyMDI3LTAzLTI0GgNJQ04qAlVPMgM2MjZqBRIDQktLcgUSA0lDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:16:12.003Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:25.214Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-31",
@@ -358,12 +358,12 @@
     "duration": "9 hr 35 min",
     "departure_description": "12:20 AM on Wed, Apr 7",
     "verdict": "typical",
-    "band_low": 155,
+    "band_low": 150,
     "band_high": 290,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMDciHwoDQktLEgoyMDI3LTA0LTA3GgNIS0cqAlVPMgM3MzMiHwoDSEtHEgoyMDI3LTA0LTA3GgNJQ04qAlVPMgM2MThqBRIDQktLcgUSA0lDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:16:12.003Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:25.214Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-14",
@@ -391,15 +391,15 @@
     "price_text": "$183",
     "airline": "Hong Kong Express",
     "stops": 1,
-    "duration": "9 hr 35 min",
-    "departure_description": "12:20 AM on Wed, Apr 21",
+    "duration": "9 hr 25 min",
+    "departure_description": "10:10 AM on Wed, Apr 21",
     "verdict": "typical",
-    "band_low": 155,
+    "band_low": 150,
     "band_high": 290,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjEiHwoDQktLEgoyMDI3LTA0LTIxGgNIS0cqAlVPMgM3MzMiHwoDSEtHEgoyMDI3LTA0LTIxGgNJQ04qAlVPMgM2MThqBRIDQktLcgUSA0lDTkIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjEiHwoDQktLEgoyMDI3LTA0LTIxGgNIS0cqAlVPMgM3MDUiHwoDSEtHEgoyMDI3LTA0LTIxGgNJQ04qAlVPMgM2MjZqBRIDQktLcgUSA0lDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:16:12.003Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:25.214Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-28",

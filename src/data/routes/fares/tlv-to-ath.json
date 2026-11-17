@@ -27,8 +27,8 @@
    "date": "2026-12-02",
    "status": "ok",
    "fare": {
-    "price": 124,
-    "price_text": "$124",
+    "price": 147,
+    "price_text": "$147",
     "airline": "Cyprus Airways",
     "stops": 1,
     "duration": "3 hr 55 min",
@@ -38,8 +38,8 @@
     "band_high": 150,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDIiHwoDVExWEgoyMDI2LTEyLTAyGgNMQ0EqAkNZMgMxMTEiHwoDTENBEgoyMDI2LTEyLTAyGgNBVEgqAkNZMgMzMTJqBRIDVExWcgUSA0FUSEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:17.044Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:06.595Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-09",
@@ -63,19 +63,19 @@
    "date": "2026-12-16",
    "status": "ok",
    "fare": {
-    "price": 98,
-    "price_text": "$98",
-    "airline": "Bluebird Airways",
+    "price": 158,
+    "price_text": "$158",
+    "airline": "SKY express",
     "stops": 0,
-    "duration": "2 hr 10 min",
-    "departure_description": "2:30 PM on Wed, Dec 16",
-    "verdict": "typical",
+    "duration": "2 hr 15 min",
+    "departure_description": "11:30 PM on Wed, Dec 16",
+    "verdict": "high",
     "band_low": 60,
     "band_high": 150,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMTYiHwoDVExWEgoyMDI2LTEyLTE2GgNBVEgqAkJaMgM3MDRqBRIDVExWcgUSA0FUSEIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMTYiHwoDVExWEgoyMDI2LTEyLTE2GgNBVEgqAkdRMgM3MjFqBRIDVExWcgUSA0FUSEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:17.044Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:06.595Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-23",
@@ -99,19 +99,19 @@
    "date": "2026-12-30",
    "status": "ok",
    "fare": {
-    "price": 96,
-    "price_text": "$96",
-    "airline": "Wizz Air",
+    "price": 106,
+    "price_text": "$106",
+    "airline": "SKY express",
     "stops": 0,
-    "duration": "2 hr 20 min",
-    "departure_description": "12:50 PM on Wed, Dec 30",
+    "duration": "2 hr 15 min",
+    "departure_description": "11:30 PM on Wed, Dec 30",
     "verdict": "typical",
     "band_low": 60,
     "band_high": 150,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMzAiIAoDVExWEgoyMDI2LTEyLTMwGgNBVEgqAlc0MgQ4NDAxagUSA1RMVnIFEgNBVEhCAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMzAiHwoDVExWEgoyMDI2LTEyLTMwGgNBVEgqAkdRMgM3MjFqBRIDVExWcgUSA0FUSEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:17.044Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:06.595Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-06",
@@ -135,19 +135,19 @@
    "date": "2027-01-13",
    "status": "ok",
    "fare": {
-    "price": 82,
-    "price_text": "$82",
-    "airline": "SKY express",
+    "price": 84,
+    "price_text": "$84",
+    "airline": "Wizz Air",
     "stops": 0,
-    "duration": "2 hr 15 min",
-    "departure_description": "11:30 PM on Wed, Jan 13",
+    "duration": "2 hr 20 min",
+    "departure_description": "12:50 PM on Wed, Jan 13",
     "verdict": "typical",
     "band_low": 55,
     "band_high": 95,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMTMiHwoDVExWEgoyMDI3LTAxLTEzGgNBVEgqAkdRMgM3MjFqBRIDVExWcgUSA0FUSEIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMTMiIAoDVExWEgoyMDI3LTAxLTEzGgNBVEgqAlc0MgQ4NDAxagUSA1RMVnIFEgNBVEhCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:17.044Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:06.595Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-20",
@@ -182,8 +182,8 @@
     "band_high": 95,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMjciIAoDVExWEgoyMDI3LTAxLTI3GgNBVEgqAlc0MgQ4NDAxagUSA1RMVnIFEgNBVEhCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:06.595Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-03",
@@ -218,8 +218,8 @@
     "band_high": 95,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDItMTAiIAoDVExWEgoyMDI3LTAyLTEwGgNBVEgqAlc0MgQ4NDAxagUSA1RMVnIFEgNBVEhCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:06.595Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-17",
@@ -243,19 +243,19 @@
    "date": "2027-02-24",
    "status": "ok",
    "fare": {
-    "price": 66,
-    "price_text": "$66",
-    "airline": "Aegean",
+    "price": 73,
+    "price_text": "$73",
+    "airline": "Wizz Air",
     "stops": 0,
-    "duration": "2 hr 10 min",
-    "departure_description": "7:10 PM on Wed, Feb 24",
+    "duration": "2 hr 20 min",
+    "departure_description": "12:50 PM on Wed, Feb 24",
     "verdict": "typical",
     "band_low": 50,
     "band_high": 95,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMjQiHwoDVExWEgoyMDI3LTAyLTI0GgNBVEgqAkEzMgM5MjdqBRIDVExWcgUSA0FUSEIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDItMjQiIAoDVExWEgoyMDI3LTAyLTI0GgNBVEgqAlc0MgQ4NDAxagUSA1RMVnIFEgNBVEhCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:06.595Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-03",
@@ -279,19 +279,19 @@
    "date": "2027-03-10",
    "status": "ok",
    "fare": {
-    "price": 66,
-    "price_text": "$66",
-    "airline": "Aegean",
+    "price": 73,
+    "price_text": "$73",
+    "airline": "Wizz Air",
     "stops": 0,
-    "duration": "2 hr 10 min",
-    "departure_description": "7:10 PM on Wed, Mar 10",
+    "duration": "2 hr 20 min",
+    "departure_description": "12:50 PM on Wed, Mar 10",
     "verdict": "typical",
     "band_low": 60,
     "band_high": 140,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMTAiHwoDVExWEgoyMDI3LTAzLTEwGgNBVEgqAkEzMgM5MjdqBRIDVExWcgUSA0FUSEIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDMtMTAiIAoDVExWEgoyMDI3LTAzLTEwGgNBVEgqAlc0MgQ4NDAxagUSA1RMVnIFEgNBVEhCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:06.595Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-17",
@@ -326,8 +326,8 @@
     "band_high": 140,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDMtMjQiIAoDVExWEgoyMDI3LTAzLTI0GgNBVEgqAlc0MgQ4NDAxagUSA1RMVnIFEgNBVEhCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:12.038Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:26.610Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-31",
@@ -351,8 +351,8 @@
    "date": "2027-04-07",
    "status": "ok",
    "fare": {
-    "price": 107,
-    "price_text": "$107",
+    "price": 81,
+    "price_text": "$81",
     "airline": "SKY express",
     "stops": 0,
     "duration": "2 hr 15 min",
@@ -362,8 +362,8 @@
     "band_high": 170,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMDciHwoDVExWEgoyMDI3LTA0LTA3GgNBVEgqAkdRMgM3MjFqBRIDVExWcgUSA0FUSEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:12.038Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:26.610Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-14",
@@ -387,19 +387,19 @@
    "date": "2027-04-21",
    "status": "ok",
    "fare": {
-    "price": 159,
-    "price_text": "$159",
-    "airline": "SKY express",
+    "price": 184,
+    "price_text": "$184",
+    "airline": "Aegean",
     "stops": 0,
-    "duration": "2 hr 15 min",
-    "departure_description": "11:30 PM on Wed, Apr 21",
-    "verdict": "typical",
+    "duration": "2 hr 10 min",
+    "departure_description": "7:55 PM on Wed, Apr 21",
+    "verdict": "high",
     "band_low": 65,
     "band_high": 170,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMjEiHwoDVExWEgoyMDI3LTA0LTIxGgNBVEgqAkdRMgM3MjFqBRIDVExWcgUSA0FUSEIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMjEiHwoDVExWEgoyMDI3LTA0LTIxGgNBVEgqAkEzMgM5MjdqBRIDVExWcgUSA0FUSEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:12.038Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:26.610Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-28",

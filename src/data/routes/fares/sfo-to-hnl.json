@@ -27,19 +27,19 @@
    "date": "2026-12-02",
    "status": "ok",
    "fare": {
-    "price": 179,
-    "price_text": "$179",
+    "price": 293,
+    "price_text": "$293",
     "airline": "Alaska | Operated by Alaska as Hawaiian Airlines",
     "stops": 0,
     "duration": "5 hr 50 min",
     "departure_description": "7:20 AM on Wed, Dec 2",
     "verdict": "typical",
-    "band_low": 160,
-    "band_high": 380,
+    "band_low": 165,
+    "band_high": 365,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDIiHwoDU0ZPEgoyMDI2LTEyLTAyGgNITkwqAkFTMgM4MTFqBRIDU0ZPcgUSA0hOTEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:05.385Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-09",
@@ -63,19 +63,19 @@
    "date": "2026-12-16",
    "status": "ok",
    "fare": {
-    "price": 267,
-    "price_text": "$267",
-    "airline": "Alaska | Operated by Horizon Air as Alaska Horizon, Alaska as Hawaiian Airlines",
-    "stops": 2,
-    "duration": "10 hr 14 min",
-    "departure_description": "6:00 AM on Wed, Dec 16",
+    "price": 227,
+    "price_text": "$227",
+    "airline": "Delta",
+    "stops": 1,
+    "duration": "8 hr 10 min",
+    "departure_description": "2:59 PM on Wed, Dec 16",
     "verdict": "typical",
-    "band_low": 160,
-    "band_high": 380,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gn8SCjIwMjYtMTItMTYiIAoDU0ZPEgoyMDI2LTEyLTE2GgNTQU4qAkFTMgQyMzU4Ih8KA1NBThIKMjAyNi0xMi0xNhoDT0dHKgJBUzIDMjMyIiAKA09HRxIKMjAyNi0xMi0xNhoDSE5MKgJBUzIEMTExNWoFEgNTRk9yBRIDSE5MQgEBSAGYAQI&curr=usd"
+    "band_low": 165,
+    "band_high": 365,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTItMTYiIAoDU0ZPEgoyMDI2LTEyLTE2GgNMQVgqAkRMMgQxNzE1Ih8KA0xBWBIKMjAyNi0xMi0xNhoDSE5MKgJETDIDNDQzagUSA1NGT3IFEgNITkxCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:05.385Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-23",
@@ -104,14 +104,14 @@
     "airline": "United",
     "stops": 0,
     "duration": "5 hr 57 min",
-    "departure_description": "11:20 AM on Wed, Dec 30",
+    "departure_description": "4:55 PM on Wed, Dec 30",
     "verdict": "typical",
-    "band_low": 160,
-    "band_high": 380,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMzAiIAoDU0ZPEgoyMDI2LTEyLTMwGgNITkwqAlVBMgQyMzgwagUSA1NGT3IFEgNITkxCAQFIAZgBAg&curr=usd"
+    "band_low": 165,
+    "band_high": 365,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMzAiIAoDU0ZPEgoyMDI2LTEyLTMwGgNITkwqAlVBMgQxNTA5agUSA1NGT3IFEgNITkxCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:05.385Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-06",
@@ -135,8 +135,8 @@
    "date": "2027-01-13",
    "status": "ok",
    "fare": {
-    "price": 177,
-    "price_text": "$177",
+    "price": 172,
+    "price_text": "$172",
     "airline": "United",
     "stops": 0,
     "duration": "5 hr 48 min",
@@ -146,8 +146,8 @@
     "band_high": 265,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMTMiHwoDU0ZPEgoyMDI3LTAxLTEzGgNITkwqAlVBMgMzMDBqBRIDU0ZPcgUSA0hOTEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:05.385Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-20",
@@ -182,8 +182,8 @@
     "band_high": 265,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMjciHwoDU0ZPEgoyMDI3LTAxLTI3GgNITkwqAkFTMgM4MTFqBRIDU0ZPcgUSA0hOTEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:08.572Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-03",
@@ -207,8 +207,8 @@
    "date": "2027-02-10",
    "status": "ok",
    "fare": {
-    "price": 212,
-    "price_text": "$212",
+    "price": 216,
+    "price_text": "$216",
     "airline": "Alaska | Operated by Alaska as Hawaiian Airlines",
     "stops": 0,
     "duration": "5 hr 45 min",
@@ -218,8 +218,8 @@
     "band_high": 265,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMTAiHwoDU0ZPEgoyMDI3LTAyLTEwGgNITkwqAkFTMgM4MTFqBRIDU0ZPcgUSA0hOTEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:08.572Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-17",
@@ -243,8 +243,8 @@
    "date": "2027-02-24",
    "status": "ok",
    "fare": {
-    "price": 212,
-    "price_text": "$212",
+    "price": 216,
+    "price_text": "$216",
     "airline": "Alaska | Operated by Alaska as Hawaiian Airlines",
     "stops": 0,
     "duration": "5 hr 49 min",
@@ -254,8 +254,8 @@
     "band_high": 265,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMjQiHwoDU0ZPEgoyMDI3LTAyLTI0GgNITkwqAkFTMgM4MTFqBRIDU0ZPcgUSA0hOTEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:08.572Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-03",
@@ -279,19 +279,19 @@
    "date": "2027-03-10",
    "status": "ok",
    "fare": {
-    "price": 258,
-    "price_text": "$258",
+    "price": 238,
+    "price_text": "$238",
     "airline": "Alaska | Operated by Alaska as Hawaiian Airlines",
-    "stops": 0,
-    "duration": "5 hr 49 min",
-    "departure_description": "7:10 AM on Wed, Mar 10",
+    "stops": 1,
+    "duration": "7 hr 49 min",
+    "departure_description": "8:20 AM on Wed, Mar 10",
     "verdict": "typical",
     "band_low": 130,
     "band_high": 290,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMTAiHwoDU0ZPEgoyMDI3LTAzLTEwGgNITkwqAkFTMgM4MTFqBRIDU0ZPcgUSA0hOTEIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMTAiHwoDU0ZPEgoyMDI3LTAzLTEwGgNMSUgqAkFTMgM3NTQiIAoDTElIEgoyMDI3LTAzLTEwGgNITkwqAkFTMgQxMDk0agUSA1NGT3IFEgNITkxCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:08.572Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-17",
@@ -315,19 +315,19 @@
    "date": "2027-03-24",
    "status": "ok",
    "fare": {
-    "price": 258,
-    "price_text": "$258",
-    "airline": "Alaska | Operated by Alaska as Hawaiian Airlines",
+    "price": 263,
+    "price_text": "$263",
+    "airline": "United",
     "stops": 0,
-    "duration": "5 hr 50 min",
-    "departure_description": "4:10 PM on Wed, Mar 24",
+    "duration": "5 hr 41 min",
+    "departure_description": "1:55 PM on Wed, Mar 24",
     "verdict": "typical",
     "band_low": 130,
     "band_high": 290,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMjQiHwoDU0ZPEgoyMDI3LTAzLTI0GgNITkwqAkFTMgM4MjRqBRIDU0ZPcgUSA0hOTEIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMjQiHwoDU0ZPEgoyMDI3LTAzLTI0GgNITkwqAlVBMgMzMDBqBRIDU0ZPcgUSA0hOTEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:07.732Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:36.977Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-31",
@@ -351,8 +351,8 @@
    "date": "2027-04-07",
    "status": "ok",
    "fare": {
-    "price": 212,
-    "price_text": "$212",
+    "price": 216,
+    "price_text": "$216",
     "airline": "Alaska | Operated by Alaska as Hawaiian Airlines",
     "stops": 0,
     "duration": "5 hr 50 min",
@@ -362,8 +362,8 @@
     "band_high": 290,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMDciHwoDU0ZPEgoyMDI3LTA0LTA3GgNITkwqAkFTMgM4MTFqBRIDU0ZPcgUSA0hOTEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:07.732Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:36.977Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-14",
@@ -387,8 +387,8 @@
    "date": "2027-04-21",
    "status": "ok",
    "fare": {
-    "price": 212,
-    "price_text": "$212",
+    "price": 216,
+    "price_text": "$216",
     "airline": "Alaska | Operated by Alaska as Hawaiian Airlines",
     "stops": 0,
     "duration": "5 hr 50 min",
@@ -398,8 +398,8 @@
     "band_high": 290,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMjEiHwoDU0ZPEgoyMDI3LTA0LTIxGgNITkwqAkFTMgM4MTFqBRIDU0ZPcgUSA0hOTEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:07.732Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:36.977Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-28",

@@ -35,11 +35,11 @@
     "departure_description": "11:00 PM on Wed, Dec 2",
     "verdict": "typical",
     "band_low": 495,
-    "band_high": 1200,
+    "band_high": 1250,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDIiHwoDU0ZPEgoyMDI2LTEyLTAyGgNJQ04qAk9aMgMyMTEiHwoDSUNOEgoyMDI2LTEyLTA0GgNUUEUqAk9aMgM3MTFqBRIDU0ZPcgUSA1RQRUIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:05.385Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-09",
@@ -63,19 +63,19 @@
    "date": "2026-12-16",
    "status": "ok",
    "fare": {
-    "price": 1163,
-    "price_text": "$1163",
-    "airline": "Alaska, China Airlines",
-    "stops": 2,
-    "duration": "24 hr 15 min",
-    "departure_description": "6:00 AM on Wed, Dec 16",
+    "price": 1178,
+    "price_text": "$1178",
+    "airline": "American, STARLUX Airlines | Operated by SkyWest Airlines as American Eagle",
+    "stops": 1,
+    "duration": "24 hr 30 min",
+    "departure_description": "12:00 PM on Wed, Dec 16",
     "verdict": "typical",
     "band_low": 495,
-    "band_high": 1200,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GnwSCjIwMjYtMTItMTYiHgoDU0ZPEgoyMDI2LTEyLTE2GgNTRUEqAkFTMgI2OCIfCgNTRUESCjIwMjYtMTItMTYaA0lDTioCQVMyAzExOSIfCgNJQ04SCjIwMjYtMTItMTcaA1RQRSoCQ0kyAzE2M2oFEgNTRk9yBRIDVFBFQgEBSAGYAQI&curr=usd"
+    "band_high": 1250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjYtMTItMTYiIAoDU0ZPEgoyMDI2LTEyLTE2GgNMQVgqAkFBMgQ2MzE2Ih0KA09OVBIKMjAyNi0xMi0xNhoDVFBFKgJKWDIBOWoFEgNTRk9yBRIDVFBFQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:05.385Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-23",
@@ -99,19 +99,19 @@
    "date": "2026-12-30",
    "status": "ok",
    "fare": {
-    "price": 491,
-    "price_text": "$491",
+    "price": 591,
+    "price_text": "$591",
     "airline": "Alaska, EVA Air",
     "stops": 2,
-    "duration": "20 hr 20 min",
-    "departure_description": "9:20 AM on Wed, Dec 30",
-    "verdict": "low",
+    "duration": "23 hr 40 min",
+    "departure_description": "6:00 AM on Wed, Dec 30",
+    "verdict": "typical",
     "band_low": 495,
-    "band_high": 1200,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GnwSCjIwMjYtMTItMzAiHgoDU0ZPEgoyMDI2LTEyLTMwGgNTRUEqAkFTMgI2OCIfCgNTRUESCjIwMjYtMTItMzAaA0lDTioCQVMyAzExOSIfCgNJQ04SCjIwMjYtMTItMzEaA1RQRSoCQlIyAzE1OWoFEgNTRk9yBRIDVFBFQgEBSAGYAQI&curr=usd"
+    "band_high": 1250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gn4SCjIwMjYtMTItMzAiIAoDU0ZPEgoyMDI2LTEyLTMwGgNTRUEqAkFTMgQxMzI3Ih8KA1NFQRIKMjAyNi0xMi0zMBoDSUNOKgJBUzIDMTE5Ih8KA0lDThIKMjAyNi0xMi0zMRoDVFBFKgJCUjIDMTU5agUSA1NGT3IFEgNUUEVCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:05.385Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-06",
@@ -143,11 +143,11 @@
     "departure_description": "11:00 PM on Wed, Jan 13",
     "verdict": "high",
     "band_low": 380,
-    "band_high": 390,
+    "band_high": 415,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMTMiHwoDU0ZPEgoyMDI3LTAxLTEzGgNJQ04qAk9aMgMyMTEiHwoDSUNOEgoyMDI3LTAxLTE1GgNUUEUqAk9aMgM3MTFqBRIDU0ZPcgUSA1RQRUIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:05.385Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-20",
@@ -179,11 +179,11 @@
     "departure_description": "11:25 AM on Wed, Jan 27",
     "verdict": "high",
     "band_low": 380,
-    "band_high": 390,
+    "band_high": 415,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMjciHwoDU0ZPEgoyMDI3LTAxLTI3GgNIS0cqAkNYMgM4NzkiHwoDSEtHEgoyMDI3LTAxLTI4GgNUUEUqAkNYMgM0MDhqBRIDU0ZPcgUSA1RQRUIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:08.572Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-03",
@@ -207,19 +207,19 @@
    "date": "2027-02-10",
    "status": "ok",
    "fare": {
-    "price": 529,
-    "price_text": "$529",
-    "airline": "Cathay Pacific",
-    "stops": 1,
-    "duration": "31 hr 25 min",
-    "departure_description": "11:25 AM on Wed, Feb 10",
+    "price": 503,
+    "price_text": "$503",
+    "airline": "China Airlines",
+    "stops": 0,
+    "duration": "14 hr 5 min",
+    "departure_description": "11:40 PM on Wed, Feb 10",
     "verdict": "high",
     "band_low": 380,
     "band_high": 430,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMTAiHwoDU0ZPEgoyMDI3LTAyLTEwGgNIS0cqAkNYMgM4NzkiHwoDSEtHEgoyMDI3LTAyLTEyGgNUUEUqAkNYMgM1MzBqBRIDU0ZPcgUSA1RQRUIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjkSCjIwMjctMDItMTAiHQoDU0ZPEgoyMDI3LTAyLTEwGgNUUEUqAkNJMgEzagUSA1NGT3IFEgNUUEVCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:08.572Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-17",
@@ -247,15 +247,15 @@
     "price_text": "$410",
     "airline": "Alaska, EVA Air",
     "stops": 2,
-    "duration": "23 hr 30 min",
-    "departure_description": "6:10 AM on Wed, Feb 24",
+    "duration": "21 hr 10 min",
+    "departure_description": "8:30 AM on Wed, Feb 24",
     "verdict": "typical",
     "band_low": 380,
     "band_high": 430,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gn0SCjIwMjctMDItMjQiHwoDU0ZPEgoyMDI3LTAyLTI0GgNTRUEqAkFTMgM0NzEiHwoDU0VBEgoyMDI3LTAyLTI0GgNJQ04qAkFTMgMxMTkiHwoDSUNOEgoyMDI3LTAyLTI1GgNUUEUqAkJSMgMxNTlqBRIDU0ZPcgUSA1RQRUIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gn4SCjIwMjctMDItMjQiIAoDU0ZPEgoyMDI3LTAyLTI0GgNTRUEqAkFTMgQxMzY1Ih8KA1NFQRIKMjAyNy0wMi0yNBoDSUNOKgJBUzIDMTE5Ih8KA0lDThIKMjAyNy0wMi0yNRoDVFBFKgJCUjIDMTU5agUSA1NGT3IFEgNUUEVCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:08.572Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-03",
@@ -283,15 +283,15 @@
     "price_text": "$410",
     "airline": "Alaska, EVA Air",
     "stops": 2,
-    "duration": "21 hr 10 min",
-    "departure_description": "8:30 AM on Wed, Mar 10",
+    "duration": "23 hr 30 min",
+    "departure_description": "6:10 AM on Wed, Mar 10",
     "verdict": "typical",
     "band_low": 340,
     "band_high": 495,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gn4SCjIwMjctMDMtMTAiIAoDU0ZPEgoyMDI3LTAzLTEwGgNTRUEqAkFTMgQxMzY1Ih8KA1NFQRIKMjAyNy0wMy0xMBoDSUNOKgJBUzIDMTE5Ih8KA0lDThIKMjAyNy0wMy0xMRoDVFBFKgJCUjIDMTU5agUSA1NGT3IFEgNUUEVCAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gn0SCjIwMjctMDMtMTAiHwoDU0ZPEgoyMDI3LTAzLTEwGgNTRUEqAkFTMgM0NzEiHwoDU0VBEgoyMDI3LTAzLTEwGgNJQ04qAkFTMgMxMTkiHwoDSUNOEgoyMDI3LTAzLTExGgNUUEUqAkJSMgMxNTlqBRIDU0ZPcgUSA1RQRUIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:08.572Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-17",
@@ -315,19 +315,19 @@
    "date": "2027-03-24",
    "status": "ok",
    "fare": {
-    "price": 410,
-    "price_text": "$410",
-    "airline": "Alaska, EVA Air",
-    "stops": 2,
-    "duration": "24 hr 40 min",
-    "departure_description": "6:00 AM on Wed, Mar 24",
+    "price": 430,
+    "price_text": "$430",
+    "airline": "Cathay Pacific",
+    "stops": 1,
+    "duration": "21 hr 25 min",
+    "departure_description": "12:25 PM on Wed, Mar 24",
     "verdict": "typical",
     "band_low": 340,
     "band_high": 495,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gn0SCjIwMjctMDMtMjQiHwoDU0ZPEgoyMDI3LTAzLTI0GgNTRUEqAkFTMgM0NzEiHwoDU0VBEgoyMDI3LTAzLTI0GgNJQ04qAkFTMgMxMTkiHwoDSUNOEgoyMDI3LTAzLTI1GgNUUEUqAkJSMgMxNTlqBRIDU0ZPcgUSA1RQRUIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMjQiHwoDU0ZPEgoyMDI3LTAzLTI0GgNIS0cqAkNYMgM4NzkiHwoDSEtHEgoyMDI3LTAzLTI1GgNUUEUqAkNYMgM0MDhqBRIDU0ZPcgUSA1RQRUIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:07.732Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:36.977Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-31",
@@ -362,8 +362,8 @@
     "band_high": 490,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMDciHwoDU0ZPEgoyMDI3LTA0LTA3GgNIS0cqAkNYMgM4NzMiHwoDSEtHEgoyMDI3LTA0LTA4GgNUUEUqAkNYMgM0ODhqBRIDU0ZPcgUSA1RQRUIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:07.732Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:36.977Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-14",
@@ -398,8 +398,8 @@
     "band_high": 490,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjEiHwoDU0ZPEgoyMDI3LTA0LTIxGgNIS0cqAkNYMgM4NzMiHwoDSEtHEgoyMDI3LTA0LTIyGgNUUEUqAkNYMgM0ODhqBRIDU0ZPcgUSA1RQRUIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:07.732Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:36.977Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-28",

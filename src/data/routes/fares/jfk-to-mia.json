@@ -27,19 +27,19 @@
    "date": "2026-12-02",
    "status": "ok",
    "fare": {
-    "price": 207,
-    "price_text": "$207",
+    "price": 189,
+    "price_text": "$189",
     "airline": "American | Operated by Republic Airways as American Eagle",
     "stops": 1,
-    "duration": "12 hr 50 min",
-    "departure_description": "8:10 AM on Wed, Dec 2",
+    "duration": "10 hr 33 min",
+    "departure_description": "10:59 AM on Wed, Dec 2",
     "verdict": "typical",
-    "band_low": 70,
-    "band_high": 275,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTItMDIiIAoDSkZLEgoyMDI2LTEyLTAyGgNCTkEqAkFBMgQ0NzEwIiAKA0JOQRIKMjAyNi0xMi0wMhoDTUlBKgJBQTIEMjM4NmoFEgNKRktyBRIDTUlBQgEBSAGYAQI&curr=usd"
+    "band_low": 90,
+    "band_high": 305,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTItMDIiIAoDSkZLEgoyMDI2LTEyLTAyGgNDTEUqAkFBMgQ0NTE2IiAKA0NMRRIKMjAyNi0xMi0wMhoDTUlBKgJBQTIEMjM3OGoFEgNKRktyBRIDTUlBQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:07.539Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:23:53.435Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-09",
@@ -63,19 +63,19 @@
    "date": "2026-12-16",
    "status": "ok",
    "fare": {
-    "price": 207,
-    "price_text": "$207",
-    "airline": "American | Operated by Republic Airways as American Eagle",
-    "stops": 1,
-    "duration": "12 hr 50 min",
-    "departure_description": "8:10 AM on Wed, Dec 16",
+    "price": 230,
+    "price_text": "$230",
+    "airline": "American | Operated by Republic Airways as American Eagle, Envoy Air as American Eagle",
+    "stops": 2,
+    "duration": "15 hr 2 min",
+    "departure_description": "6:30 AM on Wed, Dec 16",
     "verdict": "typical",
-    "band_low": 70,
-    "band_high": 275,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTItMTYiIAoDSkZLEgoyMDI2LTEyLTE2GgNCTkEqAkFBMgQ0NzEwIiAKA0JOQRIKMjAyNi0xMi0xNhoDTUlBKgJBQTIEMjM4NmoFEgNKRktyBRIDTUlBQgEBSAGYAQI&curr=usd"
+    "band_low": 90,
+    "band_high": 305,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GoABEgoyMDI2LTEyLTE2IiAKA0pGSxIKMjAyNi0xMi0xNhoDRENBKgJBQTIENDM2MSIgCgNEQ0ESCjIwMjYtMTItMTYaA0NMRSoCQUEyBDM5OTEiIAoDQ0xFEgoyMDI2LTEyLTE2GgNNSUEqAkFBMgQyMzc4agUSA0pGS3IFEgNNSUFCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:07.539Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:23:53.435Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-23",
@@ -99,19 +99,19 @@
    "date": "2026-12-30",
    "status": "ok",
    "fare": {
-    "price": 246,
-    "price_text": "$246",
+    "price": 299,
+    "price_text": "$299",
     "airline": "American",
     "stops": 0,
-    "duration": "3 hr 22 min",
-    "departure_description": "5:48 AM on Wed, Dec 30",
+    "duration": "3 hr 28 min",
+    "departure_description": "5:42 PM on Wed, Dec 30",
     "verdict": "typical",
-    "band_low": 70,
-    "band_high": 275,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMzAiIAoDSkZLEgoyMDI2LTEyLTMwGgNNSUEqAkFBMgQxMDE3agUSA0pGS3IFEgNNSUFCAQFIAZgBAg&curr=usd"
+    "band_low": 90,
+    "band_high": 305,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMzAiHwoDSkZLEgoyMDI2LTEyLTMwGgNNSUEqAkFBMgM0NzVqBRIDSkZLcgUSA01JQUIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:07.539Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:23:53.435Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-06",
@@ -135,19 +135,19 @@
    "date": "2027-01-13",
    "status": "ok",
    "fare": {
-    "price": 200,
-    "price_text": "$200",
+    "price": 204,
+    "price_text": "$204",
     "airline": "American",
-    "stops": 0,
-    "duration": "3 hr 15 min",
-    "departure_description": "6:00 AM on Wed, Jan 13",
+    "stops": 2,
+    "duration": "15 hr 16 min",
+    "departure_description": "3:59 PM on Wed, Jan 13",
     "verdict": "high",
     "band_low": 25,
-    "band_high": 110,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMTMiIAoDSkZLEgoyMDI3LTAxLTEzGgNNSUEqAkFBMgQxMDE3agUSA0pGS3IFEgNNSUFCAQFIAZgBAg&curr=usd"
+    "band_high": 130,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gn8SCjIwMjctMDEtMTMiIAoDSkZLEgoyMDI3LTAxLTEzGgNDTFQqAkFBMgQyNjI0Ih8KA0NMVBIKMjAyNy0wMS0xMxoDTUNPKgJBQTIDNzI2IiAKA01DTxIKMjAyNy0wMS0xNBoDTUlBKgJBQTIEMzI2MWoFEgNKRktyBRIDTUlBQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:07.539Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:23:53.435Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-20",
@@ -171,19 +171,19 @@
    "date": "2027-01-27",
    "status": "ok",
    "fare": {
-    "price": 200,
-    "price_text": "$200",
+    "price": 204,
+    "price_text": "$204",
     "airline": "American",
-    "stops": 0,
-    "duration": "3 hr 15 min",
-    "departure_description": "6:00 AM on Wed, Jan 27",
+    "stops": 2,
+    "duration": "16 hr 16 min",
+    "departure_description": "3:59 PM on Wed, Jan 27",
     "verdict": "high",
     "band_low": 25,
-    "band_high": 110,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMjciIAoDSkZLEgoyMDI3LTAxLTI3GgNNSUEqAkFBMgQxMDE3agUSA0pGS3IFEgNNSUFCAQFIAZgBAg&curr=usd"
+    "band_high": 130,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gn8SCjIwMjctMDEtMjciIAoDSkZLEgoyMDI3LTAxLTI3GgNDTFQqAkFBMgQyNjI0Ih8KA0NMVBIKMjAyNy0wMS0yNxoDTUNPKgJBQTIDNzI2IiAKA01DTxIKMjAyNy0wMS0yOBoDTUlBKgJBQTIEMTU0MWoFEgNKRktyBRIDTUlBQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:09.409Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:23:53.435Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-03",
@@ -207,19 +207,19 @@
    "date": "2027-02-10",
    "status": "ok",
    "fare": {
-    "price": 200,
-    "price_text": "$200",
-    "airline": "Delta",
+    "price": 205,
+    "price_text": "$205",
+    "airline": "American",
     "stops": 0,
-    "duration": "3 hr 20 min",
-    "departure_description": "7:00 AM on Wed, Feb 10",
+    "duration": "3 hr 23 min",
+    "departure_description": "12:56 PM on Wed, Feb 10",
     "verdict": "high",
     "band_low": 25,
     "band_high": 155,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDItMTAiIAoDSkZLEgoyMDI3LTAyLTEwGgNNSUEqAkRMMgQxNTI4agUSA0pGS3IFEgNNSUFCAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMTAiHwoDSkZLEgoyMDI3LTAyLTEwGgNNSUEqAkFBMgM2ODhqBRIDSkZLcgUSA01JQUIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:09.409Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:23:53.435Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-17",
@@ -243,19 +243,19 @@
    "date": "2027-02-24",
    "status": "ok",
    "fare": {
-    "price": 200,
-    "price_text": "$200",
-    "airline": "Delta",
-    "stops": 0,
-    "duration": "3 hr 15 min",
-    "departure_description": "11:05 AM on Wed, Feb 24",
+    "price": 189,
+    "price_text": "$189",
+    "airline": "American | Operated by Republic Airways as American Eagle",
+    "stops": 1,
+    "duration": "35 hr 25 min",
+    "departure_description": "10:30 AM on Wed, Feb 24",
     "verdict": "high",
     "band_low": 25,
     "band_high": 155,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDItMjQiIAoDSkZLEgoyMDI3LTAyLTI0GgNNSUEqAkRMMgQxNTE0agUSA0pGS3IFEgNNSUFCAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDItMjQiIAoDSkZLEgoyMDI3LTAyLTI0GgNDTEUqAkFBMgQ0MzY3Ih8KA0NMRRIKMjAyNy0wMi0yNRoDTUlBKgJBQTIDNjU5agUSA0pGS3IFEgNNSUFCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:09.409Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:23:53.435Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-03",
@@ -279,19 +279,19 @@
    "date": "2027-03-10",
    "status": "ok",
    "fare": {
-    "price": 200,
-    "price_text": "$200",
-    "airline": "Delta",
-    "stops": 0,
-    "duration": "3 hr 15 min",
-    "departure_description": "11:40 AM on Wed, Mar 10",
+    "price": 189,
+    "price_text": "$189",
+    "airline": "American | Operated by Republic Airways as American Eagle",
+    "stops": 1,
+    "duration": "35 hr 25 min",
+    "departure_description": "10:30 AM on Wed, Mar 10",
     "verdict": "high",
     "band_low": 35,
     "band_high": 170,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDMtMTAiIAoDSkZLEgoyMDI3LTAzLTEwGgNNSUEqAkRMMgQxNTE0agUSA0pGS3IFEgNNSUFCAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMTAiIAoDSkZLEgoyMDI3LTAzLTEwGgNDTEUqAkFBMgQ0MzY3Ih8KA0NMRRIKMjAyNy0wMy0xMRoDTUlBKgJBQTIDNjU5agUSA0pGS3IFEgNNSUFCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:09.409Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:23:53.435Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-17",
@@ -315,8 +315,8 @@
    "date": "2027-03-24",
    "status": "ok",
    "fare": {
-    "price": 200,
-    "price_text": "$200",
+    "price": 205,
+    "price_text": "$205",
     "airline": "Delta",
     "stops": 0,
     "duration": "3 hr 15 min",
@@ -326,8 +326,8 @@
     "band_high": 170,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDMtMjQiIAoDSkZLEgoyMDI3LTAzLTI0GgNNSUEqAkRMMgQxNTE0agUSA0pGS3IFEgNNSUFCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:08.660Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:14.637Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-31",
@@ -351,19 +351,19 @@
    "date": "2027-04-07",
    "status": "ok",
    "fare": {
-    "price": 200,
-    "price_text": "$200",
+    "price": 205,
+    "price_text": "$205",
     "airline": "American",
     "stops": 0,
-    "duration": "3 hr 19 min",
-    "departure_description": "10:30 AM on Wed, Apr 7",
+    "duration": "3 hr 23 min",
+    "departure_description": "8:30 AM on Wed, Apr 7",
     "verdict": "high",
     "band_low": 70,
     "band_high": 170,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDQtMDciIAoDSkZLEgoyMDI3LTA0LTA3GgNNSUEqAkFBMgQxMDMyagUSA0pGS3IFEgNNSUFCAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDQtMDciIAoDSkZLEgoyMDI3LTA0LTA3GgNNSUEqAkFBMgQyMDE3agUSA0pGS3IFEgNNSUFCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:08.660Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:14.637Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-14",
@@ -387,19 +387,19 @@
    "date": "2027-04-21",
    "status": "ok",
    "fare": {
-    "price": 200,
-    "price_text": "$200",
+    "price": 205,
+    "price_text": "$205",
     "airline": "American",
     "stops": 0,
-    "duration": "3 hr 18 min",
-    "departure_description": "11:55 AM on Wed, Apr 21",
+    "duration": "3 hr 23 min",
+    "departure_description": "8:30 AM on Wed, Apr 21",
     "verdict": "high",
     "band_low": 70,
     "band_high": 170,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDQtMjEiIAoDSkZLEgoyMDI3LTA0LTIxGgNNSUEqAkFBMgQyMzkwagUSA0pGS3IFEgNNSUFCAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDQtMjEiIAoDSkZLEgoyMDI3LTA0LTIxGgNNSUEqAkFBMgQyMDE3agUSA0pGS3IFEgNNSUFCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:08.660Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:14.637Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-28",

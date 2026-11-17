@@ -35,11 +35,11 @@
     "departure_description": "7:25 PM on Wed, Dec 2",
     "verdict": "typical",
     "band_low": 80,
-    "band_high": 105,
+    "band_high": 110,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjYtMTItMDIiHgoDU0lOEgoyMDI2LTEyLTAyGgNEUFMqAkpRMgI4N2oFEgNTSU5yBRIDRFBTQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:15:18.324Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:22.190Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-09",
@@ -63,19 +63,19 @@
    "date": "2026-12-16",
    "status": "ok",
    "fare": {
-    "price": 90,
-    "price_text": "$90",
+    "price": 101,
+    "price_text": "$101",
     "airline": "Jetstar | Qantas",
     "stops": 0,
     "duration": "2 hr 50 min",
     "departure_description": "7:25 PM on Wed, Dec 16",
     "verdict": "typical",
     "band_low": 80,
-    "band_high": 105,
+    "band_high": 110,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjYtMTItMTYiHgoDU0lOEgoyMDI2LTEyLTE2GgNEUFMqAkpRMgI4N2oFEgNTSU5yBRIDRFBTQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:15:18.324Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:22.190Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-23",
@@ -107,11 +107,11 @@
     "departure_description": "4:05 PM on Wed, Dec 30",
     "verdict": "typical",
     "band_low": 80,
-    "band_high": 105,
+    "band_high": 110,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMzAiHwoDU0lOEgoyMDI2LTEyLTMwGgNEUFMqAlRSMgMyODJqBRIDU0lOcgUSA0RQU0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:15:18.324Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:22.190Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-06",
@@ -135,19 +135,19 @@
    "date": "2027-01-13",
    "status": "ok",
    "fare": {
-    "price": 80,
-    "price_text": "$80",
+    "price": 91,
+    "price_text": "$91",
     "airline": "Jetstar | Qantas",
     "stops": 0,
     "duration": "2 hr 50 min",
     "departure_description": "7:25 PM on Wed, Jan 13",
-    "verdict": "typical",
+    "verdict": "high",
     "band_low": 70,
     "band_high": 80,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDEtMTMiHgoDU0lOEgoyMDI3LTAxLTEzGgNEUFMqAkpRMgI4N2oFEgNTSU5yBRIDRFBTQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:15:18.324Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:22.190Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-20",
@@ -171,19 +171,19 @@
    "date": "2027-01-27",
    "status": "ok",
    "fare": {
-    "price": 80,
-    "price_text": "$80",
-    "airline": "Jetstar | Qantas",
+    "price": 94,
+    "price_text": "$94",
+    "airline": "Scoot",
     "stops": 0,
-    "duration": "2 hr 50 min",
-    "departure_description": "7:25 PM on Wed, Jan 27",
-    "verdict": "typical",
+    "duration": "2 hr 55 min",
+    "departure_description": "4:05 PM on Wed, Jan 27",
+    "verdict": "high",
     "band_low": 70,
     "band_high": 80,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDEtMjciHgoDU0lOEgoyMDI3LTAxLTI3GgNEUFMqAkpRMgI4N2oFEgNTSU5yBRIDRFBTQgEBSAGYAQI&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMjciHwoDU0lOEgoyMDI3LTAxLTI3GgNEUFMqAlRSMgMyODJqBRIDU0lOcgUSA0RQU0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:15:17.771Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:22.190Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-03",
@@ -207,8 +207,8 @@
    "date": "2027-02-10",
    "status": "ok",
    "fare": {
-    "price": 80,
-    "price_text": "$80",
+    "price": 91,
+    "price_text": "$91",
     "airline": "Jetstar | Qantas",
     "stops": 0,
     "duration": "2 hr 50 min",
@@ -218,8 +218,8 @@
     "band_high": 105,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDItMTAiHgoDU0lOEgoyMDI3LTAyLTEwGgNEUFMqAkpRMgI4N2oFEgNTSU5yBRIDRFBTQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:15:17.771Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:22.190Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-17",
@@ -243,8 +243,8 @@
    "date": "2027-02-24",
    "status": "ok",
    "fare": {
-    "price": 80,
-    "price_text": "$80",
+    "price": 91,
+    "price_text": "$91",
     "airline": "Jetstar | Qantas",
     "stops": 0,
     "duration": "2 hr 50 min",
@@ -254,8 +254,8 @@
     "band_high": 105,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDItMjQiHgoDU0lOEgoyMDI3LTAyLTI0GgNEUFMqAkpRMgI4N2oFEgNTSU5yBRIDRFBTQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:15:17.771Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:22.190Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-03",
@@ -279,19 +279,19 @@
    "date": "2027-03-10",
    "status": "ok",
    "fare": {
-    "price": 80,
-    "price_text": "$80",
+    "price": 91,
+    "price_text": "$91",
     "airline": "Jetstar | Qantas",
     "stops": 0,
     "duration": "2 hr 50 min",
     "departure_description": "7:25 PM on Wed, Mar 10",
-    "verdict": "typical",
+    "verdict": "high",
     "band_low": 70,
     "band_high": 90,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDMtMTAiHgoDU0lOEgoyMDI3LTAzLTEwGgNEUFMqAkpRMgI4N2oFEgNTSU5yBRIDRFBTQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:15:17.771Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:22.190Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-17",
@@ -326,8 +326,8 @@
     "band_high": 90,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMjQiHwoDU0lOEgoyMDI3LTAzLTI0GgNEUFMqAlRSMgMyODJqBRIDU0lOcgUSA0RQU0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:15:16.996Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:16.889Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-31",
@@ -362,8 +362,8 @@
     "band_high": 95,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMDciHwoDU0lOEgoyMDI3LTA0LTA3GgNEUFMqAlRSMgMyODJqBRIDU0lOcgUSA0RQU0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:15:16.996Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:16.889Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-14",
@@ -398,8 +398,8 @@
     "band_high": 95,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMjEiHwoDU0lOEgoyMDI3LTA0LTIxGgNEUFMqAlRSMgMyODJqBRIDU0lOcgUSA0RQU0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:15:16.996Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:16.889Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-28",

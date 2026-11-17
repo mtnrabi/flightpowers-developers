@@ -27,19 +27,19 @@
    "date": "2026-12-02",
    "status": "ok",
    "fare": {
-    "price": 467,
-    "price_text": "$467",
-    "airline": "United | Virgin Australia",
-    "stops": 0,
-    "duration": "13 hr 45 min",
-    "departure_description": "11:20 AM on Wed, Dec 2",
+    "price": 354,
+    "price_text": "$354",
+    "airline": "Fiji Airways",
+    "stops": 1,
+    "duration": "25 hr",
+    "departure_description": "6:00 AM on Wed, Dec 2",
     "verdict": "low",
-    "band_low": 570,
-    "band_high": 980,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDIiHwoDU1lEEgoyMDI2LTEyLTAyGgNMQVgqAlVBMgM4NDJqBRIDU1lEcgUSA0xBWEIBAUgBmAEC&curr=usd"
+    "band_low": 530,
+    "band_high": 960,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDIiHwoDU1lEEgoyMDI2LTEyLTAyGgNOQU4qAkZKMgM5MTQiHwoDTkFOEgoyMDI2LTEyLTAyGgNMQVgqAkZKMgM4MTBqBRIDU1lEcgUSA0xBWEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:16:53.686Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:29:14.795Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-09",
@@ -63,19 +63,19 @@
    "date": "2026-12-16",
    "status": "ok",
    "fare": {
-    "price": 968,
-    "price_text": "$968",
+    "price": 953,
+    "price_text": "$953",
     "airline": "Delta",
     "stops": 0,
     "duration": "13 hr 55 min",
     "departure_description": "10:40 AM on Wed, Dec 16",
     "verdict": "typical",
-    "band_low": 570,
-    "band_high": 980,
+    "band_low": 530,
+    "band_high": 960,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjYtMTItMTYiHgoDU1lEEgoyMDI2LTEyLTE2GgNMQVgqAkRMMgI0MGoFEgNTWURyBRIDTEFYQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:16:53.686Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:29:14.795Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-23",
@@ -99,19 +99,19 @@
    "date": "2026-12-30",
    "status": "ok",
    "fare": {
-    "price": 907,
-    "price_text": "$907",
-    "airline": "United | Virgin Australia",
-    "stops": 0,
-    "duration": "13 hr 45 min",
-    "departure_description": "11:20 AM on Wed, Dec 30",
-    "verdict": "typical",
-    "band_low": 570,
-    "band_high": 980,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMzAiHwoDU1lEEgoyMDI2LTEyLTMwGgNMQVgqAlVBMgM4NDJqBRIDU1lEcgUSA0xBWEIBAUgBmAEC&curr=usd"
+    "price": 1014,
+    "price_text": "$1014",
+    "airline": "Jetstar, Delta",
+    "stops": 1,
+    "duration": "19 hr",
+    "departure_description": "6:00 AM on Wed, Dec 30",
+    "verdict": "high",
+    "band_low": 530,
+    "band_high": 960,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjYtMTItMzAiHwoDU1lEEgoyMDI2LTEyLTMwGgNNRUwqAkpRMgM1MDEiHgoDTUVMEgoyMDI2LTEyLTMwGgNMQVgqAkRMMgIxMmoFEgNTWURyBRIDTEFYQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:16:53.686Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:29:14.795Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-06",
@@ -135,19 +135,19 @@
    "date": "2027-01-13",
    "status": "ok",
    "fare": {
-    "price": 763,
-    "price_text": "$763",
-    "airline": "Delta",
-    "stops": 0,
-    "duration": "13 hr 55 min",
-    "departure_description": "10:40 AM on Wed, Jan 13",
+    "price": 686,
+    "price_text": "$686",
+    "airline": "Fiji Airways",
+    "stops": 1,
+    "duration": "16 hr 5 min",
+    "departure_description": "2:55 PM on Wed, Jan 13",
     "verdict": "typical",
-    "band_low": 540,
+    "band_low": 530,
     "band_high": 1450,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDEtMTMiHgoDU1lEEgoyMDI3LTAxLTEzGgNMQVgqAkRMMgI0MGoFEgNTWURyBRIDTEFYQgEBSAGYAQI&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMTMiHwoDU1lEEgoyMDI3LTAxLTEzGgNOQU4qAkZKMgM5MTYiHwoDTkFOEgoyMDI3LTAxLTEzGgNMQVgqAkZKMgM4MTBqBRIDU1lEcgUSA0xBWEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:16:53.686Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:29:14.795Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-20",
@@ -171,19 +171,19 @@
    "date": "2027-01-27",
    "status": "ok",
    "fare": {
-    "price": 467,
-    "price_text": "$467",
-    "airline": "United | Virgin Australia",
-    "stops": 0,
-    "duration": "13 hr 45 min",
-    "departure_description": "11:20 AM on Wed, Jan 27",
+    "price": 354,
+    "price_text": "$354",
+    "airline": "Fiji Airways",
+    "stops": 1,
+    "duration": "17 hr",
+    "departure_description": "2:00 PM on Wed, Jan 27",
     "verdict": "low",
-    "band_low": 540,
+    "band_low": 530,
     "band_high": 1450,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMjciHwoDU1lEEgoyMDI3LTAxLTI3GgNMQVgqAlVBMgM4NDJqBRIDU1lEcgUSA0xBWEIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMjciHwoDU1lEEgoyMDI3LTAxLTI3GgNOQU4qAkZKMgM5MTAiHwoDTkFOEgoyMDI3LTAxLTI3GgNMQVgqAkZKMgM4MTBqBRIDU1lEcgUSA0xBWEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:16:48.964Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:29:14.795Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-03",
@@ -207,19 +207,19 @@
    "date": "2027-02-10",
    "status": "ok",
    "fare": {
-    "price": 467,
-    "price_text": "$467",
-    "airline": "United | Virgin Australia",
-    "stops": 0,
-    "duration": "13 hr 45 min",
-    "departure_description": "11:20 AM on Wed, Feb 10",
-    "verdict": "typical",
-    "band_low": 395,
-    "band_high": 600,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMTAiHwoDU1lEEgoyMDI3LTAyLTEwGgNMQVgqAlVBMgM4NDJqBRIDU1lEcgUSA0xBWEIBAUgBmAEC&curr=usd"
+    "price": 354,
+    "price_text": "$354",
+    "airline": "Fiji Airways",
+    "stops": 1,
+    "duration": "17 hr",
+    "departure_description": "2:00 PM on Wed, Feb 10",
+    "verdict": "low",
+    "band_low": 390,
+    "band_high": 590,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMTAiHwoDU1lEEgoyMDI3LTAyLTEwGgNOQU4qAkZKMgM5MTAiHwoDTkFOEgoyMDI3LTAyLTEwGgNMQVgqAkZKMgM4MTBqBRIDU1lEcgUSA0xBWEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:16:48.964Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:29:14.795Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-17",
@@ -243,19 +243,19 @@
    "date": "2027-02-24",
    "status": "ok",
    "fare": {
-    "price": 530,
-    "price_text": "$530",
-    "airline": "Qantas, American",
+    "price": 537,
+    "price_text": "$537",
+    "airline": "Jetstar, Delta",
     "stops": 1,
-    "duration": "18 hr 55 min",
-    "departure_description": "7:05 AM on Wed, Feb 24",
+    "duration": "19 hr 2 min",
+    "departure_description": "6:00 AM on Wed, Feb 24",
     "verdict": "typical",
-    "band_low": 395,
-    "band_high": 600,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjctMDItMjQiHwoDU1lEEgoyMDI3LTAyLTI0GgNBS0wqAlFGMgMxNDEiHgoDQUtMEgoyMDI3LTAyLTI0GgNMQVgqAkFBMgI4MmoFEgNTWURyBRIDTEFYQgEBSAGYAQI&curr=usd"
+    "band_low": 390,
+    "band_high": 590,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjctMDItMjQiHwoDU1lEEgoyMDI3LTAyLTI0GgNNRUwqAkpRMgM1MDEiHgoDTUVMEgoyMDI3LTAyLTI0GgNMQVgqAkRMMgIxMmoFEgNTWURyBRIDTEFYQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:16:48.964Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:29:14.795Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-03",
@@ -279,19 +279,19 @@
    "date": "2027-03-10",
    "status": "ok",
    "fare": {
-    "price": 467,
-    "price_text": "$467",
-    "airline": "United | Virgin Australia",
-    "stops": 0,
-    "duration": "13 hr 40 min",
-    "departure_description": "11:20 AM on Wed, Mar 10",
-    "verdict": "typical",
-    "band_low": 395,
-    "band_high": 830,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMTAiHwoDU1lEEgoyMDI3LTAzLTEwGgNMQVgqAlVBMgM4NDJqBRIDU1lEcgUSA0xBWEIBAUgBmAEC&curr=usd"
+    "price": 354,
+    "price_text": "$354",
+    "airline": "Fiji Airways",
+    "stops": 1,
+    "duration": "17 hr",
+    "departure_description": "2:00 PM on Wed, Mar 10",
+    "verdict": "low",
+    "band_low": 390,
+    "band_high": 820,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTAiHwoDU1lEEgoyMDI3LTAzLTEwGgNOQU4qAkZKMgM5MTAiHwoDTkFOEgoyMDI3LTAzLTEwGgNMQVgqAkZKMgM4MTBqBRIDU1lEcgUSA0xBWEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:16:48.964Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:29:14.795Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-17",
@@ -315,19 +315,19 @@
    "date": "2027-03-24",
    "status": "ok",
    "fare": {
-    "price": 467,
-    "price_text": "$467",
-    "airline": "Delta",
+    "price": 460,
+    "price_text": "$460",
+    "airline": "United | Virgin Australia",
     "stops": 0,
-    "duration": "13 hr 54 min",
-    "departure_description": "9:40 AM on Wed, Mar 24",
+    "duration": "13 hr 40 min",
+    "departure_description": "10:20 AM on Wed, Mar 24",
     "verdict": "typical",
-    "band_low": 395,
-    "band_high": 830,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDMtMjQiHgoDU1lEEgoyMDI3LTAzLTI0GgNMQVgqAkRMMgI0MGoFEgNTWURyBRIDTEFYQgEBSAGYAQI&curr=usd"
+    "band_low": 390,
+    "band_high": 820,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMjQiHwoDU1lEEgoyMDI3LTAzLTI0GgNMQVgqAlVBMgM4NDJqBRIDU1lEcgUSA0xBWEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:16:50.296Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:59.152Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-31",
@@ -351,19 +351,19 @@
    "date": "2027-04-07",
    "status": "ok",
    "fare": {
-    "price": 467,
-    "price_text": "$467",
+    "price": 466,
+    "price_text": "$466",
     "airline": "United | Virgin Australia",
-    "stops": 0,
-    "duration": "13 hr 40 min",
-    "departure_description": "9:30 AM on Wed, Apr 7",
+    "stops": 1,
+    "duration": "17 hr 13 min",
+    "departure_description": "10:20 AM on Wed, Apr 7",
     "verdict": "low",
-    "band_low": 530,
+    "band_low": 520,
     "band_high": 1200,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMDciHwoDU1lEEgoyMDI3LTA0LTA3GgNMQVgqAlVBMgM4NDJqBRIDU1lEcgUSA0xBWEIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDQtMDciHwoDU1lEEgoyMDI3LTA0LTA3GgNTRk8qAlVBMgM4NzAiIAoDU0ZPEgoyMDI3LTA0LTA3GgNMQVgqAlVBMgQxNDU3agUSA1NZRHIFEgNMQVhCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:16:50.296Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:59.152Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-14",
@@ -387,19 +387,19 @@
    "date": "2027-04-21",
    "status": "ok",
    "fare": {
-    "price": 490,
-    "price_text": "$490",
-    "airline": "American | Qantas, Alaska",
-    "stops": 0,
-    "duration": "13 hr 50 min",
-    "departure_description": "9:10 AM on Wed, Apr 21",
+    "price": 466,
+    "price_text": "$466",
+    "airline": "United | Virgin Australia",
+    "stops": 1,
+    "duration": "17 hr 13 min",
+    "departure_description": "10:20 AM on Wed, Apr 21",
     "verdict": "low",
-    "band_low": 530,
+    "band_low": 520,
     "band_high": 1200,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDQtMjEiHgoDU1lEEgoyMDI3LTA0LTIxGgNMQVgqAkFBMgI3MmoFEgNTWURyBRIDTEFYQgEBSAGYAQI&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDQtMjEiHwoDU1lEEgoyMDI3LTA0LTIxGgNTRk8qAlVBMgM4NzAiIAoDU0ZPEgoyMDI3LTA0LTIxGgNMQVgqAlVBMgQxNDU3agUSA1NZRHIFEgNMQVhCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:16:50.296Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:59.152Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-28",

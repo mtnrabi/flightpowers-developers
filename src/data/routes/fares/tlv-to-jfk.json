@@ -27,19 +27,19 @@
    "date": "2026-12-02",
    "status": "ok",
    "fare": {
-    "price": 651,
-    "price_text": "$651",
-    "airline": "LOTOperated by Hello Jets, EUROATLANTIC Airways",
+    "price": 648,
+    "price_text": "$648",
+    "airline": "LOTOperated by EUROATLANTIC Airways",
     "stops": 1,
-    "duration": "16 hr 50 min",
-    "departure_description": "10:45 AM on Wed, Dec 2",
+    "duration": "22 hr 15 min",
+    "departure_description": "5:20 AM on Wed, Dec 2",
     "verdict": "typical",
-    "band_low": 435,
+    "band_low": 460,
     "band_high": 750,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjYtMTItMDIiHwoDVExWEgoyMDI2LTEyLTAyGgNXQVcqAkxPMgMxNTYiHgoDV0FXEgoyMDI2LTEyLTAyGgNKRksqAkxPMgIyNmoFEgNUTFZyBRIDSkZLQgEBSAGYAQI&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjYtMTItMDIiHwoDVExWEgoyMDI2LTEyLTAyGgNXQVcqAkxPMgMxNTIiHgoDV0FXEgoyMDI2LTEyLTAyGgNKRksqAkxPMgIyNmoFEgNUTFZyBRIDSkZLQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:17.044Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:06.595Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-09",
@@ -68,14 +68,14 @@
     "airline": "El Al | Delta",
     "stops": 0,
     "duration": "12 hr",
-    "departure_description": "1:00 PM on Wed, Dec 16",
+    "departure_description": "9:05 AM on Wed, Dec 16",
     "verdict": "typical",
-    "band_low": 435,
+    "band_low": 460,
     "band_high": 750,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjkSCjIwMjYtMTItMTYiHQoDVExWEgoyMDI2LTEyLTE2GgNKRksqAkxZMgE3agUSA1RMVnIFEgNKRktCAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjkSCjIwMjYtMTItMTYiHQoDVExWEgoyMDI2LTEyLTE2GgNKRksqAkxZMgE5agUSA1RMVnIFEgNKRktCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:17.044Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:06.595Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-23",
@@ -99,19 +99,19 @@
    "date": "2026-12-30",
    "status": "ok",
    "fare": {
-    "price": 651,
-    "price_text": "$651",
-    "airline": "LOTOperated by Hello Jets, EUROATLANTIC Airways",
-    "stops": 1,
-    "duration": "16 hr 50 min",
-    "departure_description": "10:45 AM on Wed, Dec 30",
+    "price": 722,
+    "price_text": "$722",
+    "airline": "El Al | Delta",
+    "stops": 0,
+    "duration": "12 hr",
+    "departure_description": "9:05 AM on Wed, Dec 30",
     "verdict": "typical",
-    "band_low": 435,
+    "band_low": 460,
     "band_high": 750,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjYtMTItMzAiHwoDVExWEgoyMDI2LTEyLTMwGgNXQVcqAkxPMgMxNTYiHgoDV0FXEgoyMDI2LTEyLTMwGgNKRksqAkxPMgIyNmoFEgNUTFZyBRIDSkZLQgEBSAGYAQI&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjkSCjIwMjYtMTItMzAiHQoDVExWEgoyMDI2LTEyLTMwGgNKRksqAkxZMgE5agUSA1RMVnIFEgNKRktCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:17.044Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:06.595Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-06",
@@ -137,17 +137,17 @@
    "fare": {
     "price": 516,
     "price_text": "$516",
-    "airline": "Iberia | American, Finnair | Operated by Iberia Express",
+    "airline": "Iberia | American, Finnair, British Airways | Operated by Iberia Express",
     "stops": 1,
     "duration": "17 hr 5 min",
     "departure_description": "5:30 AM on Wed, Jan 13",
     "verdict": "typical",
     "band_low": 465,
-    "band_high": 1100,
+    "band_high": 1050,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDEtMTMiIAoDVExWEgoyMDI3LTAxLTEzGgNNQUQqAklCMgQxODc0Ih8KA01BRBIKMjAyNy0wMS0xMxoDSkZLKgJJQjIDMjExagUSA1RMVnIFEgNKRktCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:17.044Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:06.595Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-20",
@@ -173,17 +173,17 @@
    "fare": {
     "price": 516,
     "price_text": "$516",
-    "airline": "Iberia | American, Finnair | Operated by Iberia Express",
+    "airline": "Iberia | American | Operated by Iberia Express",
     "stops": 1,
     "duration": "17 hr 5 min",
     "departure_description": "5:30 AM on Wed, Jan 27",
     "verdict": "typical",
     "band_low": 465,
-    "band_high": 1100,
+    "band_high": 1050,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDEtMjciIAoDVExWEgoyMDI3LTAxLTI3GgNNQUQqAklCMgQxODc0Ih8KA01BRBIKMjAyNy0wMS0yNxoDSkZLKgJJQjIDMjExagUSA1RMVnIFEgNKRktCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:06.595Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-03",
@@ -207,19 +207,19 @@
    "date": "2027-02-10",
    "status": "ok",
    "fare": {
-    "price": 538,
-    "price_text": "$538",
-    "airline": "British Airways, Aer Lingus",
-    "stops": 2,
-    "duration": "20 hr 19 min",
-    "departure_description": "6:10 AM on Wed, Feb 10",
+    "price": 516,
+    "price_text": "$516",
+    "airline": "Iberia | American, Finnair, British Airways | Operated by Iberia Express",
+    "stops": 1,
+    "duration": "17 hr 5 min",
+    "departure_description": "5:30 AM on Wed, Feb 10",
     "verdict": "typical",
     "band_low": 405,
     "band_high": 590,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gn0SCjIwMjctMDItMTAiHwoDVExWEgoyMDI3LTAyLTEwGgNMSFIqAkJBMgM0MDUiHwoDTEhSEgoyMDI3LTAyLTEwGgNEVUIqAkJBMgM4MjYiHwoDRFVCEgoyMDI3LTAyLTEwGgNKRksqAkVJMgMxMDdqBRIDVExWcgUSA0pGS0IBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDItMTAiIAoDVExWEgoyMDI3LTAyLTEwGgNNQUQqAklCMgQxODc0Ih8KA01BRBIKMjAyNy0wMi0xMBoDSkZLKgJJQjIDMjExagUSA1RMVnIFEgNKRktCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:06.595Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-17",
@@ -245,7 +245,7 @@
    "fare": {
     "price": 516,
     "price_text": "$516",
-    "airline": "Iberia | American, Finnair | Operated by Iberia Express",
+    "airline": "Iberia | American, Finnair, British Airways | Operated by Iberia Express",
     "stops": 1,
     "duration": "17 hr 5 min",
     "departure_description": "5:30 AM on Wed, Feb 24",
@@ -254,8 +254,8 @@
     "band_high": 590,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDItMjQiIAoDVExWEgoyMDI3LTAyLTI0GgNNQUQqAklCMgQxODc0Ih8KA01BRBIKMjAyNy0wMi0yNBoDSkZLKgJJQjIDMjExagUSA1RMVnIFEgNKRktCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:06.595Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-03",
@@ -281,7 +281,7 @@
    "fare": {
     "price": 516,
     "price_text": "$516",
-    "airline": "Iberia | American, Finnair | Operated by Iberia Express",
+    "airline": "Iberia | American | Operated by Iberia Express",
     "stops": 1,
     "duration": "20 hr 45 min",
     "departure_description": "5:30 AM on Wed, Mar 10",
@@ -290,8 +290,8 @@
     "band_high": 870,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMTAiIAoDVExWEgoyMDI3LTAzLTEwGgNNQUQqAklCMgQxODc0Ih8KA01BRBIKMjAyNy0wMy0xMBoDSkZLKgJJQjIDMzI1agUSA1RMVnIFEgNKRktCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:06.595Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-17",
@@ -317,7 +317,7 @@
    "fare": {
     "price": 614,
     "price_text": "$614",
-    "airline": "Iberia | American, Finnair | Operated by Iberia Express",
+    "airline": "Iberia | American | Operated by Iberia Express",
     "stops": 1,
     "duration": "16 hr 55 min",
     "departure_description": "5:30 AM on Wed, Mar 24",
@@ -326,8 +326,8 @@
     "band_high": 870,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMjQiIAoDVExWEgoyMDI3LTAzLTI0GgNNQUQqAklCMgQxODc0Ih8KA01BRBIKMjAyNy0wMy0yNBoDSkZLKgJJQjIDMjExagUSA1RMVnIFEgNKRktCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:12.038Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:26.610Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-31",
@@ -351,8 +351,8 @@
    "date": "2027-04-07",
    "status": "ok",
    "fare": {
-    "price": 552,
-    "price_text": "$552",
+    "price": 551,
+    "price_text": "$551",
     "airline": "Air Europa",
     "stops": 1,
     "duration": "32 hr 40 min",
@@ -362,8 +362,8 @@
     "band_high": 810,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMDciIAoDVExWEgoyMDI3LTA0LTA3GgNNQUQqAlVYMgQxMzAyIh4KA01BRBIKMjAyNy0wNC0wOBoDSkZLKgJVWDICOTFqBRIDVExWcgUSA0pGS0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:12.038Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:26.610Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-14",
@@ -398,8 +398,8 @@
     "band_high": 810,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDQtMjEiIAoDVExWEgoyMDI3LTA0LTIxGgNMSVMqAlRQMgQxNjA0Ih8KA0xJUxIKMjAyNy0wNC0yMRoDSkZLKgJUUDIDMjA5agUSA1RMVnIFEgNKRktCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:12.038Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:26.610Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-28",

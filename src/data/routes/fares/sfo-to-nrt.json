@@ -27,19 +27,19 @@
    "date": "2026-12-02",
    "status": "ok",
    "fare": {
-    "price": 359,
-    "price_text": "$359",
+    "price": 484,
+    "price_text": "$484",
     "airline": "ZIPAIR Tokyo",
     "stops": 0,
     "duration": "11 hr 20 min",
     "departure_description": "3:35 PM on Wed, Dec 2",
     "verdict": "typical",
-    "band_low": 355,
-    "band_high": 1300,
+    "band_low": 380,
+    "band_high": 1350,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjYtMTItMDIiHgoDU0ZPEgoyMDI2LTEyLTAyGgNOUlQqAlpHMgIyNWoFEgNTRk9yBRIDTlJUQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:05.385Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-09",
@@ -63,19 +63,19 @@
    "date": "2026-12-16",
    "status": "ok",
    "fare": {
-    "price": 1215,
-    "price_text": "$1215",
-    "airline": "Delta, Korean Air",
-    "stops": 2,
-    "duration": "22 hr 25 min",
-    "departure_description": "6:00 AM on Wed, Dec 16",
-    "verdict": "typical",
-    "band_low": 355,
-    "band_high": 1300,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gn4SCjIwMjYtMTItMTYiIAoDU0ZPEgoyMDI2LTEyLTE2GgNTTEMqAkRMMgQxMzMxIh8KA1NMQxIKMjAyNi0xMi0xNhoDSUNOKgJETDIDMTczIh8KA0lDThIKMjAyNi0xMi0xNxoDTlJUKgJLRTIDNzA1agUSA1NGT3IFEgNOUlRCAQFIAZgBAg&curr=usd"
+    "price": 1488,
+    "price_text": "$1488",
+    "airline": "United",
+    "stops": 1,
+    "duration": "15 hr 55 min",
+    "departure_description": "7:00 AM on Wed, Dec 16",
+    "verdict": "high",
+    "band_low": 380,
+    "band_high": 1350,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMTYiIAoDU0ZPEgoyMDI2LTEyLTE2GgNMQVgqAlVBMgQxMjYwIh4KA0xBWBIKMjAyNi0xMi0xNhoDTlJUKgJVQTICMzJqBRIDU0ZPcgUSA05SVEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:05.385Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-23",
@@ -99,19 +99,19 @@
    "date": "2026-12-30",
    "status": "ok",
    "fare": {
-    "price": 459,
-    "price_text": "$459",
+    "price": 409,
+    "price_text": "$409",
     "airline": "ZIPAIR Tokyo",
     "stops": 0,
     "duration": "11 hr 20 min",
     "departure_description": "3:35 PM on Wed, Dec 30",
     "verdict": "typical",
-    "band_low": 355,
-    "band_high": 1300,
+    "band_low": 380,
+    "band_high": 1350,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjYtMTItMzAiHgoDU0ZPEgoyMDI2LTEyLTMwGgNOUlQqAlpHMgIyNWoFEgNTRk9yBRIDTlJUQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:05.385Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-06",
@@ -135,19 +135,19 @@
    "date": "2027-01-13",
    "status": "ok",
    "fare": {
-    "price": 459,
-    "price_text": "$459",
+    "price": 409,
+    "price_text": "$409",
     "airline": "ZIPAIR Tokyo",
     "stops": 0,
     "duration": "11 hr 10 min",
     "departure_description": "3:45 PM on Wed, Jan 13",
     "verdict": "typical",
     "band_low": 280,
-    "band_high": 480,
+    "band_high": 485,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDEtMTMiHgoDU0ZPEgoyMDI3LTAxLTEzGgNOUlQqAlpHMgIyNWoFEgNTRk9yBRIDTlJUQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:05.385Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-20",
@@ -179,11 +179,11 @@
     "departure_description": "3:45 PM on Wed, Jan 27",
     "verdict": "typical",
     "band_low": 280,
-    "band_high": 480,
+    "band_high": 485,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDEtMjciHgoDU0ZPEgoyMDI3LTAxLTI3GgNOUlQqAlpHMgIyNWoFEgNTRk9yBRIDTlJUQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:08.572Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-03",
@@ -218,8 +218,8 @@
     "band_high": 475,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDItMTAiHgoDU0ZPEgoyMDI3LTAyLTEwGgNOUlQqAlpHMgIyNWoFEgNTRk9yBRIDTlJUQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:08.572Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-17",
@@ -254,8 +254,8 @@
     "band_high": 475,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDItMjQiHgoDU0ZPEgoyMDI3LTAyLTI0GgNOUlQqAlpHMgIyNWoFEgNTRk9yBRIDTlJUQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:08.572Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-03",
@@ -279,8 +279,8 @@
    "date": "2027-03-10",
    "status": "ok",
    "fare": {
-    "price": 484,
-    "price_text": "$484",
+    "price": 559,
+    "price_text": "$559",
     "airline": "ZIPAIR Tokyo",
     "stops": 0,
     "duration": "11 hr 10 min",
@@ -290,8 +290,8 @@
     "band_high": 830,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDMtMTAiHgoDU0ZPEgoyMDI3LTAzLTEwGgNOUlQqAlpHMgIyNWoFEgNTRk9yBRIDTlJUQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:08.572Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-17",
@@ -315,19 +315,19 @@
    "date": "2027-03-24",
    "status": "ok",
    "fare": {
-    "price": 641,
-    "price_text": "$641",
-    "airline": "EVA Air",
+    "price": 619,
+    "price_text": "$619",
+    "airline": "China Airlines",
     "stops": 1,
-    "duration": "27 hr 10 min",
-    "departure_description": "12:10 AM on Wed, Mar 24",
+    "duration": "21 hr 50 min",
+    "departure_description": "11:40 PM on Wed, Mar 24",
     "verdict": "typical",
     "band_low": 380,
     "band_high": 830,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjctMDMtMjQiHgoDU0ZPEgoyMDI3LTAzLTI0GgNUUEUqAkJSMgIyNyIfCgNUUEUSCjIwMjctMDMtMjUaA05SVCoCQlIyAzE5NmoFEgNTRk9yBRIDTlJUQgEBSAGYAQI&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GloSCjIwMjctMDMtMjQiHQoDU0ZPEgoyMDI3LTAzLTI0GgNUUEUqAkNJMgEzIh8KA1RQRRIKMjAyNy0wMy0yNhoDTlJUKgJDSTIDMTAwagUSA1NGT3IFEgNOUlRCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:07.732Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:36.977Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-31",
@@ -351,8 +351,8 @@
    "date": "2027-04-07",
    "status": "ok",
    "fare": {
-    "price": 527,
-    "price_text": "$527",
+    "price": 588,
+    "price_text": "$588",
     "airline": "Cathay Pacific",
     "stops": 1,
     "duration": "28 hr 30 min",
@@ -362,8 +362,8 @@
     "band_high": 630,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMDciHwoDU0ZPEgoyMDI3LTA0LTA3GgNIS0cqAkNYMgM4NzMiHwoDSEtHEgoyMDI3LTA0LTA4GgNOUlQqAkNYMgM1MDBqBRIDU0ZPcgUSA05SVEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:07.732Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:36.977Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-14",
@@ -398,8 +398,8 @@
     "band_high": 630,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjEiHwoDU0ZPEgoyMDI3LTA0LTIxGgNIS0cqAkNYMgM4NzMiHwoDSEtHEgoyMDI3LTA0LTIyGgNOUlQqAkNYMgM1MDRqBRIDU0ZPcgUSA05SVEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:07.732Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:36.977Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-28",

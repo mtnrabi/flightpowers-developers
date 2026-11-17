@@ -27,19 +27,19 @@
    "date": "2026-12-02",
    "status": "ok",
    "fare": {
-    "price": 150,
-    "price_text": "$150",
+    "price": 205,
+    "price_text": "$205",
     "airline": "JetBlue",
-    "stops": 1,
-    "duration": "9 hr 45 min",
-    "departure_description": "11:45 PM on Wed, Dec 2",
+    "stops": 0,
+    "duration": "5 hr 30 min",
+    "departure_description": "6:00 AM on Wed, Dec 2",
     "verdict": "typical",
-    "band_low": 115,
+    "band_low": 135,
     "band_high": 290,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDIiHwoDU0ZPEgoyMDI2LTEyLTAyGgNCT1MqAkI2MgM3MzQiHwoDQk9TEgoyMDI2LTEyLTAzGgNKRksqAkI2MgM0MTdqBRIDU0ZPcgUSA0pGS0IBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDIiHwoDU0ZPEgoyMDI2LTEyLTAyGgNKRksqAkI2MgM4MTZqBRIDU0ZPcgUSA0pGS0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:05.385Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-09",
@@ -63,19 +63,19 @@
    "date": "2026-12-16",
    "status": "ok",
    "fare": {
-    "price": 144,
-    "price_text": "$144",
-    "airline": "American",
+    "price": 173,
+    "price_text": "$173",
+    "airline": "JetBlue",
     "stops": 0,
-    "duration": "5 hr 29 min",
-    "departure_description": "4:05 PM on Wed, Dec 16",
+    "duration": "5 hr 34 min",
+    "departure_description": "10:51 AM on Wed, Dec 16",
     "verdict": "typical",
-    "band_low": 115,
+    "band_low": 135,
     "band_high": 290,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMTYiHwoDU0ZPEgoyMDI2LTEyLTE2GgNKRksqAkFBMgMxNDhqBRIDU0ZPcgUSA0pGS0IBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMTYiHwoDU0ZPEgoyMDI2LTEyLTE2GgNKRksqAkI2MgM0MTZqBRIDU0ZPcgUSA0pGS0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:05.385Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-23",
@@ -99,19 +99,19 @@
    "date": "2026-12-30",
    "status": "ok",
    "fare": {
-    "price": 305,
-    "price_text": "$305",
+    "price": 259,
+    "price_text": "$259",
     "airline": "JetBlue",
-    "stops": 1,
-    "duration": "9 hr 50 min",
-    "departure_description": "8:10 AM on Wed, Dec 30",
-    "verdict": "high",
-    "band_low": 115,
+    "stops": 0,
+    "duration": "5 hr 30 min",
+    "departure_description": "6:05 AM on Wed, Dec 30",
+    "verdict": "typical",
+    "band_low": 135,
     "band_high": 290,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTItMzAiHwoDU0ZPEgoyMDI2LTEyLTMwGgNCT1MqAkI2MgM0MzQiIAoDQk9TEgoyMDI2LTEyLTMwGgNKRksqAkI2MgQxMDE3agUSA1NGT3IFEgNKRktCAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMzAiHwoDU0ZPEgoyMDI2LTEyLTMwGgNKRksqAkI2MgM4MTZqBRIDU0ZPcgUSA0pGS0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:05.385Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-06",
@@ -135,19 +135,19 @@
    "date": "2027-01-13",
    "status": "ok",
    "fare": {
-    "price": 144,
-    "price_text": "$144",
+    "price": 173,
+    "price_text": "$173",
     "airline": "JetBlue",
     "stops": 0,
-    "duration": "5 hr 31 min",
-    "departure_description": "1:19 PM on Wed, Jan 13",
+    "duration": "5 hr 23 min",
+    "departure_description": "6:00 AM on Wed, Jan 13",
     "verdict": "typical",
     "band_low": 95,
     "band_high": 220,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDEtMTMiHgoDU0ZPEgoyMDI3LTAxLTEzGgNKRksqAkI2MgIxNmoFEgNTRk9yBRIDSkZLQgEBSAGYAQI&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMTMiHwoDU0ZPEgoyMDI3LTAxLTEzGgNKRksqAkI2MgM4MTZqBRIDU0ZPcgUSA0pGS0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:05.385Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-20",
@@ -171,19 +171,19 @@
    "date": "2027-01-27",
    "status": "ok",
    "fare": {
-    "price": 144,
-    "price_text": "$144",
-    "airline": "American",
-    "stops": 0,
-    "duration": "5 hr 37 min",
-    "departure_description": "1:18 PM on Wed, Jan 27",
+    "price": 168,
+    "price_text": "$168",
+    "airline": "JetBlue",
+    "stops": 1,
+    "duration": "8 hr 56 min",
+    "departure_description": "9:00 PM on Wed, Jan 27",
     "verdict": "typical",
     "band_low": 95,
     "band_high": 220,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMjciHwoDU0ZPEgoyMDI3LTAxLTI3GgNKRksqAkFBMgMxNjZqBRIDU0ZPcgUSA0pGS0IBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDEtMjciHwoDU0ZPEgoyMDI3LTAxLTI3GgNGTEwqAkI2MgMzNzgiIAoDRkxMEgoyMDI3LTAxLTI4GgNKRksqAkI2MgQxNTAyagUSA1NGT3IFEgNKRktCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:08.572Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-03",
@@ -207,19 +207,19 @@
    "date": "2027-02-10",
    "status": "ok",
    "fare": {
-    "price": 144,
-    "price_text": "$144",
-    "airline": "American",
-    "stops": 0,
-    "duration": "5 hr 37 min",
-    "departure_description": "1:18 PM on Wed, Feb 10",
+    "price": 168,
+    "price_text": "$168",
+    "airline": "JetBlue",
+    "stops": 1,
+    "duration": "9 hr 42 min",
+    "departure_description": "11:40 PM on Wed, Feb 10",
     "verdict": "typical",
     "band_low": 90,
     "band_high": 210,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMTAiHwoDU0ZPEgoyMDI3LTAyLTEwGgNKRksqAkFBMgMxNjZqBRIDU0ZPcgUSA0pGS0IBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMTAiHwoDU0ZPEgoyMDI3LTAyLTEwGgNCT1MqAkI2MgM3MzQiHwoDQk9TEgoyMDI3LTAyLTExGgNKRksqAkI2MgM0MTdqBRIDU0ZPcgUSA0pGS0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:08.572Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-17",
@@ -243,19 +243,19 @@
    "date": "2027-02-24",
    "status": "ok",
    "fare": {
-    "price": 189,
-    "price_text": "$189",
-    "airline": "American",
+    "price": 173,
+    "price_text": "$173",
+    "airline": "JetBlue",
     "stops": 0,
-    "duration": "5 hr 31 min",
-    "departure_description": "11:33 AM on Wed, Feb 24",
+    "duration": "5 hr 22 min",
+    "departure_description": "6:10 AM on Wed, Feb 24",
     "verdict": "typical",
     "band_low": 90,
     "band_high": 210,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDItMjQiHgoDU0ZPEgoyMDI3LTAyLTI0GgNKRksqAkFBMgIxNmoFEgNTRk9yBRIDSkZLQgEBSAGYAQI&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMjQiHwoDU0ZPEgoyMDI3LTAyLTI0GgNKRksqAkI2MgM4MTZqBRIDU0ZPcgUSA0pGS0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:08.572Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-03",
@@ -279,19 +279,19 @@
    "date": "2027-03-10",
    "status": "ok",
    "fare": {
-    "price": 189,
-    "price_text": "$189",
-    "airline": "American",
+    "price": 173,
+    "price_text": "$173",
+    "airline": "JetBlue",
     "stops": 0,
-    "duration": "5 hr 31 min",
-    "departure_description": "11:33 AM on Wed, Mar 10",
+    "duration": "5 hr 22 min",
+    "departure_description": "6:10 AM on Wed, Mar 10",
     "verdict": "typical",
     "band_low": 105,
     "band_high": 280,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDMtMTAiHgoDU0ZPEgoyMDI3LTAzLTEwGgNKRksqAkFBMgIxNmoFEgNTRk9yBRIDSkZLQgEBSAGYAQI&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMTAiHwoDU0ZPEgoyMDI3LTAzLTEwGgNKRksqAkI2MgM4MTZqBRIDU0ZPcgUSA0pGS0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:08.572Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-17",
@@ -315,19 +315,19 @@
    "date": "2027-03-24",
    "status": "ok",
    "fare": {
-    "price": 189,
-    "price_text": "$189",
-    "airline": "American",
+    "price": 173,
+    "price_text": "$173",
+    "airline": "JetBlue",
     "stops": 0,
-    "duration": "5 hr 31 min",
-    "departure_description": "11:33 AM on Wed, Mar 24",
+    "duration": "5 hr 37 min",
+    "departure_description": "6:00 AM on Wed, Mar 24",
     "verdict": "typical",
     "band_low": 105,
     "band_high": 280,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDMtMjQiHgoDU0ZPEgoyMDI3LTAzLTI0GgNKRksqAkFBMgIxNmoFEgNTRk9yBRIDSkZLQgEBSAGYAQI&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMjQiHwoDU0ZPEgoyMDI3LTAzLTI0GgNKRksqAkI2MgM4MTZqBRIDU0ZPcgUSA0pGS0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:07.732Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:36.977Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-31",
@@ -351,19 +351,19 @@
    "date": "2027-04-07",
    "status": "ok",
    "fare": {
-    "price": 189,
-    "price_text": "$189",
-    "airline": "American",
+    "price": 173,
+    "price_text": "$173",
+    "airline": "Alaska",
     "stops": 0,
-    "duration": "5 hr 41 min",
-    "departure_description": "11:24 AM on Wed, Apr 7",
+    "duration": "5 hr 45 min",
+    "departure_description": "6:18 AM on Wed, Apr 7",
     "verdict": "typical",
     "band_low": 115,
     "band_high": 260,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMDciHwoDU0ZPEgoyMDI3LTA0LTA3GgNKRksqAkFBMgMxNjZqBRIDU0ZPcgUSA0pGS0IBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDQtMDciHgoDU0ZPEgoyMDI3LTA0LTA3GgNKRksqAkFTMgIzMGoFEgNTRk9yBRIDSkZLQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:07.732Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:36.977Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-14",
@@ -387,19 +387,19 @@
    "date": "2027-04-21",
    "status": "ok",
    "fare": {
-    "price": 189,
-    "price_text": "$189",
-    "airline": "American",
+    "price": 173,
+    "price_text": "$173",
+    "airline": "Alaska",
     "stops": 0,
-    "duration": "5 hr 41 min",
-    "departure_description": "11:24 AM on Wed, Apr 21",
+    "duration": "5 hr 45 min",
+    "departure_description": "6:18 AM on Wed, Apr 21",
     "verdict": "typical",
     "band_low": 115,
     "band_high": 260,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMjEiHwoDU0ZPEgoyMDI3LTA0LTIxGgNKRksqAkFBMgMxNjZqBRIDU0ZPcgUSA0pGS0IBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDQtMjEiHgoDU0ZPEgoyMDI3LTA0LTIxGgNKRksqAkFTMgIzMGoFEgNTRk9yBRIDSkZLQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:07.732Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:36.977Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-28",

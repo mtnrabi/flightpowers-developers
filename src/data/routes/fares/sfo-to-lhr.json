@@ -38,8 +38,8 @@
     "band_high": 800,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTItMDIiHwoDU0ZPEgoyMDI2LTEyLTAyGgNKRksqAkI2MgM2MTYiIAoDSkZLEgoyMDI2LTEyLTAzGgNMSFIqAkI2MgQxMTA3agUSA1NGT3IFEgNMSFJCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:05.385Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-09",
@@ -65,17 +65,17 @@
    "fare": {
     "price": 628,
     "price_text": "$628",
-    "airline": "Delta | Virgin Atlantic",
+    "airline": "Delta | KLM, Virgin Atlantic",
     "stops": 1,
-    "duration": "17 hr 5 min",
-    "departure_description": "6:00 AM on Wed, Dec 16",
+    "duration": "12 hr 31 min",
+    "departure_description": "1:29 PM on Wed, Dec 16",
     "verdict": "typical",
     "band_low": 345,
     "band_high": 800,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMTYiIAoDU0ZPEgoyMDI2LTEyLTE2GgNNU1AqAkRMMgQyMTc4Ih4KA01TUBIKMjAyNi0xMi0xNhoDTEhSKgJETDICMTBqBRIDU0ZPcgUSA0xIUkIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjYtMTItMTYiHwoDU0ZPEgoyMDI2LTEyLTE2GgNTTEMqAkRMMgM5MDIiHgoDU0xDEgoyMDI2LTEyLTE2GgNMSFIqAkRMMgI1MGoFEgNTRk9yBRIDTEhSQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:05.385Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-23",
@@ -99,19 +99,19 @@
    "date": "2026-12-30",
    "status": "ok",
    "fare": {
-    "price": 492,
-    "price_text": "$492",
+    "price": 350,
+    "price_text": "$350",
     "airline": "Tap Air Portugal",
     "stops": 1,
-    "duration": "18 hr 20 min",
+    "duration": "21 hr",
     "departure_description": "4:35 PM on Wed, Dec 30",
     "verdict": "typical",
     "band_low": 345,
     "band_high": 800,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTItMzAiHwoDU0ZPEgoyMDI2LTEyLTMwGgNMSVMqAlRQMgMyMzgiIAoDTElTEgoyMDI2LTEyLTMxGgNMSFIqAlRQMgQxMzY0agUSA1NGT3IFEgNMSFJCAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTItMzAiHwoDU0ZPEgoyMDI2LTEyLTMwGgNMSVMqAlRQMgMyMzgiIAoDTElTEgoyMDI2LTEyLTMxGgNMSFIqAlRQMgQxMzU4agUSA1NGT3IFEgNMSFJCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:05.385Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-06",
@@ -139,15 +139,15 @@
     "price_text": "$299",
     "airline": "JetBlue",
     "stops": 1,
-    "duration": "15 hr 23 min",
-    "departure_description": "7:30 AM on Wed, Jan 13",
+    "duration": "13 hr 55 min",
+    "departure_description": "11:45 PM on Wed, Jan 13",
     "verdict": "typical",
     "band_low": 270,
-    "band_high": 410,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDEtMTMiHwoDU0ZPEgoyMDI3LTAxLTEzGgNCT1MqAkI2MgM0MzQiIAoDQk9TEgoyMDI3LTAxLTEzGgNMSFIqAkI2MgQxNjIwagUSA1NGT3IFEgNMSFJCAQFIAZgBAg&curr=usd"
+    "band_high": 415,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDEtMTMiHwoDU0ZPEgoyMDI3LTAxLTEzGgNKRksqAkI2MgM2MTYiIAoDSkZLEgoyMDI3LTAxLTE0GgNMSFIqAkI2MgQxMTA3agUSA1NGT3IFEgNMSFJCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:05.385Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-20",
@@ -175,15 +175,15 @@
     "price_text": "$299",
     "airline": "JetBlue",
     "stops": 1,
-    "duration": "15 hr 23 min",
-    "departure_description": "7:30 AM on Wed, Jan 27",
+    "duration": "14 hr 27 min",
+    "departure_description": "11:03 AM on Wed, Jan 27",
     "verdict": "typical",
     "band_low": 270,
-    "band_high": 410,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDEtMjciHwoDU0ZPEgoyMDI3LTAxLTI3GgNCT1MqAkI2MgM0MzQiIAoDQk9TEgoyMDI3LTAxLTI3GgNMSFIqAkI2MgQxNjIwagUSA1NGT3IFEgNMSFJCAQFIAZgBAg&curr=usd"
+    "band_high": 415,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GloSCjIwMjctMDEtMjciHwoDU0ZPEgoyMDI3LTAxLTI3GgNKRksqAkI2MgM0MTYiHQoDSkZLEgoyMDI3LTAxLTI3GgNMSFIqAkI2MgE3agUSA1NGT3IFEgNMSFJCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:08.572Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-03",
@@ -211,15 +211,15 @@
     "price_text": "$299",
     "airline": "JetBlue",
     "stops": 1,
-    "duration": "19 hr 30 min",
-    "departure_description": "6:00 AM on Wed, Feb 10",
+    "duration": "14 hr 27 min",
+    "departure_description": "11:03 AM on Wed, Feb 10",
     "verdict": "low",
     "band_low": 350,
     "band_high": 395,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GloSCjIwMjctMDItMTAiHwoDU0ZPEgoyMDI3LTAyLTEwGgNKRksqAkI2MgM4MTYiHQoDSkZLEgoyMDI3LTAyLTEwGgNMSFIqAkI2MgE3agUSA1NGT3IFEgNMSFJCAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GloSCjIwMjctMDItMTAiHwoDU0ZPEgoyMDI3LTAyLTEwGgNKRksqAkI2MgM0MTYiHQoDSkZLEgoyMDI3LTAyLTEwGgNMSFIqAkI2MgE3agUSA1NGT3IFEgNMSFJCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:08.572Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-17",
@@ -247,15 +247,15 @@
     "price_text": "$299",
     "airline": "JetBlue",
     "stops": 1,
-    "duration": "14 hr 45 min",
-    "departure_description": "8:10 AM on Wed, Feb 24",
+    "duration": "19 hr 20 min",
+    "departure_description": "6:10 AM on Wed, Feb 24",
     "verdict": "low",
     "band_low": 350,
     "band_high": 395,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDItMjQiHwoDU0ZPEgoyMDI3LTAyLTI0GgNCT1MqAkI2MgM0MzQiIAoDQk9TEgoyMDI3LTAyLTI0GgNMSFIqAkI2MgQxNjIwagUSA1NGT3IFEgNMSFJCAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GloSCjIwMjctMDItMjQiHwoDU0ZPEgoyMDI3LTAyLTI0GgNKRksqAkI2MgM4MTYiHQoDSkZLEgoyMDI3LTAyLTI0GgNMSFIqAkI2MgE3agUSA1NGT3IFEgNMSFJCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:08.572Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-03",
@@ -290,8 +290,8 @@
     "band_high": 445,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMTAiHwoDU0ZPEgoyMDI3LTAzLTEwGgNCT1MqAkI2MgM0MzQiIAoDQk9TEgoyMDI3LTAzLTEwGgNMSFIqAkI2MgQxNjIwagUSA1NGT3IFEgNMSFJCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:08.572Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:25:11.299Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-17",
@@ -326,8 +326,8 @@
     "band_high": 445,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMjQiHwoDU0ZPEgoyMDI3LTAzLTI0GgNCT1MqAkI2MgM0MzQiIAoDQk9TEgoyMDI3LTAzLTI0GgNMSFIqAkI2MgQxNjIwagUSA1NGT3IFEgNMSFJCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:07.732Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:36.977Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-31",
@@ -362,8 +362,8 @@
     "band_high": 490,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMDciHwoDU0ZPEgoyMDI3LTA0LTA3GgNMSFIqAkJBMgMyODRqBRIDU0ZPcgUSA0xIUkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:07.732Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:36.977Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-14",
@@ -398,8 +398,8 @@
     "band_high": 490,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMjEiHwoDU0ZPEgoyMDI3LTA0LTIxGgNMSFIqAkJBMgMyODRqBRIDU0ZPcgUSA0xIUkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:04:07.732Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:36.977Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-28",

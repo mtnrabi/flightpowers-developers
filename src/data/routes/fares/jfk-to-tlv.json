@@ -35,11 +35,11 @@
     "departure_description": "10:05 PM on Wed, Dec 2",
     "verdict": "typical",
     "band_low": 510,
-    "band_high": 1150,
+    "band_high": 1050,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDIiHgoDSkZLEgoyMDI2LTEyLTAyGgNNQUQqAlVYMgI5MiIgCgNNQUQSCjIwMjYtMTItMDQaA1RMVioCVVgyBDEzMDFqBRIDSkZLcgUSA1RMVkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:07.539Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:23:53.435Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-09",
@@ -63,19 +63,19 @@
    "date": "2026-12-16",
    "status": "ok",
    "fare": {
-    "price": 828,
-    "price_text": "$828",
+    "price": 827,
+    "price_text": "$827",
     "airline": "ITA",
     "stops": 1,
     "duration": "13 hr 50 min",
     "departure_description": "4:40 PM on Wed, Dec 16",
     "verdict": "typical",
     "band_low": 510,
-    "band_high": 1150,
+    "band_high": 1050,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMTYiHwoDSkZLEgoyMDI2LTEyLTE2GgNGQ08qAkFaMgM2MDkiHwoDRkNPEgoyMDI2LTEyLTE3GgNUTFYqAkFaMgM4MDZqBRIDSkZLcgUSA1RMVkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:07.539Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:23:53.435Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-23",
@@ -99,19 +99,19 @@
    "date": "2026-12-30",
    "status": "ok",
    "fare": {
-    "price": 612,
-    "price_text": "$612",
-    "airline": "Air Europa",
+    "price": 660,
+    "price_text": "$660",
+    "airline": "Condor",
     "stops": 1,
-    "duration": "33 hr 15 min",
-    "departure_description": "10:05 PM on Wed, Dec 30",
+    "duration": "20 hr 20 min",
+    "departure_description": "4:15 PM on Wed, Dec 30",
     "verdict": "typical",
     "band_low": 510,
-    "band_high": 1150,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMzAiHgoDSkZLEgoyMDI2LTEyLTMwGgNNQUQqAlVYMgI5MiIgCgNNQUQSCjIwMjctMDEtMDEaA1RMVioCVVgyBDEzMDFqBRIDSkZLcgUSA1RMVkIBAUgBmAEC&curr=usd"
+    "band_high": 1050,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTItMzAiIAoDSkZLEgoyMDI2LTEyLTMwGgNGUkEqAkRFMgQyMDE3IiAKA0ZSQRIKMjAyNi0xMi0zMRoDVExWKgJERTIENDMwOGoFEgNKRktyBRIDVExWQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:07.539Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:23:53.435Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-06",
@@ -135,19 +135,19 @@
    "date": "2027-01-13",
    "status": "ok",
    "fare": {
-    "price": 779,
-    "price_text": "$779",
-    "airline": "ITA",
-    "stops": 1,
-    "duration": "13 hr 50 min",
-    "departure_description": "4:40 PM on Wed, Jan 13",
+    "price": 774,
+    "price_text": "$774",
+    "airline": "Delta | El Al, Virgin Atlantic",
+    "stops": 0,
+    "duration": "10 hr 35 min",
+    "departure_description": "11:55 PM on Wed, Jan 13",
     "verdict": "high",
     "band_low": 420,
     "band_high": 650,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMTMiHwoDSkZLEgoyMDI3LTAxLTEzGgNGQ08qAkFaMgM2MDkiHwoDRkNPEgoyMDI3LTAxLTE0GgNUTFYqAkFaMgM4MDZqBRIDSkZLcgUSA1RMVkIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMTMiHwoDSkZLEgoyMDI3LTAxLTEzGgNUTFYqAkRMMgMyMzRqBRIDSkZLcgUSA1RMVkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:07.539Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:23:53.435Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-20",
@@ -171,8 +171,8 @@
    "date": "2027-01-27",
    "status": "ok",
    "fare": {
-    "price": 779,
-    "price_text": "$779",
+    "price": 778,
+    "price_text": "$778",
     "airline": "ITA",
     "stops": 1,
     "duration": "13 hr 50 min",
@@ -182,8 +182,8 @@
     "band_high": 650,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMjciHwoDSkZLEgoyMDI3LTAxLTI3GgNGQ08qAkFaMgM2MDkiHwoDRkNPEgoyMDI3LTAxLTI4GgNUTFYqAkFaMgM4MDZqBRIDSkZLcgUSA1RMVkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:09.409Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:23:53.435Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-03",
@@ -218,8 +218,8 @@
     "band_high": 640,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMTAiHwoDSkZLEgoyMDI3LTAyLTEwGgNUTFYqAkRMMgMyNDhqBRIDSkZLcgUSA1RMVkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:09.409Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:23:53.435Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-17",
@@ -243,8 +243,8 @@
    "date": "2027-02-24",
    "status": "ok",
    "fare": {
-    "price": 748,
-    "price_text": "$748",
+    "price": 651,
+    "price_text": "$651",
     "airline": "El Al | Delta",
     "stops": 0,
     "duration": "10 hr 15 min",
@@ -254,8 +254,8 @@
     "band_high": 640,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDItMjQiHgoDSkZLEgoyMDI3LTAyLTI0GgNUTFYqAkxZMgIxMGoFEgNKRktyBRIDVExWQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:09.409Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:23:53.435Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-03",
@@ -279,19 +279,19 @@
    "date": "2027-03-10",
    "status": "ok",
    "fare": {
-    "price": 774,
-    "price_text": "$774",
-    "airline": "Delta | El Al, Virgin Atlantic",
+    "price": 748,
+    "price_text": "$748",
+    "airline": "El Al | Delta",
     "stops": 0,
-    "duration": "10 hr 35 min",
-    "departure_description": "3:15 PM on Wed, Mar 10",
+    "duration": "10 hr 15 min",
+    "departure_description": "1:30 PM on Wed, Mar 10",
     "verdict": "high",
     "band_low": 420,
     "band_high": 720,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMTAiHwoDSkZLEgoyMDI3LTAzLTEwGgNUTFYqAkRMMgMyNDhqBRIDSkZLcgUSA1RMVkIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDMtMTAiHgoDSkZLEgoyMDI3LTAzLTEwGgNUTFYqAkxZMgIxMGoFEgNKRktyBRIDVExWQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:09.409Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:23:53.435Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-17",
@@ -326,8 +326,8 @@
     "band_high": 720,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMjQiHgoDSkZLEgoyMDI3LTAzLTI0GgNNQUQqAlVYMgI5MiIgCgNNQUQSCjIwMjctMDMtMjYaA1RMVioCVVgyBDEzMDFqBRIDSkZLcgUSA1RMVkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:08.660Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:14.637Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-31",
@@ -351,19 +351,19 @@
    "date": "2027-04-07",
    "status": "ok",
    "fare": {
-    "price": 567,
-    "price_text": "$567",
-    "airline": "Arkia | Operated by Hifly Malta",
-    "stops": 0,
-    "duration": "10 hr 30 min",
-    "departure_description": "6:55 PM on Wed, Apr 7",
+    "price": 605,
+    "price_text": "$605",
+    "airline": "Tap Air Portugal",
+    "stops": 1,
+    "duration": "23 hr 10 min",
+    "departure_description": "10:05 PM on Wed, Apr 7",
     "verdict": "typical",
     "band_low": 420,
     "band_high": 790,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMDciHwoDSkZLEgoyMDI3LTA0LTA3GgNUTFYqAklaMgM5OTRqBRIDSkZLcgUSA1RMVkIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDQtMDciHwoDSkZLEgoyMDI3LTA0LTA3GgNMSVMqAlRQMgMyMTAiIAoDTElTEgoyMDI3LTA0LTA4GgNUTFYqAlRQMgQxNjAzagUSA0pGS3IFEgNUTFZCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:08.660Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:14.637Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-14",
@@ -387,8 +387,8 @@
    "date": "2027-04-21",
    "status": "ok",
    "fare": {
-    "price": 509,
-    "price_text": "$509",
+    "price": 520,
+    "price_text": "$520",
     "airline": "Condor, TAROM",
     "stops": 2,
     "duration": "24 hr",
@@ -398,8 +398,8 @@
     "band_high": 790,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gn4SCjIwMjctMDQtMjEiIAoDSkZLEgoyMDI3LTA0LTIxGgNGUkEqAkRFMgQyMDE3Ih8KA0ZSQRIKMjAyNy0wNC0yMhoDT1RQKgJSTzIDMzAyIh8KA09UUBIKMjAyNy0wNC0yMhoDVExWKgJSTzIDMTU1agUSA0pGS3IFEgNUTFZCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:08.660Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:14.637Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-28",

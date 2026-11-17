@@ -25,21 +25,10 @@
   },
   {
    "date": "2026-12-02",
-   "status": "ok",
-   "fare": {
-    "price": 204,
-    "price_text": "$204",
-    "airline": "LOT",
-    "stops": 1,
-    "duration": "13 hr 35 min",
-    "departure_description": "5:20 AM on Wed, Dec 2",
-    "verdict": "typical",
-    "band_low": 145,
-    "band_high": 225,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDIiHwoDVExWEgoyMDI2LTEyLTAyGgNXQVcqAkxPMgMxNTIiHwoDV0FXEgoyMDI2LTEyLTAyGgNCQ04qAkxPMgM0MzdqBRIDVExWcgUSA0JDTkIBAUgBmAEC&curr=usd"
-   },
-   "fetched_at": "2026-11-11T22:13:17.044Z",
-   "source": "claude-mcp"
+   "status": "failed",
+   "reason": "http 503 degraded",
+   "fetched_at": "2026-11-17T21:28:06.595Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-09",
@@ -63,19 +52,19 @@
    "date": "2026-12-16",
    "status": "ok",
    "fare": {
-    "price": 197,
-    "price_text": "$197",
-    "airline": "Bluebird Airways",
-    "stops": 0,
-    "duration": "4 hr 40 min",
-    "departure_description": "10:05 AM on Wed, Dec 16",
+    "price": 185,
+    "price_text": "$185",
+    "airline": "Lufthansa",
+    "stops": 1,
+    "duration": "8 hr 30 min",
+    "departure_description": "7:00 AM on Wed, Dec 16",
     "verdict": "typical",
     "band_low": 145,
     "band_high": 225,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMTYiHwoDVExWEgoyMDI2LTEyLTE2GgNCQ04qAkJaMgMyNTJqBRIDVExWcgUSA0JDTkIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTItMTYiHwoDVExWEgoyMDI2LTEyLTE2GgNNVUMqAkxIMgM2ODMiIAoDTVVDEgoyMDI2LTEyLTE2GgNCQ04qAkxIMgQxODEyagUSA1RMVnIFEgNCQ05CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:17.044Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:06.595Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-23",
@@ -101,17 +90,17 @@
    "fare": {
     "price": 197,
     "price_text": "$197",
-    "airline": "Bluebird Airways",
-    "stops": 0,
-    "duration": "4 hr 40 min",
-    "departure_description": "10:05 AM on Wed, Dec 30",
+    "airline": "SWISSOperated by Helvetic",
+    "stops": 1,
+    "duration": "16 hr 5 min",
+    "departure_description": "6:00 PM on Wed, Dec 30",
     "verdict": "typical",
     "band_low": 145,
     "band_high": 225,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMzAiHwoDVExWEgoyMDI2LTEyLTMwGgNCQ04qAkJaMgMyNTJqBRIDVExWcgUSA0JDTkIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTItMzAiHwoDVExWEgoyMDI2LTEyLTMwGgNaUkgqAkxYMgMyNTMiIAoDWlJIEgoyMDI2LTEyLTMxGgNCQ04qAkxYMgQxOTUyagUSA1RMVnIFEgNCQ05CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:17.044Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:06.595Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-06",
@@ -135,19 +124,19 @@
    "date": "2027-01-13",
    "status": "ok",
    "fare": {
-    "price": 196,
-    "price_text": "$196",
-    "airline": "Lufthansa",
-    "stops": 1,
-    "duration": "11 hr 35 min",
-    "departure_description": "7:00 AM on Wed, Jan 13",
+    "price": 199,
+    "price_text": "$199",
+    "airline": "Bluebird Airways",
+    "stops": 0,
+    "duration": "4 hr 40 min",
+    "departure_description": "10:05 AM on Wed, Jan 13",
     "verdict": "typical",
     "band_low": 145,
     "band_high": 200,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDEtMTMiHwoDVExWEgoyMDI3LTAxLTEzGgNNVUMqAkxIMgM2ODMiIAoDTVVDEgoyMDI3LTAxLTEzGgNCQ04qAkxIMgQxODE0agUSA1RMVnIFEgNCQ05CAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMTMiHwoDVExWEgoyMDI3LTAxLTEzGgNCQ04qAkJaMgMyNTJqBRIDVExWcgUSA0JDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:17.044Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:06.595Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-20",
@@ -171,8 +160,8 @@
    "date": "2027-01-27",
    "status": "ok",
    "fare": {
-    "price": 196,
-    "price_text": "$196",
+    "price": 191,
+    "price_text": "$191",
     "airline": "Lufthansa",
     "stops": 1,
     "duration": "11 hr 35 min",
@@ -182,8 +171,8 @@
     "band_high": 200,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDEtMjciHwoDVExWEgoyMDI3LTAxLTI3GgNNVUMqAkxIMgM2ODMiIAoDTVVDEgoyMDI3LTAxLTI3GgNCQ04qAkxIMgQxODE0agUSA1RMVnIFEgNCQ05CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:06.595Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-03",
@@ -207,8 +196,8 @@
    "date": "2027-02-10",
    "status": "ok",
    "fare": {
-    "price": 197,
-    "price_text": "$197",
+    "price": 199,
+    "price_text": "$199",
     "airline": "Bluebird Airways",
     "stops": 0,
     "duration": "4 hr 40 min",
@@ -218,8 +207,8 @@
     "band_high": 180,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMTAiHwoDVExWEgoyMDI3LTAyLTEwGgNCQ04qAkJaMgMyNTJqBRIDVExWcgUSA0JDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:06.595Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-17",
@@ -243,8 +232,8 @@
    "date": "2027-02-24",
    "status": "ok",
    "fare": {
-    "price": 197,
-    "price_text": "$197",
+    "price": 199,
+    "price_text": "$199",
     "airline": "Bluebird Airways",
     "stops": 0,
     "duration": "4 hr 40 min",
@@ -254,8 +243,8 @@
     "band_high": 180,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMjQiHwoDVExWEgoyMDI3LTAyLTI0GgNCQ04qAkJaMgMyNTJqBRIDVExWcgUSA0JDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:06.595Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-03",
@@ -279,8 +268,8 @@
    "date": "2027-03-10",
    "status": "ok",
    "fare": {
-    "price": 197,
-    "price_text": "$197",
+    "price": 199,
+    "price_text": "$199",
     "airline": "Bluebird Airways",
     "stops": 0,
     "duration": "4 hr 40 min",
@@ -290,8 +279,8 @@
     "band_high": 255,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMTAiHwoDVExWEgoyMDI3LTAzLTEwGgNCQ04qAkJaMgMyNTJqBRIDVExWcgUSA0JDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:28:06.595Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-17",
@@ -326,8 +315,8 @@
     "band_high": 255,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMjQiIAoDVExWEgoyMDI3LTAzLTI0GgNNQUQqAklCMgQxODc0Ih8KA01BRBIKMjAyNy0wMy0yNBoDQkNOKgJJQjIDNDExagUSA1RMVnIFEgNCQ05CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:12.038Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:26.610Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-31",
@@ -362,8 +351,8 @@
     "band_high": 320,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDQtMDciIAoDVExWEgoyMDI3LTA0LTA3GgNNQUQqAlVYMgQxMzAyIiAKA01BRBIKMjAyNy0wNC0wOBoDQkNOKgJVWDIENzcwMWoFEgNUTFZyBRIDQkNOQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:12.038Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:26.610Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-14",
@@ -387,8 +376,8 @@
    "date": "2027-04-21",
    "status": "ok",
    "fare": {
-    "price": 229,
-    "price_text": "$229",
+    "price": 225,
+    "price_text": "$225",
     "airline": "Aegean",
     "stops": 1,
     "duration": "22 hr 15 min",
@@ -398,8 +387,8 @@
     "band_high": 320,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjEiHwoDVExWEgoyMDI3LTA0LTIxGgNBVEgqAkEzMgM5MjciHwoDQVRIEgoyMDI3LTA0LTIyGgNCQ04qAkEzMgM3MTJqBRIDVExWcgUSA0JDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:12.038Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:26.610Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-28",

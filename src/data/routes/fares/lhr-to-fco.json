@@ -27,19 +27,19 @@
    "date": "2026-12-02",
    "status": "ok",
    "fare": {
-    "price": 101,
-    "price_text": "$101",
+    "price": 107,
+    "price_text": "$107",
     "airline": "Vueling",
     "stops": 1,
     "duration": "11 hr 15 min",
     "departure_description": "9:55 AM on Wed, Dec 2",
-    "verdict": "low",
-    "band_low": 105,
-    "band_high": 235,
+    "verdict": "typical",
+    "band_low": 100,
+    "band_high": 220,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTItMDIiIAoDTEhSEgoyMDI2LTEyLTAyGgNCQ04qAlZZMgQ3NjQxIiAKA0JDThIKMjAyNi0xMi0wMhoDRkNPKgJWWTIENjAxOGoFEgNMSFJyBRIDRkNPQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.866Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-09",
@@ -63,19 +63,19 @@
    "date": "2026-12-16",
    "status": "ok",
    "fare": {
-    "price": 117,
-    "price_text": "$117",
+    "price": 103,
+    "price_text": "$103",
     "airline": "Vueling | Iberia",
     "stops": 1,
     "duration": "11 hr 15 min",
     "departure_description": "9:55 AM on Wed, Dec 16",
     "verdict": "typical",
-    "band_low": 105,
-    "band_high": 235,
+    "band_low": 100,
+    "band_high": 220,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTItMTYiIAoDTEhSEgoyMDI2LTEyLTE2GgNCQ04qAlZZMgQ3NjQxIiAKA0JDThIKMjAyNi0xMi0xNhoDRkNPKgJWWTIENjAxOGoFEgNMSFJyBRIDRkNPQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.866Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-23",
@@ -103,15 +103,15 @@
     "price_text": "$180",
     "airline": "British Airways",
     "stops": 0,
-    "duration": "2 hr 35 min",
-    "departure_description": "6:20 PM on Wed, Dec 30",
+    "duration": "2 hr 40 min",
+    "departure_description": "1:15 PM on Wed, Dec 30",
     "verdict": "typical",
-    "band_low": 105,
-    "band_high": 235,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMzAiHwoDTEhSEgoyMDI2LTEyLTMwGgNGQ08qAkJBMgM1NjJqBRIDTEhScgUSA0ZDT0IBAUgBmAEC&curr=usd"
+    "band_low": 100,
+    "band_high": 220,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMzAiHwoDTEhSEgoyMDI2LTEyLTMwGgNGQ08qAkJBMgM1NTZqBRIDTEhScgUSA0ZDT0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.866Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-06",
@@ -135,19 +135,19 @@
    "date": "2027-01-13",
    "status": "ok",
    "fare": {
-    "price": 86,
-    "price_text": "$86",
-    "airline": "Vueling | Iberia",
-    "stops": 1,
-    "duration": "13 hr 15 min",
-    "departure_description": "8:50 PM on Wed, Jan 13",
-    "verdict": "low",
+    "price": 98,
+    "price_text": "$98",
+    "airline": "ITA",
+    "stops": 0,
+    "duration": "2 hr 40 min",
+    "departure_description": "4:30 PM on Wed, Jan 13",
+    "verdict": "typical",
     "band_low": 95,
     "band_high": 135,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDEtMTMiIAoDTEhSEgoyMDI3LTAxLTEzGgNCQ04qAlZZMgQ3NjQzIiAKA0JDThIKMjAyNy0wMS0xNBoDRkNPKgJWWTIENjAwMmoFEgNMSFJyBRIDRkNPQgEBSAGYAQI&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMTMiHwoDTEhSEgoyMDI3LTAxLTEzGgNGQ08qAkFaMgMyMDdqBRIDTEhScgUSA0ZDT0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.866Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-20",
@@ -171,19 +171,19 @@
    "date": "2027-01-27",
    "status": "ok",
    "fare": {
-    "price": 82,
-    "price_text": "$82",
+    "price": 90,
+    "price_text": "$90",
     "airline": "Vueling | Iberia",
     "stops": 1,
-    "duration": "11 hr 15 min",
+    "duration": "14 hr",
     "departure_description": "8:50 PM on Wed, Jan 27",
     "verdict": "low",
     "band_low": 95,
     "band_high": 135,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDEtMjciIAoDTEhSEgoyMDI3LTAxLTI3GgNCQ04qAlZZMgQ3NjQzIiAKA0JDThIKMjAyNy0wMS0yOBoDRkNPKgJWWTIENjAwMGoFEgNMSFJyBRIDRkNPQgEBSAGYAQI&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDEtMjciIAoDTEhSEgoyMDI3LTAxLTI3GgNCQ04qAlZZMgQ3NjQzIiAKA0JDThIKMjAyNy0wMS0yOBoDRkNPKgJWWTIENjAwNmoFEgNMSFJyBRIDRkNPQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:33.090Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-03",
@@ -218,8 +218,8 @@
     "band_high": 155,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMTAiHwoDTEhSEgoyMDI3LTAyLTEwGgNGQ08qAkFaMgMyMDNqBRIDTEhScgUSA0ZDT0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:33.090Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-17",
@@ -248,14 +248,14 @@
     "airline": "ITA",
     "stops": 0,
     "duration": "2 hr 40 min",
-    "departure_description": "10:30 AM on Wed, Feb 24",
+    "departure_description": "4:30 PM on Wed, Feb 24",
     "verdict": "typical",
     "band_low": 95,
     "band_high": 155,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMjQiHwoDTEhSEgoyMDI3LTAyLTI0GgNGQ08qAkFaMgMyMDNqBRIDTEhScgUSA0ZDT0IBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMjQiHwoDTEhSEgoyMDI3LTAyLTI0GgNGQ08qAkFaMgMyMDdqBRIDTEhScgUSA0ZDT0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:33.090Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-03",
@@ -279,19 +279,19 @@
    "date": "2027-03-10",
    "status": "ok",
    "fare": {
-    "price": 108,
-    "price_text": "$108",
+    "price": 112,
+    "price_text": "$112",
     "airline": "Vueling",
     "stops": 1,
     "duration": "11 hr 15 min",
     "departure_description": "9:55 AM on Wed, Mar 10",
-    "verdict": "low",
-    "band_low": 110,
+    "verdict": "typical",
+    "band_low": 105,
     "band_high": 185,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDMtMTAiIAoDTEhSEgoyMDI3LTAzLTEwGgNCQ04qAlZZMgQ3NjQxIiAKA0JDThIKMjAyNy0wMy0xMBoDRkNPKgJWWTIENjAxOGoFEgNMSFJyBRIDRkNPQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:33.090Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-17",
@@ -315,19 +315,19 @@
    "date": "2027-03-24",
    "status": "ok",
    "fare": {
-    "price": 138,
-    "price_text": "$138",
+    "price": 137,
+    "price_text": "$137",
     "airline": "British Airways",
     "stops": 0,
-    "duration": "2 hr 40 min",
-    "departure_description": "11:40 AM on Wed, Mar 24",
+    "duration": "2 hr 35 min",
+    "departure_description": "7:45 AM on Wed, Mar 24",
     "verdict": "typical",
-    "band_low": 110,
+    "band_low": 105,
     "band_high": 185,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMjQiHwoDTEhSEgoyMDI3LTAzLTI0GgNGQ08qAkJBMgM1NThqBRIDTEhScgUSA0ZDT0IBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMjQiHwoDTEhSEgoyMDI3LTAzLTI0GgNGQ08qAkJBMgM1NTBqBRIDTEhScgUSA0ZDT0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.678Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:11.769Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-31",
@@ -362,8 +362,8 @@
     "band_high": 165,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMDciHwoDTEhSEgoyMDI3LTA0LTA3GgNGQ08qAkFaMgMyMDNqBRIDTEhScgUSA0ZDT0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.678Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:11.769Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-14",
@@ -398,8 +398,8 @@
     "band_high": 165,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMjEiHwoDTEhSEgoyMDI3LTA0LTIxGgNGQ08qAkFaMgMyMDdqBRIDTEhScgUSA0ZDT0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.678Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:11.769Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-28",

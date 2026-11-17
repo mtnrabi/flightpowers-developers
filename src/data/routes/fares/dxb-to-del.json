@@ -27,19 +27,19 @@
    "date": "2026-12-02",
    "status": "ok",
    "fare": {
-    "price": 281,
-    "price_text": "$281",
+    "price": 278,
+    "price_text": "$278",
     "airline": "SpiceJet",
     "stops": 1,
-    "duration": "11 hr",
-    "departure_description": "12:20 PM on Wed, Dec 2",
+    "duration": "25 hr 25 min",
+    "departure_description": "9:55 PM on Wed, Dec 2",
     "verdict": "high",
-    "band_low": 150,
-    "band_high": 245,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTItMDIiIAoDRFhCEgoyMDI2LTEyLTAyGgNCT00qAlNHMgQ1MDIzIh8KA0JPTRIKMjAyNi0xMi0wMhoDREVMKgJTRzIDNjEzagUSA0RYQnIFEgNERUxCAQFIAZgBAg&curr=usd"
+    "band_low": 160,
+    "band_high": 255,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTItMDIiIAoDRFhCEgoyMDI2LTEyLTAyGgNCT00qAlNHMgQ1MTE0Ih8KA0JPTRIKMjAyNi0xMi0wMxoDREVMKgJTRzIDNjEzagUSA0RYQnIFEgNERUxCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.459Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:56.684Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-09",
@@ -63,19 +63,19 @@
    "date": "2026-12-16",
    "status": "ok",
    "fare": {
-    "price": 241,
-    "price_text": "$241",
+    "price": 249,
+    "price_text": "$249",
     "airline": "IndiGo",
     "stops": 0,
     "duration": "3 hr 40 min",
     "departure_description": "11:25 AM on Wed, Dec 16",
     "verdict": "typical",
-    "band_low": 150,
-    "band_high": 245,
+    "band_low": 160,
+    "band_high": 255,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMTYiIAoDRFhCEgoyMDI2LTEyLTE2GgNERUwqAjZFMgQxNDYyagUSA0RYQnIFEgNERUxCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.459Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:56.684Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-23",
@@ -99,19 +99,19 @@
    "date": "2026-12-30",
    "status": "ok",
    "fare": {
-    "price": 179,
-    "price_text": "$179",
+    "price": 187,
+    "price_text": "$187",
     "airline": "IndiGo",
     "stops": 0,
     "duration": "3 hr 40 min",
     "departure_description": "11:25 AM on Wed, Dec 30",
     "verdict": "typical",
-    "band_low": 150,
-    "band_high": 245,
+    "band_low": 160,
+    "band_high": 255,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMzAiIAoDRFhCEgoyMDI2LTEyLTMwGgNERUwqAjZFMgQxNDYyagUSA0RYQnIFEgNERUxCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.459Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:56.684Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-06",
@@ -141,13 +141,13 @@
     "stops": 0,
     "duration": "3 hr 40 min",
     "departure_description": "11:25 AM on Wed, Jan 13",
-    "verdict": "high",
+    "verdict": "typical",
     "band_low": 120,
-    "band_high": 170,
+    "band_high": 190,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMTMiIAoDRFhCEgoyMDI3LTAxLTEzGgNERUwqAjZFMgQxNDYyagUSA0RYQnIFEgNERUxCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.459Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:56.684Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-20",
@@ -171,19 +171,19 @@
    "date": "2027-01-27",
    "status": "ok",
    "fare": {
-    "price": 200,
-    "price_text": "$200",
+    "price": 173,
+    "price_text": "$173",
     "airline": "IndiGo",
     "stops": 0,
     "duration": "3 hr 40 min",
     "departure_description": "11:25 AM on Wed, Jan 27",
-    "verdict": "high",
+    "verdict": "typical",
     "band_low": 120,
-    "band_high": 170,
+    "band_high": 190,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMjciIAoDRFhCEgoyMDI3LTAxLTI3GgNERUwqAjZFMgQxNDYyagUSA0RYQnIFEgNERUxCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:06.024Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:56.684Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-03",
@@ -218,8 +218,8 @@
     "band_high": 145,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDItMTAiIAoDRFhCEgoyMDI3LTAyLTEwGgNERUwqAjZFMgQxNDYyagUSA0RYQnIFEgNERUxCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:06.024Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:56.684Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-17",
@@ -254,8 +254,8 @@
     "band_high": 145,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDItMjQiIAoDRFhCEgoyMDI3LTAyLTI0GgNERUwqAjZFMgQxNDYyagUSA0RYQnIFEgNERUxCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:06.024Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:56.684Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-03",
@@ -279,19 +279,19 @@
    "date": "2027-03-10",
    "status": "ok",
    "fare": {
-    "price": 203,
-    "price_text": "$203",
-    "airline": "IndiGo",
+    "price": 201,
+    "price_text": "$201",
+    "airline": "Emirates",
     "stops": 0,
-    "duration": "3 hr 40 min",
-    "departure_description": "11:25 AM on Wed, Mar 10",
+    "duration": "3 hr 15 min",
+    "departure_description": "3:10 PM on Wed, Mar 10",
     "verdict": "typical",
     "band_low": 115,
     "band_high": 210,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDMtMTAiIAoDRFhCEgoyMDI3LTAzLTEwGgNERUwqAjZFMgQxNDYyagUSA0RYQnIFEgNERUxCAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMTAiHwoDRFhCEgoyMDI3LTAzLTEwGgNERUwqAkVLMgM1MTRqBRIDRFhCcgUSA0RFTEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:06.024Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:56.684Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-17",
@@ -326,8 +326,8 @@
     "band_high": 210,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMjQiHwoDRFhCEgoyMDI3LTAzLTI0GgNNQ1QqAldZMgM2MjQiHwoDTUNUEgoyMDI3LTAzLTI1GgNERUwqAldZMgMyNDFqBRIDRFhCcgUSA0RFTEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.103Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:44.280Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-31",
@@ -362,8 +362,8 @@
     "band_high": 255,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMDciHwoDRFhCEgoyMDI3LTA0LTA3GgNCQUgqAkdGMgM1MDUiHwoDQkFIEgoyMDI3LTA0LTA3GgNERUwqAkdGMgMxMzRqBRIDRFhCcgUSA0RFTEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.103Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:44.280Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-14",
@@ -398,8 +398,8 @@
     "band_high": 255,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjEiHwoDRFhCEgoyMDI3LTA0LTIxGgNNQ1QqAldZMgM2MTAiHwoDTUNUEgoyMDI3LTA0LTIyGgNERUwqAldZMgMyNDFqBRIDRFhCcgUSA0RFTEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.103Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:44.280Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-28",

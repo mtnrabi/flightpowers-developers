@@ -32,14 +32,14 @@
     "airline": "Iberia | British Airways",
     "stops": 0,
     "duration": "2 hr 30 min",
-    "departure_description": "10:45 AM on Wed, Dec 2",
+    "departure_description": "7:05 PM on Wed, Dec 2",
     "verdict": "low",
     "band_low": 85,
-    "band_high": 250,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDIiHwoDTEhSEgoyMDI2LTEyLTAyGgNNQUQqAklCMgM3MTRqBRIDTEhScgUSA01BREIBAUgBmAEC&curr=usd"
+    "band_high": 245,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDIiHwoDTEhSEgoyMDI2LTEyLTAyGgNNQUQqAklCMgM3MjRqBRIDTEhScgUSA01BREIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.866Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-09",
@@ -63,19 +63,19 @@
    "date": "2026-12-16",
    "status": "ok",
    "fare": {
-    "price": 178,
-    "price_text": "$178",
+    "price": 145,
+    "price_text": "$145",
     "airline": "Air France",
     "stops": 1,
     "duration": "7 hr 20 min",
     "departure_description": "2:45 PM on Wed, Dec 16",
     "verdict": "typical",
     "band_low": 85,
-    "band_high": 250,
+    "band_high": 245,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTItMTYiIAoDTEhSEgoyMDI2LTEyLTE2GgNDREcqAkFGMgQxNzgxIiAKA0NERxIKMjAyNi0xMi0xNhoDTUFEKgJBRjIEMTQwMGoFEgNMSFJyBRIDTUFEQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.866Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-23",
@@ -99,19 +99,19 @@
    "date": "2026-12-30",
    "status": "ok",
    "fare": {
-    "price": 243,
-    "price_text": "$243",
-    "airline": "Air France",
+    "price": 259,
+    "price_text": "$259",
+    "airline": "Aegean",
     "stops": 1,
-    "duration": "14 hr 35 min",
-    "departure_description": "5:35 PM on Wed, Dec 30",
-    "verdict": "typical",
+    "duration": "16 hr 5 min",
+    "departure_description": "7:00 PM on Wed, Dec 30",
+    "verdict": "high",
     "band_low": 85,
-    "band_high": 250,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTItMzAiIAoDTEhSEgoyMDI2LTEyLTMwGgNDREcqAkFGMgQxMjgxIiAKA0NERxIKMjAyNi0xMi0zMRoDTUFEKgJBRjIEMTAwMGoFEgNMSFJyBRIDTUFEQgEBSAGYAQI&curr=usd"
+    "band_high": 245,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMzAiHwoDTEhSEgoyMDI2LTEyLTMwGgNBVEgqAkEzMgM2MDUiHwoDQVRIEgoyMDI2LTEyLTMxGgNNQUQqAkEzMgM3MDBqBRIDTEhScgUSA01BREIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.866Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-06",
@@ -139,15 +139,15 @@
     "price_text": "$72",
     "airline": "Iberia | British Airways",
     "stops": 0,
-    "duration": "2 hr 35 min",
-    "departure_description": "9:15 AM on Wed, Jan 13",
+    "duration": "2 hr 30 min",
+    "departure_description": "10:45 AM on Wed, Jan 13",
     "verdict": "typical",
-    "band_low": 65,
+    "band_low": 60,
     "band_high": 90,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMTMiHwoDTEhSEgoyMDI3LTAxLTEzGgNNQUQqAklCMgM3MTJqBRIDTEhScgUSA01BREIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMTMiHwoDTEhSEgoyMDI3LTAxLTEzGgNNQUQqAklCMgM3MTRqBRIDTEhScgUSA01BREIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.866Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-20",
@@ -171,19 +171,19 @@
    "date": "2027-01-27",
    "status": "ok",
    "fare": {
-    "price": 84,
-    "price_text": "$84",
+    "price": 72,
+    "price_text": "$72",
     "airline": "Iberia | British Airways",
     "stops": 0,
     "duration": "2 hr 30 min",
     "departure_description": "10:45 AM on Wed, Jan 27",
     "verdict": "typical",
-    "band_low": 65,
+    "band_low": 60,
     "band_high": 90,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMjciHwoDTEhSEgoyMDI3LTAxLTI3GgNNQUQqAklCMgM3MTRqBRIDTEhScgUSA01BREIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:33.090Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-03",
@@ -214,12 +214,12 @@
     "duration": "2 hr 35 min",
     "departure_description": "9:15 AM on Wed, Feb 10",
     "verdict": "typical",
-    "band_low": 65,
+    "band_low": 60,
     "band_high": 135,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMTAiHwoDTEhSEgoyMDI3LTAyLTEwGgNNQUQqAklCMgM3MTJqBRIDTEhScgUSA01BREIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:33.090Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-17",
@@ -243,19 +243,19 @@
    "date": "2027-02-24",
    "status": "ok",
    "fare": {
-    "price": 72,
-    "price_text": "$72",
+    "price": 84,
+    "price_text": "$84",
     "airline": "Iberia | British Airways",
     "stops": 0,
-    "duration": "2 hr 35 min",
-    "departure_description": "9:15 AM on Wed, Feb 24",
+    "duration": "2 hr 30 min",
+    "departure_description": "10:45 AM on Wed, Feb 24",
     "verdict": "typical",
-    "band_low": 65,
+    "band_low": 60,
     "band_high": 135,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMjQiHwoDTEhSEgoyMDI3LTAyLTI0GgNNQUQqAklCMgM3MTJqBRIDTEhScgUSA01BREIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMjQiHwoDTEhSEgoyMDI3LTAyLTI0GgNNQUQqAklCMgM3MTRqBRIDTEhScgUSA01BREIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:33.090Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-03",
@@ -290,8 +290,8 @@
     "band_high": 140,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMTAiHwoDTEhSEgoyMDI3LTAzLTEwGgNNQUQqAklCMgM3MTRqBRIDTEhScgUSA01BREIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:33.090Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:28.898Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-17",
@@ -315,19 +315,19 @@
    "date": "2027-03-24",
    "status": "ok",
    "fare": {
-    "price": 184,
-    "price_text": "$184",
-    "airline": "Iberia | British Airways",
+    "price": 160,
+    "price_text": "$160",
+    "airline": "British Airways | Iberia",
     "stops": 0,
-    "duration": "2 hr 25 min",
-    "departure_description": "5:25 PM on Wed, Mar 24",
+    "duration": "2 hr 30 min",
+    "departure_description": "8:45 AM on Wed, Mar 24",
     "verdict": "high",
     "band_low": 75,
     "band_high": 140,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMjQiHwoDTEhSEgoyMDI3LTAzLTI0GgNNQUQqAklCMgM3MjBqBRIDTEhScgUSA01BREIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMjQiHwoDTEhSEgoyMDI3LTAzLTI0GgNNQUQqAkJBMgM0NjBqBRIDTEhScgUSA01BREIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.678Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:11.769Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-31",
@@ -362,8 +362,8 @@
     "band_high": 185,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMDciHwoDTEhSEgoyMDI3LTA0LTA3GgNNQUQqAklCMgM3MTRqBRIDTEhScgUSA01BREIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.678Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:11.769Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-14",
@@ -398,8 +398,8 @@
     "band_high": 185,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMjEiHwoDTEhSEgoyMDI3LTA0LTIxGgNNQUQqAklCMgM3MjBqBRIDTEhScgUSA01BREIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:08:34.678Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:26:11.769Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-28",

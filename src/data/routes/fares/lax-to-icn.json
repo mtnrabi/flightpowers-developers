@@ -38,8 +38,8 @@
     "band_high": 1250,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDIiHwoDTEFYEgoyMDI2LTEyLTAyGgNJQ04qAllQMgMxMDJqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:03:12.025Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:05.095Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-09",
@@ -74,8 +74,8 @@
     "band_high": 1250,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMTYiHwoDTEFYEgoyMDI2LTEyLTE2GgNTRk8qAlVBMgMzMzYiHwoDU0ZPEgoyMDI2LTEyLTE2GgNJQ04qAlVBMgM4OTNqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:03:12.025Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:05.095Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-23",
@@ -99,19 +99,19 @@
    "date": "2026-12-30",
    "status": "ok",
    "fare": {
-    "price": 509,
-    "price_text": "$509",
-    "airline": "Cathay Pacific",
+    "price": 533,
+    "price_text": "$533",
+    "airline": "American",
     "stops": 1,
-    "duration": "20 hr 35 min",
-    "departure_description": "11:05 AM on Wed, Dec 30",
+    "duration": "23 hr 10 min",
+    "departure_description": "12:35 AM on Wed, Dec 30",
     "verdict": "typical",
     "band_low": 450,
     "band_high": 1250,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMzAiHwoDTEFYEgoyMDI2LTEyLTMwGgNIS0cqAkNYMgM4ODUiHwoDSEtHEgoyMDI2LTEyLTMxGgNJQ04qAkNYMgM0MjZqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTItMzAiIAoDTEFYEgoyMDI2LTEyLTMwGgNERlcqAkFBMgQxNzQxIh8KA0RGVxIKMjAyNi0xMi0zMBoDSUNOKgJBQTIDMjgxagUSA0xBWHIFEgNJQ05CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:03:12.025Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:05.095Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-06",
@@ -142,12 +142,12 @@
     "duration": "20 hr 35 min",
     "departure_description": "11:05 AM on Wed, Jan 13",
     "verdict": "typical",
-    "band_low": 430,
-    "band_high": 540,
+    "band_low": 435,
+    "band_high": 530,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMTMiHwoDTEFYEgoyMDI3LTAxLTEzGgNIS0cqAkNYMgM4ODUiHwoDSEtHEgoyMDI3LTAxLTE0GgNJQ04qAkNYMgM0MjZqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:03:12.025Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:05.095Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-20",
@@ -178,12 +178,12 @@
     "duration": "20 hr 35 min",
     "departure_description": "11:05 AM on Wed, Jan 27",
     "verdict": "typical",
-    "band_low": 430,
-    "band_high": 540,
+    "band_low": 435,
+    "band_high": 530,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMjciHwoDTEFYEgoyMDI3LTAxLTI3GgNIS0cqAkNYMgM4ODUiHwoDSEtHEgoyMDI3LTAxLTI4GgNJQ04qAkNYMgM0MjZqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:03:00.169Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:05.095Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-03",
@@ -218,8 +218,8 @@
     "band_high": 560,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMTAiHwoDTEFYEgoyMDI3LTAyLTEwGgNIS0cqAkNYMgM4ODUiHwoDSEtHEgoyMDI3LTAyLTExGgNJQ04qAkNYMgM0MjZqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:03:00.169Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:05.095Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-17",
@@ -254,8 +254,8 @@
     "band_high": 560,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMjQiHwoDTEFYEgoyMDI3LTAyLTI0GgNIS0cqAkNYMgM4ODMiHwoDSEtHEgoyMDI3LTAyLTI2GgNJQ04qAkNYMgM0MzRqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:03:00.169Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:05.095Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-03",
@@ -290,8 +290,8 @@
     "band_high": 740,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTAiHwoDTEFYEgoyMDI3LTAzLTEwGgNIS0cqAkNYMgM4ODUiHwoDSEtHEgoyMDI3LTAzLTExGgNJQ04qAkNYMgM0MjZqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:03:00.169Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:05.095Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-17",
@@ -326,8 +326,8 @@
     "band_high": 740,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMjQiHwoDTEFYEgoyMDI3LTAzLTI0GgNIS0cqAkNYMgM4ODMiHwoDSEtHEgoyMDI3LTAzLTI2GgNJQ04qAkNYMgM0MzRqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:02:55.473Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:18.620Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-31",
@@ -362,8 +362,8 @@
     "band_high": 560,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMDciHwoDTEFYEgoyMDI3LTA0LTA3GgNIS0cqAkNYMgM4ODUiHwoDSEtHEgoyMDI3LTA0LTA5GgNJQ04qAkNYMgM0MzRqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:02:55.473Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:18.620Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-14",
@@ -398,8 +398,8 @@
     "band_high": 560,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjEiHwoDTEFYEgoyMDI3LTA0LTIxGgNIS0cqAkNYMgM4ODUiHwoDSEtHEgoyMDI3LTA0LTIzGgNJQ04qAkNYMgM0MzRqBRIDTEFYcgUSA0lDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:02:55.473Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:24:18.620Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-28",

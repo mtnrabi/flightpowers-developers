@@ -27,19 +27,19 @@
    "date": "2026-12-02",
    "status": "ok",
    "fare": {
-    "price": 214,
-    "price_text": "$214",
+    "price": 213,
+    "price_text": "$213",
     "airline": "SpiceJet",
     "stops": 0,
-    "duration": "3 hr 10 min",
-    "departure_description": "12:20 PM on Wed, Dec 2",
+    "duration": "3 hr 15 min",
+    "departure_description": "9:55 PM on Wed, Dec 2",
     "verdict": "typical",
-    "band_low": 145,
-    "band_high": 250,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMDIiIAoDRFhCEgoyMDI2LTEyLTAyGgNCT00qAlNHMgQ1MDIzagUSA0RYQnIFEgNCT01CAQFIAZgBAg&curr=usd"
+    "band_low": 155,
+    "band_high": 255,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMDIiIAoDRFhCEgoyMDI2LTEyLTAyGgNCT00qAlNHMgQ1MTE0agUSA0RYQnIFEgNCT01CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.459Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:56.684Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-09",
@@ -63,19 +63,19 @@
    "date": "2026-12-16",
    "status": "ok",
    "fare": {
-    "price": 247,
-    "price_text": "$247",
-    "airline": "IndiGo",
+    "price": 254,
+    "price_text": "$254",
+    "airline": "SpiceJet",
     "stops": 0,
-    "duration": "3 hr 20 min",
-    "departure_description": "6:20 PM on Wed, Dec 16",
+    "duration": "3 hr 15 min",
+    "departure_description": "9:55 PM on Wed, Dec 16",
     "verdict": "typical",
-    "band_low": 145,
-    "band_high": 250,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMTYiIAoDRFhCEgoyMDI2LTEyLTE2GgNCT00qAjZFMgQxNDU0agUSA0RYQnIFEgNCT01CAQFIAZgBAg&curr=usd"
+    "band_low": 155,
+    "band_high": 255,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMTYiIAoDRFhCEgoyMDI2LTEyLTE2GgNCT00qAlNHMgQ1MTE0agUSA0RYQnIFEgNCT01CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.459Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:56.684Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-23",
@@ -106,12 +106,12 @@
     "duration": "3 hr 15 min",
     "departure_description": "12:15 PM on Wed, Dec 30",
     "verdict": "typical",
-    "band_low": 145,
-    "band_high": 250,
+    "band_low": 155,
+    "band_high": 255,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMzAiIAoDRFhCEgoyMDI2LTEyLTMwGgNCT00qAjZFMgQxNDUyagUSA0RYQnIFEgNCT01CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.459Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:56.684Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-06",
@@ -143,11 +143,11 @@
     "departure_description": "6:45 AM on Wed, Jan 13",
     "verdict": "typical",
     "band_low": 105,
-    "band_high": 150,
+    "band_high": 165,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMTMiHwoDRFhCEgoyMDI3LTAxLTEzGgNBTU0qAlJKMgM2MTMiHwoDQU1NEgoyMDI3LTAxLTE0GgNCT00qAlJKMgMxOTJqBRIDRFhCcgUSA0JPTUIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.459Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:56.684Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-20",
@@ -179,11 +179,11 @@
     "departure_description": "12:15 PM on Wed, Jan 27",
     "verdict": "typical",
     "band_low": 105,
-    "band_high": 150,
+    "band_high": 165,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMjciIAoDRFhCEgoyMDI3LTAxLTI3GgNCT00qAjZFMgQxNDUyagUSA0RYQnIFEgNCT01CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:06.024Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:56.684Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-03",
@@ -218,8 +218,8 @@
     "band_high": 115,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMTAiHwoDRFhCEgoyMDI3LTAyLTEwGgNBTU0qAlJKMgM2MTMiHwoDQU1NEgoyMDI3LTAyLTExGgNCT00qAlJKMgMxOTJqBRIDRFhCcgUSA0JPTUIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:06.024Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:56.684Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-17",
@@ -254,8 +254,8 @@
     "band_high": 115,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDItMjQiIAoDRFhCEgoyMDI3LTAyLTI0GgNCT00qAjZFMgQxNDUyagUSA0RYQnIFEgNCT01CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:06.024Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:56.684Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-03",
@@ -290,8 +290,8 @@
     "band_high": 195,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDMtMTAiIAoDRFhCEgoyMDI3LTAzLTEwGgNCT00qAjZFMgQxNDUyagUSA0RYQnIFEgNCT01CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:06.024Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:56.684Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-17",
@@ -326,8 +326,8 @@
     "band_high": 195,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMjQiHwoDRFhCEgoyMDI3LTAzLTI0GgNBTU0qAlJKMgM2MTMiHwoDQU1NEgoyMDI3LTAzLTI1GgNCT00qAlJKMgMxOTJqBRIDRFhCcgUSA0JPTUIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.103Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:44.280Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-31",
@@ -362,8 +362,8 @@
     "band_high": 180,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMDciHwoDRFhCEgoyMDI3LTA0LTA3GgNBTU0qAlJKMgM2MTMiHwoDQU1NEgoyMDI3LTA0LTA4GgNCT00qAlJKMgMxOTJqBRIDRFhCcgUSA0JPTUIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.103Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:44.280Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-14",
@@ -398,8 +398,8 @@
     "band_high": 180,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjEiHwoDRFhCEgoyMDI3LTA0LTIxGgNBTU0qAlJKMgM2MTMiHwoDQU1NEgoyMDI3LTA0LTIyGgNCT00qAlJKMgMxOTJqBRIDRFhCcgUSA0JPTUIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.103Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-17T21:27:44.280Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-28",
