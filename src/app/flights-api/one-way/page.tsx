@@ -311,10 +311,11 @@ export default function OneWayPage() {
               Exclude these carriers.
             </FieldRow>
             <FieldRow name="departure_time_min / departure_time_max" type="int 0–23">
-              Departure-hour window in local time.
+              Departure-hour window in local time, whole hours: <code className="field">8</code> means 08:00, and{' '}
+              <code className="field">&quot;08:00&quot;</code> works too (<code className="field">&quot;08:30&quot;</code> is a 422).
             </FieldRow>
             <FieldRow name="arrival_time_min / arrival_time_max" type="int 0–23">
-              Arrival-hour window in local time.
+              Arrival-hour window in local time, same format.
             </FieldRow>
             <FieldRow name="currency" type="string">
               Defaults to <code className="field">USD</code>. Prices, the band, and the <code className="field">buy_link</code>{' '}

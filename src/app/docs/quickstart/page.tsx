@@ -313,7 +313,10 @@ export default function QuickstartPage() {
                 <code className="field">max_stops</code> on a round trip, which has{' '}
                 <code className="field">max_departure_stops</code> and <code className="field">max_return_stops</code>{' '}
                 instead. Sending the plural gives you two errors at once, an unknown key and a missing one. Fix the
-                name, not the missing field.
+                name, not the missing field. The time filters split the same way: a round trip has no{' '}
+                <code className="field">departure_time_min</code>, it has{' '}
+                <code className="field">departure_departure_time_min</code> for the outbound flight and{' '}
+                <code className="field">return_departure_time_min</code> for the return flight.
               </p>
               <p>
                 <strong className="text-ink-100">2. A required field missing, or the wrong type.</strong> One-way needs{' '}
@@ -321,8 +324,12 @@ export default function QuickstartPage() {
                 <code className="field">departure_date</code>; round trip adds{' '}
                 <code className="field">return_date</code>. Numbers are numbers:{' '}
                 <code className="field">max_stops</code>, <code className="field">max_price</code>,{' '}
-                <code className="field">limit</code>, <code className="field">seat_type</code> and the four time
-                filters are whole numbers, and a string like <code className="field">&quot;2&quot;</code> is a 422.
+                <code className="field">limit</code>, <code className="field">seat_type</code> and the time filters are whole numbers;
+                a numeric string like <code className="field">&quot;2&quot;</code> is read as 2, but{' '}
+                <code className="field">&quot;2 stops&quot;</code> or an empty string is a 422 (leave an optional field out
+                instead). The time filters are hours of the day: <code className="field">8</code> means 08:00, and a clock time on
+                the hour such as <code className="field">&quot;08:00&quot;</code> works too; <code className="field">&quot;08:30&quot;</code> does
+                not, they filter in whole hours.
               </p>
               <p>
                 <strong className="text-ink-100">3. A date that is not YYYY-MM-DD, or a return before the departure.</strong>{' '}

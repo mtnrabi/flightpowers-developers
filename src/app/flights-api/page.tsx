@@ -447,7 +447,8 @@ export default function FlightsApiHubPage() {
               Restrict results to these carriers, or keep everything except them.
             </FieldRow>
             <FieldRow name="departure_time_min / _max, arrival_time_min / _max" type="int 0–23">
-              Hour-of-day windows for departure and arrival.
+              Hour-of-day windows for departure and arrival: <code className="field">8</code> means 08:00, and{' '}
+              <code className="field">&quot;08:00&quot;</code> works too.
             </FieldRow>
             <FieldRow name="max_price" type="int">
               Upper bound on the fare, in the requested currency.
