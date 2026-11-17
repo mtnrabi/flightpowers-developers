@@ -17,14 +17,22 @@ import {
   type Faq,
 } from '@/components/ui';
 import capture from '@/lib/fixtures/cheapest-dates-jfk-lax.json';
+import { FLIGHT_PLANS } from '@/lib/pricing';
 import { SITE, rapidApiPricingUrl } from '@/lib/site';
 
-export const metadata: Metadata = withOg({
-  title: 'Cheapest dates API: a month of Google Flights fares in one request',
-  description:
-    'POST /cheapest_dates: the lowest fare Google Flights shows for every departure date of a month or a range (up to 61 days), one-way or a round trip of N nights, in one request.',
-  alternates: { canonical: '/flights-api/cheapest-dates' },
-});
+const PRO = FLIGHT_PLANS.find((p) => p.name === 'PRO')!;
+
+// title.absolute keeps the tag under 60 characters (the template would add
+// " · FlightPowers" to a 66-character title); the og card keeps the literal.
+export const metadata: Metadata = {
+  ...withOg({
+    title: 'Cheapest dates API: a month of Google Flights fares in one request',
+    description:
+      'POST /cheapest_dates: the lowest fare Google Flights shows for every departure date of a month or a range (up to 61 days), one-way or a round trip of N nights, in one request.',
+    alternates: { canonical: '/flights-api/cheapest-dates' },
+  }),
+  title: { absolute: 'Cheapest Dates API: a month of flight prices in one request' },
+};
 
 export const dynamic = 'force-static';
 
@@ -77,7 +85,11 @@ const REFUSALS: { when: string; field: string; detail: string }[] = [
 const faq: Faq[] = [
   {
     q: 'How many requests does it cost?',
-    a: 'One. A whole month (or any range up to 61 days) is one request on your RapidAPI plan, one-way or round trip.',
+    a: `One. A whole month (or any range up to 61 days) is one request on your RapidAPI plan, one-way or round trip, so PRO ($${PRO.priceMonthly} for ${PRO.quota.toLocaleString('en-US')} requests a month) covers ${PRO.quota.toLocaleString('en-US')} month-wide calendars.`,
+  },
+  {
+    q: 'Is this a flight price calendar API?',
+    a: 'Yes. It returns the lowest fare Google Flights shows for each departure date (Google’s calendar estimates), one row per departure date with a null where Google shows none, plus the cheapest date of the range. Use it to pick the day, then price that day in full with the one-way or round-trip endpoint.',
   },
   {
     q: 'Are these the same prices as a full search?',
@@ -159,6 +171,9 @@ export default function CheapestDatesPage() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <Cta href={rapidApiPricingUrl('flights', 'endpoint')} external variant="primary">
                   Get a key on RapidAPI →
+                </Cta>
+                <Cta href="/pricing" variant="ghost">
+                  See pricing
                 </Cta>
               </div>
               <p className="mt-4 font-mono text-[12px] text-ink-500">Free tier on RapidAPI. No card to try.</p>

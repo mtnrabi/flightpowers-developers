@@ -30,14 +30,25 @@ import {
 import { COUNTS, LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
 import { apiNode } from '@/lib/schema-offers';
 
-export const metadata: Metadata = withOg({
-  title: 'API pricing: flights & hotels, $0 to $75/mo',
+// Retitled 2026-11-17 (SEO quick wins, GSC 28 days to 11-17): 678 impressions at
+// position 5.5, and the price queries that land here read 'google flights api
+// pricing', 'booking api pricing', 'airbnb api pricing', 'flight data api pricing'.
+// The title now starts with the words those queries use; the PRO price in
+// title.absolute comes from lib/pricing.ts, the og card keeps a literal title.
+const MIN_PRO = Math.min(
+  ...[FLIGHT_PLANS, HOTEL_PLANS, AIRBNB_PLANS, GOOGLE_HOTELS_PLANS].map((ps) => ps.find((x) => x.name === 'PRO')!.priceMonthly),
+);
+export const metadata: Metadata = {
+  ...withOg({
+  title: 'Flight & hotel API pricing: free tier, then monthly plans',
   // <=160 chars so the snippet is not cut; numbers from lib/pricing.ts.
   description: `Four travel data APIs on RapidAPI (flights, Booking.com, Airbnb, Google Hotels): free tier, no card, PRO from $${Math.min(
     ...[FLIGHT_PLANS, HOTEL_PLANS, AIRBNB_PLANS, GOOGLE_HOTELS_PLANS].map((ps) => ps.find((x) => x.name === 'PRO')!.priceMonthly),
   )} a month, plans up to $${Math.max(...[FLIGHT_PLANS, HOTEL_PLANS, AIRBNB_PLANS, GOOGLE_HOTELS_PLANS].flat().map((x) => x.priceMonthly))}.`,
   alternates: { canonical: '/pricing' },
-});
+  }),
+  title: { absolute: `Flight & hotel API pricing: free tier, PRO from $${MIN_PRO}/mo` },
+};
 
 const planNamed = (plans: Plan[], name: string) => plans.find((p) => p.name === name)!;
 /** The opener's one sentence: the free tier and PRO on each of the four APIs, from lib/pricing.ts. */
@@ -247,7 +258,7 @@ const faq: Faq[] = [
   },
   {
     q: 'What counts as a request?',
-    a: 'A call to any endpoint is one request. The listings state this per plan. A round-trip search is one request, and so is a multi-airport search (up to 8 airport pairs). A 30-day flexible-date scan over REST is 30 requests (one per date), which is why the rate limits are sized the way they are.',
+    a: 'A call to any endpoint is one request. The listings state this per plan. A round-trip search is one request, and so is a multi-airport search (up to 8 airport pairs), and so is a cheapest-dates call, which returns Google Flights’ lowest fare for every date of a month. A 30-day scan for full fares on every date (airlines, stops, booking links) is 30 requests (one per date), which is why the rate limits are sized the way they are.',
   },
   {
     q: 'Do the plans differ in features?',
@@ -255,7 +266,7 @@ const faq: Faq[] = [
   },
   {
     q: 'What happens when I exceed my quota?',
-    a: 'On paid plans the quota is soft: extra requests bill at the plan’s overage rate ($0.003/request on flights Pro, $0.002 on Ultra, $0.0015 on Mega; $0.006 / $0.006 / $0.005 on hotels). The free tier is a hard cap: requests beyond its monthly quota (10 on flights and Booking.com hotels, 100 on Airbnb and Google Hotels) are rejected, not billed.',
+    a: `On paid plans the quota is soft: extra requests bill at the plan’s overage rate ($0.003/request on flights Pro, $0.002 on Ultra, $0.0015 on Mega; $0.006 / $0.006 / $0.005 on hotels). The free tier is a hard cap: requests beyond its monthly quota (${FLIGHT_PLANS[0]!.quota} on flights, ${HOTEL_PLANS[0]!.quota} on Booking.com hotels, ${AIRBNB_PLANS[0]!.quota} on Airbnb and ${GOOGLE_HOTELS_PLANS[0]!.quota} on Google Hotels) are rejected, not billed.`,
   },
   {
     q: 'What if I need more than the biggest plan (25,000 requests a month on flights, 15,000 on hotels)?',
@@ -291,7 +302,7 @@ export default function PricingPage() {
       <Container className="pt-14 sm:pt-20 pb-4">
         <p className="eyebrow">Pricing</p>
         <h1 className="mt-4 text-hero font-semibold max-w-3xl">
-          Free to start.{' '}
+          Flight and hotel API pricing: free to start.{' '}
           {OPENER_PRO_PRICES.length === 1 ? (
             <span className="text-signal-500">PRO is ${OPENER_PRO_PRICES[0]} a month on each of the four APIs.</span>
           ) : (

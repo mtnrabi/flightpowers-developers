@@ -77,7 +77,7 @@ function faqFor(r: RouteFares): Faq[] {
     },
     {
       q: `Can I get the same data for other dates or routes?`,
-      a: `Yes. Every date here is one API request, so a different route, every day of a month, or the round trip is the same request with other values. The flights API allows ${COUNTS.flightsRateLimits} requests per minute on its Pro, Ultra and Mega plans, so a whole season is one parallel burst.`,
+      a: `Yes. Every date here is one API request, so a different route, every day of a month, or the round trip is the same request with other values. The flights API allows ${COUNTS.flightsRateLimits} requests per minute on its Pro, Ultra and Mega plans, so a whole season is one parallel burst. To find only the cheapest day, the cheapest-dates endpoint returns Google Flights' lowest fare for every date of a month in a single request.`,
     },
   ];
 }
@@ -277,6 +277,14 @@ export default async function Page({ params }: Props) {
             and the{' '}
             <Link href="/flights-api/parallel-date-scan" className="text-signal-400 underline underline-offset-4">
               parallel date scan guide
+            </Link>
+            . Only need the cheapest day? The{' '}
+            <Link href="/flights-api/cheapest-dates" className="text-signal-400 underline underline-offset-4">
+              cheapest dates endpoint
+            </Link>{' '}
+            prices every date of a month for {r.from.iata} to {r.to.iata} in one request; plans and quotas are on the{' '}
+            <Link href="/pricing" className="text-signal-400 underline underline-offset-4">
+              pricing page
             </Link>
             .
           </p>
