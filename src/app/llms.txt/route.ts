@@ -60,6 +60,7 @@ ${DIFFERENTIATORS.map((d) => `- ${d.title}: ${d.short}`).join('\n')}
 - [Flights API reference](${u('/flights-api')}): POST /oneway and /roundtrip with captured example responses
 - [One-way search](${u('/flights-api/one-way')}): the base endpoint, full filter set
 - [Round-trip search](${u('/flights-api/round-trip')}): paired-leg itineraries priced together, not two stapled one-ways
+- [Cheapest dates](${u('/flights-api/cheapest-dates')}): POST /api/google_flights/cheapest_dates/v1 on the RapidAPI host: Google Flights' lowest fare for every departure date of a month or a range (up to 61 days), one-way or a round trip of 1-30 nights, in ONE request; prices are Google's calendar estimates (no airline or flight details), confirm a date with the one-way or round-trip search
 - [Multi-airport search](${u('/flights-api/multi-airport')}): 1 to 4 airports a side and up to 8 airport pairs in one request (one-way or round trip), one ranked list, each row naming the airports it flies; every 422 it can answer
 - [Price insights](${u('/flights-api/price-insights')}): Google's historical band and the low|typical|high verdict
 - [Search status](${u('/flights-api/search-status')}): X-Search-Status header semantics; how to tell "no flights" from "search failed"

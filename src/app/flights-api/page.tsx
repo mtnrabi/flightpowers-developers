@@ -51,6 +51,12 @@ const ENDPOINT_PAGES = [
     sub: 'One object per itinerary, both legs pre-paired, with combined price, duration, and stops.',
   },
   {
+    href: '/flights-api/cheapest-dates',
+    method: 'POST /cheapest_dates',
+    label: 'Cheapest dates',
+    sub: 'Google’s lowest fare for every date of a month (or up to 61 days) in one request.',
+  },
+  {
     href: '/flights-api/multi-airport',
     method: 'POST /*_multi_airport',
     label: 'Multi-airport search',
