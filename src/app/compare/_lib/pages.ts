@@ -32,6 +32,20 @@ export const COMPARE_PAGES: ComparePage[] = [
     group: 'google-flights',
   },
   {
+    href: '/compare/serpapi-pricing',
+    title: 'SerpApi pricing and coupon codes',
+    sub: 'Every SerpApi plan with its price per 1,000 searches, the plain answer on coupons (we know of none), their refund rule, and when SerpApi is the better buy.',
+    read: '2026-11-22',
+    group: 'google-flights',
+  },
+  {
+    href: '/compare/hasdata-pricing',
+    title: 'HasData pricing and promo codes',
+    sub: 'HasData plans in Google Flights requests, the one published discount (two months free on annual billing), and the volume where HasData is cheaper than us.',
+    read: '2026-11-22',
+    group: 'google-flights',
+  },
+  {
     href: '/compare/searchapi',
     title: 'vs SearchApi',
     sub: 'Same $4 per 1,000 as our PRO, a $40 entry against $10, and a calendar endpoint that prices a date grid in one call, which our REST API does not have.',
