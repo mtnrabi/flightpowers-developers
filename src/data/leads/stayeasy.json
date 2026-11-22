@@ -1,0 +1,60 @@
+{
+  "slug": "stayeasy",
+  "name": "StayEasy",
+  "product": "hotels",
+  "request": {
+    "path": "/v1/hotels/by-name",
+    "body": {
+      "hotel_name": "Riad Kniza Marrakech",
+      "checkin_date": "2026-12-10",
+      "checkout_date": "2026-12-12",
+      "adults": 2,
+      "currency": "MAD"
+    }
+  },
+  "title": "Riad rates for StayEasy, live from Booking.com",
+  "intro": "One request with a property name and two dates returns what Booking.com quotes for that stay right now: total price, room type, review score and the link. Below is that request run once on Riad Kniza for December 10 to 12, in dirhams.",
+  "resultLine": "Riad Kniza, 2 nights from Dec 10: MAD 7,868 total (Royal Suite), review score 9.4 from 954 reviews.",
+  "fanout": {
+    "title": "A week of check-in dates for one riad",
+    "note": "The REST API prices one stay per request, so a rate calendar is one request per check-in date. Seven dates is seven requests; PRO allows 25 a minute, so a 30-property set over a week of dates takes about 9 minutes.",
+    "code": "for d in 10 11 12 13 14 15 16; do\n  curl -s https://api.flightpowers.com/v1/hotels/by-name \\\n    -H \"Content-Type: application/json\" \\\n    -H \"x-api-key: $RAPIDAPI_KEY\" \\\n    -d \"{\\\"hotel_name\\\":\\\"Riad Kniza Marrakech\\\",\\\"checkin_date\\\":\\\"2026-12-$d\\\",\\\"checkout_date\\\":\\\"2026-12-$((d+2))\\\",\\\"adults\\\":2,\\\"currency\\\":\\\"MAD\\\"}\"\ndone"
+  },
+  "mcp": {
+    "server": "hotels",
+    "prompt": "Price Riad Kniza in Marrakech for every 2-night stay checking in between December 10 and December 16, 2026, in MAD, and tell me which check-in date is cheapest.",
+    "note": "The hotels MCP server takes a check-in range and a number of nights in one call, so the whole week above is a single prompt."
+  },
+  "extras": [
+    "Add price_as_seen_from (a two-letter country code, MCP) or proxy_country (REST) to see the rate a guest in that country is quoted.",
+    "The Google Hotels Live API is a separate listing (PRO $10 for 2,500 requests) and returns the sites Google lists for a hotel, each with its price."
+  ],
+  "capture": {
+    "fetchedAt": "2026-11-22T20:36:59.998Z",
+    "httpStatus": 200,
+    "elapsedMs": 9304,
+    "searchStatus": null,
+    "rowsReturned": null,
+    "rowsShown": 3,
+    "response": {
+      "name": "Riad Kniza",
+      "matched_name": "Riad Kniza",
+      "match_confidence": 0.8,
+      "matched_via": "name",
+      "available": true,
+      "price_string": "MAD7868",
+      "price": 7868,
+      "review_score": 9.4,
+      "review_count": 954,
+      "room_type": "Royal Suite",
+      "image_url": "https://cf.bstatic.com/xdata/images/hotel/square240/40883369.webp?k=d2872a6e6396e6610bd8d6735edf7abf305da618a3cb77efd2b64fde369f3a51&o=",
+      "link": "https://www.booking.com/hotel/ma/riad-kniza.html?aid=304142&label=mkt123sc-58586f99-4ffa-4ae6-9348-7ca6dc940bf5&ucfs=1&arphpl=1&checkin=2026-12-10&checkout=2026…",
+      "nights": 2,
+      "adults": 2,
+      "children": null,
+      "latitude": 31.632625943304596,
+      "longitude": -7.997656613588333,
+      "retrieved_at": "2026-11-22T20:37:08.539Z"
+    }
+  }
+}

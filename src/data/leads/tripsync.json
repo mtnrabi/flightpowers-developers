@@ -1,0 +1,123 @@
+{
+  "slug": "tripsync",
+  "name": "TripSync",
+  "product": "flights",
+  "request": {
+    "path": "/v1/flights/oneway",
+    "body": {
+      "from_airport": "YYZ",
+      "to_airport": "LHR",
+      "departure_date": "2027-02-04",
+      "currency": "CAD",
+      "limit": 5
+    }
+  },
+  "title": "Toronto to London fares for TripSync, live from Google Flights",
+  "intro": "Every request is a live Google Flights search for the exact date asked, not a lookup in a cache, so a date nobody searched before still gets an answer. Below is one request run once: Toronto to London, one way, February 4, in Canadian dollars.",
+  "resultLine": "YYZ to LHR on Feb 4, 2027: CA$481 nonstop on Air Canada. Google marks it typical for this route (usual range CA$440 to CA$520).",
+  "fanout": {
+    "title": "Every departure day in February",
+    "note": "The REST API takes one date per request, so a month is 28 requests. PRO allows 150 a minute, so they can all run in parallel.",
+    "code": "for d in $(seq -w 1 28); do\n  curl -s https://api.flightpowers.com/v1/flights/oneway \\\n    -H \"Content-Type: application/json\" \\\n    -H \"x-api-key: $RAPIDAPI_KEY\" \\\n    -d \"{\\\"from_airport\\\":\\\"YYZ\\\",\\\"to_airport\\\":\\\"LHR\\\",\\\"departure_date\\\":\\\"2027-02-$d\\\",\\\"currency\\\":\\\"CAD\\\",\\\"limit\\\":5}\" &\ndone; wait"
+  },
+  "mcp": {
+    "server": "flights",
+    "prompt": "Find the cheapest one-way flight from Toronto (YYZ) to London (LHR) on any day in February 2027, in CAD, and tell me how each fare sits against Google’s usual range for the route.",
+    "note": "The flights MCP server takes a date range in one call and fans it out itself, so the month above is a single prompt."
+  },
+  "extras": [
+    "A round trip is one request to /v1/flights/roundtrip: both legs priced together, one total, one booking link.",
+    "Every row carries Google’s own price range for the route and a low / typical / high verdict, as in the response above."
+  ],
+  "capture": {
+    "fetchedAt": "2026-11-22T20:37:09.538Z",
+    "httpStatus": 200,
+    "elapsedMs": 5243,
+    "searchStatus": "ok",
+    "rowsReturned": 5,
+    "rowsShown": 3,
+    "response": [
+      {
+        "price_range_in_relation_to_other_periods": "typical",
+        "price_insights_low": 440,
+        "price_insights_high": 520,
+        "from_airport": "Mississauga (YYZ)",
+        "to_airport": "London (LHR)",
+        "departure_date": "2027-02-04",
+        "price": "CA$481",
+        "price_as_number": 481,
+        "duration": "7 hr 10 min",
+        "duration_seconds": 25800,
+        "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMDQiHwoDWVlaEgoyMDI3LTAyLTA0GgNMSFIqAkFDMgM4NTRqBRIDWVlacgUSA0xIUkIBAUgBmAEC&curr=CAD",
+        "airline": "Air Canada | Lufthansa",
+        "stops": 0,
+        "stops_info": [],
+        "segments": [
+          {
+            "from_airport": "YYZ",
+            "to_airport": "LHR",
+            "airline_code": "AC",
+            "flight_number": "854",
+            "departure_date": "2027-02-04"
+          }
+        ],
+        "departure_description": "6:20 PM on Thu, Feb 4",
+        "arrival_description": "6:30 AM on Fri, Feb 5"
+      },
+      {
+        "price_range_in_relation_to_other_periods": "typical",
+        "price_insights_low": 440,
+        "price_insights_high": 520,
+        "from_airport": "Mississauga (YYZ)",
+        "to_airport": "London (LHR)",
+        "departure_date": "2027-02-04",
+        "price": "CA$481",
+        "price_as_number": 481,
+        "duration": "7 hr 20 min",
+        "duration_seconds": 26400,
+        "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMDQiHwoDWVlaEgoyMDI3LTAyLTA0GgNMSFIqAkFDMgM4NTZqBRIDWVlacgUSA0xIUkIBAUgBmAEC&curr=CAD",
+        "airline": "Air Canada | Lufthansa",
+        "stops": 0,
+        "stops_info": [],
+        "segments": [
+          {
+            "from_airport": "YYZ",
+            "to_airport": "LHR",
+            "airline_code": "AC",
+            "flight_number": "856",
+            "departure_date": "2027-02-04"
+          }
+        ],
+        "departure_description": "8:10 PM on Thu, Feb 4",
+        "arrival_description": "8:30 AM on Fri, Feb 5"
+      },
+      {
+        "price_range_in_relation_to_other_periods": "typical",
+        "price_insights_low": 440,
+        "price_insights_high": 520,
+        "from_airport": "Mississauga (YYZ)",
+        "to_airport": "London (LHR)",
+        "departure_date": "2027-02-04",
+        "price": "CA$481",
+        "price_as_number": 481,
+        "duration": "7 hr 25 min",
+        "duration_seconds": 26700,
+        "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMDQiHwoDWVlaEgoyMDI3LTAyLTA0GgNMSFIqAkFDMgM4NThqBRIDWVlacgUSA0xIUkIBAUgBmAEC&curr=CAD",
+        "airline": "Air Canada | Lufthansa",
+        "stops": 0,
+        "stops_info": [],
+        "segments": [
+          {
+            "from_airport": "YYZ",
+            "to_airport": "LHR",
+            "airline_code": "AC",
+            "flight_number": "858",
+            "departure_date": "2027-02-04"
+          }
+        ],
+        "departure_description": "10:55 PM on Thu, Feb 4",
+        "arrival_description": "11:20 AM on Fri, Feb 5"
+      }
+    ]
+  }
+}
