@@ -25,13 +25,14 @@ export const SERPAPI_PLANS = [
  * shows with "Billed annually, 2 months free" switched on. Startup and Basic
  * month-to-month prices are in the page's billing toggle data (59 / 119);
  * Growth's is from its offer text, "Charged once at $2,490 for twelve months,
- * the price of ten", i.e. $249 a month.
+ * the price of ten", i.e. $249 a month. `annualPerK` is their table's own
+ * "Price per 1 000 requests" for the Google Flights API, quoted as printed.
  */
 export const HASDATA_PLANS = [
-  { name: 'Free', monthly: 0, annualPerMonth: 0, credits: 1000, flightSearches: 67 },
-  { name: 'Startup', monthly: 59, annualPerMonth: 49, credits: 200000, flightSearches: 13333 },
-  { name: 'Basic', monthly: 119, annualPerMonth: 99, credits: 1000000, flightSearches: 66667 },
-  { name: 'Growth', monthly: 249, annualPerMonth: 208, credits: 3000000, flightSearches: 200000 },
+  { name: 'Free', monthly: 0, annualPerMonth: 0, credits: 1000, flightSearches: 67, annualPerK: '$0.00' },
+  { name: 'Startup', monthly: 59, annualPerMonth: 49, credits: 200000, flightSearches: 13333, annualPerK: '$3.69' },
+  { name: 'Basic', monthly: 119, annualPerMonth: 99, credits: 1000000, flightSearches: 66667, annualPerK: '$1.49' },
+  { name: 'Growth', monthly: 249, annualPerMonth: 208, credits: 3000000, flightSearches: 200000, annualPerK: '$1.04' },
 ] as const;
 
 export const usd = (n: number, digits = 2) => `$${n.toFixed(digits)}`;

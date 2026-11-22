@@ -39,7 +39,7 @@ const faq: Faq[] = [
   },
   {
     q: 'What does HasData cost for Google Flights?',
-    a: `By their table a Google Flights request works out to 15 credits. Startup has ${n(STARTUP.credits)} credits a month, which their table lists as ${n(STARTUP.flightSearches)} Google Flights requests: ${perThousandUsd(STARTUP.monthly, STARTUP.flightSearches)} per 1,000 month-to-month, ${perThousandUsd(STARTUP.annualPerMonth, STARTUP.flightSearches)} per 1,000 billed annually.`,
+    a: `By their table a Google Flights request works out to 15 credits. Startup has ${n(STARTUP.credits)} credits a month, which their table lists as ${n(STARTUP.flightSearches)} Google Flights requests: ${perThousandUsd(STARTUP.monthly, STARTUP.flightSearches)} per 1,000 month-to-month, ${STARTUP.annualPerK} per 1,000 billed annually (their table’s figure).`,
   },
   {
     q: 'Is HasData free to try?',
@@ -106,7 +106,7 @@ export default function HasDataPricingPage() {
         />
         <div className="mt-8 max-w-5xl">
           <CompareTable
-            caption={`hasdata.com/pricing · read ${RIVAL_PRICES_READ} · per 1,000 = price ÷ the Google Flights requests their table lists`}
+            caption={`hasdata.com/pricing · read ${RIVAL_PRICES_READ} · monthly per 1,000 = price ÷ the Google Flights requests their table lists; annual per 1,000 as their table prints it`}
             head={['Plan', 'Month-to-month', 'Billed annually', 'Credits / month', 'Google Flights requests', 'Per 1,000 (monthly / annual)']}
             rows={HASDATA_PLANS.map((p) => [
               p.name,
@@ -116,7 +116,7 @@ export default function HasDataPricingPage() {
               n(p.flightSearches),
               p.annualPerMonth === 0
                 ? 'free'
-                : `${perThousandUsd(p.monthly, p.flightSearches)} / ${perThousandUsd(p.annualPerMonth, p.flightSearches)}`,
+                : `${perThousandUsd(p.monthly, p.flightSearches)} / ${p.annualPerK}`,
             ])}
           />
         </div>
