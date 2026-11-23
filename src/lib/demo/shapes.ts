@@ -10,6 +10,7 @@
 import 'server-only';
 import { callUpstream } from './upstream';
 import { cacheGet, cacheSet } from './budget';
+import { checkCheapestDay, cheapestDatesBody, type CheapestDatesAnswer } from '@/lib/cheapest-day';
 import type { HotelByName, HotelProperty, OnewayFlight, RoundtripItinerary, ScanDay, YearMonth } from '@/lib/fixtures';
 
 const IATA = /^[A-Za-z]{3}$/;
@@ -36,7 +37,12 @@ const GEO_MAX_MARKETS = 2;
 const MAX_DAYS_AHEAD = 320;
 const SCAN_SAMPLE_DAYS = 10;
 
+/** X-FP-Client of the cheapest-day tool (rule 11: every caller attributable). */
+export const CHEAPEST_DAY_CLIENT = 'site-tool-cheapest-day';
+
 const TTL = {
+  /** One route + month + trip length, shared by every visitor who asks it. */
+  cheapestDates: 6 * 3600_000,
   flight: 6 * 3600_000,
   hotel: 6 * 3600_000,
   scan: 24 * 3600_000,
@@ -47,6 +53,7 @@ export type ShapeRequest =
   | { shape: 'roundtrip'; from: string; to: string; date: string; returnDate: string }
   | { shape: 'month-scan'; from: string; to: string; month: string /* YYYY-MM */ }
   | { shape: 'year-scan'; from: string; to: string }
+  | { shape: 'cheapest-dates'; from: string; to: string; month: string /* YYYY-MM */; nights: number /* 0 = one-way */ }
   | { shape: 'hotel-geo'; hotel: string; area?: string; checkin: string; checkout: string; countries: string[] }
   | { shape: 'hotel-search'; destination: string; checkin: string; checkout: string };
 
@@ -132,6 +139,13 @@ export function checkShape(input: ShapeRequest): ShapeOk | ShapeError {
       const req: ShapeRequest = { shape: 'year-scan', from, to };
       return { valid: true, req, cost: months.length, cacheKey: JSON.stringify(req) };
     }
+    case 'cheapest-dates': {
+      const c = checkCheapestDay(input);
+      if (!c.ok) return { valid: false, message: c.message };
+      const req: ShapeRequest = { shape: 'cheapest-dates', ...c.query };
+      // ONE upstream request for the whole month, whatever its length.
+      return { valid: true, req, cost: 1, cacheKey: JSON.stringify(req) };
+    }
     case 'hotel-search': {
       const destination = (input.destination ?? '').trim().slice(0, 60);
       if (destination.length < 2) return { valid: false, message: 'Give a destination the way you would type it into Booking.com.' };
@@ -173,6 +187,7 @@ export type ShapeResult =
   | { kind: 'roundtrip'; itineraries: RoundtripItinerary[]; headers: Record<string, string>; ms: number }
   | { kind: 'month-scan'; days: ScanDay[]; sampledEvery: number; ms: number }
   | { kind: 'year-scan'; months: YearMonth[]; ms: number }
+  | { kind: 'cheapest-dates'; answer: CheapestDatesAnswer; searchStatus: string; ms: number }
   | { kind: 'hotel-search'; properties: HotelProperty[]; destination: string; checkin: string; checkout: string; ms: number }
   | {
       kind: 'hotel-geo';
@@ -288,6 +303,17 @@ export async function runShape(ok: ShapeOk): Promise<{ result: ShapeResult; from
       };
     });
     result = { kind: 'year-scan', months, ms: Date.now() - started };
+  } else if (req.shape === 'cheapest-dates') {
+    const r = await callUpstream<CheapestDatesAnswer>(
+      '/v1/flights/cheapest-dates',
+      cheapestDatesBody(req),
+      30_000,
+      CHEAPEST_DAY_CLIENT
+    );
+    result =
+      r.ok && r.data && Array.isArray(r.data.dates)
+        ? { kind: 'cheapest-dates', answer: r.data, searchStatus: r.searchHeaders['x-search-status'] ?? 'ok', ms: r.ms }
+        : { kind: 'error', error: r.ok ? 'upstream_error' : r.error, ms: r.ms };
   } else if (req.shape === 'hotel-search') {
     // One search, one call. The page reports what this one search returned and
     // says so: it is a live sample of availability, not a market average.
@@ -347,7 +373,9 @@ export async function runShape(ok: ShapeOk): Promise<{ result: ShapeResult; from
 
   if (result.kind !== 'error') {
     const ttl =
-      req.shape === 'month-scan' || req.shape === 'year-scan'
+      req.shape === 'cheapest-dates'
+        ? TTL.cheapestDates
+        : req.shape === 'month-scan' || req.shape === 'year-scan'
         ? TTL.scan
         : req.shape === 'hotel-geo' || req.shape === 'hotel-search'
           ? TTL.hotel

@@ -5,6 +5,7 @@ import { CodeTabs } from '@/components/CodeTabs';
 import { CopyPrompt } from '@/components/CopyPrompt';
 import { PlanBox } from '@/components/PlanBox';
 import { RouteFareChart } from '@/components/RouteFareChart';
+import { CheapestDayTool } from '@/components/tools/CheapestDayTool';
 import { Breadcrumbs, Container, FaqSection, JsonLd, Section, SectionHead, VerdictBadge, type Faq } from '@/components/ui';
 import { airlineText } from '@/lib/format';
 import { withOg } from '@/lib/meta';
@@ -170,6 +171,20 @@ export default async function Page({ params }: Props) {
           </div>
         </div>
       </Container>
+
+      <Section>
+        <SectionHead
+          eyebrow="Check it live"
+          title={`The cheapest day to fly ${r.from.iata} to ${r.to.iata}, any month`}
+          lede="The chart above samples the season. This runs Google Flights' price calendar for every date of the month you pick, live, in one request."
+        />
+        <div className="mt-8">
+          <CheapestDayTool
+            variant="embed"
+            initial={{ from: r.from.iata, to: r.to.iata, month: r.cheapestMonth.month, nights: 0 }}
+          />
+        </div>
+      </Section>
 
       <Section>
         <SectionHead eyebrow="Month by month" title={`${r.from.iata} to ${r.to.iata}: the cheapest fare we found each month`} />

@@ -96,7 +96,16 @@ export type BudgetDecision =
  * Returns a `charge` callback — call it after the upstream calls actually
  * happen (with the true cost if it differs), so failed validations are free.
  */
-export function requestBudget(req: Request, cost: number): BudgetDecision {
+export function requestBudget(
+  req: Request,
+  cost: number,
+  /**
+   * A tool with its own per-visitor allowance (e.g. the cheapest-day tool,
+   * 10 runs a day) counts in its own bucket instead of the shared demo cap.
+   * The global daily budget still applies to every bucket.
+   */
+  opts?: { bucket: string; perIpDaily: number }
+): BudgetDecision {
   if (!sameOrigin(req)) {
     return {
       ok: false,
@@ -124,18 +133,20 @@ export function requestBudget(req: Request, cost: number): BudgetDecision {
   }
 
   const ip = clientIp(req);
-  let c = ipCounters.get(ip);
+  const ipKey = opts ? `${opts.bucket}:${ip}` : ip;
+  const perIpDaily = opts ? opts.perIpDaily : PER_IP_DAILY;
+  let c = ipCounters.get(ipKey);
   if (!c || c.day !== day) {
     c = { day, n: 0 };
-    ipCounters.set(ip, c);
+    ipCounters.set(ipKey, c);
   }
-  if (c.n + cost > PER_IP_DAILY) {
+  if (c.n + cost > perIpDaily) {
     return {
       ok: false,
       status: 429,
       body: {
         error: 'per_ip_cap',
-        message: `That's the live-demo limit for today (${PER_IP_DAILY} backend calls per visitor per day; each run is a real search against live data). It resets at midnight UTC. If you're evaluating seriously, a free RapidAPI key takes about a minute and the Pro tier is $10/month.`,
+        message: `That's the live-demo limit for today (${perIpDaily} backend calls per visitor per day; each run is a real search against live data). It resets at midnight UTC. If you're evaluating seriously, a free RapidAPI key takes about a minute and the Pro tier is $10/month.`,
       },
     };
   }
