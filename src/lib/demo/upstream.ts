@@ -18,7 +18,13 @@ export type UpstreamResult<T> =
 export async function callUpstream<T>(
   path: string,
   body: Record<string, unknown>,
-  timeoutMs: number
+  timeoutMs: number,
+  /**
+   * Rule 11 attribution: api.flightpowers.com turns X-FP-Client into the
+   * `_fp_source`/`_fp_tool` fields the Lambda logs, so a tool's spend is
+   * countable on its own. Optional; existing tools send none.
+   */
+  client?: string
 ): Promise<UpstreamResult<T>> {
   const key = process.env.FP_DEMO_KEY;
   const started = Date.now();
@@ -31,7 +37,11 @@ export async function callUpstream<T>(
   try {
     const res = await fetch(`${API}${path}`, {
       method: 'POST',
-      headers: { 'content-type': 'application/json', 'x-api-key': key },
+      headers: {
+        'content-type': 'application/json',
+        'x-api-key': key,
+        ...(client ? { 'x-fp-client': client } : {}),
+      },
       body: JSON.stringify(body),
       signal: ctrl.signal,
       cache: 'no-store',

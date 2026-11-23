@@ -17,6 +17,8 @@ import { checkShape, runShape, type ShapeRequest } from '@/lib/demo/shapes';
 import { requestBudget } from '@/lib/demo/budget';
 import { FIXTURES } from '@/lib/fixtures';
 
+const CHEAPEST_DAY_PER_IP_DAILY = Number(process.env.CHEAPEST_DAY_PER_IP_DAILY ?? 10);
+
 export const runtime = 'nodejs';
 export const maxDuration = 60;
 export const dynamic = 'force-dynamic';
@@ -115,7 +117,12 @@ export async function POST(req: Request) {
       : NextResponse.json({ error: 'invalid', message: shape.message }, { status: 400 });
   }
 
-  const budget = requestBudget(req, shape.cost);
+  // The cheapest-day tool has its own allowance (10 runs per visitor per
+  // day by default), separate from the shared demo cap; one run = one request.
+  const budget =
+    shape.req.shape === 'cheapest-dates'
+      ? requestBudget(req, shape.cost, { bucket: 'cheapest-day', perIpDaily: CHEAPEST_DAY_PER_IP_DAILY })
+      : requestBudget(req, shape.cost);
   if (!budget.ok) {
     return NextResponse.json({ mode: 'capped', ...budget.body }, { status: budget.status });
   }

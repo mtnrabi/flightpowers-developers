@@ -10,7 +10,7 @@ import { CITIES, ROUTES, ROUTE_TOOLS, routeArrow } from '@/lib/grid';
 export const metadata: Metadata = withOg({
   title: 'Free travel-data tools',
   description:
-    'Two free flagships on the same live API we sell: a full flight search engine, and an MCP server your assistant can use with no API key: sign in with Google and go. Plus six browser tools, each with a page per route or destination: live fare checks, year and month scans, round trips priced as paired legs, and live Booking.com rates.',
+    'Two free flagships on the same live API we sell: a full flight search engine, and an MCP server your assistant can use with no API key: sign in with Google and go. Plus seven browser tools: live fare checks, the cheapest day of a month on one calendar, year and month scans, round trips priced as paired legs, and live Booking.com rates.',
   alternates: { canonical: '/tools' },
 });
 
@@ -43,6 +43,13 @@ const TOOLS: {
     tier: 'fetched data, no scan to run',
     body: 'A hundred popular routes, each a season of weekly departure dates already searched: the cheapest date, the cheapest month and Google’s verdict on each fare, with the date we fetched it.',
     output: 'route fare charts',
+  },
+  {
+    href: '/tools/cheapest-day',
+    name: 'Cheapest Day to Fly',
+    tier: 'live demo, rate-limited',
+    body: 'Route + month + trip length → the lowest fare Google Flights shows for every departure date, on one calendar, from one request. The cheapest day is outlined, with a link to its full flight list.',
+    output: 'month fare calendar',
   },
   {
     href: '/tools/cheapest-month-to-fly',

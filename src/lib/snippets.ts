@@ -31,6 +31,7 @@ const OWN_HOST = 'api.flightpowers.com';
 const OWN_PATHS: Record<string, string> = {
   '/api/google_flights/oneway/v1': '/v1/flights/oneway',
   '/api/google_flights/roundtrip/v1': '/v1/flights/roundtrip',
+  '/api/google_flights/cheapest_dates/v1': '/v1/flights/cheapest-dates',
   '/search': '/v1/hotels/search',
   '/hotel_by_name': '/v1/hotels/by-name',
 };
@@ -164,6 +165,33 @@ export function roundtripSnippets(
       body,
       `const trips = await res.json();
 trips.sort((a, b) => a.total_price_as_number - b.total_price_as_number);`
+    ),
+  };
+}
+
+/**
+ * The cheapest-dates endpoint: a whole month of Google Flights' calendar
+ * estimates in ONE request. `body` is built by cheapestDatesBody() in
+ * src/lib/cheapest-day.ts so the snippet is the exact request the tool sent.
+ */
+export function cheapestDatesSnippets(body: Record<string, string | number>, host: SnippetHost = 'rapidapi'): Snippets {
+  const t = target('flights', '/api/google_flights/cheapest_dates/v1', host);
+  return {
+    curl: curlFor(t, body),
+    python: pythonFor(
+      t,
+      body,
+      `data = r.json()
+print("cheapest:", data["cheapest"])
+for d in data["dates"]:
+    print(d["departure_date"], d["price"])`
+    ),
+    node: nodeFor(
+      t,
+      body,
+      `const data = await res.json();
+console.log("cheapest:", data.cheapest);
+for (const d of data.dates) console.log(d.departure_date, d.price);`
     ),
   };
 }
