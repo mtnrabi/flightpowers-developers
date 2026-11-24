@@ -50,14 +50,14 @@
     "airline": "Hong Kong Express",
     "stops": 0,
     "duration": "4 hr 5 min",
-    "departure_description": "1:00 PM on Wed, Dec 9",
+    "departure_description": "2:00 PM on Wed, Dec 9",
     "verdict": "typical",
-    "band_low": 110,
-    "band_high": 240,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDkiHwoDSEtHEgoyMDI2LTEyLTA5GgNOUlQqAlVPMgM2NDZqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
+    "band_low": 125,
+    "band_high": 230,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDkiHwoDSEtHEgoyMDI2LTEyLTA5GgNOUlQqAlVPMgM2NTBqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T21:58:24.520Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:26:43.489Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-16",
@@ -81,19 +81,19 @@
    "date": "2026-12-23",
    "status": "ok",
    "fare": {
-    "price": 277,
-    "price_text": "$277",
-    "airline": "Hong Kong Express",
-    "stops": 0,
-    "duration": "4 hr 5 min",
-    "departure_description": "2:00 PM on Wed, Dec 23",
+    "price": 240,
+    "price_text": "$240",
+    "airline": "EVA Air",
+    "stops": 1,
+    "duration": "15 hr 20 min",
+    "departure_description": "7:40 PM on Wed, Dec 23",
     "verdict": "high",
-    "band_low": 110,
-    "band_high": 240,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMjMiHwoDSEtHEgoyMDI2LTEyLTIzGgNOUlQqAlVPMgM2NTBqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
+    "band_low": 125,
+    "band_high": 230,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMjMiHwoDSEtHEgoyMDI2LTEyLTIzGgNUUEUqAkJSMgM4NzIiHwoDVFBFEgoyMDI2LTEyLTI0GgNOUlQqAkJSMgMxODRqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T21:58:24.520Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:26:43.489Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-30",
@@ -117,19 +117,19 @@
    "date": "2027-01-06",
    "status": "ok",
    "fare": {
-    "price": 169,
-    "price_text": "$169",
+    "price": 188,
+    "price_text": "$188",
     "airline": "Jetstar",
     "stops": 0,
     "duration": "4 hr 10 min",
     "departure_description": "1:10 AM on Wed, Jan 6",
     "verdict": "typical",
     "band_low": 100,
-    "band_high": 205,
+    "band_high": 195,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDEtMDYiHgoDSEtHEgoyMDI3LTAxLTA2GgNOUlQqAkdLMgIyOGoFEgNIS0dyBRIDTlJUQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T21:58:24.520Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:26:43.489Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-13",
@@ -153,19 +153,19 @@
    "date": "2027-01-20",
    "status": "ok",
    "fare": {
-    "price": 146,
-    "price_text": "$146",
+    "price": 127,
+    "price_text": "$127",
     "airline": "Hong Kong Express",
     "stops": 0,
     "duration": "4 hr 5 min",
     "departure_description": "9:20 AM on Wed, Jan 20",
     "verdict": "typical",
     "band_low": 100,
-    "band_high": 205,
+    "band_high": 195,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMjAiHwoDSEtHEgoyMDI3LTAxLTIwGgNOUlQqAlVPMgM4NDhqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T21:58:14.878Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:26:43.489Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-27",
@@ -189,19 +189,19 @@
    "date": "2027-02-03",
    "status": "ok",
    "fare": {
-    "price": 225,
-    "price_text": "$225",
-    "airline": "Cebu Pacific",
+    "price": 236,
+    "price_text": "$236",
+    "airline": "China Airlines",
     "stops": 1,
-    "duration": "23 hr 20 min",
-    "departure_description": "10:00 AM on Wed, Feb 3",
+    "duration": "27 hr 25 min",
+    "departure_description": "2:05 PM on Wed, Feb 3",
     "verdict": "typical",
     "band_low": 100,
     "band_high": 255,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDItMDMiHwoDSEtHEgoyMDI3LTAyLTAzGgNDUksqAjVKMgMxNDkiIAoDQ1JLEgoyMDI3LTAyLTA0GgNOUlQqAjVKMgQ1MDY4agUSA0hLR3IFEgNOUlRCAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMDMiHwoDSEtHEgoyMDI3LTAyLTAzGgNUUEUqAkNJMgM5MTAiHwoDVFBFEgoyMDI3LTAyLTA0GgNOUlQqAkNJMgMxMDhqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T21:58:14.878Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:26:43.489Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-10",
@@ -225,8 +225,8 @@
    "date": "2027-02-17",
    "status": "ok",
    "fare": {
-    "price": 139,
-    "price_text": "$139",
+    "price": 127,
+    "price_text": "$127",
     "airline": "Jetstar",
     "stops": 0,
     "duration": "4 hr 10 min",
@@ -236,8 +236,8 @@
     "band_high": 255,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDItMTciHgoDSEtHEgoyMDI3LTAyLTE3GgNOUlQqAkdLMgIyOGoFEgNIS0dyBRIDTlJUQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T21:58:14.878Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:26:43.489Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-24",
@@ -272,8 +272,8 @@
     "band_high": 300,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMDMiHwoDSEtHEgoyMDI3LTAzLTAzGgNOUlQqAlVPMgM4NzBqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T21:58:14.878Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:26:43.489Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-10",
@@ -297,19 +297,19 @@
    "date": "2027-03-17",
    "status": "ok",
    "fare": {
-    "price": 127,
-    "price_text": "$127",
+    "price": 146,
+    "price_text": "$146",
     "airline": "Hong Kong Express",
     "stops": 0,
     "duration": "4 hr 5 min",
-    "departure_description": "1:00 PM on Wed, Mar 17",
+    "departure_description": "9:20 AM on Wed, Mar 17",
     "verdict": "typical",
     "band_low": 110,
     "band_high": 300,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMTciHwoDSEtHEgoyMDI3LTAzLTE3GgNOUlQqAlVPMgM2NDZqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMTciHwoDSEtHEgoyMDI3LTAzLTE3GgNOUlQqAlVPMgM4NDhqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T21:58:15.668Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:26:43.489Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-24",
@@ -333,19 +333,19 @@
    "date": "2027-03-31",
    "status": "ok",
    "fare": {
-    "price": 159,
-    "price_text": "$159",
+    "price": 172,
+    "price_text": "$172",
     "airline": "Hong Kong Express",
     "stops": 0,
     "duration": "4 hr 30 min",
-    "departure_description": "10:35 AM on Wed, Mar 31",
+    "departure_description": "3:10 PM on Wed, Mar 31",
     "verdict": "typical",
     "band_low": 110,
     "band_high": 300,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMzEiHwoDSEtHEgoyMDI3LTAzLTMxGgNOUlQqAlVPMgM4NzBqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMzEiHwoDSEtHEgoyMDI3LTAzLTMxGgNOUlQqAlVPMgM2NTJqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T21:58:15.668Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:26:30.722Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-07",
@@ -380,8 +380,8 @@
     "band_high": 280,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMTQiHwoDSEtHEgoyMDI3LTA0LTE0GgNOUlQqAlVPMgM4NDhqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T21:58:15.668Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:26:30.722Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-21",
@@ -416,8 +416,8 @@
     "band_high": 280,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMjgiHwoDSEtHEgoyMDI3LTA0LTI4GgNOUlQqAlVPMgM4NDhqBRIDSEtHcgUSA05SVEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T21:58:15.668Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:26:30.722Z",
+   "source": "rest"
   }
  ]
 }

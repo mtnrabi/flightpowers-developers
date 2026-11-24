@@ -45,19 +45,19 @@
    "date": "2026-12-09",
    "status": "ok",
    "fare": {
-    "price": 277,
-    "price_text": "$277",
-    "airline": "Royal Jordanian",
+    "price": 299,
+    "price_text": "$299",
+    "airline": "Qatar Airways | British Airways",
     "stops": 1,
-    "duration": "11 hr 25 min",
-    "departure_description": "6:45 AM on Wed, Dec 9",
+    "duration": "10 hr 55 min",
+    "departure_description": "5:20 AM on Wed, Dec 9",
     "verdict": "typical",
     "band_low": 225,
-    "band_high": 335,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDkiHwoDRFhCEgoyMDI2LTEyLTA5GgNBTU0qAlJKMgM2MTMiHwoDQU1NEgoyMDI2LTEyLTA5GgNMSFIqAlJKMgMxMTFqBRIDRFhCcgUSA0xIUkIBAUgBmAEC&curr=usd"
+    "band_high": 345,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjYtMTItMDkiIAoDRFhCEgoyMDI2LTEyLTA5GgNET0gqAlFSMgQxMDAzIh0KA0RPSBIKMjAyNi0xMi0wORoDTEhSKgJRUjIBM2oFEgNEWEJyBRIDTEhSQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.459Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:56.065Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-16",
@@ -81,19 +81,19 @@
    "date": "2026-12-23",
    "status": "ok",
    "fare": {
-    "price": 262,
-    "price_text": "$262",
-    "airline": "Eurowings",
+    "price": 337,
+    "price_text": "$337",
+    "airline": "Royal Jordanian",
     "stops": 1,
-    "duration": "18 hr",
-    "departure_description": "6:00 PM on Wed, Dec 23",
+    "duration": "28 hr 25 min",
+    "departure_description": "1:45 PM on Wed, Dec 23",
     "verdict": "typical",
     "band_low": 225,
-    "band_high": 335,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTItMjMiIAoDRFhCEgoyMDI2LTEyLTIzGgNCRVIqAkVXMgQxMTUxIiAKA0JFUhIKMjAyNi0xMi0yNBoDTEhSKgJFVzIEODQ2MGoFEgNEWEJyBRIDTEhSQgEBSAGYAQI&curr=usd"
+    "band_high": 345,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMjMiHwoDRFhCEgoyMDI2LTEyLTIzGgNBTU0qAlJKMgM2MTEiHwoDQU1NEgoyMDI2LTEyLTI0GgNMSFIqAlJKMgMxMTFqBRIDRFhCcgUSA0xIUkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.459Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:56.065Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-30",
@@ -117,19 +117,19 @@
    "date": "2027-01-06",
    "status": "ok",
    "fare": {
-    "price": 427,
-    "price_text": "$427",
-    "airline": "Saudia",
+    "price": 416,
+    "price_text": "$416",
+    "airline": "EgyptAir",
     "stops": 1,
-    "duration": "16 hr 40 min",
-    "departure_description": "2:25 AM on Wed, Jan 6",
+    "duration": "26 hr",
+    "departure_description": "10:40 AM on Wed, Jan 6",
     "verdict": "typical",
     "band_low": 260,
-    "band_high": 690,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMDYiHwoDRFhCEgoyMDI3LTAxLTA2GgNSVUgqAlNWMgM1ODUiHwoDUlVIEgoyMDI3LTAxLTA2GgNMSFIqAlNWMgMxMDVqBRIDRFhCcgUSA0xIUkIBAUgBmAEC&curr=usd"
+    "band_high": 680,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMDYiHwoDRFhCEgoyMDI3LTAxLTA2GgNDQUkqAk1TMgM5MDIiHwoDQ0FJEgoyMDI3LTAxLTA3GgNMSFIqAk1TMgM3ODNqBRIDRFhCcgUSA0xIUkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.459Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:56.065Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-13",
@@ -153,19 +153,19 @@
    "date": "2027-01-20",
    "status": "ok",
    "fare": {
-    "price": 240,
-    "price_text": "$240",
+    "price": 262,
+    "price_text": "$262",
     "airline": "Eurowings",
     "stops": 1,
     "duration": "18 hr",
     "departure_description": "6:00 PM on Wed, Jan 20",
-    "verdict": "low",
+    "verdict": "typical",
     "band_low": 260,
-    "band_high": 690,
+    "band_high": 680,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDEtMjAiIAoDRFhCEgoyMDI3LTAxLTIwGgNCRVIqAkVXMgQxMTUxIiAKA0JFUhIKMjAyNy0wMS0yMRoDTEhSKgJFVzIEODQ2MGoFEgNEWEJyBRIDTEhSQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:06.024Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:56.065Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-27",
@@ -189,19 +189,19 @@
    "date": "2027-02-03",
    "status": "ok",
    "fare": {
-    "price": 308,
-    "price_text": "$308",
-    "airline": "Eurowings",
+    "price": 277,
+    "price_text": "$277",
+    "airline": "Royal Jordanian",
     "stops": 1,
-    "duration": "18 hr",
-    "departure_description": "6:00 PM on Wed, Feb 3",
-    "verdict": "high",
+    "duration": "11 hr 25 min",
+    "departure_description": "6:45 AM on Wed, Feb 3",
+    "verdict": "typical",
     "band_low": 260,
     "band_high": 285,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDItMDMiIAoDRFhCEgoyMDI3LTAyLTAzGgNCRVIqAkVXMgQxMTUxIiAKA0JFUhIKMjAyNy0wMi0wNBoDTEhSKgJFVzIEODQ2MGoFEgNEWEJyBRIDTEhSQgEBSAGYAQI&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMDMiHwoDRFhCEgoyMDI3LTAyLTAzGgNBTU0qAlJKMgM2MTMiHwoDQU1NEgoyMDI3LTAyLTAzGgNMSFIqAlJKMgMxMTFqBRIDRFhCcgUSA0xIUkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:06.024Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:56.065Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-10",
@@ -225,19 +225,19 @@
    "date": "2027-02-17",
    "status": "ok",
    "fare": {
-    "price": 315,
-    "price_text": "$315",
-    "airline": "Qatar Airways | British Airways",
+    "price": 277,
+    "price_text": "$277",
+    "airline": "Royal Jordanian",
     "stops": 1,
-    "duration": "14 hr",
-    "departure_description": "11:55 AM on Wed, Feb 17",
-    "verdict": "high",
+    "duration": "11 hr 25 min",
+    "departure_description": "6:45 AM on Wed, Feb 17",
+    "verdict": "typical",
     "band_low": 260,
     "band_high": 285,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjctMDItMTciIAoDRFhCEgoyMDI3LTAyLTE3GgNET0gqAlFSMgQxMDA3Ih0KA0RPSBIKMjAyNy0wMi0xNxoDTEhSKgJRUjIBNWoFEgNEWEJyBRIDTEhSQgEBSAGYAQI&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMTciHwoDRFhCEgoyMDI3LTAyLTE3GgNBTU0qAlJKMgM2MTMiHwoDQU1NEgoyMDI3LTAyLTE3GgNMSFIqAlJKMgMxMTFqBRIDRFhCcgUSA0xIUkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:06.024Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:56.065Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-24",
@@ -261,19 +261,19 @@
    "date": "2027-03-03",
    "status": "ok",
    "fare": {
-    "price": 334,
-    "price_text": "$334",
+    "price": 315,
+    "price_text": "$315",
     "airline": "Qatar Airways | British Airways",
     "stops": 1,
-    "duration": "12 hr 5 min",
-    "departure_description": "5:20 AM on Wed, Mar 3",
+    "duration": "11 hr 5 min",
+    "departure_description": "10:50 PM on Wed, Mar 3",
     "verdict": "typical",
     "band_low": 250,
     "band_high": 350,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjctMDMtMDMiIAoDRFhCEgoyMDI3LTAzLTAzGgNET0gqAlFSMgQxMDAzIh0KA0RPSBIKMjAyNy0wMy0wMxoDTEhSKgJRUjIBN2oFEgNEWEJyBRIDTEhSQgEBSAGYAQI&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMDMiIAoDRFhCEgoyMDI3LTAzLTAzGgNET0gqAlFSMgQxMDE5Ih8KA0RPSBIKMjAyNy0wMy0wNBoDTEhSKgJRUjIDMTAzagUSA0RYQnIFEgNMSFJCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:06.024Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:56.065Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-10",
@@ -297,19 +297,19 @@
    "date": "2027-03-17",
    "status": "ok",
    "fare": {
-    "price": 315,
-    "price_text": "$315",
-    "airline": "Qatar Airways",
+    "price": 277,
+    "price_text": "$277",
+    "airline": "Royal Jordanian",
     "stops": 1,
-    "duration": "11 hr 5 min",
-    "departure_description": "10:50 PM on Wed, Mar 17",
+    "duration": "11 hr 25 min",
+    "departure_description": "6:45 AM on Wed, Mar 17",
     "verdict": "typical",
     "band_low": 250,
     "band_high": 350,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMTciIAoDRFhCEgoyMDI3LTAzLTE3GgNET0gqAlFSMgQxMDE5Ih8KA0RPSBIKMjAyNy0wMy0xOBoDTEhSKgJRUjIDMTAzagUSA0RYQnIFEgNMSFJCAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTciHwoDRFhCEgoyMDI3LTAzLTE3GgNBTU0qAlJKMgM2MTMiHwoDQU1NEgoyMDI3LTAzLTE3GgNMSFIqAlJKMgMxMTFqBRIDRFhCcgUSA0xIUkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.103Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:56.065Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-24",
@@ -333,19 +333,19 @@
    "date": "2027-03-31",
    "status": "ok",
    "fare": {
-    "price": 334,
-    "price_text": "$334",
-    "airline": "Qatar Airways | British Airways",
+    "price": 277,
+    "price_text": "$277",
+    "airline": "Royal Jordanian",
     "stops": 1,
-    "duration": "9 hr 15 min",
-    "departure_description": "11:45 AM on Wed, Mar 31",
+    "duration": "11 hr 55 min",
+    "departure_description": "6:30 AM on Wed, Mar 31",
     "verdict": "typical",
     "band_low": 250,
     "band_high": 350,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjctMDMtMzEiIAoDRFhCEgoyMDI3LTAzLTMxGgNET0gqAlFSMgQxMDA3Ih0KA0RPSBIKMjAyNy0wMy0zMRoDTEhSKgJRUjIBMWoFEgNEWEJyBRIDTEhSQgEBSAGYAQI&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMzEiHwoDRFhCEgoyMDI3LTAzLTMxGgNBTU0qAlJKMgM2MTMiHwoDQU1NEgoyMDI3LTAzLTMxGgNMSFIqAlJKMgMxMTFqBRIDRFhCcgUSA0xIUkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.103Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:56.496Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-07",
@@ -369,19 +369,19 @@
    "date": "2027-04-14",
    "status": "ok",
    "fare": {
-    "price": 329,
-    "price_text": "$329",
-    "airline": "Gulf Air",
+    "price": 337,
+    "price_text": "$337",
+    "airline": "Royal Jordanian",
     "stops": 1,
-    "duration": "10 hr 25 min",
-    "departure_description": "7:55 AM on Wed, Apr 14",
+    "duration": "29 hr 5 min",
+    "departure_description": "1:20 PM on Wed, Apr 14",
     "verdict": "typical",
     "band_low": 280,
     "band_high": 500,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GloSCjIwMjctMDQtMTQiHwoDRFhCEgoyMDI3LTA0LTE0GgNCQUgqAkdGMgM1MDEiHQoDQkFIEgoyMDI3LTA0LTE0GgNMSFIqAkdGMgEzagUSA0RYQnIFEgNMSFJCAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMTQiHwoDRFhCEgoyMDI3LTA0LTE0GgNBTU0qAlJKMgM2MTEiHwoDQU1NEgoyMDI3LTA0LTE1GgNMSFIqAlJKMgMxMTFqBRIDRFhCcgUSA0xIUkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.103Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:56.496Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-21",
@@ -405,19 +405,19 @@
    "date": "2027-04-28",
    "status": "ok",
    "fare": {
-    "price": 329,
-    "price_text": "$329",
-    "airline": "Gulf Air",
+    "price": 320,
+    "price_text": "$320",
+    "airline": "Turkish Airlines",
     "stops": 1,
-    "duration": "10 hr 25 min",
-    "departure_description": "7:55 AM on Wed, Apr 28",
+    "duration": "10 hr 5 min",
+    "departure_description": "1:55 PM on Wed, Apr 28",
     "verdict": "typical",
     "band_low": 280,
     "band_high": 500,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GloSCjIwMjctMDQtMjgiHwoDRFhCEgoyMDI3LTA0LTI4GgNCQUgqAkdGMgM1MDEiHQoDQkFIEgoyMDI3LTA0LTI4GgNMSFIqAkdGMgEzagUSA0RYQnIFEgNMSFJCAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDQtMjgiHwoDRFhCEgoyMDI3LTA0LTI4GgNJU1QqAlRLMgM3NjUiIAoDSVNUEgoyMDI3LTA0LTI4GgNMSFIqAlRLMgQxOTgzagUSA0RYQnIFEgNMSFJCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:14:09.103Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:56.496Z",
+   "source": "rest"
   }
  ]
 }

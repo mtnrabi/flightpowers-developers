@@ -45,19 +45,19 @@
    "date": "2026-12-09",
    "status": "ok",
    "fare": {
-    "price": 339,
-    "price_text": "$339",
-    "airline": "Royal Air Maroc",
-    "stops": 1,
-    "duration": "32 hr 25 min",
-    "departure_description": "9:35 PM on Wed, Dec 9",
+    "price": 351,
+    "price_text": "$351",
+    "airline": "Air Europa | Delta",
+    "stops": 0,
+    "duration": "8 hr 20 min",
+    "departure_description": "9:45 PM on Wed, Dec 9",
     "verdict": "typical",
     "band_low": 335,
-    "band_high": 780,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDkiHwoDTUlBEgoyMDI2LTEyLTA5GgNDTU4qAkFUMgMyMDUiHwoDQ01OEgoyMDI2LTEyLTExGgNNQUQqAkFUMgM5NzJqBRIDTUlBcgUSA01BREIBAUgBmAEC&curr=usd"
+    "band_high": 790,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjYtMTItMDkiHgoDTUlBEgoyMDI2LTEyLTA5GgNNQUQqAlVYMgI5OGoFEgNNSUFyBRIDTUFEQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:06:31.203Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:42.514Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-16",
@@ -85,15 +85,15 @@
     "price_text": "$491",
     "airline": "American",
     "stops": 2,
-    "duration": "24 hr 46 min",
-    "departure_description": "10:59 PM on Wed, Dec 23",
+    "duration": "26 hr 53 min",
+    "departure_description": "8:52 PM on Wed, Dec 23",
     "verdict": "typical",
     "band_low": 335,
-    "band_high": 780,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gn8SCjIwMjYtMTItMjMiIAoDTUlBEgoyMDI2LTEyLTIzGgNDSFMqAkFBMgQxNTcwIiAKA0NIUxIKMjAyNi0xMi0yNBoDQ0xUKgJBQTIEMTczMSIfCgNDTFQSCjIwMjYtMTItMjQaA01BRCoCQUEyAzc0OGoFEgNNSUFyBRIDTUFEQgEBSAGYAQI&curr=usd"
+    "band_high": 790,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gn8SCjIwMjYtMTItMjMiIAoDTUlBEgoyMDI2LTEyLTIzGgNBVEwqAkFBMgQzMjE3IiAKA0FUTBIKMjAyNi0xMi0yNBoDQ0xUKgJBQTIEMzIzNiIfCgNDTFQSCjIwMjYtMTItMjQaA01BRCoCQUEyAzc0OGoFEgNNSUFyBRIDTUFEQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:06:31.203Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:42.514Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-30",
@@ -117,19 +117,19 @@
    "date": "2027-01-06",
    "status": "ok",
    "fare": {
-    "price": 351,
-    "price_text": "$351",
-    "airline": "American",
-    "stops": 2,
-    "duration": "16 hr 25 min",
-    "departure_description": "7:20 AM on Wed, Jan 6",
+    "price": 427,
+    "price_text": "$427",
+    "airline": "Tap Air Portugal",
+    "stops": 1,
+    "duration": "17 hr 40 min",
+    "departure_description": "11:50 PM on Wed, Jan 6",
     "verdict": "typical",
     "band_low": 295,
-    "band_high": 610,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gn8SCjIwMjctMDEtMDYiIAoDTUlBEgoyMDI3LTAxLTA2GgNUUEEqAkFBMgQxMzQyIiAKA1RQQRIKMjAyNy0wMS0wNhoDQ0xUKgJBQTIEMTcwNCIfCgNDTFQSCjIwMjctMDEtMDYaA01BRCoCQUEyAzc0OGoFEgNNSUFyBRIDTUFEQgEBSAGYAQI&curr=usd"
+    "band_high": 510,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDEtMDYiHwoDTUlBEgoyMDI3LTAxLTA2GgNMSVMqAlRQMgMyMjYiIAoDTElTEgoyMDI3LTAxLTA3GgNNQUQqAlRQMgQxMDIyagUSA01JQXIFEgNNQURCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:06:31.203Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:42.514Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-13",
@@ -161,11 +161,11 @@
     "departure_description": "9:45 PM on Wed, Jan 20",
     "verdict": "typical",
     "band_low": 295,
-    "band_high": 610,
+    "band_high": 510,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDEtMjAiHgoDTUlBEgoyMDI3LTAxLTIwGgNNQUQqAlVYMgI5OGoFEgNNSUFyBRIDTUFEQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:06:12.239Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:42.514Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-27",
@@ -200,8 +200,8 @@
     "band_high": 405,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDItMDMiHgoDTUlBEgoyMDI3LTAyLTAzGgNNQUQqAlVYMgI5OGoFEgNNSUFyBRIDTUFEQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:06:12.239Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:42.514Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-10",
@@ -236,8 +236,8 @@
     "band_high": 405,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDItMTciHgoDTUlBEgoyMDI3LTAyLTE3GgNNQUQqAlVYMgI5OGoFEgNNSUFyBRIDTUFEQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:06:12.239Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:42.514Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-24",
@@ -261,19 +261,19 @@
    "date": "2027-03-03",
    "status": "ok",
    "fare": {
-    "price": 339,
-    "price_text": "$339",
-    "airline": "Royal Air Maroc",
-    "stops": 1,
-    "duration": "32 hr 25 min",
-    "departure_description": "9:35 PM on Wed, Mar 3",
+    "price": 336,
+    "price_text": "$336",
+    "airline": "Air Europa | Delta",
+    "stops": 0,
+    "duration": "8 hr 20 min",
+    "departure_description": "9:45 PM on Wed, Mar 3",
     "verdict": "typical",
     "band_low": 305,
     "band_high": 495,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMDMiHwoDTUlBEgoyMDI3LTAzLTAzGgNDTU4qAkFUMgMyMDUiHwoDQ01OEgoyMDI3LTAzLTA1GgNNQUQqAkFUMgM5NzJqBRIDTUlBcgUSA01BREIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDMtMDMiHgoDTUlBEgoyMDI3LTAzLTAzGgNNQUQqAlVYMgI5OGoFEgNNSUFyBRIDTUFEQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:06:12.239Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:42.514Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-10",
@@ -297,19 +297,19 @@
    "date": "2027-03-17",
    "status": "ok",
    "fare": {
-    "price": 339,
-    "price_text": "$339",
-    "airline": "Royal Air Maroc",
+    "price": 346,
+    "price_text": "$346",
+    "airline": "British Airways | Iberia, American",
     "stops": 1,
-    "duration": "32 hr 25 min",
-    "departure_description": "10:35 PM on Wed, Mar 17",
+    "duration": "14 hr 35 min",
+    "departure_description": "11:00 PM on Wed, Mar 17",
     "verdict": "typical",
     "band_low": 305,
     "band_high": 495,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTciHwoDTUlBEgoyMDI3LTAzLTE3GgNDTU4qAkFUMgMyMDUiHwoDQ01OEgoyMDI3LTAzLTE5GgNNQUQqAkFUMgM5NzJqBRIDTUlBcgUSA01BREIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTciHwoDTUlBEgoyMDI3LTAzLTE3GgNMSFIqAkJBMgMyMDgiHwoDTEhSEgoyMDI3LTAzLTE4GgNNQUQqAkJBMgM0NjZqBRIDTUlBcgUSA01BREIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:06:14.314Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:42.514Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-24",
@@ -333,19 +333,19 @@
    "date": "2027-03-31",
    "status": "ok",
    "fare": {
-    "price": 359,
-    "price_text": "$359",
+    "price": 353,
+    "price_text": "$353",
     "airline": "Royal Air Maroc",
     "stops": 1,
-    "duration": "15 hr 25 min",
+    "duration": "12 hr 55 min",
     "departure_description": "9:45 PM on Wed, Mar 31",
     "verdict": "typical",
     "band_low": 305,
     "band_high": 495,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMzEiHwoDTUlBEgoyMDI3LTAzLTMxGgNDTU4qAkFUMgMyMDUiHwoDQ01OEgoyMDI3LTA0LTAxGgNNQUQqAkFUMgM5NzBqBRIDTUlBcgUSA01BREIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMzEiHwoDTUlBEgoyMDI3LTAzLTMxGgNDTU4qAkFUMgMyMDUiHwoDQ01OEgoyMDI3LTA0LTAxGgNNQUQqAkFUMgM5NzRqBRIDTUlBcgUSA01BREIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:06:14.314Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:36.688Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-07",
@@ -380,8 +380,8 @@
     "band_high": 550,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDQtMTQiIAoDTUlBEgoyMDI3LTA0LTE0GgNCQ04qAkxMMgQyNjMwIiAKA0JDThIKMjAyNy0wNC0xNRoDTUFEKgJWWTIEMTAwMmoFEgNNSUFyBRIDTUFEQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:06:14.314Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:36.688Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-21",
@@ -416,8 +416,8 @@
     "band_high": 550,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDQtMjgiIAoDTUlBEgoyMDI3LTA0LTI4GgNCQ04qAkxMMgQyNjMwIiAKA0JDThIKMjAyNy0wNC0yORoDTUFEKgJWWTIEMTAwMmoFEgNNSUFyBRIDTUFEQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:06:14.314Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:36.688Z",
+   "source": "rest"
   }
  ]
 }

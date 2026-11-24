@@ -45,19 +45,19 @@
    "date": "2026-12-09",
    "status": "ok",
    "fare": {
-    "price": 521,
-    "price_text": "$521",
-    "airline": "United",
+    "price": 518,
+    "price_text": "$518",
+    "airline": "Qantas | American, Alaska",
     "stops": 0,
-    "duration": "15 hr 25 min",
-    "departure_description": "10:40 PM on Wed, Dec 9",
+    "duration": "15 hr",
+    "departure_description": "8:25 PM on Wed, Dec 9",
     "verdict": "typical",
-    "band_low": 440,
+    "band_low": 455,
     "band_high": 1100,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDkiHwoDTEFYEgoyMDI2LTEyLTA5GgNTWUQqAlVBMgM4MzlqBRIDTEFYcgUSA1NZREIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjYtMTItMDkiHgoDTEFYEgoyMDI2LTEyLTA5GgNTWUQqAlFGMgIxMmoFEgNMQVhyBRIDU1lEQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:03:12.025Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:23:39.025Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-16",
@@ -81,19 +81,19 @@
    "date": "2026-12-23",
    "status": "ok",
    "fare": {
-    "price": 968,
-    "price_text": "$968",
-    "airline": "American | Qantas, Alaska",
+    "price": 814,
+    "price_text": "$814",
+    "airline": "Qantas | Alaska, American",
     "stops": 0,
-    "duration": "15 hr 20 min",
-    "departure_description": "10:40 PM on Wed, Dec 23",
+    "duration": "15 hr",
+    "departure_description": "8:25 PM on Wed, Dec 23",
     "verdict": "typical",
-    "band_low": 440,
+    "band_low": 455,
     "band_high": 1100,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjYtMTItMjMiHgoDTEFYEgoyMDI2LTEyLTIzGgNTWUQqAkFBMgI3M2oFEgNMQVhyBRIDU1lEQgEBSAGYAQI&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjYtMTItMjMiHgoDTEFYEgoyMDI2LTEyLTIzGgNTWUQqAlFGMgIxMmoFEgNMQVhyBRIDU1lEQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:03:12.025Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:23:39.025Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-30",
@@ -117,19 +117,19 @@
    "date": "2027-01-06",
    "status": "ok",
    "fare": {
-    "price": 1092,
-    "price_text": "$1092",
-    "airline": "Delta, Jetstar",
+    "price": 980,
+    "price_text": "$980",
+    "airline": "Air New Zealand",
     "stops": 1,
-    "duration": "20 hr 20 min",
-    "departure_description": "9:15 PM on Wed, Jan 6",
+    "duration": "30 hr 50 min",
+    "departure_description": "8:00 PM on Wed, Jan 6",
     "verdict": "high",
     "band_low": 420,
-    "band_high": 730,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjctMDEtMDYiHgoDTEFYEgoyMDI3LTAxLTA2GgNNRUwqAkRMMgIxMSIfCgNNRUwSCjIwMjctMDEtMDgaA1NZRCoCSlEyAzUxMmoFEgNMQVhyBRIDU1lEQgEBSAGYAQI&curr=usd"
+    "band_high": 890,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GloSCjIwMjctMDEtMDYiHQoDTEFYEgoyMDI3LTAxLTA2GgNBS0wqAk5aMgE1Ih8KA0FLTBIKMjAyNy0wMS0wOBoDU1lEKgJOWjIDMTA5agUSA0xBWHIFEgNTWURCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:03:12.025Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:23:39.025Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-13",
@@ -153,19 +153,19 @@
    "date": "2027-01-20",
    "status": "ok",
    "fare": {
-    "price": 633,
-    "price_text": "$633",
-    "airline": "American | Qantas, Alaska",
+    "price": 518,
+    "price_text": "$518",
+    "airline": "Qantas | American, Alaska",
     "stops": 0,
-    "duration": "15 hr 20 min",
-    "departure_description": "10:40 PM on Wed, Jan 20",
+    "duration": "15 hr",
+    "departure_description": "8:25 PM on Wed, Jan 20",
     "verdict": "typical",
     "band_low": 420,
-    "band_high": 730,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDEtMjAiHgoDTEFYEgoyMDI3LTAxLTIwGgNTWUQqAkFBMgI3M2oFEgNMQVhyBRIDU1lEQgEBSAGYAQI&curr=usd"
+    "band_high": 890,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDEtMjAiHgoDTEFYEgoyMDI3LTAxLTIwGgNTWUQqAlFGMgIxMmoFEgNMQVhyBRIDU1lEQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:03:00.169Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:23:39.025Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-27",
@@ -189,8 +189,8 @@
    "date": "2027-02-03",
    "status": "ok",
    "fare": {
-    "price": 504,
-    "price_text": "$504",
+    "price": 503,
+    "price_text": "$503",
     "airline": "Qantas | Alaska, American",
     "stops": 0,
     "duration": "15 hr",
@@ -200,8 +200,8 @@
     "band_high": 440,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDItMDMiHgoDTEFYEgoyMDI3LTAyLTAzGgNTWUQqAlFGMgIxMmoFEgNMQVhyBRIDU1lEQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:03:00.169Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:23:39.025Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-10",
@@ -225,8 +225,8 @@
    "date": "2027-02-17",
    "status": "ok",
    "fare": {
-    "price": 500,
-    "price_text": "$500",
+    "price": 503,
+    "price_text": "$503",
     "airline": "Qantas | Alaska, American",
     "stops": 0,
     "duration": "15 hr",
@@ -236,8 +236,8 @@
     "band_high": 440,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDItMTciHgoDTEFYEgoyMDI3LTAyLTE3GgNTWUQqAlFGMgIxMmoFEgNMQVhyBRIDU1lEQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:03:00.169Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:23:39.025Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-24",
@@ -261,8 +261,8 @@
    "date": "2027-03-03",
    "status": "ok",
    "fare": {
-    "price": 442,
-    "price_text": "$442",
+    "price": 441,
+    "price_text": "$441",
     "airline": "ANA",
     "stops": 1,
     "duration": "25 hr 5 min",
@@ -272,8 +272,8 @@
     "band_high": 540,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMDMiHwoDTEFYEgoyMDI3LTAzLTAzGgNITkQqAk5IMgMxMDUiHwoDSE5EEgoyMDI3LTAzLTA0GgNTWUQqAk5IMgM4ODlqBRIDTEFYcgUSA1NZREIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:03:00.169Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:23:39.025Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-10",
@@ -297,19 +297,19 @@
    "date": "2027-03-17",
    "status": "ok",
    "fare": {
-    "price": 442,
-    "price_text": "$442",
-    "airline": "ANA",
+    "price": 491,
+    "price_text": "$491",
+    "airline": "Philippine Airlines",
     "stops": 1,
-    "duration": "25 hr 20 min",
-    "departure_description": "12:55 AM on Wed, Mar 17",
+    "duration": "27 hr 40 min",
+    "departure_description": "12:10 PM on Wed, Mar 17",
     "verdict": "typical",
     "band_low": 415,
     "band_high": 540,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTciHwoDTEFYEgoyMDI3LTAzLTE3GgNITkQqAk5IMgMxMDUiHwoDSE5EEgoyMDI3LTAzLTE4GgNTWUQqAk5IMgM4ODlqBRIDTEFYcgUSA1NZREIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTciHwoDTEFYEgoyMDI3LTAzLTE3GgNNTkwqAlBSMgMxMTMiHwoDTU5MEgoyMDI3LTAzLTE4GgNTWUQqAlBSMgMyMTFqBRIDTEFYcgUSA1NZREIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:02:55.473Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:23:39.025Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-24",
@@ -333,19 +333,19 @@
    "date": "2027-03-31",
    "status": "ok",
    "fare": {
-    "price": 442,
-    "price_text": "$442",
+    "price": 441,
+    "price_text": "$441",
     "airline": "ANA",
     "stops": 1,
-    "duration": "25 hr 20 min",
-    "departure_description": "12:50 AM on Wed, Mar 31",
+    "duration": "23 hr 35 min",
+    "departure_description": "4:50 PM on Wed, Mar 31",
     "verdict": "typical",
     "band_low": 415,
     "band_high": 540,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMzEiHwoDTEFYEgoyMDI3LTAzLTMxGgNITkQqAk5IMgMxMDUiHwoDSE5EEgoyMDI3LTA0LTAxGgNTWUQqAk5IMgM4ODlqBRIDTEFYcgUSA1NZREIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMzEiHwoDTEFYEgoyMDI3LTAzLTMxGgNITkQqAk5IMgMxMjUiHwoDSE5EEgoyMDI3LTA0LTAxGgNTWUQqAk5IMgM4NzlqBRIDTEFYcgUSA1NZREIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:02:55.473Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:23:34.370Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-07",
@@ -369,19 +369,19 @@
    "date": "2027-04-14",
    "status": "ok",
    "fare": {
-    "price": 442,
-    "price_text": "$442",
+    "price": 441,
+    "price_text": "$441",
     "airline": "ANA",
     "stops": 1,
-    "duration": "25 hr 20 min",
-    "departure_description": "12:50 AM on Wed, Apr 14",
+    "duration": "23 hr 35 min",
+    "departure_description": "4:50 PM on Wed, Apr 14",
     "verdict": "typical",
     "band_low": 415,
     "band_high": 550,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMTQiHwoDTEFYEgoyMDI3LTA0LTE0GgNITkQqAk5IMgMxMDUiHwoDSE5EEgoyMDI3LTA0LTE1GgNTWUQqAk5IMgM4ODlqBRIDTEFYcgUSA1NZREIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMTQiHwoDTEFYEgoyMDI3LTA0LTE0GgNITkQqAk5IMgMxMjUiHwoDSE5EEgoyMDI3LTA0LTE1GgNTWUQqAk5IMgM4NzlqBRIDTEFYcgUSA1NZREIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:02:55.473Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:23:34.370Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-21",
@@ -405,19 +405,19 @@
    "date": "2027-04-28",
    "status": "ok",
    "fare": {
-    "price": 521,
-    "price_text": "$521",
-    "airline": "United",
+    "price": 499,
+    "price_text": "$499",
+    "airline": "Qantas | Alaska, American",
     "stops": 0,
-    "duration": "15 hr 20 min",
-    "departure_description": "10:40 PM on Wed, Apr 28",
+    "duration": "15 hr",
+    "departure_description": "10:30 PM on Wed, Apr 28",
     "verdict": "typical",
     "band_low": 415,
     "band_high": 550,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMjgiHwoDTEFYEgoyMDI3LTA0LTI4GgNTWUQqAlVBMgM4MzlqBRIDTEFYcgUSA1NZREIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDQtMjgiHgoDTEFYEgoyMDI3LTA0LTI4GgNTWUQqAlFGMgIxMmoFEgNMQVhyBRIDU1lEQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:02:55.473Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:23:34.370Z",
+   "source": "rest"
   }
  ]
 }

@@ -45,19 +45,19 @@
    "date": "2026-12-09",
    "status": "ok",
    "fare": {
-    "price": 218,
-    "price_text": "$218",
+    "price": 252,
+    "price_text": "$252",
     "airline": "Aegean",
     "stops": 1,
     "duration": "24 hr 45 min",
     "departure_description": "7:10 PM on Wed, Dec 9",
-    "verdict": "typical",
-    "band_low": 170,
-    "band_high": 240,
+    "verdict": "high",
+    "band_low": 180,
+    "band_high": 235,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDkiHwoDVExWEgoyMDI2LTEyLTA5GgNBVEgqAkEzMgM5MjciHwoDQVRIEgoyMDI2LTEyLTEwGgNMSFIqAkEzMgM2MDRqBRIDVExWcgUSA0xIUkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:17.044Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-16",
@@ -81,19 +81,19 @@
    "date": "2026-12-23",
    "status": "ok",
    "fare": {
-    "price": 230,
-    "price_text": "$230",
+    "price": 233,
+    "price_text": "$233",
     "airline": "Aegean",
     "stops": 1,
-    "duration": "14 hr 35 min",
+    "duration": "17 hr 55 min",
     "departure_description": "5:20 AM on Wed, Dec 23",
     "verdict": "typical",
-    "band_low": 170,
-    "band_high": 240,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMjMiHwoDVExWEgoyMDI2LTEyLTIzGgNBVEgqAkEzMgM5MjkiHwoDQVRIEgoyMDI2LTEyLTIzGgNMSFIqAkEzMgM2MDRqBRIDVExWcgUSA0xIUkIBAUgBmAEC&curr=usd"
+    "band_low": 180,
+    "band_high": 235,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMjMiHwoDVExWEgoyMDI2LTEyLTIzGgNBVEgqAkEzMgM5MjkiHwoDQVRIEgoyMDI2LTEyLTIzGgNMSFIqAkEzMgM2MDhqBRIDVExWcgUSA0xIUkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:17.044Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-30",
@@ -117,19 +117,19 @@
    "date": "2027-01-06",
    "status": "ok",
    "fare": {
-    "price": 202,
-    "price_text": "$202",
-    "airline": "British Airways",
-    "stops": 0,
-    "duration": "5 hr 45 min",
-    "departure_description": "6:10 AM on Wed, Jan 6",
-    "verdict": "typical",
+    "price": 254,
+    "price_text": "$254",
+    "airline": "LOTOperated by Hello Jets",
+    "stops": 1,
+    "duration": "8 hr 35 min",
+    "departure_description": "10:45 AM on Wed, Jan 6",
+    "verdict": "high",
     "band_low": 165,
-    "band_high": 275,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMDYiHwoDVExWEgoyMDI3LTAxLTA2GgNMSFIqAkJBMgM0MDVqBRIDVExWcgUSA0xIUkIBAUgBmAEC&curr=usd"
+    "band_high": 250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMDYiHwoDVExWEgoyMDI3LTAxLTA2GgNXQVcqAkxPMgMxNTYiHwoDV0FXEgoyMDI3LTAxLTA2GgNMSFIqAkxPMgMyNzlqBRIDVExWcgUSA0xIUkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:17.044Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-13",
@@ -153,19 +153,19 @@
    "date": "2027-01-20",
    "status": "ok",
    "fare": {
-    "price": 169,
-    "price_text": "$169",
+    "price": 170,
+    "price_text": "$170",
     "airline": "Aegean",
     "stops": 1,
-    "duration": "12 hr 10 min",
+    "duration": "7 hr 50 min",
     "departure_description": "5:20 AM on Wed, Jan 20",
     "verdict": "typical",
     "band_low": 165,
-    "band_high": 275,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMjAiHwoDVExWEgoyMDI3LTAxLTIwGgNBVEgqAkEzMgM5MjkiHwoDQVRIEgoyMDI3LTAxLTIwGgNMSFIqAkEzMgM2MDJqBRIDVExWcgUSA0xIUkIBAUgBmAEC&curr=usd"
+    "band_high": 250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMjAiHwoDVExWEgoyMDI3LTAxLTIwGgNBVEgqAkEzMgM5MjkiHwoDQVRIEgoyMDI3LTAxLTIwGgNMSFIqAkEzMgM2MDBqBRIDVExWcgUSA0xIUkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-27",
@@ -189,19 +189,19 @@
    "date": "2027-02-03",
    "status": "ok",
    "fare": {
-    "price": 191,
-    "price_text": "$191",
-    "airline": "British Airways",
-    "stops": 0,
-    "duration": "5 hr 45 min",
-    "departure_description": "6:10 AM on Wed, Feb 3",
+    "price": 235,
+    "price_text": "$235",
+    "airline": "Iberia | Operated by Iberia Express",
+    "stops": 1,
+    "duration": "13 hr 5 min",
+    "departure_description": "5:30 AM on Wed, Feb 3",
     "verdict": "high",
     "band_low": 135,
     "band_high": 190,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMDMiHwoDVExWEgoyMDI3LTAyLTAzGgNMSFIqAkJBMgM0MDVqBRIDVExWcgUSA0xIUkIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDItMDMiIAoDVExWEgoyMDI3LTAyLTAzGgNNQUQqAklCMgQxODc0Ih8KA01BRBIKMjAyNy0wMi0wMxoDTEhSKgJJQjIDNzE5agUSA1RMVnIFEgNMSFJCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-10",
@@ -225,19 +225,19 @@
    "date": "2027-02-17",
    "status": "ok",
    "fare": {
-    "price": 189,
-    "price_text": "$189",
-    "airline": "British Airways",
-    "stops": 0,
-    "duration": "5 hr 45 min",
-    "departure_description": "6:10 AM on Wed, Feb 17",
-    "verdict": "typical",
+    "price": 200,
+    "price_text": "$200",
+    "airline": "Aegean",
+    "stops": 1,
+    "duration": "12 hr 10 min",
+    "departure_description": "5:20 AM on Wed, Feb 17",
+    "verdict": "high",
     "band_low": 135,
     "band_high": 190,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMTciHwoDVExWEgoyMDI3LTAyLTE3GgNMSFIqAkJBMgM0MDVqBRIDVExWcgUSA0xIUkIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMTciHwoDVExWEgoyMDI3LTAyLTE3GgNBVEgqAkEzMgM5MjkiHwoDQVRIEgoyMDI3LTAyLTE3GgNMSFIqAkEzMgM2MDJqBRIDVExWcgUSA0xIUkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-24",
@@ -261,8 +261,8 @@
    "date": "2027-03-03",
    "status": "ok",
    "fare": {
-    "price": 199,
-    "price_text": "$199",
+    "price": 200,
+    "price_text": "$200",
     "airline": "Aegean",
     "stops": 1,
     "duration": "12 hr 10 min",
@@ -272,8 +272,8 @@
     "band_high": 245,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMDMiHwoDVExWEgoyMDI3LTAzLTAzGgNBVEgqAkEzMgM5MjkiHwoDQVRIEgoyMDI3LTAzLTAzGgNMSFIqAkEzMgM2MDJqBRIDVExWcgUSA0xIUkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-10",
@@ -297,8 +297,8 @@
    "date": "2027-03-17",
    "status": "ok",
    "fare": {
-    "price": 199,
-    "price_text": "$199",
+    "price": 200,
+    "price_text": "$200",
     "airline": "Aegean",
     "stops": 1,
     "duration": "12 hr 10 min",
@@ -308,8 +308,8 @@
     "band_high": 245,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTciHwoDVExWEgoyMDI3LTAzLTE3GgNBVEgqAkEzMgM5MjkiHwoDQVRIEgoyMDI3LTAzLTE3GgNMSFIqAkEzMgM2MDJqBRIDVExWcgUSA0xIUkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:12.038Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-24",
@@ -333,8 +333,8 @@
    "date": "2027-03-31",
    "status": "ok",
    "fare": {
-    "price": 199,
-    "price_text": "$199",
+    "price": 200,
+    "price_text": "$200",
     "airline": "Aegean",
     "stops": 1,
     "duration": "12 hr 30 min",
@@ -344,8 +344,8 @@
     "band_high": 245,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMzEiHwoDVExWEgoyMDI3LTAzLTMxGgNBVEgqAkEzMgM5MjkiHwoDQVRIEgoyMDI3LTAzLTMxGgNMSFIqAkEzMgM2MDJqBRIDVExWcgUSA0xIUkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:12.038Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:43.676Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-07",
@@ -369,8 +369,8 @@
    "date": "2027-04-14",
    "status": "ok",
    "fare": {
-    "price": 215,
-    "price_text": "$215",
+    "price": 213,
+    "price_text": "$213",
     "airline": "Aegean",
     "stops": 1,
     "duration": "21 hr 35 min",
@@ -380,8 +380,8 @@
     "band_high": 415,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMTQiHwoDVExWEgoyMDI3LTA0LTE0GgNBVEgqAkEzMgM5MjciHwoDQVRIEgoyMDI3LTA0LTE1GgNMSFIqAkEzMgM2MDJqBRIDVExWcgUSA0xIUkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:12.038Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:43.676Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-21",
@@ -409,15 +409,15 @@
     "price_text": "$223",
     "airline": "Iberia | Operated by Iberia Express",
     "stops": 1,
-    "duration": "11 hr 25 min",
+    "duration": "12 hr 50 min",
     "departure_description": "5:30 AM on Wed, Apr 28",
     "verdict": "typical",
     "band_low": 155,
     "band_high": 415,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDQtMjgiIAoDVExWEgoyMDI3LTA0LTI4GgNNQUQqAklCMgQxODc0Ih8KA01BRBIKMjAyNy0wNC0yOBoDTEhSKgJJQjIDNzE3agUSA1RMVnIFEgNMSFJCAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDQtMjgiIAoDVExWEgoyMDI3LTA0LTI4GgNNQUQqAklCMgQxODc0Ih8KA01BRBIKMjAyNy0wNC0yOBoDTEhSKgJJQjIDNzE5agUSA1RMVnIFEgNMSFJCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:12.038Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:43.676Z",
+   "source": "rest"
   }
  ]
 }

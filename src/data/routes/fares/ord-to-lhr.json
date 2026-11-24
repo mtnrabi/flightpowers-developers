@@ -45,19 +45,19 @@
    "date": "2026-12-09",
    "status": "ok",
    "fare": {
-    "price": 401,
-    "price_text": "$401",
+    "price": 396,
+    "price_text": "$396",
     "airline": "Icelandair",
     "stops": 1,
     "duration": "19 hr",
     "departure_description": "6:30 PM on Wed, Dec 9",
     "verdict": "typical",
-    "band_low": 350,
-    "band_high": 910,
+    "band_low": 345,
+    "band_high": 850,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDkiHwoDT1JEEgoyMDI2LTEyLTA5GgNLRUYqAkZJMgM4NTIiHwoDS0VGEgoyMDI2LTEyLTEwGgNMSFIqAkZJMgM0NTRqBRIDT1JEcgUSA0xIUkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:05:19.920Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:33.361Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-16",
@@ -81,19 +81,19 @@
    "date": "2026-12-23",
    "status": "ok",
    "fare": {
-    "price": 802,
-    "price_text": "$802",
-    "airline": "United",
+    "price": 487,
+    "price_text": "$487",
+    "airline": "Tap Air Portugal",
     "stops": 1,
-    "duration": "20 hr 50 min",
-    "departure_description": "5:45 PM on Wed, Dec 23",
+    "duration": "14 hr 30 min",
+    "departure_description": "7:00 PM on Wed, Dec 23",
     "verdict": "typical",
-    "band_low": 350,
-    "band_high": 910,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTItMjMiIAoDT1JEEgoyMDI2LTEyLTIzGgNFV1IqAlVBMgQxOTEzIh8KA0VXUhIKMjAyNi0xMi0yNBoDTEhSKgJVQTIDOTM0agUSA09SRHIFEgNMSFJCAQFIAZgBAg&curr=usd"
+    "band_low": 345,
+    "band_high": 850,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTItMjMiHwoDT1JEEgoyMDI2LTEyLTIzGgNMSVMqAlRQMgMyNDQiIAoDTElTEgoyMDI2LTEyLTI0GgNMSFIqAlRQMgQxMzY4agUSA09SRHIFEgNMSFJCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:05:19.920Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:33.361Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-30",
@@ -117,19 +117,19 @@
    "date": "2027-01-06",
    "status": "ok",
    "fare": {
-    "price": 299,
-    "price_text": "$299",
-    "airline": "JetBlue",
+    "price": 325,
+    "price_text": "$325",
+    "airline": "Tap Air Portugal",
     "stops": 1,
-    "duration": "9 hr 58 min",
-    "departure_description": "2:55 PM on Wed, Jan 6",
+    "duration": "14 hr 30 min",
+    "departure_description": "7:00 PM on Wed, Jan 6",
     "verdict": "low",
     "band_low": 360,
     "band_high": 450,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDEtMDYiIAoDT1JEEgoyMDI3LTAxLTA2GgNCT1MqAkI2MgQxMDEyIiAKA0JPUxIKMjAyNy0wMS0wNhoDTEhSKgJCNjIEMTYyMGoFEgNPUkRyBRIDTEhSQgEBSAGYAQI&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDEtMDYiHwoDT1JEEgoyMDI3LTAxLTA2GgNMSVMqAlRQMgMyNDQiIAoDTElTEgoyMDI3LTAxLTA3GgNMSFIqAlRQMgQxMzY4agUSA09SRHIFEgNMSFJCAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:05:19.920Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:33.361Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-13",
@@ -157,15 +157,15 @@
     "price_text": "$299",
     "airline": "JetBlue",
     "stops": 1,
-    "duration": "9 hr 58 min",
+    "duration": "10 hr",
     "departure_description": "2:55 PM on Wed, Jan 20",
     "verdict": "low",
     "band_low": 360,
     "band_high": 450,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDEtMjAiIAoDT1JEEgoyMDI3LTAxLTIwGgNCT1MqAkI2MgQxMDEyIiAKA0JPUxIKMjAyNy0wMS0yMBoDTEhSKgJCNjIEMTYyMGoFEgNPUkRyBRIDTEhSQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:05:28.943Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:33.361Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-27",
@@ -193,15 +193,15 @@
     "price_text": "$299",
     "airline": "JetBlue",
     "stops": 1,
-    "duration": "9 hr 58 min",
+    "duration": "10 hr",
     "departure_description": "2:55 PM on Wed, Feb 3",
     "verdict": "low",
     "band_low": 320,
     "band_high": 405,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDItMDMiIAoDT1JEEgoyMDI3LTAyLTAzGgNCT1MqAkI2MgQxMDEyIiAKA0JPUxIKMjAyNy0wMi0wMxoDTEhSKgJCNjIEMTYyMGoFEgNPUkRyBRIDTEhSQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:05:28.943Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:33.361Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-10",
@@ -225,19 +225,19 @@
    "date": "2027-02-17",
    "status": "ok",
    "fare": {
-    "price": 242,
-    "price_text": "$242",
-    "airline": "American, British Airways | Operated by Envoy Air as American Eagle",
+    "price": 299,
+    "price_text": "$299",
+    "airline": "JetBlue",
     "stops": 1,
-    "duration": "18 hr 59 min",
-    "departure_description": "8:06 AM on Wed, Feb 17",
+    "duration": "11 hr 16 min",
+    "departure_description": "1:39 PM on Wed, Feb 17",
     "verdict": "low",
     "band_low": 320,
     "band_high": 405,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMTciIAoDT1JEEgoyMDI3LTAyLTE3GgNZVUwqAkFBMgQzNjAwIh4KA1lVTBIKMjAyNy0wMi0xNxoDTEhSKgJCQTICOTRqBRIDT1JEcgUSA0xIUkIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDItMTciIAoDT1JEEgoyMDI3LTAyLTE3GgNCT1MqAkI2MgQxMDEyIiAKA0JPUxIKMjAyNy0wMi0xNxoDTEhSKgJCNjIEMTYyMGoFEgNPUkRyBRIDTEhSQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:05:28.943Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:33.361Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-24",
@@ -272,8 +272,8 @@
     "band_high": 450,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMDMiIAoDT1JEEgoyMDI3LTAzLTAzGgNZWVoqAkFBMgQ2NDg4Ih4KA1lZWhIKMjAyNy0wMy0wMxoDTEhSKgJCQTICOTJqBRIDT1JEcgUSA0xIUkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:05:28.943Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:33.361Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-10",
@@ -297,19 +297,19 @@
    "date": "2027-03-17",
    "status": "ok",
    "fare": {
-    "price": 247,
-    "price_text": "$247",
-    "airline": "American, British Airways | Operated by SkyWest Airlines as American Eagle",
+    "price": 242,
+    "price_text": "$242",
+    "airline": "American, British Airways | Operated by Envoy Air as American Eagle",
     "stops": 1,
-    "duration": "16 hr 50 min",
-    "departure_description": "8:00 AM on Wed, Mar 17",
+    "duration": "19 hr 59 min",
+    "departure_description": "8:06 AM on Wed, Mar 17",
     "verdict": "low",
     "band_low": 320,
     "band_high": 450,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTciIAoDT1JEEgoyMDI3LTAzLTE3GgNZWVoqAkFBMgQ2NDg4Ih4KA1lZWhIKMjAyNy0wMy0xNxoDTEhSKgJCQTICOTJqBRIDT1JEcgUSA0xIUkIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTciIAoDT1JEEgoyMDI3LTAzLTE3GgNZVUwqAkFBMgQzNjAwIh4KA1lVTBIKMjAyNy0wMy0xNxoDTEhSKgJCQTICOTRqBRIDT1JEcgUSA0xIUkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:05:15.716Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:33.361Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-24",
@@ -344,8 +344,8 @@
     "band_high": 450,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMzEiIAoDT1JEEgoyMDI3LTAzLTMxGgNZVUwqAkFBMgQzNjAwIh4KA1lVTBIKMjAyNy0wMy0zMRoDTEhSKgJCQTICOTRqBRIDT1JEcgUSA0xIUkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:05:15.716Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:16.056Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-07",
@@ -380,8 +380,8 @@
     "band_high": 480,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMTQiIAoDT1JEEgoyMDI3LTA0LTE0GgNZVUwqAkFBMgQzNjAwIh4KA1lVTBIKMjAyNy0wNC0xNBoDTEhSKgJCQTICOTRqBRIDT1JEcgUSA0xIUkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:05:15.716Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:16.056Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-21",
@@ -416,8 +416,8 @@
     "band_high": 480,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjgiIAoDT1JEEgoyMDI3LTA0LTI4GgNZVUwqAkFBMgQzNjAwIh4KA1lVTBIKMjAyNy0wNC0yOBoDTEhSKgJCQTICOTRqBRIDT1JEcgUSA0xIUkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:05:15.716Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:16.056Z",
+   "source": "rest"
   }
  ]
 }

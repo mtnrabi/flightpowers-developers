@@ -45,19 +45,19 @@
    "date": "2026-12-09",
    "status": "ok",
    "fare": {
-    "price": 315,
-    "price_text": "$315",
-    "airline": "ITA",
+    "price": 391,
+    "price_text": "$391",
+    "airline": "Icelandair",
     "stops": 1,
-    "duration": "12 hr 35 min",
-    "departure_description": "4:40 PM on Wed, Dec 9",
+    "duration": "10 hr 30 min",
+    "departure_description": "7:25 PM on Wed, Dec 9",
     "verdict": "typical",
-    "band_low": 280,
-    "band_high": 760,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDkiHwoDSkZLEgoyMDI2LTEyLTA5GgNGQ08qAkFaMgM2MDkiHwoDRkNPEgoyMDI2LTEyLTEwGgNBTVMqAkFaMgMxMDhqBRIDSkZLcgUSA0FNU0IBAUgBmAEC&curr=usd"
+    "band_low": 315,
+    "band_high": 820,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDkiHwoDSkZLEgoyMDI2LTEyLTA5GgNLRUYqAkZJMgM2MTQiHwoDS0VGEgoyMDI2LTEyLTEwGgNBTVMqAkZJMgM1MDBqBRIDSkZLcgUSA0FNU0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:07.539Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:23:51.497Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-16",
@@ -81,19 +81,19 @@
    "date": "2026-12-23",
    "status": "ok",
    "fare": {
-    "price": 804,
-    "price_text": "$804",
-    "airline": "LOTOperated by EUROATLANTIC Airways",
+    "price": 647,
+    "price_text": "$647",
+    "airline": "Air Europa",
     "stops": 1,
-    "duration": "29 hr 5 min",
-    "departure_description": "10:35 PM on Wed, Dec 23",
-    "verdict": "high",
-    "band_low": 280,
-    "band_high": 760,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjYtMTItMjMiHgoDSkZLEgoyMDI2LTEyLTIzGgNXQVcqAkxPMgIyNyIfCgNXQVcSCjIwMjYtMTItMjUaA0FNUyoCTE8yAzI2NWoFEgNKRktyBRIDQU1TQgEBSAGYAQI&curr=usd"
+    "duration": "13 hr 35 min",
+    "departure_description": "10:05 PM on Wed, Dec 23",
+    "verdict": "typical",
+    "band_low": 315,
+    "band_high": 820,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMjMiHgoDSkZLEgoyMDI2LTEyLTIzGgNNQUQqAlVYMgI5MiIgCgNNQUQSCjIwMjYtMTItMjQaA0FNUyoCVVgyBDEwOTNqBRIDSkZLcgUSA0FNU0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:07.539Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:23:51.497Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-30",
@@ -117,19 +117,19 @@
    "date": "2027-01-06",
    "status": "ok",
    "fare": {
-    "price": 448,
-    "price_text": "$448",
-    "airline": "Tap Air Portugal",
+    "price": 418,
+    "price_text": "$418",
+    "airline": "Aer Lingus",
     "stops": 1,
-    "duration": "18 hr 20 min",
-    "departure_description": "10:00 PM on Wed, Jan 6",
+    "duration": "9 hr 55 min",
+    "departure_description": "5:00 PM on Wed, Jan 6",
     "verdict": "typical",
-    "band_low": 190,
-    "band_high": 475,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMDYiHwoDSkZLEgoyMDI3LTAxLTA2GgNMSVMqAlRQMgMyMTAiHwoDTElTEgoyMDI3LTAxLTA3GgNBTVMqAlRQMgM2NzRqBRIDSkZLcgUSA0FNU0IBAUgBmAEC&curr=usd"
+    "band_low": 195,
+    "band_high": 485,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMDYiHwoDSkZLEgoyMDI3LTAxLTA2GgNEVUIqAkVJMgMxMDQiHwoDRFVCEgoyMDI3LTAxLTA3GgNBTVMqAkVJMgM2MDJqBRIDSkZLcgUSA0FNU0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:07.539Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:23:51.497Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-13",
@@ -153,19 +153,19 @@
    "date": "2027-01-20",
    "status": "ok",
    "fare": {
-    "price": 279,
-    "price_text": "$279",
+    "price": 287,
+    "price_text": "$287",
     "airline": "Icelandair",
     "stops": 1,
     "duration": "10 hr 30 min",
     "departure_description": "7:25 PM on Wed, Jan 20",
     "verdict": "typical",
-    "band_low": 190,
-    "band_high": 475,
+    "band_low": 195,
+    "band_high": 485,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMjAiHwoDSkZLEgoyMDI3LTAxLTIwGgNLRUYqAkZJMgM2MTQiHwoDS0VGEgoyMDI3LTAxLTIxGgNBTVMqAkZJMgM1MDBqBRIDSkZLcgUSA0FNU0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:09.409Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:23:51.497Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-27",
@@ -189,8 +189,8 @@
    "date": "2027-02-03",
    "status": "ok",
    "fare": {
-    "price": 279,
-    "price_text": "$279",
+    "price": 287,
+    "price_text": "$287",
     "airline": "Icelandair",
     "stops": 1,
     "duration": "10 hr 30 min",
@@ -200,8 +200,8 @@
     "band_high": 415,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMDMiHwoDSkZLEgoyMDI3LTAyLTAzGgNLRUYqAkZJMgM2MTQiHwoDS0VGEgoyMDI3LTAyLTA0GgNBTVMqAkZJMgM1MDBqBRIDSkZLcgUSA0FNU0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:09.409Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:23:51.497Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-10",
@@ -225,8 +225,8 @@
    "date": "2027-02-17",
    "status": "ok",
    "fare": {
-    "price": 279,
-    "price_text": "$279",
+    "price": 287,
+    "price_text": "$287",
     "airline": "Icelandair",
     "stops": 1,
     "duration": "10 hr 30 min",
@@ -236,8 +236,8 @@
     "band_high": 415,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMTciHwoDSkZLEgoyMDI3LTAyLTE3GgNLRUYqAkZJMgM2MTQiHwoDS0VGEgoyMDI3LTAyLTE4GgNBTVMqAkZJMgM1MDBqBRIDSkZLcgUSA0FNU0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:09.409Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:23:51.497Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-24",
@@ -261,8 +261,8 @@
    "date": "2027-03-03",
    "status": "ok",
    "fare": {
-    "price": 273,
-    "price_text": "$273",
+    "price": 283,
+    "price_text": "$283",
     "airline": "Aer Lingus",
     "stops": 1,
     "duration": "9 hr 35 min",
@@ -272,8 +272,8 @@
     "band_high": 530,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMDMiHwoDSkZLEgoyMDI3LTAzLTAzGgNEVUIqAkVJMgMxMDYiHwoDRFVCEgoyMDI3LTAzLTA0GgNBTVMqAkVJMgM2MDRqBRIDSkZLcgUSA0FNU0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:09.409Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:23:51.497Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-10",
@@ -297,8 +297,8 @@
    "date": "2027-03-17",
    "status": "ok",
    "fare": {
-    "price": 361,
-    "price_text": "$361",
+    "price": 336,
+    "price_text": "$336",
     "airline": "Tap Air Portugal",
     "stops": 1,
     "duration": "18 hr 20 min",
@@ -308,8 +308,8 @@
     "band_high": 530,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTciHwoDSkZLEgoyMDI3LTAzLTE3GgNMSVMqAlRQMgMyMTAiHwoDTElTEgoyMDI3LTAzLTE4GgNBTVMqAlRQMgM2NzRqBRIDSkZLcgUSA0FNU0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:08.660Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:23:51.497Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-24",
@@ -333,8 +333,8 @@
    "date": "2027-03-31",
    "status": "ok",
    "fare": {
-    "price": 361,
-    "price_text": "$361",
+    "price": 336,
+    "price_text": "$336",
     "airline": "Tap Air Portugal",
     "stops": 1,
     "duration": "14 hr 35 min",
@@ -344,8 +344,8 @@
     "band_high": 530,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMzEiHwoDSkZLEgoyMDI3LTAzLTMxGgNMSVMqAlRQMgMyMTAiHwoDTElTEgoyMDI3LTA0LTAxGgNBTVMqAlRQMgM2NzJqBRIDSkZLcgUSA0FNU0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:08.660Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:23:24.462Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-07",
@@ -369,19 +369,19 @@
    "date": "2027-04-14",
    "status": "ok",
    "fare": {
-    "price": 275,
-    "price_text": "$275",
-    "airline": "Aer Lingus | American",
+    "price": 287,
+    "price_text": "$287",
+    "airline": "Icelandair",
     "stops": 1,
-    "duration": "9 hr 35 min",
-    "departure_description": "9:00 PM on Wed, Apr 14",
+    "duration": "10 hr 30 min",
+    "departure_description": "8:30 PM on Wed, Apr 14",
     "verdict": "low",
     "band_low": 290,
     "band_high": 530,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMTQiHwoDSkZLEgoyMDI3LTA0LTE0GgNEVUIqAkVJMgMxMDYiHwoDRFVCEgoyMDI3LTA0LTE1GgNBTVMqAkVJMgM2MDRqBRIDSkZLcgUSA0FNU0IBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMTQiHwoDSkZLEgoyMDI3LTA0LTE0GgNLRUYqAkZJMgM2MTQiHwoDS0VGEgoyMDI3LTA0LTE1GgNBTVMqAkZJMgM1MDBqBRIDSkZLcgUSA0FNU0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:08.660Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:23:24.462Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-21",
@@ -405,19 +405,19 @@
    "date": "2027-04-28",
    "status": "ok",
    "fare": {
-    "price": 275,
-    "price_text": "$275",
-    "airline": "Aer Lingus | American",
+    "price": 287,
+    "price_text": "$287",
+    "airline": "Icelandair",
     "stops": 1,
-    "duration": "9 hr 35 min",
-    "departure_description": "9:00 PM on Wed, Apr 28",
+    "duration": "10 hr 30 min",
+    "departure_description": "8:30 PM on Wed, Apr 28",
     "verdict": "low",
     "band_low": 290,
     "band_high": 530,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjgiHwoDSkZLEgoyMDI3LTA0LTI4GgNEVUIqAkVJMgMxMDYiHwoDRFVCEgoyMDI3LTA0LTI5GgNBTVMqAkVJMgM2MDRqBRIDSkZLcgUSA0FNU0IBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjgiHwoDSkZLEgoyMDI3LTA0LTI4GgNLRUYqAkZJMgM2MTQiHwoDS0VGEgoyMDI3LTA0LTI5GgNBTVMqAkZJMgM1MDBqBRIDSkZLcgUSA0FNU0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:01:08.660Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:23:24.462Z",
+   "source": "rest"
   }
  ]
 }

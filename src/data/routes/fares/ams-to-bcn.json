@@ -45,19 +45,19 @@
    "date": "2026-12-09",
    "status": "ok",
    "fare": {
-    "price": 109,
-    "price_text": "$109",
+    "price": 119,
+    "price_text": "$119",
     "airline": "Transavia",
     "stops": 0,
     "duration": "2 hr 15 min",
     "departure_description": "6:25 AM on Wed, Dec 9",
     "verdict": "typical",
-    "band_low": 85,
+    "band_low": 90,
     "band_high": 180,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMDkiIAoDQU1TEgoyMDI2LTEyLTA5GgNCQ04qAkhWMgQ1MTMxagUSA0FNU3IFEgNCQ05CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:10:40.150Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:30.069Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-16",
@@ -81,19 +81,19 @@
    "date": "2026-12-23",
    "status": "ok",
    "fare": {
-    "price": 172,
-    "price_text": "$172",
+    "price": 156,
+    "price_text": "$156",
     "airline": "Transavia",
     "stops": 0,
     "duration": "2 hr 15 min",
     "departure_description": "6:25 AM on Wed, Dec 23",
     "verdict": "typical",
-    "band_low": 85,
+    "band_low": 90,
     "band_high": 180,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMjMiIAoDQU1TEgoyMDI2LTEyLTIzGgNCQ04qAkhWMgQ1MTMxagUSA0FNU3IFEgNCQ05CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:10:40.150Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:30.069Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-30",
@@ -117,19 +117,19 @@
    "date": "2027-01-06",
    "status": "ok",
    "fare": {
-    "price": 103,
-    "price_text": "$103",
+    "price": 82,
+    "price_text": "$82",
     "airline": "Vueling | Iberia",
     "stops": 0,
     "duration": "2 hr 20 min",
-    "departure_description": "10:30 AM on Wed, Jan 6",
+    "departure_description": "7:00 AM on Wed, Jan 6",
     "verdict": "typical",
     "band_low": 75,
     "band_high": 110,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMDYiIAoDQU1TEgoyMDI3LTAxLTA2GgNCQ04qAlZZMgQxMDUzagUSA0FNU3IFEgNCQ05CAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMDYiIAoDQU1TEgoyMDI3LTAxLTA2GgNCQ04qAlZZMgQxMDUxagUSA0FNU3IFEgNCQ05CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:10:40.150Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:30.069Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-13",
@@ -153,19 +153,19 @@
    "date": "2027-01-20",
    "status": "ok",
    "fare": {
-    "price": 83,
-    "price_text": "$83",
+    "price": 82,
+    "price_text": "$82",
     "airline": "Vueling | Iberia",
     "stops": 0,
     "duration": "2 hr 20 min",
-    "departure_description": "10:30 AM on Wed, Jan 20",
+    "departure_description": "1:25 PM on Wed, Jan 20",
     "verdict": "typical",
     "band_low": 75,
     "band_high": 110,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMjAiIAoDQU1TEgoyMDI3LTAxLTIwGgNCQ04qAlZZMgQxMDUzagUSA0FNU3IFEgNCQ05CAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMjAiIAoDQU1TEgoyMDI3LTAxLTIwGgNCQ04qAlZZMgQxMDU3agUSA0FNU3IFEgNCQ05CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:10:42.770Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:30.069Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-27",
@@ -189,19 +189,19 @@
    "date": "2027-02-03",
    "status": "ok",
    "fare": {
-    "price": 103,
-    "price_text": "$103",
-    "airline": "Vueling | Iberia",
+    "price": 92,
+    "price_text": "$92",
+    "airline": "Transavia",
     "stops": 0,
-    "duration": "2 hr 20 min",
-    "departure_description": "7:00 AM on Wed, Feb 3",
+    "duration": "2 hr 15 min",
+    "departure_description": "2:40 PM on Wed, Feb 3",
     "verdict": "typical",
     "band_low": 80,
-    "band_high": 165,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDItMDMiIAoDQU1TEgoyMDI3LTAyLTAzGgNCQ04qAlZZMgQxMDUxagUSA0FNU3IFEgNCQ05CAQFIAZgBAg&curr=usd"
+    "band_high": 160,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDItMDMiIAoDQU1TEgoyMDI3LTAyLTAzGgNCQ04qAkhWMgQ1MTMzagUSA0FNU3IFEgNCQ05CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:10:42.770Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:30.069Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-10",
@@ -225,19 +225,19 @@
    "date": "2027-02-17",
    "status": "ok",
    "fare": {
-    "price": 92,
-    "price_text": "$92",
+    "price": 82,
+    "price_text": "$82",
     "airline": "Vueling | Iberia",
     "stops": 0,
     "duration": "2 hr 20 min",
-    "departure_description": "10:30 AM on Wed, Feb 17",
+    "departure_description": "7:00 AM on Wed, Feb 17",
     "verdict": "typical",
     "band_low": 80,
-    "band_high": 165,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDItMTciIAoDQU1TEgoyMDI3LTAyLTE3GgNCQ04qAlZZMgQxMDUzagUSA0FNU3IFEgNCQ05CAQFIAZgBAg&curr=usd"
+    "band_high": 160,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDItMTciIAoDQU1TEgoyMDI3LTAyLTE3GgNCQ04qAlZZMgQxMDUxagUSA0FNU3IFEgNCQ05CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:10:42.770Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:30.069Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-24",
@@ -261,19 +261,19 @@
    "date": "2027-03-03",
    "status": "ok",
    "fare": {
-    "price": 94,
-    "price_text": "$94",
-    "airline": "Transavia",
+    "price": 82,
+    "price_text": "$82",
+    "airline": "Vueling | Iberia",
     "stops": 0,
-    "duration": "2 hr 15 min",
+    "duration": "2 hr 20 min",
     "departure_description": "7:00 AM on Wed, Mar 3",
     "verdict": "typical",
     "band_low": 75,
     "band_high": 115,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDMtMDMiIAoDQU1TEgoyMDI3LTAzLTAzGgNCQ04qAkhWMgQ1MTMxagUSA0FNU3IFEgNCQ05CAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDMtMDMiIAoDQU1TEgoyMDI3LTAzLTAzGgNCQ04qAlZZMgQxMDUxagUSA0FNU3IFEgNCQ05CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:10:42.770Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:30.069Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-10",
@@ -297,19 +297,19 @@
    "date": "2027-03-17",
    "status": "ok",
    "fare": {
-    "price": 94,
-    "price_text": "$94",
-    "airline": "Transavia",
+    "price": 82,
+    "price_text": "$82",
+    "airline": "Vueling | Iberia",
     "stops": 0,
-    "duration": "2 hr 15 min",
+    "duration": "2 hr 20 min",
     "departure_description": "7:00 AM on Wed, Mar 17",
     "verdict": "typical",
     "band_low": 75,
     "band_high": 115,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDMtMTciIAoDQU1TEgoyMDI3LTAzLTE3GgNCQ04qAkhWMgQ1MTMxagUSA0FNU3IFEgNCQ05CAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDMtMTciIAoDQU1TEgoyMDI3LTAzLTE3GgNCQ04qAlZZMgQxMDUxagUSA0FNU3IFEgNCQ05CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:10:38.818Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:30.069Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-24",
@@ -333,8 +333,8 @@
    "date": "2027-03-31",
    "status": "ok",
    "fare": {
-    "price": 98,
-    "price_text": "$98",
+    "price": 97,
+    "price_text": "$97",
     "airline": "Vueling | Iberia",
     "stops": 0,
     "duration": "2 hr 25 min",
@@ -344,8 +344,8 @@
     "band_high": 115,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDMtMzEiIAoDQU1TEgoyMDI3LTAzLTMxGgNCQ04qAlZZMgQxMDUxagUSA0FNU3IFEgNCQ05CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:10:38.818Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:13.483Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-07",
@@ -369,19 +369,19 @@
    "date": "2027-04-14",
    "status": "ok",
    "fare": {
-    "price": 103,
-    "price_text": "$103",
-    "airline": "Vueling | Iberia",
+    "price": 93,
+    "price_text": "$93",
+    "airline": "Transavia",
     "stops": 0,
-    "duration": "2 hr 20 min",
-    "departure_description": "4:30 PM on Wed, Apr 14",
-    "verdict": "typical",
+    "duration": "2 hr 10 min",
+    "departure_description": "12:20 PM on Wed, Apr 14",
+    "verdict": "low",
     "band_low": 95,
     "band_high": 195,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDQtMTQiIAoDQU1TEgoyMDI3LTA0LTE0GgNCQ04qAlZZMgQxMDU5agUSA0FNU3IFEgNCQ05CAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDQtMTQiIAoDQU1TEgoyMDI3LTA0LTE0GgNCQ04qAkhWMgQ1MTM1agUSA0FNU3IFEgNCQ05CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:10:38.818Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:13.483Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-21",
@@ -405,19 +405,19 @@
    "date": "2027-04-28",
    "status": "ok",
    "fare": {
-    "price": 178,
-    "price_text": "$178",
-    "airline": "Norwegian",
-    "stops": 1,
-    "duration": "6 hr 15 min",
-    "departure_description": "4:40 PM on Wed, Apr 28",
+    "price": 145,
+    "price_text": "$145",
+    "airline": "Vueling | Iberia",
+    "stops": 0,
+    "duration": "2 hr 25 min",
+    "departure_description": "7:00 AM on Wed, Apr 28",
     "verdict": "typical",
     "band_low": 95,
     "band_high": 195,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDQtMjgiIAoDQU1TEgoyMDI3LTA0LTI4GgNDUEgqAkQ4MgQzNTQxIiAKA0NQSBIKMjAyNy0wNC0yOBoDQkNOKgJEODIENTUxM2oFEgNBTVNyBRIDQkNOQgEBSAGYAQI&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDQtMjgiIAoDQU1TEgoyMDI3LTA0LTI4GgNCQ04qAlZZMgQxMDUxagUSA0FNU3IFEgNCQ05CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:10:38.818Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:13.483Z",
+   "source": "rest"
   }
  ]
 }

@@ -34,19 +34,19 @@
    "date": "2026-12-09",
    "status": "ok",
    "fare": {
-    "price": 197,
-    "price_text": "$197",
+    "price": 169,
+    "price_text": "$169",
     "airline": "Bluebird Airways",
     "stops": 0,
     "duration": "4 hr 40 min",
-    "departure_description": "10:05 AM on Wed, Dec 9",
+    "departure_description": "2:55 PM on Wed, Dec 9",
     "verdict": "typical",
     "band_low": 145,
     "band_high": 225,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDkiHwoDVExWEgoyMDI2LTEyLTA5GgNCQ04qAkJaMgMyNTJqBRIDVExWcgUSA0JDTkIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDkiHwoDVExWEgoyMDI2LTEyLTA5GgNCQ04qAkJaMgMyNTRqBRIDVExWcgUSA0JDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:17.044Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-16",
@@ -70,19 +70,19 @@
    "date": "2026-12-23",
    "status": "ok",
    "fare": {
-    "price": 128,
-    "price_text": "$128",
+    "price": 169,
+    "price_text": "$169",
     "airline": "Bluebird Airways",
     "stops": 0,
     "duration": "4 hr 40 min",
     "departure_description": "10:05 AM on Wed, Dec 23",
-    "verdict": "low",
+    "verdict": "typical",
     "band_low": 145,
     "band_high": 225,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMjMiHwoDVExWEgoyMDI2LTEyLTIzGgNCQ04qAkJaMgMyNTJqBRIDVExWcgUSA0JDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:17.044Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-30",
@@ -106,8 +106,8 @@
    "date": "2027-01-06",
    "status": "ok",
    "fare": {
-    "price": 197,
-    "price_text": "$197",
+    "price": 199,
+    "price_text": "$199",
     "airline": "Bluebird Airways",
     "stops": 0,
     "duration": "4 hr 40 min",
@@ -117,8 +117,8 @@
     "band_high": 200,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMDYiHwoDVExWEgoyMDI3LTAxLTA2GgNCQ04qAkJaMgMyNTJqBRIDVExWcgUSA0JDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:17.044Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-13",
@@ -142,8 +142,8 @@
    "date": "2027-01-20",
    "status": "ok",
    "fare": {
-    "price": 197,
-    "price_text": "$197",
+    "price": 199,
+    "price_text": "$199",
     "airline": "Bluebird Airways",
     "stops": 0,
     "duration": "4 hr 40 min",
@@ -153,8 +153,8 @@
     "band_high": 200,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMjAiHwoDVExWEgoyMDI3LTAxLTIwGgNCQ04qAkJaMgMyNTJqBRIDVExWcgUSA0JDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-27",
@@ -178,8 +178,8 @@
    "date": "2027-02-03",
    "status": "ok",
    "fare": {
-    "price": 197,
-    "price_text": "$197",
+    "price": 199,
+    "price_text": "$199",
     "airline": "Bluebird Airways",
     "stops": 0,
     "duration": "4 hr 40 min",
@@ -189,8 +189,8 @@
     "band_high": 180,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMDMiHwoDVExWEgoyMDI3LTAyLTAzGgNCQ04qAkJaMgMyNTJqBRIDVExWcgUSA0JDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-10",
@@ -214,8 +214,8 @@
    "date": "2027-02-17",
    "status": "ok",
    "fare": {
-    "price": 207,
-    "price_text": "$207",
+    "price": 199,
+    "price_text": "$199",
     "airline": "Bluebird Airways",
     "stops": 0,
     "duration": "4 hr 40 min",
@@ -225,8 +225,8 @@
     "band_high": 180,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMTciHwoDVExWEgoyMDI3LTAyLTE3GgNCQ04qAkJaMgMyNTJqBRIDVExWcgUSA0JDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-24",
@@ -250,8 +250,8 @@
    "date": "2027-03-03",
    "status": "ok",
    "fare": {
-    "price": 197,
-    "price_text": "$197",
+    "price": 199,
+    "price_text": "$199",
     "airline": "Bluebird Airways",
     "stops": 0,
     "duration": "4 hr 40 min",
@@ -261,8 +261,8 @@
     "band_high": 255,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMDMiHwoDVExWEgoyMDI3LTAzLTAzGgNCQ04qAkJaMgMyNTJqBRIDVExWcgUSA0JDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-10",
@@ -286,8 +286,8 @@
    "date": "2027-03-17",
    "status": "ok",
    "fare": {
-    "price": 177,
-    "price_text": "$177",
+    "price": 189,
+    "price_text": "$189",
     "airline": "Bluebird Airways",
     "stops": 0,
     "duration": "4 hr 40 min",
@@ -297,8 +297,8 @@
     "band_high": 255,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMTciHwoDVExWEgoyMDI3LTAzLTE3GgNCQ04qAkJaMgMyNTJqBRIDVExWcgUSA0JDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:12.038Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-24",
@@ -324,17 +324,17 @@
    "fare": {
     "price": 202,
     "price_text": "$202",
-    "airline": "Iberia | Operated by Iberia Express",
+    "airline": "Brussels Airlines",
     "stops": 1,
-    "duration": "8 hr 15 min",
-    "departure_description": "5:30 AM on Wed, Mar 31",
+    "duration": "16 hr 40 min",
+    "departure_description": "4:50 AM on Wed, Mar 31",
     "verdict": "typical",
     "band_low": 145,
     "band_high": 255,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMzEiIAoDVExWEgoyMDI3LTAzLTMxGgNNQUQqAklCMgQxODc0Ih8KA01BRBIKMjAyNy0wMy0zMRoDQkNOKgJJQjIDNDExagUSA1RMVnIFEgNCQ05CAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDMtMzEiIAoDVExWEgoyMDI3LTAzLTMxGgNCUlUqAlNOMgQzMjk0IiAKA0JSVRIKMjAyNy0wMy0zMRoDQkNOKgJTTjIEMzcwNWoFEgNUTFZyBRIDQkNOQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:12.038Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:43.676Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-07",
@@ -358,19 +358,19 @@
    "date": "2027-04-14",
    "status": "ok",
    "fare": {
-    "price": 230,
-    "price_text": "$230",
+    "price": 232,
+    "price_text": "$232",
     "airline": "Aegean",
     "stops": 1,
-    "duration": "7 hr 15 min",
+    "duration": "13 hr 10 min",
     "departure_description": "5:00 AM on Wed, Apr 14",
     "verdict": "typical",
     "band_low": 145,
     "band_high": 320,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMTQiHwoDVExWEgoyMDI3LTA0LTE0GgNBVEgqAkEzMgM5MjkiHwoDQVRIEgoyMDI3LTA0LTE0GgNCQ04qAkEzMgM3MTBqBRIDVExWcgUSA0JDTkIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMTQiHwoDVExWEgoyMDI3LTA0LTE0GgNBVEgqAkEzMgM5MjkiHwoDQVRIEgoyMDI3LTA0LTE0GgNCQ04qAkEzMgM3MTJqBRIDVExWcgUSA0JDTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:12.038Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:43.676Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-21",
@@ -405,8 +405,8 @@
     "band_high": 320,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDQtMjgiIAoDVExWEgoyMDI3LTA0LTI4GgNNQUQqAklCMgQxODc0Ih8KA01BRBIKMjAyNy0wNC0yOBoDQkNOKgJJQjIDNDExagUSA1RMVnIFEgNCQ05CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:12.038Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:43.676Z",
+   "source": "rest"
   }
  ]
 }

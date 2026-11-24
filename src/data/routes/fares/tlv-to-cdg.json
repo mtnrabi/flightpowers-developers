@@ -49,15 +49,15 @@
     "price_text": "$194",
     "airline": "El Al | Air France",
     "stops": 0,
-    "duration": "5 hr 10 min",
-    "departure_description": "1:50 PM on Wed, Dec 9",
+    "duration": "5 hr",
+    "departure_description": "9:00 AM on Wed, Dec 9",
     "verdict": "typical",
     "band_low": 155,
     "band_high": 235,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDkiHwoDVExWEgoyMDI2LTEyLTA5GgNDREcqAkxZMgMzMjdqBRIDVExWcgUSA0NER0IBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDkiHwoDVExWEgoyMDI2LTEyLTA5GgNDREcqAkxZMgMzMjNqBRIDVExWcgUSA0NER0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:17.044Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-16",
@@ -81,19 +81,19 @@
    "date": "2026-12-23",
    "status": "ok",
    "fare": {
-    "price": 157,
-    "price_text": "$157",
-    "airline": "TAROM",
+    "price": 190,
+    "price_text": "$190",
+    "airline": "ITA",
     "stops": 1,
-    "duration": "11 hr 40 min",
-    "departure_description": "12:20 AM on Wed, Dec 23",
+    "duration": "13 hr 10 min",
+    "departure_description": "5:15 AM on Wed, Dec 23",
     "verdict": "typical",
     "band_low": 155,
     "band_high": 235,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMjMiHwoDVExWEgoyMDI2LTEyLTIzGgNPVFAqAlJPMgMxNTYiHwoDT1RQEgoyMDI2LTEyLTIzGgNDREcqAlJPMgMzODFqBRIDVExWcgUSA0NER0IBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMjMiHwoDVExWEgoyMDI2LTEyLTIzGgNGQ08qAkFaMgM4MDkiHwoDRkNPEgoyMDI2LTEyLTIzGgNDREcqAkFaMgMzMjRqBRIDVExWcgUSA0NER0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:17.044Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-30",
@@ -117,19 +117,19 @@
    "date": "2027-01-06",
    "status": "ok",
    "fare": {
-    "price": 159,
-    "price_text": "$159",
-    "airline": "TAROM",
-    "stops": 1,
-    "duration": "18 hr 40 min",
-    "departure_description": "12:20 AM on Wed, Jan 6",
+    "price": 198,
+    "price_text": "$198",
+    "airline": "El Al | Air France",
+    "stops": 0,
+    "duration": "5 hr 10 min",
+    "departure_description": "11:05 AM on Wed, Jan 6",
     "verdict": "typical",
     "band_low": 150,
     "band_high": 215,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMDYiHwoDVExWEgoyMDI3LTAxLTA2GgNPVFAqAlJPMgMxNTYiHwoDT1RQEgoyMDI3LTAxLTA2GgNDREcqAlJPMgMzODNqBRIDVExWcgUSA0NER0IBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMDYiHwoDVExWEgoyMDI3LTAxLTA2GgNDREcqAkxZMgMyMjFqBRIDVExWcgUSA0NER0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:17.044Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-13",
@@ -153,8 +153,8 @@
    "date": "2027-01-20",
    "status": "ok",
    "fare": {
-    "price": 161,
-    "price_text": "$161",
+    "price": 162,
+    "price_text": "$162",
     "airline": "TAROM",
     "stops": 1,
     "duration": "11 hr 40 min",
@@ -164,8 +164,8 @@
     "band_high": 215,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMjAiHwoDVExWEgoyMDI3LTAxLTIwGgNPVFAqAlJPMgMxNTYiHwoDT1RQEgoyMDI3LTAxLTIwGgNDREcqAlJPMgMzODFqBRIDVExWcgUSA0NER0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-27",
@@ -189,8 +189,8 @@
    "date": "2027-02-03",
    "status": "ok",
    "fare": {
-    "price": 134,
-    "price_text": "$134",
+    "price": 136,
+    "price_text": "$136",
     "airline": "TAROM",
     "stops": 1,
     "duration": "11 hr 40 min",
@@ -200,8 +200,8 @@
     "band_high": 190,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMDMiHwoDVExWEgoyMDI3LTAyLTAzGgNPVFAqAlJPMgMxNTYiHwoDT1RQEgoyMDI3LTAyLTAzGgNDREcqAlJPMgMzODFqBRIDVExWcgUSA0NER0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-10",
@@ -225,8 +225,8 @@
    "date": "2027-02-17",
    "status": "ok",
    "fare": {
-    "price": 134,
-    "price_text": "$134",
+    "price": 136,
+    "price_text": "$136",
     "airline": "TAROM",
     "stops": 1,
     "duration": "11 hr 40 min",
@@ -236,8 +236,8 @@
     "band_high": 190,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMTciHwoDVExWEgoyMDI3LTAyLTE3GgNPVFAqAlJPMgMxNTYiHwoDT1RQEgoyMDI3LTAyLTE3GgNDREcqAlJPMgMzODFqBRIDVExWcgUSA0NER0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-24",
@@ -261,8 +261,8 @@
    "date": "2027-03-03",
    "status": "ok",
    "fare": {
-    "price": 134,
-    "price_text": "$134",
+    "price": 136,
+    "price_text": "$136",
     "airline": "TAROM",
     "stops": 1,
     "duration": "11 hr 40 min",
@@ -272,8 +272,8 @@
     "band_high": 255,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMDMiHwoDVExWEgoyMDI3LTAzLTAzGgNPVFAqAlJPMgMxNTYiHwoDT1RQEgoyMDI3LTAzLTAzGgNDREcqAlJPMgMzODFqBRIDVExWcgUSA0NER0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-10",
@@ -297,8 +297,8 @@
    "date": "2027-03-17",
    "status": "ok",
    "fare": {
-    "price": 112,
-    "price_text": "$112",
+    "price": 136,
+    "price_text": "$136",
     "airline": "TAROM",
     "stops": 1,
     "duration": "11 hr 40 min",
@@ -308,8 +308,8 @@
     "band_high": 255,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTciHwoDVExWEgoyMDI3LTAzLTE3GgNPVFAqAlJPMgMxNTYiHwoDT1RQEgoyMDI3LTAzLTE3GgNDREcqAlJPMgMzODFqBRIDVExWcgUSA0NER0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:12.038Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-24",
@@ -344,8 +344,8 @@
     "band_high": 255,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMzEiHwoDVExWEgoyMDI3LTAzLTMxGgNPVFAqAlJPMgMxNTYiHwoDT1RQEgoyMDI3LTAzLTMxGgNDREcqAlJPMgMzODFqBRIDVExWcgUSA0NER0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:12.038Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:43.676Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-07",
@@ -369,19 +369,19 @@
    "date": "2027-04-14",
    "status": "ok",
    "fare": {
-    "price": 140,
-    "price_text": "$140",
+    "price": 165,
+    "price_text": "$165",
     "airline": "TAROM",
     "stops": 1,
     "duration": "11 hr 40 min",
     "departure_description": "12:20 AM on Wed, Apr 14",
-    "verdict": "low",
+    "verdict": "typical",
     "band_low": 160,
     "band_high": 365,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMTQiHwoDVExWEgoyMDI3LTA0LTE0GgNPVFAqAlJPMgMxNTYiHwoDT1RQEgoyMDI3LTA0LTE0GgNDREcqAlJPMgMzODFqBRIDVExWcgUSA0NER0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:12.038Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:43.676Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-21",
@@ -405,8 +405,8 @@
    "date": "2027-04-28",
    "status": "ok",
    "fare": {
-    "price": 166,
-    "price_text": "$166",
+    "price": 167,
+    "price_text": "$167",
     "airline": "TAROM",
     "stops": 1,
     "duration": "18 hr 55 min",
@@ -416,8 +416,8 @@
     "band_high": 365,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjgiHwoDVExWEgoyMDI3LTA0LTI4GgNPVFAqAlJPMgMxNTYiHwoDT1RQEgoyMDI3LTA0LTI4GgNDREcqAlJPMgMzODNqBRIDVExWcgUSA0NER0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:12.038Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:43.676Z",
+   "source": "rest"
   }
  ]
 }

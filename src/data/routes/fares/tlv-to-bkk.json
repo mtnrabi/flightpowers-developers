@@ -45,19 +45,19 @@
    "date": "2026-12-09",
    "status": "ok",
    "fare": {
-    "price": 704,
-    "price_text": "$704",
-    "airline": "Ethiopian",
+    "price": 710,
+    "price_text": "$710",
+    "airline": "LOTOperated by Hello Jets",
     "stops": 1,
-    "duration": "22 hr 30 min",
-    "departure_description": "9:00 AM on Wed, Dec 9",
+    "duration": "15 hr 20 min",
+    "departure_description": "10:45 AM on Wed, Dec 9",
     "verdict": "typical",
-    "band_low": 445,
-    "band_high": 710,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDkiHwoDVExWEgoyMDI2LTEyLTA5GgNBREQqAkVUMgM0MTUiHwoDQUREEgoyMDI2LTEyLTA5GgNCS0sqAkVUMgM2MjhqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+    "band_low": 530,
+    "band_high": 720,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlsSCjIwMjYtMTItMDkiHwoDVExWEgoyMDI2LTEyLTA5GgNXQVcqAkxPMgMxNTYiHgoDV0FXEgoyMDI2LTEyLTA5GgNCS0sqAkxPMgI2NWoFEgNUTFZyBRIDQktLQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:17.044Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-16",
@@ -81,19 +81,19 @@
    "date": "2026-12-23",
    "status": "ok",
    "fare": {
-    "price": 813,
-    "price_text": "$813",
-    "airline": "Ethiopian",
+    "price": 666,
+    "price_text": "$666",
+    "airline": "Etihad",
     "stops": 1,
-    "duration": "40 hr 50 min",
-    "departure_description": "2:40 PM on Wed, Dec 23",
-    "verdict": "high",
-    "band_low": 445,
-    "band_high": 710,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMjMiHwoDVExWEgoyMDI2LTEyLTIzGgNBREQqAkVUMgM0MTkiHwoDQUREEgoyMDI2LTEyLTI0GgNCS0sqAkVUMgM2MDhqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+    "duration": "12 hr 20 min",
+    "departure_description": "6:20 AM on Wed, Dec 23",
+    "verdict": "typical",
+    "band_low": 530,
+    "band_high": 720,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMjMiHwoDVExWEgoyMDI2LTEyLTIzGgNBVUgqAkVZMgM2MTAiHwoDQVVIEgoyMDI2LTEyLTIzGgNCS0sqAkVZMgM0MDBqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:17.044Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-30",
@@ -117,19 +117,19 @@
    "date": "2027-01-06",
    "status": "ok",
    "fare": {
-    "price": 571,
-    "price_text": "$571",
+    "price": 614,
+    "price_text": "$614",
     "airline": "Ethiopian",
     "stops": 1,
     "duration": "40 hr 50 min",
     "departure_description": "2:40 PM on Wed, Jan 6",
     "verdict": "high",
     "band_low": 400,
-    "band_high": 550,
+    "band_high": 570,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMDYiHwoDVExWEgoyMDI3LTAxLTA2GgNBREQqAkVUMgM0MTkiHwoDQUREEgoyMDI3LTAxLTA3GgNCS0sqAkVUMgM2MDhqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:17.044Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-13",
@@ -153,19 +153,19 @@
    "date": "2027-01-20",
    "status": "ok",
    "fare": {
-    "price": 571,
-    "price_text": "$571",
+    "price": 596,
+    "price_text": "$596",
     "airline": "Ethiopian",
     "stops": 1,
-    "duration": "40 hr 50 min",
+    "duration": "16 hr 50 min",
     "departure_description": "2:40 PM on Wed, Jan 20",
     "verdict": "high",
     "band_low": 400,
-    "band_high": 550,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMjAiHwoDVExWEgoyMDI3LTAxLTIwGgNBREQqAkVUMgM0MTkiHwoDQUREEgoyMDI3LTAxLTIxGgNCS0sqAkVUMgM2MDhqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+    "band_high": 570,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMjAiHwoDVExWEgoyMDI3LTAxLTIwGgNBREQqAkVUMgM0MTkiHwoDQUREEgoyMDI3LTAxLTIwGgNCS0sqAkVUMgM2MjhqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-27",
@@ -189,8 +189,8 @@
    "date": "2027-02-03",
    "status": "ok",
    "fare": {
-    "price": 549,
-    "price_text": "$549",
+    "price": 587,
+    "price_text": "$587",
     "airline": "Ethiopian",
     "stops": 1,
     "duration": "40 hr 50 min",
@@ -200,8 +200,8 @@
     "band_high": 455,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMDMiHwoDVExWEgoyMDI3LTAyLTAzGgNBREQqAkVUMgM0MTkiHwoDQUREEgoyMDI3LTAyLTA0GgNCS0sqAkVUMgM2MDhqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-10",
@@ -225,8 +225,8 @@
    "date": "2027-02-17",
    "status": "ok",
    "fare": {
-    "price": 571,
-    "price_text": "$571",
+    "price": 561,
+    "price_text": "$561",
     "airline": "Austrian",
     "stops": 1,
     "duration": "15 hr 40 min",
@@ -236,8 +236,8 @@
     "band_high": 455,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlkSCjIwMjctMDItMTciHgoDVExWEgoyMDI3LTAyLTE3GgNWSUUqAk9TMgI4MCIdCgNWSUUSCjIwMjctMDItMTcaA0JLSyoCT1MyATVqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-24",
@@ -261,19 +261,19 @@
    "date": "2027-03-03",
    "status": "ok",
    "fare": {
-    "price": 454,
-    "price_text": "$454",
-    "airline": "Ethiopian",
+    "price": 559,
+    "price_text": "$559",
+    "airline": "SWISS",
     "stops": 1,
-    "duration": "16 hr 50 min",
-    "departure_description": "2:40 PM on Wed, Mar 3",
-    "verdict": "typical",
+    "duration": "24 hr 25 min",
+    "departure_description": "5:20 AM on Wed, Mar 3",
+    "verdict": "high",
     "band_low": 435,
     "band_high": 530,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMDMiHwoDVExWEgoyMDI3LTAzLTAzGgNBREQqAkVUMgM0MTkiHwoDQUREEgoyMDI3LTAzLTAzGgNCS0sqAkVUMgM2MjhqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMDMiHwoDVExWEgoyMDI3LTAzLTAzGgNaUkgqAkxYMgMyNTciHwoDWlJIEgoyMDI3LTAzLTAzGgNCS0sqAkxYMgMxODBqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:10.174Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-10",
@@ -297,8 +297,8 @@
    "date": "2027-03-17",
    "status": "ok",
    "fare": {
-    "price": 570,
-    "price_text": "$570",
+    "price": 561,
+    "price_text": "$561",
     "airline": "Austrian",
     "stops": 1,
     "duration": "15 hr 40 min",
@@ -308,8 +308,8 @@
     "band_high": 530,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlkSCjIwMjctMDMtMTciHgoDVExWEgoyMDI3LTAzLTE3GgNWSUUqAk9TMgI4MCIdCgNWSUUSCjIwMjctMDMtMTcaA0JLSyoCT1MyATVqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:12.038Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:55.553Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-24",
@@ -333,19 +333,19 @@
    "date": "2027-03-31",
    "status": "ok",
    "fare": {
-    "price": 546,
-    "price_text": "$546",
-    "airline": "Ethiopian",
+    "price": 561,
+    "price_text": "$561",
+    "airline": "Austrian",
     "stops": 1,
-    "duration": "31 hr 35 min",
-    "departure_description": "1:00 AM on Wed, Mar 31",
+    "duration": "19 hr 20 min",
+    "departure_description": "3:30 PM on Wed, Mar 31",
     "verdict": "high",
     "band_low": 435,
     "band_high": 530,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMzEiHwoDVExWEgoyMDI3LTAzLTMxGgNBREQqAkVUMgM0MDUiHwoDQUREEgoyMDI3LTAzLTMxGgNCS0sqAkVUMgM2MjhqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlkSCjIwMjctMDMtMzEiHgoDVExWEgoyMDI3LTAzLTMxGgNWSUUqAk9TMgI4MCIdCgNWSUUSCjIwMjctMDMtMzEaA0JLSyoCT1MyATdqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:12.038Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:43.676Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-07",
@@ -369,19 +369,19 @@
    "date": "2027-04-14",
    "status": "ok",
    "fare": {
-    "price": 707,
-    "price_text": "$707",
-    "airline": "ITA",
+    "price": 779,
+    "price_text": "$779",
+    "airline": "Austrian",
     "stops": 1,
-    "duration": "36 hr 55 min",
-    "departure_description": "2:30 PM on Wed, Apr 14",
+    "duration": "19 hr 20 min",
+    "departure_description": "3:30 PM on Wed, Apr 14",
     "verdict": "high",
     "band_low": 450,
     "band_high": 530,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMTQiHwoDVExWEgoyMDI3LTA0LTE0GgNGQ08qAkFaMgM4MDciHwoDRkNPEgoyMDI3LTA0LTE1GgNCS0sqAkFaMgM3NThqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlkSCjIwMjctMDQtMTQiHgoDVExWEgoyMDI3LTA0LTE0GgNWSUUqAk9TMgI4MCIdCgNWSUUSCjIwMjctMDQtMTQaA0JLSyoCT1MyATdqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:12.038Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:43.676Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-21",
@@ -405,19 +405,19 @@
    "date": "2027-04-28",
    "status": "ok",
    "fare": {
-    "price": 497,
-    "price_text": "$497",
-    "airline": "ITA",
+    "price": 492,
+    "price_text": "$492",
+    "airline": "Ethiopian",
     "stops": 1,
-    "duration": "36 hr 55 min",
-    "departure_description": "2:30 PM on Wed, Apr 28",
+    "duration": "17 hr",
+    "departure_description": "3:35 PM on Wed, Apr 28",
     "verdict": "typical",
     "band_low": 450,
     "band_high": 530,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjgiHwoDVExWEgoyMDI3LTA0LTI4GgNGQ08qAkFaMgM4MDciHwoDRkNPEgoyMDI3LTA0LTI5GgNCS0sqAkFaMgM3NThqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDQtMjgiHwoDVExWEgoyMDI3LTA0LTI4GgNBREQqAkVUMgM0MTkiHwoDQUREEgoyMDI3LTA0LTI4GgNCS0sqAkVUMgM2MjhqBRIDVExWcgUSA0JLS0IBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:13:12.038Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:43.676Z",
+   "source": "rest"
   }
  ]
 }

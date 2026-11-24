@@ -45,19 +45,19 @@
    "date": "2026-12-09",
    "status": "ok",
    "fare": {
-    "price": 145,
-    "price_text": "$145",
-    "airline": "SWISS",
+    "price": 119,
+    "price_text": "$119",
+    "airline": "Air Serbia | Operated by Bulgaria Air for Air Serbia",
     "stops": 1,
-    "duration": "13 hr 45 min",
-    "departure_description": "9:55 AM on Wed, Dec 9",
+    "duration": "16 hr 25 min",
+    "departure_description": "10:00 AM on Wed, Dec 9",
     "verdict": "typical",
     "band_low": 110,
-    "band_high": 225,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTItMDkiHwoDQ0RHEgoyMDI2LTEyLTA5GgNaUkgqAkxYMgM2MzMiIAoDWlJIEgoyMDI2LTEyLTA5GgNBVEgqAkxYMgQxODQyagUSA0NER3IFEgNBVEhCAQFIAZgBAg&curr=usd"
+    "band_high": 215,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMDkiHwoDQ0RHEgoyMDI2LTEyLTA5GgNCRUcqAkpVMgMyNDEiHwoDQkVHEgoyMDI2LTEyLTEwGgNBVEgqAkpVMgM1MzZqBRIDQ0RHcgUSA0FUSEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:10:01.560Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:12.167Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-16",
@@ -81,19 +81,19 @@
    "date": "2026-12-23",
    "status": "ok",
    "fare": {
-    "price": 170,
-    "price_text": "$170",
-    "airline": "Air Serbia",
+    "price": 190,
+    "price_text": "$190",
+    "airline": "Vueling | Iberia",
     "stops": 1,
-    "duration": "18 hr 20 min",
-    "departure_description": "8:30 PM on Wed, Dec 23",
+    "duration": "15 hr 50 min",
+    "departure_description": "6:20 PM on Wed, Dec 23",
     "verdict": "typical",
     "band_low": 110,
-    "band_high": 225,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjYtMTItMjMiHwoDQ0RHEgoyMDI2LTEyLTIzGgNCRUcqAkpVMgMyNDMiHwoDQkVHEgoyMDI2LTEyLTI0GgNBVEgqAkpVMgM1MzJqBRIDQ0RHcgUSA0FUSEIBAUgBmAEC&curr=usd"
+    "band_high": 215,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTItMjMiIAoDQ0RHEgoyMDI2LTEyLTIzGgNCQ04qAlZZMgQ4MDYzIiAKA0JDThIKMjAyNi0xMi0yNBoDQVRIKgJWWTIEMTA2NmoFEgNDREdyBRIDQVRIQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:10:01.560Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:12.167Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-30",
@@ -117,19 +117,19 @@
    "date": "2027-01-06",
    "status": "ok",
    "fare": {
-    "price": 121,
-    "price_text": "$121",
-    "airline": "Air Serbia",
+    "price": 118,
+    "price_text": "$118",
+    "airline": "Vueling | Iberia",
     "stops": 1,
-    "duration": "18 hr 20 min",
-    "departure_description": "8:30 PM on Wed, Jan 6",
+    "duration": "15 hr 50 min",
+    "departure_description": "6:20 PM on Wed, Jan 6",
     "verdict": "typical",
-    "band_low": 90,
+    "band_low": 85,
     "band_high": 150,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMDYiHwoDQ0RHEgoyMDI3LTAxLTA2GgNCRUcqAkpVMgMyNDMiHwoDQkVHEgoyMDI3LTAxLTA3GgNBVEgqAkpVMgM1MzJqBRIDQ0RHcgUSA0FUSEIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDEtMDYiIAoDQ0RHEgoyMDI3LTAxLTA2GgNCQ04qAlZZMgQ4MDYzIiAKA0JDThIKMjAyNy0wMS0wNxoDQVRIKgJWWTIEMTA2NmoFEgNDREdyBRIDQVRIQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:10:01.560Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:12.167Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-13",
@@ -153,19 +153,19 @@
    "date": "2027-01-20",
    "status": "ok",
    "fare": {
-    "price": 110,
-    "price_text": "$110",
+    "price": 109,
+    "price_text": "$109",
     "airline": "SKY express",
     "stops": 0,
     "duration": "3 hr 10 min",
     "departure_description": "2:05 PM on Wed, Jan 20",
     "verdict": "typical",
-    "band_low": 90,
+    "band_low": 85,
     "band_high": 150,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMjAiHwoDQ0RHEgoyMDI3LTAxLTIwGgNBVEgqAkdRMgM5MDFqBRIDQ0RHcgUSA0FUSEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:10:03.636Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:12.167Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-27",
@@ -189,19 +189,19 @@
    "date": "2027-02-03",
    "status": "ok",
    "fare": {
-    "price": 110,
-    "price_text": "$110",
-    "airline": "SKY express",
-    "stops": 0,
-    "duration": "3 hr 10 min",
-    "departure_description": "2:05 PM on Wed, Feb 3",
+    "price": 114,
+    "price_text": "$114",
+    "airline": "Air France, KLM",
+    "stops": 1,
+    "duration": "8 hr 35 min",
+    "departure_description": "6:55 AM on Wed, Feb 3",
     "verdict": "typical",
     "band_low": 105,
     "band_high": 145,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMDMiHwoDQ0RHEgoyMDI3LTAyLTAzGgNBVEgqAkdRMgM5MDFqBRIDQ0RHcgUSA0FUSEIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDItMDMiIAoDQ0RHEgoyMDI3LTAyLTAzGgNBTVMqAkFGMgQxMjQwIiAKA0FNUxIKMjAyNy0wMi0wMxoDQVRIKgJLTDIEMTk1NWoFEgNDREdyBRIDQVRIQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:10:03.636Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:12.167Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-10",
@@ -225,19 +225,19 @@
    "date": "2027-02-17",
    "status": "ok",
    "fare": {
-    "price": 110,
-    "price_text": "$110",
-    "airline": "SKY express",
-    "stops": 0,
-    "duration": "3 hr 10 min",
-    "departure_description": "2:05 PM on Wed, Feb 17",
-    "verdict": "typical",
+    "price": 97,
+    "price_text": "$97",
+    "airline": "Vueling | Iberia",
+    "stops": 1,
+    "duration": "15 hr 50 min",
+    "departure_description": "6:20 PM on Wed, Feb 17",
+    "verdict": "low",
     "band_low": 105,
     "band_high": 145,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMTciHwoDQ0RHEgoyMDI3LTAyLTE3GgNBVEgqAkdRMgM5MDFqBRIDQ0RHcgUSA0FUSEIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDItMTciIAoDQ0RHEgoyMDI3LTAyLTE3GgNCQ04qAlZZMgQ4MDYzIiAKA0JDThIKMjAyNy0wMi0xOBoDQVRIKgJWWTIEMTA2NmoFEgNDREdyBRIDQVRIQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:10:03.636Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:12.167Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-24",
@@ -261,19 +261,19 @@
    "date": "2027-03-03",
    "status": "ok",
    "fare": {
-    "price": 95,
-    "price_text": "$95",
-    "airline": "SKY express",
-    "stops": 0,
-    "duration": "3 hr 10 min",
-    "departure_description": "2:05 PM on Wed, Mar 3",
+    "price": 102,
+    "price_text": "$102",
+    "airline": "Vueling | Iberia",
+    "stops": 1,
+    "duration": "15 hr 50 min",
+    "departure_description": "6:20 PM on Wed, Mar 3",
     "verdict": "low",
     "band_low": 110,
     "band_high": 155,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMDMiHwoDQ0RHEgoyMDI3LTAzLTAzGgNBVEgqAkdRMgM5MDFqBRIDQ0RHcgUSA0FUSEIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDMtMDMiIAoDQ0RHEgoyMDI3LTAzLTAzGgNCQ04qAlZZMgQ4MDYzIiAKA0JDThIKMjAyNy0wMy0wNBoDQVRIKgJWWTIEMTA2NmoFEgNDREdyBRIDQVRIQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:10:03.636Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:12.167Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-10",
@@ -299,17 +299,17 @@
    "fare": {
     "price": 147,
     "price_text": "$147",
-    "airline": "Brussels Airlines",
+    "airline": "Air Serbia | Operated by Airbaltic for Air Serbia, Bulgaria Air for Air Serbia",
     "stops": 1,
-    "duration": "5 hr 45 min",
-    "departure_description": "8:25 AM on Wed, Mar 17",
+    "duration": "16 hr 25 min",
+    "departure_description": "10:00 AM on Wed, Mar 17",
     "verdict": "typical",
     "band_low": 110,
     "band_high": 155,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDMtMTciIAoDQ0RHEgoyMDI3LTAzLTE3GgNCUlUqAlNOMgQzNjMyIiAKA0JSVRIKMjAyNy0wMy0xNxoDQVRIKgJTTjIEMzI0NWoFEgNDREdyBRIDQVRIQgEBSAGYAQI&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMTciHwoDQ0RHEgoyMDI3LTAzLTE3GgNCRUcqAkpVMgMyNDEiHwoDQkVHEgoyMDI3LTAzLTE4GgNBVEgqAkpVMgM1MzZqBRIDQ0RHcgUSA0FUSEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:09:59.162Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:25:12.167Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-24",
@@ -333,19 +333,19 @@
    "date": "2027-03-31",
    "status": "ok",
    "fare": {
-    "price": 121,
-    "price_text": "$121",
-    "airline": "Air Serbia",
+    "price": 113,
+    "price_text": "$113",
+    "airline": "Vueling | Iberia",
     "stops": 1,
-    "duration": "12 hr",
-    "departure_description": "8:35 PM on Wed, Mar 31",
+    "duration": "11 hr 30 min",
+    "departure_description": "9:40 PM on Wed, Mar 31",
     "verdict": "typical",
     "band_low": 110,
     "band_high": 155,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDMtMzEiHwoDQ0RHEgoyMDI3LTAzLTMxGgNCRUcqAkpVMgMyNDMiHwoDQkVHEgoyMDI3LTA0LTAxGgNBVEgqAkpVMgM1MzBqBRIDQ0RHcgUSA0FUSEIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDMtMzEiIAoDQ0RHEgoyMDI3LTAzLTMxGgNCQ04qAlZZMgQ4MDY1IiAKA0JDThIKMjAyNy0wNC0wMRoDQVRIKgJWWTIEMTA2OGoFEgNDREdyBRIDQVRIQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:09:59.162Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:52.656Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-07",
@@ -369,19 +369,19 @@
    "date": "2027-04-14",
    "status": "ok",
    "fare": {
-    "price": 115,
-    "price_text": "$115",
-    "airline": "Aegean",
-    "stops": 0,
-    "duration": "3 hr 5 min",
-    "departure_description": "9:20 PM on Wed, Apr 14",
-    "verdict": "low",
-    "band_low": 120,
-    "band_high": 175,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMTQiHwoDQ0RHEgoyMDI3LTA0LTE0GgNBVEgqAkEzMgM2MTVqBRIDQ0RHcgUSA0FUSEIBAUgBmAEC&curr=usd"
+    "price": 123,
+    "price_text": "$123",
+    "airline": "Vueling | Iberia",
+    "stops": 1,
+    "duration": "11 hr 30 min",
+    "departure_description": "9:40 PM on Wed, Apr 14",
+    "verdict": "typical",
+    "band_low": 115,
+    "band_high": 170,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDQtMTQiIAoDQ0RHEgoyMDI3LTA0LTE0GgNCQ04qAlZZMgQ4MDY1IiAKA0JDThIKMjAyNy0wNC0xNRoDQVRIKgJWWTIEMTA2OGoFEgNDREdyBRIDQVRIQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:09:59.162Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:52.656Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-21",
@@ -405,19 +405,19 @@
    "date": "2027-04-28",
    "status": "ok",
    "fare": {
-    "price": 142,
-    "price_text": "$142",
+    "price": 107,
+    "price_text": "$107",
     "airline": "Vueling | Iberia",
     "stops": 1,
     "duration": "10 hr 25 min",
     "departure_description": "10:10 AM on Wed, Apr 28",
-    "verdict": "typical",
-    "band_low": 120,
-    "band_high": 175,
+    "verdict": "low",
+    "band_low": 115,
+    "band_high": 170,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDQtMjgiIAoDQ0RHEgoyMDI3LTA0LTI4GgNCQ04qAlZZMgQ4MDYxIiAKA0JDThIKMjAyNy0wNC0yOBoDQVRIKgJWWTIEMTA3MGoFEgNDREdyBRIDQVRIQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:09:59.162Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:52.656Z",
+   "source": "rest"
   }
  ]
 }

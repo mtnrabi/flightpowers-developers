@@ -45,19 +45,19 @@
    "date": "2026-12-09",
    "status": "ok",
    "fare": {
-    "price": 67,
-    "price_text": "$67",
-    "airline": "AirAsia",
+    "price": 66,
+    "price_text": "$66",
+    "airline": "Scoot",
     "stops": 0,
-    "duration": "1 hr 5 min",
-    "departure_description": "7:55 AM on Wed, Dec 9",
+    "duration": "1 hr 15 min",
+    "departure_description": "5:00 PM on Wed, Dec 9",
     "verdict": "typical",
     "band_low": 65,
-    "band_high": 100,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDkiHwoDU0lOEgoyMDI2LTEyLTA5GgNLVUwqAkFLMgM3MDBqBRIDU0lOcgUSA0tVTEIBAUgBmAEC&curr=usd"
+    "band_high": 95,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMDkiHwoDU0lOEgoyMDI2LTEyLTA5GgNLVUwqAlRSMgM0NjhqBRIDU0lOcgUSA0tVTEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:15:18.324Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:26:20.809Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-16",
@@ -81,19 +81,19 @@
    "date": "2026-12-23",
    "status": "ok",
    "fare": {
-    "price": 108,
-    "price_text": "$108",
-    "airline": "Scoot",
+    "price": 121,
+    "price_text": "$121",
+    "airline": "AirAsia",
     "stops": 0,
-    "duration": "1 hr 15 min",
-    "departure_description": "3:00 PM on Wed, Dec 23",
+    "duration": "1 hr 5 min",
+    "departure_description": "4:25 PM on Wed, Dec 23",
     "verdict": "high",
     "band_low": 65,
-    "band_high": 100,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMjMiHwoDU0lOEgoyMDI2LTEyLTIzGgNLVUwqAlRSMgM0NDJqBRIDU0lOcgUSA0tVTEIBAUgBmAEC&curr=usd"
+    "band_high": 95,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMjMiHwoDU0lOEgoyMDI2LTEyLTIzGgNLVUwqAkFLMgM3MTRqBRIDU0lOcgUSA0tVTEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:15:18.324Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:26:20.809Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-30",
@@ -117,19 +117,19 @@
    "date": "2027-01-06",
    "status": "ok",
    "fare": {
-    "price": 66,
-    "price_text": "$66",
-    "airline": "AirAsia",
+    "price": 65,
+    "price_text": "$65",
+    "airline": "Scoot",
     "stops": 0,
-    "duration": "1 hr 5 min",
-    "departure_description": "7:55 AM on Wed, Jan 6",
-    "verdict": "high",
+    "duration": "1 hr 15 min",
+    "departure_description": "3:00 PM on Wed, Jan 6",
+    "verdict": "typical",
     "band_low": 55,
     "band_high": 65,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMDYiHwoDU0lOEgoyMDI3LTAxLTA2GgNLVUwqAkFLMgM3MDBqBRIDU0lOcgUSA0tVTEIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMDYiHwoDU0lOEgoyMDI3LTAxLTA2GgNLVUwqAlRSMgM0NDJqBRIDU0lOcgUSA0tVTEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:15:18.324Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:26:20.809Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-13",
@@ -153,19 +153,19 @@
    "date": "2027-01-20",
    "status": "ok",
    "fare": {
-    "price": 66,
-    "price_text": "$66",
-    "airline": "AirAsia",
+    "price": 65,
+    "price_text": "$65",
+    "airline": "Scoot",
     "stops": 0,
-    "duration": "1 hr",
-    "departure_description": "8:55 AM on Wed, Jan 20",
-    "verdict": "high",
+    "duration": "1 hr 15 min",
+    "departure_description": "3:00 PM on Wed, Jan 20",
+    "verdict": "typical",
     "band_low": 55,
     "band_high": 65,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMjAiHwoDU0lOEgoyMDI3LTAxLTIwGgNLVUwqAkFLMgM3MDJqBRIDU0lOcgUSA0tVTEIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMjAiHwoDU0lOEgoyMDI3LTAxLTIwGgNLVUwqAlRSMgM0NDJqBRIDU0lOcgUSA0tVTEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:15:17.771Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:26:20.809Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-27",
@@ -189,19 +189,19 @@
    "date": "2027-02-03",
    "status": "ok",
    "fare": {
-    "price": 151,
-    "price_text": "$151",
-    "airline": "AirAsia",
+    "price": 154,
+    "price_text": "$154",
+    "airline": "Scoot",
     "stops": 0,
-    "duration": "1 hr",
-    "departure_description": "8:55 AM on Wed, Feb 3",
+    "duration": "1 hr 15 min",
+    "departure_description": "3:00 PM on Wed, Feb 3",
     "verdict": "high",
     "band_low": 55,
     "band_high": 125,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMDMiHwoDU0lOEgoyMDI3LTAyLTAzGgNLVUwqAkFLMgM3MDJqBRIDU0lOcgUSA0tVTEIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMDMiHwoDU0lOEgoyMDI3LTAyLTAzGgNLVUwqAlRSMgM0NDJqBRIDU0lOcgUSA0tVTEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:15:17.771Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:26:20.809Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-10",
@@ -225,19 +225,19 @@
    "date": "2027-02-17",
    "status": "ok",
    "fare": {
-    "price": 66,
-    "price_text": "$66",
-    "airline": "AirAsia",
+    "price": 65,
+    "price_text": "$65",
+    "airline": "Scoot",
     "stops": 0,
-    "duration": "1 hr 5 min",
-    "departure_description": "7:55 AM on Wed, Feb 17",
+    "duration": "1 hr 15 min",
+    "departure_description": "3:00 PM on Wed, Feb 17",
     "verdict": "typical",
     "band_low": 55,
     "band_high": 125,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMTciHwoDU0lOEgoyMDI3LTAyLTE3GgNLVUwqAkFLMgM3MDBqBRIDU0lOcgUSA0tVTEIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDItMTciHwoDU0lOEgoyMDI3LTAyLTE3GgNLVUwqAlRSMgM0NDJqBRIDU0lOcgUSA0tVTEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:15:17.771Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:26:20.809Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-24",
@@ -261,19 +261,19 @@
    "date": "2027-03-03",
    "status": "ok",
    "fare": {
-    "price": 66,
-    "price_text": "$66",
-    "airline": "AirAsia",
+    "price": 65,
+    "price_text": "$65",
+    "airline": "Scoot",
     "stops": 0,
-    "duration": "1 hr 5 min",
-    "departure_description": "7:55 AM on Wed, Mar 3",
+    "duration": "1 hr 15 min",
+    "departure_description": "3:00 PM on Wed, Mar 3",
     "verdict": "typical",
     "band_low": 55,
     "band_high": 70,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMDMiHwoDU0lOEgoyMDI3LTAzLTAzGgNLVUwqAkFLMgM3MDBqBRIDU0lOcgUSA0tVTEIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMDMiHwoDU0lOEgoyMDI3LTAzLTAzGgNLVUwqAlRSMgM0NDJqBRIDU0lOcgUSA0tVTEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:15:17.771Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:26:20.809Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-10",
@@ -297,8 +297,8 @@
    "date": "2027-03-17",
    "status": "ok",
    "fare": {
-    "price": 66,
-    "price_text": "$66",
+    "price": 67,
+    "price_text": "$67",
     "airline": "AirAsia",
     "stops": 0,
     "duration": "1 hr 5 min",
@@ -308,8 +308,8 @@
     "band_high": 70,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMTciHwoDU0lOEgoyMDI3LTAzLTE3GgNLVUwqAkFLMgM3MDBqBRIDU0lOcgUSA0tVTEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:15:16.996Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:26:20.809Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-24",
@@ -333,19 +333,19 @@
    "date": "2027-03-31",
    "status": "ok",
    "fare": {
-    "price": 66,
-    "price_text": "$66",
-    "airline": "AirAsia",
+    "price": 65,
+    "price_text": "$65",
+    "airline": "Scoot",
     "stops": 0,
-    "duration": "1 hr 5 min",
-    "departure_description": "7:55 AM on Wed, Mar 31",
+    "duration": "1 hr 15 min",
+    "departure_description": "5:00 PM on Wed, Mar 31",
     "verdict": "typical",
     "band_low": 55,
     "band_high": 70,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMzEiHwoDU0lOEgoyMDI3LTAzLTMxGgNLVUwqAkFLMgM3MDBqBRIDU0lOcgUSA0tVTEIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDMtMzEiHwoDU0lOEgoyMDI3LTAzLTMxGgNLVUwqAlRSMgM0NjhqBRIDU0lOcgUSA0tVTEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:15:16.996Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:26:19.053Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-07",
@@ -369,19 +369,19 @@
    "date": "2027-04-14",
    "status": "ok",
    "fare": {
-    "price": 70,
-    "price_text": "$70",
-    "airline": "AirAsia",
+    "price": 69,
+    "price_text": "$69",
+    "airline": "Scoot",
     "stops": 0,
-    "duration": "1 hr 5 min",
-    "departure_description": "7:55 AM on Wed, Apr 14",
+    "duration": "1 hr 15 min",
+    "departure_description": "5:00 PM on Wed, Apr 14",
     "verdict": "typical",
     "band_low": 55,
     "band_high": 70,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMTQiHwoDU0lOEgoyMDI3LTA0LTE0GgNLVUwqAkFLMgM3MDBqBRIDU0lOcgUSA0tVTEIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMTQiHwoDU0lOEgoyMDI3LTA0LTE0GgNLVUwqAlRSMgM0NjhqBRIDU0lOcgUSA0tVTEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:15:16.996Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:26:19.053Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-21",
@@ -405,19 +405,19 @@
    "date": "2027-04-28",
    "status": "ok",
    "fare": {
-    "price": 70,
-    "price_text": "$70",
-    "airline": "AirAsia",
+    "price": 69,
+    "price_text": "$69",
+    "airline": "Scoot",
     "stops": 0,
-    "duration": "1 hr 5 min",
-    "departure_description": "7:55 AM on Wed, Apr 28",
+    "duration": "1 hr 15 min",
+    "departure_description": "5:00 PM on Wed, Apr 28",
     "verdict": "typical",
     "band_low": 55,
     "band_high": 70,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMjgiHwoDU0lOEgoyMDI3LTA0LTI4GgNLVUwqAkFLMgM3MDBqBRIDU0lOcgUSA0tVTEIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMjgiHwoDU0lOEgoyMDI3LTA0LTI4GgNLVUwqAlRSMgM0NjhqBRIDU0lOcgUSA0tVTEIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:15:16.996Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:26:19.053Z",
+   "source": "rest"
   }
  ]
 }

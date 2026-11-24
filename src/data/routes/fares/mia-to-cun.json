@@ -45,19 +45,19 @@
    "date": "2026-12-09",
    "status": "ok",
    "fare": {
-    "price": 169,
-    "price_text": "$169",
+    "price": 172,
+    "price_text": "$172",
     "airline": "American",
     "stops": 0,
-    "duration": "2 hr 7 min",
-    "departure_description": "12:42 PM on Wed, Dec 9",
+    "duration": "2 hr 9 min",
+    "departure_description": "10:28 AM on Wed, Dec 9",
     "verdict": "typical",
-    "band_low": 125,
-    "band_high": 235,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMDkiIAoDTUlBEgoyMDI2LTEyLTA5GgNDVU4qAkFBMgQyNDIyagUSA01JQXIFEgNDVU5CAQFIAZgBAg&curr=usd"
+    "band_low": 150,
+    "band_high": 250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTItMDkiIAoDTUlBEgoyMDI2LTEyLTA5GgNDVU4qAkFBMgQxMTU3agUSA01JQXIFEgNDVU5CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:06:31.203Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:42.514Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-16",
@@ -81,19 +81,19 @@
    "date": "2026-12-23",
    "status": "ok",
    "fare": {
-    "price": 195,
-    "price_text": "$195",
-    "airline": "Frontier",
-    "stops": 1,
-    "duration": "13 hr 7 min",
-    "departure_description": "9:11 PM on Wed, Dec 23",
+    "price": 215,
+    "price_text": "$215",
+    "airline": "Aeromexico | Delta",
+    "stops": 0,
+    "duration": "2 hr 12 min",
+    "departure_description": "9:48 AM on Wed, Dec 23",
     "verdict": "typical",
-    "band_low": 125,
-    "band_high": 235,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTItMjMiIAoDTUlBEgoyMDI2LTEyLTIzGgNBVEwqAkY5MgQ0NDA1Ih8KA0FUTBIKMjAyNi0xMi0yNBoDQ1VOKgJGOTIDMTUzagUSA01JQXIFEgNDVU5CAQFIAZgBAg&curr=usd"
+    "band_low": 150,
+    "band_high": 250,
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjYtMTItMjMiHwoDTUlBEgoyMDI2LTEyLTIzGgNDVU4qAkFNMgM0MjdqBRIDTUlBcgUSA0NVTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:06:31.203Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:42.514Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-30",
@@ -117,19 +117,19 @@
    "date": "2027-01-06",
    "status": "ok",
    "fare": {
-    "price": 163,
-    "price_text": "$163",
-    "airline": "Frontier",
-    "stops": 1,
-    "duration": "21 hr 8 min",
-    "departure_description": "1:35 PM on Wed, Jan 6",
+    "price": 152,
+    "price_text": "$152",
+    "airline": "Aeromexico | Delta",
+    "stops": 0,
+    "duration": "2 hr 12 min",
+    "departure_description": "9:58 AM on Wed, Jan 6",
     "verdict": "typical",
     "band_low": 125,
     "band_high": 185,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMDYiIAoDTUlBEgoyMDI3LTAxLTA2GgNQSEwqAkY5MgQ0OTU0Ih4KA1BITBIKMjAyNy0wMS0wNxoDQ1VOKgJGOTICOTFqBRIDTUlBcgUSA0NVTkIBAUgBmAEC&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDEtMDYiHwoDTUlBEgoyMDI3LTAxLTA2GgNDVU4qAkFNMgM0MjdqBRIDTUlBcgUSA0NVTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:06:31.203Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:42.514Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-13",
@@ -153,19 +153,19 @@
    "date": "2027-01-20",
    "status": "ok",
    "fare": {
-    "price": 169,
-    "price_text": "$169",
-    "airline": "American",
-    "stops": 0,
-    "duration": "2 hr 16 min",
-    "departure_description": "8:32 AM on Wed, Jan 20",
+    "price": 174,
+    "price_text": "$174",
+    "airline": "Aeromexico",
+    "stops": 1,
+    "duration": "8 hr 39 min",
+    "departure_description": "7:02 AM on Wed, Jan 20",
     "verdict": "typical",
     "band_low": 125,
     "band_high": 185,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMjAiIAoDTUlBEgoyMDI3LTAxLTIwGgNDVU4qAkFBMgQyNDk0agUSA01JQXIFEgNDVU5CAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDEtMjAiHwoDTUlBEgoyMDI3LTAxLTIwGgNNRVgqAkFNMgM0MjkiHwoDTUVYEgoyMDI3LTAxLTIwGgNDVU4qAkFNMgM1MjRqBRIDTUlBcgUSA0NVTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:06:12.239Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:42.514Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-27",
@@ -189,19 +189,19 @@
    "date": "2027-02-03",
    "status": "ok",
    "fare": {
-    "price": 169,
-    "price_text": "$169",
-    "airline": "American",
-    "stops": 0,
-    "duration": "2 hr 16 min",
-    "departure_description": "8:32 AM on Wed, Feb 3",
+    "price": 174,
+    "price_text": "$174",
+    "airline": "Aeromexico | Delta",
+    "stops": 1,
+    "duration": "10 hr 37 min",
+    "departure_description": "7:02 AM on Wed, Feb 3",
     "verdict": "typical",
     "band_low": 125,
     "band_high": 180,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDItMDMiIAoDTUlBEgoyMDI3LTAyLTAzGgNDVU4qAkFBMgQyNDk0agUSA01JQXIFEgNDVU5CAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMDMiHwoDTUlBEgoyMDI3LTAyLTAzGgNNRVgqAkFNMgM0MjkiHwoDTUVYEgoyMDI3LTAyLTAzGgNDVU4qAkFNMgM1MzJqBRIDTUlBcgUSA0NVTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:06:12.239Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:42.514Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-10",
@@ -236,8 +236,8 @@
     "band_high": 180,
     "buy_link": "https://www.google.com/travel/flights?tfs=GlwSCjIwMjctMDItMTciHwoDTUlBEgoyMDI3LTAyLTE3GgNNRVgqAkFNMgM0MjkiHwoDTUVYEgoyMDI3LTAyLTE3GgNDVU4qAkFNMgM1MzJqBRIDTUlBcgUSA0NVTkIBAUgBmAEC&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:06:12.239Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:42.514Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-24",
@@ -261,19 +261,19 @@
    "date": "2027-03-03",
    "status": "ok",
    "fare": {
-    "price": 163,
-    "price_text": "$163",
+    "price": 161,
+    "price_text": "$161",
     "airline": "Frontier",
     "stops": 1,
-    "duration": "27 hr 18 min",
-    "departure_description": "7:22 AM on Wed, Mar 3",
+    "duration": "11 hr 53 min",
+    "departure_description": "9:37 PM on Wed, Mar 3",
     "verdict": "typical",
     "band_low": 125,
     "band_high": 185,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMDMiIAoDTUlBEgoyMDI3LTAzLTAzGgNDTEUqAkY5MgQ0MTM1Ih8KA0NMRRIKMjAyNy0wMy0wNBoDQ1VOKgJGOTIDMjA3agUSA01JQXIFEgNDVU5CAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMDMiIAoDTUlBEgoyMDI3LTAzLTAzGgNBVEwqAkY5MgQyMjcxIh8KA0FUTBIKMjAyNy0wMy0wNBoDQ1VOKgJGOTIDMTUzagUSA01JQXIFEgNDVU5CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:06:12.239Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:42.514Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-10",
@@ -299,17 +299,17 @@
    "fare": {
     "price": 182,
     "price_text": "$182",
-    "airline": "American",
-    "stops": 0,
-    "duration": "2 hr 6 min",
-    "departure_description": "8:40 AM on Wed, Mar 17",
+    "airline": "Frontier",
+    "stops": 1,
+    "duration": "8 hr 44 min",
+    "departure_description": "8:53 AM on Wed, Mar 17",
     "verdict": "typical",
     "band_low": 125,
     "band_high": 185,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDMtMTciIAoDTUlBEgoyMDI3LTAzLTE3GgNDVU4qAkFBMgQxMjM0agUSA01JQXIFEgNDVU5CAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMTciIAoDTUlBEgoyMDI3LTAzLTE3GgNJQUgqAkY5MgQxMDY3Ih8KA0lBSBIKMjAyNy0wMy0xNxoDQ1VOKgJGOTIDMzE2agUSA01JQXIFEgNDVU5CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:06:14.314Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:42.514Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-24",
@@ -333,19 +333,19 @@
    "date": "2027-03-31",
    "status": "ok",
    "fare": {
-    "price": 182,
-    "price_text": "$182",
+    "price": 192,
+    "price_text": "$192",
     "airline": "American",
     "stops": 0,
-    "duration": "2 hr 7 min",
-    "departure_description": "1:05 PM on Wed, Mar 31",
-    "verdict": "typical",
+    "duration": "2 hr 3 min",
+    "departure_description": "12:29 PM on Wed, Mar 31",
+    "verdict": "high",
     "band_low": 125,
     "band_high": 185,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDMtMzEiIAoDTUlBEgoyMDI3LTAzLTMxGgNDVU4qAkFBMgQxNzMwagUSA01JQXIFEgNDVU5CAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDMtMzEiIAoDTUlBEgoyMDI3LTAzLTMxGgNDVU4qAkFBMgQyNDIyagUSA01JQXIFEgNDVU5CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:06:14.314Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:36.688Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-07",
@@ -369,8 +369,8 @@
    "date": "2027-04-14",
    "status": "ok",
    "fare": {
-    "price": 182,
-    "price_text": "$182",
+    "price": 192,
+    "price_text": "$192",
     "airline": "American",
     "stops": 0,
     "duration": "1 hr 58 min",
@@ -380,8 +380,8 @@
     "band_high": 175,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDQtMTQiIAoDTUlBEgoyMDI3LTA0LTE0GgNDVU4qAkFBMgQyNDIyagUSA01JQXIFEgNDVU5CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:06:14.314Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:36.688Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-21",
@@ -405,19 +405,19 @@
    "date": "2027-04-28",
    "status": "ok",
    "fare": {
-    "price": 182,
-    "price_text": "$182",
-    "airline": "American",
-    "stops": 0,
-    "duration": "1 hr 58 min",
-    "departure_description": "8:45 AM on Wed, Apr 28",
+    "price": 191,
+    "price_text": "$191",
+    "airline": "Delta",
+    "stops": 1,
+    "duration": "14 hr 31 min",
+    "departure_description": "7:30 PM on Wed, Apr 28",
     "verdict": "high",
     "band_low": 130,
     "band_high": 175,
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDQtMjgiIAoDTUlBEgoyMDI3LTA0LTI4GgNDVU4qAkFBMgQyNDIyagUSA01JQXIFEgNDVU5CAQFIAZgBAg&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDQtMjgiIAoDTUlBEgoyMDI3LTA0LTI4GgNBVEwqAkRMMgQxMzI4IiAKA0FUTBIKMjAyNy0wNC0yORoDQ1VOKgJETDIEMjAxNGoFEgNNSUFyBRIDQ1VOQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:06:14.314Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:36.688Z",
+   "source": "rest"
   }
  ]
 }

@@ -45,19 +45,19 @@
    "date": "2026-12-09",
    "status": "ok",
    "fare": {
-    "price": 192,
-    "price_text": "$192",
+    "price": 222,
+    "price_text": "$222",
     "airline": "Frontier",
     "stops": 0,
     "duration": "4 hr 18 min",
     "departure_description": "7:42 AM on Wed, Dec 9",
     "verdict": "typical",
-    "band_low": 115,
-    "band_high": 275,
+    "band_low": 145,
+    "band_high": 325,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjYtMTItMDkiHgoDT1JEEgoyMDI2LTEyLTA5GgNDVU4qAkY5MgI0NGoFEgNPUkRyBRIDQ1VOQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:05:19.920Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:33.361Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-16",
@@ -81,19 +81,19 @@
    "date": "2026-12-23",
    "status": "ok",
    "fare": {
-    "price": 351,
-    "price_text": "$351",
-    "airline": "American",
+    "price": 306,
+    "price_text": "$306",
+    "airline": "JetBlue",
     "stops": 1,
-    "duration": "12 hr 29 min",
-    "departure_description": "9:30 PM on Wed, Dec 23",
-    "verdict": "high",
-    "band_low": 115,
-    "band_high": 275,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjYtMTItMjMiIAoDT1JEEgoyMDI2LTEyLTIzGgNBVVMqAkFBMgQyMDU0IiAKA0FVUxIKMjAyNi0xMi0yNBoDQ1VOKgJBQTIEMjE3OWoFEgNPUkRyBRIDQ1VOQgEBSAGYAQI&curr=usd"
+    "duration": "6 hr 50 min",
+    "departure_description": "7:00 AM on Wed, Dec 23",
+    "verdict": "typical",
+    "band_low": 145,
+    "band_high": 325,
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjYtMTItMjMiHwoDT1JEEgoyMDI2LTEyLTIzGgNGTEwqAkI2MgM2NjQiIAoDRkxMEgoyMDI2LTEyLTIzGgNDVU4qAkI2MgQyNzk1agUSA09SRHIFEgNDVU5CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:05:19.920Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:33.361Z",
+   "source": "rest"
   },
   {
    "date": "2026-12-30",
@@ -125,11 +125,11 @@
     "departure_description": "12:25 AM on Wed, Jan 6",
     "verdict": "high",
     "band_low": 90,
-    "band_high": 135,
+    "band_high": 160,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDEtMDYiHwoDT1JEEgoyMDI3LTAxLTA2GgNHREwqAlZCMgM1NDciIAoDR0RMEgoyMDI3LTAxLTA2GgNDVU4qAlZCMgQyMTQxagUSA09SRHIFEgNDVU5CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:05:19.920Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:33.361Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-13",
@@ -153,19 +153,19 @@
    "date": "2027-01-20",
    "status": "ok",
    "fare": {
-    "price": 217,
-    "price_text": "$217",
+    "price": 212,
+    "price_text": "$212",
     "airline": "Frontier",
     "stops": 0,
     "duration": "4 hr 21 min",
     "departure_description": "7:40 AM on Wed, Jan 20",
     "verdict": "high",
     "band_low": 90,
-    "band_high": 135,
+    "band_high": 160,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDEtMjAiHgoDT1JEEgoyMDI3LTAxLTIwGgNDVU4qAkY5MgI0NGoFEgNPUkRyBRIDQ1VOQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:05:28.943Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:33.361Z",
+   "source": "rest"
   },
   {
    "date": "2027-01-27",
@@ -189,8 +189,8 @@
    "date": "2027-02-03",
    "status": "ok",
    "fare": {
-    "price": 239,
-    "price_text": "$239",
+    "price": 212,
+    "price_text": "$212",
     "airline": "Frontier",
     "stops": 0,
     "duration": "4 hr 21 min",
@@ -200,8 +200,8 @@
     "band_high": 150,
     "buy_link": "https://www.google.com/travel/flights?tfs=GjoSCjIwMjctMDItMDMiHgoDT1JEEgoyMDI3LTAyLTAzGgNDVU4qAkY5MgI0NGoFEgNPUkRyBRIDQ1VOQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:05:28.943Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:33.361Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-10",
@@ -225,19 +225,19 @@
    "date": "2027-02-17",
    "status": "ok",
    "fare": {
-    "price": 247,
-    "price_text": "$247",
-    "airline": "American",
+    "price": 233,
+    "price_text": "$233",
+    "airline": "Air Canada | Operated by Air Canada Express - Jazz, Air Canada Rouge",
     "stops": 1,
-    "duration": "15 hr 5 min",
-    "departure_description": "5:00 AM on Wed, Feb 17",
+    "duration": "14 hr 40 min",
+    "departure_description": "7:05 AM on Wed, Feb 17",
     "verdict": "high",
     "band_low": 90,
     "band_high": 150,
-    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDItMTciIAoDT1JEEgoyMDI3LTAyLTE3GgNERlcqAkFBMgQzMzI5IiAKA0RGVxIKMjAyNy0wMi0xNxoDQ1VOKgJBQTIEMjY1MGoFEgNPUkRyBRIDQ1VOQgEBSAGYAQI&curr=usd"
+    "buy_link": "https://www.google.com/travel/flights?tfs=Gl4SCjIwMjctMDItMTciIAoDT1JEEgoyMDI3LTAyLTE3GgNZVUwqAkFDMgQ4NDc4IiAKA1lVTBIKMjAyNy0wMi0xNxoDQ1VOKgJBQzIEMTg4NGoFEgNPUkRyBRIDQ1VOQgEBSAGYAQI&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:05:28.943Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:33.361Z",
+   "source": "rest"
   },
   {
    "date": "2027-02-24",
@@ -272,8 +272,8 @@
     "band_high": 185,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMDMiHwoDT1JEEgoyMDI3LTAzLTAzGgNNRVgqAlZCMgMxODciIAoDTUVYEgoyMDI3LTAzLTAzGgNDVU4qAlZCMgQxMzgwagUSA09SRHIFEgNDVU5CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:05:28.943Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:33.361Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-10",
@@ -297,19 +297,19 @@
    "date": "2027-03-17",
    "status": "ok",
    "fare": {
-    "price": 131,
-    "price_text": "$131",
+    "price": 187,
+    "price_text": "$187",
     "airline": "Viva",
     "stops": 1,
     "duration": "9 hr 30 min",
     "departure_description": "2:10 AM on Wed, Mar 17",
-    "verdict": "typical",
+    "verdict": "high",
     "band_low": 95,
     "band_high": 185,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMTciHwoDT1JEEgoyMDI3LTAzLTE3GgNNRVgqAlZCMgMxODciIAoDTUVYEgoyMDI3LTAzLTE3GgNDVU4qAlZCMgQxMzgwagUSA09SRHIFEgNDVU5CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:05:15.716Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:33.361Z",
+   "source": "rest"
   },
   {
    "date": "2027-03-24",
@@ -344,8 +344,8 @@
     "band_high": 185,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDMtMzEiHwoDT1JEEgoyMDI3LTAzLTMxGgNNRVgqAlZCMgMxODciIAoDTUVYEgoyMDI3LTAzLTMxGgNDVU4qAlZCMgQxMzgwagUSA09SRHIFEgNDVU5CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:05:15.716Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:16.056Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-07",
@@ -380,8 +380,8 @@
     "band_high": 140,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDQtMTQiHwoDT1JEEgoyMDI3LTA0LTE0GgNNRVgqAlZCMgMxODciIAoDTUVYEgoyMDI3LTA0LTE0GgNDVU4qAlZCMgQxMzgwagUSA09SRHIFEgNDVU5CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:05:15.716Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:16.056Z",
+   "source": "rest"
   },
   {
    "date": "2027-04-21",
@@ -416,8 +416,8 @@
     "band_high": 140,
     "buy_link": "https://www.google.com/travel/flights?tfs=Gl0SCjIwMjctMDQtMjgiHwoDT1JEEgoyMDI3LTA0LTI4GgNNRVgqAlZCMgMxODciIAoDTUVYEgoyMDI3LTA0LTI4GgNDVU4qAlZCMgQxMzgwagUSA09SRHIFEgNDVU5CAQFIAZgBAg&curr=usd"
    },
-   "fetched_at": "2026-11-11T22:05:15.716Z",
-   "source": "claude-mcp"
+   "fetched_at": "2026-11-24T21:24:16.056Z",
+   "source": "rest"
   }
  ]
 }
