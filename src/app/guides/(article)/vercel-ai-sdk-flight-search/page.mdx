@@ -162,7 +162,7 @@ leaves them out on some routes, and the tool returns null there.
 
 - **One object per destination.** The raw response holds every itinerary and long booking
   links. The model needs the best one, and you pay for every token you send it.
-- **The loop runs in your code.** The REST endpoint takes one airport pair and one date pair. `Promise.all`
+- **The loop runs in your code.** `/roundtrip` takes one airport pair and one date pair. `Promise.all`
   sends them together, and `max(5)` in the schema stops the model from asking for forty.
 - **`searchStatus` travels with the price.** `degraded` means the search did not finish, so an
   empty list says nothing about flights. [What each status means](/flights-api/search-status).
@@ -212,8 +212,12 @@ One destination on one date pair is one request. The call above was two. PRO is 
 
 ## Limits
 
-- Adults only in this schema. The API takes a `passengers` list for children and infants.
+- One adult in this schema. The API takes a `passengers` list for children and infants.
 - It reads prices and links to Google Flights. It does not book.
+- Rows are ranked by stops, then price, and cut at 10. On a route with more than ten nonstop pairs a cheaper connection can
+  fall off the end, so send a higher `limit` when you want every fare.
+- One date pair per request. [`/v1/flights/cheapest-dates`](/flights-api/cheapest-dates) gives the lowest fare for every
+  departure date of a month in one request, without flight details.
 - Do not cache a fare and present it later. Search again when the user comes back.
 
 ## Related

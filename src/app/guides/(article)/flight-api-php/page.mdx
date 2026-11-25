@@ -53,7 +53,7 @@ Hotels are a separate subscription on the same RapidAPI account, and the same ke
 
 ## One helper
 
-It sends several requests at once with `curl_multi`, because the useful question is almost never one date.
+It sends several requests at once with `curl_multi`, because the useful question is almost never one date. Save it as `api.php`.
 
 ```php
 <?php
@@ -110,6 +110,8 @@ function postAll(string $url, array $headers, array $bodies): array
 
 ## Compare dates
 
+Save this as `flights.php` and run `php flights.php`.
+
 ```php
 <?php
 require 'api.php';
@@ -149,9 +151,12 @@ Google's usual range for both days is $50 to $135, so $43 is under it and the ve
 compare one field to one word, with no price history to collect first.
 
 Add dates to the array and they run in parallel. PRO allows {PRO.ratePerMinute} requests a minute, so a month of dates is
-one burst of 31 requests.
+one burst of 31 requests. If you only need the cheapest day, [`/v1/flights/cheapest-dates`](/flights-api/cheapest-dates) returns
+the lowest fare for every date of a month in one request, without flight details.
 
 ## One hotel by name
+
+`hotel.php`, next to `api.php`:
 
 ```php
 <?php
@@ -179,7 +184,7 @@ Hotel Mundial: EUR 323 for 3 nights, Room Assigned on Arrival
 ```
 
 `price` is the total for the stay. Keep `room_type` beside it, because the headline room can change between calls.
-My [Python run of the same stay](/guides/hotel-prices-python) got another room and another price.
+My [Python run of the same stay](/guides/hotel-prices-python) got another room and another price. Run again that evening, both gave €373, Double or Twin Room.
 
 `available` false means no price for that name and those dates, so the code checks it before it reads `price`. Print
 `name` too, so you can see which hotel was matched.
@@ -211,7 +216,8 @@ ${HOTEL_PRO.priceMonthly} for {fmt(HOTEL_PRO.quota)}.
 ## Limits
 
 - It reads live prices and links. It does not book or issue tickets.
-- One origin, one destination and one date per one-way request over this host.
+- One origin, one destination and one date per `/oneway` request. Rows are ranked by stops, then price, and cut at 10, so
+  send a higher `limit` if you want every fare on a route with many nonstops.
 - Keep the key on the server. Never call the API from the browser.
 
 ## Related

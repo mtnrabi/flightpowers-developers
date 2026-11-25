@@ -74,7 +74,7 @@ def post(path, body):
 stay = {"checkin_date": "2027-02-10", "checkout_date": "2027-02-13",
         "adults": 2, "currency": "EUR"}
 
-# 1. A city: every property on the first page, cheapest first
+# 1. A city: the properties Booking.com lists, cheapest first
 found = post("/hotels/search", {"destination": "Lisbon", **stay,
                                 "filters": ["free_cancellation"], "sort": "price_asc"})
 for h in found["properties"][:3]:
@@ -106,7 +106,9 @@ want places people liked. [All 24 filters are in the reference](/hotels-api/sear
 I ran the Hotel Mundial lookup again about a minute later, from the [PHP guide](/guides/flight-api-php), with the same dates
 and guests. It answered **€323, "Room Assigned on Arrival"**. The first answer was **€373, "Double or Twin Room"**.
 
-Neither is wrong. `/by-name` returns the headline offer Booking.com shows at that moment, and the headline can be a different
+That evening I ran both scripts again and both printed €373, "Double or Twin Room".
+
+None of them is wrong. `/by-name` returns the headline offer Booking.com shows at that moment, and the headline can be a different
 room on the next load. So:
 
 - Store `room_type` next to the price. A price change with a room change is not a price drop.

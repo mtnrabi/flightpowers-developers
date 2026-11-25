@@ -3,7 +3,7 @@ import { withOg } from '@/lib/meta';
 export const metadata = withOg({
   title: 'Flight search tool for the OpenAI Agents SDK (Python)',
   description:
-    'Two ways to give an OpenAI Agents SDK agent live Google Flights fares: a function tool over one POST, or the hosted MCP server. Working Python, real outputs from 2026-11-25, and the 5-second timeout that breaks the MCP route.',
+    'Two ways to give an OpenAI Agents SDK agent live Google Flights fares: a function tool over one POST, or the hosted MCP server. Working Python, real outputs from 2026-11-25, and the 5-second timeout to raise on the MCP route.',
   alternates: { canonical: '/guides/openai-agents-sdk-flight-search' },
 });
 
@@ -26,7 +26,7 @@ export const fmt = (n) => n.toLocaleString('en-US');
     '@type': 'TechArticle',
     headline: 'Add live flight search to an OpenAI Agents SDK agent',
     description:
-      'Two ways to give an OpenAI Agents SDK agent live Google Flights fares: a function tool over one POST, or the hosted MCP server. Working Python, real outputs from 2026-11-25, and the 5-second timeout that breaks the MCP route.',
+      'Two ways to give an OpenAI Agents SDK agent live Google Flights fares: a function tool over one POST, or the hosted MCP server. Working Python, real outputs from 2026-11-25, and the 5-second timeout to raise on the MCP route.',
     url: `${SITE.url}/guides/openai-agents-sdk-flight-search`,
     datePublished: '2026-11-25',
     dateModified: '2026-11-25',
@@ -42,7 +42,7 @@ export const fmt = (n) => n.toLocaleString('en-US');
 **Short answer:** write one `@function_tool` that POSTs two airport codes and a date to
 `api.flightpowers.com/v1/flights/oneway`, or pass the hosted MCP server in `mcp_servers`. The
 tool gives your agent control over what the model sees. The MCP server takes a date range
-in one call, which the plain endpoint does not.
+in one call; `/oneway` takes one date.
 
 Both programs below ran on 2026-11-25 with `openai-agents` 0.26.0 and Python 3.12. I drove the
 Runner with a scripted model, so the tool loop and the searches are real and no model's
@@ -112,8 +112,8 @@ if __name__ == "__main__":
 
 Three things in there are on purpose:
 
-- **The tool trims the answer.** A search can return many rows, each with a long booking link.
-  Three rows and nine fields are enough to answer, and they cost far fewer tokens.
+- **The tool trims the answer.** A search returns up to 10 rows by default, each with a long booking link.
+  Three rows and nine fields are enough to answer, and they cost fewer tokens.
 - **It returns the search status.** An empty list can mean no flights, or a search that did not
   finish. `X-Search-Status` says which, and the instructions tell the model what to do with it.
   [The four values are here](/flights-api/search-status).
@@ -191,11 +191,11 @@ if __name__ == "__main__":
 ```
 
 **Set `client_session_timeout_seconds`.** The SDK's default is 5 seconds. The call below took 18.8 seconds,
-so with the default it would have timed out.
+so with the default it would have timed out. The same call that evening took 3.4 seconds, so the default fails only sometimes, which is worse to debug.
 
 ### What the MCP call returned
 
-JFK to Lisbon, 7 nights, leaving 2027-02-01 or 2027-02-02, fetched 2026-11-25 11:26 UTC. Trimmed:
+JFK to Lisbon, 7 nights, leaving 2027-02-01 or 2027-02-02, fetched 2026-11-25 11:26 UTC. Trimmed to the main fields:
 
 ```json
 {
@@ -238,7 +238,7 @@ cost: one request per date and destination.
 | Billing | one request per search | one request per date and destination |
 
 A whole month of departures to one city at one trip length is 31 requests. PRO is ${PRO.priceMonthly} a month
-for {fmt(PRO.quota)}, so about {Math.floor(PRO.quota / 31)} of those scans.
+for {fmt(PRO.quota)}, so about {Math.floor(PRO.quota / 31)} of those scans with full fares.
 
 <PlanBox
   page="/guides/openai-agents-sdk-flight-search"
@@ -250,8 +250,12 @@ for {fmt(PRO.quota)}, so about {Math.floor(PRO.quota / 31)} of those scans.
 ## Limits
 
 - It reads prices and links to Google Flights. It does not book.
-- The function tool takes one date per request. To scan a month, run the requests in
-  parallel inside [your plan's rate limit](/flights-api/parallel-date-scan).
+- The function tool takes one date per request. To find the cheapest day of a month, call
+  [`/v1/flights/cheapest-dates`](/flights-api/cheapest-dates) first: one request, one lowest fare per date, no flight
+  details. For full fares on every date, run the requests in parallel inside
+  [your plan's rate limit](/flights-api/parallel-date-scan).
+- Rows are ranked by stops, then price, and cut at 10. On a route with more than ten nonstops a cheaper connection can fall
+  off the end, so send a higher `limit` when you want every fare.
 - Prices move. Tell the agent to search again, never to reuse an earlier answer.
 
 ## Related
