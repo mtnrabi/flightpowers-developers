@@ -1,0 +1,146 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'Hotel prices in Python: live Booking.com rates, no browser',
+  description:
+    'Live Booking.com hotel prices in Python with requests: search a city, or price one hotel by name. Working code, real output from 2026-11-25, and why the same hotel gave two prices a minute apart.',
+  alternates: { canonical: '/guides/hotel-prices-python' },
+});
+
+export const dynamic = 'force-static';
+
+import { GuideDates, JsonLd } from '@/components/ui';
+import { PlanBox } from '@/components/PlanBox';
+import { FLIGHT_PLANS, HOTEL_PLANS } from '@/lib/pricing';
+import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+export const FREE = FLIGHT_PLANS.find((p) => p.priceMonthly === 0);
+export const PRO = FLIGHT_PLANS.find((p) => p.name === 'PRO');
+export const HOTEL_FREE = HOTEL_PLANS.find((p) => p.priceMonthly === 0);
+export const HOTEL_PRO = HOTEL_PLANS.find((p) => p.name === 'PRO');
+export const fmt = (n) => n.toLocaleString('en-US');
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'How to get hotel prices with Python',
+    description:
+      'Live Booking.com hotel prices in Python with requests: search a city, or price one hotel by name. Working code, real output from 2026-11-25, and why the same hotel gave two prices a minute apart.',
+    url: `${SITE.url}/guides/hotel-prices-python`,
+    datePublished: '2026-11-25',
+    dateModified: '2026-11-25',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# How to get hotel prices with Python
+
+<GuideDates published="2026-11-25" updated="2026-11-25" />
+
+**Short answer:** POST a destination and two dates to `api.flightpowers.com/v1/hotels/search` for a
+city, or a hotel name to `/v1/hotels/by-name` for one property. You get live Booking.com rates as
+JSON, with `requests` and nothing else. No Playwright, no proxies, no property ids.
+
+If you want to run the browser yourself, I wrote
+[that guide too](/guides/scrape-booking-com-prices). This is the short road.
+
+## Set up
+
+```bash
+pip install requests
+```
+
+Get a key from <a href={rapidApiPricingUrl('hotels', 'guide', 'hotel-prices-python-key')} rel="noopener">the RapidAPI plans page</a>
+(BASIC is free, {HOTEL_FREE.quota} searches a month), then `export RAPIDAPI_KEY=...`.
+
+## A city, then one hotel
+
+```python
+import os, requests
+
+API = "https://api.flightpowers.com/v1"
+HEADERS = {
+    "x-api-key": os.environ["RAPIDAPI_KEY"],
+    "X-FP-Client": "guide-hotel-python",  # optional: names your app in our logs
+}
+
+def post(path, body):
+    r = requests.post(f"{API}{path}", headers=HEADERS, json=body, timeout=100)
+    r.raise_for_status()
+    return r.json()
+
+stay = {"checkin_date": "2027-02-10", "checkout_date": "2027-02-13",
+        "adults": 2, "currency": "EUR"}
+
+# 1. A city: the properties Booking.com lists, cheapest first
+found = post("/hotels/search", {"destination": "Lisbon", **stay,
+                                "filters": ["free_cancellation"], "sort": "price_asc"})
+for h in found["properties"][:3]:
+    print(h["price"], h["review_score"], h["name"])
+
+# 2. One hotel, by the name a person would type
+one = post("/hotels/by-name", {"hotel_name": "Hotel Mundial", "area": "Lisbon", **stay})
+print(one["name"], one["available"], one["price"], one["room_type"])
+```
+
+## What it printed
+
+Run on 2026-11-25 at 11:24 UTC, Lisbon, 10 to 13 February 2027, two adults:
+
+```
+75 5.3 SH Alameda
+81 8.1 Urban Garden Hostel
+90 3.1 1 Floor City Centre Sulemange Rooms
+Hotel Mundial True 373 Double or Twin Room
+```
+
+**`price` is the total for the stay**, not per night. SH Alameda is €75 for three nights, so €25 a night.
+
+Cheapest first gives you exactly that, and a place rated 3.1 comes third. Add `review_score_8` to `filters` when you
+want places people liked. [All 24 filters are in the reference](/hotels-api/search).
+
+## Why the same hotel can show two prices
+
+I ran the Hotel Mundial lookup again about a minute later, from the [PHP guide](/guides/flight-api-php), with the same dates
+and guests. It answered **€323, "Room Assigned on Arrival"**. The first answer was **€373, "Double or Twin Room"**.
+
+That evening I ran both scripts again and both printed €373, "Double or Twin Room".
+
+None of them is wrong. `/by-name` returns the headline offer Booking.com shows at that moment, and the headline can be a different
+room on the next load. So:
+
+- Store `room_type` next to the price. A price change with a room change is not a price drop.
+- To compare like with like, read every room. `/v1/hotels/resolve` gives you the hotel's id and
+  `/v1/hotels/rooms` lists the rooms and rate plans for it. [A worked example](/guides/hotel-prices-by-hotel-name-api).
+- For rate parity, sample each country several times. [How to do that](/guides/monitor-hotel-rate-parity).
+
+## Check the match
+
+`name` in the by-name answer is the hotel Booking.com matched. Print it. A chain name with no `area` can match a different
+city. When `available` is false, do not read the price.
+
+## From a list of hotels to a CSV
+
+Loop the by-name call, one request per hotel and stay. Hotel plans allow {HOTEL_PRO.ratePerMinute} requests a minute on PRO, so
+add `time.sleep(2.5)` between calls. Twenty hotels checked once a day is about 600 requests a
+month, and PRO is ${HOTEL_PRO.priceMonthly} for {fmt(HOTEL_PRO.quota)}.
+
+<PlanBox
+  page="/guides/hotel-prices-python"
+  listings={['hotels']}
+  medium="guide"
+  title="Get a key and run the code above"
+/>
+
+## Limits
+
+- One stay per request over REST. A range of check-in dates is several requests.
+- A call loads a live page. The two requests above took about 24 seconds together, so set a long timeout.
+- It returns prices and a Booking.com link. It does not book.
+
+## Related
+
+- [Price by hotel name reference](/hotels-api/by-name)
+- [Google Flights prices with Python](/guides/google-flights-prices-python): the flights side of the same idea

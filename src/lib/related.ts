@@ -30,6 +30,7 @@ export const RELATED: Record<string, RelatedLink[]> = {
     { href: '/guides/booking-api-zapier', label: 'Using the Booking.com hotel API in Zapier with HTTP Request' },
     { href: '/guides/scrape-booking-com-prices', label: 'How to scrape Booking.com prices with Python' },
     { href: '/guides/hotel-rates-api-benchmark-2026', label: 'Hotel rates API benchmark 2026: seven APIs, one hotel' },
+    { href: '/guides/hotel-prices-python', label: 'Live Booking.com rates in Python with requests' },
   ],
   '/guides/booking-api-zapier': [
     { href: '/guides/google-flights-api-zapier', label: 'The same Zapier setup for live flight fares' },
@@ -57,6 +58,7 @@ export const RELATED: Record<string, RelatedLink[]> = {
     { href: '/guides/scrape-google-flights-puppeteer', label: 'Scraping Google Flights in Node with Puppeteer' },
     { href: '/guides/overpaying-for-flights', label: 'How to check if your company is overpaying for flights' },
     { href: '/blog/cheapest-month-to-fly-api', label: 'Cheapest month to fly API: scan a whole month in one parallel burst' },
+    { href: '/guides/hotel-prices-python', label: 'How to get hotel prices with Python' },
   ],
   '/guides/google-flights-mcp-cline': [
     { href: '/blog/chatgpt-flight-api', label: 'ChatGPT flight API: connect live Google Flights data via MCP' },
@@ -67,16 +69,19 @@ export const RELATED: Record<string, RelatedLink[]> = {
     { href: '/guides/google-flights-mcp-cline', label: 'Using the Google Flights MCP in Cline' },
     { href: '/guides/google-flights-mcp-claude', label: 'Using the Google Flights MCP in Claude' },
     { href: '/use-cases/ai-travel-agents', label: 'What an AI travel agent needs from live flight and hotel data' },
+    { href: '/guides/openai-agents-sdk-flight-search', label: 'A flight search tool in Python for the OpenAI Agents SDK' },
   ],
   '/use-cases/ai-travel-agents': [
     { href: '/guides/google-flights-mcp-cline', label: 'Setting up the flights and hotels MCP servers in Cline' },
     { href: '/blog/chatgpt-flight-api', label: 'Connecting ChatGPT to live flight data through MCP' },
     { href: '/use-cases/fare-alerts', label: 'Price alerts backed by real-time data' },
+    { href: '/guides/openai-agents-sdk-flight-search', label: 'Add live flight search to an OpenAI Agents SDK agent' },
   ],
   '/use-cases/trip-planning-bots': [
     { href: '/blog/chatgpt-flight-api', label: 'Live flight data inside ChatGPT, through an MCP connector' },
     { href: '/guides/google-flights-mcp-cline', label: 'Giving Cline live flight and hotel prices while it codes' },
     { href: '/use-cases/metasearch', label: 'Metasearch: live fares with a booking link on every result' },
+    { href: '/guides/vercel-ai-sdk-flight-search', label: 'Add live flight search to a Vercel AI SDK app' },
   ],
   '/use-cases/metasearch': [
     { href: '/use-cases/fare-calendars', label: 'A month of fares in one burst' },
@@ -102,6 +107,7 @@ export const RELATED: Record<string, RelatedLink[]> = {
     { href: '/blog/cheapest-month-to-fly-api', label: 'Scanning a whole month of dates in one parallel burst' },
     { href: '/use-cases/metasearch', label: 'Metasearch with a bookable result on every row' },
     { href: '/guides/google-flights-api-make', label: 'A daily flight search scheduled in Make.com' },
+    { href: '/guides/flight-api-php', label: 'Flight and hotel prices in PHP' },
   ],
   '/use-cases/market-analysis': [
     { href: '/guides/overpaying-for-flights', label: 'Checking whether your company is overpaying for flights' },
@@ -133,6 +139,26 @@ export const RELATED: Record<string, RelatedLink[]> = {
     { href: '/blog/chatgpt-flight-api', label: 'Connecting ChatGPT to live Google Flights data' },
     { href: '/blog/cheapest-month-to-fly-api', label: 'A month of flight dates as a price grid, in one parallel scan' },
     { href: '/use-cases/metasearch', label: 'Flight metasearch on live Google Flights data, with a buy link per result' },
+  ],
+  '/guides/openai-agents-sdk-flight-search': [
+    { href: '/use-cases/ai-travel-agents', label: 'Live flight and hotel data for an AI travel agent' },
+    { href: '/blog/chatgpt-flight-api', label: 'Live Google Flights data in ChatGPT over MCP' },
+    { href: '/guides/google-flights-mcp-cline', label: 'The flights and hotels MCP servers inside Cline' },
+  ],
+  '/guides/vercel-ai-sdk-flight-search': [
+    { href: '/use-cases/trip-planning-bots', label: 'What a trip-planning chatbot needs from a flight search' },
+    { href: '/use-cases/metasearch', label: 'Building a metasearch page on live fares' },
+    { href: '/blog/cheapest-month-to-fly-api', label: 'One request per date: scanning a month in parallel' },
+  ],
+  '/guides/hotel-prices-python': [
+    { href: '/guides/booking-api-make', label: 'The same hotel lookup on a schedule in Make.com' },
+    { href: '/guides/hotel-rates-api-benchmark-2026', label: 'Seven hotel rates APIs compared on one Rome hotel' },
+    { href: '/use-cases/rate-parity-monitoring', label: 'Watching one hotel from several countries' },
+  ],
+  '/guides/flight-api-php': [
+    { href: '/use-cases/fare-calendars', label: 'Building a fare calendar from one search per date' },
+    { href: '/use-cases/fare-alerts', label: 'Fare alerts that need no price history' },
+    { href: '/guides/hotel-rates-api-benchmark-2026', label: 'Hotel price APIs side by side: speed, rows, tax' },
   ],
 };
 

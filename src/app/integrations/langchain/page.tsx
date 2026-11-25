@@ -1,5 +1,6 @@
 import { withOg } from '@/lib/meta';
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { Breadcrumbs, Code, Container, Cta, FaqSection, JsonLd, Section, SectionHead, type Faq } from '@/components/ui';
 import { LINKS, SITE, rapidApiPricingUrl } from '@/lib/site';
@@ -135,6 +136,17 @@ def search_hotels(destination: str, checkin_date: str, checkout_date: str) -> di
             The response includes <code className="font-mono text-[13px] text-signal-400">price_insights_low</code> /{' '}
             <code className="font-mono text-[13px] text-signal-400">high</code> and the verdict field, so the agent can reason
             about whether a fare is worth booking, not just list it.
+          </p>
+          <p className="mt-4 text-[14px] text-ink-400 leading-relaxed">
+            On another framework? The same tool for the{' '}
+            <Link href="/guides/openai-agents-sdk-flight-search" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+              OpenAI Agents SDK
+            </Link>{' '}
+            and the{' '}
+            <Link href="/guides/vercel-ai-sdk-flight-search" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+              Vercel AI SDK
+            </Link>
+            .
           </p>
         </div>
       </Section>

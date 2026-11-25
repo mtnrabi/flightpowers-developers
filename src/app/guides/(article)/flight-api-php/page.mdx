@@ -1,0 +1,227 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'Flight and hotel price API in PHP (cURL, working code)',
+  description:
+    'Live Google Flights fares and Booking.com hotel rates in plain PHP with cURL: parallel dates with curl_multi, Google\'s usual price range on each fare, one hotel by name. Ran on PHP 8.3, real output, no Composer package.',
+  alternates: { canonical: '/guides/flight-api-php' },
+});
+
+export const dynamic = 'force-static';
+
+import { GuideDates, JsonLd } from '@/components/ui';
+import { PlanBox } from '@/components/PlanBox';
+import { FLIGHT_PLANS, HOTEL_PLANS } from '@/lib/pricing';
+import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+export const FREE = FLIGHT_PLANS.find((p) => p.priceMonthly === 0);
+export const PRO = FLIGHT_PLANS.find((p) => p.name === 'PRO');
+export const HOTEL_FREE = HOTEL_PLANS.find((p) => p.priceMonthly === 0);
+export const HOTEL_PRO = HOTEL_PLANS.find((p) => p.name === 'PRO');
+export const fmt = (n) => n.toLocaleString('en-US');
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'Flight and hotel prices in PHP',
+    description:
+      'Live Google Flights fares and Booking.com hotel rates in plain PHP with cURL: parallel dates with curl_multi, Google\'s usual price range on each fare, one hotel by name. Ran on PHP 8.3, real output, no Composer package.',
+    url: `${SITE.url}/guides/flight-api-php`,
+    datePublished: '2026-11-25',
+    dateModified: '2026-11-25',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# Flight and hotel prices in PHP
+
+<GuideDates published="2026-11-25" updated="2026-11-25" />
+
+**Short answer:** POST JSON to `api.flightpowers.com/v1/flights/oneway` with your key in an
+`x-api-key` header. No Composer package and no SDK, only the cURL extension. Each fare carries Google's usual
+price range and a low, typical or high verdict when Google shows one. The same helper prices a Booking.com hotel by name.
+
+Everything here ran on PHP 8.3 on 2026-11-25.
+
+## Set up
+
+Get a key from <a href={rapidApiPricingUrl('flights', 'guide', 'flight-api-php-key')} rel="noopener">the RapidAPI plans page</a>
+(BASIC is free, {FREE.quota} flight searches a month), then `export RAPIDAPI_KEY=...`.
+Hotels are a separate subscription on the same RapidAPI account, and the same key works for both.
+
+## One helper
+
+It sends several requests at once with `curl_multi`, because the useful question is almost never one date. Save it as `api.php`.
+
+```php
+<?php
+$api = 'https://api.flightpowers.com/v1';
+$headers = [
+    'Content-Type: application/json',
+    'x-api-key: ' . getenv('RAPIDAPI_KEY'),
+    'X-FP-Client: guide-php', // optional: names your app in our logs
+];
+
+/** POST several bodies to one endpoint at the same time. */
+function postAll(string $url, array $headers, array $bodies): array
+{
+    $multi = curl_multi_init();
+    $handles = [];
+    $status = [];
+    foreach ($bodies as $key => $body) {
+        $ch = curl_init($url);
+        curl_setopt_array($ch, [
+            CURLOPT_POST => true,
+            CURLOPT_HTTPHEADER => $headers,
+            CURLOPT_POSTFIELDS => json_encode($body),
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT => 100,
+            CURLOPT_HEADERFUNCTION => function ($ch, $line) use (&$status, $key) {
+                if (stripos($line, 'x-search-status:') === 0) {
+                    $status[$key] = trim(substr($line, 16));
+                }
+                return strlen($line);
+            },
+        ]);
+        curl_multi_add_handle($multi, $ch);
+        $handles[$key] = $ch;
+    }
+    do {
+        $state = curl_multi_exec($multi, $running);
+        if ($running) {
+            curl_multi_select($multi);
+        }
+    } while ($running && $state === CURLM_OK);
+
+    $out = [];
+    foreach ($handles as $key => $ch) {
+        $out[$key] = [
+            'http' => curl_getinfo($ch, CURLINFO_RESPONSE_CODE),
+            'status' => $status[$key] ?? null, // ok | empty | partial | degraded (flights)
+            'data' => json_decode(curl_multi_getcontent($ch), true),
+        ];
+        curl_multi_remove_handle($multi, $ch);
+    }
+    return $out;
+}
+```
+
+## Compare dates
+
+Save this as `flights.php` and run `php flights.php`.
+
+```php
+<?php
+require 'api.php';
+
+// One search per departure date, all in flight together
+$bodies = [];
+foreach (['2027-03-02', '2027-03-03'] as $date) {
+    $bodies[$date] = ['from_airport' => 'LHR', 'to_airport' => 'BCN', 'departure_date' => $date];
+}
+
+foreach (postAll("$api/flights/oneway", $headers, $bodies) as $date => $r) {
+    if ($r['http'] !== 200) {
+        echo "$date  HTTP {$r['http']}\n";
+        continue;
+    }
+    $rows = $r['data'];
+    if (!$rows) {
+        echo "$date  no rows, search status {$r['status']}\n";
+        continue;
+    }
+    usort($rows, fn ($a, $b) => $a['price_as_number'] <=> $b['price_as_number']);
+    $f = $rows[0];
+    printf("%s  %-5s %-28s usual %s-%s  %s\n", $date, $f['price'], $f['airline'],
+        $f['price_insights_low'] ?? '?', $f['price_insights_high'] ?? '?',
+        $f['price_range_in_relation_to_other_periods'] ?: 'no verdict');
+}
+```
+
+Output, London Heathrow to Barcelona, fetched 2026-11-25 11:25 UTC:
+
+```
+2027-03-02  $43   Vueling | Iberia, British Airways usual 50-135  low
+2027-03-03  $43   Vueling | Iberia, British Airways usual 50-135  low
+```
+
+Google's usual range for both days is $50 to $135, so $43 is under it and the verdict is `low`. That is the whole fare alert:
+compare one field to one word, with no price history to collect first.
+
+Add dates to the array and they run in parallel. PRO allows {PRO.ratePerMinute} requests a minute, so a month of dates is
+one burst of 31 requests. If you only need the cheapest day, [`/v1/flights/cheapest-dates`](/flights-api/cheapest-dates) returns
+the lowest fare for every date of a month in one request, without flight details.
+
+## One hotel by name
+
+`hotel.php`, next to `api.php`:
+
+```php
+<?php
+require 'api.php';
+
+// A Booking.com rate for one hotel, by name
+$hotel = postAll("$api/hotels/by-name", $headers, [[
+    'hotel_name' => 'Hotel Mundial',
+    'area' => 'Lisbon',
+    'checkin_date' => '2027-02-10',
+    'checkout_date' => '2027-02-13',
+    'adults' => 2,
+    'currency' => 'EUR',
+]])[0];
+$h = $hotel['data'];
+echo $hotel['http'] === 200 && $h['available']
+    ? "{$h['name']}: EUR {$h['price']} for {$h['nights']} nights, {$h['room_type']}\n"
+    : "HTTP {$hotel['http']}: not priced\n";
+```
+
+Output, fetched 2026-11-25 11:26 UTC:
+
+```
+Hotel Mundial: EUR 323 for 3 nights, Room Assigned on Arrival
+```
+
+`price` is the total for the stay. Keep `room_type` beside it, because the headline room can change between calls.
+My [Python run of the same stay](/guides/hotel-prices-python) got another room and another price. Run again that evening, both gave €373, Double or Twin Room.
+
+`available` false means no price for that name and those dates, so the code checks it before it reads `price`. Print
+`name` too, so you can see which hotel was matched.
+
+## Read the status before you trust an empty list
+
+An empty flights list can mean no flights or a search that did not finish. `api.php` keeps the
+`X-Search-Status` header for that. Only `empty` means there is nothing. On `degraded`, try again.
+[All four values](/flights-api/search-status).
+
+## In Laravel
+
+The same call is `Http::withHeaders([...])->timeout(100)->post($url, $body)`, and `Http::pool()` takes the place of
+`curl_multi`. Put the key in `config/services.php` and the date loop in a queued job, because a hotel lookup can
+take ten seconds or more. I have not run the Laravel version. The cURL code above is what ran.
+
+## What it costs
+
+One date pair or one hotel stay is one request. Flights PRO is ${PRO.priceMonthly} a month for {fmt(PRO.quota)} and hotels PRO is
+${HOTEL_PRO.priceMonthly} for {fmt(HOTEL_PRO.quota)}.
+
+<PlanBox
+  page="/guides/flight-api-php"
+  listings={['flights', 'hotels']}
+  medium="guide"
+  title="Get a key and run the code above"
+/>
+
+## Limits
+
+- It reads live prices and links. It does not book or issue tickets.
+- One origin, one destination and one date per `/oneway` request. Rows are ranked by stops, then price, and cut at 10, so
+  send a higher `limit` if you want every fare on a route with many nonstops.
+- Keep the key on the server. Never call the API from the browser.
+
+## Related
+
+- [One-way search reference](/flights-api/one-way): every field
+- [Build a fare alert with a cron](/guides/build-a-flight-price-alert)
+- [The OpenAPI spec](https://flightpowers.com/openapi.json): generate a client in any language

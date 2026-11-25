@@ -209,6 +209,25 @@ export default function SdksPage() {
           </Link>
           .
         </p>
+        <p className="mt-4 max-w-3xl text-[14.5px] text-ink-400 leading-relaxed">
+          Not on a client library? Working code for{' '}
+          <Link href="/guides/flight-api-php" className={linkClass}>
+            PHP
+          </Link>
+          ,{' '}
+          <Link href="/guides/hotel-prices-python" className={linkClass}>
+            hotel prices in plain Python
+          </Link>
+          , the{' '}
+          <Link href="/guides/openai-agents-sdk-flight-search" className={linkClass}>
+            OpenAI Agents SDK
+          </Link>{' '}
+          and the{' '}
+          <Link href="/guides/vercel-ai-sdk-flight-search" className={linkClass}>
+            Vercel AI SDK
+          </Link>
+          .
+        </p>
       </Section>
     </>
   );

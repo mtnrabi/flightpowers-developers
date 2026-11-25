@@ -1,0 +1,265 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'Flight search tool for the OpenAI Agents SDK (Python)',
+  description:
+    'Two ways to give an OpenAI Agents SDK agent live Google Flights fares: a function tool over one POST, or the hosted MCP server. Working Python, real outputs from 2026-11-25, and the 5-second timeout to raise on the MCP route.',
+  alternates: { canonical: '/guides/openai-agents-sdk-flight-search' },
+});
+
+export const dynamic = 'force-static';
+
+import { GuideDates, JsonLd } from '@/components/ui';
+import { PlanBox } from '@/components/PlanBox';
+import { FLIGHT_PLANS, HOTEL_PLANS } from '@/lib/pricing';
+import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+export const FREE = FLIGHT_PLANS.find((p) => p.priceMonthly === 0);
+export const PRO = FLIGHT_PLANS.find((p) => p.name === 'PRO');
+export const HOTEL_FREE = HOTEL_PLANS.find((p) => p.priceMonthly === 0);
+export const HOTEL_PRO = HOTEL_PLANS.find((p) => p.name === 'PRO');
+export const fmt = (n) => n.toLocaleString('en-US');
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'Add live flight search to an OpenAI Agents SDK agent',
+    description:
+      'Two ways to give an OpenAI Agents SDK agent live Google Flights fares: a function tool over one POST, or the hosted MCP server. Working Python, real outputs from 2026-11-25, and the 5-second timeout to raise on the MCP route.',
+    url: `${SITE.url}/guides/openai-agents-sdk-flight-search`,
+    datePublished: '2026-11-25',
+    dateModified: '2026-11-25',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# Add live flight search to an OpenAI Agents SDK agent
+
+<GuideDates published="2026-11-25" updated="2026-11-25" />
+
+**Short answer:** write one `@function_tool` that POSTs two airport codes and a date to
+`api.flightpowers.com/v1/flights/oneway`, or pass the hosted MCP server in `mcp_servers`. The
+tool gives your agent control over what the model sees. The MCP server takes a date range
+in one call; `/oneway` takes one date.
+
+Both programs below ran on 2026-11-25 with `openai-agents` 0.26.0 and Python 3.12. I drove the
+Runner with a scripted model, so the tool loop and the searches are real and no model's
+wording is shown.
+
+## Set up
+
+```bash
+pip install openai-agents requests
+```
+
+Get a key from <a href={rapidApiPricingUrl('flights', 'guide', 'openai-agents-sdk-flight-search-key')} rel="noopener">the RapidAPI plans page</a>
+(BASIC is free, {FREE.quota} searches a month), then `export RAPIDAPI_KEY=...`.
+The agent also needs `OPENAI_API_KEY`, or any other model the SDK supports.
+
+## Option 1: a function tool
+
+```python
+import asyncio, os, requests
+from agents import Agent, Runner, function_tool
+
+API = "https://api.flightpowers.com/v1"
+HEADERS = {
+    "x-api-key": os.environ["RAPIDAPI_KEY"],
+    "X-FP-Client": "guide-openai-agents",  # optional: names your app in our logs
+}
+
+@function_tool
+def search_flights(from_airport: str, to_airport: str, departure_date: str) -> dict:
+    """Live one-way fares, cheapest first.
+
+    Args:
+        from_airport: Origin IATA code, e.g. JFK.
+        to_airport: Destination IATA code, e.g. LIS.
+        departure_date: YYYY-MM-DD, in the future.
+    """
+    r = requests.post(
+        f"{API}/flights/oneway",
+        headers=HEADERS,
+        json={"from_airport": from_airport, "to_airport": to_airport,
+              "departure_date": departure_date},
+        timeout=100,
+    )
+    status = r.headers.get("X-Search-Status")
+    if r.status_code != 200:
+        return {"search_status": status, "http": r.status_code, "error": r.text[:300]}
+    rows = sorted(r.json(), key=lambda f: f["price_as_number"])
+    keep = ("price", "airline", "stops", "duration", "departure_description",
+            "price_insights_low", "price_insights_high",
+            "price_range_in_relation_to_other_periods", "buy_link")
+    return {"search_status": status, "rows": [{k: f[k] for k in keep} for f in rows[:3]]}
+
+agent = Agent(
+    name="Fare scout",
+    instructions=(
+        "Quote fares only from search_flights. Say the price, the airline, Google's usual "
+        "range and its low, typical or high verdict when present. If search_status is "
+        "'degraded', say the search did not finish. Never say there are no flights in that case."
+    ),
+    tools=[search_flights],
+)
+
+if __name__ == "__main__":
+    result = asyncio.run(Runner.run(agent, "JFK to Lisbon on 2027-02-03: cheapest fare, and is it a good price?"))
+    print(result.final_output)
+```
+
+Three things in there are on purpose:
+
+- **The tool trims the answer.** A search returns up to 10 rows by default, each with a long booking link.
+  Three rows and nine fields are enough to answer, and they cost fewer tokens.
+- **It returns the search status.** An empty list can mean no flights, or a search that did not
+  finish. `X-Search-Status` says which, and the instructions tell the model what to do with it.
+  [The four values are here](/flights-api/search-status).
+- **It returns errors as data.** A raised exception hides the reason. A dict with the HTTP code
+  lets the agent fix a bad date and call again.
+
+### What the tool returned
+
+`JFK` to `LIS` on 2027-02-03, fetched 2026-11-25 11:24 UTC, 2.2 seconds. Links cut, first two of three rows:
+
+```json
+{
+  "search_status": "ok",
+  "rows": [
+    {
+      "price": "$270",
+      "airline": "Tap Air Portugal | JetBlue",
+      "stops": 0,
+      "duration": "7 hr",
+      "departure_description": "10:00 PM on Wed, Feb 3",
+      "price_insights_low": 240,
+      "price_insights_high": 395,
+      "price_range_in_relation_to_other_periods": "typical"
+    },
+    {
+      "price": "$391",
+      "airline": "Azores Airlines",
+      "stops": 1,
+      "duration": "9 hr 30 min",
+      "departure_description": "9:20 PM on Wed, Feb 3",
+      "price_insights_low": 240,
+      "price_insights_high": 395,
+      "price_range_in_relation_to_other_periods": "typical"
+    }
+  ]
+}
+```
+
+The last three fields are Google's usual range for that route and date, and its verdict. They
+let the agent say "$270 is inside the usual $240 to $395" and not just list a number. Google
+leaves them out on some routes, so they can be null or empty.
+
+## Option 2: the hosted MCP server
+
+No tool code. The server brings two tools, `search_oneway_flights` and `search_roundtrip_flights`,
+and both accept a date range and a list of destinations.
+
+```python
+import asyncio, os
+from agents import Agent, Runner
+from agents.mcp import MCPServerStreamableHttp
+
+async def main():
+    async with MCPServerStreamableHttp(
+        name="flights",
+        params={
+            "url": "https://flights.flightpowers.com/mcp",
+            "headers": {"x-rapidapi-key": os.environ["RAPIDAPI_KEY"]},
+            "timeout": 300,
+        },
+        client_session_timeout_seconds=300,  # the default is 5 seconds; a scan needs longer
+        cache_tools_list=True,
+    ) as flights:
+        agent = Agent(
+            name="Fare scout",
+            instructions="Ask for a date range in one call. Quote prices with the dates.",
+            mcp_servers=[flights],
+        )
+        result = await Runner.run(
+            agent, "Cheapest 7-night JFK to Lisbon round trip leaving 1 or 2 February 2027?")
+        print(result.final_output)
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+**Set `client_session_timeout_seconds`.** The SDK's default is 5 seconds. The call below took 18.8 seconds,
+so with the default it would have timed out. The same call that evening took 3.4 seconds, so the default fails only sometimes, which is worse to debug.
+
+### What the MCP call returned
+
+JFK to Lisbon, 7 nights, leaving 2027-02-01 or 2027-02-02, fetched 2026-11-25 11:26 UTC. Trimmed to the main fields:
+
+```json
+{
+  "results": [
+    {
+      "departure_date": "2027-02-02",
+      "return_date": "2027-02-09",
+      "total_price": "$555",
+      "total_stops": 0,
+      "departure_flight_airline": "Tap Air Portugal | JetBlue",
+      "return_flight_airline": "Tap Air Portugal | JetBlue",
+      "price_insights_low": 425,
+      "price_insights_high": 540,
+      "price_range_in_relation_to_other_periods": "high"
+    },
+    {
+      "departure_date": "2027-02-01",
+      "return_date": "2027-02-08",
+      "total_price": "$677",
+      "price_insights_low": 470,
+      "price_insights_high": 660,
+      "price_range_in_relation_to_other_periods": "high"
+    }
+  ],
+  "search_coverage": { "requested_combinations": 2, "searched_combinations": 2 },
+  "api_usage": { "requests_used_by_this_call": 2 }
+}
+```
+
+Moving one day saved $122, and Google still calls both fares high for that trip. `api_usage` shows what the call
+cost: one request per date and destination.
+
+## Which one to use
+
+| | Function tool | MCP server |
+|---|---|---|
+| Code you write | about 25 lines | none |
+| Dates per call | one, you fan out | a range, expanded for you |
+| What the model sees | what you return | compact rows, with coverage and usage |
+| Billing | one request per search | one request per date and destination |
+
+A whole month of departures to one city at one trip length is 31 requests. PRO is ${PRO.priceMonthly} a month
+for {fmt(PRO.quota)}, so about {Math.floor(PRO.quota / 31)} of those scans with full fares.
+
+<PlanBox
+  page="/guides/openai-agents-sdk-flight-search"
+  listings={['flights']}
+  medium="guide"
+  title="Get a key and run the code above"
+/>
+
+## Limits
+
+- It reads prices and links to Google Flights. It does not book.
+- The function tool takes one date per request. To find the cheapest day of a month, call
+  [`/v1/flights/cheapest-dates`](/flights-api/cheapest-dates) first: one request, one lowest fare per date, no flight
+  details. For full fares on every date, run the requests in parallel inside
+  [your plan's rate limit](/flights-api/parallel-date-scan).
+- Rows are ranked by stops, then price, and cut at 10. On a route with more than ten nonstops a cheaper connection can fall
+  off the end, so send a higher `limit` when you want every fare.
+- Prices move. Tell the agent to search again, never to reuse an earlier answer.
+
+## Related
+
+- [LangChain: the same two routes](/integrations/langchain)
+- [The same tool in TypeScript with the Vercel AI SDK](/guides/vercel-ai-sdk-flight-search)
+- [Round-trip prices in one request](/guides/roundtrip-flight-prices-one-request)
