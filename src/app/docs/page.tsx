@@ -135,6 +135,7 @@ export default function DocsPage() {
             { '@type': 'WebPage', name: 'Google Flights API', url: `${SITE.url}/flights-api` },
             { '@type': 'WebPage', name: 'Booking.com Hotels API', url: `${SITE.url}/hotels-api` },
             { '@type': 'WebPage', name: 'SDKs', url: `${SITE.url}/docs/sdks` },
+            { '@type': 'WebPage', name: 'Run it every day', url: `${SITE.url}/docs/run-daily` },
           ],
         }}
       />
@@ -177,6 +178,9 @@ export default function DocsPage() {
             <Cta href="/docs/sdks" variant="ghost">
               SDKs: JavaScript and Python
             </Cta>
+            <Cta href="/docs/run-daily" variant="ghost">
+              Run it every day
+            </Cta>
             <Cta href="/docs/examples" variant="ghost">
               Example apps on GitHub
             </Cta>
@@ -189,7 +193,11 @@ export default function DocsPage() {
             <Link href="/docs/sdks" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
               SDK docs
             </Link>
-            ).
+            ). Have a key already?{' '}
+            <Link href="/docs/run-daily" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+              Four ways to turn it into a job that runs every day
+            </Link>
+            , with the requests each one uses.
           </p>
         </Container>
       </div>
