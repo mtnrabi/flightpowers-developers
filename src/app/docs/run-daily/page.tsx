@@ -9,9 +9,7 @@ import { FLIGHT_PLANS } from '@/lib/pricing';
 import { Breadcrumbs, Code, Container, Cta, JsonLd, Section, SectionHead } from '@/components/ui';
 
 /**
- * From a new PRO key to a job that runs by itself every day. Written because
- * barely-used and project-ended accounts are a large part of the people who
- * leave at the first renewal (agents repo, state/gtm/research/plan-1200-2026-11-25.md).
+ * From a new PRO key to a job that runs by itself every day.
  *
  * Every output below is from one live run of that path on 2026-11-25 between
  * 20:42 and 20:43 UTC (7 requests in all: cron 2, fare-watcher 2, n8n 1, MCP 2).
