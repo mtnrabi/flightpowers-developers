@@ -69,7 +69,7 @@ const faq: Faq[] = [
   },
   {
     q: 'Is there a bulk calendar endpoint that returns a month in one call?',
-    a: 'No, and that is a deliberate honesty about how the data is gathered: every date is a live scan of its own Google Flights page. Each date is one request; the rate limits are sized so the whole month still finishes in about a minute. The free cheapest-month tool on this site runs the same pattern.',
+    a: 'For the lowest fare per date, yes: POST /cheapest_dates returns one row for every date of a month in one request, without airlines, stops or booking links. For full results on every date, no: each date is a live search of its own and one request, and the rate limits are sized so the whole month still finishes in about a minute.',
   },
   {
     q: 'What concurrency should my client use?',
@@ -199,7 +199,11 @@ export default function ParallelDateScanPage() {
         title="What a parallel date scan actually is"
         answer={
           <>
-            There is no bulk calendar endpoint. A date scan is N calls to <Mono>/v1/flights/oneway</Mono> on{' '}
+            For the lowest fare per date, one request to{' '}
+            <Link href="/flights-api/cheapest-dates" className="text-signal-400 underline underline-offset-4">
+              cheapest dates
+            </Link>{' '}
+            covers a month. This page is the other job, full results for every date: a date scan is N calls to <Mono>/v1/flights/oneway</Mono> on{' '}
             <Mono>api.flightpowers.com</Mono> (or <Mono>google-flights-live-api.p.rapidapi.com</Mono> with a RapidAPI
             key), one per <code className="field">departure_date</code>, fired in parallel and merged on{' '}
             <code className="field">price_as_number</code>. The per-minute limits ({COUNTS.flightsRateLimits} on{' '}
