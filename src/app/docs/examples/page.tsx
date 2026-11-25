@@ -99,7 +99,11 @@ export default function ExamplesPage() {
         </h1>
         <p className="lede mt-5 max-w-2xl">
           Four small, working projects on the Google Flights API, MIT licensed on GitHub. Each one runs on a free
-          RapidAPI key, and each ships a real recorded response so you can try it before you sign up.
+          RapidAPI key, and each ships a real recorded response so you can try it before you sign up.{' '}
+          <Link href="/docs/run-daily" className={linkClass}>
+            How to run one every day
+          </Link>
+          , with the requests it uses a month.
         </p>
       </Container>
 
@@ -143,6 +147,10 @@ export default function ExamplesPage() {
           example. Each repo&rsquo;s README says how many requests it makes; plans and quotas are on{' '}
           <Link href="/pricing" className={linkClass}>
             the pricing page
+          </Link>
+          . To have one run by itself every morning, see{' '}
+          <Link href="/docs/run-daily" className={linkClass}>
+            run it every day
           </Link>
           . Prefer a client library? See{' '}
           <Link href="/docs/sdks" className={linkClass}>

@@ -1,5 +1,7 @@
+import Link from 'next/link';
 import { TrackedLink } from './TrackedLink';
 import { perThousand, type Plan } from '@/lib/pricing';
+import { job, perMonth } from '@/lib/daily-runs';
 import { rapidApiPricingUrl, type RapidApiListing } from '@/lib/site';
 
 /**
@@ -54,6 +56,16 @@ export function PlanCards({ api, label, plans }: { api: RapidApiListing; label: 
         The button opens the plans on RapidAPI. Sign in or make an account there, pick the plan, and your key is on the
         Endpoints tab. RapidAPI takes the payment; we never see your card.
       </p>
+      {api === 'flights' ? (
+        <p className="mt-2 text-[13.5px] text-ink-400 leading-relaxed">
+          What the PRO quota does: one route checked every morning, a month of dates at a time, is{' '}
+          {perMonth(job('template-one').perRun)} a month.{' '}
+          <Link href="/docs/run-daily" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+            Four ways to run it every day
+          </Link>
+          .
+        </p>
+      ) : null}
     </div>
   );
 }

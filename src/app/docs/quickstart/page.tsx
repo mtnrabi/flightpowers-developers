@@ -381,8 +381,9 @@ export default function QuickstartPage() {
 
       <Section>
         <SectionHead eyebrow="Next" title="Where to go from here" />
-        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {[
+            { href: '/docs/run-daily', label: 'Run it every day', sub: 'GitHub Actions, n8n, cron, or Claude and Cursor' },
             { href: '/flights-api/parallel-date-scan', label: 'Scan a whole month', sub: 'One request per date, fired in parallel' },
             { href: '/hotels-api/geo-pricing', label: 'Rate parity', sub: 'proxy_country, and how to read a gap honestly' },
             { href: '/mcp', label: 'MCP servers', sub: 'One URL for Claude, Cursor, or any MCP client' },
