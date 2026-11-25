@@ -51,11 +51,11 @@ const faq: Faq[] = [
   },
   {
     q: 'Can FlightPowers price a whole range of dates like the SearchApi calendar?',
-    a: `Not in one REST call. Our REST API takes one date pair per request, so a month of departure dates is about 30 requests, which PRO's ${PRO.ratePerMinute} requests a minute runs in parallel. Our MCP servers do take a date range and a list of destinations in one tool call, and each date and destination still counts as one search. SearchApi's calendar endpoint returns a date grid in one request.`,
+    a: `For the lowest fare per date, yes: POST /cheapest_dates returns one row for every departure date of a month (or up to 61 days) in one request, one-way or a round trip of a fixed number of nights, without airline details. For full fares on every date it is one request per date, so a month is about 30, which PRO's ${PRO.ratePerMinute} requests a minute runs in parallel. Our MCP servers do take a date range and a list of destinations in one tool call, and each date and destination still counts as one search. SearchApi's calendar endpoint returns every outbound and return pair in two date ranges.`,
   },
   {
     q: 'Does SearchApi have hotels too?',
-    a: `Yes: Google Hotels, Booking.com Search and Airbnb Search are sold on the same plans. Ours are two separate listings, each with its own plan: the Booking.com Live API, $${HOTEL_PRO.priceMonthly} for ${HOTEL_PRO.quota.toLocaleString('en-US')} searches, with a proxy_country parameter that prices a stay as seen from another country, and the Airbnb Live API, $${AIRBNB_PRO.priceMonthly} for ${AIRBNB_PRO.quota.toLocaleString('en-US')} searches. We have no Google Hotels API.`,
+    a: `Yes: Google Hotels, Booking.com Search and Airbnb Search are sold on the same plans. Ours are separate listings, each with its own plan: the Booking.com Live API, $${HOTEL_PRO.priceMonthly} for ${HOTEL_PRO.quota.toLocaleString('en-US')} searches, with a proxy_country parameter that prices a stay as seen from another country, and the Airbnb Live API, $${AIRBNB_PRO.priceMonthly} for ${AIRBNB_PRO.quota.toLocaleString('en-US')} searches. Google Hotels is a third listing, also with its own plan.`,
   },
 ];
 
@@ -138,9 +138,9 @@ export default function CompareSearchApiPage() {
               [
                 'A range of dates in one call',
                 'Yes, on REST: the google_flights_calendar engine returns every date pair in a range, up to 200 combinations.',
-                'Not on REST (one date pair per request). Yes on our MCP servers: a date range and a destination list in one tool call, each combination counted as one search.',
+                'The lowest fare per departure date, yes: POST /cheapest_dates covers a month (up to 61 days) in one request, at a fixed number of nights for round trips. Not every outbound and return pair. On our MCP servers: a date range and a destination list in one tool call, each combination counted as one search.',
               ],
-              ['Hotels', 'Google Hotels, Booking.com Search and Airbnb Search on the same plans.', `Booking.com and Airbnb, each on its own plan: Booking.com $${HOTEL_PRO.priceMonthly} for ${HOTEL_PRO.quota.toLocaleString('en-US')}, with proxy_country; Airbnb $${AIRBNB_PRO.priceMonthly} for ${AIRBNB_PRO.quota.toLocaleString('en-US')}. No Google Hotels.`],
+              ['Hotels', 'Google Hotels, Booking.com Search and Airbnb Search on the same plans.', `Booking.com, Airbnb and Google Hotels, each on its own plan: Booking.com $${HOTEL_PRO.priceMonthly} for ${HOTEL_PRO.quota.toLocaleString('en-US')}, with proxy_country; Airbnb $${AIRBNB_PRO.priceMonthly} for ${AIRBNB_PRO.quota.toLocaleString('en-US')}.`],
               [
                 'MCP',
                 'Their docs menu has an MCP section ("Your MCPs") behind sign-in. We did not test it.',
@@ -228,7 +228,7 @@ export default function CompareSearchApiPage() {
             <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed">
               Their calendar engine takes an outbound range and a return range and, in their words, “will return all possible
               outbound-return date combinations within the specified ranges”, up to 200. If a price calendar is your product, that
-              is one request where our REST API needs one per date pair.
+              is one request there; our cheapest-dates endpoint covers one departure range at one trip length.
             </p>
           </div>
           <div className="rounded-2xl border rule bg-ink-900/60 p-6">

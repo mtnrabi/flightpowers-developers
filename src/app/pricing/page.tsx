@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CtaBand } from '@/components/bands';
 import { KeyVerifyBox } from '@/components/KeyVerifyBox';
+import { PlanCards } from '@/components/PlanCards';
 import { PricingTable } from '@/components/PricingTable';
 import {
   CapturedBadge,
@@ -153,16 +154,16 @@ const LIVE_ROUNDTRIP = `{
 }`;
 
 /**
- * Rival listings, re-read on 2026-10-27 (first read 2026-09-04) from this
- * machine with a plain desktop user-agent. things4u-api4upro/google-flights4
- * (the $0.40 per 1,000 row) returned no plans and no listing on 2026-10-27, so
- * it was dropped. Prices and quotas are parsed out of each listing page's
- * own RSC payload (the `billingplan_` objects), PUBLIC plans only, with the
- * same parser scripts/check-pricing.mjs runs against ours. The "documents"
- * column is a count of occurrences of `price_insights`, a low/typical/high
- * verdict field, and `x-search-` in that same payload, which is the surface
- * that carries the endpoint docs: on 2026-10-27 ours returned 46, 18 and 58;
- * all three of these returned 0.
+ * Rival listings, re-read on 2026-11-25 (before: 2026-10-27, 2026-09-04) with a
+ * plain desktop user-agent. Prices and quotas are parsed out of each listing
+ * page's own RSC payload (the `billingplan_` objects), PUBLIC plans only, with
+ * the same parser scripts/check-pricing.mjs runs against ours. Endpoint facts
+ * are the `route` values in the same payload: 13, 54 and 25 routes on
+ * 2026-11-25, with getCalendarGrid + searchMultiCityFlights,
+ * /google/date-grid/* + /flights/search-multi-city, and
+ * searchFlightsMultiStops. `price_insights` and `x-search-` each occur 0 times
+ * on all three pages. Our five routes are read from our own listing page the
+ * same day.
  *
  *   https://rapidapi.com/DataCrawler/api/google-flights2
  *   https://rapidapi.com/ntd119/api/flights-sky
@@ -177,7 +178,7 @@ const RIVALS = [
     entry: 'Pro $12.99 / 40,000',
     perK: '$0.32',
     free: '150 / mo',
-    note: 'Google Flights. 13 endpoints, including a price graph, a calendar grid and multi-city, which we do not have. No per-minute rate limit set on any plan.',
+    note: 'Google Flights. 13 endpoints, including a price graph, a departure and return date grid, and multi-city, which we do not have. No per-minute rate limit set on its paid plans.',
   },
   {
     name: 'flights-sky',
@@ -185,7 +186,7 @@ const RIVALS = [
     entry: 'Pro $15 / 15,000',
     perK: '$1.00',
     free: '50 / mo',
-    note: '54 endpoints across Skyscanner, Booking.com and Google Flights routes, including a price calendar, a date grid and multi-city, which we do not have; its page names Skyscanner 15 times.',
+    note: '54 endpoints across Skyscanner, Booking.com and Google Flights routes, including a date grid and multi-city, which we do not have.',
   },
   {
     name: 'sky-scrapper',
@@ -193,7 +194,7 @@ const RIVALS = [
     entry: 'Pro $9.99 / 10,600',
     perK: '$0.94',
     free: '20 / mo',
-    note: 'Describes itself as reproducing skyscanner.com and booking.com data, a different source. Includes a price calendar and multi-stop search, which we do not have.',
+    note: 'Describes itself as reproducing skyscanner.com and booking.com data, a different source. Includes multi-stop search, which we do not have.',
   },
 ];
 
@@ -229,8 +230,7 @@ const faq: Faq[] = [
         <Link href="/guides/google-flights-api-key" className="text-signal-400 underline underline-offset-4">
           API key guide
         </Link>{' '}
-        when you want the key in your own code. The 10 is under review and it may go up. Nothing is promised until it
-        changes on the listing itself, so plan around 10.
+        when you want the key in your own code.
       </>
     ),
   },
@@ -299,9 +299,9 @@ export default function PricingPage() {
         }}
       />
 
-      <Container className="pt-14 sm:pt-20 pb-4">
+      <Container className="pt-8 sm:pt-10 pb-4">
         <p className="eyebrow">Pricing</p>
-        <h1 className="mt-4 text-hero font-semibold max-w-3xl">
+        <h1 className="mt-4 text-[2rem] sm:text-[2.75rem] leading-[1.08] font-semibold max-w-4xl">
           Flight and hotel API pricing: free to start.{' '}
           {OPENER_PRO_PRICES.length === 1 ? (
             <span className="text-signal-500">PRO is ${OPENER_PRO_PRICES[0]} a month on each of the four APIs.</span>
@@ -309,21 +309,34 @@ export default function PricingPage() {
             <span className="text-signal-500">Paid plans from ${Math.min(...OPENER_PRO_PRICES)} a month.</span>
           )}
         </h1>
-        <p className="lede mt-5 max-w-2xl">
-          Each of the four RapidAPI listings has a free BASIC plan and a PRO plan: {OPENER_LINE}. On flights, PRO is about a sixth of SerpApi&apos;s
-          price per search (their cheapest plan is $25 for 1,000).
+        <p className="lede mt-4 max-w-3xl">
+          On flights, PRO is about a sixth of SerpApi&apos;s price per search (their cheapest plan is $25 for 1,000).
         </p>
-        <p className="mt-4 max-w-2xl text-[15px] text-ink-400 leading-relaxed">
-          Before the plan tables, here is one real response so you can see what a call returns.
-        </p>
-        <div className="mt-6 flex flex-wrap gap-3">
-          <Cta href={rapidApiPricingUrl('flights', 'pricing')} external variant="primary">
-            Start with free tier →
-          </Cta>
-          <Cta href="/#demo" variant="ghost">
-            Try live demo
-          </Cta>
+        <div className="mt-6">
+          <PlanCards api="flights" label="Google Flights Live API" plans={FLIGHT_PLANS} />
         </div>
+        <p className="mt-6 max-w-3xl text-[14.5px] text-ink-300 leading-relaxed">
+          Each of the four RapidAPI listings has a free BASIC plan and a PRO plan: {OPENER_LINE}.
+        </p>
+        <p className="mt-4 text-[14px] text-ink-300">
+          Other APIs:{' '}
+          <a href="#booking" className="text-signal-400 underline underline-offset-4">
+            Booking.com hotels
+          </a>
+          ,{' '}
+          <a href="#airbnb" className="text-signal-400 underline underline-offset-4">
+            Airbnb
+          </a>
+          ,{' '}
+          <a href="#google-hotels" className="text-signal-400 underline underline-offset-4">
+            Google Hotels
+          </a>
+          . Or{' '}
+          <Link href="/#demo" className="text-signal-400 underline underline-offset-4">
+            try the live demo
+          </Link>
+          .
+        </p>
         <p className="mt-5 text-[14px] text-ink-300">
           Want to try it before you pick a plan? Add{' '}
           <code className="field">flights.flightpowers.com/mcp</code> in Claude, Cursor or ChatGPT, sign in with Google,
@@ -341,7 +354,81 @@ export default function PricingPage() {
         </p>
       </Container>
 
-      <Section bordered={false} className="!pt-10">
+      <Section>
+        <SectionHead
+          eyebrow="The plans"
+          title="Pay for volume, nothing else"
+          lede="Flights, Booking.com hotels, Airbnb and Google Hotels are separate APIs with separate plans. One RapidAPI account key works for all four once you subscribe to each. No card for the free tier, no approval step, no feature gates."
+        />
+        <div className="mt-10 space-y-12">
+          <div>
+            <div className="flex flex-wrap items-baseline justify-between gap-3 mb-4">
+              <h3 className="text-2xl font-semibold">Google Flights Live API</h3>
+              <a href={rapidApiPricingUrl('flights', 'pricing')} rel="noopener" className="text-sm text-signal-400 underline underline-offset-4">
+                Open the live pricing tab →
+              </a>
+            </div>
+            <PricingTable api="flights" plans={FLIGHT_PLANS} medium="pricing" />
+          </div>
+          <div id="booking" className="scroll-mt-24">
+            <div className="flex flex-wrap items-baseline justify-between gap-3 mb-4">
+              <h3 className="text-2xl font-semibold">Booking.com Live API</h3>
+              <a href={rapidApiPricingUrl('hotels', 'pricing')} rel="noopener" className="text-sm text-signal-400 underline underline-offset-4">
+                Open the live pricing tab →
+              </a>
+            </div>
+            <PricingTable api="hotels" plans={HOTEL_PLANS} medium="pricing" />
+          </div>
+          <div id="airbnb" className="scroll-mt-24">
+            <div className="flex flex-wrap items-baseline justify-between gap-3 mb-4">
+              <h3 className="text-2xl font-semibold">Airbnb Live API</h3>
+              <a href={rapidApiPricingUrl('airbnb', 'pricing')} rel="noopener" className="text-sm text-signal-400 underline underline-offset-4">
+                Open the live pricing tab →
+              </a>
+            </div>
+            <PricingTable api="airbnb" plans={AIRBNB_PLANS} medium="pricing" readOn={AIRBNB_READ_ON} />
+            <p className="mt-3 text-[13.5px] text-ink-400 leading-relaxed max-w-3xl">
+              Live Airbnb listings with the stay total and the price per night as numbers. One search is one page of Airbnb&apos;s
+              results. On this same subscription, the hotels MCP server adds search_airbnb, and compare_hotel_rates prices one
+              stay on Booking.com and Airbnb (one request on each, each on its own subscription).{' '}
+              <Link href="/hotels-api/airbnb" className="text-signal-400 underline underline-offset-4">
+                Airbnb API reference
+              </Link>
+            </p>
+          </div>
+          <div id="google-hotels" className="scroll-mt-24">
+            <div className="flex flex-wrap items-baseline justify-between gap-3 mb-4">
+              <h3 className="text-2xl font-semibold">Google Hotels Live API</h3>
+              <a href={rapidApiPricingUrl('googleHotels', 'pricing')} rel="noopener" className="text-sm text-signal-400 underline underline-offset-4">
+                Open the live pricing tab →
+              </a>
+            </div>
+            <PricingTable api="googleHotels" plans={GOOGLE_HOTELS_PLANS} medium="pricing" readOn={GOOGLE_HOTELS_READ_ON} />
+            <p className="mt-3 text-[13.5px] text-ink-400 leading-relaxed max-w-3xl">
+              One hotel&apos;s rate on each site Google lists for it, by name, or a city&apos;s hotels with the stay total. Every
+              endpoint costs one request. Not on the MCP servers.{' '}
+              <Link href="/hotels-api/google-hotels" className="text-signal-400 underline underline-offset-4">
+                Google Hotels API reference
+              </Link>
+            </p>
+          </div>
+        </div>
+        <div className="mt-8 max-w-4xl rounded-xl border rule bg-ink-900/40 px-5 py-3.5">
+          <p className="text-[13px] text-ink-300 leading-relaxed">
+            <strong className="text-ink-100">Live on RapidAPI:</strong> Google Flights Live API, 9.9 popularity. Booking
+            Live API, 9.8 popularity.
+          </p>
+          <p className="mt-1 font-mono text-[10px] text-ink-500">Metrics retrieved from rapidapi.com/mtnrabi listings on 2026-11-25</p>
+        </div>
+      </Section>
+
+      <Section>
+        <SectionHead
+          eyebrow="What a call returns"
+          title="One real response"
+          lede="One one-way search, as it came back, with the price range and the status headers explained."
+        />
+        <div className="mt-10" />
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-12">
           <div>
             <Code label="one-way, London to Barcelona">{LIVE_ONEWAY.json}</Code>
@@ -403,74 +490,6 @@ export default function PricingPage() {
 
       <Section>
         <SectionHead
-          eyebrow="The plans"
-          title="Pay for volume, nothing else"
-          lede="Flights, Booking.com hotels, Airbnb and Google Hotels are separate APIs with separate plans. One RapidAPI account key works for all four once you subscribe to each. No card for the free tier, no approval step, no feature gates."
-        />
-        <div className="mt-10 space-y-12">
-          <div>
-            <div className="flex flex-wrap items-baseline justify-between gap-3 mb-4">
-              <h3 className="text-2xl font-semibold">Google Flights Live API</h3>
-              <a href={rapidApiPricingUrl('flights', 'pricing')} rel="noopener" className="text-sm text-signal-400 underline underline-offset-4">
-                Open the live pricing tab →
-              </a>
-            </div>
-            <PricingTable api="flights" plans={FLIGHT_PLANS} medium="pricing" />
-          </div>
-          <div>
-            <div className="flex flex-wrap items-baseline justify-between gap-3 mb-4">
-              <h3 className="text-2xl font-semibold">Booking.com Live API</h3>
-              <a href={rapidApiPricingUrl('hotels', 'pricing')} rel="noopener" className="text-sm text-signal-400 underline underline-offset-4">
-                Open the live pricing tab →
-              </a>
-            </div>
-            <PricingTable api="hotels" plans={HOTEL_PLANS} medium="pricing" />
-          </div>
-          <div>
-            <div className="flex flex-wrap items-baseline justify-between gap-3 mb-4">
-              <h3 className="text-2xl font-semibold">Airbnb Live API</h3>
-              <a href={rapidApiPricingUrl('airbnb', 'pricing')} rel="noopener" className="text-sm text-signal-400 underline underline-offset-4">
-                Open the live pricing tab →
-              </a>
-            </div>
-            <PricingTable api="airbnb" plans={AIRBNB_PLANS} medium="pricing" readOn={AIRBNB_READ_ON} />
-            <p className="mt-3 text-[13.5px] text-ink-400 leading-relaxed max-w-3xl">
-              Live Airbnb listings with the stay total and the price per night as numbers. One search is one page of Airbnb&apos;s
-              results. On this same subscription, the hotels MCP server adds search_airbnb, and compare_hotel_rates prices one
-              stay on Booking.com and Airbnb (one request on each, each on its own subscription).{' '}
-              <Link href="/hotels-api/airbnb" className="text-signal-400 underline underline-offset-4">
-                Airbnb API reference
-              </Link>
-            </p>
-          </div>
-          <div>
-            <div className="flex flex-wrap items-baseline justify-between gap-3 mb-4">
-              <h3 className="text-2xl font-semibold">Google Hotels Live API</h3>
-              <a href={rapidApiPricingUrl('googleHotels', 'pricing')} rel="noopener" className="text-sm text-signal-400 underline underline-offset-4">
-                Open the live pricing tab →
-              </a>
-            </div>
-            <PricingTable api="googleHotels" plans={GOOGLE_HOTELS_PLANS} medium="pricing" readOn={GOOGLE_HOTELS_READ_ON} />
-            <p className="mt-3 text-[13.5px] text-ink-400 leading-relaxed max-w-3xl">
-              One hotel&apos;s rate on each site Google lists for it, by name, or a city&apos;s hotels with the stay total. Every
-              endpoint costs one request. Not on the MCP servers.{' '}
-              <Link href="/hotels-api/google-hotels" className="text-signal-400 underline underline-offset-4">
-                Google Hotels API reference
-              </Link>
-            </p>
-          </div>
-        </div>
-        <div className="mt-8 max-w-4xl rounded-xl border rule bg-ink-900/40 px-5 py-3.5">
-          <p className="text-[13px] text-ink-300 leading-relaxed">
-            <strong className="text-ink-100">Live on RapidAPI:</strong> Google Flights Live API, 9.9 popularity. Booking
-            Live API, 9.7 popularity.
-          </p>
-          <p className="mt-1 font-mono text-[10px] text-ink-500">Metrics retrieved from rapidapi.com/mtnrabi listings on 2026-10-27</p>
-        </div>
-      </Section>
-
-      <Section>
-        <SectionHead
           eyebrow="The obvious objection"
           title="Why not a $0.32 per 1,000 listing"
           lede="It is a fair question and the cheap listings are real. Here is what we found when we read their pages, and what we did not check."
@@ -507,9 +526,9 @@ export default function PricingPage() {
                 </td>
                 <td className="py-4 pr-4 text-ink-300 whitespace-nowrap">Pro $10 / 2,500</td>
                 <td className="py-4 pr-4 font-mono tabular-nums text-signal-400 whitespace-nowrap">$4.00</td>
-                <td className="py-4 pr-4 text-ink-300 whitespace-nowrap">10 / mo</td>
+                <td className="py-4 pr-4 text-ink-300 whitespace-nowrap">{FLIGHT_PLANS[0]!.quota} / mo</td>
                 <td className="py-4 text-ink-400 leading-relaxed">
-                  Google Flights. Four endpoints. Price band and verdict when Google shows one, search-status headers on every
+                  Google Flights. Five endpoints, including cheapest dates: the lowest fare for every date of a month in one request. Price band and verdict when Google shows one, search-status headers on every
                   response, 150 to 500 requests/minute.
                 </td>
               </tr>
@@ -521,7 +540,7 @@ export default function PricingPage() {
           <div className="rounded-2xl border rule bg-ink-900/60 p-6">
             <h3 className="text-[16px] font-semibold text-ink-100">What we found</h3>
             <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed">
-              We pulled the three listing pages on 2026-10-27 and searched the same payload that carries their endpoint
+              We pulled the three listing pages on 2026-11-25 and searched the same payload that carries their endpoint
               docs. None of them documents a price-insights band, a low / typical / high field, or any search-status
               header. One describes itself as reproducing skyscanner.com and booking.com data, and one mixes Skyscanner,
               Booking.com and Google Flights routes, so they are not all selling the same payload as ours at a lower price.
@@ -531,9 +550,9 @@ export default function PricingPage() {
             <h3 className="text-[16px] font-semibold text-ink-100">What we are not claiming</h3>
             <p className="mt-2 text-[14.5px] text-ink-400 leading-relaxed">
               We read their listings. We did not buy a plan or call their APIs, so this is a claim about their published
-              docs on one day, not about their servers. They are genuinely cheaper per request, their free tiers are
-              genuinely bigger than our 10, and all three ship endpoints our REST API does not have: price calendars, date
-              grids, multi-city. If
+              docs on one day, not about their servers. They are genuinely cheaper per request. Their free tiers are
+              150, 50 and 20 requests a month against our {FLIGHT_PLANS[0]!.quota}. All three sell multi-city or multi-stop search, which we
+              do not, and two sell a grid of departure and return dates; our cheapest-dates endpoint returns one row per departure date. If
               those are what you need, buy theirs. We would rather say that than pretend.
             </p>
           </div>

@@ -16,7 +16,7 @@
  * scripts/check-pricing.mjs re-parses the live listings and fails the build
  * loudly on drift or on any non-public plan reaching this file.
  */
-export const READ_ON = '2026-11-08';
+export const READ_ON = '2026-11-25';
 
 export type Plan = {
   name: string;
@@ -53,7 +53,7 @@ export const HOTEL_PLANS: Plan[] = [
  * null until that check passes: the table then makes no "read from the live
  * listing" claim. Set it to the day check-pricing printed OK for airbnb.
  */
-export const AIRBNB_READ_ON: string | null = '2026-10-23';
+export const AIRBNB_READ_ON: string | null = '2026-11-25';
 
 export const AIRBNB_PLANS: Plan[] = [
   { name: 'BASIC', priceMonthly: 0, quota: 100, overagePerRequest: null, ratePerMinute: null, hardLimit: true },
@@ -69,7 +69,7 @@ export const AIRBNB_PLANS: Plan[] = [
  * plans; a fourth, higher tier is not public yet, so it is not here.
  * scripts/check-pricing.mjs reads this listing like the other three.
  */
-export const GOOGLE_HOTELS_READ_ON: string | null = '2026-10-27';
+export const GOOGLE_HOTELS_READ_ON: string | null = '2026-11-25';
 
 export const GOOGLE_HOTELS_PLANS: Plan[] = [
   { name: 'BASIC', priceMonthly: 0, quota: 100, overagePerRequest: null, ratePerMinute: 10, hardLimit: true },
