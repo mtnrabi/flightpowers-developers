@@ -6,15 +6,16 @@ import { Breadcrumbs, Code, Container, JsonLd, Section, SectionHead } from '@/co
 
 /**
  * Open-source example apps (MIT) that run on a free RapidAPI key of the Google
- * Flights Live API. Each repo ships a recorded real response (fetched
- * 2026-11-11 21:55-21:57 UTC) so it can be tried before a key exists; the
- * example output below is copied from those repos' READMEs.
+ * Flights Live API. Each repo ships recorded real responses (fare-watcher's
+ * fetched 2026-11-25 11:23-11:26 UTC, the others' 2026-11-11 21:55-21:57 UTC)
+ * so it can be tried before a key exists; the example output below is copied
+ * from those repos' READMEs.
  */
 
 export const metadata: Metadata = withOg({
   title: 'Examples: open-source flight price apps on the Google Flights API',
   description:
-    'Three MIT example apps on the Google Flights Live API: a Telegram / Discord fare-drop bot, a cheapest-dates CLI that ranks a date range, and a daily fare watch as an n8n workflow or GitHub Action.',
+    'Four MIT example apps on the Google Flights Live API: a daily fare watcher for a month of dates on GitHub Actions, a Telegram / Discord fare-drop bot, a cheapest-dates CLI that ranks a date range, and a daily fare watch as an n8n workflow or GitHub Action.',
   alternates: { canonical: '/docs/examples' },
 });
 
@@ -23,6 +24,13 @@ export const dynamic = 'force-static';
 const linkClass = 'text-signal-400 underline underline-offset-4 hover:text-signal-500';
 
 const EXAMPLES = [
+  {
+    name: 'fare-watcher',
+    url: 'https://github.com/mtnrabi/fare-watcher',
+    what: 'Scans a month of dates, several airports and several trip lengths once a day, and opens a GitHub issue when Google marks the fare low, when it is under Google’s usual range, or when it reaches your target. Keeps a price history in your repo.',
+    stack: 'GitHub Actions, no server. One Python file, standard library only.',
+    requests: 'One request per route and trip length for a month of dates, plus one per fare it confirms: the example reads 248 dated fares in 10 requests.',
+  },
   {
     name: 'flight-price-alert-bot',
     url: 'https://github.com/mtnrabi/flight-price-alert-bot',
@@ -90,14 +98,14 @@ export default function ExamplesPage() {
           Open-source apps you can <span className="text-signal-500">fork and run</span>
         </h1>
         <p className="lede mt-5 max-w-2xl">
-          Three small, working projects on the Google Flights API, MIT licensed on GitHub. Each one runs on a free
+          Four small, working projects on the Google Flights API, MIT licensed on GitHub. Each one runs on a free
           RapidAPI key, and each ships a real recorded response so you can try it before you sign up.
         </p>
       </Container>
 
       <Section>
-        <SectionHead eyebrow="Repos" title="Three examples, one key" />
-        <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <SectionHead eyebrow="Repos" title="Four examples, one key" />
+        <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
           {EXAMPLES.map((e) => (
             <div key={e.name} className="border rule rounded-xl p-6">
               <h3 className="font-mono text-[15px] font-semibold">
