@@ -36,7 +36,7 @@ export function PricingTable({
               {/* aria-label, NOT an sr-only span: position:absolute inside the
                   position:relative scroll wrapper would park the span at the
                   column's static offset and silently widen the page on mobile. */}
-              {!compact ? <th className="px-4 py-3 font-normal" aria-label="Subscribe" /> : null}
+              {!compact ? <th className="hidden px-4 py-3 font-normal sm:table-cell" aria-label="Subscribe" /> : null}
             </tr>
           </thead>
           <tbody>
@@ -49,6 +49,16 @@ export function PricingTable({
                       recommended
                     </span>
                   ) : null}
+                  {/* The last column is off-screen on a phone; the link that subscribes must not need a swipe. */}
+                  {!compact ? (
+                    <a
+                      href={rapidApiPricingUrl(api, medium)}
+                      rel="noopener"
+                      className="mt-1 block whitespace-nowrap py-1 text-[13px] font-medium text-signal-400 hover:text-signal-500 sm:hidden"
+                    >
+                      Get {plan.name} →
+                    </a>
+                  ) : null}
                 </td>
                 <td className="px-4 py-3.5 text-right font-mono tabular-nums text-ink-100">
                   {plan.priceMonthly === 0 ? 'Free' : `$${plan.priceMonthly}`}
@@ -58,7 +68,7 @@ export function PricingTable({
                 <td className="px-4 py-3.5 text-right font-mono tabular-nums text-ink-400">{fmtOverage(plan)}</td>
                 <td className="px-4 py-3.5 text-right font-mono tabular-nums text-ink-400">{fmtRate(plan)}</td>
                 {!compact ? (
-                  <td className="px-4 py-3.5 text-right">
+                  <td className="hidden px-4 py-3.5 text-right sm:table-cell">
                     <a
                       href={rapidApiPricingUrl(api, medium)}
                       rel="noopener"
