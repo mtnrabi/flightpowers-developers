@@ -40,6 +40,30 @@ const GUIDES = [
     tag: 'start here',
   },
   {
+    href: '/guides/hotel-prices-python',
+    title: 'How to get hotel prices with Python',
+    sub: 'Live Booking.com rates with requests: a city search, one hotel by name, and why the same hotel gave two prices a minute apart.',
+    tag: 'hotels',
+  },
+  {
+    href: '/guides/flight-api-php',
+    title: 'Flight and hotel prices in PHP',
+    sub: 'Plain cURL on PHP 8.3: dates in parallel with curl_multi, Google\u2019s usual range on each fare, one hotel by name. Real output.',
+    tag: 'start here',
+  },
+  {
+    href: '/guides/openai-agents-sdk-flight-search',
+    title: 'Add live flight search to an OpenAI Agents SDK agent',
+    sub: 'A function tool over one POST, or the hosted MCP server. Working Python, real outputs, and the 5-second timeout to change.',
+    tag: 'AI agents',
+  },
+  {
+    href: '/guides/vercel-ai-sdk-flight-search',
+    title: 'Add live flight search to a Vercel AI SDK app',
+    sub: 'A typed tool with a zod schema that compares round trips to several cities, with one total per trip. Real output, and the MCP version.',
+    tag: 'AI agents',
+  },
+  {
     href: '/guides/booking-com-api-key',
     title: 'Booking.com API key: how to get access, and the alternative',
     sub: 'How Booking.com\'s own API access works (Demand API for Managed Affiliate Partners, under contract), and live Booking.com rates on a RapidAPI key today, proxy_country included.',

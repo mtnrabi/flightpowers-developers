@@ -1,0 +1,223 @@
+import { withOg } from '@/lib/meta';
+
+export const metadata = withOg({
+  title: 'Vercel AI SDK flight search tool (TypeScript)',
+  description:
+    'A typed flight search tool for the Vercel AI SDK: one zod schema, one POST per destination, round-trip totals with Google\'s usual price range. Ran on 2026-11-25 with ai 7.0, output included, plus the MCP version.',
+  alternates: { canonical: '/guides/vercel-ai-sdk-flight-search' },
+});
+
+export const dynamic = 'force-static';
+
+import { GuideDates, JsonLd } from '@/components/ui';
+import { PlanBox } from '@/components/PlanBox';
+import { FLIGHT_PLANS, HOTEL_PLANS } from '@/lib/pricing';
+import { SITE, rapidApiPricingUrl } from '@/lib/site';
+
+export const FREE = FLIGHT_PLANS.find((p) => p.priceMonthly === 0);
+export const PRO = FLIGHT_PLANS.find((p) => p.name === 'PRO');
+export const HOTEL_FREE = HOTEL_PLANS.find((p) => p.priceMonthly === 0);
+export const HOTEL_PRO = HOTEL_PLANS.find((p) => p.name === 'PRO');
+export const fmt = (n) => n.toLocaleString('en-US');
+
+<JsonLd
+  data={{
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'Add live flight search to a Vercel AI SDK app',
+    description:
+      'A typed flight search tool for the Vercel AI SDK: one zod schema, one POST per destination, round-trip totals with Google\'s usual price range. Ran on 2026-11-25 with ai 7.0, output included, plus the MCP version.',
+    url: `${SITE.url}/guides/vercel-ai-sdk-flight-search`,
+    datePublished: '2026-11-25',
+    dateModified: '2026-11-25',
+    author: { '@type': 'Person', name: 'Matan Rabi' },
+    publisher: { '@type': 'Organization', name: 'FlightPowers' },
+  }}
+/>
+
+# Add live flight search to a Vercel AI SDK app
+
+<GuideDates published="2026-11-25" updated="2026-11-25" />
+
+**Short answer:** define one `tool()` with a zod schema whose `execute` POSTs to
+`api.flightpowers.com/v1/flights/roundtrip`. Each request returns a round trip priced as one
+total, so there is no second lookup for the return leg. Or load the same search from the hosted MCP server with
+`@ai-sdk/mcp`.
+
+The code ran on 2026-11-25 with `ai` 7.0.181, `zod` 4.6.7 and Node 22. I used the SDK's own
+`MockLanguageModelV4`, scripted to call the tool, so the loop and the searches are real and no
+model's wording is shown.
+
+## Set up
+
+```bash
+npm install ai zod
+```
+
+Get a key from <a href={rapidApiPricingUrl('flights', 'guide', 'vercel-ai-sdk-flight-search-key')} rel="noopener">the RapidAPI plans page</a>
+(BASIC is free, {FREE.quota} searches a month), then `export RAPIDAPI_KEY=...`.
+
+## The tool
+
+```ts
+import { generateText, isStepCount, tool } from 'ai';
+import { z } from 'zod';
+
+const API = 'https://api.flightpowers.com/v1';
+
+async function roundTrip(from: string, to: string, depart: string, back: string) {
+  const res = await fetch(`${API}/flights/roundtrip`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': process.env.RAPIDAPI_KEY!,
+      'X-FP-Client': 'guide-vercel-ai-sdk', // optional: names your app in our logs
+    },
+    body: JSON.stringify({ from_airport: from, to_airport: to, departure_date: depart, return_date: back }),
+    signal: AbortSignal.timeout(100_000),
+  });
+  const searchStatus = res.headers.get('x-search-status');
+  if (!res.ok) return { to, searchStatus, http: res.status, error: (await res.text()).slice(0, 300) };
+  const rows: any[] = await res.json();
+  const best = rows.sort((a, b) => a.total_price_as_number - b.total_price_as_number)[0];
+  return {
+    to,
+    searchStatus,
+    total: best?.total_price ?? null,
+    low: best?.price_insights_low ?? null,
+    high: best?.price_insights_high ?? null,
+    verdict: best?.price_range_in_relation_to_other_periods || null,
+    outbound: best?.departure_flight_airline,
+    inbound: best?.return_flight_airline,
+    stops: best?.total_stops,
+    buyLink: best?.buy_link,
+  };
+}
+
+export const compareRoundTrips = tool({
+  description:
+    'Live round-trip fares from one airport to up to 5 destinations on the same dates. One total per destination, both legs priced together.',
+  inputSchema: z.object({
+    from: z.string().length(3).describe('Origin IATA code'),
+    to: z.array(z.string().length(3)).min(1).max(5).describe('Destination IATA codes'),
+    depart: z.string().describe('YYYY-MM-DD'),
+    back: z.string().describe('YYYY-MM-DD, after depart'),
+  }),
+  execute: ({ from, to, depart, back }) => Promise.all(to.map((t) => roundTrip(from, t, depart, back))),
+});
+
+export async function ask(model: Parameters<typeof generateText>[0]['model'], prompt: string) {
+  const { text, steps } = await generateText({
+    model,
+    tools: { compareRoundTrips },
+    stopWhen: isStepCount(4),
+    system:
+      'Quote fares only from the tool. If searchStatus is "degraded", say the search did not finish; never say there are no flights in that case.',
+    prompt,
+  });
+  return { text, steps };
+}
+```
+
+Pass `ask` any AI SDK model and a question such as "Berlin to Lisbon or Porto, 9 to 16 March,
+which is cheaper?". `isStepCount(4)` lets the model call the tool, read the result and answer.
+
+## What it returned
+
+`compareRoundTrips` with `from: "BER"`, `to: ["LIS", "OPO"]`, 2027-03-09 to 2027-03-16, fetched 2026-11-25 11:25 UTC.
+Both searches together took 8.1 seconds. Links cut:
+
+```json
+[
+  {
+    "to": "LIS",
+    "searchStatus": "ok",
+    "total": "$189",
+    "low": 140,
+    "high": 305,
+    "verdict": "typical",
+    "outbound": "Vueling | Iberia",
+    "inbound": "Vueling",
+    "stops": 2
+  },
+  {
+    "to": "OPO",
+    "searchStatus": "ok",
+    "total": "$132",
+    "low": 110,
+    "high": 305,
+    "verdict": "typical",
+    "outbound": "Eurowings",
+    "inbound": "Eurowings",
+    "stops": 0
+  }
+]
+```
+
+Porto is $57 cheaper and nonstop both ways. `low` and `high` are Google's usual range for that trip and
+`verdict` is its own call on the fare, so the model can judge the price and not only list it. Google
+leaves them out on some routes, and the tool returns null there.
+
+## Why the tool is shaped like this
+
+- **One object per destination.** The raw response holds every itinerary and long booking
+  links. The model needs the best one, and you pay for every token you send it.
+- **The loop runs in your code.** The REST endpoint takes one airport pair and one date pair. `Promise.all`
+  sends them together, and `max(5)` in the schema stops the model from asking for forty.
+- **`searchStatus` travels with the price.** `degraded` means the search did not finish, so an
+  empty list says nothing about flights. [What each status means](/flights-api/search-status).
+- **The key stays on the server.** Call this from a route handler or a server action, never from
+  the browser.
+
+## The MCP version
+
+If you would rather not write the tool, the hosted server has `search_oneway_flights` and `search_roundtrip_flights`. Both take a
+date range and a list of destinations in one call.
+
+```bash
+npm install @ai-sdk/mcp
+```
+
+```ts
+import { createMCPClient } from '@ai-sdk/mcp';
+
+const flights = await createMCPClient({
+  transport: {
+    type: 'http',
+    url: 'https://flights.flightpowers.com/mcp',
+    headers: { 'x-rapidapi-key': process.env.RAPIDAPI_KEY! },
+  },
+});
+
+const tools = await flights.tools();
+console.log(Object.keys(tools));
+// pass `tools` to generateText({ model, tools, ... }), then:
+await flights.close();
+```
+
+That printed `[ 'search_oneway_flights', 'search_roundtrip_flights' ]` with `@ai-sdk/mcp` 2.0.104. Listing tools
+costs nothing. A search costs one request per date and destination.
+
+## What it costs
+
+One destination on one date pair is one request. The call above was two. PRO is ${PRO.priceMonthly} a month for
+{fmt(PRO.quota)} requests at {PRO.ratePerMinute} a minute, and the same key works over REST and MCP.
+
+<PlanBox
+  page="/guides/vercel-ai-sdk-flight-search"
+  listings={['flights']}
+  medium="guide"
+  title="Get a key and run the code above"
+/>
+
+## Limits
+
+- Adults only in this schema. The API takes a `passengers` list for children and infants.
+- It reads prices and links to Google Flights. It does not book.
+- Do not cache a fare and present it later. Search again when the user comes back.
+
+## Related
+
+- [The same agent in Python with the OpenAI Agents SDK](/guides/openai-agents-sdk-flight-search)
+- [Round-trip prices in one request](/guides/roundtrip-flight-prices-one-request)
+- [The official JavaScript client](/docs/sdks)

@@ -90,6 +90,10 @@ ${DIFFERENTIATORS.map((d) => `- ${d.title}: ${d.short}`).join('\n')}
 - [Using a flight API in n8n](${u('/guides/flight-api-in-n8n')}): a four-node fare watch with exact POST bodies
 - [Google Flights URL parameters, decoded](${u('/guides/google-flights-url-parameters')}): the tfs= protobuf at the wire level
 - [How to get Google Flights prices with Python](${u('/guides/google-flights-prices-python')}): twelve lines with requests, no browser, a real captured response
+- [How to get hotel prices with Python](${u('/guides/hotel-prices-python')}): live Booking.com rates with requests, a city search and one hotel by name, real output
+- [Flight and hotel prices in PHP](${u('/guides/flight-api-php')}): cURL and curl_multi on PHP 8.3, several dates in parallel, one hotel by name, real output
+- [Flight search for an OpenAI Agents SDK agent](${u('/guides/openai-agents-sdk-flight-search')}): a function tool over one POST or the hosted MCP server, working Python, real outputs
+- [Flight search for a Vercel AI SDK app](${u('/guides/vercel-ai-sdk-flight-search')}): a typed zod tool in TypeScript that compares round trips to several cities, real output
 - [How to get round-trip flight prices in one API request](${u('/guides/roundtrip-flight-prices-one-request')}): the paired-leg model, a real BER-CDG capture, and why two one-ways don't add up
 - [How to check if your company is overpaying for flights](${u('/guides/overpaying-for-flights')}): grading the forward book against Google's own price band, with the cabin trap and the trips it cannot judge
 - [Cheapest destinations from one airport this month](${u('/guides/cheapest-destinations-from-one-airport')}): a destination list and a date range in one call, a captured 15-combination run, and the limit that drops a destination

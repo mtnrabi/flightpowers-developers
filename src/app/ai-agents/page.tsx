@@ -411,7 +411,16 @@ export default function AiAgentsPage() {
             <Link href="/guides/ai-travel-agent" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
               AI travel agent guide
             </Link>{' '}
-            walks through one that scans your routes every morning and compares fares against Google&apos;s own band.
+            walks through one that scans your routes every morning and compares fares against Google&apos;s own band. Writing
+            your own agent? Working code for the{' '}
+            <Link href="/guides/openai-agents-sdk-flight-search" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+              OpenAI Agents SDK
+            </Link>{' '}
+            and the{' '}
+            <Link href="/guides/vercel-ai-sdk-flight-search" className="text-signal-400 underline underline-offset-4 hover:text-signal-500">
+              Vercel AI SDK
+            </Link>
+            .
           </p>
         </div>
       </Section>
