@@ -293,7 +293,7 @@ const GUIDES = [
   },
   {
     href: '/guides/best-travel-data-apis-2026',
-    title: 'Travel APIs for developers in 2026: flights, hotels, prices',
+    title: 'Best travel APIs in 2026, sorted by what you need them for',
     sub: '\u201cTravel data API\u201d is four different products. A category map that sends you to the right shortlist before you call a vendor.',
     tag: 'comparison',
   },
