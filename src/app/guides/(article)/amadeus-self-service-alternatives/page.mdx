@@ -2,13 +2,14 @@ import { withOg } from '@/lib/meta';
 
 export const metadata = {
   ...withOg({
-    title: 'Amadeus Self-Service alternatives you can get into',
+    title: 'Amadeus API alternatives after Self-Service closed',
     description:
-      'Amadeus Self-Service closed July 17, 2026. Every alternative a small team shortlists, with the access gate on each, quoted and dated, and how to migrate.',
+      'Amadeus alternatives you can sign up for today, now that Self-Service closed (July 17, 2026): 14 APIs with the access gate on each, quoted and dated, plus a migration.',
     alternates: { canonical: '/guides/amadeus-self-service-alternatives' },
   }),
   // The layout template appends " · FlightPowers"; the title is 50 chars without it.
-  title: { absolute: 'Amadeus Self-Service alternatives you can get into' },
+  // Retitled 2026-11-27: 'amadeus alternatives' had 342 impressions at position 6.6 and 0 clicks in 28 days.
+  title: { absolute: 'Amadeus API alternatives after Self-Service closed' },
 };
 
 export const dynamic = 'force-static';
@@ -24,12 +25,12 @@ import { SITE } from '@/lib/site';
   data={{
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
-    headline: 'Amadeus Self-Service alternatives you can get into',
+    headline: 'Amadeus API alternatives after Self-Service closed',
     description:
       'Every Amadeus Self-Service alternative a small team shortlists, with the access gate each one puts in front of you, quoted and dated, plus a real migration request and response.',
     url: `${SITE.url}/guides/amadeus-self-service-alternatives`,
     datePublished: '2026-09-01',
-    dateModified: '2026-10-18',
+    dateModified: '2026-11-27',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
@@ -45,7 +46,7 @@ import { SITE } from '@/lib/site';
         name: 'Is there a free Amadeus API?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Not for a new developer any more: the Amadeus for Developers self-service portal was decommissioned on July 17, 2026, and what remains is Amadeus Enterprise, built for accredited travel businesses, so the free starts left are the free tiers of self-serve alternatives, such as FlightPowers at 10 flight searches a month.',
+          text: 'Not for a new developer any more: the Amadeus for Developers self-service portal was decommissioned on July 17, 2026, and what remains is Amadeus Enterprise, built for accredited travel businesses, so the free starts left are the free tiers of self-serve alternatives, such as FlightPowers at ' + FLIGHT_PLANS[0].quota + ' flight searches a month.',
         },
       },
       {
@@ -108,9 +109,13 @@ import { SITE } from '@/lib/site';
   }}
 />
 
-# Amadeus Self-Service alternatives you can get into
+# Amadeus API alternatives after Self-Service closed
 
-<GuideDates published="2026-09-01" updated="2026-10-18" />
+<GuideDates published="2026-09-01" updated="2026-11-27" />
+
+The Amadeus alternatives a small team can still sign up for without an application are Google Flights
+APIs (FlightPowers, SerpApi, SearchApi, HasData), Ignav and flight-mcp.com for fares, and Duffel if you
+need to issue tickets. The table below puts the access gate of each next to the others, quoted and dated.
 
 **Short answer:** Amadeus for Developers Self-Service was decommissioned on July 17, 2026,
 per the notice Amadeus itself posted on

@@ -1,11 +1,14 @@
 import { withOg } from '@/lib/meta';
 
-export const metadata = withOg({
-  title: 'How to get Google Flights prices with Python',
-  description:
-    'Twelve lines of requests, a real captured response, and the three price-insight fields that come back with a fare when Google shows them. No Playwright, no browser pool, no tfs= encoding. Includes the limits worth knowing before you build on it.',
-  alternates: { canonical: '/guides/google-flights-prices-python' },
-});
+export const metadata = {
+  ...withOg({
+    title: 'Google Flights API in Python: live fares in 12 lines',
+    description:
+      'A Google Flights API call in Python: one requests.post, a real response captured 2026-11-27, one-way and round trip, with Google\'s price band. Free plan, no browser.',
+    alternates: { canonical: '/guides/google-flights-prices-python' },
+  }),
+  title: { absolute: 'Google Flights API in Python: live fares in 12 lines' },
+};
 
 export const dynamic = 'force-static';
 
@@ -17,20 +20,24 @@ import { SITE, rapidApiPricingUrl } from '@/lib/site';
   data={{
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
-    headline: 'How to get Google Flights prices with Python',
+    headline: 'Google Flights API in Python: live fares in 12 lines',
     description:
       'A working Python request for live Google Flights fares, a real captured response, the price-insight fields, and the honest limits.',
     url: `${SITE.url}/guides/google-flights-prices-python`,
     datePublished: '2026-09-05',
-    dateModified: '2026-09-05',
+    dateModified: '2026-11-27',
     author: { '@type': 'Person', name: 'Matan Rabi' },
     publisher: { '@type': 'Organization', name: 'FlightPowers' },
   }}
 />
 
-# How to get Google Flights prices with Python
+# Google Flights API in Python
 
-<GuideDates published="2026-09-05" updated="2026-09-05" />
+<GuideDates published="2026-09-05" updated="2026-11-27" />
+
+Google has no official Google Flights API for Python (QPX Express closed in 2018), so you call a
+hosted one: with FlightPowers it is one `requests.post` that returns live Google Flights fares as JSON.
+The code is below, with a real response captured on 2026-11-27, for one-way and round trip.
 
 **Short answer:** FlightPowers' Google Flights API answers this with one POST to
 `google-flights-live-api.p.rapidapi.com/api/google_flights/oneway/v1` using Python's
@@ -63,7 +70,7 @@ r = requests.post(
     json={
         "from_airport": "LHR",
         "to_airport": "BCN",
-        "departure_date": "2026-11-18",
+        "departure_date": "2027-01-20",
         "limit": 2,
     },
 )
@@ -84,27 +91,30 @@ free plan included, and it works on the next request.
 ## What does the response contain?
 
 The response is a plain list of fares. This is a real answer to the exact request above,
-run on **2026-09-04**. Fares move by the minute, so yours will not match.
+run on **2026-11-27** (the first of the two rows). Fares move by the minute, so yours will not match.
 
 ```json
 [
   {
     "price_range_in_relation_to_other_periods": "typical",
     "price_insights_low": 50,
-    "price_insights_high": 110,
+    "price_insights_high": 85,
     "from_airport": "London (LHR)",
     "to_airport": "Barcelona (BCN)",
-    "departure_date": "2026-11-18",
-    "price": "$63",
-    "price_as_number": 63,
+    "departure_date": "2027-01-20",
+    "price": "$53",
+    "price_as_number": 53,
     "duration": "2 hr 15 min",
     "duration_seconds": 8100,
     "airline": "Vueling | Iberia, British Airways",
     "stops": 0,
     "stops_info": [],
-    "departure_description": "8:50 PM on Wed, Nov 18",
-    "arrival_description": "12:05 AM on Thu, Nov 19",
-    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjYtMTEtMTgiIAoDTEhSEgoyMDI2LTExLTE4GgNCQ04qAlZZMgQ3NjQzagUSA0xIUnIFEgNCQ05CAQFIAZgBAg&curr=usd"
+    "segments": [
+      { "from_airport": "LHR", "to_airport": "BCN", "airline_code": "VY", "flight_number": "7643", "departure_date": "2027-01-20" }
+    ],
+    "departure_description": "8:50 PM on Wed, Jan 20",
+    "arrival_description": "12:05 AM on Thu, Jan 21",
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjwSCjIwMjctMDEtMjAiIAoDTEhSEgoyMDI3LTAxLTIwGgNCQ04qAlZZMgQ3NjQzagUSA0xIUnIFEgNCQ05CAQFIAZgBAg&curr=usd"
   }
 ]
 ```
@@ -119,6 +129,57 @@ And the first three fields are Google's own price context: the usual range for t
 and date, plus a `low`, `typical` or `high` verdict on the fare in front of you. That is
 the part you would otherwise build by polling a route for six weeks. There is a longer
 write-up in [is this flight price good](/guides/fare-verdict-in-one-call).
+
+## How do you get a round trip in Python?
+
+Same call, a different path and a `return_date`. Both legs come back priced together, with one
+total and one booking link, so there is no second request with a token.
+
+```python
+r = requests.post(
+    "https://google-flights-live-api.p.rapidapi.com/api/google_flights/roundtrip/v1",
+    headers={
+        "Content-Type": "application/json",
+        "x-rapidapi-host": "google-flights-live-api.p.rapidapi.com",
+        "x-rapidapi-key": os.environ["RAPIDAPI_KEY"],
+    },
+    json={
+        "from_airport": "JFK",
+        "to_airport": "LHR",
+        "departure_date": "2027-04-15",
+        "return_date": "2027-04-22",
+        "currency": "usd",
+        "limit": 1,
+    },
+)
+trip = r.json()[0]
+print(trip["total_price_as_number"], trip["departure_flight_airline"], trip["return_flight_airline"])
+```
+
+Real answer, captured 2026-11-27 (trimmed to the fields most code reads):
+
+```json
+[
+  {
+    "price_range_in_relation_to_other_periods": "typical",
+    "price_insights_low": 495,
+    "price_insights_high": 730,
+    "departure_date": "2027-04-15",
+    "return_date": "2027-04-22",
+    "total_price": "$717",
+    "total_price_as_number": 717,
+    "total_stops": 0,
+    "departure_flight_airline": "British Airways | Iberia, Finnair, American, Alaska",
+    "departure_flight_duration": "6 hr 55 min",
+    "return_flight_airline": "British Airways | American, Finnair, Iberia",
+    "return_flight_duration": "7 hr 50 min",
+    "buy_link": "https://www.google.com/travel/flights?tfs=GjsSCjIwMjctMDQtMTUiHwoDSkZLEgoyMDI3LTA0LTE1GgNMSFIqAkJBMgMxNzhqBRIDSkZLcgUSA0xIUho7EgoyMDI3LTA0LTIyIh8KA0xIUhIKMjAyNy0wNC0yMhoDSkZLKgJCQTIDMTgxagUSA0xIUnIFEgNKRktCAQFIAZgBAQ&curr=usd"
+  }
+]
+```
+
+Round trips take longer than one-way (this one answered in about 18 seconds), so set a
+`timeout=` of a minute or more on the request.
 
 ## What are the limits?
 
@@ -148,6 +209,8 @@ different product.
 
 ## Related
 
+- [Google Flights API in 2026](/guides/google-flights-api): what exists, what it costs, and the other options
+- [Run it every day](/docs/run-daily): turn this script into a daily fare job (cron, GitHub Actions)
 - [How to scrape Google Flights with Python](/guides/scrape-google-flights-python): the browser version, and where it stops paying for itself
 - [Is this flight price good?](/guides/fare-verdict-in-one-call): the price band and the verdict in full
 - [FlightPowers vs HasData](/compare/hasdata): the other Google Flights API with a hosted MCP endpoint, prices quoted and dated

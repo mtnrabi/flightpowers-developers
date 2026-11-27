@@ -47,7 +47,7 @@ export const RELATED: Record<string, RelatedLink[]> = {
     { href: '/guides/scrape-google-flights-puppeteer', label: 'How to scrape Google Flights with Puppeteer' },
   ],
   '/guides/scrape-google-flights-puppeteer': [
-    { href: '/guides/google-flights-prices-python', label: 'How to get Google Flights prices with Python' },
+    { href: '/guides/google-flights-prices-python', label: 'Google Flights API in Python: live fares in 12 lines' },
     { href: '/guides/scrape-booking-com-prices', label: 'The Booking.com version: scraping hotel prices with Python' },
     {
       href: '/guides/amadeus-flight-offers-vs-google-flights',
@@ -132,7 +132,7 @@ export const RELATED: Record<string, RelatedLink[]> = {
   ],
   '/blog/cheapest-month-to-fly-api': [
     { href: '/use-cases/fare-calendars', label: 'Fare calendars and heatmaps built from one search per date' },
-    { href: '/guides/google-flights-prices-python', label: 'Google Flights prices in Python with requests, no browser' },
+    { href: '/guides/google-flights-prices-python', label: 'Google Flights API in Python, with requests and no browser' },
     { href: '/blog/rebuilding-flightpowers-com', label: 'Rebuilding flightpowers.com' },
   ],
   '/blog/rebuilding-flightpowers-com': [
