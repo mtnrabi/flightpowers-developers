@@ -41,7 +41,9 @@ const BASIC = GOOGLE_HOTELS_PLANS.find((p) => p.name === 'BASIC')!;
 const PRO = GOOGLE_HOTELS_PLANS.find((p) => p.name === 'PRO')!;
 const fmt = (n: number) => n.toLocaleString('en-US');
 
-const TITLE = 'Google Hotels API: live hotel rates on each site Google lists';
+// Retitled 2026-11-27: 'google hotels api pricing' (74 impressions, position 13.1) and 'google hotel api'
+// (41, 19.8) in 28 days; the title now names the price.
+const TITLE = `Google Hotels API: live rates per site, $${PRO.priceMonthly} for ${fmt(PRO.quota)}`;
 
 export const metadata: Metadata = {
   ...withOg({
@@ -225,9 +227,13 @@ export default function GoogleHotelsApiPage() {
             <div>
               <p className="eyebrow">Google Hotels Live API</p>
               <h1 className="mt-4 text-[2.25rem] sm:text-[3.25rem] leading-[1.05] font-semibold">
-                One hotel&apos;s rate on <span className="text-signal-500">each site Google lists</span>
+                Google Hotels API: one hotel&apos;s rate on <span className="text-signal-500">each site Google lists</span>
               </h1>
               <p className="lede mt-5">
+                Google has no public API for reading Google Hotels prices, so this is a hosted one: send a hotel name and
+                dates, get back the rate each booking site shows on Google Hotels, as JSON.
+              </p>
+              <p className="lede mt-4">
                 FlightPowers&apos; Google Hotels Live API: send a hotel&apos;s name and your dates to{' '}
                 <code className="font-mono text-[0.85em] text-signal-400">POST /rates</code> and you get its rate on each site
                 Google Hotels lists for it, each with the total including taxes and a link. Or search a city with{' '}

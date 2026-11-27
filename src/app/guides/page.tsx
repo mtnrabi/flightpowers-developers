@@ -101,7 +101,7 @@ const GUIDES = [
   },
   {
     href: '/guides/amadeus-self-service-alternatives',
-    title: 'Amadeus Self-Service alternatives you can get into',
+    title: 'Amadeus API alternatives after Self-Service closed',
     sub: 'Both Amadeus Self-Service API hostnames have no DNS record, checked here on 2026-09-04. Every alternative a small team shortlists, with the access gate each one puts in front of you, quoted and dated, plus a real migration request and response.',
     tag: 'migration guide',
   },
